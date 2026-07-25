@@ -45,7 +45,7 @@ const ProfileCardAvatar = React.forwardRef<
 ProfileCardAvatar.displayName = "ProfileCardAvatar"
 
 const ProfileCardTitle = React.forwardRef<
-  HTMLParagraphElement,
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
   <h3

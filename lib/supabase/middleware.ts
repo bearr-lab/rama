@@ -2,7 +2,7 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
 export async function updateSession(request: NextRequest, response?: NextResponse) {
-  let supabaseResponse = response || NextResponse.next({
+  const supabaseResponse = response || NextResponse.next({
     request,
   })
 
@@ -26,7 +26,7 @@ export async function updateSession(request: NextRequest, response?: NextRespons
   )
 
   // Refresh session if expired
-  await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
 
-  return supabaseResponse
+  return { response: supabaseResponse, user }
 }

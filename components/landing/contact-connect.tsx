@@ -75,12 +75,16 @@ export function ContactConnect({ locale, isArabic }: ContactConnectProps) {
 
             {/* Right Column: Form */}
             <div>
-              <form className="space-y-5 bg-surface-subtle/50 p-6 md:p-8 rounded-2xl border border-border">
+              <form 
+                onSubmit={(e) => e.preventDefault()}
+                className="space-y-5 bg-surface-subtle/50 p-6 md:p-8 rounded-2xl border border-border"
+              >
                 <div>
-                  <label className="block text-sm text-ink mb-2 font-medium">
+                  <label htmlFor="contact-name" className="block text-sm text-ink mb-2 font-medium">
                     {isArabic ? "الاسم" : "Name"}
                   </label>
                   <input
+                    id="contact-name"
                     type="text"
                     placeholder={isArabic ? "الاسم الكامل" : "Your full name"}
                     className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all"
@@ -88,10 +92,11 @@ export function ContactConnect({ locale, isArabic }: ContactConnectProps) {
                 </div>
 
                 <div>
-                  <label className="block text-sm text-ink mb-2 font-medium">
+                  <label htmlFor="contact-email" className="block text-sm text-ink mb-2 font-medium">
                     {isArabic ? "البريد الإلكتروني" : "Email"}
                   </label>
                   <input
+                    id="contact-email"
                     type="email"
                     placeholder={isArabic ? "أنت@مثال.com" : "you@example.com"}
                     className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all"
@@ -99,10 +104,11 @@ export function ContactConnect({ locale, isArabic }: ContactConnectProps) {
                 </div>
 
                 <div>
-                  <label className="block text-sm text-ink mb-2 font-medium">
+                  <label htmlFor="contact-phone" className="block text-sm text-ink mb-2 font-medium">
                     {isArabic ? "رقم الهاتف" : "Phone number"}
                   </label>
                   <input
+                    id="contact-phone"
                     type="tel"
                     placeholder="+971 50 123 4567"
                     className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all"
@@ -110,10 +116,11 @@ export function ContactConnect({ locale, isArabic }: ContactConnectProps) {
                 </div>
 
                 <div>
-                  <label className="block text-sm text-ink mb-2 font-medium">
+                  <label htmlFor="contact-message" className="block text-sm text-ink mb-2 font-medium">
                     {isArabic ? "كيف يمكننا المساعدة؟" : "How can we help?"}
                   </label>
                   <textarea
+                    id="contact-message"
                     placeholder={isArabic ? "أخبرنا عما تبحث عنه..." : "Tell us what you are looking for..."}
                     rows={4}
                     className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all resize-none"

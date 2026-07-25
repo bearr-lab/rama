@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button"
 interface MobileNavProps {
   isOpen: boolean
   onClose: () => void
+  locale?: "en" | "ar"
 }
 
-export function MobileNav({ isOpen, onClose }: MobileNavProps) {
+export function MobileNav({ isOpen, onClose, locale = "en" }: MobileNavProps) {
   return (
     <>
       {/* Backdrop */}
@@ -42,25 +43,25 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         <div className="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-6">
           <nav className="flex flex-col gap-4">
             <Link 
-              href="/en/homes" 
+              href={`/${locale}/homes`} 
               className="text-lg font-medium text-ink hover:text-fjord transition-colors"
               onClick={onClose}
             >
-              Homes
+              {locale === "ar" ? "العقارات" : "Homes"}
             </Link>
             <Link 
-              href="/en/areas" 
+              href={`/${locale}/areas`} 
               className="text-lg font-medium text-ink hover:text-fjord transition-colors"
               onClick={onClose}
             >
-              Areas
+              {locale === "ar" ? "المناطق" : "Areas"}
             </Link>
             <Link 
-              href="/en/insights" 
+              href={`/${locale}/insights`} 
               className="text-lg font-medium text-ink hover:text-fjord transition-colors"
               onClick={onClose}
             >
-              Insights
+              {locale === "ar" ? "رؤى" : "Insights"}
             </Link>
           </nav>
 

@@ -15,19 +15,22 @@ export function useShortlist(userId?: string) {
       return
     }
 
+    let ignore = false
+
     const fetchShortlist = async () => {
       const { data, error } = await supabase
         .from("shortlists")
         .select("property_id")
         .eq("user_id", userId)
 
-      if (!error && data) {
+      if (!ignore && !error && data) {
         setSavedIds(data.map(item => item.property_id))
       }
-      setIsLoading(false)
+      if (!ignore) setIsLoading(false)
     }
 
     fetchShortlist()
+    return () => { ignore = true }
   }, [userId, supabase])
 
   const toggleSave = async (propertyId: string) => {
@@ -42,15 +45,17 @@ export function useShortlist(userId?: string) {
 
     try {
       if (isSaved) {
-        await supabase
+        const { error } = await supabase
           .from("shortlists")
           .delete()
           .eq("user_id", userId)
           .eq("property_id", propertyId)
+        if (error) throw error
       } else {
-        await supabase
+        const { error } = await supabase
           .from("shortlists")
           .insert({ user_id: userId, property_id: propertyId })
+        if (error) throw error
       }
       return true
     } catch (error) {

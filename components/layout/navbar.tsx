@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
+import { useLocale } from "next-intl"
 import { Menu, X, User } from "lucide-react"
 
 import { cn } from "@/lib/utils"
@@ -16,6 +17,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const locale = useLocale()
 
   // Determine if we are on the landing page (which uses transparent nav initially)
   const isLandingPage = pathname === "/en" || pathname === "/ar" || pathname === "/"
@@ -72,14 +74,14 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link href="/en/homes" className={linkClasses}>
-              Homes
+            <Link href={`/${locale}/homes`} className={linkClasses}>
+              {locale === 'ar' ? 'العقارات' : 'Homes'}
             </Link>
-            <Link href="/en/areas" className={linkClasses}>
-              Areas
+            <Link href={`/${locale}/areas`} className={linkClasses}>
+              {locale === 'ar' ? 'المناطق' : 'Areas'}
             </Link>
-            <Link href="/en/insights" className={linkClasses}>
-              Insights
+            <Link href={`/${locale}/insights`} className={linkClasses}>
+              {locale === 'ar' ? 'رؤى' : 'Insights'}
             </Link>
           </nav>
 
@@ -87,7 +89,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <LocaleSwitcher isDark={isLandingPage && !isScrolled} />
             <UserMenu 
-              locale={pathname.startsWith("/ar") ? "ar" : "en"} 
+              locale={locale as "en" | "ar"} 
               isDark={isLandingPage && !isScrolled} 
             />
           </div>
@@ -105,7 +107,8 @@ export function Navbar() {
 
       <MobileNav 
         isOpen={isMobileMenuOpen} 
-        onClose={() => setIsMobileMenuOpen(false)} 
+        onClose={() => setIsMobileMenuOpen(false)}
+        locale={locale as "en" | "ar"}
       />
     </>
   )

@@ -36,6 +36,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Invalid messages' }, { status: 400 })
     }
 
+    const ALLOWED_ROLES = new Set(["user", "assistant"])
+    const isValid = messages.length <= 50 && messages.every(m =>
+      m && ALLOWED_ROLES.has(m.role) && typeof m.content === "string" && m.content.length <= 4000
+    )
+    if (!isValid) {
+      return NextResponse.json({ error: 'Invalid messages' }, { status: 400 })
+    }
+
     // Prepare messages for Claude 3.5 Sonnet via OpenRouter
     const systemPrompt = `You are RAMA, an expert AI real estate advisor for Dubai. 
     You provide accurate, helpful, and concise answers about Dubai properties, communities, and real estate laws.
@@ -68,7 +76,8 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         model: "anthropic/claude-3.5-sonnet",
         messages: openRouterMessages,
-      })
+      }),
+      signal: AbortSignal.timeout(30_000),
     })
 
     if (!response.ok) {

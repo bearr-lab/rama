@@ -1,5 +1,6 @@
 import { Inter, Playfair_Display, Noto_Sans_Arabic } from "next/font/google"
 import type { Metadata } from "next"
+import { getLocale } from "next-intl/server"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -51,17 +52,21 @@ export const metadata: Metadata = {
     description:
       "Verified properties. Real prices. No guesswork. Discover Dubai real estate with AI-powered guidance.",
   },
+  manifest: "/manifest.json",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const locale = await getLocale()
+  const dir = locale === "ar" ? "rtl" : "ltr"
+
   return (
     <html
-      lang="en"
-      dir="ltr"
+      lang={locale}
+      dir={dir}
       suppressHydrationWarning
       className={cn(
         "antialiased",

@@ -3,6 +3,7 @@ import { TrendingUp, BarChart3, Newspaper, LineChart } from "lucide-react"
 import { PageHeader } from "@/components/layout/page-header"
 import { Section } from "@/components/layout/section"
 import { Container } from "@/components/layout/container"
+import Link from "next/link"
 
 export const revalidate = 3600
 
@@ -54,9 +55,10 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
         <Container size="xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {insights.map((insight) => (
-              <div 
+              <Link 
+                href={`/${locale}/insights/${insight.id}`}
                 key={insight.id}
-                className="group rounded-2xl overflow-hidden bg-surface border border-border p-6 hover:shadow-floating transition-all duration-300 cursor-pointer flex flex-col h-full"
+                className="group rounded-2xl overflow-hidden bg-surface border border-border p-6 hover:shadow-floating transition-all duration-300 cursor-pointer flex flex-col h-full block"
               >
                 <div className="flex items-center gap-2 text-fjord mb-4 font-medium text-sm bg-fjord/5 w-fit px-3 py-1 rounded-full">
                   {insight.icon}
@@ -74,7 +76,7 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
                 <div className="pt-4 border-t border-border mt-auto font-medium text-fjord group-hover:underline underline-offset-4 decoration-fjord/30 text-sm">
                   {isArabic ? "قراءة المزيد ←" : "Read Full Article →"}
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

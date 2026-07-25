@@ -13,6 +13,7 @@ interface SearchBarProps {
   variant?: "hero" | "inline"
   locale?: "en" | "ar"
   initialQuery?: string
+  initialTenure?: string
   onSearch?: (query: string, tenure: string) => void
   className?: string
 }
@@ -21,12 +22,13 @@ export function SearchBar({
   variant = "hero", 
   locale = "en",
   initialQuery = "",
+  initialTenure = "ready",
   onSearch,
   className 
 }: SearchBarProps) {
   const router = useRouter()
   const [query, setQuery] = useState(initialQuery)
-  const [tenure, setTenure] = useState<string>("ready")
+  const [tenure, setTenure] = useState<string>(initialTenure)
   const [isFocused, setIsFocused] = useState(false)
 
   const isHero = variant === "hero"

@@ -38,6 +38,14 @@ for (const file of files) {
     ]
   };
 
+  if (content.includes('@/lib/utils')) {
+    item.files.push({
+      path: 'lib/utils.ts',
+      content: fs.readFileSync(path.join(process.cwd(), 'lib/utils.ts'), 'utf8'),
+      type: 'registry:lib'
+    });
+  }
+
   // write item json
   fs.writeFileSync(path.join(registryDir, `${name}.json`), JSON.stringify(item, null, 2));
 

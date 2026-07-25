@@ -14,7 +14,14 @@ export function LocaleSwitcher({ isDark = false }: LocaleSwitcherProps) {
   // Basic implementation until next-intl is fully configured
   const currentLocale = pathname.startsWith("/ar") ? "ar" : "en"
   const nextLocale = currentLocale === "en" ? "ar" : "en"
-  const togglePath = pathname.replace(`/${currentLocale}`, `/${nextLocale}`)
+  let togglePath = pathname
+  if (pathname === "/" || pathname === "") {
+    togglePath = `/${nextLocale}`
+  } else if (pathname.startsWith(`/${currentLocale}`)) {
+    togglePath = pathname.replace(`/${currentLocale}`, `/${nextLocale}`)
+  } else {
+    togglePath = `/${nextLocale}${pathname}`
+  }
 
   return (
     <Link

@@ -41,7 +41,7 @@ export function PropertyCard({
 
   return (
     <Card className={cn(
-      "group overflow-hidden bg-surface transition-all duration-300 ease-decelerate hover:shadow-floating hover:-translate-y-1 border-border/50",
+      "group relative overflow-hidden bg-surface transition-all duration-300 ease-decelerate hover:shadow-floating hover:-translate-y-1 border-border/50",
       isEditorial ? "flex flex-col md:flex-row h-auto md:h-[400px]" : "flex flex-col h-full"
     )}>
       {/* Image Container */}
@@ -71,7 +71,7 @@ export function PropertyCard({
           <Button 
             variant="secondary" 
             size="icon" 
-            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white shadow-sm"
+            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white shadow-sm relative z-20"
             onClick={(e) => {
               e.preventDefault()
               if (onSave) onSave(property.id)
@@ -95,7 +95,9 @@ export function PropertyCard({
         <div className="space-y-4">
           <div className="space-y-2">
             <h3 className="font-display text-xl font-semibold text-ink line-clamp-2 leading-tight">
-              {title}
+              <Link href={`/${locale}/homes/${property.slug}`} className="before:absolute before:inset-0 before:z-10">
+                {title}
+              </Link>
             </h3>
             <div className="flex items-center text-muted-foreground text-sm">
               <MapPin className="w-3.5 h-3.5 mr-1" />
@@ -125,12 +127,10 @@ export function PropertyCard({
           </div>
         </div>
 
-        <div className="pt-6 mt-auto">
-          <Link href={`/${locale}/homes/${property.slug}`}>
-            <Button className="w-full bg-fjord hover:bg-fjord-hover text-white rounded-button">
-              View Details
-            </Button>
-          </Link>
+        <div className="pt-6 mt-auto relative z-20 pointer-events-none">
+          <Button className="w-full bg-fjord hover:bg-fjord-hover text-white rounded-button pointer-events-none">
+            {locale === "ar" ? "عرض التفاصيل" : "View Details"}
+          </Button>
         </div>
       </CardContent>
     </Card>

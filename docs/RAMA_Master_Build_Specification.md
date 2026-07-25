@@ -133,7 +133,7 @@ RAMA MVP is a **visually stunning, bilingual (EN/AR) Dubai real estate discovery
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "db:types": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID --schema public > src/lib/database.types.ts"
+    "db:types": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID --schema public > lib/database.types.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -451,7 +451,7 @@ CREATE TABLE properties (
   title_ar TEXT NOT NULL,
   description_en TEXT,
   description_ar TEXT,
-  price INTEGER NOT NULL,
+  price NUMERIC NOT NULL,
   price_verified BOOLEAN DEFAULT false,
   bedrooms INTEGER,
   bathrooms INTEGER,
@@ -480,7 +480,7 @@ CREATE TABLE properties (
 -- Shortlists table
 CREATE TABLE shortlists (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
   property_id UUID NOT NULL REFERENCES properties(id) ON DELETE CASCADE,
   created_at TIMESTAMPTZ DEFAULT now(),
   UNIQUE(user_id, property_id)
@@ -1032,7 +1032,7 @@ API route calls OpenRouter API
     ↓
 OpenRouter routes to model (Claude 3.5 Sonnet / GPT-4o)
     ↓
-Response streamed back to frontend
+JSON response returned to frontend
     ↓
 Frontend renders markdown + property cards
 ```

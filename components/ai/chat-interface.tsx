@@ -46,7 +46,7 @@ export function ChatInterface({ locale = "en" }: { locale?: "en" | "ar" }) {
       </div>
 
       {/* Messages Area */}
-      <ScrollArea className="flex-1 p-4" ref={scrollRef}>
+      <ScrollArea className="flex-1 p-4" viewportRef={scrollRef}>
         <div className="space-y-6">
           {messages.length === 0 && (
             <div className="text-center py-12 px-4 space-y-4 text-muted-foreground flex flex-col items-center">

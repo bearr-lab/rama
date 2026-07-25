@@ -21,14 +21,16 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-ink leading-tight mb-6 font-display">
             {isArabic ? "قابل مستشارك العقاري الشخصي." : "Meet your personal"}
-            <span className="block italic text-muted-foreground mt-2">
-              {isArabic ? "" : "Real Estate Advisor."}
-            </span>
+            {!isArabic && (
+              <span className="block italic text-muted-foreground mt-2">
+                Real Estate Advisor.
+              </span>
+            )}
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-prose mx-auto">
             {isArabic 
               ? "تخطى التصفح اللانهائي. أخبر راما بما تبحث عنه، واحصل على توصيات مخصصة بناءً على بيانات السوق في الوقت الفعلي."
-              : "Skip the endless browsing. Tell RAMA what you're looking for, and get personalized recommendations based on real-time market data."}
+              : "Skip the endless browsing. Tell RAMA what you&apos;re looking for, and get personalized recommendations based on real-time market data."}
           </p>
           <Link href={`/${locale}/advisor`} className="inline-block">
             <Button size="lg" className="bg-ink hover:bg-ink-hover text-white rounded-button px-8 h-14 min-w-[220px]">
@@ -66,7 +68,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                         <Bot className="w-3 h-3 text-white" />
                       </div>
                       <div className="bg-surface-subtle rounded-2xl rounded-tl-none px-4 py-3 max-w-[85%] text-ink">
-                        <p className="text-sm">Welcome! I'm RAMA AI. Ask me anything about Dubai real estate.</p>
+                        <p className="text-sm">Welcome! I&apos;m RAMA AI. Ask me anything about Dubai real estate.</p>
                       </div>
                     </div>
 

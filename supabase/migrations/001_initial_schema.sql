@@ -9,7 +9,7 @@ CREATE TYPE verification_status AS ENUM ('verified', 'review', 'unknown');
 
 -- Create profiles table (extends auth.users)
 CREATE TABLE profiles (
-    id UUID REFERENCES auth.users(id) PRIMARY KEY,
+    id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
     email TEXT NOT NULL,
     full_name TEXT,
     avatar_url TEXT,

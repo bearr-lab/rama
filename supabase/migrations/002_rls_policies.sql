@@ -5,9 +5,9 @@ ALTER TABLE communities ENABLE ROW LEVEL SECURITY;
 ALTER TABLE shortlists ENABLE ROW LEVEL SECURITY;
 
 -- Profiles Policies
-CREATE POLICY "Public profiles are viewable by everyone"
+CREATE POLICY "Users can view own profile"
     ON profiles FOR SELECT
-    USING (true);
+    USING (auth.uid() = id);
 
 CREATE POLICY "Users can update own profile"
     ON profiles FOR UPDATE

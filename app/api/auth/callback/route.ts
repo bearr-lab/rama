@@ -50,6 +50,10 @@ export async function GET(request: Request) {
     }
   }
 
+  // Derive locale from next path or fallback to en
+  const match = next.match(/^\/(en|ar)/)
+  const locale = match ? match[1] : 'en'
+
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/en/login?error=Could not authenticate user`)
+  return NextResponse.redirect(`${origin}/${locale}/login?error=Could not authenticate user`)
 }
