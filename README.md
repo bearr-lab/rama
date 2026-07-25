@@ -1,4 +1,6 @@
-# Next.js template
+# RAMA
+
+[![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/bearr-lab/rama?utm_source=oss&utm_medium=github&utm_campaign=bearr-lab%2Frama&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)](https://coderabbit.ai)
 
 This is a Next.js template with shadcn/ui.
 

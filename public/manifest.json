@@ -1,0 +1,16 @@
+{
+  "name": "RAMA Real Estate",
+  "short_name": "RAMA",
+  "description": "Your AI-powered Real Estate Advisor for Dubai",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#1A1B26",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "homes": "Homes",
+    "areas": "Areas",
+    "developers": "Developers",
+    "ai_advisor": "AI Advisor",
+    "shortlist": "Shortlist",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
+  },
+  "Hero": {
+    "title": "Your Place in Dubai",
+    "subtitle": "Verified properties. Real prices. No guesswork.",
+    "searchPlaceholder": "Where do you want to live?",
+    "searchButton": "Search"
+  }
+}

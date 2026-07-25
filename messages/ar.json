@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "homes": "العقارات",
+    "areas": "المناطق",
+    "developers": "المطورون",
+    "ai_advisor": "مستشار الذكاء الاصطناعي",
+    "shortlist": "المفضلة",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج"
+  },
+  "Hero": {
+    "title": "منزلك في دبي",
+    "subtitle": "عقارات موثقة. أسعار حقيقية. بدون تخمين.",
+    "searchPlaceholder": "أين تريد أن تعيش؟",
+    "searchButton": "بحث"
+  }
+}

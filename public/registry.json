@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "rama-registry",
+  "homepage": "http://localhost:3000",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "A button component.",
+      "files": [
+        "components/ui/button.tsx"
+      ]
+    },
+    {
+      "name": "profile-card",
+      "type": "registry:ui",
+      "title": "Profile-card",
+      "description": "A profile-card component.",
+      "files": [
+        "components/ui/profile-card.tsx"
+      ]
+    }
+  ]
+}
