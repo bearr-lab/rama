@@ -20,12 +20,22 @@ export default async function proxy(request: NextRequest) {
 
   if (isWorkspaceRoute && !hasSession) {
     const locale = request.nextUrl.pathname.split('/')[1] || 'en'
-    return NextResponse.redirect(new URL(`/${locale}/login`, request.url))
+    const redirectResponse = NextResponse.redirect(new URL(`/${locale}/login`, request.url))
+    // Preserve cookies from intlResponse (which includes Supabase session updates)
+    response.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
+    })
+    return redirectResponse
   }
 
   if (isAuthRoute && hasSession) {
     const locale = request.nextUrl.pathname.split('/')[1] || 'en'
-    return NextResponse.redirect(new URL(`/${locale}/homes`, request.url))
+    const redirectResponse = NextResponse.redirect(new URL(`/${locale}/homes`, request.url))
+    // Preserve cookies from intlResponse
+    response.cookies.getAll().forEach((cookie) => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
+    })
+    return redirectResponse
   }
 
   return response

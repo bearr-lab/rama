@@ -1,6 +1,7 @@
 import { Inter, Playfair_Display, Noto_Sans_Arabic } from "next/font/google"
 import type { Metadata } from "next"
-import { getLocale } from "next-intl/server"
+import { getLocale, getMessages } from "next-intl/server"
+import { NextIntlClientProvider } from "next-intl"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -61,6 +62,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const locale = await getLocale()
+  const messages = await getMessages()
   const dir = locale === "ar" ? "rtl" : "ltr"
 
   return (
@@ -83,11 +85,13 @@ export default async function RootLayout({
         >
           Skip to main content
         </a>
-        <ThemeProvider>
-          <TooltipProvider>
-            {children}
-          </TooltipProvider>
-        </ThemeProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider>
+            <TooltipProvider>
+              {children}
+            </TooltipProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

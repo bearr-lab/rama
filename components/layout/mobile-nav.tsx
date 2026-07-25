@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 
 interface MobileNavProps {
   isOpen: boolean
@@ -28,6 +28,8 @@ export function MobileNav({ isOpen, onClose, locale = "en" }: MobileNavProps) {
           "fixed inset-y-0 right-0 z-50 w-[300px] max-w-[80vw] bg-surface shadow-lg transform transition-transform duration-240 ease-decelerate flex flex-col",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
+        aria-hidden={!isOpen}
+        {...(!isOpen ? { inert: "true" } as any : {})}
       >
         <div className="flex items-center justify-between p-4 border-b border-border">
           <span className="font-display text-xl font-bold text-ink">RAMA</span>
@@ -66,10 +68,12 @@ export function MobileNav({ isOpen, onClose, locale = "en" }: MobileNavProps) {
           </nav>
 
           <div className="mt-auto pt-6 border-t border-border flex flex-col gap-4">
-            <Link href="/en/login" onClick={onClose} className="w-full">
-              <Button className="w-full bg-fjord text-white rounded-button hover:bg-fjord-hover">
-                Sign In
-              </Button>
+            <Link 
+              href={`/${locale}/login`} 
+              onClick={onClose} 
+              className={buttonVariants({ className: "w-full bg-fjord text-white rounded-button hover:bg-fjord-hover" })}
+            >
+              Sign In
             </Link>
             
             <div className="flex items-center justify-between mt-4">

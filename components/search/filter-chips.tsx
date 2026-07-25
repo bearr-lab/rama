@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -25,6 +25,10 @@ export function FilterChips({
   className 
 }: FilterChipsProps) {
   const [selected, setSelected] = useState<string[]>(value)
+
+  useEffect(() => {
+    setSelected(value)
+  }, [value])
 
   const toggleOption = (optionValue: string) => {
     let newSelected: string[]

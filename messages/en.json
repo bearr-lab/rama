@@ -13,5 +13,26 @@
     "subtitle": "Verified properties. Real prices. No guesswork.",
     "searchPlaceholder": "Where do you want to live?",
     "searchButton": "Search"
+  },
+  "Footer": {
+    "ctaTitle": "Let's find your place in Dubai.",
+    "ctaSubtitle": "Join thousands of buyers who trust RAMA for verified listings, real prices, and AI-powered guidance.",
+    "getStarted": "Get Started",
+    "brandSubtitle": "Dubai's premium real estate platform. Verified properties, true costs, and expert guidance with zero guesswork.",
+    "dldVerified": "DLD Verified",
+    "discover": "Discover",
+    "propertiesForSale": "Properties for Sale",
+    "offPlanProjects": "Off-Plan Projects",
+    "communities": "Communities",
+    "marketInsights": "Market Insights",
+    "company": "Company",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "careers": "Careers",
+    "legal": "Legal",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy",
+    "rightsReserved": "RAMA Real Estate. All rights reserved."
   }
 }
