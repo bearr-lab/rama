@@ -25,7 +25,7 @@ export default async function ShortlistPage({
   const isDemo = !user;
   const isArabic = locale === 'ar';
 
-  let properties: any[] = [];
+  let properties: Property[] = [];
 
   if (user) {
     const { data: shortlists, error } = await supabase

@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { createClient } from '@/lib/supabase/server';
 import { PropertyGrid } from '@/components/property/property-grid';
 import { SearchBar } from '@/components/search/search-bar';
