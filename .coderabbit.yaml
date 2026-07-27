@@ -1,0 +1,34 @@
+language: "en-US"
+
+reviews:
+  profile: "chill"
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_filters:
+    - "!pnpm-lock.yaml"
+    - "!build-storybook.log"
+    - "!*.log"
+    - "!messages/**"
+    - "!public/registry/**"
+    - "!**.png"
+    - "!**.ico"
+    - "!**.svg"
+    - "!lib/mock-properties.ts"
+    - "!lib/discover/mock-properties.ts"
+    - "!scaffold_v2.ps1"
+    - "!tsconfig.tsbuildinfo"
+
+chat:
+  auto_reply: true
+
+instructions: |
+  Review this institutional-grade real estate web app (RAMA) built with Next.js 15 (App Router), Tailwind CSS, Framer Motion, and Supabase.
+  Focus on:
+  1. TypeScript type safety and React server/client boundary correctness.
+  2. Adherence to 0px border-radius Nordic Lagom design tokens.
+  3. Unsplash API compliance (download triggering and photographer attribution).

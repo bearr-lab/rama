@@ -1,41 +1,48 @@
-import Link from "next/link"
-import { ArrowRight, Brain, Sparkles, Check, Send, Bot } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Container } from "@/components/layout/container"
-import { Section } from "@/components/layout/section"
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Brain, Sparkles, Check, Send, Bot } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Container } from '@/components/layout/container';
+import { Section } from '@/components/layout/section';
 
 interface AIAppTeaserProps {
-  locale: string
-  isArabic: boolean
+  locale: string;
+  isArabic: boolean;
 }
 
 export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
   return (
-    <Section background="surface" spacing="xl" className="relative overflow-hidden">
+    <Section
+      background="surface"
+      spacing="xl"
+      className="relative overflow-hidden"
+    >
       <Container size="lg" padding="lg" className="relative z-10">
-        
         {/* Text on top — centered, narrow */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20">
-          <p className="text-fjord text-sm tracking-[0.2em] uppercase mb-4 font-medium">
-            {isArabic ? "توجيه مدعوم بالذكاء الاصطناعي" : "AI-Powered Guidance"}
+        <div className="mx-auto mb-16 max-w-2xl text-center md:mb-20">
+          <p className="mb-4 text-sm font-medium tracking-[0.2em] text-fjord uppercase">
+            {isArabic ? 'توجيه مدعوم بالذكاء الاصطناعي' : 'AI-Powered Guidance'}
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-ink leading-tight mb-6 font-display">
-            {isArabic ? "قابل مستشارك العقاري الشخصي." : "Meet your personal"}
+          <h2 className="mb-6 font-display text-3xl leading-tight font-light text-ink md:text-4xl lg:text-5xl">
+            {isArabic ? 'قابل مستشارك العقاري الشخصي.' : 'Meet your personal'}
             {!isArabic && (
-              <span className="block italic text-muted-foreground mt-2">
+              <span className="mt-2 block text-muted-foreground italic">
                 Real Estate Advisor.
               </span>
             )}
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed mb-8 max-w-prose mx-auto">
-            {isArabic 
-              ? "تخطى التصفح اللانهائي. أخبر راما بما تبحث عنه، واحصل على توصيات مخصصة بناءً على بيانات السوق في الوقت الفعلي."
-              : "Skip the endless browsing. Tell RAMA what you&apos;re looking for, and get personalized recommendations based on real-time market data."}
+          <p className="mx-auto mb-8 max-w-prose text-lg leading-relaxed text-muted-foreground">
+            {isArabic
+              ? 'تخطى التصفح اللانهائي. أخبر راما بما تبحث عنه، واحصل على توصيات مخصصة بناءً على بيانات السوق في الوقت الفعلي.'
+              : "Skip the endless browsing. Tell RAMA you're looking for, and get personalized recommendations based on real-time market data."}
           </p>
           <Link href={`/${locale}/advisor`} className="inline-block">
-            <Button size="lg" className="bg-ink hover:bg-ink-hover text-white rounded-button px-8 h-14 min-w-[220px]">
-              {isArabic ? "اسأل راما أي شيء" : "Ask RAMA Anything"}
-              <ArrowRight className="ml-2 w-4 h-4" />
+            <Button
+              size="lg"
+              className="rounded-button h-14 min-w-[220px] bg-fjord px-8 text-white shadow-lg shadow-fjord/20 hover:bg-fjord-hover"
+            >
+              {isArabic ? 'اسأل راما أي شيء' : 'Ask RAMA Anything'}
+              <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
         </div>
@@ -44,15 +51,15 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
         <div className="flex justify-center">
           <div className="relative w-[300px] md:w-[360px] lg:w-[400px]">
             {/* Phone frame */}
-            <div className="relative rounded-[3.5rem] bg-ink p-3 shadow-2xl">
+            <div className="relative rounded-[3.5rem] bg-ink-bg p-3 shadow-2xl ring-1 ring-border">
               {/* Screen */}
-              <div className="rounded-[3rem] overflow-hidden bg-white aspect-[9/19]">
+              <div className="aspect-[9/19] overflow-hidden rounded-[3rem] bg-white">
                 {/* Chat UI mockup inside phone */}
-                <div className="h-full flex flex-col">
+                <div className="flex h-full flex-col">
                   {/* Chat header */}
-                  <div className="bg-surface-subtle px-4 py-3 flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-fjord flex items-center justify-center">
-                      <Bot className="w-4 h-4 text-white" />
+                  <div className="flex items-center gap-3 bg-surface-subtle px-4 py-3">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-fjord">
+                      <Bot className="h-4 w-4 text-white" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-ink">RAMA AI</p>
@@ -61,43 +68,59 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                   </div>
 
                   {/* Chat messages */}
-                  <div className="flex-1 p-4 space-y-4 overflow-hidden">
+                  <div className="flex-1 space-y-4 overflow-hidden p-4">
                     {/* AI message */}
                     <div className="flex gap-2">
-                      <div className="w-6 h-6 rounded-full bg-fjord flex-shrink-0 flex items-center justify-center">
-                        <Bot className="w-3 h-3 text-white" />
+                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-fjord">
+                        <Bot className="h-3 w-3 text-white" />
                       </div>
-                      <div className="bg-surface-subtle rounded-2xl rounded-tl-none px-4 py-3 max-w-[85%] text-ink">
-                        <p className="text-sm">Welcome! I&apos;m RAMA AI. Ask me anything about Dubai real estate.</p>
+                      <div className="max-w-[85%] rounded-2xl rounded-tl-none bg-surface-subtle px-4 py-3 text-ink">
+                        <p className="text-sm">
+                          Welcome! I'm RAMA AI. Ask me anything about Dubai
+                          real estate.
+                        </p>
                       </div>
                     </div>
 
                     {/* User message */}
-                    <div className="flex gap-2 justify-end">
-                      <div className="bg-fjord text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-[85%]">
-                        <p className="text-sm">Best areas for families under 3M?</p>
+                    <div className="flex justify-end gap-2">
+                      <div className="max-w-[85%] rounded-2xl rounded-tr-none bg-fjord px-4 py-3 text-white">
+                        <p className="text-sm">
+                          Best areas for families under 3M?
+                        </p>
                       </div>
                     </div>
 
                     {/* AI response with property card */}
                     <div className="flex gap-2">
-                      <div className="w-6 h-6 rounded-full bg-fjord flex-shrink-0 flex items-center justify-center">
-                        <Bot className="w-3 h-3 text-white" />
+                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-fjord">
+                        <Bot className="h-3 w-3 text-white" />
                       </div>
-                      <div className="space-y-2 max-w-[90%]">
-                        <div className="bg-surface-subtle rounded-2xl rounded-tl-none px-4 py-3 text-ink">
-                          <p className="text-sm">I found 3 great options. Arabian Ranches III is a top choice for families.</p>
+                      <div className="max-w-[90%] space-y-2">
+                        <div className="rounded-2xl rounded-tl-none bg-surface-subtle px-4 py-3 text-ink">
+                          <p className="text-sm">
+                            I found 3 great options. Arabian Ranches III is a
+                            top choice for families.
+                          </p>
                         </div>
                         {/* Mini property card */}
-                        <div className="bg-white border border-border rounded-xl overflow-hidden shadow-sm">
-                          <div className="aspect-[16/9] bg-surface-subtle relative">
-                            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xs">
-                              Property Image
-                            </div>
+                        <div className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+                          <div className="relative aspect-[16/9] bg-surface-subtle">
+                            <Image
+                              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600"
+                              alt="Arabian Ranches III"
+                              fill
+                              sizes="(max-width: 768px) 100vw, 300px"
+                              className="object-cover"
+                            />
                           </div>
                           <div className="p-3 text-ink">
-                            <p className="text-sm font-medium">Arabian Ranches III</p>
-                            <p className="text-xs text-muted-foreground">AED 2,800,000 · 4 Beds</p>
+                            <p className="text-sm font-medium">
+                              Arabian Ranches III
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              AED 2,800,000 · 4 Beds
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -106,10 +129,12 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
 
                   {/* Input area */}
                   <div className="border-t border-border px-4 py-3">
-                    <div className="bg-surface-subtle rounded-full px-4 py-2 flex items-center gap-2">
-                      <span className="text-sm text-muted-foreground flex-1">Type a message...</span>
-                      <div className="w-6 h-6 rounded-full bg-fjord flex items-center justify-center">
-                        <Send className="w-3 h-3 text-white -ml-1" />
+                    <div className="flex items-center gap-2 rounded-full bg-surface-subtle px-4 py-2">
+                      <span className="flex-1 text-sm text-muted-foreground">
+                        Type a message...
+                      </span>
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-fjord">
+                        <Send className="-ml-1 h-3 w-3 text-white" />
                       </div>
                     </div>
                   </div>
@@ -118,26 +143,30 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
             </div>
 
             {/* Floating elements around phone */}
-            <div className="absolute -top-4 -right-4 bg-white rounded-xl p-3 shadow-lg border border-border">
+            <div className="absolute -top-4 -right-4 rounded-xl border border-border bg-white p-3 shadow-lg">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-verified-soft flex items-center justify-center">
-                  <Check className="w-4 h-4 text-verified" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-verified-soft">
+                  <Check className="h-4 w-4 text-verified" />
                 </div>
                 <div>
                   <p className="text-xs font-medium text-ink">DLD Verified</p>
-                  <p className="text-[10px] text-muted-foreground">Price confirmed</p>
+                  <p className="text-[10px] text-muted-foreground">
+                    Price confirmed
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-xl p-3 shadow-lg border border-border">
+            <div className="absolute -bottom-4 -left-4 rounded-xl border border-border bg-white p-3 shadow-lg">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-fjord-soft flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-fjord" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-fjord-soft">
+                  <Sparkles className="h-4 w-4 text-fjord" />
                 </div>
                 <div>
                   <p className="text-xs font-medium text-ink">AI Match</p>
-                  <p className="text-[10px] text-muted-foreground">98% relevant</p>
+                  <p className="text-[10px] text-muted-foreground">
+                    98% relevant
+                  </p>
                 </div>
               </div>
             </div>
@@ -145,5 +174,5 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
         </div>
       </Container>
     </Section>
-  )
+  );
 }

@@ -1,0 +1,19 @@
+{
+  "name": "empty-state",
+  "type": "registry:ui",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "files": [
+    {
+      "path": "components/ui/empty-state.tsx",
+      "content": "import { ReactNode } from \"react\"\nimport { SearchX, FolderOpen, HeartCrack, AlertCircle } from \"lucide-react\"\nimport { cn } from \"@/lib/utils\"\n\nexport type EmptyStateVariant = \"search\" | \"shortlist\" | \"error\" | \"default\"\n\ninterface EmptyStateProps {\n  title: string\n  description: string\n  action?: ReactNode\n  variant?: EmptyStateVariant\n  className?: string\n}\n\nexport function EmptyState({ \n  title, \n  description, \n  action, \n  variant = \"default\",\n  className \n}: EmptyStateProps) {\n  \n  const getIcon = () => {\n    switch (variant) {\n      case \"search\":\n        return <SearchX className=\"w-12 h-12 text-muted-foreground/50\" />\n      case \"shortlist\":\n        return <HeartCrack className=\"w-12 h-12 text-muted-foreground/50\" />\n      case \"error\":\n        return <AlertCircle className=\"w-12 h-12 text-risk/50\" />\n      case \"default\":\n      default:\n        return <FolderOpen className=\"w-12 h-12 text-muted-foreground/50\" />\n    }\n  }\n\n  return (\n    <div className={cn(\n      \"flex flex-col items-center justify-center text-center p-8 md:p-16 rounded-xl border border-dashed border-border bg-surface-subtle/50\",\n      className\n    )}>\n      <div className=\"bg-white p-4 rounded-full shadow-sm mb-6\">\n        {getIcon()}\n      </div>\n      \n      <h3 className=\"text-xl font-semibold text-ink mb-2\">\n        {title}\n      </h3>\n      \n      <p className=\"text-muted-foreground max-w-sm mx-auto mb-8\">\n        {description}\n      </p>\n      \n      {action && (\n        <div>{action}</div>\n      )}\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
+      "type": "registry:lib"
+    }
+  ]
+}

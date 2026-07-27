@@ -1,0 +1,17 @@
+{
+  "name": "magic-card",
+  "type": "registry:ui",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/ui/magic-card.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport interface MagicCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  gradientSize?: number\n  gradientColor?: string\n  gradientOpacity?: number\n  children?: React.ReactNode\n}\n\nexport function MagicCard({\n  children,\n  className,\n  gradientSize = 250,\n  gradientColor = \"rgba(14, 165, 233, 0.15)\",\n  gradientOpacity = 0.8,\n  ...props\n}: MagicCardProps) {\n  const cardRef = React.useRef<HTMLDivElement>(null)\n  const [mouseX, setMouseX] = React.useState(-gradientSize)\n  const [mouseY, setMouseY] = React.useState(-gradientSize)\n\n  const handleMouseMove = React.useCallback(\n    (e: React.MouseEvent<HTMLDivElement>) => {\n      if (cardRef.current) {\n        const { left, top } = cardRef.current.getBoundingClientRect()\n        setMouseX(e.clientX - left)\n        setMouseY(e.clientY - top)\n      }\n    },\n    []\n  )\n\n  const handleMouseLeave = React.useCallback(() => {\n    setMouseX(-gradientSize)\n    setMouseY(-gradientSize)\n  }, [gradientSize])\n\n  return (\n    <div\n      ref={cardRef}\n      onMouseMove={handleMouseMove}\n      onMouseLeave={handleMouseLeave}\n      className={cn(\n        \"group relative flex flex-col overflow-hidden rounded-2xl bg-surface border border-border transition-all duration-300 hover:shadow-floating\",\n        className\n      )}\n      {...props}\n    >\n      <div\n        className=\"pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100\"\n        style={{\n          background: `radial-gradient(${gradientSize}px circle at ${mouseX}px ${mouseY}px, ${gradientColor}, transparent 100%)`,\n          opacity: gradientOpacity,\n        }}\n      />\n      <div className=\"relative z-10 flex flex-col flex-1\">{children}</div>\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
+      "type": "registry:lib"
+    }
+  ]
+}

@@ -1,59 +1,62 @@
-import { ReactNode } from "react"
-import { SearchX, FolderOpen, HeartCrack, AlertCircle } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { ReactNode } from 'react';
+import { SearchX, FolderOpen, HeartCrack, AlertCircle, Sparkles } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-export type EmptyStateVariant = "search" | "shortlist" | "error" | "default"
+export type EmptyStateVariant = 'search' | 'shortlist' | 'error' | 'default';
 
 interface EmptyStateProps {
-  title: string
-  description: string
-  action?: ReactNode
-  variant?: EmptyStateVariant
-  className?: string
+  title: string;
+  description: string;
+  action?: ReactNode;
+  variant?: EmptyStateVariant;
+  className?: string;
 }
 
-export function EmptyState({ 
-  title, 
-  description, 
-  action, 
-  variant = "default",
-  className 
+export function EmptyState({
+  title,
+  description,
+  action,
+  variant = 'default',
+  className,
 }: EmptyStateProps) {
-  
   const getIcon = () => {
     switch (variant) {
-      case "search":
-        return <SearchX className="w-12 h-12 text-muted-foreground/50" />
-      case "shortlist":
-        return <HeartCrack className="w-12 h-12 text-muted-foreground/50" />
-      case "error":
-        return <AlertCircle className="w-12 h-12 text-risk/50" />
-      case "default":
+      case 'search':
+        return <SearchX className="h-10 w-10 text-fjord" />;
+      case 'shortlist':
+        return <HeartCrack className="h-10 w-10 text-rose-500" />;
+      case 'error':
+        return <AlertCircle className="h-10 w-10 text-amber-500" />;
+      case 'default':
       default:
-        return <FolderOpen className="w-12 h-12 text-muted-foreground/50" />
+        return <FolderOpen className="h-10 w-10 text-fjord" />;
     }
-  }
+  };
 
   return (
-    <div className={cn(
-      "flex flex-col items-center justify-center text-center p-8 md:p-16 rounded-xl border border-dashed border-border bg-surface-subtle/50",
-      className
-    )}>
-      <div className="bg-white p-4 rounded-full shadow-sm mb-6">
+    <div
+      className={cn(
+        'relative flex flex-col items-center justify-center rounded-3xl border border-border/40 bg-surface/70 p-10 text-center shadow-subtle backdrop-blur-md md:p-16 transition-all duration-500 hover:shadow-floating',
+        className,
+      )}
+    >
+      <div className="absolute top-6 right-6 text-fjord/20 pointer-events-none">
+        <Sparkles className="h-8 w-8 animate-pulse" />
+      </div>
+
+      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-surface to-surface-subtle shadow-md border border-border/40">
         {getIcon()}
       </div>
-      
-      <h3 className="text-xl font-semibold text-ink mb-2">
+
+      <h3 className="mb-2 font-display text-2xl font-medium tracking-tight text-ink sm:text-3xl">
         {title}
       </h3>
-      
-      <p className="text-muted-foreground max-w-sm mx-auto mb-8">
+
+      <p className="mx-auto mb-8 max-w-md text-sm font-light leading-relaxed text-muted-foreground">
         {description}
       </p>
-      
-      {action && (
-        <div>{action}</div>
-      )}
+
+      {action && <div className="mt-2">{action}</div>}
     </div>
-  )
+  );
 }

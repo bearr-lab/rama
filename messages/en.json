@@ -34,5 +34,27 @@
     "privacyPolicy": "Privacy Policy",
     "cookiePolicy": "Cookie Policy",
     "rightsReserved": "RAMA Real Estate. All rights reserved."
+  },
+  "portfolio": {
+    "title": "Portfolio Management",
+    "subtitle": "Track property performance, net yields, and tenancy status.",
+    "trackedAssets": "Tracked Assets",
+    "netYield": "Net Yield",
+    "maintenanceTickets": "Maintenance Tickets"
+  },
+  "tasks": {
+    "title": "Deal Pipeline & Tasks",
+    "subtitle": "Manage transaction milestones and RERA escrow compliance.",
+    "highPriority": "High Priority",
+    "draft": "Draft",
+    "viewing": "Viewing",
+    "offer": "Offer / MOU",
+    "transfer": "Transfer"
+  },
+  "trust": {
+    "title": "Trust & Verification Engine",
+    "level3": "Level 3 Escrow Verified",
+    "cryptographicallyVerified": "Cryptographically Verified",
+    "healthIndex": "Health Index"
   }
 }

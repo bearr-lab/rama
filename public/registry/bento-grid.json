@@ -1,0 +1,17 @@
+{
+  "name": "bento-grid",
+  "type": "registry:ui",
+  "dependencies": [],
+  "files": [
+    {
+      "path": "components/ui/bento-grid.tsx",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport interface BentoGridProps extends React.HTMLAttributes<HTMLDivElement> {\n  children?: React.ReactNode\n}\n\nexport function BentoGrid({ className, children, ...props }: BentoGridProps) {\n  return (\n    <div\n      className={cn(\n        \"grid w-full auto-rows-[22rem] grid-cols-3 gap-6\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport interface BentoCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  name: string\n  className?: string\n  background?: React.ReactNode\n  Icon?: React.ElementType\n  description: string\n  href?: string\n  cta?: string\n  children?: React.ReactNode\n}\n\nexport function BentoCard({\n  name,\n  className,\n  background,\n  Icon,\n  description,\n  href,\n  cta = \"Learn more\",\n  children,\n  ...props\n}: BentoCardProps) {\n  return (\n    <div\n      className={cn(\n        \"group relative col-span-3 flex flex-col justify-between overflow-hidden rounded-2xl\",\n        // light styles\n        \"bg-surface border border-border shadow-subtle transition-all duration-300 hover:shadow-floating\",\n        // dark styles\n        \"dark:bg-slate-900/50 dark:border-slate-800\",\n        className\n      )}\n      {...props}\n    >\n      <div>{background}</div>\n      <div className=\"pointer-events-none z-10 flex transform-gpu flex-col gap-2 p-6 transition-all duration-300 group-hover:-translate-y-10\">\n        {Icon && (\n          <Icon className=\"h-10 w-10 origin-left transform-gpu text-fjord transition-all duration-300 ease-in-out group-hover:scale-75\" />\n        )}\n        <h3 className=\"text-xl font-bold font-display text-ink\">{name}</h3>\n        <p className=\"max-w-lg text-body-sm text-muted\">{description}</p>\n      </div>\n\n      <div\n        className={cn(\n          \"pointer-events-none absolute bottom-0 flex w-full translate-y-10 transform-gpu flex-row items-center p-6 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100\"\n        )}\n      >\n        {href ? (\n          <a\n            href={href}\n            className=\"pointer-events-auto inline-flex items-center gap-2 text-xs font-bold text-fjord hover:underline\"\n          >\n            {cta} →\n          </a>\n        ) : null}\n      </div>\n      <div className=\"pointer-events-none absolute inset-0 transition-all duration-300 group-hover:bg-black/[.03] group-hover:dark:bg-neutral-800/10\" />\n      {children}\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
+      "type": "registry:lib"
+    }
+  ]
+}

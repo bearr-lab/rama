@@ -1,44 +1,49 @@
-import { type NextRequest, NextResponse } from 'next/server'
-import createMiddleware from 'next-intl/middleware'
-import { routing } from '@/i18n/routing'
-import { updateSession } from '@/lib/supabase/middleware'
+import { type NextRequest, NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { routing } from '@/i18n/routing';
+import { updateSession } from '@/lib/supabase/middleware';
 
-const intlMiddleware = createMiddleware(routing)
+const intlMiddleware = createMiddleware(routing);
 
 export default async function proxy(request: NextRequest) {
   // 1. Generate response using next-intl middleware for locale routing
-  const intlResponse = intlMiddleware(request)
+  const intlResponse = intlMiddleware(request);
 
   // 2. Pass the i18n response to Supabase to append session cookies
-  const { response, user } = await updateSession(request, intlResponse)
+  const { response, userId } = await updateSession(request, intlResponse);
 
-  // Very basic route protection logic (to be expanded)
-  const isAuthRoute = request.nextUrl.pathname.includes('/login')
-  const isWorkspaceRoute = request.nextUrl.pathname.includes('/shortlist') || request.nextUrl.pathname.includes('/advisor')
+  const isAuthRoute = request.nextUrl.pathname.includes('/login');
+  const isWorkspaceRoute = /\/(dashboard|discover|community|decision-lab|advisor|documents|portfolio|property|settings|shortlist|tasks)(?:\/|$)/.test(
+    request.nextUrl.pathname,
+  );
 
-  const hasSession = !!user
+  const hasSession = Boolean(userId);
 
   if (isWorkspaceRoute && !hasSession) {
-    const locale = request.nextUrl.pathname.split('/')[1] || 'en'
-    const redirectResponse = NextResponse.redirect(new URL(`/${locale}/login`, request.url))
+    const locale = request.nextUrl.pathname.split('/')[1] || 'en';
+    const redirectResponse = NextResponse.redirect(
+      new URL(`/${locale}/login?next=${encodeURIComponent(request.nextUrl.pathname)}`, request.url),
+    );
     // Preserve cookies from intlResponse (which includes Supabase session updates)
     response.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
-    })
-    return redirectResponse
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return redirectResponse;
   }
 
   if (isAuthRoute && hasSession) {
-    const locale = request.nextUrl.pathname.split('/')[1] || 'en'
-    const redirectResponse = NextResponse.redirect(new URL(`/${locale}/homes`, request.url))
+    const locale = request.nextUrl.pathname.split('/')[1] || 'en';
+    const redirectResponse = NextResponse.redirect(
+      new URL(`/${locale}/dashboard`, request.url),
+    );
     // Preserve cookies from intlResponse
     response.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie)
-    })
-    return redirectResponse
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+    return redirectResponse;
   }
 
-  return response
+  return response;
 }
 
 export const config = {
@@ -50,6 +55,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|webm)$).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|manifest\\.json|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp4|webm|json|ico)$).*)',
   ],
-}
+};

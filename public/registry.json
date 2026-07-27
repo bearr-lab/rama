@@ -4,6 +4,33 @@
   "homepage": "http://localhost:3000",
   "items": [
     {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A avatar component.",
+      "files": [
+        "components/ui/avatar.tsx"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A badge component.",
+      "files": [
+        "components/ui/badge.tsx"
+      ]
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:ui",
+      "title": "Bento-grid",
+      "description": "A bento-grid component.",
+      "files": [
+        "components/ui/bento-grid.tsx"
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -13,12 +40,147 @@
       ]
     },
     {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "A card component.",
+      "files": [
+        "components/ui/card.tsx"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A dialog component.",
+      "files": [
+        "components/ui/dialog.tsx"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown-menu",
+      "description": "A dropdown-menu component.",
+      "files": [
+        "components/ui/dropdown-menu.tsx"
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "title": "Empty-state",
+      "description": "A empty-state component.",
+      "files": [
+        "components/ui/empty-state.tsx"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A input component.",
+      "files": [
+        "components/ui/input.tsx"
+      ]
+    },
+    {
+      "name": "magic-card",
+      "type": "registry:ui",
+      "title": "Magic-card",
+      "description": "A magic-card component.",
+      "files": [
+        "components/ui/magic-card.tsx"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "A popover component.",
+      "files": [
+        "components/ui/popover.tsx"
+      ]
+    },
+    {
       "name": "profile-card",
       "type": "registry:ui",
       "title": "Profile-card",
       "description": "A profile-card component.",
       "files": [
         "components/ui/profile-card.tsx"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll-area",
+      "description": "A scroll-area component.",
+      "files": [
+        "components/ui/scroll-area.tsx"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "A select component.",
+      "files": [
+        "components/ui/select.tsx"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A separator component.",
+      "files": [
+        "components/ui/separator.tsx"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A sheet component.",
+      "files": [
+        "components/ui/sheet.tsx"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "A skeleton component.",
+      "files": [
+        "components/ui/skeleton.tsx"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A tabs component.",
+      "files": [
+        "components/ui/tabs.tsx"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "A textarea component.",
+      "files": [
+        "components/ui/textarea.tsx"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A tooltip component.",
+      "files": [
+        "components/ui/tooltip.tsx"
       ]
     }
   ]

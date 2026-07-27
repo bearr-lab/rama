@@ -1,28 +1,38 @@
-import { NextResponse } from 'next/server'
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server';
+import { createServerClient, type CookieOptions } from '@supabase/ssr';
+import { cookies } from 'next/headers';
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url)
-  const code = searchParams.get('code')
-  // if "next" is in param, use it as the redirect URL
-  const next = searchParams.get('next') ?? '/'
+  const { searchParams, origin } = new URL(request.url);
+  const code = searchParams.get('code');
+  const requestedNext = searchParams.get('next');
+  // Only allow local routes; OAuth callbacks must never become open redirects.
+  const next =
+    requestedNext?.startsWith('/') && !requestedNext.startsWith('//')
+      ? requestedNext
+      : '/en/dashboard';
 
   if (code) {
-    const cookieStore = await cookies()
+    const cookieStore = await cookies();
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
         cookies: {
           getAll() {
-            return cookieStore.getAll()
+            return cookieStore.getAll();
           },
-          setAll(cookiesToSet: { name: string; value: string; options: CookieOptions }[]) {
+          setAll(
+            cookiesToSet: {
+              name: string;
+              value: string;
+              options: CookieOptions;
+            }[],
+          ) {
             try {
               cookiesToSet.forEach(({ name, value, options }) =>
-                cookieStore.set(name, value, options)
-              )
+                cookieStore.set(name, value, options),
+              );
             } catch (error) {
               // The `setAll` method was called from a Server Component.
               // This can be ignored if you have middleware refreshing
@@ -30,30 +40,32 @@ export async function GET(request: Request) {
             }
           },
         },
-      }
-    )
-    
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
-    
+      },
+    );
+
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+
     if (!error) {
-      const forwardedHost = request.headers.get('x-forwarded-host') // original origin before load balancer
-      const isLocalEnv = process.env.NODE_ENV === 'development'
-      
+      const forwardedHost = request.headers.get('x-forwarded-host'); // original origin before load balancer
+      const isLocalEnv = process.env.NODE_ENV === 'development';
+
       if (isLocalEnv) {
         // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
-        return NextResponse.redirect(`${origin}${next}`)
+        return NextResponse.redirect(`${origin}${next}`);
       } else if (forwardedHost) {
-        return NextResponse.redirect(`https://${forwardedHost}${next}`)
+        return NextResponse.redirect(`https://${forwardedHost}${next}`);
       } else {
-        return NextResponse.redirect(`${origin}${next}`)
+        return NextResponse.redirect(`${origin}${next}`);
       }
     }
   }
 
   // Derive locale from next path or fallback to en
-  const match = next.match(/^\/(en|ar)/)
-  const locale = match ? match[1] : 'en'
+  const match = next.match(/^\/(en|ar)/);
+  const locale = match ? match[1] : 'en';
 
   // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/${locale}/login?error=Could not authenticate user`)
+  return NextResponse.redirect(
+    `${origin}/${locale}/login?error=Could not authenticate user`,
+  );
 }

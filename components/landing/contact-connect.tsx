@@ -1,147 +1,142 @@
-"use client"
+'use client';
 
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Container } from "@/components/layout/container"
-import { Section } from "@/components/layout/section"
-import { Shield, Lock, Clock } from "lucide-react"
+import React from 'react';
+import Link from 'next/link';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
 interface ContactConnectProps {
-  locale: string
-  isArabic: boolean
+  locale?: string;
+  isArabic?: boolean;
 }
 
-export function ContactConnect({ locale, isArabic }: ContactConnectProps) {
+export function ContactConnect({
+  locale = 'en',
+  isArabic = false,
+}: ContactConnectProps) {
   return (
-    <Section
-      background="transparent"
-      spacing="none"
-      className="relative min-h-[700px] flex items-center py-24 md:py-32 overflow-hidden"
-    >
-      {/* Background image — full bleed, darkened, blurred */}
-      <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070"
-          alt="Dubai skyline"
-          fill
-          className="object-cover"
-        />
-        {/* Dark overlay + blur */}
-        <div className="absolute inset-0 bg-ink/70 backdrop-blur-sm" />
-      </div>
-
-      {/* Content — centered, contained */}
-      <Container size="lg" padding="lg" className="relative z-10">
-        {/* Glassmorphic card */}
-        <div className="bg-canvas/95 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-            
-            {/* Left Column: Typography & Info */}
-            <div className="space-y-8 lg:pr-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl md:text-5xl font-light text-ink font-display">
-                  {isArabic ? "لنتواصل معاً." : "Let's connect."}
-                </h2>
-                <p className="text-muted-foreground text-lg">
-                  {isArabic 
-                    ? "سواء كنت تتطلع للشراء أو البيع أو مجرد استكشاف السوق، فنحن هنا للمساعدة."
-                    : "Whether you're looking to buy, sell, or just explore the market, we're here to help."}
-                </p>
-              </div>
-
-              {/* Additional Contact Details */}
-              <div className="space-y-4 pt-6 border-t border-border">
-                <div className="flex items-center gap-4 text-ink">
-                  <div className="w-12 h-12 rounded-full bg-surface-subtle flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-fjord" />
-                  </div>
-                  <div>
-                    <p className="font-medium">{isArabic ? "ساعات العمل" : "Office Hours"}</p>
-                    <p className="text-sm text-muted-foreground">{isArabic ? "الاثنين - الجمعة, 9 ص - 6 م" : "Mon - Fri, 9am - 6pm"}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Trust indicators */}
-              <div className="pt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <span className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-verified" />
-                  {isArabic ? "موثق من الدائرة" : "DLD Verified"}
-                </span>
-                <span className="flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-fjord" />
-                  {isArabic ? "مشفر" : "Encrypted"}
-                </span>
-              </div>
-            </div>
-
-            {/* Right Column: Form */}
-            <div>
-              <form 
-                onSubmit={(e) => e.preventDefault()}
-                className="space-y-5 bg-surface-subtle/50 p-6 md:p-8 rounded-2xl border border-border"
-              >
-                <div>
-                  <label htmlFor="contact-name" className="block text-sm text-ink mb-2 font-medium">
-                    {isArabic ? "الاسم" : "Name"}
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    placeholder={isArabic ? "الاسم الكامل" : "Your full name"}
-                    className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-email" className="block text-sm text-ink mb-2 font-medium">
-                    {isArabic ? "البريد الإلكتروني" : "Email"}
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    placeholder={isArabic ? "أنت@مثال.com" : "you@example.com"}
-                    className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-phone" className="block text-sm text-ink mb-2 font-medium">
-                    {isArabic ? "رقم الهاتف" : "Phone number"}
-                  </label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    placeholder="+971 50 123 4567"
-                    className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="contact-message" className="block text-sm text-ink mb-2 font-medium">
-                    {isArabic ? "كيف يمكننا المساعدة؟" : "How can we help?"}
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    placeholder={isArabic ? "أخبرنا عما تبحث عنه..." : "Tell us what you are looking for..."}
-                    rows={4}
-                    className="w-full px-4 py-3.5 rounded-xl border border-border bg-canvas text-ink placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-fjord/30 focus:border-fjord transition-all resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full mt-2 bg-fjord hover:bg-fjord-hover text-white rounded-button"
-                >
-                  {isArabic ? "إرسال الرسالة" : "Send Message"}
-                </Button>
-              </form>
-            </div>
-
-          </div>
+    <section className="bg-background @container py-24 border-t border-border/40">
+      <div className="mx-auto max-w-3xl px-6 sm:px-8">
+        <div>
+          <h2 className="text-balance font-display text-4xl font-medium sm:text-5xl text-ink">
+            {isArabic ? 'تواصل معنا' : 'Get in Touch'}
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-md text-balance text-base">
+            {isArabic
+              ? 'لديك أسئلة؟ يسعدنا التحدث معك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.'
+              : "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."}
+          </p>
         </div>
-      </Container>
-    </Section>
-  )
+
+        <div className="@xl:grid-cols-5 mt-12 grid gap-8">
+          <div className="@xl:col-span-2 space-y-6 *:space-y-2">
+            <div>
+              <p className="text-foreground text-sm font-medium flex items-center gap-2">
+                <Mail className="h-4 w-4 text-fjord" />
+                {isArabic ? 'البريد الإلكتروني' : 'Email'}
+              </p>
+              <Link
+                href="mailto:hello@rama.ae"
+                className="text-muted-foreground hover:text-primary text-sm transition-colors"
+              >
+                hello@rama.ae
+              </Link>
+            </div>
+
+            <div>
+              <p className="text-foreground text-sm font-medium flex items-center gap-2">
+                <Phone className="h-4 w-4 text-fjord" />
+                {isArabic ? 'الهاتف' : 'Phone'}
+              </p>
+              <Link
+                href="tel:+97141234567"
+                className="text-muted-foreground hover:text-primary text-sm transition-colors"
+              >
+                +971 (4) 123-4567
+              </Link>
+            </div>
+
+            <div>
+              <p className="text-foreground text-sm font-medium flex items-center gap-2">
+                <MapPin className="h-4 w-4 text-fjord" />
+                {isArabic ? 'المكتب' : 'Office'}
+              </p>
+              <p className="text-muted-foreground text-sm">
+                {isArabic
+                  ? 'منطقة الأوبرا، وسط مدينة دبي، الإمارات العربية المتحدة'
+                  : 'Opera District, Downtown Dubai, UAE'}
+              </p>
+            </div>
+          </div>
+
+          <Card className="@xl:col-span-3 p-6 border border-border/80 bg-surface/60 shadow-sm rounded-2xl backdrop-blur-md">
+            <form action="" onSubmit={(e) => e.preventDefault()} className="space-y-5">
+              <div className="@md:grid-cols-2 grid gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-sm">
+                    {isArabic ? 'الاسم' : 'Name'}
+                  </Label>
+                  <Input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder={isArabic ? 'اسمك الكريم' : 'Your name'}
+                    required
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-sm">
+                    {isArabic ? 'البريد الإلكتروني' : 'Email'}
+                  </Label>
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="subject" className="text-sm">
+                  {isArabic ? 'الموضوع' : 'Subject'}
+                </Label>
+                <Input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  placeholder={isArabic ? 'كيف يمكننا مساعدتك؟' : 'How can we help?'}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-sm">
+                  {isArabic ? 'الرسالة' : 'Message'}
+                </Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  placeholder={isArabic ? 'اكتب تفاصيل استفسارك...' : 'Tell us more...'}
+                  required
+                  className="min-h-28"
+                />
+              </div>
+
+              <Button className="w-full bg-fjord text-white hover:bg-fjord-hover rounded-xl py-3 font-medium transition-all shadow-md shadow-fjord/10">
+                {isArabic ? 'إرسال الرسالة' : 'Send Message'}
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
 }
+
+export default ContactConnect;

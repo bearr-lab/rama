@@ -8,3 +8,5 @@ allowBuilds:
   '@parcel/watcher': true
   '@swc/core': true
   protobufjs: true
+  core-js-pure: true
+  esbuild: true

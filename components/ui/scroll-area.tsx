@@ -1,21 +1,21 @@
-"use client"
+'use client';
 
-import * as React from "react"
-import { ScrollArea as ScrollAreaPrimitive } from "@base-ui/react/scroll-area"
+import * as React from 'react';
+import { ScrollArea as ScrollAreaPrimitive } from '@base-ui/react/scroll-area';
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {
-    viewportRef?: React.Ref<HTMLDivElement>
+    viewportRef?: React.Ref<HTMLDivElement>;
   }
 >(({ className, children, viewportRef, ...props }, ref) => {
   return (
     <ScrollAreaPrimitive.Root
       ref={ref}
       data-slot="scroll-area"
-      className={cn("relative", className)}
+      className={cn('relative', className)}
       {...props}
     >
       <ScrollAreaPrimitive.Viewport
@@ -28,14 +28,14 @@ const ScrollArea = React.forwardRef<
       <ScrollBar />
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
-  )
-})
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName
+  );
+});
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
 
 const ScrollBar = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Scrollbar>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Scrollbar>
->(({ className, orientation = "vertical", ...props }, ref) => {
+>(({ className, orientation = 'vertical', ...props }, ref) => {
   return (
     <ScrollAreaPrimitive.Scrollbar
       ref={ref}
@@ -43,8 +43,8 @@ const ScrollBar = React.forwardRef<
       data-orientation={orientation}
       orientation={orientation}
       className={cn(
-        "flex touch-none p-px transition-colors select-none data-horizontal:h-2.5 data-horizontal:flex-col data-horizontal:border-t data-horizontal:border-t-transparent data-vertical:h-full data-vertical:w-2.5 data-vertical:border-l data-vertical:border-l-transparent",
-        className
+        'flex touch-none p-px transition-colors select-none data-horizontal:h-2.5 data-horizontal:flex-col data-horizontal:border-t data-horizontal:border-t-transparent data-vertical:h-full data-vertical:w-2.5 data-vertical:border-l data-vertical:border-l-transparent',
+        className,
       )}
       {...props}
     >
@@ -53,8 +53,8 @@ const ScrollBar = React.forwardRef<
         className="relative flex-1 rounded-full bg-border"
       />
     </ScrollAreaPrimitive.Scrollbar>
-  )
-})
-ScrollBar.displayName = ScrollAreaPrimitive.Scrollbar.displayName
+  );
+});
+ScrollBar.displayName = ScrollAreaPrimitive.Scrollbar.displayName;
 
-export { ScrollArea, ScrollBar }
+export { ScrollArea, ScrollBar };
