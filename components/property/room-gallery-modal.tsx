@@ -31,6 +31,7 @@ export interface RoomImage {
   titleEn: string;
   titleAr: string;
   src: string;
+  downloadLocation?: string;
   sqft: number;
   hotspots: {
     id: string;
@@ -177,14 +178,15 @@ export function RoomGalleryModal({
   const currentImage = filteredImages[currentIndex] || filteredImages[0] || images[0];
 
   React.useEffect(() => {
-    if (currentImage?.src && currentImage.src.includes('unsplash.com')) {
+    const targetUrl = currentImage?.downloadLocation || currentImage?.src;
+    if (targetUrl && targetUrl.includes('unsplash.com')) {
       fetch('/api/unsplash/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ downloadLocation: currentImage.src }),
+        body: JSON.stringify({ downloadLocation: targetUrl }),
       }).catch(() => {});
     }
-  }, [currentImage?.src]);
+  }, [currentImage?.src, currentImage?.downloadLocation]);
 
   const nextImage = () => {
     setActiveHotspot(null);

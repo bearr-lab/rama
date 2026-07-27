@@ -7,7 +7,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "A avatar component.",
+      "description": "An avatar component.",
       "files": [
         "components/ui/avatar.tsx"
       ]
@@ -70,7 +70,7 @@
       "name": "empty-state",
       "type": "registry:ui",
       "title": "Empty-state",
-      "description": "A empty-state component.",
+      "description": "An empty-state component.",
       "files": [
         "components/ui/empty-state.tsx"
       ]
@@ -79,7 +79,7 @@
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "description": "A input component.",
+      "description": "An input component.",
       "files": [
         "components/ui/input.tsx"
       ]

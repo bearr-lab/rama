@@ -116,6 +116,10 @@ ALTER TABLE evidence ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Public profiles are viewable by everyone" ON properties
     FOR SELECT USING (status = 'Active');
 
+-- Owner read access for their own properties (including drafts and under offer)
+CREATE POLICY "Owners can view all their own properties" ON properties
+    FOR SELECT USING (auth.uid() = owner_id);
+
 -- Admin/Owner write access to properties (Assumes auth setup)
 CREATE POLICY "Users can update their own properties" ON properties
     FOR UPDATE USING (auth.uid() = owner_id);
