@@ -74,7 +74,7 @@ export async function FeaturedSignature({
                 className="group block"
               >
                 <div
-                  className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 overflow-hidden rounded-2xl border border-border bg-canvas transition-all duration-500 hover:shadow-2xl`}
+                  className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 overflow-hidden rounded-none border border-border bg-canvas transition-all duration-500 hover:shadow-2xl`}
                 >
                   {/* Huge Image Area */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden lg:aspect-auto lg:min-h-[500px] lg:w-2/3">

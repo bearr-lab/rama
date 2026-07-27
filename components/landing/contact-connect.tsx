@@ -73,7 +73,7 @@ export function ContactConnect({
             </div>
           </div>
 
-          <Card className="@xl:col-span-3 p-6 border border-border/80 bg-surface/60 shadow-sm rounded-2xl backdrop-blur-md">
+          <Card className="@xl:col-span-3 p-6 border border-border/80 bg-surface/60 shadow-sm rounded-none backdrop-blur-md">
             <form action="" onSubmit={(e) => e.preventDefault()} className="space-y-5">
               <div className="@md:grid-cols-2 grid gap-4">
                 <div className="space-y-2">
@@ -128,7 +128,7 @@ export function ContactConnect({
                 />
               </div>
 
-              <Button className="w-full bg-fjord text-white hover:bg-fjord-hover rounded-xl py-3 font-medium transition-all shadow-md shadow-fjord/10">
+              <Button className="w-full h-9 bg-fjord text-white hover:bg-fjord-hover rounded-none font-bold tracking-widest uppercase text-[11px] transition-colors">
                 {isArabic ? 'إرسال الرسالة' : 'Send Message'}
               </Button>
             </form>

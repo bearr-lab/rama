@@ -281,7 +281,17 @@
     transform: translateY(calc(-100% - var(--gap)));
     }
   }
-}
+
+  --animate-orbit: orbit calc(var(--duration)*1s) linear infinite
+;
+  @keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }}
 
 /* ═══════════════════════════════════════════════════
    BASE LAYER
@@ -461,6 +471,20 @@
 
 .animate-marquee-vertical {
   animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+/* ── MVPBlocks: animate-grid (perspective grid scroll) ── */
+@keyframes grid {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-grid {
+  animation: grid 20s linear infinite;
 }
 
 /* ═══════════════════════════════════════════════════

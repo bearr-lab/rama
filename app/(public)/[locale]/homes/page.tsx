@@ -105,7 +105,7 @@ export default async function HomesPage({
         </PageHeader>
       </div>
 
-      <Section spacing="lg" className="min-h-[100vh] relative z-10 bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.1)] rounded-t-[3rem]">
+      <Section spacing="lg" className="min-h-[100vh] relative z-10 bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.1)] rounded-none">
         <Container size="2xl">
           {!activeProperties || activeProperties.length === 0 ? (
             <EmptyState

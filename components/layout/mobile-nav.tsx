@@ -63,6 +63,13 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
         <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-4 py-6">
           <nav className="flex flex-col gap-4">
             <Link
+              href={`/${locale}/projects`}
+              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              onClick={onClose}
+            >
+              {locale === 'ar' ? 'المشاريع' : 'Projects'}
+            </Link>
+            <Link
               href={`/${locale}/homes`}
               className="text-lg font-medium text-ink transition-colors hover:text-fjord"
               onClick={onClose}
@@ -74,7 +81,14 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
               className="text-lg font-medium text-ink transition-colors hover:text-fjord"
               onClick={onClose}
             >
-              {locale === 'ar' ? 'المناطق' : 'Areas'}
+              {locale === 'ar' ? 'المناطق' : 'Communities'}
+            </Link>
+            <Link
+              href={`/${locale}/invest`}
+              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              onClick={onClose}
+            >
+              {locale === 'ar' ? 'استثمر' : 'Invest'}
             </Link>
             <Link
               href={`/${locale}/insights`}

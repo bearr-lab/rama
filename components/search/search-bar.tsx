@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, MapPin, Home, TrendingUp } from 'lucide-react';
+import { Search, Sparkles, Send, Mic } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
@@ -29,7 +29,6 @@ export function SearchBar({
 }: SearchBarProps) {
   const router = useRouter();
   const [query, setQuery] = useState(initialQuery);
-  const [tenure, setTenure] = useState<string>(initialTenure);
   const [isFocused, setIsFocused] = useState(false);
 
   const isHero = variant === 'hero';
@@ -37,43 +36,17 @@ export function SearchBar({
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (onSearch) {
-      onSearch(query, tenure);
+      onSearch(query, '');
     } else {
       const params = new URLSearchParams();
-      if (query) params.set('query', query);
-      if (tenure) params.set('tenure', tenure);
+      if (query) params.set('q', query);
       router.push(`/${locale}/homes?${params.toString()}`);
     }
   };
 
   return (
     <div className={cn('mx-auto w-full max-w-[400px]', className)}>
-      {isHero && (
-        <Tabs
-          defaultValue="ready"
-          value={tenure}
-          onValueChange={setTenure}
-          className="mb-2 flex justify-center w-full"
-        >
-          <TabsList className="rounded-none border border-white/20 bg-white/10 p-1 backdrop-blur-xl shadow-sm">
-            <TabsTrigger
-              value="ready"
-              className="rounded-none px-4 py-1 text-[11px] font-bold tracking-wider uppercase text-white/80 transition-all data-[state=active]:bg-white data-[state=active]:text-ink data-[state=active]:shadow-none"
-            >
-              <Home className="mr-1.5 h-3.5 w-3.5" />
-              {locale === 'ar' ? 'جاهز' : 'Ready'}
-            </TabsTrigger>
-            <TabsTrigger
-              value="off_plan"
-              className="rounded-none px-4 py-1 text-[11px] font-bold tracking-wider uppercase text-white/80 transition-all data-[state=active]:bg-white data-[state=active]:text-ink data-[state=active]:shadow-none"
-            >
-              <TrendingUp className="mr-1.5 h-3.5 w-3.5" />
-              {locale === 'ar' ? 'قيد الإنشاء' : 'Off-Plan'}
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-      )}
-
+      {/* Removed the AI Concierge Badge to maintain a clean, minimalistic Nordic Lagom aesthetic */}
       <form
         onSubmit={handleSearch}
         className={cn(
@@ -93,7 +66,7 @@ export function SearchBar({
         />
 
         <div className="z-10 flex items-center justify-center ps-3 pe-1 text-fjord">
-          <MapPin className="h-4 w-4" />
+          <Sparkles className="h-4 w-4" />
         </div>
 
         <Input
@@ -104,11 +77,15 @@ export function SearchBar({
           onBlur={() => setIsFocused(false)}
           placeholder={
             locale === 'ar'
-              ? 'ابحث عن منطقة في دبي...'
-              : 'Search Dubai area...'
+              ? 'ابحث بالذكاء الاصطناعي (مثال: فيلا بإطلالة بحرية)...'
+              : 'Try "Penthouse with Burj Khalifa view under 15M"...'
           }
           className="relative z-10 flex-1 border-none bg-transparent px-2 text-sm font-medium text-ink placeholder:text-muted-foreground/60 focus-visible:ring-0 focus-visible:outline-none rounded-none"
         />
+
+        <button type="button" className="z-10 px-2 text-muted hover:text-fjord transition-colors">
+          <Mic className="h-4 w-4" />
+        </button>
 
         <ShimmerButton
           type="submit"
@@ -117,9 +94,9 @@ export function SearchBar({
           background="var(--fjord)"
           className="relative z-10 px-4 py-2 text-xs font-semibold text-white transition-all shadow-none hover:bg-fjord-hover"
         >
-          <Search className="h-3.5 w-3.5 md:mr-1.5 inline" />
+          <Send className="h-3.5 w-3.5 md:mr-1.5 inline" />
           <span className="hidden md:inline">
-            {locale === 'ar' ? 'بحث' : 'Search'}
+            {locale === 'ar' ? 'اسأل الذكاء' : 'Ask AI'}
           </span>
         </ShimmerButton>
       </form>

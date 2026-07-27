@@ -3,6 +3,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
   MapPin,
   BedDouble,
@@ -144,7 +145,12 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
   }, [property]);
 
   return (
-    <Section spacing="lg" className="mt-16 pb-24">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }} // Cinematic decelerate
+    >
+      <Section spacing="lg" className="mt-16 pb-24">
       <Container size="xl">
         {/* Header */}
         <div className="mb-8 flex flex-col justify-between gap-6 md:flex-row md:items-start">
@@ -409,5 +415,6 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
         locale={locale as 'en' | 'ar'}
       />
     </Section>
+    </motion.div>
   );
 }

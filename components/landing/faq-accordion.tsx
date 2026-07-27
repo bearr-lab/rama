@@ -71,7 +71,7 @@ export function FAQAccordion({
             return (
               <div
                 key={index}
-                className="rounded-2xl border border-border/60 bg-canvas overflow-hidden transition-all duration-200"
+                className="rounded-none border border-border/60 bg-canvas overflow-hidden transition-all duration-200"
               >
                 <button
                   type="button"
