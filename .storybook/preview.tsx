@@ -4,7 +4,7 @@ import '../app/globals.css';
 
 const preview: Preview = {
   decorators: [
-    (Story) => (
+    (Story: any) => (
       <div 
         className="font-sans antialiased" 
         style={{ 
