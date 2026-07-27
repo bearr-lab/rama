@@ -103,12 +103,19 @@ export async function POST(req: Request) {
       data: { user },
     } = await supabase.auth.getUser();
 
-    // For evaluation and sandbox demo mode, fallback to IP/demo identifier if not authenticated
-    const userId =
-      user?.id || req.headers.get('x-forwarded-for') || 'demo-sandbox-user';
+    // Normalize client identifier (first IP in x-forwarded-for or fallback)
+    const rawIp = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '127.0.0.1';
+    const clientIp = rawIp.split(',')[0].trim();
+    const userId = user?.id || `anon-${clientIp}`;
 
-    // Rate Limiting
+    // Rate limit TTL cleanup to prevent unbounded Map memory growth
     const now = Date.now();
+    if (rateLimit.size > 500) {
+      for (const [key, val] of rateLimit.entries()) {
+        if (now > val.resetTime) rateLimit.delete(key);
+      }
+    }
+
     const userLimit = rateLimit.get(userId);
 
     if (userLimit && now < userLimit.resetTime) {

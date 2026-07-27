@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { LogoIcon } from "@/components/logo";
+import { RamaLogo } from "@/components/ui/rama-logo";
 import { Button } from "@/components/ui/button";
 import {
 	Sidebar,
@@ -33,7 +33,9 @@ export function AppSidebar() {
 			variant="sidebar"
 		>
 			<SidebarHeader className="h-(--app-header-height,3rem) flex-row items-center justify-between">
-				<Button variant="ghost" render={<a href="#link" />} nativeButton={false}><LogoIcon /><span className="font-medium">Efferd</span></Button>
+				<div className="px-2 flex items-center">
+					<RamaLogo variant="auto" size="sm" />
+				</div>
 				<CustomTrigger place="sidebar" />
 			</SidebarHeader>
 			<SidebarContent>
