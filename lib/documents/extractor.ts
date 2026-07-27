@@ -7,8 +7,12 @@ export interface ExtractedData {
   issueDate?: string;
   confidenceScore: number;
   documentType?:
-    'DLD_FORM_F_MOU' | 'RERA_OQOOD' | 'TITLE_DEED' | 'DEVELOPER_NOC';
+    | 'DLD_FORM_F_MOU'
+    | 'RERA_OQOOD'
+    | 'TITLE_DEED'
+    | 'DEVELOPER_NOC';
   extractedClaude?: string;
+  simulated?: boolean;
 }
 
 /**
@@ -24,8 +28,24 @@ export async function extractDocumentData(
 
   // In production with live API keys, route to multimodal Vision models
   try {
-    const prompt = `Extract the title number, owners, property size, and issue date from the provided DLD document: ${documentUrl}`;
-    await routePrompt(prompt, { tier: 'vision' });
+    const prompt = `Extract the title number, owners, property size, and issue date from the provided DLD document: ${documentUrl}. Return valid JSON matching ExtractedData format if possible.`;
+    const aiResponse = await routePrompt(prompt, { tier: 'vision' });
+    const text = aiResponse.content;
+    if (text && !text.includes('[Simulated') && text.includes('{')) {
+      try {
+        const parsed = JSON.parse(
+          text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1),
+        );
+        return {
+          confidenceScore: 0.85,
+          ...parsed,
+          extractedClaude: text,
+          simulated: false,
+        };
+      } catch {
+        // Fallback to simulation engine if JSON parsing fails
+      }
+    }
   } catch (e) {
     // Fallthrough to local OCR simulation engine if Vision API is offline
   }
@@ -41,7 +61,8 @@ export async function extractDocumentData(
       ],
       propertySize: 4200.0,
       issueDate: '2026-07-15',
-      confidenceScore: 0.99,
+      confidenceScore: 0.70,
+      simulated: true,
       documentType: 'DLD_FORM_F_MOU',
       extractedClaude:
         'Clause 4.1: Escrow deposit 10% verified at Mashreq Bank DLD Trust Account #9001-44.',
@@ -54,7 +75,8 @@ export async function extractDocumentData(
       ownerNames: ['Dubai Creek Harbour LLC'],
       propertySize: 1450.0,
       issueDate: '2026-06-20',
-      confidenceScore: 0.97,
+      confidenceScore: 0.70,
+      simulated: true,
       documentType: 'RERA_OQOOD',
       extractedClaude:
         'Project Completion Milestone: 65% construction verified by RERA engineering inspection.',
@@ -67,7 +89,8 @@ export async function extractDocumentData(
       ownerNames: ['Select Group Residence 1'],
       propertySize: 1200.0,
       issueDate: '2026-07-01',
-      confidenceScore: 0.95,
+      confidenceScore: 0.70,
+      simulated: true,
       documentType: 'DEVELOPER_NOC',
       extractedClaude:
         'Developer confirms zero outstanding service charges or chiller dues for Marina Gate Unit 1402.',
@@ -80,7 +103,8 @@ export async function extractDocumentData(
     ownerNames: ['Sultan Al-Nahyan'],
     propertySize: 3100.5,
     issueDate: '2026-05-10',
-    confidenceScore: 0.98,
+    confidenceScore: 0.70,
+    simulated: true,
     documentType: 'TITLE_DEED',
     extractedClaude:
       'Freehold Title Deed registered under Law No. 7 of 2006 regarding Land Registration in Dubai.',

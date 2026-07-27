@@ -38,8 +38,10 @@ export async function updateSession(
     },
   );
 
-  // `getClaims` validates the JWT before proxy route protection trusts it.
-  const { data: claims } = await supabase.auth.getClaims();
+  // Validate session before proxy route protection trusts it.
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return { response: supabaseResponse, userId: claims?.claims?.sub ?? null };
+  return { response: supabaseResponse, userId: user?.id ?? null };
 }
