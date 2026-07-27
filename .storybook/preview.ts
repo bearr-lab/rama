@@ -1,7 +1,22 @@
 import type { Preview } from '@storybook/react';
+import React from 'react';
 import '../app/globals.css';
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <div 
+        className="font-sans antialiased" 
+        style={{ 
+          '--font-sans': '"Inter", "Noto Sans Arabic", system-ui, sans-serif',
+          '--font-display': '"Playfair Display", serif',
+          '--font-arabic': '"Noto Sans Arabic", sans-serif'
+        } as React.CSSProperties}
+      >
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     controls: {
       matchers: {

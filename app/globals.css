@@ -465,8 +465,5 @@
 
 /* ═══════════════════════════════════════════════════
    SHADCN PRESET b2czZ8JLSS — ZERO CURVES & ZERO ROUNDED CORNERS
+   (Applied via --radius tokens instead of wildcard to preserve circular elements)
    ═══════════════════════════════════════════════════ */
-
-*, ::before, ::after {
-  border-radius: 0px !important;
-}
