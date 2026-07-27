@@ -9,7 +9,10 @@
       "title": "Avatar",
       "description": "An avatar component.",
       "files": [
-        "components/ui/avatar.tsx"
+        {
+          "path": "components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -18,7 +21,10 @@
       "title": "Badge",
       "description": "A badge component.",
       "files": [
-        "components/ui/badge.tsx"
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -27,7 +33,10 @@
       "title": "Bento-grid",
       "description": "A bento-grid component.",
       "files": [
-        "components/ui/bento-grid.tsx"
+        {
+          "path": "components/ui/bento-grid.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -36,7 +45,10 @@
       "title": "Button",
       "description": "A button component.",
       "files": [
-        "components/ui/button.tsx"
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -45,7 +57,10 @@
       "title": "Card",
       "description": "A card component.",
       "files": [
-        "components/ui/card.tsx"
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -54,7 +69,10 @@
       "title": "Dialog",
       "description": "A dialog component.",
       "files": [
-        "components/ui/dialog.tsx"
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -63,7 +81,10 @@
       "title": "Dropdown-menu",
       "description": "A dropdown-menu component.",
       "files": [
-        "components/ui/dropdown-menu.tsx"
+        {
+          "path": "components/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -72,7 +93,10 @@
       "title": "Empty-state",
       "description": "An empty-state component.",
       "files": [
-        "components/ui/empty-state.tsx"
+        {
+          "path": "components/ui/empty-state.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -81,7 +105,10 @@
       "title": "Input",
       "description": "An input component.",
       "files": [
-        "components/ui/input.tsx"
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -90,7 +117,10 @@
       "title": "Magic-card",
       "description": "A magic-card component.",
       "files": [
-        "components/ui/magic-card.tsx"
+        {
+          "path": "components/ui/magic-card.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -99,7 +129,10 @@
       "title": "Popover",
       "description": "A popover component.",
       "files": [
-        "components/ui/popover.tsx"
+        {
+          "path": "components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -108,7 +141,10 @@
       "title": "Profile-card",
       "description": "A profile-card component.",
       "files": [
-        "components/ui/profile-card.tsx"
+        {
+          "path": "components/ui/profile-card.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -117,7 +153,10 @@
       "title": "Scroll-area",
       "description": "A scroll-area component.",
       "files": [
-        "components/ui/scroll-area.tsx"
+        {
+          "path": "components/ui/scroll-area.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -126,7 +165,10 @@
       "title": "Select",
       "description": "A select component.",
       "files": [
-        "components/ui/select.tsx"
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -135,7 +177,10 @@
       "title": "Separator",
       "description": "A separator component.",
       "files": [
-        "components/ui/separator.tsx"
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -144,7 +189,10 @@
       "title": "Sheet",
       "description": "A sheet component.",
       "files": [
-        "components/ui/sheet.tsx"
+        {
+          "path": "components/ui/sheet.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -153,7 +201,10 @@
       "title": "Skeleton",
       "description": "A skeleton component.",
       "files": [
-        "components/ui/skeleton.tsx"
+        {
+          "path": "components/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -162,7 +213,10 @@
       "title": "Tabs",
       "description": "A tabs component.",
       "files": [
-        "components/ui/tabs.tsx"
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -171,7 +225,10 @@
       "title": "Textarea",
       "description": "A textarea component.",
       "files": [
-        "components/ui/textarea.tsx"
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {
@@ -180,7 +237,10 @@
       "title": "Tooltip",
       "description": "A tooltip component.",
       "files": [
-        "components/ui/tooltip.tsx"
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
       ]
     }
   ]
