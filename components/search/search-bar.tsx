@@ -1,106 +1,128 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Search, MapPin, Home, Building2, TrendingUp } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { useState } from 'react';
+import { Search, MapPin, Home, TrendingUp } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { cn } from '@/lib/utils';
+import { Input } from '@/components/ui/input';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { BorderBeam } from '@/components/magicui/border-beam';
+import { ShimmerButton } from '@/components/magicui/shimmer-button';
 
 interface SearchBarProps {
-  variant?: "hero" | "inline"
-  locale?: "en" | "ar"
-  initialQuery?: string
-  initialTenure?: string
-  onSearch?: (query: string, tenure: string) => void
-  className?: string
+  variant?: 'hero' | 'inline';
+  locale?: 'en' | 'ar';
+  initialQuery?: string;
+  initialTenure?: string;
+  onSearch?: (query: string, tenure: string) => void;
+  className?: string;
 }
 
-export function SearchBar({ 
-  variant = "hero", 
-  locale = "en",
-  initialQuery = "",
-  initialTenure = "ready",
+export function SearchBar({
+  variant = 'hero',
+  locale = 'en',
+  initialQuery = '',
+  initialTenure = 'ready',
   onSearch,
-  className 
+  className,
 }: SearchBarProps) {
-  const router = useRouter()
-  const [query, setQuery] = useState(initialQuery)
-  const [tenure, setTenure] = useState<string>(initialTenure)
-  const [isFocused, setIsFocused] = useState(false)
+  const router = useRouter();
+  const [query, setQuery] = useState(initialQuery);
+  const [tenure, setTenure] = useState<string>(initialTenure);
+  const [isFocused, setIsFocused] = useState(false);
 
-  const isHero = variant === "hero"
+  const isHero = variant === 'hero';
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (onSearch) {
-      onSearch(query, tenure)
+      onSearch(query, tenure);
     } else {
-      // Default behavior: navigate to homes page with query params
-      const params = new URLSearchParams()
-      if (query) params.set("query", query)
-      if (tenure) params.set("tenure", tenure)
-      router.push(`/${locale}/homes?${params.toString()}`)
+      const params = new URLSearchParams();
+      if (query) params.set('query', query);
+      if (tenure) params.set('tenure', tenure);
+      router.push(`/${locale}/homes?${params.toString()}`);
     }
-  }
+  };
 
   return (
-    <div className={cn("w-full max-w-3xl mx-auto", className)}>
+    <div className={cn('mx-auto w-full max-w-[400px]', className)}>
       {isHero && (
-        <Tabs defaultValue="ready" value={tenure} onValueChange={setTenure} className="w-full mb-4">
-          <TabsList className="bg-surface/20 backdrop-blur-md border border-white/20 p-1">
-            <TabsTrigger value="ready" className="data-[state=active]:bg-white data-[state=active]:text-ink text-white">
-              <Home className="w-4 h-4 mr-2" />
-              Ready
+        <Tabs
+          defaultValue="ready"
+          value={tenure}
+          onValueChange={setTenure}
+          className="mb-2 flex justify-center w-full"
+        >
+          <TabsList className="rounded-none border border-white/20 bg-white/10 p-1 backdrop-blur-xl shadow-sm">
+            <TabsTrigger
+              value="ready"
+              className="rounded-none px-4 py-1 text-[11px] font-bold tracking-wider uppercase text-white/80 transition-all data-[state=active]:bg-white data-[state=active]:text-ink data-[state=active]:shadow-none"
+            >
+              <Home className="mr-1.5 h-3.5 w-3.5" />
+              {locale === 'ar' ? 'جاهز' : 'Ready'}
             </TabsTrigger>
-            <TabsTrigger value="off_plan" className="data-[state=active]:bg-white data-[state=active]:text-ink text-white">
-              <TrendingUp className="w-4 h-4 mr-2" />
-              Off-Plan
+            <TabsTrigger
+              value="off_plan"
+              className="rounded-none px-4 py-1 text-[11px] font-bold tracking-wider uppercase text-white/80 transition-all data-[state=active]:bg-white data-[state=active]:text-ink data-[state=active]:shadow-none"
+            >
+              <TrendingUp className="mr-1.5 h-3.5 w-3.5" />
+              {locale === 'ar' ? 'قيد الإنشاء' : 'Off-Plan'}
             </TabsTrigger>
           </TabsList>
         </Tabs>
       )}
 
-      <form 
+      <form
         onSubmit={handleSearch}
         className={cn(
-          "relative flex items-center w-full transition-all duration-300",
-          isHero 
-            ? "bg-white p-2 rounded-full shadow-lg" 
-            : "bg-surface border border-border rounded-lg p-1",
-          isFocused && (isHero ? "shadow-xl scale-[1.01]" : "border-fjord ring-1 ring-fjord")
+          'relative flex w-full items-center transition-all duration-300 rounded-none p-1 shadow-xl backdrop-blur-xl overflow-hidden border-none',
+          isHero ? 'bg-white/95 text-ink' : 'bg-surface text-ink',
+          isFocused && 'ring-1 ring-fjord',
         )}
       >
-        <div className="flex items-center justify-center pl-4 pr-2 text-muted-foreground">
-          <MapPin className="w-5 h-5" />
+        <BorderBeam
+          duration={4}
+          colorFrom="#00f2fe"
+          colorTo="#10b981"
+          borderWidth={2}
+          innerClassName={
+            isHero ? 'bg-white dark:bg-[#0b1329]' : 'bg-surface dark:bg-surface'
+          }
+        />
+
+        <div className="z-10 flex items-center justify-center ps-3 pe-1 text-fjord">
+          <MapPin className="h-4 w-4" />
         </div>
-        
+
         <Input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder={locale === "ar" ? "أين تريد أن تعيش؟" : "Where do you want to live?"}
-          className="flex-1 border-none shadow-none focus-visible:ring-0 px-2 text-lg"
+          placeholder={
+            locale === 'ar'
+              ? 'ابحث عن منطقة في دبي...'
+              : 'Search Dubai area...'
+          }
+          className="relative z-10 flex-1 border-none bg-transparent px-2 text-sm font-medium text-ink placeholder:text-muted-foreground/60 focus-visible:ring-0 focus-visible:outline-none rounded-none"
         />
-        
-        <Button 
-          type="submit" 
-          size={isHero ? "lg" : "default"}
-          className={cn(
-            "bg-fjord hover:bg-fjord-hover text-white transition-colors",
-            isHero ? "rounded-full px-8" : "rounded-md"
-          )}
+
+        <ShimmerButton
+          type="submit"
+          borderRadius="0px"
+          shimmerColor="#34d399"
+          background="var(--fjord)"
+          className="relative z-10 px-4 py-2 text-xs font-semibold text-white transition-all shadow-none hover:bg-fjord-hover"
         >
-          <Search className="w-5 h-5 md:mr-2" />
+          <Search className="h-3.5 w-3.5 md:mr-1.5 inline" />
           <span className="hidden md:inline">
-            {locale === "ar" ? "بحث" : "Search"}
+            {locale === 'ar' ? 'بحث' : 'Search'}
           </span>
-        </Button>
+        </ShimmerButton>
       </form>
     </div>
-  )
+  );
 }

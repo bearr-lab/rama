@@ -1,50 +1,49 @@
-import { HTMLAttributes, ReactNode } from "react"
-import { cn } from "@/lib/utils"
+import { HTMLAttributes, ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
-  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "full"
-  padding?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+  children: ReactNode;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  padding?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 }
 
-export function Container({ 
-  children, 
-  size = "lg", 
-  padding = "lg",
+export function Container({
+  children,
+  size = 'lg',
+  padding = 'lg',
   className,
-  ...props 
+  ...props
 }: ContainerProps) {
-  
   const sizeClasses = {
-    sm: "max-w-[640px]",
-    md: "max-w-[896px]",
-    lg: "max-w-[1024px]",
-    xl: "max-w-[1152px]",
-    "2xl": "max-w-[1280px]",
-    full: "max-w-none",
-  }
+    sm: 'max-w-container-sm',
+    md: 'max-w-container-md',
+    lg: 'max-w-container-lg',
+    xl: 'max-w-container-xl',
+    '2xl': 'max-w-container-2xl',
+    full: 'max-w-none',
+  };
 
   const paddingClasses = {
-    none: "px-0",
-    xs: "px-4",
-    sm: "px-5",
-    md: "px-6 md:px-10",
-    lg: "px-6 md:px-12",
-    xl: "px-6 md:px-16",
-    "2xl": "px-6 md:px-20",
-  }
+    none: 'px-0',
+    xs: 'px-10',
+    sm: 'px-10 sm:px-12',
+    md: 'px-10 sm:px-14 md:px-16',
+    lg: 'px-12 sm:px-16 lg:px-20',
+    xl: 'px-12 sm:px-16 lg:px-20',
+    '2xl': 'px-12 sm:px-18 lg:px-24',
+  };
 
   return (
-    <div 
+    <div
       className={cn(
-        "mx-auto w-full",
+        'mx-auto w-full',
         sizeClasses[size],
         paddingClasses[padding],
-        className
+        className,
       )}
       {...props}
     >
       {children}
     </div>
-  )
+  );
 }

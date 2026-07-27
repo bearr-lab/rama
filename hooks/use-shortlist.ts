@@ -1,71 +1,75 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import { createClient } from "@/lib/supabase/client"
+import { useState, useEffect, useMemo } from 'react';
+import { createClient } from '@/lib/supabase/client';
 
 export function useShortlist(userId?: string) {
-  const [savedIds, setSavedIds] = useState<string[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const supabase = createClient()
+  const [savedIds, setSavedIds] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
     if (!userId) {
-      setSavedIds([])
-      setIsLoading(false)
-      return
+      setSavedIds([]);
+      setIsLoading(false);
+      return;
     }
 
-    let ignore = false
+    let ignore = false;
 
     const fetchShortlist = async () => {
       const { data, error } = await supabase
-        .from("shortlists")
-        .select("property_id")
-        .eq("user_id", userId)
+        .from('shortlists')
+        .select('property_id')
+        .eq('user_id', userId);
 
       if (!ignore && !error && data) {
-        setSavedIds(data.map(item => item.property_id))
+        setSavedIds(data.map((item) => item.property_id));
       }
-      if (!ignore) setIsLoading(false)
-    }
+      if (!ignore) setIsLoading(false);
+    };
 
-    fetchShortlist()
-    return () => { ignore = true }
-  }, [userId, supabase])
+    fetchShortlist();
+    return () => {
+      ignore = true;
+    };
+  }, [userId, supabase]);
 
   const toggleSave = async (propertyId: string) => {
-    if (!userId) return false // Require login
+    if (!userId) return false; // Require login
 
-    const isSaved = savedIds.includes(propertyId)
-    
+    const isSaved = savedIds.includes(propertyId);
+
     // Optimistic UI update
-    setSavedIds(prev => 
-      isSaved ? prev.filter(id => id !== propertyId) : [...prev, propertyId]
-    )
+    setSavedIds((prev) =>
+      isSaved ? prev.filter((id) => id !== propertyId) : [...prev, propertyId],
+    );
 
     try {
       if (isSaved) {
         const { error } = await supabase
-          .from("shortlists")
+          .from('shortlists')
           .delete()
-          .eq("user_id", userId)
-          .eq("property_id", propertyId)
-        if (error) throw error
+          .eq('user_id', userId)
+          .eq('property_id', propertyId);
+        if (error) throw error;
       } else {
         const { error } = await supabase
-          .from("shortlists")
-          .insert({ user_id: userId, property_id: propertyId })
-        if (error) throw error
+          .from('shortlists')
+          .insert({ user_id: userId, property_id: propertyId });
+        if (error) throw error;
       }
-      return true
+      return true;
     } catch (error) {
       // Revert on error
-      setSavedIds(prev => 
-        isSaved ? [...prev, propertyId] : prev.filter(id => id !== propertyId)
-      )
-      return false
+      setSavedIds((prev) =>
+        isSaved
+          ? [...prev, propertyId]
+          : prev.filter((id) => id !== propertyId),
+      );
+      return false;
     }
-  }
+  };
 
-  return { savedIds, toggleSave, isLoading }
+  return { savedIds, toggleSave, isLoading };
 }

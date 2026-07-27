@@ -1,138 +1,174 @@
-"use client"
+'use client';
 
-import Image from "next/image"
-import Link from "next/link"
-import { Heart, MapPin, BedDouble, Bath, Maximize2 } from "lucide-react"
+import Image from 'next/image';
+import Link from 'next/link';
+import { Heart, MapPin, BedDouble, Bath, Maximize2 } from 'lucide-react';
 
-import { cn } from "@/lib/utils"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import type { Property } from "@/types/property"
-import { TrustBadge } from "./trust-badge"
-import { PriceTag } from "./price-tag"
+import { cn } from '@/lib/utils';
+import { CardContent } from '@/components/ui/card';
+import { MagicCard } from '@/components/ui/magic-card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import type { Property } from '@/types/property';
+import { TrustBadge } from './trust-badge';
+import { PriceTag } from './price-tag';
 
 interface PropertyCardProps {
-  property: Property
-  variant?: "vertical" | "editorial"
-  isSaved?: boolean
-  onSave?: (id: string) => void
-  locale?: "en" | "ar"
+  property: Property;
+  variant?: 'vertical' | 'editorial';
+  isSaved?: boolean;
+  onSave?: (id: string) => void;
+  locale?: 'en' | 'ar';
 }
 
-export function PropertyCard({ 
-  property, 
-  variant = "vertical", 
+export function PropertyCard({
+  property,
+  variant = 'vertical',
   isSaved = false,
   onSave,
-  locale = "en"
+  locale = 'en',
 }: PropertyCardProps) {
-  const isEditorial = variant === "editorial"
-  const title = locale === "ar" ? property.title_ar : property.title_en
+  const isEditorial = variant === 'editorial';
+  const title = locale === 'ar' ? property.title_ar : property.title_en;
 
   // Formatter for AED
   const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(locale === "ar" ? "ar-AE" : "en-AE", {
-      style: "currency",
-      currency: "AED",
+    return new Intl.NumberFormat(locale === 'ar' ? 'ar-AE' : 'en-AE', {
+      style: 'currency',
+      currency: 'AED',
       maximumFractionDigits: 0,
-    }).format(price)
-  }
+    }).format(price);
+  };
 
   return (
-    <Card className={cn(
-      "group relative overflow-hidden bg-surface transition-all duration-300 ease-decelerate hover:shadow-floating hover:-translate-y-1 border-border/50",
-      isEditorial ? "flex flex-col md:flex-row h-auto md:h-[400px]" : "flex flex-col h-full"
-    )}>
+    <MagicCard
+      className={cn(
+        'group ease-decelerate hover:shadow-floating relative overflow-hidden border-border/50 transition-all duration-300 hover:-translate-y-1',
+        isEditorial
+          ? 'flex h-auto flex-col md:h-[400px] md:flex-row'
+          : 'flex h-full flex-col',
+      )}
+      gradientColor="var(--fjord)"
+      gradientOpacity={0.1}
+    >
       {/* Image Container */}
-      <div className={cn(
-        "relative overflow-hidden bg-surface-subtle",
-        isEditorial ? "w-full md:w-[60%] h-[300px] md:h-full" : "w-full aspect-[4/3]"
-      )}>
+      <div
+        className={cn(
+          'relative overflow-hidden bg-surface-subtle',
+          isEditorial
+            ? 'h-[300px] w-full md:h-full md:w-[60%]'
+            : 'aspect-[4/3] w-full',
+        )}
+      >
         <Image
-          src={property.thumbnail || property.images[0] || "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"}
+          src={
+            property.thumbnail ||
+            property.images[0] ||
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80'
+          }
           alt={title}
           fill
           className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          sizes={isEditorial ? "(max-width: 768px) 100vw, 60vw" : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+          sizes={
+            isEditorial
+              ? '(max-width: 768px) 100vw, 60vw'
+              : '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          }
         />
-        
+
         {/* Top Badges */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
-          <div className="flex gap-2 flex-wrap">
+        <div className="absolute top-4 right-4 left-4 flex items-start justify-between">
+          <div className="flex flex-wrap gap-2">
             {property.is_featured && (
-              <Badge className="bg-white/90 text-ink hover:bg-white backdrop-blur-sm shadow-sm border-none font-medium">
+              <Badge className="border border-border/40 bg-surface/90 font-semibold text-ink shadow-2xs backdrop-blur-md hover:bg-surface">
                 Featured
               </Badge>
             )}
             <TrustBadge status={property.verification_status} variant="solid" />
           </div>
-          
-          <Button 
-            variant="secondary" 
-            size="icon" 
-            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white shadow-sm relative z-20"
+
+          <Button
+            variant="secondary"
+            size="icon"
+            className="relative z-20 h-9 w-9 rounded-full border border-white/20 bg-black/40 shadow-md backdrop-blur-md transition-all hover:scale-105 hover:bg-black/60"
             onClick={(e) => {
-              e.preventDefault()
-              if (onSave) onSave(property.id)
+              e.preventDefault();
+              if (onSave) onSave(property.id);
             }}
           >
-            <Heart className={cn("w-4 h-4 transition-transform", isSaved ? "fill-risk text-risk scale-110" : "text-ink")} />
+            <Heart
+              className={cn(
+                'h-4 w-4 transition-transform',
+                isSaved ? 'scale-110 fill-risk text-risk' : 'text-white',
+              )}
+            />
           </Button>
         </div>
 
         {/* Price Tag (Floating) */}
         <div className="absolute bottom-4 left-4">
-          <PriceTag price={property.price} locale={locale} verified={property.price_verified} />
+          <PriceTag
+            price={property.price}
+            locale={locale}
+            verified={property.price_verified}
+          />
         </div>
       </div>
 
       {/* Content */}
-      <CardContent className={cn(
-        "flex flex-col justify-between p-6",
-        isEditorial ? "w-full md:w-[40%]" : "flex-1"
-      )}>
+      <CardContent
+        className={cn(
+          'flex flex-col justify-between p-6',
+          isEditorial ? 'w-full md:w-[40%]' : 'flex-1',
+        )}
+      >
         <div className="space-y-4">
           <div className="space-y-2">
-            <h3 className="font-display text-xl font-semibold text-ink line-clamp-2 leading-tight">
-              <Link href={`/${locale}/homes/${property.slug}`} className="before:absolute before:inset-0 before:z-10">
+            <h3 className="line-clamp-2 font-display text-xl leading-tight font-semibold text-ink">
+              <Link
+                href={`/${locale}/homes/${property.slug}`}
+                className="before:absolute before:inset-0 before:z-10"
+              >
                 {title}
               </Link>
             </h3>
-            <div className="flex items-center text-muted-foreground text-sm">
-              <MapPin className="w-3.5 h-3.5 mr-1" />
-              <span>{property.community}{property.sub_community ? `, ${property.sub_community}` : ''}</span>
+            <div className="flex items-center text-sm text-muted-foreground">
+              <MapPin className="mr-1 h-3.5 w-3.5" />
+              <span>
+                {property.community}
+                {property.sub_community ? `, ${property.sub_community}` : ''}
+              </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-4 text-sm text-ink/80 pt-2 border-t border-border">
+          <div className="flex items-center gap-4 border-t border-border pt-2 text-sm text-ink/80">
             {property.bedrooms && (
               <div className="flex items-center gap-1.5">
-                <BedDouble className="w-4 h-4 text-muted-foreground" />
+                <BedDouble className="h-4 w-4 text-muted-foreground" />
                 <span>{property.bedrooms} Beds</span>
               </div>
             )}
             {property.bathrooms && (
               <div className="flex items-center gap-1.5">
-                <Bath className="w-4 h-4 text-muted-foreground" />
+                <Bath className="h-4 w-4 text-muted-foreground" />
                 <span>{property.bathrooms} Baths</span>
               </div>
             )}
             {property.area_sqft && (
               <div className="flex items-center gap-1.5">
-                <Maximize2 className="w-4 h-4 text-muted-foreground" />
+                <Maximize2 className="h-4 w-4 text-muted-foreground" />
                 <span>{property.area_sqft.toLocaleString()} sqft</span>
               </div>
             )}
           </div>
         </div>
 
-        <div className="pt-6 mt-auto relative z-20 pointer-events-none">
-          <Button className="w-full bg-fjord hover:bg-fjord-hover text-white rounded-button pointer-events-none">
-            {locale === "ar" ? "عرض التفاصيل" : "View Details"}
+        <div className="pointer-events-none relative z-20 mt-auto pt-6">
+          <Button className="rounded-button pointer-events-none w-full bg-fjord text-white hover:bg-fjord-hover">
+            {locale === 'ar' ? 'عرض التفاصيل' : 'View Details'}
           </Button>
         </div>
       </CardContent>
-    </Card>
-  )
+    </MagicCard>
+  );
 }

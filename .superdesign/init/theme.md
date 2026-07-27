@@ -1,0 +1,581 @@
+# RAMA Design Theme
+
+Design system name: **Nordic Lagom** — a calm, evidence-first aesthetic for Dubai real estate decision-making.
+
+---
+
+## Part 1 — Compact Token Summary
+
+### Color Palette (`:root`)
+
+| Token | Value | Description |
+|-------|-------|-------------|
+| `--canvas` | `oklch(0.97 0.012 85)` | Page background (warm off-white) |
+| `--surface` | `oklch(1 0 0)` | Card/panel background (pure white) |
+| `--surface-subtle` | `oklch(0.96 0.01 90)` | Subtle hover/layer |
+| `--surface-warm` | `oklch(0.96 0.015 85)` | Warm tinted surface |
+| `--ink` | `oklch(0.15 0 0)` | Primary text (near black) |
+| `--text` | `oklch(0.38 0 0)` | Body text (dark grey) |
+| `--muted` | `oklch(0.7 0 0)` | Secondary/placeholder text |
+| `--border` | `oklch(0.92 0.01 90)` | Default border |
+| `--border-strong` | `oklch(0.85 0.01 90)` | Stronger border |
+| `--fjord` | `oklch(0.4 0.1 240)` | **Brand blue** (active/primary) |
+| `--fjord-hover` | `oklch(0.35 0.1 240)` | Fjord hover |
+| `--fjord-soft` | `oklch(0.95 0.05 240)` | Fjord tint (active nav bg) |
+| `--fjord-muted` | `oklch(0.9 0.03 240)` | Very faint fjord (ring) |
+| `--verified` | `oklch(0.6 0.1 140)` | Green — verified status |
+| `--review` | `oklch(0.7 0.15 60)` | Amber — needs review |
+| `--risk` | `oklch(0.5 0.15 30)` | Red-orange — risk signal |
+| `--ink-bg` | `oklch(0.18 0.02 260)` | Dark section background |
+| `--ink-surface` | `oklch(0.22 0.02 260)` | Dark card surface |
+
+### Typography
+
+| Token | Value |
+|-------|-------|
+| `--font-display` | `'Playfair Display', serif` (serif, editorial) |
+| `--font-sans` | `'Inter', 'Noto Sans Arabic', system-ui, sans-serif` |
+| RTL override | `--font-display: 'Noto Naskh Arabic'` · `--font-sans: 'Noto Sans Arabic'` |
+
+**Type Scale:**
+- `text-display-lg`: clamp(2.5rem, 5vw, 4rem) / 700 / -0.03em
+- `text-display`: clamp(1.875rem, 3.5vw, 2.75rem) / 700 / -0.03em
+- `text-h1`: 2.25rem / 700 / -0.03em
+- `text-h2`: 1.75rem / 600 / -0.02em
+- `text-h3`: 1.25rem / 600 / -0.02em
+- `text-h4`: 1.125rem / 600 / -0.02em
+- `text-body-lg`: 1.125rem / 400
+- `text-body`: 1rem / 400
+- `text-small`: 0.875rem / 400
+- `text-caption`: 0.75rem / 400
+
+### Border Radius
+
+| Token | Value |
+|-------|-------|
+| `--radius` | `0rem` (base) |
+| `--radius-tag` | `0px` |
+| `--radius-button` | `0px` |
+| `--radius-card` | `0px` |
+| `--radius-modal` | `0px` |
+| `--radius-full` | `0px` |
+
+### Elevation / Shadows
+
+| Token | Value |
+|-------|-------|
+| `--shadow-subtle` | `0 4px 16px rgb(60 50 40 / 4%)` |
+| `--shadow-floating` | `0 8px 32px rgb(60 50 40 / 6%)` |
+| `--shadow-lg` | `0 16px 48px rgb(60 50 40 / 8%)` |
+
+### Motion
+
+| Token | Value |
+|-------|-------|
+| `--ease-decelerate` | `cubic-bezier(0.2, 0, 0, 1)` |
+| `--duration-fast` | `120ms` |
+| `--duration-standard` | `180ms` |
+| `--duration-slow` | `240ms` |
+
+### Breakpoints / Containers
+
+| Token | Value |
+|-------|-------|
+| `--container-sm` | `640px` |
+| `--container-md` | `896px` |
+| `--container-lg` | `1024px` |
+| `--container-xl` | `1152px` |
+| `--container-2xl` | `1280px` |
+
+### shadcn Token Mappings
+
+| shadcn token | Maps to |
+|---|---|
+| `--background` | `--canvas` |
+| `--foreground` | `--ink` |
+| `--card` | `--surface` |
+| `--primary` | `--fjord` |
+| `--secondary` | `--surface-subtle` |
+| `--muted-color` | `--surface-subtle` |
+| `--accent` | `--surface-subtle` |
+| `--destructive` | `--risk` |
+| `--input` | `--border` |
+| `--ring` | `--fjord-muted` |
+
+---
+
+## Part 2 — Raw Source Dumps
+
+### globals.css (full)
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Google Fonts ─── */
+
+/* ═══════════════════════════════════════════════════
+   NORDIC LAGOM DESIGN SYSTEM — RAMA MVP
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  /* ─── Foundation ─── */
+  --canvas: oklch(97% 0.012 85deg);
+  --surface: oklch(100% 0 0deg);
+  --surface-subtle: oklch(96% 0.01 90deg);
+  --surface-warm: oklch(96% 0.015 85deg);
+  --ink: oklch(15% 0 0deg);
+  --text: oklch(38% 0 0deg);
+  --muted: oklch(48% 0 0deg);
+  --border: oklch(92% 0.01 90deg);
+  --border-strong: oklch(85% 0.01 90deg);
+
+  /* ─── Brand — Fjord Blue ─── */
+  --fjord: oklch(40% 0.1 240deg);
+  --fjord-hover: oklch(35% 0.1 240deg);
+  --fjord-active: oklch(30% 0.1 240deg);
+  --fjord-soft: oklch(95% 0.05 240deg);
+  --fjord-muted: oklch(90% 0.03 240deg);
+
+  /* ─── Semantic ─── */
+  --verified: oklch(60% 0.1 140deg);
+  --verified-soft: oklch(95% 0.03 140deg);
+  --review: oklch(70% 0.15 60deg);
+  --review-soft: oklch(97% 0.05 60deg);
+  --unknown: oklch(70% 0 0deg);
+  --unknown-soft: oklch(96% 0 0deg);
+  --risk: oklch(50% 0.15 30deg);
+  --risk-soft: oklch(95% 0.05 30deg);
+
+  /* ─── Dark Sections (ink-bg) ─── */
+  --ink-bg: oklch(18% 0.02 260deg);
+  --ink-surface: oklch(22% 0.02 260deg);
+
+  /* ─── shadcn token mapping ─── */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--fjord);
+  --primary-foreground: oklch(98% 0 0deg);
+  --secondary: var(--surface-subtle);
+  --secondary-foreground: var(--ink);
+  --muted-color: var(--surface-subtle);
+  --muted-foreground: var(--muted);
+  --accent: var(--surface-subtle);
+  --accent-foreground: var(--ink);
+  --destructive: var(--risk);
+  --input: var(--border);
+  --ring: var(--fjord-muted);
+
+  /* ─── Radii (shadcn preset b2czZ8JLSS — Strict 0px Radius / No Curves) ─── */
+  --radius: 0rem;
+  --radius-tag: 0px;
+  --radius-button: 0px;
+  --radius-card: 0px;
+  --radius-modal: 0px;
+  --radius-full: 0px;
+
+  /* ─── Touch Targets ─── */
+  --min-touch: 44px;
+
+  /* ─── Elevation ─── */
+  --shadow-subtle: 0 4px 16px rgb(60 50 40 / 4%);
+  --shadow-floating: 0 8px 32px rgb(60 50 40 / 6%);
+  --shadow-lg: 0 16px 48px rgb(60 50 40 / 8%);
+
+  /* ─── Motion ─── */
+  --ease-decelerate: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 120ms;
+  --duration-standard: 180ms;
+  --duration-slow: 240ms;
+
+  /* ─── Fonts ─── */
+  --font-display: 'Playfair Display', serif;
+  --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
+
+  /* ─── Chart colors (keep shadcn defaults) ─── */
+  --chart-1: oklch(64.6% 0.222 41.116deg);
+  --chart-2: oklch(60% 0.118 184.704deg);
+  --chart-3: oklch(39.8% 0.07 227.392deg);
+  --chart-4: oklch(82.8% 0.189 84.429deg);
+  --chart-5: oklch(76.9% 0.188 70.08deg);
+
+  /* ─── Sidebar (keep shadcn structure) ─── */
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--fjord);
+  --sidebar-primary-foreground: oklch(98% 0 0deg);
+  --sidebar-accent: var(--surface-subtle);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--fjord-muted);
+}
+
+.dark {
+  /* ─── Foundation (Dark Mode) ─── */
+  --canvas: oklch(14% 0.015 260deg);
+  --surface: oklch(18% 0.015 260deg);
+  --surface-subtle: oklch(22% 0.015 260deg);
+  --surface-warm: oklch(20% 0.02 260deg);
+  --ink: oklch(96% 0 0deg);
+  --text: oklch(80% 0 0deg);
+  --muted: oklch(75% 0 0deg);
+  --border: oklch(28% 0.015 260deg);
+  --border-strong: oklch(38% 0.015 260deg);
+
+  /* ─── Brand — Fjord Blue (Dark Mode adjustments) ─── */
+  --fjord: oklch(65% 0.12 240deg);
+  --fjord-hover: oklch(70% 0.12 240deg);
+  --fjord-active: oklch(75% 0.12 240deg);
+  --fjord-soft: oklch(25% 0.05 240deg);
+  --fjord-muted: oklch(30% 0.05 240deg);
+
+  /* ─── Semantic (Dark Mode adjustments) ─── */
+  --verified: oklch(75% 0.12 140deg);
+  --verified-soft: oklch(25% 0.04 140deg);
+  --review: oklch(80% 0.15 60deg);
+  --review-soft: oklch(26% 0.05 60deg);
+  --unknown: oklch(75% 0 0deg);
+  --unknown-soft: oklch(25% 0 0deg);
+  --risk: oklch(70% 0.15 30deg);
+  --risk-soft: oklch(25% 0.05 30deg);
+
+  /* ─── Dark Sections (ink-bg) in Dark Mode ─── */
+  --ink-bg: oklch(14% 0.015 260deg);
+  --ink-surface: oklch(18% 0.015 260deg);
+
+  /* ─── Sidebar (Dark Mode) ─── */
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--fjord);
+  --sidebar-primary-foreground: oklch(15% 0 0deg);
+  --sidebar-accent: var(--surface-subtle);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--fjord-muted);
+}
+
+/* ─── RTL Font Override ─── */
+[dir="rtl"] {
+  --font-display: 'Noto Naskh Arabic', serif;
+  --font-sans: 'Noto Sans Arabic', 'Inter', system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════
+   TAILWIND v4 THEME INTEGRATION
+   ═══════════════════════════════════════════════════ */
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Nordic Lagom custom colors */
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-warm: var(--surface-warm);
+  --color-ink: var(--ink);
+  --color-text: var(--text);
+  --color-fjord: var(--fjord);
+  --color-fjord-hover: var(--fjord-hover);
+  --color-fjord-active: var(--fjord-active);
+  --color-fjord-soft: var(--fjord-soft);
+  --color-fjord-muted: var(--fjord-muted);
+  --color-verified: var(--verified);
+  --color-verified-soft: var(--verified-soft);
+  --color-review: var(--review);
+  --color-review-soft: var(--review-soft);
+  --color-unknown: var(--unknown);
+  --color-unknown-soft: var(--unknown-soft);
+  --color-risk: var(--risk);
+  --color-risk-soft: var(--risk-soft);
+  --color-ink-bg: var(--ink-bg);
+  --color-ink-surface: var(--ink-surface);
+
+  /* Radii — shadcn preset b2czZ8JLSS (Sharp 0px Angular Geometry) */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  --radius-card-lagom: 0px;
+  --radius-modal-lagom: 0px;
+
+  /* Custom Spacing Tokens */
+  --spacing-19: 4.75rem;
+  --spacing-64: 16rem;
+  --spacing-65: 16.25rem;
+
+  /* === CONTAINER WIDTHS (NARROWER) === */
+  --container-sm: 640px;
+  --container-md: 896px;
+  --container-lg: 1024px;
+  --container-xl: 1152px;
+  --container-2xl: 1280px;
+
+  /* === HORIZONTAL PADDING === */
+  --page-padding-xs: 16px;
+  --page-padding-sm: 20px;
+  --page-padding-md: 24px;
+  --page-padding-lg: 48px;
+  --page-padding-xl: 64px;
+
+  /* === SECTION VERTICAL SPACING === */
+  --section-gap-xs: 48px;
+  --section-gap-sm: 64px;
+  --section-gap-md: 80px;
+  --section-gap-lg: 96px;
+  --section-gap-xl: 128px;
+
+  /* === COMPONENT INTERNAL === */
+  --component-padding-sm: 16px;
+  --component-padding-md: 24px;
+  --component-padding-lg: 32px;
+  --component-padding-xl: 48px;
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   BASE LAYER
+   ═══════════════════════════════════════════════════ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+
+    font-feature-settings: "cv11", "ss01";
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html {
+    @apply font-sans;
+
+    scroll-behavior: smooth;
+  }
+
+  /* ─── Typography Scale ─── */
+  .text-display-lg {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .text-display {
+    font-size: clamp(1.875rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .text-h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .text-h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .text-body-lg {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  .text-body {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-small {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .text-caption {
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* ─── Display font utility ─── */
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* ─── Page Transitions ─── */
+  .page-enter {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+
+  .page-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition:
+      opacity var(--duration-standard) var(--ease-decelerate),
+      transform var(--duration-standard) var(--ease-decelerate);
+  }
+
+  /* ─── Arabic RTL adjustments ─── */
+  [dir="rtl"] body {
+    line-height: 1.8;
+  }
+
+  /* ─── Reduced Motion ─── */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   MAGIC UI VIEW TRANSITION THEME TOGGLE
+   ═══════════════════════════════════════════════════ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation: none;
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes shiny-text {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.animate-border-beam {
+  animation: border-beam var(--duration, 15s) infinite linear;
+}
+
+.animate-shiny-text {
+  animation: shiny-text 8s infinite linear;
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+}
+
+/* ═══════════════════════════════════════════════════
+   SHADCN PRESET b2czZ8JLSS — ZERO CURVES & ZERO ROUNDED CORNERS
+   (Applied via --radius tokens instead of wildcard to preserve circular elements)
+   ═══════════════════════════════════════════════════ */
+```

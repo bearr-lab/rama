@@ -1,133 +1,181 @@
-"use client"
+'use client';
 
-import { useState, useRef, useEffect } from "react"
-import { Send, Brain, User, AlertCircle, Loader2 } from "lucide-react"
+import { useState, useRef, useEffect } from 'react';
+import { Send, Sparkles, User, AlertCircle, Loader2 } from 'lucide-react';
+import { useAIChat } from '@/hooks/use-ai-chat';
+import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { cn } from '@/lib/utils';
 
-import { useAIChat } from "@/hooks/use-ai-chat"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { cn } from "@/lib/utils"
-
-export function ChatInterface({ locale = "en" }: { locale?: "en" | "ar" }) {
-  const [input, setInput] = useState("")
-  const { messages, sendMessage, isLoading, error } = useAIChat()
-  const scrollRef = useRef<HTMLDivElement>(null)
+export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
+  const [input, setInput] = useState('');
+  const { messages, sendMessage, isLoading, error } = useAIChat();
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages])
+  }, [messages]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!input.trim() || isLoading) return
-    sendMessage(input)
-    setInput("")
-  }
+  const handleSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (!input.trim() || isLoading) return;
+    sendMessage(input);
+    setInput('');
+  };
 
-  const isArabic = locale === "ar"
+  const handleSuggestion = (prompt: string) => {
+    setInput(prompt);
+    sendMessage(prompt);
+    setInput('');
+  };
+
+  const isArabic = locale === 'ar';
+  
+  const suggestions = isArabic ? [
+    'ما هو العائد على الاستثمار في وسط مدينة دبي؟',
+    'مقارنة بين جي بي آر ومارينا',
+    'رسوم نقل ملكية دائرة الأراضي والأملاك',
+  ] : [
+    'ROI on Downtown?',
+    'Compare JBR vs Marina',
+    'DLD transfer fees',
+  ];
 
   return (
-    <div className="flex flex-col h-[calc(100vh-12rem)] max-h-[800px] bg-surface border border-border rounded-2xl overflow-hidden shadow-sm">
-      {/* Chat Header */}
-      <div className="p-4 bg-ink text-white flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-fjord flex items-center justify-center">
-          <Brain className="w-5 h-5 text-white" />
-        </div>
-        <div>
-          <h2 className="font-display font-semibold">RAMA AI Advisor</h2>
-          <p className="text-xs text-white/70">
-            {isArabic ? "متصل - جاهز للمساعدة" : "Online - Ready to help"}
-          </p>
-        </div>
-      </div>
-
+    <div className="flex h-[calc(100vh-16rem)] min-h-[500px] flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
       {/* Messages Area */}
-      <ScrollArea className="flex-1 p-4" viewportRef={scrollRef}>
-        <div className="space-y-6">
+      <ScrollArea className="flex-1 p-6" viewportRef={scrollRef}>
+        <div className="mx-auto max-w-4xl space-y-8 pb-4">
           {messages.length === 0 && (
-            <div className="text-center py-12 px-4 space-y-4 text-muted-foreground flex flex-col items-center">
-              <Brain className="w-12 h-12 text-muted-foreground/30" />
-              <p className="max-w-sm">
-                {isArabic 
-                  ? "مرحباً! أنا مستشارك العقاري الشخصي للذكاء الاصطناعي. كيف يمكنني مساعدتك في العثور على عقارك المثالي في دبي اليوم؟"
-                  : "Hello! I'm your personal AI real estate advisor. How can I help you find your perfect property in Dubai today?"}
+            <div className="flex flex-col items-center justify-center space-y-4 py-20 text-center opacity-80">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-fjord-soft text-fjord">
+                <Sparkles className="h-8 w-8" />
+              </div>
+              <p className="max-w-md font-display text-xl text-muted">
+                {isArabic
+                  ? 'أنا مستشارك العقاري. مدعوم ببيانات دائرة الأراضي والأملاك في دبي. اسألني أي شيء.'
+                  : "I'm your real estate advisor. Powered by verified DLD data. Ask me anything."}
               </p>
             </div>
           )}
 
           {messages.map((msg) => (
-            <div 
-              key={msg.id} 
+            <div
+              key={msg.id}
               className={cn(
-                "flex gap-3 max-w-[85%]",
-                msg.role === "user" ? "ml-auto flex-row-reverse" : ""
+                'flex w-full',
+                msg.role === 'user' ? 'justify-end' : 'justify-start',
               )}
             >
-              <Avatar className="w-8 h-8 shrink-0">
-                {msg.role === "user" ? (
-                  <AvatarFallback className="bg-fjord text-white"><User className="w-4 h-4" /></AvatarFallback>
-                ) : (
-                  <AvatarFallback className="bg-verified text-white"><Brain className="w-4 h-4" /></AvatarFallback>
-                )}
-              </Avatar>
-              <div 
+              <div
                 className={cn(
-                  "p-3 rounded-2xl text-sm whitespace-pre-wrap leading-relaxed shadow-sm",
-                  msg.role === "user" 
-                    ? "bg-fjord text-white rounded-tr-sm" 
-                    : "bg-surface-subtle text-ink rounded-tl-sm border border-border"
+                  'flex max-w-[85%] items-start gap-4 sm:max-w-[75%]',
+                  msg.role === 'user' ? 'flex-row-reverse' : 'flex-row',
                 )}
               >
-                {msg.content}
+                {/* Avatar */}
+                <div
+                  className={cn(
+                    'flex h-8 w-8 shrink-0 items-center justify-center rounded-full',
+                    msg.role === 'user'
+                      ? 'bg-canvas text-muted border border-border'
+                      : 'bg-fjord-soft text-fjord',
+                  )}
+                >
+                  {msg.role === 'user' ? (
+                    <User className="h-4 w-4" />
+                  ) : (
+                    <Sparkles className="h-4 w-4" />
+                  )}
+                </div>
+
+                {/* Bubble */}
+                <div
+                  className={cn(
+                    'rounded-2xl p-4 text-base leading-relaxed',
+                    msg.role === 'user'
+                      ? 'rounded-tr-sm bg-fjord text-white'
+                      : 'rounded-tl-sm border border-border bg-surface text-ink shadow-sm',
+                  )}
+                >
+                  {msg.content}
+                </div>
               </div>
             </div>
           ))}
 
           {isLoading && (
-            <div className="flex gap-3 max-w-[85%]">
-              <Avatar className="w-8 h-8 shrink-0">
-                <AvatarFallback className="bg-verified text-white"><Brain className="w-4 h-4" /></AvatarFallback>
-              </Avatar>
-              <div className="p-3 rounded-2xl rounded-tl-sm bg-surface-subtle text-ink border border-border flex items-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin text-fjord" />
-                <span className="text-xs text-muted-foreground">RAMA is thinking...</span>
+            <div className="flex justify-start">
+              <div className="flex items-start gap-4">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-fjord-soft text-fjord">
+                  <Sparkles className="h-4 w-4" />
+                </div>
+                <div className="flex items-center gap-3 rounded-2xl rounded-tl-sm border border-border bg-surface px-4 py-3 shadow-sm">
+                  <Loader2 className="h-4 w-4 animate-spin text-fjord" />
+                  <span className="text-sm font-medium text-muted">
+                    {isArabic ? 'RAMA يفكر...' : 'RAMA is thinking...'}
+                  </span>
+                </div>
               </div>
             </div>
           )}
 
           {error && (
-            <div className="flex items-center gap-2 text-risk p-3 bg-risk-soft rounded-lg text-sm">
-              <AlertCircle className="w-4 h-4 shrink-0" />
-              <p>{error}</p>
+            <div className="mx-auto flex max-w-md items-center gap-3 rounded-xl border border-[var(--risk-soft)] bg-[var(--risk-soft)] p-4 text-[var(--risk)]">
+              <AlertCircle className="h-5 w-5 shrink-0" />
+              <p className="text-sm font-medium">{error}</p>
             </div>
           )}
         </div>
       </ScrollArea>
 
-      {/* Input Area */}
-      <div className="p-4 bg-surface border-t border-border">
-        <form onSubmit={handleSubmit} className="relative flex items-center">
-          <Input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder={isArabic ? "اسأل عن العقارات، الأسعار، العائد على الاستثمار..." : "Ask about properties, prices, ROI..."}
-            className="pr-12 py-6 rounded-full bg-surface-subtle border-none focus-visible:ring-1 focus-visible:ring-fjord"
-            disabled={isLoading}
-          />
-          <Button 
-            type="submit" 
-            size="icon" 
-            disabled={!input.trim() || isLoading}
-            className="absolute right-1.5 w-10 h-10 rounded-full bg-fjord hover:bg-fjord-hover text-white transition-all disabled:opacity-50"
+      {/* Input Area (Sticky Bottom) */}
+      <div className="border-t border-border bg-surface p-4 sm:p-6">
+        <div className="mx-auto max-w-4xl space-y-4">
+          {/* Suggestions */}
+          {messages.length === 0 && (
+            <div className="flex flex-wrap gap-2">
+              {suggestions.map((suggestion) => (
+                <button
+                  key={suggestion}
+                  onClick={() => handleSuggestion(suggestion)}
+                  disabled={isLoading}
+                  className="rounded-full border border-border bg-canvas px-4 py-1.5 text-xs font-semibold text-muted transition-colors hover:border-fjord/50 hover:text-fjord disabled:opacity-50"
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <form
+            onSubmit={handleSubmit}
+            className="relative flex items-center overflow-hidden rounded-xl border border-border bg-canvas shadow-sm focus-within:border-fjord focus-within:ring-1 focus-within:ring-fjord"
           >
-            <Send className="w-4 h-4" />
-          </Button>
-        </form>
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder={
+                isArabic
+                  ? 'اسأل عن الأسعار، أو العائد على الاستثمار، أو ابحث عن عقار...'
+                  : 'Ask about prices, ROI, or search for a property...'
+              }
+              className="w-full bg-transparent py-4 pl-4 pr-14 text-base text-ink placeholder:text-muted focus:outline-none sm:pl-6"
+              disabled={isLoading}
+            />
+            <Button
+              type="submit"
+              size="icon"
+              disabled={!input.trim() || isLoading}
+              className="absolute right-2 h-10 w-10 shrink-0 rounded-lg bg-fjord text-white transition-all hover:bg-fjord-hover disabled:opacity-50"
+            >
+              <Send className="h-4 w-4" />
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
-  )
+  );
 }

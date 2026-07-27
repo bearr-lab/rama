@@ -49,12 +49,18 @@ for (const file of files) {
   // write item json
   fs.writeFileSync(path.join(registryDir, `${name}.json`), JSON.stringify(item, null, 2));
 
+  const article = ['a', 'e', 'i', 'o', 'u'].includes(name.charAt(0).toLowerCase()) ? 'An' : 'A';
   items.push({
     name,
     type: 'registry:ui',
     title: name.charAt(0).toUpperCase() + name.slice(1),
-    description: `A ${name} component.`,
-    files: [`components/ui/${file}`]
+    description: `${article} ${name} component.`,
+    files: [
+      {
+        path: `components/ui/${file}`,
+        type: 'registry:ui',
+      },
+    ],
   });
 }
 

@@ -1,98 +1,52 @@
-import Link from "next/link"
-import { ArrowRight, ShieldCheck, Calculator, Compass } from "lucide-react"
-import { buttonVariants } from "@/components/ui/button"
-import { Container } from "@/components/layout/container"
-import { Section } from "@/components/layout/section"
+import Link from 'next/link';
+import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { getLocale } from 'next-intl/server';
 
-import { getLocale, getTranslations } from "next-intl/server"
+import { buttonVariants } from '@/components/ui/button';
+import { MagneticButton } from '@/components/ui/magnetic-button';
+import { RamaLogo } from '@/components/ui/rama-logo';
 
 export async function Footer() {
-  const locale = await getLocale()
-  const t = await getTranslations("Footer")
+  const locale = await getLocale();
+  const isArabic = locale === 'ar';
+
   return (
-    <footer className="w-full">
-      {/* Pre-footer CTA (darker section) */}
-      <Section background="ink-bg" spacing="md">
-        <Container size="lg" padding="lg" className="text-center space-y-6">
-          <h2 className="font-display text-3xl md:text-4xl font-semibold text-white">
-            {t("ctaTitle")}
-          </h2>
-          <p className="text-white/80 max-w-2xl mx-auto text-lg">
-            {t("ctaSubtitle")}
+    <footer className="sticky bottom-0 z-0 border-t border-border bg-surface">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-12 sm:px-16 py-12 lg:flex-row lg:items-end lg:justify-between lg:px-20">
+        <div className="max-w-xl">
+          <Link href={`/${locale}#hero`}>
+            <RamaLogo variant="full" size="md" />
+          </Link>
+          <p className="mt-3 text-sm leading-relaxed text-text">
+            {isArabic ? 'مكان هادئ لجمع الأدلة ومقارنة الخيارات واتخاذ قرارك العقاري بتأنٍ.' : 'A quieter place to gather evidence, compare options and make a considered property decision.'}
           </p>
-          <div className="pt-4">
-            <Link href={`/${locale}/login`} className={buttonVariants({ size: "lg", className: "bg-fjord hover:bg-fjord-hover text-white rounded-button px-8" })}>
-              {t("getStarted")}
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Main Footer */}
-      <Section background="ink" spacing="lg">
-        <Container size="xl" padding="lg">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            
-            {/* Brand Col */}
-            <div className="space-y-6">
-              <Link href="/" className="font-display text-3xl font-bold text-white tracking-tight">
-                RAMA
+          <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted"><ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-verified" />{isArabic ? 'تعرض راما مدى توفر الأدلة، وليس جودة العقار أو وضعه القانوني أو جدواه الاستثمارية.' : 'RAMA displays evidence availability, not a statement of property quality, legal status or investment merit.'}</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <MagneticButton
+            render={
+              <Link
+                href={`/${locale}/homes`}
+                className={buttonVariants({ variant: 'outline' })}
+              >
+                {isArabic ? 'استكشف العقارات' : 'Explore homes'}
               </Link>
-              <p className="text-sm leading-relaxed text-muted-foreground/80 max-w-xs">
-                {t("brandSubtitle")}
-              </p>
-              {/* Trust badges row */}
-              <div className="flex gap-4 pt-4">
-                <div className="flex items-center gap-2 text-xs font-medium text-white/70">
-                  <ShieldCheck className="w-4 h-4 text-verified" />
-                  <span>{t("dldVerified")}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Discover Col */}
-            <div>
-              <h3 className="text-white font-medium mb-6">{t("discover")}</h3>
-              <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><Link href={`/${locale}/homes`} className="hover:text-white transition-colors">{t("propertiesForSale")}</Link></li>
-                <li><Link href={`/${locale}/homes?tenure=off_plan`} className="hover:text-white transition-colors">{t("offPlanProjects")}</Link></li>
-                <li><Link href={`/${locale}/areas`} className="hover:text-white transition-colors">{t("communities")}</Link></li>
-                <li><Link href={`/${locale}/insights`} className="hover:text-white transition-colors">{t("marketInsights")}</Link></li>
-              </ul>
-            </div>
-
-            {/* Company Col */}
-            <div>
-              <h3 className="text-white font-medium mb-6">{t("company")}</h3>
-              <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><Link href={`/${locale}/about`} className="hover:text-white transition-colors">{t("aboutUs")}</Link></li>
-                <li><Link href={`/${locale}/contact`} className="hover:text-white transition-colors">{t("contact")}</Link></li>
-                <li><Link href={`/${locale}/careers`} className="hover:text-white transition-colors">{t("careers")}</Link></li>
-              </ul>
-            </div>
-
-            {/* Legal Col */}
-            <div>
-              <h3 className="text-white font-medium mb-6">{t("legal")}</h3>
-              <ul className="space-y-4 text-sm text-muted-foreground">
-                <li><Link href={`/${locale}/terms`} className="hover:text-white transition-colors">{t("termsOfService")}</Link></li>
-                <li><Link href={`/${locale}/privacy`} className="hover:text-white transition-colors">{t("privacyPolicy")}</Link></li>
-                <li><Link href={`/${locale}/cookies`} className="hover:text-white transition-colors">{t("cookiePolicy")}</Link></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground/60">
-            <p>© {new Date().getFullYear()} {t("rightsReserved")}</p>
-            <div className="flex items-center gap-4">
-              <Link href="/en" className="hover:text-white transition-colors">English</Link>
-              <span>•</span>
-              <Link href="/ar" className="hover:text-white transition-colors font-sans" dir="rtl">العربية</Link>
-            </div>
-          </div>
-        </Container>
-      </Section>
+            }
+          />
+          <MagneticButton
+            render={
+              <Link
+                href={`/${locale}/login`}
+                className={buttonVariants({ variant: 'default' })}
+              >
+                {isArabic ? 'سجّل الدخول' : 'Sign in'}
+                <ArrowRight className="ms-2 size-4" />
+              </Link>
+            }
+          />
+        </div>
+      </div>
+      <div className="border-t border-border"><div className="mx-auto flex max-w-6xl flex-col gap-3 px-12 sm:px-16 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between lg:px-20"><p>© {new Date().getFullYear()} RAMA</p><div className="flex items-center gap-4"><Link href={`/${locale}/homes`} className="hover:text-ink">{isArabic ? 'العقارات' : 'Homes'}</Link><Link href={`/${locale}/areas`} className="hover:text-ink">{isArabic ? 'المجتمعات' : 'Areas'}</Link><Link href={`/${locale === 'ar' ? 'en' : 'ar'}`} className="hover:text-ink">{locale === 'ar' ? 'English' : 'العربية'}</Link></div></div></div>
     </footer>
-  )
+  );
 }

@@ -1,79 +1,105 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { usePathname } from "next/navigation"
-import { useLocale } from "next-intl"
-import { Menu, X, User } from "lucide-react"
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import { Menu, X, User } from 'lucide-react';
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { MobileNav } from "./mobile-nav"
-import { LocaleSwitcher } from "./locale-switcher"
-import { UserMenu } from "@/components/auth/user-menu"
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { MobileNav } from './mobile-nav';
+import { LocaleSwitcher } from './locale-switcher';
+import { UserMenu } from '@/components/auth/user-menu';
+import { useTheme } from 'next-themes';
+import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
+import { RamaLogo } from '@/components/ui/rama-logo';
+
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const pathname = usePathname()
-  const locale = useLocale()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const locale = useLocale();
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  // Determine if we are on the landing page (which uses transparent nav initially)
-  const isLandingPage = pathname === "/en" || pathname === "/ar" || pathname === "/"
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+
+  // Determine if we are on a landing page with a dark full-bleed hero image
+  const isTransparentNavPage =
+    pathname === '/en' ||
+    pathname === '/ar' ||
+    pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
-        setIsScrolled(true)
+        setIsScrolled(true);
       } else {
-        setIsScrolled(false)
+        setIsScrolled(false);
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener('scroll', handleScroll);
     // Run once on mount
-    handleScroll()
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isNavDark = isTransparentNavPage && !isScrolled;
 
   const navClasses = cn(
-    "fixed top-0 left-0 right-0 z-50 transition-all duration-180 ease-decelerate border-b",
+    'fixed top-0 right-0 left-0 z-50 border-b transition-all duration-200',
     {
-      "bg-transparent border-transparent text-white": isLandingPage && !isScrolled,
-      "bg-surface/90 backdrop-blur-md border-border shadow-sm text-ink": !isLandingPage || isScrolled,
-    }
-  )
+      'border-transparent bg-transparent text-white': isNavDark,
+      'border-border/50 bg-surface/90 text-ink shadow-xs backdrop-blur-xl saturate-[1.8]': !isNavDark,
+    },
+  );
 
   const linkClasses = cn(
-    "text-sm font-medium transition-colors hover:text-fjord",
+    'text-sm font-semibold transition-colors',
     {
-      "text-white/90 hover:text-white": isLandingPage && !isScrolled,
-      "text-ink/80 hover:text-fjord": !isLandingPage || isScrolled,
-    }
-  )
+      'text-white/90 hover:text-white': isNavDark,
+      'text-ink hover:text-fjord': !isNavDark,
+    },
+  );
 
   return (
     <>
       <header className={navClasses}>
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-12 sm:px-16 lg:px-20">
           {/* Logo */}
-          <Link href="/" className="shrink-0 flex items-center">
-            <Image 
-              src="/images/logo-rama.png" 
-              alt="RAMA Logo" 
-              width={160} 
-              height={50}
-              className={cn("h-10 lg:h-12 w-auto object-contain", {
-                // If the logo is dark by default, invert it to white when the nav is transparent
-                "brightness-0 invert": isLandingPage && !isScrolled
-              })}
-              priority
-            />
+          <Link
+            href={`/${locale}#hero`}
+            className="flex shrink-0 items-center cursor-pointer"
+            onClick={(e) => {
+              if (
+                pathname === `/${locale}` ||
+                pathname === `/${locale}/` ||
+                pathname === '/' ||
+                pathname === '/en' ||
+                pathname === '/ar'
+              ) {
+                const heroEl = document.getElementById('hero');
+                if (heroEl) {
+                  e.preventDefault();
+                  heroEl.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }
+            }}
+          >
+            <RamaLogo isScrolled={isScrolled} isDark={isNavDark} />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden items-center gap-8 md:flex">
             <Link href={`/${locale}/homes`} className={linkClasses}>
               {locale === 'ar' ? 'العقارات' : 'Homes'}
             </Link>
@@ -86,30 +112,45 @@ export function Navbar() {
           </nav>
 
           {/* Actions */}
-          <div className="hidden md:flex items-center gap-4">
-            <LocaleSwitcher isDark={isLandingPage && !isScrolled} />
-            <UserMenu 
-              locale={locale as "en" | "ar"} 
-              isDark={isLandingPage && !isScrolled} 
+          <div className="hidden items-center gap-4 md:flex">
+            {mounted ? (
+              <AnimatedThemeToggler
+                theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+                onThemeChange={setTheme}
+                className={cn(
+                  'flex h-9 w-9 items-center justify-center rounded-full transition-colors',
+                  isNavDark
+                    ? 'text-white hover:bg-white/10'
+                    : 'text-ink hover:bg-surface-subtle',
+                )}
+              />
+            ) : (
+              <div className="h-9 w-9" />
+            )}
+            <LocaleSwitcher isDark={isNavDark} />
+            <UserMenu
+              locale={locale as 'en' | 'ar'}
+              isDark={isNavDark}
             />
           </div>
 
+
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 -mr-2"
+            className="-mr-2 p-2 md:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="Open menu"
           >
-            <Menu className="w-6 h-6" />
+            <Menu className="h-6 w-6" />
           </button>
         </div>
       </header>
 
-      <MobileNav 
-        isOpen={isMobileMenuOpen} 
+      <MobileNav
+        isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
-        locale={locale as "en" | "ar"}
+        locale={locale as 'en' | 'ar'}
       />
     </>
-  )
+  );
 }

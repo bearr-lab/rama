@@ -1,0 +1,19 @@
+{
+  "name": "scroll-area",
+  "type": "registry:ui",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "files": [
+    {
+      "path": "components/ui/scroll-area.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { ScrollArea as ScrollAreaPrimitive } from '@base-ui/react/scroll-area';\n\nimport { cn } from '@/lib/utils';\n\nconst ScrollArea = React.forwardRef<\n  React.ElementRef<typeof ScrollAreaPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {\n    viewportRef?: React.Ref<HTMLDivElement>;\n  }\n>(({ className, children, viewportRef, ...props }, ref) => {\n  return (\n    <ScrollAreaPrimitive.Root\n      ref={ref}\n      data-slot=\"scroll-area\"\n      className={cn('relative', className)}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Viewport\n        ref={viewportRef}\n        data-slot=\"scroll-area-viewport\"\n        className=\"size-full rounded-[inherit] transition-[color,box-shadow] outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:outline-1\"\n      >\n        {children}\n      </ScrollAreaPrimitive.Viewport>\n      <ScrollBar />\n      <ScrollAreaPrimitive.Corner />\n    </ScrollAreaPrimitive.Root>\n  );\n});\nScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;\n\nconst ScrollBar = React.forwardRef<\n  React.ElementRef<typeof ScrollAreaPrimitive.Scrollbar>,\n  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Scrollbar>\n>(({ className, orientation = 'vertical', ...props }, ref) => {\n  return (\n    <ScrollAreaPrimitive.Scrollbar\n      ref={ref}\n      data-slot=\"scroll-area-scrollbar\"\n      data-orientation={orientation}\n      orientation={orientation}\n      className={cn(\n        'flex touch-none p-px transition-colors select-none data-horizontal:h-2.5 data-horizontal:flex-col data-horizontal:border-t data-horizontal:border-t-transparent data-vertical:h-full data-vertical:w-2.5 data-vertical:border-l data-vertical:border-l-transparent',\n        className,\n      )}\n      {...props}\n    >\n      <ScrollAreaPrimitive.Thumb\n        data-slot=\"scroll-area-thumb\"\n        className=\"relative flex-1 rounded-full bg-border\"\n      />\n    </ScrollAreaPrimitive.Scrollbar>\n  );\n});\nScrollBar.displayName = ScrollAreaPrimitive.Scrollbar.displayName;\n\nexport { ScrollArea, ScrollBar };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "lib/utils.ts",
+      "content": "import { clsx, type ClassValue } from 'clsx';\nimport { twMerge } from 'tailwind-merge';\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n",
+      "type": "registry:lib"
+    }
+  ]
+}

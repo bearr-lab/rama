@@ -1,0 +1,33 @@
+[config]
+ignore_pr_title = ["WIP*", "draft*"]
+ignore_files = [
+  "pnpm-lock.yaml",
+  "build-storybook.log",
+  "*.log",
+  "messages/*.json",
+  "public/registry/*.json",
+  "*.svg",
+  "*.png",
+  "*.ico",
+  "lib/mock-properties.ts",
+  "lib/discover/mock-properties.ts",
+  "components.json",
+  "tsconfig.tsbuildinfo",
+  "scaffold_v2.ps1"
+]
+max_description_tokens = 12000
+max_model_tokens = 64000
+patch_extension_limit = 500
+
+[pr_reviewer]
+require_score_review = false
+require_tests_review = false
+require_security_review = true
+extra_instructions = "Focus review on TypeScript type safety, Next.js 15 app router conventions, Supabase client/server boundaries, 0px Nordic Lagom UI constraints, and Unsplash API compliance."
+
+[pr_description]
+generate_ai_title = true
+use_description_markers = true
+
+[pr_code_suggestions]
+max_context_tokens = 16000

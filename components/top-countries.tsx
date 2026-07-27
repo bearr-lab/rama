@@ -1,0 +1,103 @@
+import { formatInteger } from "@/components/formater";
+import { Button } from "@/components/ui/button";
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
+import { ArrowRightIcon } from "lucide-react";
+
+const FLAGPACK_BASE = "https://flag.vercel.app";
+
+const rows = [
+	{ code: "GB", visits: 14250, delta: 18.4 },
+	{ code: "IN", visits: 11840, delta: 22.1 },
+	{ code: "SA", visits: 9620, delta: 14.8 },
+	{ code: "FR", visits: 6420, delta: 9.6 },
+	{ code: "DE", visits: 5890, delta: 12.2 },
+	{ code: "AE", visits: 4890, delta: 5.4 },
+] as const;
+
+const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
+
+function flagUrl(countryCode: string) {
+	return `${FLAGPACK_BASE}/s/${countryCode.toUpperCase()}.svg`;
+}
+
+export function TopCountries() {
+	return (
+		<Card className="relative md:col-span-2 border border-border/40 bg-surface/70 backdrop-blur-md hover:shadow-floating transition-all duration-300">
+			<CardHeader>
+				<CardTitle className="text-balance font-display text-lg font-medium text-ink">International Capital Inflow</CardTitle>
+				<CardDescription className="text-pretty text-xs font-light text-muted-foreground">
+					Top foreign buyer origin markets & 12-month capital deployment velocity.
+				</CardDescription>
+			</CardHeader>
+			<CardContent className="mask-b-from-50% mask-b-to-100% p-0 pb-2">
+				<Table className="border-t">
+					<TableCaption className="sr-only">
+						Top countries by visits with year-over-year change.
+					</TableCaption>
+					<TableHeader>
+						<TableRow>
+							<TableHead className="pl-6" scope="col">
+								Country
+							</TableHead>
+							<TableHead className="text-end tabular-nums" scope="col">
+								Active Inquiries
+							</TableHead>
+							<TableHead className="pr-6 text-end" scope="col">
+								Change
+							</TableHead>
+						</TableRow>
+					</TableHeader>
+					<TableBody>
+						{rows.map((row) => (
+							<TableRow className="hover:bg-transparent" key={row.code}>
+								<TableCell className="max-w-[220px] truncate pl-6 font-medium">
+									<span className="inline-flex max-w-full items-center gap-2">
+										<img
+											alt={`Flag of ${row.code}`}
+											className="h-3.5 w-5 shrink-0 rounded object-cover"
+											height={14}
+											src={flagUrl(row.code)}
+											width={20}
+										/>
+										<span className="min-w-0 truncate text-xs">
+											{regionNames.of(row.code) ?? row.code}
+										</span>
+									</span>
+								</TableCell>
+								<TableCell className="text-end text-muted-foreground text-xs tabular-nums">
+									{formatInteger(row.visits)}
+								</TableCell>
+								<TableCell className="pr-6 text-end text-muted-foreground text-xs">
+									<span className="tabular-nums">
+										{row.delta > 0 ? "+" : ""}
+										{row.delta}%
+									</span>
+								</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
+			</CardContent>
+
+			<div className="mask-t-from-30% absolute inset-x-0 bottom-0 flex h-1/5 items-center justify-center bg-background">
+				<Button className="relative" variant="ghost" render={<a href="#" />} nativeButton={false}>View All
+                						<ArrowRightIcon aria-hidden="true" /></Button>
+			</div>
+		</Card>
+	);
+}
