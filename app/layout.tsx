@@ -1,5 +1,6 @@
 import { Inter, Playfair_Display, Noto_Sans_Arabic } from 'next/font/google';
 import type { Metadata } from 'next';
+import { getLocale } from 'next-intl/server';
 
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
@@ -56,16 +57,17 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   // The root layout has no [locale] param — next-intl locale context is
   // provided by the (public)/[locale] and (workspace)/[locale] layouts.
   // suppressHydrationWarning prevents theme-flicker mismatch on <html>.
   return (
-    <html suppressHydrationWarning>
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={cn(

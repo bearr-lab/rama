@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { LogOut, Heart, Sparkles } from 'lucide-react';
+import { LogOut, Heart, Sparkles, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -55,13 +55,9 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
 
   const handleSignOut = async () => {
     toast.promise(
-      new Promise(async (resolve, reject) => {
-        const { error } = await supabase.auth.signOut();
-        if (error) reject(error);
-        else {
-          router.refresh();
-          resolve(true);
-        }
+      supabase.auth.signOut().then(({ error }) => {
+        if (error) throw error;
+        router.refresh();
       }),
       {
         loading: locale === 'ar' ? 'جارٍ تسجيل الخروج...' : 'Signing out...',
@@ -139,6 +135,16 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           <Sparkles className="mr-2 h-4 w-4 text-fjord" />
           <span>
             {locale === 'ar' ? 'مستشار الذكاء الاصطناعي' : 'AI Advisor'}
+          </span>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem
+          onClick={() => router.push(`/${locale}/settings`)}
+          className="cursor-pointer"
+        >
+          <Settings className="mr-2 h-4 w-4 text-muted-foreground" />
+          <span>
+            {locale === 'ar' ? 'الإعدادات' : 'Settings'}
           </span>
         </DropdownMenuItem>
 

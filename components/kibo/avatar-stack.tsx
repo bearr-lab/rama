@@ -43,7 +43,7 @@ export const AvatarStack = ({
 
   return (
     <div className={cn('flex items-center gap-2.5', className)} {...props}>
-      <AvatarGroup>
+      <AvatarGroup className={cn(!showRing && '*:data-[slot=avatar]:ring-0')}>
         {visibleAvatars.map((item, index) => (
           <Avatar 
             key={item.id || index} 
@@ -54,12 +54,12 @@ export const AvatarStack = ({
             <AvatarImage src={item.avatarUrl} alt={item.name} />
             <AvatarFallback>{item.name.slice(0, 2).toUpperCase()}</AvatarFallback>
             {item.status && (
-              <AvatarBadge className={statusColors[item.status]} />
+              <AvatarBadge className={cn(statusColors[item.status], !showRing && 'ring-0')} />
             )}
           </Avatar>
         ))}
         {remainingCount > 0 && (
-          <AvatarGroupCount>
+          <AvatarGroupCount className={cn(!showRing && 'ring-0')}>
             +{remainingCount}
           </AvatarGroupCount>
         )}

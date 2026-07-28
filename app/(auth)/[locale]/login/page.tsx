@@ -1,6 +1,4 @@
 import { AuthForm } from '@/components/auth/auth-form';
-import Image from 'next/image';
-import { Quote } from 'lucide-react';
 
 export default async function LoginPage({
   params,

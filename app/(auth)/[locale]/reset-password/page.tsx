@@ -1,6 +1,4 @@
 import { ResetPasswordForm } from '@/components/auth/reset-password-form';
-import Image from 'next/image';
-import { ShieldCheck } from 'lucide-react';
 
 export default async function ResetPasswordPage({
   params,

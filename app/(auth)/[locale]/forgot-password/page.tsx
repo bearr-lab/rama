@@ -1,6 +1,4 @@
 import { ForgotPasswordForm } from '@/components/auth/forgot-password-form';
-import Image from 'next/image';
-import { ShieldCheck } from 'lucide-react';
 
 export default async function ForgotPasswordPage({
   params,

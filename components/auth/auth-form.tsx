@@ -33,6 +33,7 @@ const copy = {
     terms: 'By continuing, you agree to the Terms of Service and Privacy Policy.',
     noAccount: "Don't have an account? ",
     hasAccount: 'Already have an account? ',
+    or: 'or',
   },
   ar: {
     signIn: 'تسجيل الدخول',
@@ -47,6 +48,7 @@ const copy = {
     terms: 'بمتابعتك، فإنك توافق على شروط الخدمة وسياسة الخصوصية.',
     noAccount: 'ليس لديك حساب؟ ',
     hasAccount: 'لديك حساب بالفعل؟ ',
+    or: 'أو',
   },
 } as const;
 
@@ -208,7 +210,7 @@ export function AuthForm({
       </form>
 
       <motion.div variants={itemVariants} className="relative py-2 text-center text-xs text-muted-foreground before:absolute before:inset-x-0 before:top-1/2 before:border-t before:border-border">
-        <span className="relative bg-surface px-3">or</span>
+        <span className="relative bg-surface px-3">{t.or}</span>
       </motion.div>
 
       <motion.div variants={itemVariants}>

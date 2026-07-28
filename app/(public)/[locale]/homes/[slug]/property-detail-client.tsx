@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  MapPin,
   BedDouble,
   Bath,
   Maximize2,
@@ -14,7 +13,6 @@ import {
   Eye,
   ShieldCheck,
   ArrowRight,
-  ArrowLeft,
   ChevronLeft,
   ChevronDown,
   Share2,
@@ -23,11 +21,11 @@ import {
   CalendarDays,
 } from 'lucide-react';
 import { Property } from '@/types/property';
-import { TrustBadge } from '@/components/property/trust-badge';
 import { ShareButton } from '@/components/property/share-button';
 import { RoomGalleryModal, RoomImage } from '@/components/property/room-gallery-modal';
 import { BookViewingModal } from '@/components/property/book-viewing-modal';
 import { Button } from '@/components/ui/button';
+import { toast } from '@/components/ui/toast';
 import { NumberTicker } from '@/components/magicui/number-ticker';
 import { Container } from '@/components/layout/container';
 
@@ -35,6 +33,43 @@ interface PropertyDetailClientProps {
   property: Property;
   locale: string;
 }
+
+const CATEGORY_META: Record<string, { en: string; ar: string; icon: React.ReactNode }> = {
+  all: {
+    en: 'All',
+    ar: 'الكل',
+    icon: (
+      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+      </svg>
+    ),
+  },
+  kitchen: {
+    en: 'Kitchen',
+    ar: 'مطبخ',
+    icon: <span className="h-3 w-3 rounded-full border border-current opacity-70" />,
+  },
+  bedroom: {
+    en: 'Bedroom',
+    ar: 'غرفة نوم',
+    icon: <BedDouble className="h-3.5 w-3.5 opacity-70" />,
+  },
+  living: {
+    en: 'Living',
+    ar: 'معيشة',
+    icon: <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />,
+  },
+  balcony: {
+    en: 'Balcony',
+    ar: 'شرفة',
+    icon: <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />,
+  },
+  bathroom: {
+    en: 'Bathroom',
+    ar: 'حمام',
+    icon: <Bath className="h-3.5 w-3.5 opacity-70" />,
+  },
+};
 
 export function PropertyDetailClient({ property, locale }: PropertyDetailClientProps) {
   const isArabic = locale === 'ar';
@@ -46,6 +81,13 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [activeRoomCategory, setActiveRoomCategory] = React.useState<RoomImage['category'] | 'all'>('all');
 
+  const localeStr = isArabic ? 'ar-AE' : 'en-US';
+  const formatPrice = React.useCallback((price: number) => {
+    return new Intl.NumberFormat(localeStr).format(price);
+  }, [localeStr]);
+
+  const FALLBACK_HERO = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85';
+
   // Track scroll to show/hide the sticky top bar
   React.useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 80);
@@ -55,16 +97,19 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
 
   // Categorized room photos generator
   const roomPhotos: RoomImage[] = React.useMemo(() => {
-    return property.images.map((src, index) => {
-      const categories: RoomImage['category'][] = ['kitchen', 'bedroom', 'living', 'balcony'];
-      // Ensure 'all' is not in this array for generation, it's just a view state
-      const cat = categories[index % categories.length];
+    return property.images.map((src) => {
+      // Find category from image metadata if available, else default to 'living'
+      // Note: In a real app this metadata would be in property.images objects.
+      // We will assign a random category from the valid options just to simulate metadata for now.
+      const categories: RoomImage['category'][] = ['kitchen', 'bedroom', 'living', 'balcony', 'bathroom'];
+      const hash = src.length;
+      const cat = categories[hash % categories.length];
       return {
-        id: `${property.id}-img-${index}`,
-        category: cat,
-        titleEn: `Property View ${index + 1}`,
-        titleAr: `صورة العقار ${index + 1}`,
+        id: src,
         src,
+        category: cat,
+        titleEn: `${cat} area view`,
+        titleAr: `صورة ${cat}`,
         sqft: 0,
         hotspots: [],
       };
@@ -74,10 +119,10 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
   // Determine current hero image based on category selection
   const heroSrc = React.useMemo(() => {
     if (activeRoomCategory === 'all') {
-      return property.thumbnail || property.images[0] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85';
+      return property.thumbnail || property.images?.[0] || FALLBACK_HERO;
     }
-    const catImage = roomPhotos.find(p => p.category === activeRoomCategory);
-    return catImage ? catImage.src : (property.thumbnail || property.images[0]);
+    const catImage = roomPhotos.find((p) => p.category === activeRoomCategory);
+    return catImage ? catImage.src : (property.thumbnail || property.images?.[0] || FALLBACK_HERO);
   }, [activeRoomCategory, property, roomPhotos]);
 
   // Derived financial metrics
@@ -150,23 +195,27 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
         {/* Top-right: action cluster */}
         <div className="absolute top-6 right-6 z-20 flex items-center gap-2">
           <button
+            onClick={() => toast.add({ title: isArabic ? 'أضيف للمفضلة' : 'Saved to favorites', type: 'success' })}
             aria-label={isArabic ? 'حفظ في المفضلة' : 'Save to favourites'}
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
           >
             <Heart className="h-4 w-4 text-white" />
           </button>
-          <button
-            aria-label={isArabic ? 'مشاركة' : 'Share property'}
+          <ShareButton 
+            title={title} 
+            text={description} 
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
-          >
-            <Share2 className="h-4 w-4 text-white" />
-          </button>
+          />
         </div>
 
         {/* ─── Left Side: Financial Metrics Card ─── */}
         <div className="absolute bottom-6 left-6 z-20 w-[340px] space-y-4">
           {/* Compass Floating Button */}
-          <button className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/60 backdrop-blur-md transition-transform hover:scale-105">
+          <button 
+            aria-label={isArabic ? 'استكشف المنطقة' : 'Explore Neighborhood'}
+            onClick={() => setIsGalleryOpen(true)}
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/60 backdrop-blur-md transition-transform hover:scale-105"
+          >
             <Compass className="h-5 w-5 text-white" />
           </button>
 
@@ -180,8 +229,8 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 </p>
                 <p className="font-display text-3xl font-bold leading-none text-white">
                   AED {property.price >= 1_000_000
-                    ? `${(property.price / 1_000_000).toFixed(1)}M`
-                    : new Intl.NumberFormat('en-US').format(property.price)}
+                    ? `${formatPrice(property.price / 1_000_000)}M`
+                    : formatPrice(property.price)}
                 </p>
               </div>
               <ChevronDown className="h-5 w-5 text-white/50" />
@@ -194,7 +243,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'السعر / قدم²' : 'PRICE / SQFT'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  AED {new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(pricePerSqft)}
+                  AED {new Intl.NumberFormat(localeStr, { maximumFractionDigits: 0 }).format(pricePerSqft)}
                 </p>
               </div>
               <div>
@@ -202,7 +251,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'العائد الاستثماري' : 'CAP RATE'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  {property.cap_rate_percentage || '6.8'}%
+                  {property.cap_rate_percentage ?? '—'}{property.cap_rate_percentage ? '%' : ''}
                 </p>
               </div>
               <div>
@@ -210,10 +259,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'الإيجار التقديري' : 'EST. RENTAL'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  {(() => {
-                    const est = property.est_annual_rental || (property.price * ((property.cap_rate_percentage || 6.8) / 100));
-                    return est > 0 ? `${Math.round(est / 1000)}K/yr` : 'N/A';
-                  })()}
+                  {property.est_annual_rental != null ? `${Math.round(property.est_annual_rental / 1000)}K/yr` : '—'}
                 </p>
               </div>
               <div>
@@ -221,10 +267,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'رسوم الخدمة' : 'SERVICE CHG'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  {(() => {
-                    const sc = serviceChargeAnnual > 0 ? serviceChargeAnnual : 15 * (property.area_sqft || 0);
-                    return sc > 0 ? `${(sc / 1000).toFixed(1)}K/yr` : 'N/A';
-                  })()}
+                  {serviceChargeAnnual != null && serviceChargeAnnual > 0 ? `${(serviceChargeAnnual / 1000).toFixed(1)}K/yr` : '—'}
                 </p>
               </div>
             </div>
@@ -242,30 +285,22 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
 
         {/* ─── Bottom Center: Room Navigation Pill ─── */}
         <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {(['all', 'kitchen', 'bedroom', 'living', 'balcony'] as const).map((category) => {
+          {Array.from(new Set(['all', ...roomPhotos.map(p => p.category)])).map((category) => {
             const isActive = activeRoomCategory === category;
+            const meta = CATEGORY_META[category] || { en: category, ar: category, icon: null };
             return (
               <button
                 key={category}
-                onClick={() => setActiveRoomCategory(category)}
+                aria-pressed={isActive}
+                onClick={() => setActiveRoomCategory(category as RoomImage['category'] | 'all')}
                 className={`flex shrink-0 whitespace-nowrap items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold capitalize transition-all duration-300 ${
                   isActive
                     ? 'bg-white text-black shadow-lg'
                     : 'text-white hover:bg-white/10'
                 }`}
               >
-                {/* Minimal Icons for tabs (optional based on screenshot, but they look nice) */}
-                {category === 'all' && (
-                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                  </svg>
-                )}
-                {category === 'kitchen' && <span className="h-3 w-3 rounded-full border border-current opacity-70" />}
-                {category === 'bedroom' && <BedDouble className="h-3.5 w-3.5 opacity-70" />}
-                {category !== 'all' && category !== 'kitchen' && category !== 'bedroom' && (
-                  <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />
-                )}
-                {isArabic ? (category === 'all' ? 'الكل' : category === 'kitchen' ? 'مطبخ' : category === 'bedroom' ? 'غرفة نوم' : category === 'living' ? 'معيشة' : 'شرفة') : category}
+                {meta.icon}
+                {isArabic ? meta.ar : meta.en}
               </button>
             );
           })}
@@ -367,9 +402,9 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                     {isArabic ? 'المميزات والمرافق' : 'Features & Amenities'}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {[...(property.features || []), ...(property.amenities || [])].map((f) => (
+                    {[...(property.features || []), ...(property.amenities || [])].map((f, i) => (
                       <span
-                        key={f}
+                        key={`${f}-${i}`}
                         className="border border-border/50 bg-surface px-3 py-1.5 text-xs font-medium text-ink"
                       >
                         {f}
@@ -383,12 +418,14 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
             {/* RIGHT: Decision panel (DLD Passport + Gallery Launcher) */}
             <div className="space-y-4">
               <div className="border border-border/40 bg-surface p-6 space-y-4">
-                <div className="flex items-center gap-2 border-b border-border/40 pb-4">
-                  <ShieldCheck className="h-5 w-5 text-emerald-500" />
-                  <span className="text-[10px] font-bold text-ink uppercase tracking-wider">
-                    {isArabic ? 'موثق من دائرة الأراضي' : 'DLD Title Deed Verified'}
-                  </span>
-                </div>
+                {property.verification_status === 'verified' && (
+                  <div className="flex items-center gap-2 border-b border-border/40 pb-4">
+                    <ShieldCheck className="h-5 w-5 text-emerald-500" />
+                    <span className="text-[10px] font-bold text-ink uppercase tracking-wider">
+                      {isArabic ? 'موثق من دائرة الأراضي' : 'DLD Title Deed Verified'}
+                    </span>
+                  </div>
+                )}
 
                 <div className="space-y-3 text-xs text-muted-foreground font-light">
                   <div className="flex justify-between py-1 border-b border-border/40">
