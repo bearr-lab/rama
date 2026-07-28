@@ -100,11 +100,17 @@ export function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden items-center gap-8 md:flex">
+            <Link href={`/${locale}/projects`} className={linkClasses}>
+              {locale === 'ar' ? 'المشاريع' : 'Projects'}
+            </Link>
             <Link href={`/${locale}/homes`} className={linkClasses}>
               {locale === 'ar' ? 'العقارات' : 'Homes'}
             </Link>
             <Link href={`/${locale}/areas`} className={linkClasses}>
-              {locale === 'ar' ? 'المناطق' : 'Areas'}
+              {locale === 'ar' ? 'المناطق' : 'Communities'}
+            </Link>
+            <Link href={`/${locale}/invest`} className={linkClasses}>
+              {locale === 'ar' ? 'استثمر' : 'Invest'}
             </Link>
             <Link href={`/${locale}/insights`} className={linkClasses}>
               {locale === 'ar' ? 'رؤى' : 'Insights'}

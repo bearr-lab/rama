@@ -22,7 +22,7 @@ export async function generateMetadata({
       .eq('slug', slug)
       .single();
     if (data) property = data as Property;
-  } catch (e) {
+  } catch {
     // Ignore error
   }
 
@@ -72,7 +72,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
       .eq('slug', slug)
       .single();
     if (data) property = data as Property;
-  } catch (e) {
+  } catch {
     // DB offline or table missing
   }
 

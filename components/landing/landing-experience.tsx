@@ -77,7 +77,7 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
           <h2 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">{t.proofTitle}</h2>
           <p className="mt-5 text-lg leading-relaxed text-text">{t.proofIntro}</p>
         </div>
-        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-none border border-border bg-border md:grid-cols-3">
           {t.steps.map(([title, description], index) => {
             const Icon = icons[index];
             return <div key={title} className="bg-surface p-7 sm:p-8"><Icon className="size-5 text-fjord" /><p className="mt-8 text-sm text-muted">0{index + 1}</p><h3 className="mt-2 font-display text-2xl">{title}</h3><p className="mt-3 text-sm leading-relaxed text-text">{description}</p></div>;

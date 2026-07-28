@@ -104,7 +104,8 @@ export function Globe({
       globe.destroy();
       window.removeEventListener("resize", onResize);
     };
-  }, [rs, config])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rs])
 
   return (
     <div

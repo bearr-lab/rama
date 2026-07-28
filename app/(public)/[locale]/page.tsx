@@ -7,6 +7,7 @@ import { AIAppTeaser } from '@/components/landing/ai-app-teaser';
 import { PricingComparator } from '@/components/landing/pricing-comparator';
 import { FAQAccordion } from '@/components/landing/faq-accordion';
 import { ContactConnect } from '@/components/landing/contact-connect';
+import Hero1 from '@/components/mvpblocks/hero-1';
 
 export default function LandingPage({
   params,
@@ -19,6 +20,7 @@ export default function LandingPage({
   return (
     <div className="flex flex-col w-full">
       <HeroEditorial locale={locale} isArabic={isArabic} />
+      <Hero1 />
       <DeveloperLogoCloud locale={locale} isArabic={isArabic} />
       <AboutAsymmetrical locale={locale} isArabic={isArabic} />
       <FeaturedSignature locale={locale} isArabic={isArabic} />

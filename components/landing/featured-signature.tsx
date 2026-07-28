@@ -18,14 +18,24 @@ export async function FeaturedSignature({
   const supabase = await createClient();
 
   // Fetch top 2 premium properties
-  const { data: properties } = await supabase
+  const { data: properties, error } = await supabase
     .from('properties')
     .select('*')
     .eq('is_active', true)
     .order('price', { ascending: false })
     .limit(2);
 
-  const activeProperties = properties && properties.length > 0 ? properties : MOCK_PROPERTIES.slice(0, 2);
+  if (error) {
+    console.error('Error fetching signature properties:', error);
+  }
+
+  const activeProperties = properties && properties.length > 0 
+    ? properties 
+    : (process.env.NODE_ENV === 'development' ? MOCK_PROPERTIES.slice(0, 2) : []);
+
+  if (!activeProperties || activeProperties.length === 0) {
+    return null;
+  }
 
   return (
     <Section background="surface" spacing="lg">
@@ -74,7 +84,7 @@ export async function FeaturedSignature({
                 className="group block"
               >
                 <div
-                  className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 overflow-hidden rounded-2xl border border-border bg-canvas transition-all duration-500 hover:shadow-2xl`}
+                  className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 overflow-hidden rounded-none border border-border bg-canvas transition-all duration-500 hover:shadow-2xl`}
                 >
                   {/* Huge Image Area */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden lg:aspect-auto lg:min-h-[500px] lg:w-2/3">

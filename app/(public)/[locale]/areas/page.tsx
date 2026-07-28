@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { EmptyState } from '@/components/ui/empty-state';
-import Link from 'next/link';
 import { PageHeader } from '@/components/layout/page-header';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';

@@ -13,94 +13,86 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
       id="hero"
       background="ink-bg"
       spacing="none"
-      className="flex min-h-[85vh] w-full flex-col justify-center overflow-hidden py-24 md:py-28 lg:py-32"
+      className="relative flex h-screen w-full flex-col justify-center overflow-hidden"
     >
-      {/* Background Video */}
+      {/* Cinematic Video Background */}
       <video
         autoPlay
-        loop
         muted
+        loop
         playsInline
-        className="absolute inset-0 h-full w-full object-cover opacity-60"
+        className="absolute inset-0 h-full w-full object-cover"
+        poster="/images/trust/rera-hero.png"
       >
-        <source src="/videos/hero-background.mp4" type="video/mp4" />
+        <source src="/videos/hero-cityscape.mp4" type="video/mp4" />
       </video>
 
-      {/* Gradients for text legibility in both Light and Dark modes */}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink-bg via-ink-bg/20 to-ink-bg/70" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-ink-bg/20 to-ink-bg/80" />
+      {/* Light gradient — only at the bottom so the video stays visible */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
 
-      {/* Content Container */}
+      {/* Content — anchored to the bottom */}
       <Container
-        size="2xl"
+        size="xl"
         padding="xl"
-        className="relative z-10 flex flex-col items-center justify-center text-center"
+        className="relative z-10 flex h-full flex-col justify-end pb-12 md:pb-24"
       >
-        {/* Main Headline (Centered) */}
-        <div className="mx-auto mb-10 max-w-2xl space-y-4 lg:mb-12 lg:space-y-6">
-          <div className="space-y-3 lg:space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-none border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-white shadow-lg backdrop-blur-md">
-              <span className="h-2 w-2 animate-pulse rounded-none bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-              <span>
-                {isArabic
-                  ? 'بوابتك للحياة الاستثنائية'
-                  : 'THE GATEWAY TO EXCEPTIONAL LIVING'}
-              </span>
-            </div>
-            <h1 className="font-display text-4xl leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl">
+        <div className="flex flex-col items-center gap-10 w-full">
+          
+          {/* Centered Text Block */}
+          <div className="w-full max-w-4xl flex flex-col items-center text-center space-y-4 md:space-y-6">
+            {/* Headline */}
+            <h1 className="font-display text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
               {isArabic ? (
                 <>
                   عقارات{' '}
                   <span className="font-light italic opacity-90">فاخرة</span>
+                  <br />
+                  في قلب دبي
                 </>
               ) : (
                 <>
-                  LUXURY{' '}
+                  Luxury{' '}
                   <span className="font-light italic opacity-90">
-                    REAL ESTATE
+                    Real Estate
                   </span>
+                  <br />
+                  in Dubai
                 </>
               )}
-              <br />
-              {isArabic ? 'في قلب دبي' : 'IN DUBAI'}
             </h1>
+
+            {/* Subtitle — one clean line */}
+            <p className="max-w-2xl mx-auto text-base font-light leading-relaxed text-white/70 md:text-lg">
+              {isArabic
+                ? 'مجموعة منتقاة من أروع العقارات، موثقة بالكامل من دائرة الأراضي والأملاك.'
+                : 'A curated collection of verified properties, powered by DLD transparency.'}
+            </p>
           </div>
 
-          <p className="mx-auto max-w-prose border-t border-white/20 pt-4 text-base leading-relaxed font-light text-white/80 md:pt-6 md:text-lg">
-            {isArabic
-              ? 'اكتشف مجموعة منتقاة بعناية من أروع العقارات في دبي، موثقة بالكامل من دائرة الأراضي والأملاك لضمان الشفافية المطلقة.'
-              : "Discover a curated collection of Dubai's finest properties, fully verified by the DLD for absolute transparency and peace of mind."}
-          </p>
-        </div>
-
-        {/* Search Bar & Stats */}
-        <div className="mx-auto w-full max-w-2xl space-y-8 lg:space-y-10">
-          <div className="mx-auto max-w-[400px]">
-            <SearchBar variant="hero" locale={locale as 'en' | 'ar'} />
-          </div>
-
-          <div className="mx-auto mt-6 flex flex-wrap justify-center gap-6 text-center sm:gap-12 lg:gap-16">
-            <div className="flex items-center gap-3 rounded-none border border-white/15 bg-white/5 px-6 py-3.5 shadow-lg backdrop-blur-md">
-              <div className="text-left">
-                <p className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
-                  2,400+
-                </p>
-                <p className="text-[10px] font-semibold tracking-wider text-white/70 uppercase md:text-xs">
-                  {isArabic ? 'عقارات موثقة' : 'Verified Properties'}
-                </p>
-              </div>
+          {/* Centered Search and Stats */}
+          <div className="flex w-full flex-col items-center justify-center space-y-6 mt-4">
+            <div className="w-full max-w-[500px]">
+              <SearchBar variant="hero" locale={locale as 'en' | 'ar'} />
             </div>
-            <div className="flex items-center gap-3 rounded-none border border-white/15 bg-white/5 px-6 py-3.5 shadow-lg backdrop-blur-md">
-              <div className="text-left">
-                <p className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
-                  100%
-                </p>
-                <p className="text-[10px] font-semibold tracking-wider text-white/70 uppercase md:text-xs">
-                  {isArabic ? 'بيانات حقيقية' : 'DLD Connected'}
-                </p>
+
+            {/* Minimal Stats — inline, centered */}
+            <div className="flex items-center gap-6 text-white/50">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-white/90">2,400+</span>
+                <span className="text-xs uppercase tracking-wider">
+                  {isArabic ? 'عقار' : 'Properties'}
+                </span>
+              </div>
+              <div className="h-4 w-px bg-white/20" />
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-bold text-white/90">100%</span>
+                <span className="text-xs uppercase tracking-wider">
+                  {isArabic ? 'موثق' : 'DLD Verified'}
+                </span>
               </div>
             </div>
           </div>
+
         </div>
       </Container>
     </Section>

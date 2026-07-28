@@ -38,11 +38,11 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
           </p>
           <Link href={`/${locale}/advisor`} className="inline-block">
             <Button
-              size="lg"
-              className="rounded-button h-14 min-w-[220px] bg-fjord px-8 text-white shadow-lg shadow-fjord/20 hover:bg-fjord-hover"
+              size="sm"
+              className="rounded-none h-9 px-6 bg-fjord text-white font-bold tracking-widest uppercase text-[11px] hover:bg-fjord-hover transition-colors"
             >
-              {isArabic ? 'اسأل راما أي شيء' : 'Ask RAMA Anything'}
-              <ArrowRight className="ml-2 h-4 w-4" />
+              {isArabic ? 'اسأل راما' : 'Ask RAMA'}
+              <ArrowRight className="ml-2 h-3.5 w-3.5" />
             </Button>
           </Link>
         </div>
@@ -104,7 +104,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                           </p>
                         </div>
                         {/* Mini property card */}
-                        <div className="overflow-hidden rounded-xl border border-border bg-white shadow-sm">
+                        <div className="overflow-hidden rounded-none border border-border bg-white shadow-sm">
                           <div className="relative aspect-[16/9] bg-surface-subtle">
                             <Image
                               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600"
@@ -143,9 +143,9 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
             </div>
 
             {/* Floating elements around phone */}
-            <div className="absolute -top-4 -right-4 rounded-xl border border-border bg-white p-3 shadow-lg">
+            <div className="absolute -top-4 -right-4 rounded-none border border-border bg-white p-3 shadow-lg">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-verified-soft">
+                <div className="flex h-8 w-8 items-center justify-center bg-verified-soft">
                   <Check className="h-4 w-4 text-verified" />
                 </div>
                 <div>
@@ -157,9 +157,9 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
               </div>
             </div>
 
-            <div className="absolute -bottom-4 -left-4 rounded-xl border border-border bg-white p-3 shadow-lg">
+            <div className="absolute -bottom-4 -left-4 rounded-none border border-border bg-white p-3 shadow-lg">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-fjord-soft">
+                <div className="flex h-8 w-8 items-center justify-center bg-fjord-soft">
                   <Sparkles className="h-4 w-4 text-fjord" />
                 </div>
                 <div>

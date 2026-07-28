@@ -78,14 +78,14 @@ export function PricingComparator({
           {plans.map((plan, idx) => (
             <Card
               key={idx}
-              className={`relative flex flex-col justify-between p-8 rounded-3xl transition-all duration-300 ${
+              className={`relative flex flex-col justify-between p-8 rounded-none transition-all duration-300 ${
                 plan.isPopular
-                  ? 'border-2 border-fjord bg-surface shadow-xl ring-1 ring-fjord/20'
+                  ? 'border-2 border-fjord bg-surface shadow-xl'
                   : 'border border-border/80 bg-surface/40 hover:border-border'
               }`}
             >
               {plan.isPopular && (
-                <div className="absolute -top-3.5 right-6 bg-fjord text-white text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-md">
+                <div className="absolute -top-3.5 right-6 bg-fjord text-white text-xs font-bold px-3 py-1 rounded-none flex items-center gap-1 tracking-widest uppercase">
                   <Zap className="h-3.5 w-3.5 fill-current" />
                   {isArabic ? 'الأكثر اختياراً' : 'Most Popular'}
                 </div>
@@ -113,7 +113,7 @@ export function PricingComparator({
                 <ul className="space-y-3 border-t border-border/60 pt-6 mb-8">
                   {plan.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-3 text-sm text-ink">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-fjord-soft">
+                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-none bg-fjord-soft">
                         <Check className="h-3.5 w-3.5 text-fjord" />
                       </div>
                       <span>{feature}</span>
@@ -124,10 +124,10 @@ export function PricingComparator({
 
               <Button
                 variant={plan.buttonVariant}
-                className={`w-full py-3.5 rounded-xl font-medium transition-all ${
+                className={`w-full h-9 rounded-none font-bold tracking-widest uppercase text-[11px] transition-colors ${
                   plan.isPopular
-                    ? 'bg-fjord text-white hover:bg-fjord-hover shadow-md shadow-fjord/20'
-                    : 'border-border text-ink hover:bg-surface-subtle'
+                    ? 'bg-fjord text-white hover:bg-fjord-hover'
+                    : 'border border-border text-ink hover:bg-surface-subtle'
                 }`}
               >
                 <Link href={`/${locale}/login`} className="w-full text-center">{plan.buttonText}</Link>

@@ -292,10 +292,23 @@ export default async function DashboardPage({
           </div>
         </div>
 
-        {/* Right Column (1/3 width) — Serene Priority Milestone Action Card (No Nested Box-in-a-Box Clutter!) */}
-        <div className="relative flex flex-col justify-between rounded-3xl bg-surface/80 p-8 border border-border/40 shadow-subtle lg:col-span-1 overflow-hidden">
-          <BorderBeam size={250} duration={12} delay={0} colorFrom="#1b4965" colorTo="#5fa8d3" />
-          <div>
+        {/* Right Column (1/3 width) — Serene Priority Milestone Action Card */}
+        <div className="relative flex flex-col justify-between rounded-3xl bg-surface/80 p-8 border border-border/40 shadow-subtle lg:col-span-1 overflow-hidden group/milestone">
+          {/* Cinematic Image Background */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/dashboard/mou-form.png"
+              alt="MOU Form Signature"
+              fill
+              className="object-cover opacity-10 transition-transform duration-700 group-hover/milestone:scale-105 group-hover/milestone:opacity-20"
+            />
+            {/* Gradient mask to ensure text remains legible */}
+            <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-surface/80 to-surface" />
+          </div>
+
+          <BorderBeam size={250} duration={12} delay={0} colorFrom="#1b4965" colorTo="#5fa8d3" innerClassName="bg-transparent" />
+          
+          <div className="relative z-10">
             <div className="flex items-center justify-between border-b border-border/40 pb-5">
               <span className="text-xs font-bold tracking-widest text-fjord uppercase">
                 {isArabic ? 'الإجراء المطلوب' : 'PRIORITY MILESTONE'}
@@ -344,7 +357,7 @@ export default async function DashboardPage({
             </div>
           </div>
 
-          <div className="mt-10 pt-6 border-t border-border/40">
+          <div className="relative z-10 mt-10 pt-6 border-t border-border/40">
             <Link href={`/${locale}/tasks`} className="block w-full">
               <Button className="w-full justify-center rounded-2xl bg-fjord py-6 text-sm font-semibold text-white hover:bg-fjord-hover shadow-floating transition-all">
                 <span>{isArabic ? 'فتح لوحة المعاملات' : 'Open Deal Pipeline Board'}</span>

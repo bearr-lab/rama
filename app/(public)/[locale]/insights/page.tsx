@@ -22,7 +22,7 @@ export default async function InsightsPage({
         : 'A comprehensive analysis of price trends and transaction volumes across Dubai.',
       category: isArabic ? 'تقرير السوق' : 'Market Report',
       icon: <BarChart3 className="h-5 w-5" />,
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2000', // Skyline
+      image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=2000', // Skyline
       bentoSpan: 'col-span-1 md:col-span-3 row-span-2', // Not used since it's hero, but just in case
     },
     {
@@ -60,7 +60,7 @@ export default async function InsightsPage({
         : 'How the long-term residency visa is reshaping the demographics of property buyers.',
       category: isArabic ? 'سياسة' : 'Policy',
       icon: <Target className="h-5 w-5" />,
-      image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1200', // Passport/Global
+      image: 'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=1200', // Global
       bentoSpan: 'col-span-1 md:col-span-2 row-span-1',
     },
     {
@@ -97,7 +97,7 @@ export default async function InsightsPage({
         : 'How buyers are increasingly demanding eco-friendly and tech-integrated features.',
       category: isArabic ? 'اتجاهات' : 'Trends',
       icon: <Lightbulb className="h-5 w-5" />,
-      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200', // Tech/Circuit
+      image: 'https://images.unsplash.com/photo-1574362848149-11496d93a7c7?q=80&w=1200', // Tech/Circuit
       bentoSpan: 'col-span-1 md:col-span-2 row-span-2',
     },
     {
@@ -122,7 +122,7 @@ export default async function InsightsPage({
         : 'An analysis of FDI inflows and the impact of geopolitical events on the local market.',
       category: isArabic ? 'عالمي' : 'Global',
       icon: <Globe2 className="h-5 w-5" />,
-      image: 'https://images.unsplash.com/photo-1582653211939-9a45e5f9364a?q=80&w=1200', // Dubai Downtown
+      image: 'https://images.unsplash.com/photo-1502672023488-70e25813eb80?q=80&w=1200', // Dubai Downtown
       bentoSpan: 'col-span-1 md:col-span-3 row-span-1',
     },
     {

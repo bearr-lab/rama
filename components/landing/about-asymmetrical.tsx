@@ -70,7 +70,7 @@ export function AboutAsymmetrical({
           <div className="relative">
             <div className="grid grid-cols-2 items-start gap-4 lg:gap-8">
               {/* Image 1 (Taller, shifted up) */}
-              <div className="relative mt-0 aspect-[3/4] w-full overflow-hidden rounded-2xl shadow-2xl">
+              <div className="relative mt-0 aspect-[3/4] w-full overflow-hidden rounded-none shadow-2xl">
                 <Image
                   src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1000"
                   alt="Modern Dubai Villa Interior"
@@ -81,7 +81,7 @@ export function AboutAsymmetrical({
               </div>
 
               {/* Image 2 (Shorter, shifted down) */}
-              <div className="relative mt-16 aspect-square w-full overflow-hidden rounded-2xl shadow-xl lg:mt-32">
+              <div className="relative mt-16 aspect-square w-full overflow-hidden rounded-none shadow-xl lg:mt-32">
                 <Image
                   src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000"
                   alt="Luxury Real Estate Exterior"
@@ -93,7 +93,7 @@ export function AboutAsymmetrical({
             </div>
 
             {/* Overlapping floating stat card */}
-            <div className="shadow-floating absolute -bottom-8 left-1/2 z-20 w-64 -translate-x-1/2 rounded-2xl border border-border bg-white p-6 text-center lg:-left-12 lg:translate-x-0">
+            <div className="shadow-floating absolute -bottom-8 left-1/2 z-20 w-64 -translate-x-1/2 rounded-none border border-border bg-white p-6 text-center lg:-left-12 lg:translate-x-0">
               <p className="mb-1 font-display text-4xl text-ink">15+</p>
               <p className="text-sm font-medium tracking-wider text-fjord uppercase">
                 {isArabic ? 'سنوات خبرة في دبي' : 'Years Dubai Experience'}

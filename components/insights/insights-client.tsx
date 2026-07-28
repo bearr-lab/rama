@@ -58,7 +58,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
         
         <Container size="xl" className="relative h-full flex flex-col justify-end pb-24 z-10">
           <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-md">
               <span className="flex h-2 w-2 rounded-full bg-fjord animate-pulse" />
               {isArabic ? 'تقرير مميز' : 'Featured Report'}
             </div>
@@ -72,10 +72,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
               render={
                 <Link
                   href={`/${locale}/insights/${heroInsight.id}`}
-                  className={cn(
-                    buttonVariants({ variant: 'default' }),
-                    'rounded-button bg-white text-ink hover:bg-white/90',
-                  )}
+                  className="inline-flex items-center justify-center rounded-none h-9 px-6 bg-white text-ink hover:bg-white/90 font-bold tracking-widest uppercase text-[11px] transition-colors"
                 >
                   {isArabic ? 'قراءة التقرير الكامل' : 'Read Full Report'}
                 </Link>
@@ -123,7 +120,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="col-span-1 md:col-span-2 row-span-1 flex flex-col justify-between overflow-hidden rounded-[2rem] bg-fjord p-8 text-white shadow-xl relative"
+                className="col-span-1 md:col-span-2 row-span-1 flex flex-col justify-between overflow-hidden rounded-none bg-fjord p-8 text-white shadow-xl relative"
               >
                 <div className="absolute top-0 right-0 p-8 opacity-20">
                   <TrendingUp className="h-32 w-32" />
@@ -149,7 +146,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
                 className={cn(
-                  'group relative overflow-hidden rounded-[2rem] bg-surface-subtle shadow-sm transition-all hover:shadow-xl',
+                  'group relative overflow-hidden rounded-none bg-surface-subtle shadow-sm transition-all hover:shadow-xl',
                   insight.bentoSpan || 'col-span-1 row-span-1'
                 )}
               >
@@ -172,7 +169,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
 
                 <div className="relative z-10 flex h-full flex-col justify-end p-6 md:p-8">
                   <div className={cn(
-                    "mb-3 w-fit rounded-full px-3 py-1 text-xs font-medium backdrop-blur-md",
+                    "mb-3 w-fit rounded-none px-3 py-1 text-xs font-medium backdrop-blur-md",
                     insight.image ? "bg-white/20 text-white" : "bg-fjord/10 text-fjord"
                   )}>
                     {insight.category}

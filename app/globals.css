@@ -174,8 +174,8 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted);
+  --color-muted: var(--muted-color);
+  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -281,7 +281,17 @@
     transform: translateY(calc(-100% - var(--gap)));
     }
   }
-}
+
+  --animate-orbit: orbit calc(var(--duration)*1s) linear infinite
+;
+  @keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }}
 
 /* ═══════════════════════════════════════════════════
    BASE LAYER
@@ -450,17 +460,20 @@
   animation: shiny-text 8s infinite linear;
 }
 
-@keyframes marquee-vertical {
-  from {
-    transform: translateY(0%);
-  }
-  to {
+
+
+/* ── MVPBlocks: animate-grid (perspective grid scroll) ── */
+@keyframes grid {
+  0% {
     transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
-.animate-marquee-vertical {
-  animation: marquee-vertical var(--duration, 40s) linear infinite;
+.animate-grid {
+  animation: grid 20s linear infinite;
 }
 
 /* ═══════════════════════════════════════════════════

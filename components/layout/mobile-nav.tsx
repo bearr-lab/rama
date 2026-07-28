@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
 import { RamaLogo } from '@/components/ui/rama-logo';
@@ -17,10 +17,60 @@ interface MobileNavProps {
 export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+    
+    document.body.style.overflow = 'hidden';
+    
+    const drawerNode = drawerRef.current;
+    if (!drawerNode) return;
+    
+    const focusableElements = drawerNode.querySelectorAll(
+      'a[href], button:not([disabled]), textarea, input, select'
+    );
+    const firstElement = focusableElements[0] as HTMLElement;
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement?.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement?.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    
+    if (firstElement) {
+      firstElement.focus();
+    } else {
+      drawerNode.focus();
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   return (
 
@@ -37,12 +87,17 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
 
       {/* Drawer */}
       <div
+        ref={drawerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation Menu"
+        tabIndex={-1}
         className={cn(
-          'ease-decelerate fixed inset-y-0 right-0 z-50 flex w-[300px] max-w-[80vw] transform flex-col bg-surface shadow-lg transition-transform duration-240',
+          'ease-decelerate fixed inset-y-0 right-0 z-50 flex w-[300px] max-w-[80vw] transform flex-col bg-surface shadow-lg transition-transform duration-240 outline-none',
           isOpen ? 'translate-x-0' : 'translate-x-full',
         )}
         aria-hidden={!isOpen}
-        {...(!isOpen ? ({ inert: true } as any) : {})}
+        {...(!isOpen ? { inert: true } : {})}
       >
         <div className="flex items-center justify-between border-b border-border p-4">
           <Link
@@ -63,6 +118,13 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
         <div className="flex flex-1 flex-col gap-6 overflow-y-auto px-4 py-6">
           <nav className="flex flex-col gap-4">
             <Link
+              href={`/${locale}/projects`}
+              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              onClick={onClose}
+            >
+              {locale === 'ar' ? 'المشاريع' : 'Projects'}
+            </Link>
+            <Link
               href={`/${locale}/homes`}
               className="text-lg font-medium text-ink transition-colors hover:text-fjord"
               onClick={onClose}
@@ -74,7 +136,14 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
               className="text-lg font-medium text-ink transition-colors hover:text-fjord"
               onClick={onClose}
             >
-              {locale === 'ar' ? 'المناطق' : 'Areas'}
+              {locale === 'ar' ? 'المناطق' : 'Communities'}
+            </Link>
+            <Link
+              href={`/${locale}/invest`}
+              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              onClick={onClose}
+            >
+              {locale === 'ar' ? 'استثمر' : 'Invest'}
             </Link>
             <Link
               href={`/${locale}/insights`}
