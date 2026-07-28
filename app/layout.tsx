@@ -1,13 +1,13 @@
 import { Inter, Playfair_Display, Noto_Sans_Arabic } from 'next/font/google';
 import type { Metadata } from 'next';
-import { getLocale, getMessages } from 'next-intl/server';
-import { NextIntlClientProvider } from 'next-intl';
+import { getLocale } from 'next-intl/server';
 
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { QueryProvider } from '@/lib/query/provider';
 import { cn } from '@/lib/utils';
+import { Toaster } from '@/components/ui/toast';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -63,37 +63,33 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getLocale();
-  const messages = await getMessages();
-  const dir = locale === 'ar' ? 'rtl' : 'ltr';
-
+  // The root layout has no [locale] param — next-intl locale context is
+  // provided by the (public)/[locale] and (workspace)/[locale] layouts.
+  // suppressHydrationWarning prevents theme-flicker mismatch on <html>.
   return (
-    <html
-      lang={locale}
-      dir={dir}
-      data-scroll-behavior="smooth"
-      suppressHydrationWarning
-      className={cn(
-        'antialiased',
-        inter.variable,
-        playfair.variable,
-        notoSansArabic.variable,
-        'font-sans',
-      )}
-    >
-      <body suppressHydrationWarning>
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={cn(
+          'antialiased',
+          inter.variable,
+          playfair.variable,
+          notoSansArabic.variable,
+          'font-sans',
+        )}
+      >
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-fjord focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to main content
         </a>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider>
-            <QueryProvider>
-              <TooltipProvider>{children}</TooltipProvider>
-            </QueryProvider>
-          </ThemeProvider>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <QueryProvider>
+            <TooltipProvider>{children}</TooltipProvider>
+          </QueryProvider>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -30,6 +30,21 @@ const copy = {
   },
 } as const;
 
+import { motion, Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+};
+
 export function ResetPasswordForm({ locale }: ResetPasswordFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
@@ -70,25 +85,46 @@ export function ResetPasswordForm({ locale }: ResetPasswordFormProps) {
   };
 
   return (
-    <form className="space-y-4" onSubmit={handleUpdate} noValidate>
-      <label className="block space-y-1.5 text-sm font-medium text-ink">
+    <motion.form 
+      className="space-y-3" 
+      onSubmit={handleUpdate} 
+      noValidate
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+    >
+      <motion.label variants={itemVariants} className="block space-y-2 text-sm font-medium text-ink">
         <span>{t.newPassword}</span>
-        <Input name="password" type="password" minLength={8} required />
-      </label>
+        <Input 
+          name="password" 
+          type="password" 
+          minLength={8} 
+          required 
+          className="h-10 border-border/60 bg-surface/50 text-sm shadow-none transition-all focus:border-fjord/50 focus:bg-surface focus:ring-4 focus:ring-fjord/10"
+        />
+      </motion.label>
 
-      <label className="block space-y-1.5 text-sm font-medium text-ink">
+      <motion.label variants={itemVariants} className="block space-y-2 text-sm font-medium text-ink">
         <span>{t.confirmPassword}</span>
-        <Input name="confirm_password" type="password" minLength={8} required />
-      </label>
+        <Input 
+          name="confirm_password" 
+          type="password" 
+          minLength={8} 
+          required 
+          className="h-12 border-border/60 bg-surface/50 text-base shadow-none transition-all focus:border-fjord/50 focus:bg-white focus:ring-4 focus:ring-fjord/10"
+        />
+      </motion.label>
 
-      {error && <p className="rounded-md bg-risk-soft px-3 py-2 text-sm text-risk" role="alert">{error}</p>}
-      {notice && <p className="rounded-md bg-verified-soft px-3 py-2 text-sm text-verified" role="status">{notice}</p>}
+      {error && <motion.p variants={itemVariants} className="rounded-xl bg-risk-soft px-4 py-3 text-sm text-risk" role="alert">{error}</motion.p>}
+      {notice && <motion.p variants={itemVariants} className="rounded-xl bg-verified-soft px-4 py-3 text-sm text-verified" role="status">{notice}</motion.p>}
 
-      <Button className="h-11 w-full" disabled={isLoading || !!notice} type="submit">
-        {isLoading ? <Loader2 className="animate-spin" /> : <KeyRound className="mr-2 h-4 w-4" />}
-        {t.update}
-        {!isLoading && <ArrowRight className="ms-auto" />}
-      </Button>
-    </form>
+      <motion.div variants={itemVariants}>
+        <Button className="h-10 w-full text-sm font-semibold shadow-sm" disabled={isLoading || !!notice} type="submit">
+          {isLoading ? <Loader2 className="animate-spin" /> : <KeyRound className="mr-2 h-4 w-4" />}
+          {t.update}
+          {!isLoading && <ArrowRight className="ms-auto opacity-70" />}
+        </Button>
+      </motion.div>
+    </motion.form>
   );
 }

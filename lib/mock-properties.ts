@@ -20,6 +20,8 @@ export const MOCK_PROPERTIES: Property[] = [
     developer: 'Emaar Properties',
     completion_date: '2024-01-01',
     service_charge_aed: 24,
+    cap_rate_percentage: 6.8,
+    est_annual_rental: 1241000,
     images: [
       '/images/properties/sky-penthouse.png',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200',
@@ -55,6 +57,8 @@ export const MOCK_PROPERTIES: Property[] = [
     developer: 'Nakheel',
     completion_date: '2023-06-01',
     service_charge_aed: 18,
+    cap_rate_percentage: 5.5,
+    est_annual_rental: 2475000,
     images: [
       '/images/properties/modern-villa.png',
       'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1200',
@@ -90,6 +94,8 @@ export const MOCK_PROPERTIES: Property[] = [
     developer: 'Emaar Properties',
     completion_date: '2022-01-01',
     service_charge_aed: 15,
+    cap_rate_percentage: 4.8,
+    est_annual_rental: 5760000,
     images: [
       'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200',
     ],
@@ -124,6 +130,8 @@ export const MOCK_PROPERTIES: Property[] = [
     developer: 'Select Group',
     completion_date: '2023-01-01',
     service_charge_aed: 20,
+    cap_rate_percentage: 7.2,
+    est_annual_rental: 489600,
     images: [
       'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200',
     ],

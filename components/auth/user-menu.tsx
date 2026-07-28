@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { LogOut, Heart, Sparkles } from 'lucide-react';
+import { LogOut, Heart, Sparkles, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -11,9 +11,11 @@ import { MagneticButton } from '@/components/ui/magnetic-button';
 import { cn } from '@/lib/utils';
 import type { User } from '@supabase/supabase-js';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { toast } from '@/components/ui/toast';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -52,8 +54,17 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
   }, [supabase.auth]);
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
+    toast.promise(
+      supabase.auth.signOut().then(({ error }) => {
+        if (error) throw error;
+        router.refresh();
+      }),
+      {
+        loading: locale === 'ar' ? 'جارٍ تسجيل الخروج...' : 'Signing out...',
+        success: locale === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Signed out successfully',
+        error: locale === 'ar' ? 'حدث خطأ' : 'Failed to sign out',
+      }
+    );
   };
 
   if (isLoading) {
@@ -95,16 +106,18 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm leading-none font-medium text-ink">
-              {user.user_metadata?.full_name || 'Account'}
-            </p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {user.email}
-            </p>
-          </div>
-        </DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="font-normal">
+            <div className="flex flex-col space-y-1">
+              <p className="text-sm leading-none font-medium text-ink">
+                {user.user_metadata?.full_name || 'Account'}
+              </p>
+              <p className="text-xs leading-none text-muted-foreground">
+                {user.email}
+              </p>
+            </div>
+          </DropdownMenuLabel>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
@@ -122,6 +135,16 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           <Sparkles className="mr-2 h-4 w-4 text-fjord" />
           <span>
             {locale === 'ar' ? 'مستشار الذكاء الاصطناعي' : 'AI Advisor'}
+          </span>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem
+          onClick={() => router.push(`/${locale}/settings`)}
+          className="cursor-pointer"
+        >
+          <Settings className="mr-2 h-4 w-4 text-muted-foreground" />
+          <span>
+            {locale === 'ar' ? 'الإعدادات' : 'Settings'}
           </span>
         </DropdownMenuItem>
 

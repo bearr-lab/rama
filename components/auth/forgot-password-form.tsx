@@ -27,6 +27,21 @@ const copy = {
   },
 } as const;
 
+import { motion, Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+};
+
 export function ForgotPasswordForm({ locale }: ForgotPasswordFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
@@ -55,39 +70,52 @@ export function ForgotPasswordForm({ locale }: ForgotPasswordFormProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <form className="space-y-4" onSubmit={handleSendReset} noValidate>
-        <label className="block space-y-1.5 text-sm font-medium text-ink">
+    <motion.div 
+      className="space-y-6"
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+    >
+      <form className="space-y-3" onSubmit={handleSendReset} noValidate>
+        <motion.label variants={itemVariants} className="block space-y-2 text-sm font-medium text-ink">
           <span>{t.email}</span>
-          <Input name="email" type="email" autoComplete="email" required />
-        </label>
+          <Input 
+            name="email" 
+            type="email" 
+            autoComplete="email" 
+            required 
+            className="h-10 border-border/60 bg-surface/50 text-sm shadow-none transition-all focus:border-fjord/50 focus:bg-surface focus:ring-4 focus:ring-fjord/10" 
+          />
+        </motion.label>
 
         {error && (
-          <p className="rounded-md bg-risk-soft px-3 py-2 text-sm text-risk" role="alert">
+          <motion.p variants={itemVariants} className="rounded-xl bg-risk-soft px-4 py-3 text-sm text-risk" role="alert">
             {error}
-          </p>
+          </motion.p>
         )}
         {notice && (
-          <p className="rounded-md bg-verified-soft px-3 py-2 text-sm text-verified" role="status">
+          <motion.p variants={itemVariants} className="rounded-xl bg-verified-soft px-4 py-3 text-sm text-verified" role="status">
             {notice}
-          </p>
+          </motion.p>
         )}
 
-        <Button className="h-11 w-full" disabled={isLoading} type="submit">
-          {isLoading ? <Loader2 className="animate-spin" /> : <Mail className="mr-2 h-4 w-4" />}
-          {t.sendReset}
-          {!isLoading && <ArrowRight className="ms-auto" />}
-        </Button>
+        <motion.div variants={itemVariants}>
+          <Button className="h-10 w-full text-sm font-semibold shadow-sm" disabled={isLoading} type="submit">
+            {isLoading ? <Loader2 className="animate-spin" /> : <Mail className="mr-2 h-4 w-4" />}
+            {t.sendReset}
+            {!isLoading && <ArrowRight className="ms-auto opacity-70" />}
+          </Button>
+        </motion.div>
       </form>
 
-      <div className="pt-2 text-center">
+      <motion.div variants={itemVariants} className="pt-2 text-center">
         <Link
           href={`/${locale}/login`}
-          className="text-sm font-medium text-muted hover:text-ink hover:underline"
+          className="text-sm font-medium text-muted-foreground hover:text-ink hover:underline"
         >
           {t.backToSignIn}
         </Link>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

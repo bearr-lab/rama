@@ -3,12 +3,13 @@
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowRight, Loader2, Mail, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Loader2, Mail, ShieldCheck, UserPlus } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { createClient } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
+import { toast } from '@/components/ui/toast';
 
 interface AuthFormProps {
   locale: 'en' | 'ar';
@@ -32,6 +33,7 @@ const copy = {
     terms: 'By continuing, you agree to the Terms of Service and Privacy Policy.',
     noAccount: "Don't have an account? ",
     hasAccount: 'Already have an account? ',
+    or: 'or',
   },
   ar: {
     signIn: 'تسجيل الدخول',
@@ -46,8 +48,24 @@ const copy = {
     terms: 'بمتابعتك، فإنك توافق على شروط الخدمة وسياسة الخصوصية.',
     noAccount: 'ليس لديك حساب؟ ',
     hasAccount: 'لديك حساب بالفعل؟ ',
+    or: 'أو',
   },
 } as const;
+
+import { motion, Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+};
 
 export function AuthForm({
   locale,
@@ -94,13 +112,21 @@ export function AuthForm({
 
     setIsLoading(false);
     if (result.error) {
+      toast.add({ title: result.error.message, type: 'error' });
       setError(result.error.message);
       return;
     }
     if (!isSignIn && !result.data.session) {
+      toast.add({ title: t.confirmation, type: 'info' });
       setNotice(t.confirmation);
       return;
     }
+    toast.add({ 
+      title: isSignIn 
+        ? (locale === 'ar' ? 'تم تسجيل الدخول بنجاح' : 'Signed in successfully')
+        : (locale === 'ar' ? 'تم إنشاء الحساب بنجاح' : 'Account created successfully'),
+      type: 'success' 
+    });
     finish();
   };
 
@@ -116,26 +142,38 @@ export function AuthForm({
       },
     });
     if (authError) {
+      toast.add({ title: authError.message, type: 'error' });
       setError(authError.message);
       setIsLoading(false);
     }
   };
 
   return (
-    <div className={cn('space-y-6', compact && 'space-y-4')}>
-      <form className="space-y-4" onSubmit={handleEmailAuth} noValidate>
-        <label className="block space-y-1.5 text-sm font-medium text-ink">
+    <motion.div 
+      className={cn('space-y-6', compact && 'space-y-4')}
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+    >
+      <form className="space-y-3" onSubmit={handleEmailAuth} noValidate>
+        <motion.label variants={itemVariants} className="block space-y-2 text-sm font-medium text-ink">
           <span>{t.email}</span>
-          <Input name="email" type="email" autoComplete="email" required />
-        </label>
+          <Input 
+            name="email" 
+            type="email" 
+            autoComplete="email" 
+            required 
+            className="h-10 border-border/60 bg-surface/50 text-sm shadow-none transition-all focus:border-fjord/50 focus:bg-surface focus:ring-4 focus:ring-fjord/10" 
+          />
+        </motion.label>
 
-        <label className="block space-y-1.5 text-sm font-medium text-ink">
+        <motion.label variants={itemVariants} className="block space-y-2 text-sm font-medium text-ink">
           <div className="flex items-center justify-between">
             <span>{t.password}</span>
             {isSignIn && (
               <Link
                 href={`/${locale}/forgot-password`}
-                className="text-xs font-normal text-muted hover:text-ink hover:underline"
+                className="text-xs font-normal text-muted-foreground hover:text-ink hover:underline"
               >
                 {t.forgotPassword}
               </Link>
@@ -145,70 +183,75 @@ export function AuthForm({
             name="password"
             type="password"
             autoComplete={isSignIn ? 'current-password' : 'new-password'}
-            minLength={8}
             required
+            minLength={8}
+            className="h-10 border-border/60 bg-surface/50 text-sm shadow-none transition-all focus:border-fjord/50 focus:bg-surface focus:ring-4 focus:ring-fjord/10"
           />
-        </label>
+        </motion.label>
 
         {error && (
-          <p className="rounded-md bg-risk-soft px-3 py-2 text-sm text-risk" role="alert">
+          <motion.p variants={itemVariants} className="rounded-xl bg-risk-soft px-4 py-3 text-sm text-risk" role="alert">
             {error}
-          </p>
+          </motion.p>
         )}
         {notice && (
-          <p className="rounded-md bg-verified-soft px-3 py-2 text-sm text-verified" role="status">
+          <motion.p variants={itemVariants} className="rounded-xl bg-verified-soft px-4 py-3 text-sm text-verified" role="status">
             {notice}
-          </p>
+          </motion.p>
         )}
 
-        <Button className="h-11 w-full" disabled={isLoading} type="submit">
-          {isLoading ? <Loader2 className="animate-spin" /> : <Mail />}
-          {isSignIn ? t.continueSignIn : t.continueSignUp}
-          {!isLoading && <ArrowRight className="ms-auto" />}
-        </Button>
+        <motion.div variants={itemVariants}>
+          <Button className="h-10 w-full text-sm font-semibold shadow-sm" disabled={isLoading} type="submit">
+            {isLoading ? <Loader2 className="animate-spin" /> : isSignIn ? <Mail className="mr-2 h-4 w-4" /> : <UserPlus className="mr-2 h-4 w-4" />}
+            {isSignIn ? t.continueSignIn : t.continueSignUp}
+            {!isLoading && <ArrowRight className="ms-auto opacity-70" />}
+          </Button>
+        </motion.div>
       </form>
 
-      <div className="relative py-1 text-center text-xs text-muted before:absolute before:inset-x-0 before:top-1/2 before:border-t before:border-border">
-        <span className="relative bg-surface px-3">or</span>
-      </div>
+      <motion.div variants={itemVariants} className="relative py-2 text-center text-xs text-muted-foreground before:absolute before:inset-x-0 before:top-1/2 before:border-t before:border-border">
+        <span className="relative bg-surface px-3">{t.or}</span>
+      </motion.div>
 
-      <Button
-        className="h-11 w-full"
-        disabled={isLoading}
-        onClick={handleGoogleAuth}
-        type="button"
-        variant="outline"
-      >
-        <GoogleMark />
-        {t.google}
-      </Button>
+      <motion.div variants={itemVariants}>
+        <Button 
+          type="button" 
+          variant="outline" 
+          className="h-10 w-full bg-surface text-sm font-semibold shadow-sm hover:bg-surface-subtle" 
+          disabled={isLoading} 
+          onClick={handleGoogleAuth}
+        >
+          <GoogleMark />
+          {t.google}
+        </Button>
+      </motion.div>
 
       {!compact && (
-        <p className="flex items-start gap-2 text-xs leading-relaxed text-muted">
-          <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-verified" />
+        <motion.p variants={itemVariants} className="flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
+          <ShieldCheck className="mt-0.5 size-4 shrink-0 text-verified" />
           {t.terms}
-        </p>
+        </motion.p>
       )}
 
       {/* Footer Navigation Link */}
-      <div className="pt-2 text-center text-sm text-muted">
+      <motion.div variants={itemVariants} className="pt-2 text-center text-sm text-muted-foreground">
         {isSignIn ? (
           <>
             <span>{t.noAccount}</span>
-            <Link href={`/${locale}/sign-up`} className="font-medium text-ink hover:underline">
+            <Link href={`/${locale}/sign-up`} className="font-semibold text-ink hover:underline">
               {t.signUp}
             </Link>
           </>
         ) : (
           <>
             <span>{t.hasAccount}</span>
-            <Link href={`/${locale}/login`} className="font-medium text-ink hover:underline">
+            <Link href={`/${locale}/login`} className="font-semibold text-ink hover:underline">
               {t.signIn}
             </Link>
           </>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 

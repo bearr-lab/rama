@@ -1,0 +1,12 @@
+- [x] **Schema & Types Update (Production Ready)**
+  - [x] Add `cap_rate_percentage` (numeric) and `est_annual_rental` (numeric) to `types/property.ts`
+  - [x] Create a new Supabase SQL migration (`007_property_financials.sql`) to add these columns to the `properties` table.
+  - [x] Update `lib/mock-properties.ts` with realistic values for these fields.
+- [x] **Book Viewing Modal**
+  - [x] Create `components/property/book-viewing-modal.tsx` with form inputs (Name, Email, Date/Time).
+  - [x] Implement a clean success state upon submission.
+- [x] **Hero Overlays Redesign**
+  - [x] Create the solid Financial Metrics Card (Left side) with dynamic calculations (Price/Sqft, Service Charge).
+  - [x] Add the floating Compass Icon.
+  - [x] Create the Room Category inline navigation (Bottom center) that dynamically updates the hero background image.
+  - [x] Update `property-detail-client.tsx` to integrate all new components.

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { NotificationCenter } from './notification-center';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { MobileSidebarNav } from './sidebar';
+import { UserMenu } from '@/components/auth/user-menu';
 
 export function Header() {
   const pathname = usePathname();
@@ -78,13 +79,7 @@ export function Header() {
         <NotificationCenter />
 
         {/* User Profile Pill */}
-        <Link
-          href={`/${locale}/settings`}
-          className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg border border-border bg-ink-bg text-white transition-colors hover:bg-fjord"
-          title="User Account & Settings"
-        >
-          <User className="h-4 w-4" />
-        </Link>
+        <UserMenu locale={locale as 'en' | 'ar'} />
       </div>
     </header>
   );

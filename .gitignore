@@ -39,3 +39,4 @@ next-env.d.ts
 
 # registry output
 public/registry/*.json
+/brain/
