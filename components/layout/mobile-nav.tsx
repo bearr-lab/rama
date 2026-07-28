@@ -31,13 +31,39 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
     
     document.body.style.overflow = 'hidden';
     
+    const drawerNode = drawerRef.current;
+    if (!drawerNode) return;
+    
+    const focusableElements = drawerNode.querySelectorAll(
+      'a[href], button:not([disabled]), textarea, input, select'
+    );
+    const firstElement = focusableElements[0] as HTMLElement;
+    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      
+      if (e.key === 'Tab') {
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            lastElement?.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            firstElement?.focus();
+            e.preventDefault();
+          }
+        }
+      }
     };
+    
     window.addEventListener('keydown', handleKeyDown);
     
-    if (drawerRef.current) {
-      drawerRef.current.focus();
+    if (firstElement) {
+      firstElement.focus();
+    } else {
+      drawerNode.focus();
     }
     
     return () => {
@@ -61,7 +87,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
 
       {/* Drawer */}
       <div
-        ref={drawerRef as any}
+        ref={drawerRef}
         role="dialog"
         aria-modal="true"
         aria-label="Navigation Menu"
@@ -71,7 +97,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           isOpen ? 'translate-x-0' : 'translate-x-full',
         )}
         aria-hidden={!isOpen}
-        {...(!isOpen ? ({ inert: true } as any) : {})}
+        {...(!isOpen ? { inert: true } : {})}
       >
         <div className="flex items-center justify-between border-b border-border p-4">
           <Link

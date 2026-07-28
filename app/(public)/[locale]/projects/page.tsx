@@ -1,7 +1,7 @@
 import { Container } from '@/components/layout/container';
 import { Section } from '@/components/layout/section';
 import { BlurFade } from '@/components/magicui/blur-fade';
-import { Building2, ArrowRight, ArrowUpRight, Calendar, MapPin, Tag } from 'lucide-react';
+import { Building2, ArrowUpRight, Calendar, MapPin, Tag } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';

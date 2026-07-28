@@ -23,7 +23,8 @@ export function SearchBar({
   variant = 'hero',
   locale = 'en',
   initialQuery = '',
-  initialTenure = 'ready',
+  initialTenure = '',
+
   onSearch,
   className,
 }: SearchBarProps) {
@@ -84,7 +85,7 @@ export function SearchBar({
           className="relative z-10 flex-1 border-none bg-transparent px-2 text-sm font-medium text-ink placeholder:text-muted-foreground/60 focus-visible:ring-0 focus-visible:outline-none rounded-none"
         />
 
-        <button type="button" className="z-10 px-2 text-muted hover:text-fjord transition-colors">
+        <button type="button" aria-label={locale === 'ar' ? 'البحث الصوتي' : 'Voice Search'} className="z-10 px-2 text-muted hover:text-fjord transition-colors">
           <Mic className="h-4 w-4" />
         </button>
 

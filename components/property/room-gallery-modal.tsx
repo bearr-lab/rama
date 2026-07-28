@@ -201,6 +201,16 @@ export function RoomGalleryModal({
     };
   }, [isOpen, activeHotspot, isMetricsExpanded]);
 
+  const nextImage = React.useCallback(() => {
+    setActiveHotspot(null);
+    setCurrentIndex((prev) => (prev + 1) % filteredImages.length);
+  }, [filteredImages.length]);
+
+  const prevImage = React.useCallback(() => {
+    setActiveHotspot(null);
+    setCurrentIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
+  }, [filteredImages.length]);
+
   React.useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -210,17 +220,7 @@ export function RoomGalleryModal({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, filteredImages.length]);
-
-  const nextImage = () => {
-    setActiveHotspot(null);
-    setCurrentIndex((prev) => (prev + 1) % filteredImages.length);
-  };
-
-  const prevImage = () => {
-    setActiveHotspot(null);
-    setCurrentIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
-  };
+  }, [isOpen, nextImage, prevImage, onClose]);
 
   if (!isOpen) return null;
 

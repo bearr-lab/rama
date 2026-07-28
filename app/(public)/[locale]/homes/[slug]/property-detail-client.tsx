@@ -4,15 +4,12 @@ import * as React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import {
   MapPin,
   BedDouble,
   Bath,
   Maximize2,
-  Calendar,
   Building2,
   Eye,
-  CheckCircle2,
   Sparkles,
   Utensils,
   Bed,
@@ -26,12 +23,10 @@ import { PriceTag } from '@/components/property/price-tag';
 import { TrustBadge } from '@/components/property/trust-badge';
 import { ShareButton } from '@/components/property/share-button';
 import { RoomGalleryModal, RoomImage } from '@/components/property/room-gallery-modal';
-import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
-import { BlurFade } from '@/components/magicui/blur-fade';
 import { NumberTicker } from '@/components/magicui/number-ticker';
 
 interface PropertyDetailClientProps {
@@ -44,104 +39,22 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
   const title = isArabic ? property.title_ar : property.title_en;
   const description = isArabic ? property.description_ar : property.description_en;
   const [isGalleryOpen, setIsGalleryOpen] = React.useState(false);
-  const [selectedCategory, setSelectedCategory] = React.useState<
-    'all' | 'kitchen' | 'bedroom' | 'living' | 'balcony'
-  >('all');
 
-  // Categorized room photos generator
+  // Categorized room photos generator (graceful fallback to property images without fabricated claims)
   const roomPhotos: RoomImage[] = React.useMemo(() => {
-    return [
-      {
-        id: `${property.id}-kitchen`,
-        category: 'kitchen',
-        titleEn: 'Italian Gourmet Kitchen',
-        titleAr: 'مطبخ إيطالي فاخر',
-        src: property.images[0] || 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=1200&q=80',
-        sqft: 320,
-        hotspots: [
-          {
-            id: 'h-kit-1',
-            x: 45,
-            y: 60,
-            labelEn: 'Calacatta Marble Island',
-            labelAr: 'جزيرة رخام كالاكاتا',
-            verified: true,
-            detailEn: 'Bookmatched 20mm Italian marble island with waterfall edges.',
-            detailAr: 'جزيرة رخام إيطالي طبيعي بسمك 20 مم.',
-          },
-          {
-            id: 'h-kit-2',
-            x: 75,
-            y: 40,
-            labelEn: 'Integrated Miele Suite',
-            labelAr: 'أجهزة ميلي المدمجة',
-            verified: true,
-            detailEn: 'Built-in induction cooktop, double oven, and wine cellar.',
-            detailAr: 'موقد حث مدمج وأفران وحافظة نبيذ.',
-          },
-        ],
-      },
-      {
-        id: `${property.id}-bedroom`,
-        category: 'bedroom',
-        titleEn: 'Master Suite Bedroom',
-        titleAr: 'جناح غرفة النوم الرئيسية',
-        src: property.images[1] || 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1200&q=80',
-        sqft: 480,
-        hotspots: [
-          {
-            id: 'h-bed-1',
-            x: 35,
-            y: 55,
-            labelEn: 'European Oak Parquet',
-            labelAr: 'باركيه خشب البلوط الأوروبي',
-            verified: true,
-            detailEn: 'Herringbone European oak flooring with sound dampening layer.',
-            detailAr: 'أرضيات خشب بلوط أوروبي مع طبقة عزل صوتي.',
-          },
-        ],
-      },
-      {
-        id: `${property.id}-living`,
-        category: 'living',
-        titleEn: 'Panoramic Living Salon',
-        titleAr: 'صالة المعيشة البانورامية',
-        src: property.images[2] || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
-        sqft: 650,
-        hotspots: [
-          {
-            id: 'h-liv-1',
-            x: 50,
-            y: 50,
-            labelEn: 'Concealed VRF Climate Control',
-            labelAr: 'تكييف مركزي ذكي مخفى',
-            verified: true,
-            detailEn: 'Multi-zone VRF AC system connected to smart home automation.',
-            detailAr: 'نظام تكييف ذكي متعدد المناطق متصل بالنظام المنزلي.',
-          },
-        ],
-      },
-      {
-        id: `${property.id}-balcony`,
-        category: 'balcony',
-        titleEn: 'Ocean & Skyline Terrace',
-        titleAr: 'تراس بتصاميم بانورامية',
-        src: property.images[3] || property.images[0] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80',
-        sqft: 240,
-        hotspots: [
-          {
-            id: 'h-bal-1',
-            x: 60,
-            y: 75,
-            labelEn: 'Frameless Glass Balustrade',
-            labelAr: 'درابزين زجاجي بدون إطار',
-            verified: true,
-            detailEn: 'Safety-certified 110cm toughened glass railing compliant with DLD code.',
-            detailAr: 'درابزين زجاجي مقسى متوافق مع كود السلامة.',
-          },
-        ],
-      },
-    ];
+    return property.images.map((src, index) => {
+      const categories: RoomImage['category'][] = ['living', 'bedroom', 'kitchen', 'balcony', 'bathroom'];
+      const cat = categories[index % categories.length];
+      return {
+        id: `${property.id}-img-${index}`,
+        category: cat,
+        titleEn: `Property View ${index + 1}`,
+        titleAr: `صورة العقار ${index + 1}`,
+        src,
+        sqft: 0,
+        hotspots: [],
+      };
+    });
   }, [property]);
 
   return (
@@ -309,55 +222,57 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
               </div>
             </section>
 
-            {/* Room-by-Room Photo Categories Breakdown */}
-            <section className="space-y-4">
-              <div className="flex items-center justify-between border-b border-border/40 pb-3">
-                <h3 className="font-display text-xl font-semibold text-ink">
-                  {isArabic ? 'معاينة ألبوم الصور حسب الغرفة' : 'Room Photo Categories'}
-                </h3>
-                <span className="text-xs text-fjord font-bold uppercase tracking-wider">
-                  4 Verified Rooms
-                </span>
-              </div>
+            {/* Room-by-Room Photo Categories Breakdown (Gated if no verified rich data) */}
+            {false && (
+              <section className="space-y-4">
+                <div className="flex items-center justify-between border-b border-border/40 pb-3">
+                  <h3 className="font-display text-xl font-semibold text-ink">
+                    {isArabic ? 'معاينة ألبوم الصور حسب الغرفة' : 'Room Photo Categories'}
+                  </h3>
+                  <span className="text-xs text-fjord font-bold uppercase tracking-wider">
+                    4 Verified Rooms
+                  </span>
+                </div>
 
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <button
-                  onClick={() => setIsGalleryOpen(true)}
-                  className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                >
-                  <Utensils className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                  <p className="text-sm font-bold text-ink">{isArabic ? 'المطبخ الإيطالي' : 'Gourmet Kitchen'}</p>
-                  <p className="text-[11px] text-muted-foreground font-light">Calacatta Marble & Miele</p>
-                </button>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                  <button
+                    onClick={() => setIsGalleryOpen(true)}
+                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
+                  >
+                    <Utensils className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
+                    <p className="text-sm font-bold text-ink">{isArabic ? 'المطبخ الإيطالي' : 'Gourmet Kitchen'}</p>
+                    <p className="text-[11px] text-muted-foreground font-light">Calacatta Marble & Miele</p>
+                  </button>
 
-                <button
-                  onClick={() => setIsGalleryOpen(true)}
-                  className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                >
-                  <Bed className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                  <p className="text-sm font-bold text-ink">{isArabic ? 'غرفة النوم الرئيسية' : 'Master Suite'}</p>
-                  <p className="text-[11px] text-muted-foreground font-light">European Oak & Glazing</p>
-                </button>
+                  <button
+                    onClick={() => setIsGalleryOpen(true)}
+                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
+                  >
+                    <Bed className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
+                    <p className="text-sm font-bold text-ink">{isArabic ? 'غرفة النوم الرئيسية' : 'Master Suite'}</p>
+                    <p className="text-[11px] text-muted-foreground font-light">European Oak & Glazing</p>
+                  </button>
 
-                <button
-                  onClick={() => setIsGalleryOpen(true)}
-                  className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                >
-                  <Layers className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                  <p className="text-sm font-bold text-ink">{isArabic ? 'صالة المعيشة' : 'Living Salon'}</p>
-                  <p className="text-[11px] text-muted-foreground font-light">VRF Climate & High Ceiling</p>
-                </button>
+                  <button
+                    onClick={() => setIsGalleryOpen(true)}
+                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
+                  >
+                    <Layers className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
+                    <p className="text-sm font-bold text-ink">{isArabic ? 'صالة المعيشة' : 'Living Salon'}</p>
+                    <p className="text-[11px] text-muted-foreground font-light">VRF Climate & High Ceiling</p>
+                  </button>
 
-                <button
-                  onClick={() => setIsGalleryOpen(true)}
-                  className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                >
-                  <Sun className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                  <p className="text-sm font-bold text-ink">{isArabic ? 'الشرفة والتراس' : 'Skyline Terrace'}</p>
-                  <p className="text-[11px] text-muted-foreground font-light">DLD Safety Balustrade</p>
-                </button>
-              </div>
-            </section>
+                  <button
+                    onClick={() => setIsGalleryOpen(true)}
+                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
+                  >
+                    <Sun className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
+                    <p className="text-sm font-bold text-ink">{isArabic ? 'الشرفة والتراس' : 'Skyline Terrace'}</p>
+                    <p className="text-[11px] text-muted-foreground font-light">DLD Safety Balustrade</p>
+                  </button>
+                </div>
+              </section>
+            )}
 
             {/* Description */}
             <section className="space-y-4">

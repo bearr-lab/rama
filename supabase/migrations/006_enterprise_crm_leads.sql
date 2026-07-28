@@ -39,15 +39,28 @@ CREATE TABLE IF NOT EXISTS public.leads (
 -- 4. Enable Row Level Security (RLS)
 ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
 
+-- 4.5 Security Definer Admin Check
+CREATE OR REPLACE FUNCTION public.is_admin()
+RETURNS boolean
+LANGUAGE sql
+SECURITY DEFINER
+SET search_path = public
+AS $$
+  SELECT EXISTS (
+    SELECT 1
+    FROM auth.users
+    WHERE id = auth.uid()
+    AND raw_app_meta_data->>'role' = 'admin'
+  );
+$$;
+
 -- 5. RLS Policies
 -- Only authenticated brokers/admins can view leads
 CREATE POLICY "Brokers can view assigned leads" ON public.leads
-    FOR SELECT USING (auth.uid() = assigned_broker_id OR (
-        -- Assuming an admin check function exists, or a role-based check
-        EXISTS (
-            SELECT 1 FROM auth.users WHERE id = auth.uid() AND raw_user_meta_data->>'role' = 'admin'
-        )
-    ));
+    FOR SELECT TO authenticated USING (
+        auth.uid() = assigned_broker_id
+        OR public.is_admin()
+    );
 
 -- Public can insert leads (via AI Concierge / Contact Forms)
 CREATE POLICY "Public can insert leads" ON public.leads

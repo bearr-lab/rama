@@ -25,12 +25,19 @@ export function ContactConnect({
   const handleSubmit = async (formData: FormData) => {
     setStatus('loading');
     setErrorMessage('');
-    const result = await submitContactForm(formData);
-    if (result.error) {
-      setErrorMessage(result.error);
+    try {
+      const result = await submitContactForm(formData);
+      if (result.error) {
+        setErrorMessage(result.error);
+        setStatus('error');
+      } else {
+        setStatus('success');
+      }
+    } catch {
+      setErrorMessage(
+        isArabic ? 'تعذر إرسال الرسالة. حاول مرة أخرى.' : 'Could not send your message. Please try again.',
+      );
       setStatus('error');
-    } else {
-      setStatus('success');
     }
   };
 
@@ -169,6 +176,7 @@ export function ContactConnect({
                 )}
 
                 <Button 
+                  type="submit"
                   disabled={status === 'loading'}
                   className="w-full h-9 bg-fjord text-white hover:bg-fjord-hover rounded-none font-bold tracking-widest uppercase text-[11px] transition-colors"
                 >
