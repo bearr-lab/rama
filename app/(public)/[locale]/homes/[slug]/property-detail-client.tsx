@@ -202,8 +202,8 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
             <Heart className="h-4 w-4 text-white" />
           </button>
           <ShareButton 
-            title={title} 
-            text={description} 
+            title={title || undefined} 
+            text={description || undefined} 
             className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
           />
         </div>
