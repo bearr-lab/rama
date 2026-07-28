@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Share2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import {
   Tooltip,
   TooltipContent,
@@ -13,9 +14,10 @@ interface ShareButtonProps {
   title: string;
   text?: string;
   url?: string;
+  className?: string;
 }
 
-export function ShareButton({ title, text, url }: ShareButtonProps) {
+export function ShareButton({ title, text, url, className }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
   const shareUrl =
     url || (typeof window !== 'undefined' ? window.location.href : '');
@@ -57,7 +59,7 @@ export function ShareButton({ title, text, url }: ShareButtonProps) {
             variant="secondary"
             size="icon"
             onClick={handleShare}
-            className="h-10 w-10 rounded-full border border-border bg-surface text-ink shadow-sm hover:bg-surface-subtle"
+            className={cn("h-10 w-10 rounded-full border border-border bg-surface text-ink shadow-sm hover:bg-surface-subtle", className)}
           />
         }
       >
