@@ -11,9 +11,11 @@ import { MagneticButton } from '@/components/ui/magnetic-button';
 import { cn } from '@/lib/utils';
 import type { User } from '@supabase/supabase-js';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { toast } from '@/components/ui/toast';
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -52,8 +54,21 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
   }, [supabase.auth]);
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
+    toast.promise(
+      new Promise(async (resolve, reject) => {
+        const { error } = await supabase.auth.signOut();
+        if (error) reject(error);
+        else {
+          router.refresh();
+          resolve(true);
+        }
+      }),
+      {
+        loading: locale === 'ar' ? 'جارٍ تسجيل الخروج...' : 'Signing out...',
+        success: locale === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Signed out successfully',
+        error: locale === 'ar' ? 'حدث خطأ' : 'Failed to sign out',
+      }
+    );
   };
 
   if (isLoading) {
@@ -95,16 +110,18 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end">
-        <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm leading-none font-medium text-ink">
-              {user.user_metadata?.full_name || 'Account'}
-            </p>
-            <p className="text-xs leading-none text-muted-foreground">
-              {user.email}
-            </p>
-          </div>
-        </DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="font-normal">
+            <div className="flex flex-col space-y-1">
+              <p className="text-sm leading-none font-medium text-ink">
+                {user.user_metadata?.full_name || 'Account'}
+              </p>
+              <p className="text-xs leading-none text-muted-foreground">
+                {user.email}
+              </p>
+            </div>
+          </DropdownMenuLabel>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
 
         <DropdownMenuItem

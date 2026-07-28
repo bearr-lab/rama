@@ -18,6 +18,8 @@ export interface Property {
   developer: string | null;
   completion_date: string | null;
   service_charge_aed: number | null;
+  cap_rate_percentage: number | null;
+  est_annual_rental: number | null;
   images: string[];
   thumbnail: string | null;
   latitude: number | null;

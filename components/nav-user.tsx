@@ -27,8 +27,8 @@ export function NavUser() {
 		<DropdownMenu>
 			<DropdownMenuTrigger render={<Avatar className="size-8" />}><AvatarImage src={user.avatar} /><AvatarFallback>{user.name.charAt(0)}</AvatarFallback></DropdownMenuTrigger>
 			<DropdownMenuContent align="end" className="w-60">
-				<DropdownMenuItem className="flex items-center justify-start gap-2">
-					<DropdownMenuLabel className="flex items-center gap-3">
+				<DropdownMenuGroup>
+					<DropdownMenuLabel className="flex items-center gap-3 py-1.5 px-2">
 						<Avatar className="size-10">
 							<AvatarImage src={user.avatar} />
 							<AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
@@ -41,7 +41,7 @@ export function NavUser() {
 							</div>
 						</div>
 					</DropdownMenuLabel>
-				</DropdownMenuItem>
+				</DropdownMenuGroup>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>
 					<DropdownMenuItem>
