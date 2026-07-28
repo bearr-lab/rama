@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint",
     "lint:css": "stylelint \"**/*.css\" --allow-empty-input",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "format:css": "stylelint \"**/*.css\" --fix --allow-empty-input",

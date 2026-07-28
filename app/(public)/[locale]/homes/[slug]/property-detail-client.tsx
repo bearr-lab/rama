@@ -12,10 +12,6 @@ import {
   Building2,
   Eye,
   Sparkles,
-  Utensils,
-  Bed,
-  Layers,
-  Sun,
   ShieldCheck,
   ArrowRight,
 } from 'lucide-react';
@@ -99,13 +95,15 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
               className="text-ink [&>div>span]:text-ink"
             />
             <div className="flex gap-3">
-              <Button
-                onClick={() => setIsGalleryOpen(true)}
-                className="bg-fjord text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5"
-              >
-                <Eye className="h-4 w-4" />
-                <span>{isArabic ? 'معاينة الغرف' : 'Room-by-Room Inspection'}</span>
-              </Button>
+              {roomPhotos.length > 0 && (
+                <Button
+                  onClick={() => setIsGalleryOpen(true)}
+                  className="bg-fjord text-white text-xs font-semibold px-4 py-2 flex items-center gap-1.5"
+                >
+                  <Eye className="h-4 w-4" />
+                  <span>{isArabic ? 'معاينة الغرف' : 'Room-by-Room Inspection'}</span>
+                </Button>
+              )}
               <ShareButton
                 title={title}
                 url={`https://rama.ae/${locale}/homes/${property.slug}`}
@@ -130,40 +128,39 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
               sizes="(max-width: 768px) 100vw, 75vw"
             />
 
-            <div className="absolute bottom-6 left-6 z-20">
-              <Button
-                onClick={() => setIsGalleryOpen(true)}
-                className="bg-fjord/90 text-white backdrop-blur-md text-xs font-bold px-5 py-3 border border-white/20 shadow-lg flex items-center gap-2 hover:bg-fjord transition-all"
-              >
-                <Sparkles className="h-4 w-4 text-emerald-400" />
-                <span>{isArabic ? 'تصفح الصور التفاعلية للغرف' : 'Launch Interactive Room Gallery'}</span>
-              </Button>
-            </div>
+            {roomPhotos.length > 0 && (
+              <div className="absolute bottom-6 left-6 z-20">
+                <Button
+                  onClick={() => setIsGalleryOpen(true)}
+                  className="bg-fjord/90 text-white backdrop-blur-md text-xs font-bold px-5 py-3 border border-white/20 shadow-lg flex items-center gap-2 hover:bg-fjord transition-all"
+                >
+                  <Sparkles className="h-4 w-4 text-emerald-400" />
+                  <span>{isArabic ? 'تصفح الصور التفاعلية للغرف' : 'Launch Interactive Room Gallery'}</span>
+                </Button>
+              </div>
+            )}
           </div>
 
-          {/* Right Column Thumbnails */}
-          <div className="hidden h-full flex-col gap-4 md:flex p-2 bg-surface-subtle/50">
-            {roomPhotos.slice(0, 3).map((room, idx) => (
-              <button
-                key={room.id}
-                onClick={() => setIsGalleryOpen(true)}
-                className="group relative flex-1 overflow-hidden border border-border/40 transition-all hover:border-fjord"
-              >
-                <Image
-                  src={room.src}
-                  alt={room.titleEn}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="25vw"
-                />
-                <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-white text-xs font-bold uppercase tracking-wider bg-black/60 px-3 py-1 border border-white/30">
-                    {room.category}
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
+          {/* Right Column Thumbnails — only shown when images exist */}
+          {roomPhotos.length > 0 && (
+            <div className="hidden h-full flex-col gap-4 md:flex p-2 bg-surface-subtle/50">
+              {roomPhotos.slice(0, 3).map((room) => (
+                <button
+                  key={room.id}
+                  onClick={() => setIsGalleryOpen(true)}
+                  className="group relative flex-1 overflow-hidden border border-border/40 transition-all hover:border-fjord"
+                >
+                  <Image
+                    src={room.src}
+                    alt={room.titleEn}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="25vw"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Main Content Grid */}
@@ -223,57 +220,6 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
               </div>
             </section>
 
-            {/* Room-by-Room Photo Categories Breakdown (Gated if no verified rich data) */}
-            {false && (
-              <section className="space-y-4">
-                <div className="flex items-center justify-between border-b border-border/40 pb-3">
-                  <h3 className="font-display text-xl font-semibold text-ink">
-                    {isArabic ? 'معاينة ألبوم الصور حسب الغرفة' : 'Room Photo Categories'}
-                  </h3>
-                  <span className="text-xs text-fjord font-bold uppercase tracking-wider">
-                    4 Verified Rooms
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                  <button
-                    onClick={() => setIsGalleryOpen(true)}
-                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                  >
-                    <Utensils className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                    <p className="text-sm font-bold text-ink">{isArabic ? 'المطبخ الإيطالي' : 'Gourmet Kitchen'}</p>
-                    <p className="text-[11px] text-muted-foreground font-light">Calacatta Marble & Miele</p>
-                  </button>
-
-                  <button
-                    onClick={() => setIsGalleryOpen(true)}
-                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                  >
-                    <Bed className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                    <p className="text-sm font-bold text-ink">{isArabic ? 'غرفة النوم الرئيسية' : 'Master Suite'}</p>
-                    <p className="text-[11px] text-muted-foreground font-light">European Oak & Glazing</p>
-                  </button>
-
-                  <button
-                    onClick={() => setIsGalleryOpen(true)}
-                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                  >
-                    <Layers className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                    <p className="text-sm font-bold text-ink">{isArabic ? 'صالة المعيشة' : 'Living Salon'}</p>
-                    <p className="text-[11px] text-muted-foreground font-light">VRF Climate & High Ceiling</p>
-                  </button>
-
-                  <button
-                    onClick={() => setIsGalleryOpen(true)}
-                    className="p-4 border border-border/40 bg-surface/70 hover:border-fjord hover:bg-surface transition-all text-left space-y-2 group"
-                  >
-                    <Sun className="h-5 w-5 text-fjord group-hover:scale-110 transition-transform" />
-                    <p className="text-sm font-bold text-ink">{isArabic ? 'الشرفة والتراس' : 'Skyline Terrace'}</p>
-                    <p className="text-[11px] text-muted-foreground font-light">DLD Safety Balustrade</p>
-                  </button>
-                </div>
-              </section>
-            )}
 
             {/* Description */}
             <section className="space-y-4">
