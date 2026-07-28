@@ -27,7 +27,7 @@ export function OrbitingCircles({
 }: OrbitingCirclesProps) {
   const calculatedDuration = duration / speed
   return (
-    <>
+    <div className={cn("absolute inset-0 size-full", className)} {...props}>
       {path && (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -57,15 +57,13 @@ export function OrbitingCircles({
             }
             className={cn(
               `animate-orbit absolute flex size-(--icon-size) transform-gpu items-center justify-center rounded-full`,
-              { "[animation-direction:reverse]": reverse },
-              className
+              { "[animation-direction:reverse]": reverse }
             )}
-            {...props}
           >
             {child}
           </div>
         )
       })}
-    </>
+    </div>
   )
 }

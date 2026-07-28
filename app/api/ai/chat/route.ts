@@ -164,8 +164,9 @@ export async function POST(req: Request) {
       [...messages].reverse().find((m) => m.role === 'user')?.content || '';
     const apiKey = process.env.OPENROUTER_API_KEY;
 
-    // If no API key is provided or if key is explicitly marked for local simulation, return simulation response
+    // If no API key is provided, if key is explicitly marked for local testing, OR if user is unauthenticated
     if (
+      !user ||
       !apiKey ||
       apiKey === 'dummy-key-for-local-testing' ||
       apiKey === 'your-openrouter-key'

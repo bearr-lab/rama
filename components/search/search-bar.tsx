@@ -36,10 +36,11 @@ export function SearchBar({
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (onSearch) {
-      onSearch(query, '');
+      onSearch(query, initialTenure);
     } else {
       const params = new URLSearchParams();
-      if (query) params.set('q', query);
+      if (query) params.set('query', query);
+      if (initialTenure) params.set('tenure', initialTenure);
       router.push(`/${locale}/homes?${params.toString()}`);
     }
   };

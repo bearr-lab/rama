@@ -4,6 +4,8 @@ import React from "react";
 import { ArrowRight, TrendingUp, ShieldCheck, Building2 } from "lucide-react";
 import Link from "next/link";
 
+import { useParams } from "next/navigation";
+
 const STATS = [
   { label: "Active Listings", value: "2,400+" },
   { label: "Verified Developers", value: "84" },
@@ -11,6 +13,9 @@ const STATS = [
 ];
 
 export default function Hero1() {
+  const params = useParams();
+  const locale = params?.locale || "en";
+
   return (
     <div className="relative w-full bg-ink overflow-hidden">
       {/* Radial ambient glow — adapted from MVPBlocks */}
@@ -75,7 +80,7 @@ export default function Hero1() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-20">
           {/* Primary CTA */}
           <Link
-            href="/en/homes"
+            href={`/${locale}/homes`}
             className="group inline-flex items-center gap-2 bg-fjord px-6 py-2.5 text-[11px] font-bold text-white uppercase tracking-widest hover:bg-fjord/90 transition-colors duration-200 rounded-none"
           >
             Explore
@@ -84,7 +89,7 @@ export default function Hero1() {
 
           {/* Secondary CTA */}
           <Link
-            href="/en/invest"
+            href={`/${locale}/invest`}
             className="group inline-flex items-center gap-2 border border-white/20 bg-white/5 px-6 py-2.5 text-[11px] font-bold text-white/80 uppercase tracking-widest hover:border-fjord/50 hover:text-white transition-colors duration-200 rounded-none backdrop-blur-md"
           >
             <TrendingUp className="h-3.5 w-3.5" />

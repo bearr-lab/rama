@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
 import { RamaLogo } from '@/components/ui/rama-logo';
@@ -17,10 +17,34 @@ interface MobileNavProps {
 export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+    
+    document.body.style.overflow = 'hidden';
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    
+    if (drawerRef.current) {
+      drawerRef.current.focus();
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   return (
 
@@ -37,8 +61,13 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
 
       {/* Drawer */}
       <div
+        ref={drawerRef as any}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation Menu"
+        tabIndex={-1}
         className={cn(
-          'ease-decelerate fixed inset-y-0 right-0 z-50 flex w-[300px] max-w-[80vw] transform flex-col bg-surface shadow-lg transition-transform duration-240',
+          'ease-decelerate fixed inset-y-0 right-0 z-50 flex w-[300px] max-w-[80vw] transform flex-col bg-surface shadow-lg transition-transform duration-240 outline-none',
           isOpen ? 'translate-x-0' : 'translate-x-full',
         )}
         aria-hidden={!isOpen}

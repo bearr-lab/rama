@@ -159,6 +159,27 @@ export function RoomGalleryModal({
   }, [isOpen]);
 
   React.useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = '';
+      return;
+    }
+    
+    document.body.style.overflow = 'hidden';
+    const previousFocus = document.activeElement as HTMLElement;
+    
+    if (containerRef.current) {
+      containerRef.current.focus();
+    }
+    
+    return () => {
+      document.body.style.overflow = '';
+      if (previousFocus) {
+        previousFocus.focus();
+      }
+    };
+  }, [isOpen]);
+
+  React.useEffect(() => {
     if (!isOpen) return;
     let timeout: NodeJS.Timeout;
     const handleMouseMove = () => {
@@ -206,7 +227,11 @@ export function RoomGalleryModal({
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 z-[100] h-[100dvh] w-screen overflow-hidden bg-black text-white flex flex-col select-none font-sans"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Room Gallery"
+      tabIndex={-1}
+      className="fixed inset-0 z-[100] h-[100dvh] w-screen overflow-hidden bg-black text-white flex flex-col select-none font-sans outline-none"
     >
       {/* Main Stage */}
       <div className="absolute inset-0 z-0">

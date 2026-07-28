@@ -174,8 +174,8 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted);
+  --color-muted: var(--muted-color);
+  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
@@ -460,18 +460,7 @@
   animation: shiny-text 8s infinite linear;
 }
 
-@keyframes marquee-vertical {
-  from {
-    transform: translateY(0%);
-  }
-  to {
-    transform: translateY(-50%);
-  }
-}
 
-.animate-marquee-vertical {
-  animation: marquee-vertical var(--duration, 40s) linear infinite;
-}
 
 /* ── MVPBlocks: animate-grid (perspective grid scroll) ── */
 @keyframes grid {
