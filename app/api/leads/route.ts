@@ -2,15 +2,6 @@ import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-if (!supabaseUrl || !supabaseKey) {
-  throw new Error('Supabase URL or Key is missing');
-}
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
 const LeadSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email('Invalid email address'),
@@ -20,6 +11,15 @@ const LeadSchema = z.object({
 
 export async function POST(req: Request) {
   try {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.warn('Supabase URL or Key is missing from environment variables.');
+      return NextResponse.json({ error: 'Database service unavailable' }, { status: 503 });
+    }
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
     const body = await req.json();
     const validatedData = LeadSchema.parse(body);
 
