@@ -50,7 +50,7 @@ export default function Hero1() {
         <div className="mx-auto max-w-4xl text-center space-y-6 mb-12">
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.05]">
             <span className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground">
-              Invest in Dubai's
+              Invest in Dubai&apos;s
             </span>
             <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-br from-primary via-primary to-primary/60">
@@ -60,7 +60,7 @@ export default function Hero1() {
 
           <p className="text-muted-foreground text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
             AI-powered real estate intelligence. RERA-verified listings.
-            Institutional-grade analytics for the world's most dynamic property market.
+            Institutional-grade analytics for the world&apos;s most dynamic property market.
           </p>
         </div>
 

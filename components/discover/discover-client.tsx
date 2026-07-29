@@ -380,7 +380,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               No Verified Properties Found
             </h3>
             <p className="mt-1 mb-4 max-w-md text-xs text-muted">
-              We couldn't find any listings matching your AI search query. Try
+              We couldn&apos;t find any listings matching your AI search query. Try
               broadening your budget or community constraints.
             </p>
             <Button

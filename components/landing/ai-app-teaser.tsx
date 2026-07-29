@@ -76,7 +76,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                       </div>
                       <div className="max-w-[85%] rounded-2xl rounded-tl-none bg-surface-subtle px-4 py-3 text-ink">
                         <p className="text-sm">
-                          Welcome! I'm RAMA AI. Ask me anything about Dubai
+                          Welcome! I&apos;m RAMA AI. Ask me anything about Dubai
                           real estate.
                         </p>
                       </div>
