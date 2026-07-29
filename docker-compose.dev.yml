@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web-dev:
+    image: node:22-alpine
+    container_name: rama-web-dev
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    command: sh -c "corepack enable && pnpm i && pnpm dev"
+    networks:
+      - rama-dev-mesh
+
+networks:
+  rama-dev-mesh:
+    driver: bridge
