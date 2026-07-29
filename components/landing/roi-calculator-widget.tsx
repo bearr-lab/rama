@@ -47,7 +47,7 @@ export function RoiCalculatorWidget({
     new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED', maximumFractionDigits: 0 }).format(val);
 
   return (
-    <div className="w-full rounded-2xl border border-stone-200/80 bg-white/90 p-6 shadow-xl backdrop-blur-md dark:border-stone-800 dark:bg-stone-900/90 sm:p-8">
+    <div className="w-full rounded-2xl border border-stone-200/80 bg-white/90 p-6 backdrop-blur-md shadow-xl sm:p-8 dark:border-stone-800 dark:bg-stone-900/90">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-stone-200/60 pb-6 sm:flex-row sm:items-center dark:border-stone-800">
         <div>
@@ -55,7 +55,7 @@ export function RoiCalculatorWidget({
             <Calculator className="size-4" />
             <span>{isArabic ? 'حاسبة المحاكاة الرقمية' : 'OmniTwin™ ROI Simulator'}</span>
           </div>
-          <h3 className="mt-1 font-display text-2xl font-normal text-stone-900 dark:text-stone-100 sm:text-3xl">
+          <h3 className="mt-1 font-display text-2xl font-normal text-stone-900 sm:text-3xl dark:text-stone-100">
             {isArabic ? 'احسب العائد والنمو الاستثماري' : 'Simulate Yield & Capital Growth'}
           </h3>
         </div>
@@ -146,7 +146,7 @@ export function RoiCalculatorWidget({
         </div>
 
         {/* Right Output Cards */}
-        <div className="rounded-xl border border-stone-200/60 bg-stone-50/80 p-6 dark:border-stone-800 dark:bg-stone-950/60 lg:col-span-6">
+        <div className="rounded-xl border border-stone-200/60 bg-stone-50/80 p-6 lg:col-span-6 dark:border-stone-800 dark:bg-stone-950/60">
           <div className="grid grid-cols-2 gap-4">
             {/* Net Yield Card */}
             <div className="rounded-lg border border-stone-200/80 bg-white p-4 dark:border-stone-800 dark:bg-stone-900">
@@ -157,7 +157,7 @@ export function RoiCalculatorWidget({
               <p className="mt-2 text-2xl font-bold text-emerald-700 dark:text-emerald-400">
                 {simulation.netYieldPercentage}%
               </p>
-              <p className="text-[11px] text-stone-400 mt-0.5">RERA Benchmarked</p>
+              <p className="mt-0.5 text-[11px] text-stone-400">RERA Benchmarked</p>
             </div>
 
             {/* Monthly Mortgage Card */}
@@ -169,7 +169,7 @@ export function RoiCalculatorWidget({
               <p className="mt-2 text-2xl font-bold text-stone-900 dark:text-stone-100">
                 {formatCurrency(simulation.monthlyMortgagePayment)}
               </p>
-              <p className="text-[11px] text-stone-400 mt-0.5">25-Yr Mortgage</p>
+              <p className="mt-0.5 text-[11px] text-stone-400">25-Yr Mortgage</p>
             </div>
 
             {/* 5-Year Equity Growth Card */}

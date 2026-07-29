@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { ShieldCheck, TrendingUp, Building2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 interface TransactionItem {
   id: string;
@@ -99,7 +98,7 @@ export function LiveTransactionTicker({
             {currentTx.amount}
           </span>
 
-          <span className="hidden rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 md:inline-flex md:items-center md:gap-1">
+          <span className="hidden rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800 md:inline-flex md:items-center md:gap-1 dark:bg-emerald-950/60 dark:text-emerald-300">
             <ShieldCheck className="size-3" />
             {isArabic ? 'مسجل' : 'DLD Verified'}
           </span>

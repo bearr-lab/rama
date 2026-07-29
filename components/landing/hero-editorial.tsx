@@ -22,7 +22,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
         loop
         playsInline
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 size-full object-cover"
         poster="/images/trust/rera-hero.png"
       >
         <source src="/videos/rama-hero-bg.mp4" type="video/mp4" />
@@ -30,7 +30,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
 
       {/* Gradient overlay to ensure text contrast without blurring */}
       <div className="absolute inset-0 bg-black/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
       {/* Content — anchored to the bottom */}
       <Container
@@ -38,12 +38,12 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
         padding="xl"
         className="relative z-10 flex h-full flex-col justify-end pb-12 md:pb-24"
       >
-        <div className="flex flex-col items-center gap-10 w-full">
+        <div className="flex w-full flex-col items-center gap-10">
           
           {/* Centered Text Block */}
-          <div className="w-full max-w-4xl flex flex-col items-center text-center space-y-4 md:space-y-6">
+          <div className="flex w-full max-w-4xl flex-col items-center space-y-4 text-center md:space-y-6">
             {/* Headline */}
-            <h1 className="font-display text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-2xl">
+            <h1 className="font-display text-5xl leading-1.05 tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl">
               {isArabic ? (
                 <>
                   عقارات{' '}
@@ -64,7 +64,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
             </h1>
 
             {/* Subtitle — one clean line */}
-            <p className="max-w-2xl mx-auto text-base font-medium leading-relaxed text-white/90 md:text-lg drop-shadow-md">
+            <p className="mx-auto max-w-2xl text-base font-medium leading-relaxed text-white/90 drop-shadow-md md:text-lg">
               {isArabic
                 ? 'مجموعة منتقاة من أروع العقارات، موثقة بالكامل من دائرة الأراضي والأملاك.'
                 : 'A curated collection of verified properties, powered by DLD transparency.'}
@@ -72,8 +72,8 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
           </div>
 
           {/* Centered Search and Stats */}
-          <div className="flex w-full flex-col items-center justify-center space-y-6 mt-4">
-            <div className="w-full max-w-[500px]">
+          <div className="mt-4 flex w-full flex-col items-center justify-center space-y-6">
+            <div className="w-full max-w-125">
               <SearchBar variant="hero" locale={locale as 'en' | 'ar'} />
             </div>
 
