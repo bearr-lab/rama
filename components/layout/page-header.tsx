@@ -87,7 +87,6 @@ export function PageHeader({
             fill
             sizes="100vw"
             className="object-cover object-center"
-            unoptimized
             priority
           />
         ) : null}

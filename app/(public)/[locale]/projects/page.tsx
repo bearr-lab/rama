@@ -100,12 +100,12 @@ export default async function ProjectsPage({
   const { locale } = await params;
   const isArabic = locale === 'ar';
 
-  // Fetch cinematic hero video
-  const heroVideoUrl = await getHeroVideo('Dubai modern architecture skyscraper drone');
+  // Fetch cinematic hero video and Bento Grid imagery in parallel
+  const [heroVideoUrl, pexelsRes] = await Promise.all([
+    getHeroVideo('Dubai modern architecture skyscraper drone'),
+    searchPhotos('dubai modern architecture luxury building', 5),
+  ]);
   const heroImageUrl = heroVideoUrl ? null : await getHeroImage('Dubai skyscraper sunset 8k', '/images/hero/projects.png');
-
-  // Fetch dynamic imagery from Pexels API for the Bento Grid
-  const pexelsRes = await searchPhotos('dubai modern architecture luxury building', 5);
   const pexelsPhotos = pexelsRes?.photos || [];
 
   // Merge Pexels photos into the mock data

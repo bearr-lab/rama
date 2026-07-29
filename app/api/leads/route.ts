@@ -29,16 +29,19 @@ export async function POST(req: Request) {
 
     const { error } = await supabase
       .from('leads')
-      .insert([
-        {
-          first_name: firstName,
-          last_name: lastName,
-          email: validatedData.email,
-          phone: validatedData.phone,
-          ai_notes: validatedData.intent || 'General Inquiry',
-          source: 'ai_concierge'
-        }
-      ]);
+      .upsert(
+        [
+          {
+            first_name: firstName,
+            last_name: lastName,
+            email: validatedData.email,
+            phone: validatedData.phone,
+            ai_notes: validatedData.intent || 'General Inquiry',
+            source: 'ai_concierge',
+          },
+        ],
+        { onConflict: 'email' },
+      );
 
     if (error) {
       console.error('Supabase Insert Error:', error);

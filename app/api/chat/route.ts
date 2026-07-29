@@ -8,6 +8,16 @@ export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
 
+    if (!Array.isArray(messages) || messages.length === 0) {
+      return new Response(JSON.stringify({ error: 'Invalid or empty messages array' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Cap chat history to last 20 messages to prevent quota abuse
+    const sanitizedMessages = messages.slice(-20);
+
     const openrouter = createOpenAI({
       baseURL: 'https://openrouter.ai/api/v1',
       apiKey: process.env.OPENROUTER_API_KEY || 'sk-or-v1-dummy1234567890',
@@ -37,7 +47,7 @@ When a user expresses serious interest, wants to book a viewing, or is ready to 
     try {
       result = await streamText({
         model: openrouter(process.env.OPENROUTER_PRIMARY_MODEL || 'meta-llama/llama-3.3-70b-instruct:free'),
-        messages,
+        messages: sanitizedMessages,
         system: systemPrompt,
         tools,
       });
@@ -46,7 +56,7 @@ When a user expresses serious interest, wants to book a viewing, or is ready to 
       try {
         result = await streamText({
           model: openrouter(process.env.OPENROUTER_BACKUP_MODEL || 'mistralai/mistral-7b-instruct:free'),
-          messages,
+          messages: sanitizedMessages,
           system: systemPrompt,
           tools,
         });
