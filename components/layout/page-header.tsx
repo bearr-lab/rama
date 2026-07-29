@@ -94,7 +94,7 @@ export function PageHeader({
 
         {/* Gradient overlay — matches landing hero */}
         <div className="absolute inset-0 bg-black/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
       </div>
 
       {/* ── Content Layer — anchored to bottom ── */}
@@ -117,7 +117,7 @@ export function PageHeader({
         {/* Title */}
         <h1
           className={cn(
-            'font-display text-5xl leading-[1.05] font-normal tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl',
+            'font-display text-5xl leading-none font-normal tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl',
             !isEditorial && 'justify-center',
           )}
         >
