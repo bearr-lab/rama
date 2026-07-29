@@ -53,7 +53,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
             {/* Phone frame */}
             <div className="relative rounded-[3.5rem] bg-ink-bg p-3 shadow-2xl ring-1 ring-border">
               {/* Screen */}
-              <div className="aspect-[9/19] overflow-hidden rounded-[3rem] bg-background">
+              <div className="aspect-9/19 overflow-hidden rounded-[3rem] bg-background">
                 {/* Chat UI mockup inside phone */}
                 <div className="flex h-full flex-col">
                   {/* Chat header */}
@@ -71,7 +71,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                   <div className="flex-1 space-y-4 overflow-hidden p-4">
                     {/* AI message */}
                     <div className="flex gap-2">
-                      <div className="flex size-6 flex-shrink-0 items-center justify-center rounded-full bg-fjord">
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-fjord">
                         <Bot className="size-3 text-white" />
                       </div>
                       <div className="max-w-[85%] rounded-2xl rounded-tl-none bg-surface-subtle px-4 py-3 text-ink">
@@ -93,7 +93,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
 
                     {/* AI response with property card */}
                     <div className="flex gap-2">
-                      <div className="flex size-6 flex-shrink-0 items-center justify-center rounded-full bg-fjord">
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-fjord">
                         <Bot className="size-3 text-white" />
                       </div>
                       <div className="max-w-[90%] space-y-2">
