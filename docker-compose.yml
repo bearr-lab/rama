@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # ── Next.js 16 Production Web Application ──
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rama-web
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - REDIS_URL=redis://redis:6379
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-https://pginambzeqzqdrkmvdaz.supabase.co}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBnaW5hbWJ6ZXF6cWRya212ZGF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ5MTYxODAsImV4cCI6MjEwMDQ5MjE4MH0.cN5tWM4z37SUWQZTauP8Re9E44YC36rUacBoNXbwIec}
+    depends_on:
+      - redis
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - rama-mesh
+
+  # ── Isolated Storybook Component Documentation Server ──
+  storybook:
+    build:
+      context: .
+      dockerfile: Dockerfile.storybook
+    container_name: rama-storybook
+    restart: unless-stopped
+    ports:
+      - "6006:6006"
+    networks:
+      - rama-mesh
+
+  # ── High-Speed Redis Event & Response Cache ──
+  redis:
+    image: redis:7-alpine
+    container_name: rama-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - rama-mesh
+
+networks:
+  rama-mesh:
+    driver: bridge
+
+volumes:
+  redis-data:

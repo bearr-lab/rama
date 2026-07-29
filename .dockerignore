@@ -1,0 +1,35 @@
+# Build output & caches
+.next/
+out/
+build/
+storybook-static/
+*.log
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Git
+.git/
+.gitignore
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+*.pem
+
+# Anti-Gravity / IDE Artifacts
+brain/
+.agents/
+.superdesign/
+scaffold_v2.ps1
+changed_files.txt
+globals_copy.txt
+eslint_errors.log

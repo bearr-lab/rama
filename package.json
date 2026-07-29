@@ -15,6 +15,10 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "chromatic --exit-zero-on-changes",
+    "docker:build": "docker build -t rama-web .",
+    "docker:dev": "docker compose -f docker-compose.dev.yml up",
+    "docker:prod": "docker compose up -d",
+    "docker:storybook": "docker compose up storybook",
     "prepare": "husky"
   },
   "dependencies": {
