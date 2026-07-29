@@ -21,6 +21,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
         muted
         loop
         playsInline
+        aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover"
         poster="/images/trust/rera-hero.png"
       >

@@ -1,0 +1,118 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { ShieldCheck, TrendingUp, Building2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+interface TransactionItem {
+  id: string;
+  location: string;
+  type: string;
+  amount: string;
+  timeAgo: string;
+  verified: boolean;
+}
+
+const RECENT_TRANSACTIONS: TransactionItem[] = [
+  {
+    id: 'tx-1',
+    location: 'Palm Jumeirah',
+    type: '4BR Signature Villa',
+    amount: 'AED 24,500,000',
+    timeAgo: '2m ago',
+    verified: true,
+  },
+  {
+    id: 'tx-2',
+    location: 'Downtown Dubai',
+    type: '2BR Boulevard Penthouse',
+    amount: 'AED 4,850,000',
+    timeAgo: '6m ago',
+    verified: true,
+  },
+  {
+    id: 'tx-3',
+    location: 'Dubai Hills Estate',
+    type: '5BR Golf Mansion',
+    amount: 'AED 16,200,000',
+    timeAgo: '12m ago',
+    verified: true,
+  },
+  {
+    id: 'tx-4',
+    location: 'Dubai Creek Harbour',
+    type: '3BR Waterfront Apt',
+    amount: 'AED 3,650,000',
+    timeAgo: '18m ago',
+    verified: true,
+  },
+  {
+    id: 'tx-5',
+    location: 'Jumeirah Beach Residence',
+    type: '1BR Sea View Loft',
+    amount: 'AED 2,150,000',
+    timeAgo: '24m ago',
+    verified: true,
+  },
+];
+
+export function LiveTransactionTicker({
+  isArabic = false,
+}: {
+  isArabic?: boolean;
+}) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % RECENT_TRANSACTIONS.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentTx = RECENT_TRANSACTIONS[activeIndex];
+
+  return (
+    <div className="w-full border-y border-stone-200/60 bg-stone-50/80 py-2.5 backdrop-blur-sm dark:border-stone-800 dark:bg-stone-900/60">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Left Label */}
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
+          </span>
+          <span className="hidden sm:inline">
+            {isArabic ? 'تحديثات دائرة الأراضي المباشرة' : 'Live DLD Feed'}
+          </span>
+        </div>
+
+        {/* Center Live Ticker Item */}
+        <div className="flex items-center gap-3 overflow-hidden text-xs sm:text-sm">
+          <div className="flex items-center gap-1.5 font-medium text-stone-900 dark:text-stone-100">
+            <Building2 className="size-3.5 text-stone-500" />
+            <span>{currentTx.location}</span>
+            <span className="text-stone-400">•</span>
+            <span className="text-stone-600 dark:text-stone-400">{currentTx.type}</span>
+          </div>
+
+          <span className="font-semibold text-emerald-800 dark:text-emerald-300">
+            {currentTx.amount}
+          </span>
+
+          <span className="hidden rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 md:inline-flex md:items-center md:gap-1">
+            <ShieldCheck className="size-3" />
+            {isArabic ? 'مسجل' : 'DLD Verified'}
+          </span>
+
+          <span className="text-[11px] text-stone-400">{currentTx.timeAgo}</span>
+        </div>
+
+        {/* Right Metric */}
+        <div className="hidden items-center gap-1.5 text-xs text-stone-500 lg:flex">
+          <TrendingUp className="size-3.5 text-emerald-600" />
+          <span>{isArabic ? 'حجم تداول اليوم: 412M AED' : "Today's Volume: AED 412M"}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
