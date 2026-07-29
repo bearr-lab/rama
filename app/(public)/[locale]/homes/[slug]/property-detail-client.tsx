@@ -15,7 +15,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronDown,
-  Share2,
   Heart,
   Compass,
   CalendarDays,
@@ -190,7 +189,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/10" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-black/10" />
 
         {/* Top-right: action cluster */}
         <div className="absolute top-6 right-6 z-20 flex items-center gap-2">
@@ -275,7 +274,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
             {/* Action Button */}
             <Button
               onClick={() => setIsBookModalOpen(true)}
-              className="hover:scale-1.02 w-full rounded-md bg-white py-6 text-sm font-bold text-black transition-transform"
+              className="w-full rounded-md bg-white py-6 text-sm font-bold text-black transition-transform hover:scale-105"
             >
               <CalendarDays className="mr-2 size-4" />
               {isArabic ? 'حجز معاينة' : 'Book Viewing'}
@@ -284,7 +283,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
         </div>
 
         {/* ─── Bottom Center: Room Navigation Pill ─── */}
-        <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 [scrollbar-width:none] items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl [&::-webkit-scrollbar]:hidden">
+        <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 scrollbar-none items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl [&::-webkit-scrollbar]:hidden">
           {Array.from(new Set(['all', ...roomPhotos.map(p => p.category)])).map((category) => {
             const isActive = activeRoomCategory === category;
             const meta = CATEGORY_META[category] || { en: category, ar: category, icon: null };
