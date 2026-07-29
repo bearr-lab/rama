@@ -446,7 +446,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   )}
                   <div className="flex justify-between py-1">
                     <span>{isArabic ? 'العائد الاستثماري المتوقع' : 'Projected Cap Rate:'}</span>
-                    <span className="font-bold text-emerald-600 text-ink">{property.cap_rate_percentage || '6.8'}%</span>
+                    <span className="font-bold text-emerald-600">{property.cap_rate_percentage || '6.8'}%</span>
                   </div>
                 </div>
 
