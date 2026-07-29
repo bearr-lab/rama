@@ -9,9 +9,9 @@ WORKDIR /app
 
 # ── Stage 2: Dependencies installer ──
 FROM base AS deps
-RUN apk add --no-libc6-compat
+ENV HUSKY=0
 COPY package.json pnpm-lock.yaml ./
-RUN pnpm i --frozen-lockfile
+RUN pnpm i --frozen-lockfile --ignore-scripts
 
 # ── Stage 3: Builder ──
 FROM base AS builder
