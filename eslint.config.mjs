@@ -41,6 +41,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Build artifacts & utility scripts:
+    "storybook-static/**",
+    "fix-lint.cjs",
   ]),
 ]);
 

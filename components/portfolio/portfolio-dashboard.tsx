@@ -188,7 +188,7 @@ export function PortfolioDashboard() {
             <span>Total Asset Value</span>
             <Building2 className="h-4 w-4 text-fjord" />
           </div>
-          <div className="text-display-sm font-display font-mono font-extrabold text-ink">
+          <div className="text-display-sm font-mono font-extrabold text-ink">
             <Ticker value={totalValuation / 1000000} prefix="AED " suffix="M" decimals={2} />
           </div>
           <div className="text-caption flex items-center gap-1.5 font-semibold text-emerald-500">
@@ -205,7 +205,7 @@ export function PortfolioDashboard() {
             <span>Monthly Rental Cashflow</span>
             <Wallet className="h-4 w-4 text-emerald-500" />
           </div>
-          <div className="text-display-sm font-display font-mono font-extrabold text-emerald-600 dark:text-emerald-400">
+          <div className="text-display-sm font-mono font-extrabold text-emerald-600 dark:text-emerald-400">
             <Ticker value={monthlyCashflow} prefix="AED " decimals={0} />
           </div>
           <p className="text-caption text-muted">
@@ -218,7 +218,7 @@ export function PortfolioDashboard() {
             <span>Average Net Yield</span>
             <PieChart className="h-4 w-4 text-sky-500" />
           </div>
-          <div className="text-display-sm font-display font-mono font-extrabold text-sky-500">
+          <div className="text-display-sm font-mono font-extrabold text-sky-500">
             <Ticker value={Number(avgYield)} suffix="%" decimals={2} />
           </div>
           <p className="text-caption text-muted">
@@ -534,7 +534,7 @@ export function PortfolioDashboard() {
               <span className="text-caption font-bold text-muted uppercase">
                 Gross Annual Rental Income
               </span>
-              <p className="text-h2 font-display font-mono font-extrabold text-emerald-500">
+              <p className="text-h2 font-mono font-extrabold text-emerald-500">
                 AED {(monthlyCashflow * 12).toLocaleString()}
               </p>
               <span className="block text-[11px] text-muted">
@@ -546,7 +546,7 @@ export function PortfolioDashboard() {
               <span className="text-caption font-bold text-muted uppercase">
                 Total Annual Operating Expenses
               </span>
-              <p className="text-h2 font-display font-mono font-extrabold text-rose-500">
+              <p className="text-h2 font-mono font-extrabold text-rose-500">
                 AED 148,500
               </p>
               <span className="block text-[11px] text-muted">
@@ -558,7 +558,7 @@ export function PortfolioDashboard() {
               <span className="text-caption font-bold text-muted uppercase">
                 Net Annual Cash Operating Income
               </span>
-              <p className="text-h2 font-display font-mono font-extrabold text-sky-500">
+              <p className="text-h2 font-mono font-extrabold text-sky-500">
                 AED {(monthlyCashflow * 12 - 148500).toLocaleString()}
               </p>
               <span className="block text-[11px] text-muted">

@@ -1,3 +1,4 @@
+/* eslint-disable */
 const { ESLint } = require("eslint");
 const fs = require("fs");
 

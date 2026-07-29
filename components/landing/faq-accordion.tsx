@@ -86,7 +86,7 @@ export function FAQAccordion({
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-0 text-sm leading-relaxed text-muted-foreground border-t border-border/30 mt-2 pt-4">
+                  <div className="mt-2 border-t border-border/30 px-6 pb-6 pt-4 text-sm leading-relaxed text-muted-foreground">
                     {faq.answer}
                   </div>
                 )}
