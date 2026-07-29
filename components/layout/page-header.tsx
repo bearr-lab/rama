@@ -59,19 +59,18 @@ export function PageHeader({
     );
   }
 
-  // ─── Cinematic Hero (image or video background) ───
+  // ─── Cinematic Hero (clean, minimal — matches landing page) ───
   const isEditorial = variant === 'editorial';
 
   return (
     <Section
       className={cn(
-        'relative mt-0 flex min-h-145 flex-col overflow-hidden border-none py-28 shadow-none md:py-36',
-        isEditorial ? 'justify-end' : 'justify-center',
+        'relative mt-0 flex min-h-145 flex-col justify-end overflow-hidden border-none py-0 shadow-none',
         className,
       )}
     >
       {/* ── Background Layer ── */}
-      <div className="absolute inset-0 z-0 bg-black">
+      <div className="absolute inset-0 z-0">
         {backgroundVideo ? (
           <video
             src={backgroundVideo}
@@ -79,7 +78,7 @@ export function PageHeader({
             loop
             muted
             playsInline
-            className="size-full object-cover object-center opacity-50"
+            className="size-full object-cover object-center"
           />
         ) : backgroundImage ? (
           <Image
@@ -87,68 +86,60 @@ export function PageHeader({
             alt={title}
             fill
             sizes="100vw"
-            className="object-cover object-center opacity-50 transition-transform duration-1000"
+            className="object-cover object-center"
             unoptimized
             priority
           />
         ) : null}
 
-        {/* Cinematic gradient overlay */}
-        <div className="absolute inset-0 bg-linear-to-b from-black/50 via-black/20 to-surface" />
-        {/* Side vignette for depth */}
-        <div className="absolute inset-0 bg-linear-to-r from-black/30 via-transparent to-black/30" />
+        {/* Gradient overlay — matches landing hero */}
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
       </div>
 
-      {/* ── Content Layer ── */}
+      {/* ── Content Layer — anchored to bottom ── */}
       <Container
         size="xl"
         className={cn(
-          'relative z-10',
-          !isEditorial && 'mx-auto flex max-w-4xl flex-col items-center',
+          'relative z-10 pb-12 md:pb-24',
+          isEditorial
+            ? 'max-w-4xl'
+            : 'mx-auto flex max-w-4xl flex-col items-center text-center',
         )}
       >
-        {/* Glassmorphic Card */}
-        <div
+        {/* Badge — minimal Nordic label */}
+        {badge && (
+          <div className="mb-6 inline-flex items-center gap-2 border border-white/30 px-3 py-1 text-[11px] font-semibold tracking-widest text-white/80 uppercase">
+            {badge}
+          </div>
+        )}
+
+        {/* Title */}
+        <h1
           className={cn(
-            // Premium glassmorphism: frosted, luminous edge, depth
-            'rounded-2xl border border-white/15 bg-white/8 p-8 shadow-2xl shadow-black/20 backdrop-blur-2xl backdrop-saturate-150 md:p-12',
-            isEditorial ? 'max-w-3xl space-y-6' : 'flex w-full flex-col items-center space-y-4 text-center',
+            'font-display text-5xl leading-[1.05] font-normal tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl',
+            !isEditorial && 'justify-center',
           )}
         >
-          {/* Badge */}
-          {badge && (
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-widest text-white/90 uppercase backdrop-blur-md">
-              {badge}
-            </div>
-          )}
+          {icon && <span className="mr-3 text-white/80">{icon}</span>}
+          {title}
+        </h1>
 
-          {/* Title */}
-          <h1
+        {/* Description */}
+        {description && (
+          <p
             className={cn(
-              'font-display text-4xl leading-tight font-normal tracking-tight text-white drop-shadow-md md:text-5xl lg:text-6xl',
-              !isEditorial && 'justify-center',
+              'mt-6 max-w-2xl text-base leading-relaxed font-medium text-white/90 drop-shadow-md md:text-lg',
+              !isEditorial && 'mx-auto',
             )}
           >
-            {icon && <span className="mr-3 text-white/80">{icon}</span>}
-            {title}
-          </h1>
-
-          {/* Description */}
-          {description && (
-            <p
-              className={cn(
-                'max-w-2xl text-base leading-relaxed font-light text-white/85 md:text-lg',
-                !isEditorial && 'mx-auto',
-              )}
-            >
-              {description}
-            </p>
-          )}
-        </div>
+            {description}
+          </p>
+        )}
 
         {/* Children slot (search bars, filters, CTAs) */}
         {children && (
-          <div className={cn('w-full pt-6', !isEditorial && 'flex flex-col items-center')}>
+          <div className={cn('mt-8 w-full', !isEditorial && 'flex flex-col items-center')}>
             {children}
           </div>
         )}
