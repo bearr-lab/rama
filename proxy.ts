@@ -1,11 +1,11 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
-import { updateSession } from '@/lib/supabase/middleware';
+import { updateSession } from '@/lib/supabase/update-session';
 
 const intlMiddleware = createMiddleware(routing);
 
-export default async function proxy(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   // 1. Generate response using next-intl middleware for locale routing
   const intlResponse = intlMiddleware(request);
 
