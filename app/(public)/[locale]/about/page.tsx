@@ -22,37 +22,37 @@ export default async function AboutPage({
             ? 'نربط المستثمرين العالميين بأرقى العقارات في دبي.'
             : 'Connecting global investors with Dubai’s finest real estate.'
         }
-        icon={<Info className="h-8 w-8" />}
+        icon={<Info className="size-8" />}
       />
 
-      <Section spacing="lg" className="min-h-[60vh] bg-surface overflow-hidden relative">
+      <Section spacing="lg" className="relative min-h-[60vh] overflow-hidden bg-surface">
         <Container size="xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             
             <BlurFade delay={0.25} inView>
               <div className="space-y-8">
-                <h2 className="text-4xl font-display font-semibold text-ink leading-tight">
+                <h2 className="font-display text-4xl leading-tight font-semibold text-ink">
                   {isArabic ? 'الوصول العالمي، الخبرة المحلية' : 'Global Reach, Local Expertise'}
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-lg leading-relaxed text-muted-foreground">
                   {isArabic 
                     ? 'في راما، نحن ندرك أن الاستثمار في عقارات دبي هو قرار عالمي. توفر منصتنا وصولاً غير مسبوق إلى العقارات الفاخرة، مدعومة بالبيانات والشفافية التامة والتصميم الذي يعطي الأولوية للوضوح.' 
                     : 'At RAMA, we understand that investing in Dubai real estate is a global decision. Our platform provides unprecedented access to luxury properties, backed by data, complete transparency, and a design that prioritizes clarity.'}
                 </p>
-                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-border/50">
+                <div className="grid grid-cols-2 gap-8 border-t border-border/50 pt-8">
                   <div>
-                    <h4 className="text-3xl font-display font-bold text-fjord mb-2">150+</h4>
-                    <p className="text-sm text-muted-foreground uppercase tracking-widest">{isArabic ? 'دولة ممثلة' : 'Countries Represented'}</p>
+                    <h4 className="mb-2 font-display text-3xl font-bold text-fjord">150+</h4>
+                    <p className="text-sm tracking-widest text-muted-foreground uppercase">{isArabic ? 'دولة ممثلة' : 'Countries Represented'}</p>
                   </div>
                   <div>
-                    <h4 className="text-3xl font-display font-bold text-fjord mb-2">$2B+</h4>
-                    <p className="text-sm text-muted-foreground uppercase tracking-widest">{isArabic ? 'معاملات' : 'In Transactions'}</p>
+                    <h4 className="mb-2 font-display text-3xl font-bold text-fjord">$2B+</h4>
+                    <p className="text-sm tracking-widest text-muted-foreground uppercase">{isArabic ? 'معاملات' : 'In Transactions'}</p>
                   </div>
                 </div>
               </div>
             </BlurFade>
 
-            <BlurFade delay={0.5} inView className="relative flex items-center justify-center h-[600px]">
+            <BlurFade delay={0.5} inView className="relative flex h-150 items-center justify-center">
               <Globe className="opacity-80 mix-blend-multiply dark:mix-blend-screen" />
             </BlurFade>
 

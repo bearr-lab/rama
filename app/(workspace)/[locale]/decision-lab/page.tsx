@@ -22,7 +22,7 @@ export default async function DecisionLabPage({
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'مختبر القرار والمفاضلات' : 'Decision Lab & Trade-offs'}
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             {isArabic
               ? 'قارن بين العقارات في القائمة المختصرة جنبًا إلى جنب مع تحليل العوائد والمخاطر.'
               : 'Compare your shortlisted properties side by side with financial trade-off analysis and risk weighting.'}

@@ -53,7 +53,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
             {/* Phone frame */}
             <div className="relative rounded-[3.5rem] bg-ink-bg p-3 shadow-2xl ring-1 ring-border">
               {/* Screen */}
-              <div className="aspect-[9/19] overflow-hidden rounded-[3rem] bg-white">
+              <div className="aspect-[9/19] overflow-hidden rounded-[3rem] bg-background">
                 {/* Chat UI mockup inside phone */}
                 <div className="flex h-full flex-col">
                   {/* Chat header */}
@@ -104,7 +104,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                           </p>
                         </div>
                         {/* Mini property card */}
-                        <div className="overflow-hidden rounded-none border border-border bg-white shadow-sm">
+                        <div className="overflow-hidden rounded-none border border-border bg-background shadow-sm">
                           <div className="relative aspect-[16/9] bg-surface-subtle">
                             <Image
                               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600"
@@ -143,7 +143,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
             </div>
 
             {/* Floating elements around phone */}
-            <div className="absolute -top-4 -right-4 rounded-none border border-border bg-white p-3 shadow-lg">
+            <div className="absolute -top-4 -right-4 rounded-none border border-border bg-background p-3 shadow-lg">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center bg-verified-soft">
                   <Check className="h-4 w-4 text-verified" />
@@ -157,7 +157,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
               </div>
             </div>
 
-            <div className="absolute -bottom-4 -left-4 rounded-none border border-border bg-white p-3 shadow-lg">
+            <div className="absolute -bottom-4 -left-4 rounded-none border border-border bg-background p-3 shadow-lg">
               <div className="flex items-center gap-2">
                 <div className="flex h-8 w-8 items-center justify-center bg-fjord-soft">
                   <Sparkles className="h-4 w-4 text-fjord" />

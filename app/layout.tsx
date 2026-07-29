@@ -67,7 +67,7 @@ export default async function RootLayout({
   // provided by the (public)/[locale] and (workspace)/[locale] layouts.
   // suppressHydrationWarning prevents theme-flicker mismatch on <html>.
   return (
-    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning>
+    <html lang={locale} dir={locale === 'ar' ? 'rtl' : 'ltr'} suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         suppressHydrationWarning
         className={cn(

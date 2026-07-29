@@ -39,6 +39,7 @@ export function RamaLogo({
     <motion.div
       className={cn(
         'relative inline-flex flex-col justify-center select-none cursor-pointer group py-1',
+        isDark && 'drop-shadow-lg',
         className,
       )}
       initial="initial"
@@ -117,9 +118,9 @@ export function RamaLogo({
           >
             <span
               className={cn(
-                'font-sans font-medium tracking-[0.42em] uppercase leading-none transition-colors duration-300',
+                'font-sans tracking-[0.42em] uppercase leading-none transition-colors duration-300',
                 subTextSizes[size],
-                isDark ? 'text-white/70' : 'text-text dark:text-white/70',
+                isDark ? 'text-white font-bold drop-shadow-md' : 'text-text font-medium dark:text-white/70',
               )}
             >
               REAL ESTATE

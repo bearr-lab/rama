@@ -64,7 +64,7 @@ export default async function ShortlistPage({
       {isDemo && (
         <div className="flex items-center justify-between rounded-xl border border-border/60 bg-surface-subtle p-4 text-xs text-ink shadow-xs">
           <div className="flex items-center gap-2.5 font-medium">
-            <Sparkles className="h-4 w-4 shrink-0 text-fjord" />
+            <Sparkles className="size-4 shrink-0 text-fjord" />
             <span>
               <strong>{isArabic ? 'وضع التقييم التجريبي:' : 'Sandbox Evaluation Mode:'}</strong>{' '}
               {isArabic
@@ -86,7 +86,7 @@ export default async function ShortlistPage({
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'قائمتي المفضلة والمقارنات' : 'Saved Shortlist & Comps'}
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             {isArabic
               ? 'العقارات التي قمت بحفظها للمراجعة الدقيقة ومقارنة العوائد الاستثمارية جنباً إلى جنب.'
               : "Properties you've saved for deeper due diligence, financial modeling, and side-by-side comparison."}
@@ -106,28 +106,28 @@ export default async function ShortlistPage({
       {properties.length > 0 && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <BlurFade delay={0.1}>
-            <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+            <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
                 {isArabic ? 'إجمالي قيمة القائمة' : 'Total Valuation'}
               </span>
               <div className="mt-3 flex items-baseline justify-between">
-                <span className="font-display text-3xl font-semibold text-ink flex items-baseline">
-                  <span className="text-xl font-sans mr-1">AED</span>
+                <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
+                  <span className="mr-1 font-sans text-xl">AED</span>
                   <NumberTicker value={Number(((properties.reduce((sum, p) => sum + (p.price || 0), 0)) / 1000000).toFixed(1))} decimalPlaces={1} suffix="M" />
                 </span>
                 <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                   +14.2% YoY
                 </span>
               </div>
-              <p className="mt-1 text-xs text-muted-foreground font-light">
+              <p className="mt-1 text-xs font-light text-muted-foreground">
                 {properties.length} {isArabic ? 'عقارات في القائمة' : 'Saved luxury assets'}
               </p>
             </div>
           </BlurFade>
 
           <BlurFade delay={0.2}>
-            <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+            <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
                 {isArabic ? 'متوسط صافي العائد' : 'Avg Projected Yield'}
               </span>
               <div className="mt-3 flex items-baseline justify-between">
@@ -138,15 +138,15 @@ export default async function ShortlistPage({
                   Above Dubai Avg
                 </span>
               </div>
-              <p className="mt-1 text-xs text-muted-foreground font-light">
+              <p className="mt-1 text-xs font-light text-muted-foreground">
                 {isArabic ? 'تقديرات DLD المستندة للبيانات' : 'Validated by DLD historical data'}
               </p>
             </div>
           </BlurFade>
 
           <BlurFade delay={0.3}>
-            <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+            <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
                 {isArabic ? 'معدل موثوقية DLD' : 'Avg DLD Trust Score'}
               </span>
               <div className="mt-3 flex items-baseline justify-between">
@@ -159,7 +159,7 @@ export default async function ShortlistPage({
                   </AnimatedShinyText>
                 </span>
               </div>
-              <p className="mt-1 text-xs text-muted-foreground font-light">
+              <p className="mt-1 text-xs font-light text-muted-foreground">
                 {isArabic ? 'سندات ملكية وحسابات ضمان موثقة' : 'Title deeds & Escrow accounts active'}
               </p>
             </div>

@@ -7,8 +7,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, TrendingUp } from 'lucide-react';
 
 import { Container } from '@/components/layout/container';
-import { MagneticButton } from '@/components/ui/magnetic-button';
-import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 interface Insight {
@@ -38,60 +36,20 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
       ? insights
       : insights.filter((i) => i.category === activeCategory);
 
-  // The hero article is the first insight
-  const heroInsight = insights[0];
-  const gridInsights = filteredInsights.filter(i => activeCategory === 'All' ? i.id !== heroInsight.id : true);
-
   return (
-    <div className="bg-surface min-h-screen pb-24">
-      {/* 1. Cinematic Hero Featured Article */}
-      <section className="relative h-[80vh] min-h-[600px] w-full overflow-hidden">
-        <Image
-          src={heroInsight.image || "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2000"}
-          alt={heroInsight.title}
-          fill
-          sizes="100vw"
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-        
-        <Container size="xl" className="relative h-full flex flex-col justify-end pb-24 z-10">
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-md">
-              <span className="flex h-2 w-2 rounded-full bg-fjord animate-pulse" />
-              {isArabic ? 'تقرير مميز' : 'Featured Report'}
-            </div>
-            <h1 className="font-display text-4xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl mb-6">
-              {heroInsight.title}
-            </h1>
-            <p className="text-lg text-white/80 md:text-xl mb-10 max-w-2xl">
-              {heroInsight.description}
-            </p>
-            <MagneticButton
-              render={
-                <Link
-                  href={`/${locale}/insights/${heroInsight.id}`}
-                  className="inline-flex items-center justify-center rounded-none h-9 px-6 bg-white text-ink hover:bg-white/90 font-bold tracking-widest uppercase text-[11px] transition-colors"
-                >
-                  {isArabic ? 'قراءة التقرير الكامل' : 'Read Full Report'}
-                </Link>
-              }
-            />
-          </div>
-        </Container>
-      </section>
+    <div className="bg-surface pb-24">
 
       {/* 2. Interactive Category Filters */}
-      <div className="sticky top-16 z-40 w-full border-b border-border bg-surface/80 backdrop-blur-2xl saturate-[1.8]">
+      <div className="sticky top-16 z-40 w-full border-b border-border bg-surface/80 saturate-200 backdrop-blur-2xl">
         <Container size="xl">
-          <div className="flex items-center gap-6 overflow-x-auto py-4 scrollbar-hide">
+          {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+          <div className="scrollbar-hide flex items-center gap-6 overflow-x-auto py-4">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={cn(
-                  'whitespace-nowrap text-sm font-medium transition-colors hover:text-fjord',
+                  'text-sm font-medium whitespace-nowrap transition-colors hover:text-fjord',
                   activeCategory === cat ? 'text-fjord' : 'text-muted-foreground'
                 )}
               >
@@ -110,7 +68,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
 
       {/* 3. Editorial Bento Grid */}
       <Container size="xl" className="pt-16">
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[300px]">
+        <motion.div layout className="grid auto-rows-75 grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {/* Insert a Data Snapshot Card if we are on 'All' */}
             {activeCategory === 'All' && (
@@ -120,14 +78,14 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
-                className="col-span-1 md:col-span-2 row-span-1 flex flex-col justify-between overflow-hidden rounded-none bg-fjord p-8 text-white shadow-xl relative"
+                className="relative col-span-1 row-span-1 flex flex-col justify-between overflow-hidden rounded-none bg-fjord p-8 text-white shadow-xl md:col-span-2"
               >
                 <div className="absolute top-0 right-0 p-8 opacity-20">
-                  <TrendingUp className="h-32 w-32" />
+                  <TrendingUp className="size-32" />
                 </div>
                 <div>
-                  <div className="text-white/80 text-sm font-medium mb-2">{isArabic ? 'لمحة سريعة عن السوق' : 'Market Snapshot'}</div>
-                  <div className="font-display text-4xl lg:text-5xl font-bold">+6.4% YoY</div>
+                  <div className="mb-2 text-sm font-medium text-white/80">{isArabic ? 'لمحة سريعة عن السوق' : 'Market Snapshot'}</div>
+                  <div className="font-display text-4xl font-bold lg:text-5xl">+6.4% YoY</div>
                 </div>
                 <p className="text-lg text-white/90">
                   {isArabic 
@@ -137,7 +95,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
               </motion.div>
             )}
 
-            {gridInsights.map((insight) => (
+            {filteredInsights.map((insight) => (
               <motion.div
                 layout
                 key={insight.id}
@@ -163,7 +121,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity group-hover:opacity-100" />
                   </div>
                 )}
 
@@ -175,7 +133,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                     {insight.category}
                   </div>
                   <h3 className={cn(
-                    "mb-2 font-display font-semibold transition-colors line-clamp-2",
+                    "mb-2 line-clamp-2 font-display font-semibold transition-colors",
                     insight.image ? "text-white group-hover:text-white/90" : "text-ink group-hover:text-fjord",
                     insight.bentoSpan?.includes('row-span-2') ? "text-2xl md:text-3xl" : "text-xl"
                   )}>
@@ -194,7 +152,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                     "mt-4 flex items-center gap-2 text-sm font-medium transition-transform group-hover:translate-x-1",
                     insight.image ? "text-white" : "text-fjord"
                   )}>
-                    {isArabic ? 'قراءة' : 'Read'} <ArrowRight className="h-4 w-4" />
+                    {isArabic ? 'قراءة' : 'Read'} <ArrowRight className="size-4" />
                   </div>
                 </div>
               </motion.div>

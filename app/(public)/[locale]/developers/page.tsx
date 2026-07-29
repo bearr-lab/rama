@@ -32,16 +32,16 @@ export default async function DevelopersPage({
             ? 'اكتشف أفضل المطورين العقاريين في دبي والمشاريع التي يبنونها.'
             : 'Discover the top real estate developers in Dubai and the iconic projects they build.'
         }
-        icon={<Building className="h-8 w-8" />}
+        icon={<Building className="size-8" />}
       />
 
-      <Section spacing="lg" className="min-h-[60vh] bg-surface overflow-hidden">
+      <Section spacing="lg" className="min-h-[60vh] overflow-hidden bg-surface">
         <Container size="xl" className="py-20">
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
             <Marquee pauseOnHover className="[--duration:20s]">
               {developers.map((dev) => (
-                <div key={dev.name} className="mx-8 flex items-center justify-center p-6 border border-border/50 bg-white/50 backdrop-blur-md rounded-none min-w-[250px]">
-                  <span className="font-display text-4xl font-bold text-fjord opacity-80 tracking-widest">{dev.logo}</span>
+                <div key={dev.name} className="mx-8 flex min-w-[250px] items-center justify-center rounded-none border border-border/50 bg-white/50 p-6 backdrop-blur-md">
+                  <span className="font-display text-4xl font-bold tracking-widest text-fjord opacity-80">{dev.logo}</span>
                 </div>
               ))}
             </Marquee>
@@ -49,7 +49,7 @@ export default async function DevelopersPage({
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-surface"></div>
           </div>
           
-          <div className="mt-32 text-center text-muted-foreground max-w-2xl mx-auto">
+          <div className="mx-auto mt-32 max-w-2xl text-center text-muted-foreground">
             <p className="text-lg">
               {isArabic ? 'نحن نتعاون فقط مع المطورين الموثوقين لضمان تسليم استثماراتك في الوقت المحدد وبأعلى جودة.' : 'We partner exclusively with trusted developers to ensure your investments are delivered on time and to the highest quality standards.'}
             </p>

@@ -16,7 +16,7 @@ export default function ErrorBoundary({
   }, [error]);
 
   return (
-    <div className="flex min-h-[400px] w-full items-center justify-center p-4">
+    <div className="flex min-h-100 w-full items-center justify-center p-4">
       <EmptyState
         variant="error"
         title="Something went wrong"

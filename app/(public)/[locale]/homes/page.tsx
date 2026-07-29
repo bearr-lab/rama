@@ -5,6 +5,8 @@ import { HomesFilterChips } from '@/components/search/homes-filter-chips';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Property } from '@/types/property';
 import { PageHeader } from '@/components/layout/page-header';
+import { getHeroImage } from '@/lib/pexels';
+import { Home } from 'lucide-react';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
 import { MOCK_PROPERTIES } from '@/lib/mock-properties';
@@ -20,6 +22,9 @@ export default async function HomesPage({
 }) {
   const { locale } = await params;
   const { query, tenure, property_type } = await searchParams;
+  const isArabic = locale === 'ar';
+
+  const heroImage = await getHeroImage('Dubai luxury villa cinematic exterior 8k', '/images/hero/homes.png');
 
   const supabase = await createClient();
 
@@ -60,17 +65,23 @@ export default async function HomesPage({
     <>
       <div className="sticky top-0 z-0">
         <PageHeader
-          title={locale === 'ar' ? 'اكتشف العقارات' : 'Discover Properties'}
+          title={isArabic ? 'منازل فاخرة' : 'Signature Homes'}
           description={
-            locale === 'ar'
-              ? 'ابحث في آلاف العقارات الموثقة في دبي.'
-              : 'Search through thousands of verified properties in Dubai.'
+            isArabic
+              ? 'اكتشف أرقى الفلل والمنازل الجاهزة في أفضل مجمعات دبي السكنية'
+              : 'Discover ready-to-move-in luxury villas and mansions in Dubai’s most prestigious communities.'
           }
           className="border-none shadow-none"
-          backgroundImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2000"
+          backgroundImage={heroImage}
+          badge={
+            <>
+              <Home className="size-4" />
+              <span>{isArabic ? 'عقارات جاهزة' : 'Ready to Move In'}</span>
+            </>
+          }
         >
-          <div className="mt-6 flex flex-col items-center gap-5 w-full">
-            <div className="w-full max-w-[400px] mx-auto">
+          <div className="mt-6 flex w-full flex-col items-center gap-5">
+            <div className="mx-auto w-full max-w-100">
               <SearchBar
                 variant="hero"
                 locale={locale as 'en' | 'ar'}
@@ -80,7 +91,7 @@ export default async function HomesPage({
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-              <span className="text-xs font-semibold uppercase tracking-wider text-white/80 me-2">
+              <span className="me-2 text-xs font-semibold tracking-wider text-white/80 uppercase">
                 {locale === 'ar' ? 'التصنيفات:' : 'Filter By:'}
               </span>
               <HomesFilterChips
@@ -105,7 +116,7 @@ export default async function HomesPage({
         </PageHeader>
       </div>
 
-      <Section spacing="lg" className="min-h-[100vh] relative z-10 bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.1)] rounded-none">
+      <Section spacing="lg" className="relative z-10 min-h-screen rounded-none bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
         <Container size="2xl">
           {!activeProperties || activeProperties.length === 0 ? (
             <EmptyState

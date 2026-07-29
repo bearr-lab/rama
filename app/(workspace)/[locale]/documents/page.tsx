@@ -53,7 +53,7 @@ export default function DocumentsWorkspacePage() {
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             Document Intelligence & Contract Vault
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             Centralized legal vault for your DLD Form F MOUs, RERA Oqood certificates, Title Deeds, and Developer NOCs with live AI OCR extraction.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function DocumentsWorkspacePage() {
           <Link href={`/${locale}/tasks`}>
             <ShimmerButton className="px-5 py-2.5 text-xs font-semibold">
               <span>View Deal Flow</span>
-              <ArrowRight className="h-4 w-4 ml-2" />
+              <ArrowRight className="ml-2 size-4" />
             </ShimmerButton>
           </Link>
         </div>
@@ -71,8 +71,8 @@ export default function DocumentsWorkspacePage() {
       {/* Efferd & Magic UI Document Intelligence Metrics Strip */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <BlurFade delay={0.1}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               Vaulted Legal Documents
             </span>
             <div className="mt-3 flex items-baseline justify-between">
@@ -83,15 +83,15 @@ export default function DocumentsWorkspacePage() {
                 100% Encrypted
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               Form F MOUs, Title Deeds & Ejari Certificates
             </p>
           </div>
         </BlurFade>
 
         <BlurFade delay={0.2}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               AI OCR Accuracy Rate
             </span>
             <div className="mt-3 flex items-baseline justify-between">
@@ -102,15 +102,15 @@ export default function DocumentsWorkspacePage() {
                 Claude 3.7 Sonnet
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               Automated legal clause extraction & validation
             </p>
           </div>
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               DLD Verification Status
             </span>
             <div className="mt-3 flex items-baseline justify-between">
@@ -121,7 +121,7 @@ export default function DocumentsWorkspacePage() {
                 </AnimatedShinyText>
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               Verified against DLD Land Registry database
             </p>
           </div>
@@ -132,7 +132,7 @@ export default function DocumentsWorkspacePage() {
       <div className="shadow-subtle space-y-4 rounded-3xl border border-border bg-surface p-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-fjord" />
+            <Sparkles className="size-5 text-fjord" />
             <h3 className="text-h3 font-display font-bold text-ink">
               Live AI OCR Document Analyzer
             </h3>
@@ -147,7 +147,7 @@ export default function DocumentsWorkspacePage() {
           className="flex flex-col gap-3 sm:flex-row"
         >
           <div className="relative flex-1">
-            <Upload className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-muted" />
+            <Upload className="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted" />
             <input
               type="text"
               value={customUrl}
@@ -163,12 +163,12 @@ export default function DocumentsWorkspacePage() {
           >
             {isExtracting ? (
               <>
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Loader2 className="size-4 animate-spin" />
                 <span>Running OCR...</span>
               </>
             ) : (
               <>
-                <Upload className="h-4 w-4" />
+                <Upload className="size-4" />
                 <span>Run AI OCR Extraction</span>
               </>
             )}
@@ -179,7 +179,7 @@ export default function DocumentsWorkspacePage() {
           <div className="animate-in fade-in space-y-3 rounded-2xl border border-purple-500/30 bg-purple-500/5 p-5 duration-300">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                <CheckCircle2 className="size-5 text-emerald-500" />
                 <span className="text-body font-display font-bold text-ink">
                   Extracted Metadata (
                   {extractedResult.documentType || 'DLD Document'})
@@ -219,7 +219,7 @@ export default function DocumentsWorkspacePage() {
 
             {extractedResult.extractedClaude && (
               <div className="flex items-start gap-2 rounded-xl border border-border bg-surface p-3 text-xs text-ink">
-                <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-purple-500" />
+                <Sparkles className="mt-0.5 size-4 shrink-0 text-purple-500" />
                 <div>
                   <span className="mb-0.5 block font-bold">
                     AI Legal Clause Analysis:

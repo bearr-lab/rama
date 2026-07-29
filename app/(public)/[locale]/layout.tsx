@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { ScrollToTop } from '@/components/layout/scroll-to-top';
+import { FloatingChat } from '@/components/chat/floating-chat';
 
 export default async function PublicLayout({
   children,
@@ -17,13 +18,14 @@ export default async function PublicLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <div className="flex min-h-screen flex-col relative w-full">
+      <div className="relative flex min-h-screen w-full flex-col">
         <Navbar />
-        <main className="flex-1 relative z-10 bg-background" id="main-content">
+        <main className="relative z-10 flex-1 bg-background" id="main-content">
           {children}
         </main>
         <Footer />
         <ScrollToTop />
+        <FloatingChat />
       </div>
     </NextIntlClientProvider>
   );

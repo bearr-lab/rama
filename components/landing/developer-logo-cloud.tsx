@@ -81,16 +81,16 @@ const PartnerNode = ({
     className="group flex items-center gap-4"
   >
     <Magnetic>
-      <div className="relative flex items-center justify-center size-14 border border-white/20 bg-white/5 backdrop-blur-md transition-all duration-300 group-hover:border-white/50 group-hover:bg-white/10">
-        <div className="size-6 text-white transition-colors duration-300">
+      <div className="relative flex items-center justify-center size-14 border border-border bg-secondary/20 backdrop-blur-md transition-all duration-300 group-hover:border-primary/50 group-hover:bg-secondary/50">
+        <div className="size-6 text-foreground transition-colors duration-300">
           {children}
         </div>
       </div>
     </Magnetic>
     <div className="flex flex-col">
-      <span className="text-sm font-bold text-white leading-tight">{label}</span>
+      <span className="text-sm font-bold text-foreground leading-tight">{label}</span>
       {sublabel && (
-        <span className="text-[11px] text-white/60 mt-0.5">{sublabel}</span>
+        <span className="text-[11px] text-muted-foreground mt-0.5">{sublabel}</span>
       )}
     </div>
   </motion.div>
@@ -115,8 +115,8 @@ const TrustStat = ({
     transition={{ duration: 0.4, delay, ease: [0.2, 0, 0, 1] }}
     className="flex flex-col items-center text-center"
   >
-    <Icon className="h-5 w-5 text-fjord mb-3" />
-    <span className="text-3xl font-display font-bold text-ink">{value}</span>
+    <Icon className="h-5 w-5 text-primary mb-3" />
+    <span className="text-3xl font-display font-bold text-foreground">{value}</span>
     <span className="text-[11px] tracking-widest uppercase text-muted-foreground mt-1">{label}</span>
   </motion.div>
 );
@@ -126,7 +126,7 @@ export function DeveloperLogoCloud({
   isArabic = false,
 }: DeveloperLogoCloudProps) {
   return (
-    <section className="relative bg-ink overflow-hidden">
+    <section className="relative bg-background overflow-hidden">
       {/* ─── Top: Cinematic Hero Image Band ─── */}
       <div className="relative h-[320px] md:h-[400px] w-full overflow-hidden">
         <Image
@@ -136,8 +136,8 @@ export function DeveloperLogoCloud({
           className="object-cover"
           sizes="100vw"
         />
-        {/* Dark overlay that transitions perfectly into the bg-ink section below */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink" />
+        {/* Dark overlay that transitions perfectly into the bg-background section below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
 
         {/* Header text over the image */}
         <Container size="xl" className="relative z-10 h-full flex flex-col justify-end pb-12 px-6 sm:px-8">
@@ -147,11 +147,11 @@ export function DeveloperLogoCloud({
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-xs font-semibold tracking-[0.25em] text-emerald-400 uppercase mb-3 flex items-center gap-2">
+            <p className="text-xs font-semibold tracking-[0.25em] text-emerald-500 uppercase mb-3 flex items-center gap-2">
               <ShieldCheck className="h-4 w-4" />
               {isArabic ? 'شبكة منظومة ريرا المعتمدة' : 'RERA Ecosystem & Escrow Network'}
             </p>
-            <h3 className="font-display text-3xl md:text-5xl font-bold text-white max-w-2xl leading-tight">
+            <h3 className="font-display text-2xl md:text-4xl font-bold text-foreground max-w-2xl leading-tight">
               {isArabic
                 ? 'شركاء الخدمات المصرفية والمطورين المعتمدين'
                 : 'Verified Institutional Banking & Developer Partners'}
@@ -160,19 +160,19 @@ export function DeveloperLogoCloud({
         </Container>
       </div>
 
-      {/* ─── Main Content: Split Panel (Now Dark Theme) ─── */}
+      {/* ─── Main Content: Split Panel ─── */}
       <Container size="xl" className="px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-white/10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-border">
 
           {/* ─── Left: Financial & Regulatory Partners ─── */}
-          <div className="relative p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-white/10 bg-ink">
+          <div className="relative p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-border bg-background">
             {/* Subtle network pattern background */}
-            <div className="absolute inset-0 opacity-[0.15]">
+            <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.15]">
               <Image
                 src="/images/trust/network-pattern.png"
                 alt=""
                 fill
-                className="object-cover invert" // Invert pattern for dark background
+                className="object-cover dark:invert"
                 sizes="50vw"
               />
             </div>
@@ -185,7 +185,7 @@ export function DeveloperLogoCloud({
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] text-white uppercase bg-white/10 px-3 py-1 border border-white/20">
+                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] text-foreground uppercase bg-secondary/50 px-3 py-1 border border-border">
                   <Lock className="h-3 w-3" />
                   {isArabic ? 'الخدمات المصرفية والتنظيمية' : 'Banking & Regulatory'}
                 </span>
@@ -197,19 +197,19 @@ export function DeveloperLogoCloud({
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1, ease: [0.2, 0, 0, 1] }}
-                className="mb-10 p-6 border border-white/20 bg-white/5 backdrop-blur-md"
+                className="mb-10 p-6 border border-border bg-secondary/20 backdrop-blur-md"
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center size-16 bg-white/10 border border-white/20">
-                    <div className="size-8 text-white">
+                  <div className="flex items-center justify-center size-16 bg-background border border-border">
+                    <div className="size-8 text-foreground">
                       <DldLogo />
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-lg font-display font-bold text-white">
+                    <h4 className="text-lg font-display font-bold text-foreground">
                       {isArabic ? 'دائرة الأراضي والأملاك' : 'Dubai Land Department'}
                     </h4>
-                    <p className="text-xs text-white/60 mt-0.5">
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       {isArabic ? 'واجهة السجل الرسمي' : 'Official Registry API — Core Integration'}
                     </p>
                   </div>
@@ -232,7 +232,7 @@ export function DeveloperLogoCloud({
           </div>
 
           {/* ─── Right: Developer Partners ─── */}
-          <div className="relative p-8 md:p-12 bg-ink">
+          <div className="relative p-8 md:p-12 bg-background">
             <div className="relative z-10">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -241,7 +241,7 @@ export function DeveloperLogoCloud({
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] text-white uppercase bg-white/10 px-3 py-1 border border-white/20">
+                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] text-foreground uppercase bg-secondary/50 px-3 py-1 border border-border">
                   <Landmark className="h-3 w-3" />
                   {isArabic ? 'المطورون الرئيسيون' : 'Master Developers'}
                 </span>
@@ -266,15 +266,15 @@ export function DeveloperLogoCloud({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="border-t border-white/10 pt-8 mt-8"
+                className="border-t border-border pt-8 mt-8"
               >
-                <div className="flex items-start gap-3 p-4 bg-white/5 border border-white/10 backdrop-blur-md">
-                  <Scale className="h-5 w-5 text-emerald-400 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-3 p-4 bg-secondary/20 border border-border backdrop-blur-md">
+                  <Scale className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
                   <div>
-                    <p className="text-xs font-bold text-white">
+                    <p className="text-xs font-bold text-foreground">
                       {isArabic ? 'الامتثال القانوني الكامل' : 'Full Legal Compliance'}
                     </p>
-                    <p className="text-[11px] text-white/60 mt-1 leading-relaxed">
+                    <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">
                       {isArabic
                         ? 'جميع المعاملات مؤمنة بموجب القانون رقم 8 لسنة 2007 بشأن حسابات الضمان العقارية. متوافق مع هيئة التنظيم العقاري.'
                         : 'All transactions secured under Law No. 8 of 2007 concerning Escrow Accounts. Fully compliant with the Real Estate Regulatory Authority (RERA).'}
@@ -289,7 +289,7 @@ export function DeveloperLogoCloud({
 
       {/* ─── Trust Statistics Bar ─── */}
       <Container size="xl" className="px-6 sm:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 border-x border-b border-white/10 divide-x divide-white/10 bg-ink">
+        <div className="grid grid-cols-2 md:grid-cols-4 border-x border-b border-border divide-x divide-border bg-background">
           <div className="p-8">
             <TrustStat icon={ShieldCheck} value="100%" label="Escrow Protected" delay={0.1} />
           </div>

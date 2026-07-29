@@ -18,7 +18,7 @@ export default function LandingPage({
   const isArabic = locale === 'ar';
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex w-full flex-col">
       <HeroEditorial locale={locale} isArabic={isArabic} />
       <Hero1 />
       <DeveloperLogoCloud locale={locale} isArabic={isArabic} />

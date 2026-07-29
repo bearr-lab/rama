@@ -18,6 +18,7 @@ import {
   Heart,
   MapPin,
   FileText,
+  Users,
 } from 'lucide-react';
 
 const NAV_SECTIONS = [
@@ -40,6 +41,7 @@ const NAV_SECTIONS = [
   {
     title: 'ASSETS & DEALS',
     items: [
+      { name: 'Leads CRM', href: '/leads', icon: Users },
       { name: 'Tasks & Deal Flow', href: '/tasks', icon: CheckSquare },
       { name: 'Portfolio', href: '/portfolio', icon: FolderOpen },
       { name: 'Document Room', href: '/documents', icon: FileText },
