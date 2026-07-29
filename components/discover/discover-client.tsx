@@ -324,7 +324,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                   onChange={(e) =>
                     setFilters((prev) => ({
                       ...prev,
-                      sortBy: e.target.value as any,
+                      sortBy: e.target.value as DiscoverFilters['sortBy'],
                     }))
                   }
                   className="hover:border-border-strong rounded-xl border border-border/60 bg-surface px-3 py-1.5 text-xs font-semibold text-ink shadow-2xs transition-colors focus:border-fjord focus:ring-2 focus:ring-fjord/10 focus:outline-none"
