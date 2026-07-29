@@ -25,12 +25,31 @@ const eslintConfig = defineConfig([
       "tailwindcss/classnames-order": "warn",
       "tailwindcss/enforces-negative-arbitrary-values": "warn",
       "tailwindcss/enforces-shorthand": "warn",
-      "tailwindcss/no-contradicting-classname": "error"
+      "tailwindcss/no-contradicting-classname": "error",
+      "tailwindcss/no-custom-classname": "off"
     },
     settings: {
       tailwindcss: {
         callees: ["cn", "cva"],
-        cssConfigPath: "./app/globals.css"
+        cssConfigPath: "./app/globals.css",
+        whitelist: [
+          "text\\-display(\\-lg|\\-sm)?",
+          "text\\-h[1-4]",
+          "text\\-body(\\-lg|\\-sm)?",
+          "text\\-caption",
+          "text\\-small",
+          "shadow\\-subtle",
+          "shadow\\-floating",
+          "hover\\:shadow\\-subtle",
+          "hover\\:shadow\\-floating",
+          "font\\-display",
+          "animate\\-in",
+          "fade\\-in",
+          "zoom\\-in\\-95",
+          "rounded\\-button",
+          "inputs",
+          "leading\\-1\\.[0-9]+",
+        ]
       }
     }
   },

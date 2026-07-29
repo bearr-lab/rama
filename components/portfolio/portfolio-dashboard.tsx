@@ -4,7 +4,6 @@ import * as React from 'react';
 import {
   Building2,
   TrendingUp,
-  DollarSign,
   Wallet,
   Wrench,
   Users,
@@ -13,12 +12,6 @@ import {
   Sparkles,
   CheckCircle2,
   AlertTriangle,
-  ArrowUpRight,
-  Calendar,
-  Filter,
-  ShieldCheck,
-  RefreshCw,
-  Layers,
   PieChart,
   ExternalLink,
 } from 'lucide-react';
@@ -117,7 +110,7 @@ export function PortfolioDashboard() {
         try {
           const parsed = JSON.parse(savedAssets);
           if (Array.isArray(parsed) && parsed.length > 0) setAssets(parsed);
-        } catch (e) {}
+        } catch {}
       }
 
       const savedTickets = localStorage.getItem('rama_v2_portfolio_tickets');
@@ -125,7 +118,7 @@ export function PortfolioDashboard() {
         try {
           const parsed = JSON.parse(savedTickets);
           if (Array.isArray(parsed) && parsed.length > 0) setTickets(parsed);
-        } catch (e) {}
+        } catch {}
       }
       setIsLoaded(true);
     }
@@ -186,13 +179,13 @@ export function PortfolioDashboard() {
         <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
           <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
             <span>Total Asset Value</span>
-            <Building2 className="h-4 w-4 text-fjord" />
+            <Building2 className="size-4 text-fjord" />
           </div>
           <div className="text-display-sm font-mono font-extrabold text-ink">
             <Ticker value={totalValuation / 1000000} prefix="AED " suffix="M" decimals={2} />
           </div>
           <div className="text-caption flex items-center gap-1.5 font-semibold text-emerald-500">
-            <TrendingUp className="h-3.5 w-3.5" />
+            <TrendingUp className="size-3.5" />
             <span>
               +AED {(totalCapitalGain / 1000000).toFixed(2)}M Capital Gain (+
               {Math.round((totalCapitalGain / totalPurchase) * 100)}%)
@@ -203,7 +196,7 @@ export function PortfolioDashboard() {
         <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
           <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
             <span>Monthly Rental Cashflow</span>
-            <Wallet className="h-4 w-4 text-emerald-500" />
+            <Wallet className="size-4 text-emerald-500" />
           </div>
           <div className="text-display-sm font-mono font-extrabold text-emerald-600 dark:text-emerald-400">
             <Ticker value={monthlyCashflow} prefix="AED " decimals={0} />
@@ -216,7 +209,7 @@ export function PortfolioDashboard() {
         <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
           <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
             <span>Average Net Yield</span>
-            <PieChart className="h-4 w-4 text-sky-500" />
+            <PieChart className="size-4 text-sky-500" />
           </div>
           <div className="text-display-sm font-mono font-extrabold text-sky-500">
             <Ticker value={Number(avgYield)} suffix="%" decimals={2} />
@@ -229,7 +222,7 @@ export function PortfolioDashboard() {
         <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
           <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
             <span>Occupancy & Leases</span>
-            <Users className="h-4 w-4 text-purple-500" />
+            <Users className="size-4 text-purple-500" />
           </div>
           <div className="text-display-sm font-display font-extrabold text-ink">
             100%{' '}
@@ -238,7 +231,7 @@ export function PortfolioDashboard() {
             </span>
           </div>
           <div className="text-caption flex items-center gap-1.5 font-semibold text-amber-500">
-            <AlertTriangle className="h-3.5 w-3.5" />
+            <AlertTriangle className="size-3.5" />
             <span>1 Lease renewal due in 45 days</span>
           </div>
         </div>
@@ -256,7 +249,7 @@ export function PortfolioDashboard() {
                 : 'border-transparent text-muted hover:border-border hover:text-ink',
             )}
           >
-            <Building2 className="h-4 w-4" />
+            <Building2 className="size-4" />
             <span>Owned Assets</span>
             <span
               className={cn(
@@ -279,7 +272,7 @@ export function PortfolioDashboard() {
                 : 'border-transparent text-muted hover:border-border hover:text-ink',
             )}
           >
-            <Wrench className="h-4 w-4" />
+            <Wrench className="size-4" />
             <span>Maintenance & Operations</span>
             <span
               className={cn(
@@ -302,7 +295,7 @@ export function PortfolioDashboard() {
                 : 'border-transparent text-muted hover:border-border hover:text-ink',
             )}
           >
-            <TrendingUp className="h-4 w-4" />
+            <TrendingUp className="size-4" />
             <span>Tax & Cashflow Analytics</span>
           </button>
         </div>
@@ -316,7 +309,7 @@ export function PortfolioDashboard() {
             }
             className="text-body-sm flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 font-bold text-ink shadow-2xs transition-colors hover:bg-surface-subtle"
           >
-            <Download className="h-4 w-4 text-muted" />
+            <Download className="size-4 text-muted" />
             <span>Export Financial Report</span>
           </button>
 
@@ -325,7 +318,7 @@ export function PortfolioDashboard() {
               onClick={() => setIsLogOpen(true)}
               className="text-body-sm flex items-center gap-2 rounded-xl bg-fjord px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-fjord-hover"
             >
-              <Plus className="h-4 w-4" />
+              <Plus className="size-4" />
               <span>Log Maintenance Ticket</span>
             </button>
           )}
@@ -350,7 +343,7 @@ export function PortfolioDashboard() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[700px] border-collapse text-left">
+            <table className="w-full min-w-175 border-collapse text-left">
               <thead>
                 <tr className="text-caption border-b border-border bg-surface-subtle font-bold tracking-wider text-muted uppercase">
                   <th className="p-4 pl-6 text-left">Property / Location</th>
@@ -408,7 +401,7 @@ export function PortfolioDashboard() {
                           >
                             <span
                               className={cn(
-                                'h-2 w-2 shrink-0 rounded-full',
+                                'size-2 shrink-0 rounded-full',
                                 asset.tenantStatus === 'occupied'
                                   ? 'bg-emerald-500'
                                   : 'animate-pulse bg-amber-500',
@@ -429,7 +422,7 @@ export function PortfolioDashboard() {
                           className="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-border bg-transparent px-3 text-xs font-bold text-ink transition-all hover:border-fjord hover:bg-fjord/5 hover:text-fjord"
                         >
                           <span>Analyze</span>
-                          <ExternalLink className="h-3.5 w-3.5 text-muted" />
+                          <ExternalLink className="size-3.5 text-muted" />
                         </Link>
                       </td>
                     </tr>
@@ -471,7 +464,7 @@ export function PortfolioDashboard() {
                   </div>
                   <h4 className="text-body font-bold text-ink">{t.issue}</h4>
                   <div className="text-caption flex items-center gap-1.5 text-muted">
-                    <Building2 className="h-3.5 w-3.5 text-fjord" />
+                    <Building2 className="size-3.5 text-fjord" />
                     <span>{t.property}</span>
                   </div>
                 </div>
@@ -502,7 +495,7 @@ export function PortfolioDashboard() {
                     </button>
                   ) : (
                     <span className="text-caption flex items-center gap-1 font-bold text-emerald-500">
-                      <CheckCircle2 className="h-4 w-4" /> Audit Cleared
+                      <CheckCircle2 className="size-4" /> Audit Cleared
                     </span>
                   )}
                 </div>
@@ -567,9 +560,9 @@ export function PortfolioDashboard() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-2xl border border-sky-500/20 bg-gradient-to-r from-sky-500/10 via-emerald-500/5 to-transparent p-6">
+          <div className="flex items-center justify-between rounded-2xl border border-sky-500/20 bg-linear-to-r from-sky-500/10 via-emerald-500/5 to-transparent p-6">
             <div className="flex items-center gap-3">
-              <Sparkles className="h-5 w-5 shrink-0 text-sky-500" />
+              <Sparkles className="size-5 shrink-0 text-sky-500" />
               <div>
                 <h4 className="text-body-sm font-bold text-ink">
                   RAMA AI Tax & Structuring Advisor
@@ -599,10 +592,10 @@ export function PortfolioDashboard() {
           <ContributionGraph />
 
           {/* Kibo Marquee (Infinite scrolling partners & escrow banks) */}
-          <div className="rounded-3xl border border-border/60 bg-surface p-6 shadow-sm space-y-4">
+          <div className="space-y-4 rounded-3xl border border-border/60 bg-surface p-6 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-fjord">
+                <span className="text-xs font-bold tracking-widest text-fjord uppercase">
                   RERA Ecosystem & Escrow Network
                 </span>
                 <h3 className="mt-1 font-display text-lg font-bold text-ink">
