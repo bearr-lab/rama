@@ -28,7 +28,7 @@ export async function submitContactForm(formData: FormData) {
     const last_name = nameParts.length > 1 ? nameParts.slice(1).join(' ') : 'Unknown';
 
     const { error } = await supabase
-      .from('crm_leads')
+      .from('leads')
       .insert([
         {
           first_name,
@@ -41,7 +41,7 @@ export async function submitContactForm(formData: FormData) {
       ]);
 
     if (error) {
-      logger.error('crm_leads insert failed', { code: error.code, message: error.message });
+      logger.error('leads insert failed', { code: error.code, message: error.message });
       return { error: 'Failed to submit form. Please try again later.' };
     }
 

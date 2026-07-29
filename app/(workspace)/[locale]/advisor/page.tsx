@@ -24,7 +24,7 @@ export default async function AdvisorPage({
       {isDemo && (
         <div className="flex items-center justify-between rounded-xl border border-border/60 bg-surface-subtle p-4 text-xs text-ink shadow-xs">
           <div className="flex items-center gap-2.5 font-medium">
-            <Sparkles className="h-4 w-4 shrink-0 text-fjord" />
+            <Sparkles className="size-4 shrink-0 text-fjord" />
             <span>
               <strong>{isArabic ? 'وضع التقييم التجريبي:' : 'Sandbox Demo Mode:'}</strong>{' '}
               {isArabic
@@ -46,7 +46,7 @@ export default async function AdvisorPage({
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'مستشار الذكاء الاصطناعي RAMA' : 'RAMA AI Advisor'}
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             {isArabic
               ? 'اسأل عن أي شيء يخص عقارات دبي، من قوانين إيجاري ورسوم نقل الملكية إلى تحليل العوائد في المجتمعات السكنية.'
               : 'Ask anything about Dubai real estate—from Ejari regulations and DLD transfer fees to yield projections across top residential communities.'}
@@ -57,14 +57,14 @@ export default async function AdvisorPage({
       {/* Efferd & Magic UI AI Telemetry & DLD RAG Metrics Strip */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <BlurFade delay={0.1}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               {isArabic ? 'قاعدة تشريعات DLD' : 'DLD Law Knowledge Base'}
             </span>
             <div className="mt-3 flex items-baseline justify-between">
-              <span className="font-display text-3xl font-semibold text-ink flex items-baseline">
+              <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
                 <NumberTicker value={2840} />
-                <span className="text-sm font-sans text-muted ml-1.5">Articles</span>
+                <span className="ml-1.5 font-sans text-sm text-muted">Articles</span>
               </span>
               <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
@@ -72,15 +72,15 @@ export default async function AdvisorPage({
                 </AnimatedShinyText>
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               {isArabic ? 'تشريعات 2026 وقوانين ريرا المحدثة' : '2026 Law #7, Ejari & Escrow regulations'}
             </p>
           </div>
         </BlurFade>
 
         <BlurFade delay={0.2}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               {isArabic ? 'سرعة استجابة النموذج' : 'RAG Query Latency'}
             </span>
             <div className="mt-3 flex items-baseline justify-between">
@@ -91,15 +91,15 @@ export default async function AdvisorPage({
                 Ultra Low-Latency
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               {isArabic ? 'استعلام فوري وتوجيه ذكي' : 'Vector similarity search active'}
             </p>
           </div>
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               {isArabic ? 'معدل الدقة والتوثيق' : 'Factual Precision'}
             </span>
             <div className="mt-3 flex items-baseline justify-between">
@@ -110,7 +110,7 @@ export default async function AdvisorPage({
                 Zero Hallucination
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               {isArabic ? 'مرتبط مباشرة بمصادر دائرة الأراضي' : 'Grounded strictly in verified DLD docs'}
             </p>
           </div>

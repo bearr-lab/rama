@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { EmptyState } from '@/components/ui/empty-state';
 import { PageHeader } from '@/components/layout/page-header';
+import { getHeroImage } from '@/lib/pexels';
+import { MapPin } from 'lucide-react';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
 import { BentoGrid, BentoCard } from '@/components/ui/bento-grid';
@@ -16,6 +18,8 @@ export default async function AreasPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const isArabic = locale === 'ar';
+  const heroImage = await getHeroImage('Dubai skyline aerial golden hour cinematic 8k', '/images/hero/areas.png');
   const supabase = await createClient();
 
   const { data: communities, error } = await supabase
@@ -26,8 +30,6 @@ export default async function AreasPage({
   if (error) {
     console.error('Error fetching communities:', error);
   }
-
-  const isArabic = locale === 'ar';
 
   return (
     <>
@@ -40,7 +42,13 @@ export default async function AreasPage({
               : "Explore Dubai's most popular neighborhoods, from waterfront living to serene villa communities."
           }
           className="border-none shadow-none"
-          backgroundImage="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2000"
+          backgroundImage={heroImage}
+          badge={
+            <>
+              <MapPin className="size-4" />
+              <span>{isArabic ? 'المجمعات' : 'Explore Communities'}</span>
+            </>
+          }
         />
       </div>
 
@@ -53,7 +61,7 @@ export default async function AreasPage({
             />
           ) : (
             <BlurFade delay={0.1}>
-              <BentoGrid className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <BentoGrid className="grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {communities.map((community, idx) => {
                   const name = isArabic ? (community.name_ar || community.name_en) : community.name_en;
                   const description = isArabic ? (community.description_ar || community.description_en) : community.description_en;
@@ -74,7 +82,7 @@ export default async function AreasPage({
                             alt={name}
                             fill
                             sizes="(max-width: 768px) 100vw, 50vw"
-                            className="absolute inset-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
+                            className="absolute inset-0 size-full object-cover transition-all duration-700 group-hover:scale-105"
                           />
                         ) : null
                       }

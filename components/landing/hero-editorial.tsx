@@ -24,11 +24,12 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
         className="absolute inset-0 h-full w-full object-cover"
         poster="/images/trust/rera-hero.png"
       >
-        <source src="/videos/hero-cityscape.mp4" type="video/mp4" />
+        <source src="/videos/rama-hero-bg.mp4" type="video/mp4" />
       </video>
 
-      {/* Light gradient — only at the bottom so the video stays visible */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent" />
+      {/* Gradient overlay to ensure text contrast without blurring */}
+      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
       {/* Content — anchored to the bottom */}
       <Container
@@ -41,7 +42,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
           {/* Centered Text Block */}
           <div className="w-full max-w-4xl flex flex-col items-center text-center space-y-4 md:space-y-6">
             {/* Headline */}
-            <h1 className="font-display text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h1 className="font-display text-5xl leading-[1.05] tracking-tight text-white md:text-6xl lg:text-7xl drop-shadow-2xl">
               {isArabic ? (
                 <>
                   عقارات{' '}
@@ -62,7 +63,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
             </h1>
 
             {/* Subtitle — one clean line */}
-            <p className="max-w-2xl mx-auto text-base font-light leading-relaxed text-white/70 md:text-lg">
+            <p className="max-w-2xl mx-auto text-base font-medium leading-relaxed text-white/90 md:text-lg drop-shadow-md">
               {isArabic
                 ? 'مجموعة منتقاة من أروع العقارات، موثقة بالكامل من دائرة الأراضي والأملاك.'
                 : 'A curated collection of verified properties, powered by DLD transparency.'}

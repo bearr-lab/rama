@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { LogOut, Heart, Sparkles, Settings } from 'lucide-react';
+import { LogOut, Heart, Sparkles, Settings, LayoutDashboard } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -119,6 +119,14 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           </DropdownMenuLabel>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
+
+        <DropdownMenuItem
+          onClick={() => router.push(`/${locale}/dashboard`)}
+          className="cursor-pointer"
+        >
+          <LayoutDashboard className="mr-2 h-4 w-4" />
+          <span>{locale === 'ar' ? 'لوحة القيادة' : 'Dashboard'}</span>
+        </DropdownMenuItem>
 
         <DropdownMenuItem
           onClick={() => router.push(`/${locale}/shortlist`)}

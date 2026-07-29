@@ -1,9 +1,11 @@
+import { PageHeader } from '@/components/layout/page-header';
 import { Container } from '@/components/layout/container';
 import { Section } from '@/components/layout/section';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { Building2, ArrowUpRight, Calendar, MapPin, Tag } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { searchPhotos, getHeroVideo, getHeroImage } from '@/lib/pexels';
 import { cn } from '@/lib/utils';
 
 // MOCK DATA: Future Off-Plan Projects
@@ -98,118 +100,116 @@ export default async function ProjectsPage({
   const { locale } = await params;
   const isArabic = locale === 'ar';
 
+  // Fetch cinematic hero video and Bento Grid imagery in parallel
+  const [heroVideoUrl, pexelsRes] = await Promise.all([
+    getHeroVideo('Dubai modern architecture skyscraper drone'),
+    searchPhotos('dubai modern architecture luxury building', 5),
+  ]);
+  const heroImageUrl = heroVideoUrl ? null : await getHeroImage('Dubai skyscraper sunset 8k', '/images/hero/projects.png');
+  const pexelsPhotos = pexelsRes?.photos || [];
+
+  // Merge Pexels photos into the mock data
+  const projectsWithImages = OFF_PLAN_PROJECTS.map((project, index) => {
+    return {
+      ...project,
+      image: pexelsPhotos[index] ? pexelsPhotos[index].src.large2x : project.image,
+    };
+  });
+
   return (
-    <div className="flex flex-col w-full min-h-screen bg-surface">
+    <div className="flex min-h-screen w-full flex-col bg-surface">
       {/* Cinematic Hero */}
-      <section className="relative pt-32 pb-20 border-b border-border/40 overflow-hidden min-h-[500px] flex items-center">
-        {/* Background Image & Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=2000&q=80"
-            alt="Dubai Skyline"
-            fill
-            className="object-cover object-center"
-            priority
-          />
-          <div className="absolute inset-0 bg-black/60 z-10" />
-        </div>
-        
-        <Container size="xl" className="relative z-20">
-          <BlurFade delay={0.1} offset={20}>
-            <div className="max-w-4xl space-y-8">
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-white uppercase rounded-none backdrop-blur-md">
-                <Building2 className="h-4 w-4" />
-                <span>{isArabic ? 'مشاريع قيد الإنشاء' : 'Off-Plan Projects'}</span>
-              </div>
-              
-              <h1 className="font-display text-5xl leading-[1.1] font-normal text-white md:text-7xl lg:text-8xl tracking-tight">
-                {isArabic
-                  ? 'اكتشف مشاريع المستقبل'
-                  : 'Discover Future Landmarks'}
-              </h1>
-              
-              <p className="text-lg font-light text-white/80 md:text-xl max-w-2xl leading-relaxed">
-                {isArabic
-                  ? 'تصفح أحدث المشاريع المعمارية وأكثرها تميزاً في دبي قبل اكتمالها. فرص استثمارية استثنائية مع كبار المطورين العقاريين.'
-                  : 'Browse Dubai’s most exclusive architectural developments before completion. Exceptional investment opportunities with tier-one developers.'}
-              </p>
-            </div>
-          </BlurFade>
-        </Container>
-      </section>
+      <PageHeader
+        title={isArabic ? 'اكتشف مشاريع المستقبل' : 'Discover Future Landmarks'}
+        description={
+          isArabic
+            ? 'تصفح أحدث المشاريع المعمارية وأكثرها تميزاً في دبي قبل اكتمالها. فرص استثمارية استثنائية مع كبار المطورين العقاريين.'
+            : 'Browse Dubai\u2019s most exclusive architectural developments before completion. Exceptional investment opportunities with tier-one developers.'
+        }
+        backgroundVideo={heroVideoUrl || undefined}
+        backgroundImage={heroImageUrl || undefined}
+        variant="editorial"
+        badge={
+          <>
+            <Building2 className="size-4" />
+            <span>{isArabic ? 'مشاريع قيد الإنشاء' : 'Off-Plan Projects'}</span>
+          </>
+        }
+      />
 
       {/* Bento Grid Showcase */}
       <Section spacing="lg" className="bg-canvas">
         <Container size="xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-[350px] gap-6">
-            {OFF_PLAN_PROJECTS.map((project, index) => {
+          <div className="grid auto-rows-87.5 grid-cols-1 gap-6 md:grid-cols-3">
+            {projectsWithImages.map((project, index) => {
               const delay = 0.2 + index * 0.1;
               return (
                 <BlurFade 
                   key={project.id} 
                   delay={delay} 
                   offset={30} 
-                  className={cn("w-full h-full", project.spanClass)}
+                  className={cn("size-full", project.spanClass)}
                 >
-                  <Link href={`/${locale}/projects/${project.id}`} className="block w-full h-full">
-                    <div className="relative group w-full h-full overflow-hidden bg-black cursor-pointer border border-border/20 shadow-subtle hover:shadow-floating transition-shadow duration-500 rounded-none">
+                  <Link href={`/${locale}/projects/${project.id}`} className="block size-full">
+                    {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
+                    <div className="group shadow-subtle hover:shadow-floating relative size-full cursor-pointer overflow-hidden rounded-none border border-border/20 bg-black transition-shadow duration-500">
                       
                       {/* High-Res Unsplash Image */}
                       <Image
                         src={project.image}
                         alt={isArabic ? project.titleAr : project.titleEn}
                         fill
-                        className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.2,1,0.3,1)] opacity-90 group-hover:opacity-100"
+                        className="object-cover opacity-90 transition-transform duration-700 ease-[cubic-bezier(0.2,1,0.3,1)] group-hover:scale-105 group-hover:opacity-100"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                       
                       {/* Gradient Overlays */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
-                      <div className="absolute inset-0 bg-fjord/20 opacity-0 group-hover:opacity-100 mix-blend-overlay transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90" />
+                      <div className="absolute inset-0 bg-fjord/20 opacity-0 mix-blend-overlay transition-opacity duration-500 group-hover:opacity-100" />
                       
                       {/* Top Badges */}
-                      <div className="absolute top-6 left-6 right-6 flex justify-between items-start z-20">
+                      <div className="absolute inset-x-6 top-6 z-20 flex items-start justify-between">
                         <div className={cn(
-                          "px-3 py-1 text-[10px] font-bold uppercase tracking-widest backdrop-blur-md rounded-none border",
+                          "rounded-none border px-3 py-1 text-[10px] font-bold tracking-widest uppercase backdrop-blur-md",
                           project.statusEn === 'Launching Soon' 
-                            ? "bg-amber-500/20 text-amber-300 border-amber-500/30" 
+                            ? "border-amber-500/30 bg-amber-500/20 text-amber-300" 
                             : project.statusEn === 'Available'
-                              ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
-                              : "bg-white/10 text-white border-white/20"
+                              ? "border-emerald-500/30 bg-emerald-500/20 text-emerald-300"
+                              : "border-white/20 bg-white/10 text-white"
                         )}>
                           {isArabic ? project.statusAr : project.statusEn}
                         </div>
                         
                         {/* Hover reveal icon */}
-                        <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 -translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
-                          <ArrowUpRight className="w-5 h-5" />
+                        <div className="flex size-10 -translate-y-4 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white opacity-0 backdrop-blur-md transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100">
+                          <ArrowUpRight className="size-5" />
                         </div>
                       </div>
 
-                      {/* Bottom Content Content */}
-                      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end z-20 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      {/* Bottom Content */}
+                      <div className="absolute inset-0 z-20 flex translate-y-4 flex-col justify-end p-6 transition-transform duration-500 ease-out group-hover:translate-y-0 md:p-8">
                         
                         {/* Developer & Location */}
-                        <div className="flex items-center gap-3 text-xs font-semibold text-white/70 uppercase tracking-wider mb-3">
-                          <span className="text-fjord font-bold">{project.developer}</span>
-                          <span className="w-1 h-1 rounded-full bg-white/30" />
+                        <div className="mb-3 flex items-center gap-3 text-xs font-semibold tracking-wider text-white/70 uppercase">
+                          <span className="font-bold text-fjord">{project.developer}</span>
+                          <span className="size-1 rounded-full bg-white/30" />
                           <span className="flex items-center gap-1">
-                            <MapPin className="w-3 h-3" />
+                            <MapPin className="size-3" />
                             {isArabic ? project.locationAr : project.locationEn}
                           </span>
                         </div>
                         
                         {/* Title */}
-                        <h3 className="font-display text-2xl md:text-3xl font-normal text-white leading-tight mb-6">
+                        <h3 className="mb-6 font-display text-2xl leading-tight font-normal text-white md:text-3xl">
                           {isArabic ? project.titleAr : project.titleEn}
                         </h3>
                         
                         {/* Details Row (Fades in on hover) */}
-                        <div className="flex items-center justify-between pt-5 border-t border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                        <div className="flex items-center justify-between border-t border-white/20 pt-5 opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
                           <div className="flex items-center gap-6">
                             <div>
-                              <p className="text-[10px] text-white/50 uppercase tracking-widest mb-1 flex items-center gap-1">
-                                <Tag className="w-3 h-3" />
+                              <p className="mb-1 flex items-center gap-1 text-[10px] tracking-widest text-white/50 uppercase">
+                                <Tag className="size-3" />
                                 {isArabic ? 'يبدأ من' : 'Starting From'}
                               </p>
                               <p className="font-mono text-sm font-bold text-white">
@@ -217,8 +217,8 @@ export default async function ProjectsPage({
                               </p>
                             </div>
                             <div>
-                              <p className="text-[10px] text-white/50 uppercase tracking-widest mb-1 flex items-center gap-1">
-                                <Calendar className="w-3 h-3" />
+                              <p className="mb-1 flex items-center gap-1 text-[10px] tracking-widest text-white/50 uppercase">
+                                <Calendar className="size-3" />
                                 {isArabic ? 'التسليم' : 'Handover'}
                               </p>
                               <p className="font-mono text-sm font-bold text-white">
@@ -235,6 +235,7 @@ export default async function ProjectsPage({
               );
             })}
           </div>
+          
         </Container>
       </Section>
     </div>

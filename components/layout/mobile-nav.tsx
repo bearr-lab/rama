@@ -96,7 +96,6 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           'ease-decelerate fixed inset-y-0 right-0 z-50 flex w-[300px] max-w-[80vw] transform flex-col bg-surface shadow-lg transition-transform duration-240 outline-none',
           isOpen ? 'translate-x-0' : 'translate-x-full',
         )}
-        aria-hidden={!isOpen}
         {...(!isOpen ? { inert: true } : {})}
       >
         <div className="flex items-center justify-between border-b border-border p-4">

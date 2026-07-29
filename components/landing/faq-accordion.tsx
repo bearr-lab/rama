@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, ShieldCheck } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 import { Container } from '@/components/layout/container';
 
 interface FAQAccordionProps {
@@ -10,7 +10,6 @@ interface FAQAccordionProps {
 }
 
 export function FAQAccordion({
-  locale = 'en',
   isArabic = false,
 }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -51,11 +50,11 @@ export function FAQAccordion({
   ];
 
   return (
-    <section className="bg-surface/30 py-24 border-t border-border/40">
-      <Container size="lg" className="px-6 sm:px-8 max-w-4xl">
-        <div className="text-center mb-16">
-          <p className="text-xs font-semibold tracking-widest text-fjord uppercase mb-3 flex items-center justify-center gap-1.5">
-            <HelpCircle className="h-4 w-4 text-fjord" />
+    <section className="border-t border-border/40 bg-surface/30 py-24">
+      <Container size="lg" className="max-w-4xl px-6 sm:px-8">
+        <div className="mb-16 text-center">
+          <p className="mb-3 flex items-center justify-center gap-1.5 text-xs font-semibold tracking-widest text-fjord uppercase">
+            <HelpCircle className="size-4 text-fjord" />
             {isArabic ? 'الأسئلة الشائعة والشفافية' : 'Buyer Evidence & FAQs'}
           </p>
           <h2 className="font-display text-3xl font-medium text-ink sm:text-4xl">
@@ -71,22 +70,22 @@ export function FAQAccordion({
             return (
               <div
                 key={index}
-                className="rounded-none border border-border/60 bg-canvas overflow-hidden transition-all duration-200"
+                className="overflow-hidden rounded-none border border-border/60 bg-canvas transition-all duration-200"
               >
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full flex items-center justify-between p-6 text-start font-display text-lg font-medium text-ink hover:text-fjord transition-colors"
+                  className="flex w-full items-center justify-between p-6 text-start font-display text-lg font-medium text-ink transition-colors hover:text-fjord"
                 >
                   <span className="pe-4">{faq.question}</span>
                   <ChevronDown
-                    className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
+                    className={`size-5 shrink-0 text-muted-foreground transition-transform duration-300 ${
                       isOpen ? 'rotate-180 text-fjord' : ''
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-0 text-sm leading-relaxed text-muted-foreground border-t border-border/30 mt-2 pt-4">
+                  <div className="mt-2 border-t border-border/30 px-6 pt-4 pb-6 text-sm leading-relaxed text-muted-foreground">
                     {faq.answer}
                   </div>
                 )}

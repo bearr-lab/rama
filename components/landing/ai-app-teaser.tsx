@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Brain, Sparkles, Check, Send, Bot } from 'lucide-react';
+import { ArrowRight, Sparkles, Check, Send, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/layout/container';
 import { Section } from '@/components/layout/section';
@@ -39,27 +39,27 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
           <Link href={`/${locale}/advisor`} className="inline-block">
             <Button
               size="sm"
-              className="rounded-none h-9 px-6 bg-fjord text-white font-bold tracking-widest uppercase text-[11px] hover:bg-fjord-hover transition-colors"
+              className="h-9 rounded-none bg-fjord px-6 text-[11px] font-bold tracking-widest text-white uppercase transition-colors hover:bg-fjord-hover"
             >
               {isArabic ? 'اسأل راما' : 'Ask RAMA'}
-              <ArrowRight className="ml-2 h-3.5 w-3.5" />
+              <ArrowRight className="ml-2 size-3.5" />
             </Button>
           </Link>
         </div>
 
         {/* Massive phone mock — centered */}
         <div className="flex justify-center">
-          <div className="relative w-[300px] md:w-[360px] lg:w-[400px]">
+          <div className="relative w-75 md:w-90 lg:w-100">
             {/* Phone frame */}
             <div className="relative rounded-[3.5rem] bg-ink-bg p-3 shadow-2xl ring-1 ring-border">
               {/* Screen */}
-              <div className="aspect-[9/19] overflow-hidden rounded-[3rem] bg-white">
+              <div className="aspect-9/19 overflow-hidden rounded-[3rem] bg-background">
                 {/* Chat UI mockup inside phone */}
                 <div className="flex h-full flex-col">
                   {/* Chat header */}
                   <div className="flex items-center gap-3 bg-surface-subtle px-4 py-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-fjord">
-                      <Bot className="h-4 w-4 text-white" />
+                    <div className="flex size-8 items-center justify-center rounded-full bg-fjord">
+                      <Bot className="size-4 text-white" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-ink">RAMA AI</p>
@@ -71,12 +71,12 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                   <div className="flex-1 space-y-4 overflow-hidden p-4">
                     {/* AI message */}
                     <div className="flex gap-2">
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-fjord">
-                        <Bot className="h-3 w-3 text-white" />
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-fjord">
+                        <Bot className="size-3 text-white" />
                       </div>
                       <div className="max-w-[85%] rounded-2xl rounded-tl-none bg-surface-subtle px-4 py-3 text-ink">
                         <p className="text-sm">
-                          Welcome! I'm RAMA AI. Ask me anything about Dubai
+                          Welcome! I&apos;m RAMA AI. Ask me anything about Dubai
                           real estate.
                         </p>
                       </div>
@@ -93,8 +93,8 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
 
                     {/* AI response with property card */}
                     <div className="flex gap-2">
-                      <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-fjord">
-                        <Bot className="h-3 w-3 text-white" />
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-fjord">
+                        <Bot className="size-3 text-white" />
                       </div>
                       <div className="max-w-[90%] space-y-2">
                         <div className="rounded-2xl rounded-tl-none bg-surface-subtle px-4 py-3 text-ink">
@@ -104,8 +104,8 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                           </p>
                         </div>
                         {/* Mini property card */}
-                        <div className="overflow-hidden rounded-none border border-border bg-white shadow-sm">
-                          <div className="relative aspect-[16/9] bg-surface-subtle">
+                        <div className="overflow-hidden rounded-none border border-border bg-background shadow-sm">
+                          <div className="relative aspect-video bg-surface-subtle">
                             <Image
                               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600"
                               alt="Arabian Ranches III"
@@ -133,8 +133,8 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                       <span className="flex-1 text-sm text-muted-foreground">
                         Type a message...
                       </span>
-                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-fjord">
-                        <Send className="-ml-1 h-3 w-3 text-white" />
+                      <div className="flex size-6 items-center justify-center rounded-full bg-fjord">
+                        <Send className="-ml-1 size-3 text-white" />
                       </div>
                     </div>
                   </div>
@@ -143,10 +143,10 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
             </div>
 
             {/* Floating elements around phone */}
-            <div className="absolute -top-4 -right-4 rounded-none border border-border bg-white p-3 shadow-lg">
+            <div className="absolute -top-4 -right-4 rounded-none border border-border bg-background p-3 shadow-lg">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center bg-verified-soft">
-                  <Check className="h-4 w-4 text-verified" />
+                <div className="flex size-8 items-center justify-center bg-verified-soft">
+                  <Check className="size-4 text-verified" />
                 </div>
                 <div>
                   <p className="text-xs font-medium text-ink">DLD Verified</p>
@@ -157,10 +157,10 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
               </div>
             </div>
 
-            <div className="absolute -bottom-4 -left-4 rounded-none border border-border bg-white p-3 shadow-lg">
+            <div className="absolute -bottom-4 -left-4 rounded-none border border-border bg-background p-3 shadow-lg">
               <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center bg-fjord-soft">
-                  <Sparkles className="h-4 w-4 text-fjord" />
+                <div className="flex size-8 items-center justify-center bg-fjord-soft">
+                  <Sparkles className="size-4 text-fjord" />
                 </div>
                 <div>
                   <p className="text-xs font-medium text-ink">AI Match</p>

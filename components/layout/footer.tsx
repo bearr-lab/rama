@@ -12,7 +12,7 @@ export async function Footer() {
 
   return (
     <footer className="sticky bottom-0 z-0 border-t border-border bg-surface">
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-12 sm:px-16 py-12 lg:flex-row lg:items-end lg:justify-between lg:px-20">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 p-12 sm:px-16 lg:flex-row lg:items-end lg:justify-between lg:px-20">
         <div className="max-w-xl">
           <Link href={`/${locale}#hero`}>
             <RamaLogo variant="full" size="md" />
@@ -46,7 +46,23 @@ export async function Footer() {
           />
         </div>
       </div>
-      <div className="border-t border-border"><div className="mx-auto flex max-w-6xl flex-col gap-3 px-12 sm:px-16 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between lg:px-20"><p>© {new Date().getFullYear()} RAMA</p><div className="flex items-center gap-4"><Link href={`/${locale}/homes`} className="hover:text-ink">{isArabic ? 'العقارات' : 'Homes'}</Link><Link href={`/${locale}/areas`} className="hover:text-ink">{isArabic ? 'المجتمعات' : 'Areas'}</Link><Link href={`/${locale === 'ar' ? 'en' : 'ar'}`} className="hover:text-ink">{locale === 'ar' ? 'English' : 'العربية'}</Link></div></div></div>
+      <div className="border-t border-border">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-12 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-16 lg:px-20">
+          <p>© {new Date().getFullYear()} RAMA</p>
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-muted/60">
+              {isArabic ? 'الصور مقدمة من ' : 'Imagery provided by '}
+              <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:text-ink">
+                Pexels
+              </a>
+            </span>
+            <span className="hidden text-border sm:inline">|</span>
+            <Link href={`/${locale}/homes`} className="hover:text-ink">{isArabic ? 'العقارات' : 'Homes'}</Link>
+            <Link href={`/${locale}/areas`} className="hover:text-ink">{isArabic ? 'المجتمعات' : 'Areas'}</Link>
+            <Link href={`/${locale === 'ar' ? 'en' : 'ar'}`} className="hover:text-ink">{locale === 'ar' ? 'English' : 'العربية'}</Link>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 }

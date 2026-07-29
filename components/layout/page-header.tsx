@@ -11,6 +11,11 @@ interface PageHeaderProps {
   children?: ReactNode;
   className?: string;
   backgroundImage?: string;
+  backgroundVideo?: string;
+  /** Optional badge/chip rendered above the title */
+  badge?: ReactNode;
+  /** Layout variant: "center" for centered text, "editorial" for left-aligned cinematic */
+  variant?: 'center' | 'editorial';
 }
 
 export function PageHeader({
@@ -20,56 +25,123 @@ export function PageHeader({
   children,
   className,
   backgroundImage,
+  backgroundVideo,
+  badge,
+  variant = 'center',
 }: PageHeaderProps) {
-  const isImage = !!backgroundImage;
+  const isCinematic = !!(backgroundImage || backgroundVideo);
+
+  // Non-image hero (simple page header)
+  if (!isCinematic) {
+    return (
+      <Section
+        background="surface-subtle"
+        className={cn(
+          'relative mt-16 overflow-hidden border-b border-border pt-24 pb-12 md:pt-32 md:pb-16',
+          className,
+        )}
+      >
+        <Container size="2xl" className="relative z-10 space-y-6">
+          <div>
+            <h1 className="mb-4 flex items-center gap-3 font-display text-4xl font-medium tracking-tight text-ink md:text-5xl lg:text-6xl">
+              {icon && <span className="text-fjord">{icon}</span>}
+              {title}
+            </h1>
+            {description && (
+              <p className="max-w-xl text-lg leading-relaxed font-light text-muted-foreground md:text-xl">
+                {description}
+              </p>
+            )}
+          </div>
+          {children && <div className="w-full pt-2">{children}</div>}
+        </Container>
+      </Section>
+    );
+  }
+
+  // ─── Cinematic Hero (clean, minimal — matches landing page) ───
+  const isEditorial = variant === 'editorial';
 
   return (
     <Section
-      background={isImage ? undefined : 'surface-subtle'}
       className={cn(
-        isImage
-          ? 'mt-0 flex min-h-[580px] flex-col justify-center border-none py-28 shadow-none md:py-36'
-          : 'mt-16 border-b border-border pt-24 pb-12 md:pt-32 md:pb-16',
-        'relative overflow-hidden',
+        'relative mt-0 flex min-h-145 flex-col justify-end overflow-hidden border-none py-0 shadow-none',
         className,
       )}
     >
-      {isImage && (
-        <>
-          <div className="absolute inset-0 z-0">
-            <Image
-              src={backgroundImage}
-              alt={title}
-              fill
-              sizes="100vw"
-              className="object-cover scale-105 transition-transform duration-1000"
-              priority
-            />
+      {/* ── Background Layer ── */}
+      <div className="absolute inset-0 z-0">
+        {backgroundVideo ? (
+          <video
+            src={backgroundVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="size-full object-cover object-center"
+          />
+        ) : backgroundImage ? (
+          <Image
+            src={backgroundImage}
+            alt={title}
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            priority
+          />
+        ) : null}
+
+        {/* Gradient overlay — matches landing hero */}
+        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+      </div>
+
+      {/* ── Content Layer — anchored to bottom ── */}
+      <Container
+        size="xl"
+        className={cn(
+          'relative z-10 pb-12 md:pb-24',
+          isEditorial
+            ? 'max-w-4xl'
+            : 'mx-auto flex max-w-4xl flex-col items-center text-center',
+        )}
+      >
+        {/* Badge — minimal Nordic label */}
+        {badge && (
+          <div className="mb-6 inline-flex items-center gap-2 border border-white/30 px-3 py-1 text-[11px] font-semibold tracking-widest text-white/80 uppercase">
+            {badge}
           </div>
-          <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/75 via-black/50 to-black/85 backdrop-blur-[1px]" />
-        </>
-      )}
+        )}
 
-      <Container size="2xl" className={cn('relative z-10 space-y-6', isImage && 'text-center max-w-4xl mx-auto')}>
-        <div className={cn(isImage && 'flex flex-col items-center text-center')}>
-          <h1 className={cn(
-            "mb-4 flex items-center justify-center gap-3 font-display text-4xl font-medium tracking-tight md:text-5xl lg:text-6xl",
-            isImage ? "text-white drop-shadow-sm" : "text-ink"
-          )}>
-            {icon && <span className={isImage ? "text-white/80" : "text-fjord"}>{icon}</span>}
-            {title}
-          </h1>
-          {description && (
-            <p className={cn(
-              "max-w-xl text-lg md:text-xl font-light leading-relaxed",
-              isImage ? "text-white/85 mx-auto" : "text-muted-foreground"
-            )}>
-              {description}
-            </p>
+        {/* Title */}
+        <h1
+          className={cn(
+            'font-display text-5xl leading-none font-normal tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl',
+            !isEditorial && 'justify-center',
           )}
-        </div>
+        >
+          {icon && <span className="mr-3 text-white/80">{icon}</span>}
+          {title}
+        </h1>
 
-        {children && <div className="pt-2 w-full">{children}</div>}
+        {/* Description */}
+        {description && (
+          <p
+            className={cn(
+              'mt-6 max-w-2xl text-base leading-relaxed font-medium text-white/90 drop-shadow-md md:text-lg',
+              !isEditorial && 'mx-auto',
+            )}
+          >
+            {description}
+          </p>
+        )}
+
+        {/* Children slot (search bars, filters, CTAs) */}
+        {children && (
+          <div className={cn('mt-8 w-full', !isEditorial && 'flex flex-col items-center')}>
+            {children}
+          </div>
+        )}
       </Container>
     </Section>
   );

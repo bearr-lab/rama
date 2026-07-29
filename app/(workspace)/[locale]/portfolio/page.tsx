@@ -23,7 +23,7 @@ export default async function PortfolioPage({
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'إدارة المحفظة والأصول العقارية' : 'Asset & Portfolio Intelligence'}
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             {isArabic
               ? 'متابعة التقييم الفوري للعقارات، تدفقات الإيجار الشهرية، طلبات الصيانة والتقارير الضريبية وفق معايير دائرة الأراضي والأملاك.'
               : 'Institutional asset management suite. Monitor live DLD valuation gains, lease renewal timelines, service charge ticketing, and UAE corporate tax compliance.'}
@@ -34,61 +34,61 @@ export default async function PortfolioPage({
       {/* Efferd & Magic UI Asset Composition Strip */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <BlurFade delay={0.1}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating rounded-3xl">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating rounded-3xl border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               {isArabic ? 'إجمالي قيمة المحفظة' : 'Total Asset Value'}
             </span>
             <div className="mt-3 flex items-baseline justify-between">
-              <span className="font-display text-3xl font-semibold text-ink flex items-baseline">
-                <span className="text-xl font-sans mr-1">AED</span>
+              <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
+                <span className="mr-1 font-sans text-xl">AED</span>
                 <NumberTicker value={24.85} decimalPlaces={2} suffix="M" />
               </span>
-              <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 rounded-full">
+              <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 +14.8% Gain
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               {isArabic ? '3 عقارات موثقة في DLD' : '3 DLD-verified prime properties'}
             </p>
           </div>
         </BlurFade>
 
         <BlurFade delay={0.2}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating rounded-3xl">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating rounded-3xl border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               {isArabic ? 'التدفق الإيجاري الشهري' : 'Monthly Rental Cashflow'}
             </span>
             <div className="mt-3 flex items-baseline justify-between">
-              <span className="font-display text-3xl font-semibold text-ink flex items-baseline">
-                <span className="text-xl font-sans mr-1">AED</span>
+              <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
+                <span className="mr-1 font-sans text-xl">AED</span>
                 <NumberTicker value={144000} />
               </span>
-              <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 rounded-full">
+              <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 100% Occupied
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               {isArabic ? 'عقود إيجاري موثقة ومضمونة' : 'Registered Ejari long-term leases'}
             </p>
           </div>
         </BlurFade>
 
         <BlurFade delay={0.3}>
-          <div className="border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all hover:shadow-floating rounded-3xl">
-            <span className="text-[11px] font-bold uppercase tracking-widest text-fjord">
+          <div className="hover:shadow-floating rounded-3xl border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
+            <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
               {isArabic ? 'صافي عائد الاستثمار' : 'Weighted Net Yield'}
             </span>
             <div className="mt-3 flex items-baseline justify-between">
               <span className="font-display text-3xl font-semibold text-ink">
                 <NumberTicker value={6.9} decimalPlaces={1} suffix="%" />
               </span>
-              <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400 rounded-full">
+              <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
                   Tax Optimized
                 </AnimatedShinyText>
               </span>
             </div>
-            <p className="mt-1 text-xs text-muted-foreground font-light">
+            <p className="mt-1 text-xs font-light text-muted-foreground">
               {isArabic ? 'بعد خصم رسوم الصيانة والإدارة' : 'Net after service charges & management'}
             </p>
           </div>

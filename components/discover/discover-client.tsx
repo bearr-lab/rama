@@ -17,7 +17,6 @@ import { ListingCard } from '@/components/discover/listing-card';
 import {
   Sparkles,
   Search,
-  SlidersHorizontal,
   Map as MapIcon,
   LayoutGrid,
   List,
@@ -31,9 +30,9 @@ import { cn } from '@/lib/utils';
 import { LifeBriefBar } from '@/components/shell/life-brief-bar';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { NumberTicker } from '@/components/magicui/number-ticker';
-import { BlurFade } from '@/components/magicui/blur-fade';
+
 import { AnimatedShinyText } from '@/components/magicui/shiny-text';
 
 export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
@@ -99,7 +98,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             Discover Dubai Real Estate
           </h1>
-          <p className="mt-2 max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             Universal semantic search paired with verified Trust Passports and live geospatial intelligence.
           </p>
         </div>
@@ -122,7 +121,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
             </div>
             <div className="h-4 w-px bg-border" />
             <div className="flex items-center gap-1.5 font-semibold text-ink">
-              <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-500" />
+              <ShieldCheck className="size-4 shrink-0 text-emerald-500" />
               <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
                 {filters.onlyVerified ? 'Verified Only' : '100% DLD Passports'}
               </AnimatedShinyText>
@@ -137,15 +136,15 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               'flex flex-row items-center gap-2 rounded-xl font-semibold shadow-2xs transition-all',
               showMapDrawer
                 ? 'border-transparent bg-fjord text-white hover:bg-fjord-hover'
-                : 'border-border/80 bg-surface text-ink hover:border-border-strong hover:bg-surface-subtle',
+                : 'hover:border-border-strong border-border/80 bg-surface text-ink hover:bg-surface-subtle',
             )}
           >
-            <MapIcon className="h-4 w-4" />
+            <MapIcon className="size-4" />
             <span>{showMapDrawer ? 'Hide Map' : 'Interactive Map'}</span>
             {showMapDrawer ? (
-              <ChevronUp className="h-4 w-4" />
+              <ChevronUp className="size-4" />
             ) : (
-              <ChevronDown className="h-4 w-4" />
+              <ChevronDown className="size-4" />
             )}
           </Button>
         </div>
@@ -159,19 +158,19 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
         <div className="w-full overflow-hidden rounded-xl border border-border bg-card shadow-md transition-all duration-300">
           <div className="flex items-center justify-between border-b border-border bg-surface-subtle/40 px-4 py-2.5">
             <div className="flex items-center gap-2 text-xs font-semibold text-ink">
-              <MapIcon className="h-4 w-4 text-fjord" />
+              <MapIcon className="size-4 text-fjord" />
               <span>Geospatial Dubai Heatmap & Property Pins</span>
             </div>
             <Button
               variant="ghost"
               size="icon-sm"
               onClick={() => setShowMapDrawer(false)}
-              className="h-7 w-7 text-muted hover:text-ink"
+              className="size-7 text-muted hover:text-ink"
             >
-              <X className="h-4 w-4" />
+              <X className="size-4" />
             </Button>
           </div>
-          <div className="h-[420px] w-full">
+          <div className="h-105 w-full">
             <DubaiMap
               properties={filteredProperties}
               selectedProperty={selectedProperty}
@@ -182,11 +181,11 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
       )}
 
       {/* ── Integrated Lagom Executive Command Console ── */}
-      <div className="rounded-3xl border border-border/40 bg-surface/70 p-6 shadow-subtle backdrop-blur-md space-y-5 transition-all duration-300 hover:shadow-floating">
+      <div className="shadow-subtle hover:shadow-floating space-y-5 rounded-3xl border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all duration-300">
         {/* Main AI Semantic Search Bar */}
         <div className="relative flex w-full items-center">
           <div className="pointer-events-none absolute left-5 flex items-center gap-2 font-semibold text-fjord">
-            <Sparkles className="h-4.5 w-4.5 animate-pulse text-fjord" />
+            <Sparkles className="size-4.5 animate-pulse text-fjord" />
             <span className="hidden text-xs font-bold tracking-widest uppercase sm:inline">
               AI Search
             </span>
@@ -196,7 +195,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
             value={rawQuery}
             onChange={handleQueryChange}
             placeholder='Try typing "4 bed penthouse in Marina under 15m with high trust"...'
-            className="w-full rounded-2xl border border-border/60 bg-surface/90 py-4 pr-12 pl-12 text-sm font-medium text-ink shadow-2xs transition-all placeholder:text-muted-foreground/70 hover:border-fjord/40 focus:border-fjord focus:bg-surface focus:ring-2 focus:ring-fjord/10 focus:outline-none sm:pl-36"
+            className="w-full rounded-2xl border border-border/60 bg-surface/90 px-12 py-4 text-sm font-medium text-ink shadow-2xs transition-all placeholder:text-muted-foreground/70 hover:border-fjord/40 focus:border-fjord focus:bg-surface focus:ring-2 focus:ring-fjord/10 focus:outline-none sm:pl-36"
           />
           {rawQuery && (
             <button
@@ -204,7 +203,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               className="absolute right-4 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-surface-subtle hover:text-ink"
               title="Clear search"
             >
-              <X className="h-4 w-4" />
+              <X className="size-4" />
             </button>
           )}
         </div>
@@ -213,8 +212,8 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
         <div className="flex flex-col gap-4 pt-1 lg:flex-row lg:items-center lg:justify-between">
           {/* Quick Command Chips */}
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="flex items-center gap-1.5 font-semibold text-muted-foreground mr-1">
-              <Sparkles className="h-3.5 w-3.5 text-fjord animate-pulse" /> Suggestions:
+            <span className="mr-1 flex items-center gap-1.5 font-semibold text-muted-foreground">
+              <Sparkles className="size-3.5 animate-pulse text-fjord" /> Suggestions:
             </span>
             <Button
               variant="outline"
@@ -258,7 +257,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                 onChange={(e) =>
                   setFilters((prev) => ({ ...prev, community: e.target.value }))
                 }
-                className="rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 text-xs font-semibold text-ink shadow-2xs transition-colors hover:border-border-strong focus:border-fjord focus:ring-2 focus:ring-fjord/10 focus:outline-none"
+                className="hover:border-border-strong rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 text-xs font-semibold text-ink shadow-2xs transition-colors focus:border-fjord focus:ring-2 focus:ring-fjord/10 focus:outline-none"
               >
                 {COMMUNITY_LIST.map((comm) => (
                   <option key={comm} value={comm}>
@@ -279,7 +278,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                     onClick={() => removeFilter('beds')}
                     className="hover:text-ink"
                   >
-                    <X className="h-3 w-3" />
+                    <X className="size-3" />
                   </button>
                 </Badge>
               )}
@@ -294,7 +293,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                     onClick={() => removeFilter('maxPrice')}
                     className="hover:text-ink"
                   >
-                    <X className="h-3 w-3" />
+                    <X className="size-3" />
                   </button>
                 </Badge>
               )}
@@ -308,14 +307,14 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                   variant="ghost"
                   size="sm"
                   onClick={handleClearSearch}
-                  className="h-7 gap-1 text-xs text-muted-foreground hover:text-foreground font-medium"
+                  className="h-7 gap-1 text-xs font-medium text-muted-foreground hover:text-foreground"
                 >
-                  <RotateCcw className="h-3 w-3" /> Reset All
+                  <RotateCcw className="size-3" /> Reset All
                 </Button>
               )}
             </div>
 
-            <div className="flex items-center gap-3 ml-auto">
+            <div className="ml-auto flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <span className="hidden text-xs font-semibold text-muted-foreground sm:inline">
                   Sort:
@@ -325,10 +324,10 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                   onChange={(e) =>
                     setFilters((prev) => ({
                       ...prev,
-                      sortBy: e.target.value as any,
+                      sortBy: e.target.value as DiscoverFilters['sortBy'],
                     }))
                   }
-                  className="rounded-xl border border-border/60 bg-surface px-3 py-1.5 text-xs font-semibold text-ink shadow-2xs transition-colors hover:border-border-strong focus:border-fjord focus:ring-2 focus:ring-fjord/10 focus:outline-none"
+                  className="hover:border-border-strong rounded-xl border border-border/60 bg-surface px-3 py-1.5 text-xs font-semibold text-ink shadow-2xs transition-colors focus:border-fjord focus:ring-2 focus:ring-fjord/10 focus:outline-none"
                 >
                   <option value="trust">Highest Trust Score</option>
                   <option value="roi">Highest Rental Yield (ROI)</option>
@@ -344,12 +343,12 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                   className={cn(
                     'flex items-center gap-1 rounded-lg p-1.5 text-xs font-semibold transition-all',
                     viewMode === 'grid'
-                      ? 'bg-surface font-bold text-ink shadow-2xs border border-border/40'
+                      ? 'border border-border/40 bg-surface font-bold text-ink shadow-2xs'
                       : 'text-muted-foreground hover:text-ink',
                 )}
                 title="Grid View"
               >
-                <LayoutGrid className="h-4 w-4" />
+                <LayoutGrid className="size-4" />
                 <span className="hidden sm:inline">Grid</span>
               </button>
               <button
@@ -357,12 +356,12 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                 className={cn(
                   'flex items-center gap-1 rounded-md p-1.5 text-xs font-medium transition-colors',
                   viewMode === 'list'
-                    ? 'bg-surface font-bold text-ink shadow-2xs border border-border/40'
+                    ? 'border border-border/40 bg-surface font-bold text-ink shadow-2xs'
                     : 'text-muted hover:text-ink',
                 )}
                 title="List View"
               >
-                <List className="h-4 w-4" />
+                <List className="size-4" />
                 <span className="hidden sm:inline">List</span>
               </button>
             </div>
@@ -372,15 +371,15 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
       </div>
 
       {/* Main Full-Width Property Grid */}
-      <div className="mt-2 min-h-[500px] w-full">
+      <div className="mt-2 min-h-125 w-full">
         {filteredProperties.length === 0 ? (
           <Card className="flex h-80 w-full flex-col items-center justify-center border-dashed border-border/80 bg-surface/50 p-6 text-center">
-            <Search className="mb-3 h-10 w-10 text-muted" />
+            <Search className="mb-3 size-10 text-muted" />
             <h3 className="font-display text-base font-bold text-ink">
               No Verified Properties Found
             </h3>
             <p className="mt-1 mb-4 max-w-md text-xs text-muted">
-              We couldn't find any listings matching your AI search query. Try
+              We couldn&apos;t find any listings matching your AI search query. Try
               broadening your budget or community constraints.
             </p>
             <Button

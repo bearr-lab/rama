@@ -15,7 +15,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronDown,
-  Share2,
   Heart,
   Compass,
   CalendarDays,
@@ -39,7 +38,7 @@ const CATEGORY_META: Record<string, { en: string; ar: string; icon: React.ReactN
     en: 'All',
     ar: 'الكل',
     icon: (
-      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
       </svg>
     ),
@@ -47,27 +46,27 @@ const CATEGORY_META: Record<string, { en: string; ar: string; icon: React.ReactN
   kitchen: {
     en: 'Kitchen',
     ar: 'مطبخ',
-    icon: <span className="h-3 w-3 rounded-full border border-current opacity-70" />,
+    icon: <span className="size-3 rounded-full border border-current opacity-70" />,
   },
   bedroom: {
     en: 'Bedroom',
     ar: 'غرفة نوم',
-    icon: <BedDouble className="h-3.5 w-3.5 opacity-70" />,
+    icon: <BedDouble className="size-3.5 opacity-70" />,
   },
   living: {
     en: 'Living',
     ar: 'معيشة',
-    icon: <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />,
+    icon: <span className="size-1.5 rounded-full bg-current opacity-70" />,
   },
   balcony: {
     en: 'Balcony',
     ar: 'شرفة',
-    icon: <span className="h-1.5 w-1.5 rounded-full bg-current opacity-70" />,
+    icon: <span className="size-1.5 rounded-full bg-current opacity-70" />,
   },
   bathroom: {
     en: 'Bathroom',
     ar: 'حمام',
-    icon: <Bath className="h-3.5 w-3.5 opacity-70" />,
+    icon: <Bath className="size-3.5 opacity-70" />,
   },
 };
 
@@ -143,17 +142,17 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -48, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="fixed top-16 left-0 right-0 z-40 border-b border-border/40 bg-background/90 backdrop-blur-md"
+            className="fixed inset-x-0 top-16 z-40 border-b border-border/40 bg-background/90 backdrop-blur-md"
           >
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
               <button
                 onClick={() => router.back()}
-                className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:text-ink"
+                className="flex items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="size-4" />
                 {isArabic ? 'العقارات' : 'All Homes'}
               </button>
-              <span className="font-display text-sm font-semibold text-ink line-clamp-1 max-w-xs">
+              <span className="line-clamp-1 max-w-xs font-display text-sm font-semibold text-ink">
                 {title}
               </span>
               <div className="flex items-center gap-3">
@@ -168,7 +167,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
       </AnimatePresence>
 
       {/* ─── FULL-BLEED CINEMATIC HERO ─── */}
-      <div className="relative h-[calc(100vh-64px)] min-h-[500px] w-full overflow-hidden bg-black">
+      <div className="relative h-[calc(100vh-64px)] min-h-125 w-full overflow-hidden bg-black">
         {/* Hero image with crossfade key */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -190,56 +189,56 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/10" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-black/10" />
 
         {/* Top-right: action cluster */}
         <div className="absolute top-6 right-6 z-20 flex items-center gap-2">
           <button
             onClick={() => toast.add({ title: isArabic ? 'أضيف للمفضلة' : 'Saved to favorites', type: 'success' })}
             aria-label={isArabic ? 'حفظ في المفضلة' : 'Save to favourites'}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
+            className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
           >
-            <Heart className="h-4 w-4 text-white" />
+            <Heart className="size-4 text-white" />
           </button>
           <ShareButton 
             title={title || ''} 
             text={description || undefined} 
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
+            className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
           />
         </div>
 
         {/* ─── Left Side: Financial Metrics Card ─── */}
-        <div className="absolute bottom-6 left-6 z-20 w-[340px] space-y-4">
+        <div className="absolute bottom-6 left-6 z-20 w-85 space-y-4">
           {/* Compass Floating Button */}
           <button 
             aria-label={isArabic ? 'استكشف المنطقة' : 'Explore Neighborhood'}
             onClick={() => setIsGalleryOpen(true)}
-            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/60 backdrop-blur-md transition-transform hover:scale-105"
+            className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/60 backdrop-blur-md transition-transform hover:scale-105"
           >
-            <Compass className="h-5 w-5 text-white" />
+            <Compass className="size-5 text-white" />
           </button>
 
           {/* Financial Card */}
-          <div className="rounded-xl border border-white/10 bg-[#161616]/95 backdrop-blur-xl p-5 shadow-2xl">
+          <div className="rounded-xl border border-white/10 bg-[#161616]/95 p-5 shadow-2xl backdrop-blur-xl">
             {/* Header / Price */}
             <div className="mb-6 flex items-start justify-between">
               <div>
-                <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white/50">
+                <p className="mb-1 text-[10px] font-bold tracking-[0.15em] text-white/50 uppercase">
                   {isArabic ? 'سعر الطلب' : 'ASKING PRICE'}
                 </p>
-                <p className="font-display text-3xl font-bold leading-none text-white">
+                <p className="font-display text-3xl leading-none font-bold text-white">
                   AED {property.price >= 1_000_000
                     ? `${formatPrice(property.price / 1_000_000)}M`
                     : formatPrice(property.price)}
                 </p>
               </div>
-              <ChevronDown className="h-5 w-5 text-white/50" />
+              <ChevronDown className="size-5 text-white/50" />
             </div>
 
             {/* Metrics Grid */}
             <div className="mb-6 grid grid-cols-2 gap-y-6">
               <div>
-                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                <p className="mb-1 text-[10px] font-semibold tracking-wider text-white/50 uppercase">
                   {isArabic ? 'السعر / قدم²' : 'PRICE / SQFT'}
                 </p>
                 <p className="text-sm font-bold text-white">
@@ -247,7 +246,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 </p>
               </div>
               <div>
-                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                <p className="mb-1 text-[10px] font-semibold tracking-wider text-white/50 uppercase">
                   {isArabic ? 'العائد الاستثماري' : 'CAP RATE'}
                 </p>
                 <p className="text-sm font-bold text-white">
@@ -255,7 +254,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 </p>
               </div>
               <div>
-                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                <p className="mb-1 text-[10px] font-semibold tracking-wider text-white/50 uppercase">
                   {isArabic ? 'الإيجار التقديري' : 'EST. RENTAL'}
                 </p>
                 <p className="text-sm font-bold text-white">
@@ -263,7 +262,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 </p>
               </div>
               <div>
-                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                <p className="mb-1 text-[10px] font-semibold tracking-wider text-white/50 uppercase">
                   {isArabic ? 'رسوم الخدمة' : 'SERVICE CHG'}
                 </p>
                 <p className="text-sm font-bold text-white">
@@ -275,16 +274,16 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
             {/* Action Button */}
             <Button
               onClick={() => setIsBookModalOpen(true)}
-              className="w-full rounded-md bg-white py-6 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
+              className="w-full rounded-md bg-white py-6 text-sm font-bold text-black transition-transform hover:scale-105"
             >
-              <CalendarDays className="mr-2 h-4 w-4" />
+              <CalendarDays className="mr-2 size-4" />
               {isArabic ? 'حجز معاينة' : 'Book Viewing'}
             </Button>
           </div>
         </div>
 
         {/* ─── Bottom Center: Room Navigation Pill ─── */}
-        <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 scrollbar-none items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl [&::-webkit-scrollbar]:hidden">
           {Array.from(new Set(['all', ...roomPhotos.map(p => p.category)])).map((category) => {
             const isActive = activeRoomCategory === category;
             const meta = CATEGORY_META[category] || { en: category, ar: category, icon: null };
@@ -293,7 +292,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 key={category}
                 aria-pressed={isActive}
                 onClick={() => setActiveRoomCategory(category as RoomImage['category'] | 'all')}
-                className={`flex shrink-0 whitespace-nowrap items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold capitalize transition-all duration-300 ${
+                className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold whitespace-nowrap capitalize transition-all duration-300 ${
                   isActive
                     ? 'bg-white text-black shadow-lg'
                     : 'text-white hover:bg-white/10'
@@ -312,22 +311,22 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
         <Container size="lg" padding="lg" className="py-16">
           {/* Breadcrumb */}
           <nav aria-label="breadcrumb" className="mb-10 flex items-center gap-2 text-xs text-muted-foreground">
-            <Link href={`/${locale}`} className="hover:text-ink transition-colors">
+            <Link href={`/${locale}`} className="transition-colors hover:text-ink">
               {isArabic ? 'الرئيسية' : 'Home'}
             </Link>
             <span>/</span>
-            <Link href={`/${locale}/homes`} className="hover:text-ink transition-colors">
+            <Link href={`/${locale}/homes`} className="transition-colors hover:text-ink">
               {isArabic ? 'العقارات' : 'Homes'}
             </Link>
             <span>/</span>
-            <span className="text-ink font-medium line-clamp-1 max-w-[200px]">{title}</span>
+            <span className="line-clamp-1 max-w-50 font-medium text-ink">{title}</span>
           </nav>
 
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-3">
             {/* LEFT: specs + description */}
             <div className="space-y-12 lg:col-span-2">
               <div className="space-y-3">
-                <h1 className="font-display text-4xl font-bold leading-tight text-ink md:text-5xl">
+                <h1 className="font-display text-4xl leading-tight font-bold text-ink md:text-5xl">
                   {title}
                 </h1>
                 <p className="text-sm text-muted-foreground">
@@ -338,48 +337,48 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
               </div>
 
               <section>
-                <h2 className="mb-5 text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">
+                <h2 className="mb-5 text-[11px] font-bold tracking-[0.15em] text-muted-foreground uppercase">
                   {isArabic ? 'المواصفات الرئيسية' : 'Property Overview'}
                 </h2>
                 <div className="grid grid-cols-2 gap-px border border-border/40 bg-border/40 md:grid-cols-4">
                   {property.bedrooms != null && (
                     <div className="flex flex-col gap-2 bg-surface p-5">
-                      <BedDouble className="h-5 w-5 text-fjord" />
+                      <BedDouble className="size-5 text-fjord" />
                       <span className="text-2xl font-bold text-ink">
                         <NumberTicker value={property.bedrooms} />
                       </span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                         {isArabic ? 'غرف' : 'Bedrooms'}
                       </span>
                     </div>
                   )}
                   {property.bathrooms != null && (
                     <div className="flex flex-col gap-2 bg-surface p-5">
-                      <Bath className="h-5 w-5 text-fjord" />
+                      <Bath className="size-5 text-fjord" />
                       <span className="text-2xl font-bold text-ink">
                         <NumberTicker value={property.bathrooms} />
                       </span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                         {isArabic ? 'حمامات' : 'Bathrooms'}
                       </span>
                     </div>
                   )}
                   {property.area_sqft != null && (
                     <div className="flex flex-col gap-2 bg-surface p-5">
-                      <Maximize2 className="h-5 w-5 text-fjord" />
+                      <Maximize2 className="size-5 text-fjord" />
                       <span className="text-2xl font-bold text-ink">
                         <NumberTicker value={property.area_sqft} />
                       </span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                         {isArabic ? 'قدم مربع' : 'Sq Ft'}
                       </span>
                     </div>
                   )}
                   {property.developer && (
                     <div className="flex flex-col gap-2 bg-surface p-5">
-                      <Building2 className="h-5 w-5 text-fjord" />
-                      <span className="text-sm font-bold text-ink truncate">{property.developer}</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                      <Building2 className="size-5 text-fjord" />
+                      <span className="truncate text-sm font-bold text-ink">{property.developer}</span>
+                      <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                         {isArabic ? 'المطور' : 'Developer'}
                       </span>
                     </div>
@@ -388,17 +387,17 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
               </section>
 
               <section className="space-y-4 border-t border-border/40 pt-10">
-                <h3 className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">
+                <h3 className="text-[11px] font-bold tracking-[0.15em] text-muted-foreground uppercase">
                   {isArabic ? 'عن هذه الوحدة' : 'About this Residence'}
                 </h3>
-                <p className="text-base leading-relaxed text-muted-foreground font-light">
+                <p className="text-base leading-relaxed font-light text-muted-foreground">
                   {description}
                 </p>
               </section>
 
               {(property.features?.length > 0 || property.amenities?.length > 0) && (
                 <section className="space-y-4 border-t border-border/40 pt-10">
-                  <h3 className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">
+                  <h3 className="text-[11px] font-bold tracking-[0.15em] text-muted-foreground uppercase">
                     {isArabic ? 'المميزات والمرافق' : 'Features & Amenities'}
                   </h3>
                   <div className="flex flex-wrap gap-2">
@@ -417,52 +416,52 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
 
             {/* RIGHT: Decision panel (DLD Passport + Gallery Launcher) */}
             <div className="space-y-4">
-              <div className="border border-border/40 bg-surface p-6 space-y-4">
+              <div className="space-y-4 border border-border/40 bg-surface p-6">
                 {property.verification_status === 'verified' && (
                   <div className="flex items-center gap-2 border-b border-border/40 pb-4">
-                    <ShieldCheck className="h-5 w-5 text-emerald-500" />
-                    <span className="text-[10px] font-bold text-ink uppercase tracking-wider">
+                    <ShieldCheck className="size-5 text-emerald-500" />
+                    <span className="text-[10px] font-bold tracking-wider text-ink uppercase">
                       {isArabic ? 'موثق من دائرة الأراضي' : 'DLD Title Deed Verified'}
                     </span>
                   </div>
                 )}
 
-                <div className="space-y-3 text-xs text-muted-foreground font-light">
-                  <div className="flex justify-between py-1 border-b border-border/40">
+                <div className="space-y-3 text-xs font-light text-muted-foreground">
+                  <div className="flex justify-between border-b border-border/40 py-1">
                     <span>{isArabic ? 'رسوم النقل (4% DLD)' : 'DLD Transfer Fee (4%):'}</span>
                     <span className="font-bold text-ink">
                       AED {new Intl.NumberFormat('en-US').format(property.price * 0.04)}
                     </span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-border/40">
+                  <div className="flex justify-between border-b border-border/40 py-1">
                     <span>{isArabic ? 'رسوم التسجيل' : 'Trustee Registration:'}</span>
                     <span className="font-bold text-ink">AED 4,200</span>
                   </div>
                   {property.service_charge_aed && (
-                    <div className="flex justify-between py-1 border-b border-border/40">
+                    <div className="flex justify-between border-b border-border/40 py-1">
                       <span>{isArabic ? 'رسوم الخدمة / قدم²' : 'Service Charge / sqft:'}</span>
                       <span className="font-bold text-ink">AED {property.service_charge_aed}</span>
                     </div>
                   )}
                   <div className="flex justify-between py-1">
                     <span>{isArabic ? 'العائد الاستثماري المتوقع' : 'Projected Cap Rate:'}</span>
-                    <span className="font-bold text-ink text-emerald-600">{property.cap_rate_percentage || '6.8'}%</span>
+                    <span className="font-bold text-emerald-600">{property.cap_rate_percentage || '6.8'}%</span>
                   </div>
                 </div>
 
                 <Button
                   onClick={() => setIsGalleryOpen(true)}
                   variant="outline"
-                  className="w-full font-bold text-xs tracking-widest uppercase py-3 border-fjord text-fjord hover:bg-fjord hover:text-white transition-colors"
+                  className="w-full border-fjord py-3 text-xs font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-fjord hover:text-white"
                 >
-                  <Eye className="mr-2 h-4 w-4" />
+                  <Eye className="mr-2 size-4" />
                   {isArabic ? 'معاينة جميع الغرف' : 'View Room Gallery'}
                 </Button>
 
                 <Link href={`/${locale}/shortlist`} className="block w-full">
-                  <Button className="w-full bg-fjord text-white font-bold text-xs tracking-widest uppercase py-3">
+                  <Button className="w-full bg-fjord py-3 text-xs font-bold tracking-widest text-white uppercase">
                     {isArabic ? 'أضف إلى القائمة المختصرة' : 'Save to Decision Shortlist'}
-                    <ArrowRight className="ms-2 h-4 w-4" />
+                    <ArrowRight className="ms-2 size-4" />
                   </Button>
                 </Link>
               </div>
