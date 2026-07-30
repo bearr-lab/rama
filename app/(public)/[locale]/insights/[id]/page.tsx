@@ -14,6 +14,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string; id: string }>;
 }) {
   const { locale, id } = await params;
+  if (!/^\d+$/.test(id)) return {};
   const { heroInsight, insights } = getInsightsData(locale);
   const insightId = parseInt(id, 10);
   const insight =
@@ -34,6 +35,10 @@ export default async function InsightDetailPage({
   const { locale, id } = await params;
   const isArabic = locale === 'ar';
   
+  if (!/^\d+$/.test(id)) {
+    notFound();
+  }
+
   const { heroInsight, insights } = getInsightsData(locale);
   
   const insightId = parseInt(id, 10);

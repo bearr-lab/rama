@@ -136,7 +136,7 @@ export default async function ProjectDetailPage({
               <span>{isArabic ? project.statusAr : project.statusEn}</span>
             </div>
             
-            <h1 className="leading-1.1 font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
+            <h1 className="leading-[1.1] font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
               {isArabic ? project.titleAr : project.titleEn}
             </h1>
             
