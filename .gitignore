@@ -62,14 +62,6 @@ public/registry/*.json
 .impeccable/live/pending-manual-edits.json
 .impeccable/live/deferred-svelte-component-accepts.json
 # impeccable-ignore-end
-.impeccable/
 
 # skills and agents
 .agents/
-
-# tests
-*.test.ts
-*.test.tsx
-*.spec.ts
-*.spec.tsx
-/tests/

@@ -41,8 +41,8 @@ export function ContactConnect({
   };
 
   return (
-    <section className="@container border-t border-border/40 bg-background py-24">
-      <Container size="md">
+    <section className="border-t border-border/40 bg-background py-24">
+      <Container size="md" className="@container">
         <div>
           <h2 className="font-display text-4xl font-medium text-balance text-ink sm:text-5xl">
             {isArabic ? 'تواصل معنا' : 'Get in Touch'}

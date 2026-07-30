@@ -172,58 +172,34 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
 
         {/* Category Filters */}
         <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setFilter('all')}
-            className={cn(
-              'border px-3.5 py-1.5 text-xs font-semibold transition-all',
-              filter === 'all'
-                ? 'border-fjord bg-fjord text-white shadow-xs'
-                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
-            )}
-          >
-            {isArabic ? 'الكل' : 'All'} ({PARTNERS.length})
-          </button>
-          <button
-            onClick={() => setFilter('government')}
-            className={cn(
-              'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
-              filter === 'government'
-                ? 'border-fjord bg-fjord text-white shadow-xs'
-                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
-            )}
-          >
-            <Landmark className="size-3.5" />
-            <span>{isArabic ? 'حكومي' : 'DLD Govt'}</span>
-          </button>
-          <button
-            onClick={() => setFilter('developer')}
-            className={cn(
-              'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
-              filter === 'developer'
-                ? 'border-fjord bg-fjord text-white shadow-xs'
-                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
-            )}
-          >
-            <Building2 className="size-3.5" />
-            <span>{isArabic ? 'مطورون' : 'Developers'}</span>
-          </button>
-          <button
-            onClick={() => setFilter('bank')}
-            className={cn(
-              'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
-              filter === 'bank'
-                ? 'border-fjord bg-fjord text-white shadow-xs'
-                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
-            )}
-          >
-            <FileCheck2 className="size-3.5" />
-            <span>{isArabic ? 'بنوك الضمان' : 'Trustee Banks'}</span>
-          </button>
+          {(
+            [
+              { id: 'all', icon: null, en: `All (${PARTNERS.length})`, ar: `الكل (${PARTNERS.length})` },
+              { id: 'government', icon: Landmark, en: 'DLD Govt', ar: 'حكومي' },
+              { id: 'developer', icon: Building2, en: 'Developers', ar: 'مطورون' },
+              { id: 'bank', icon: FileCheck2, en: 'Trustee Banks', ar: 'بنوك الضمان' },
+            ] as const
+          ).map(({ id, icon: Icon, en, ar }) => (
+            <button
+              key={id}
+              onClick={() => setFilter(id as any)}
+              aria-pressed={filter === id}
+              className={cn(
+                'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
+                filter === id
+                  ? 'border-fjord bg-fjord text-white shadow-xs'
+                  : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink',
+              )}
+            >
+              {Icon && <Icon className="size-3.5" />}
+              <span>{isArabic ? ar : en}</span>
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Interactive Framer Motion Draggable & Scrollable Grid */}
-      <div className="relative max-h-95 cursor-grab scrollbar-thin scrollbar-thumb-border overflow-y-auto pr-2 select-none hover:scrollbar-thumb-fjord/40 active:cursor-grabbing">
+      {/* Interactive Framer Motion Scrollable Grid */}
+      <div className="relative max-h-95 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border hover:scrollbar-thumb-fjord/40">
         <motion.div layout className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filteredPartners.map((partner, idx) => (
@@ -286,8 +262,8 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
           </span>
         </div>
         <div className="flex items-center gap-1.5 font-semibold text-fjord">
-          <ArrowUpDown className="size-3.5 animate-pulse" />
-          <span>{isArabic ? 'اسحب للتصفح العمودي' : 'Vertical Physics Scroll Active'}</span>
+          <ArrowUpDown className="size-3.5" />
+          <span>{isArabic ? 'التمرير العمودي للاستكشاف' : 'Scroll to explore'}</span>
         </div>
       </div>
     </div>

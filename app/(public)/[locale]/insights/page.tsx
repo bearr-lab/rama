@@ -8,6 +8,21 @@ import { MagneticButton } from '@/components/ui/magnetic-button';
 
 export const revalidate = 3600;
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+  return {
+    title: isArabic ? 'الرؤى والتقارير - راما العقارية' : 'Market Insights & Reports - RAMA Real Estate',
+    description: isArabic 
+      ? 'أحدث تقارير السوق والتحليلات الخاصة بعقارات دبي من خبرائنا' 
+      : 'Latest market reports and analysis on Dubai real estate from our experts',
+  };
+}
+
 export default async function InsightsPage({
   params,
 }: {

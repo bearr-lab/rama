@@ -8,6 +8,24 @@ import { ArrowLeft, ArrowRight, Clock, User } from 'lucide-react';
 
 export const revalidate = 3600;
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}) {
+  const { locale, id } = await params;
+  const { heroInsight, insights } = getInsightsData(locale);
+  const insightId = parseInt(id, 10);
+  const insight =
+    heroInsight.id === insightId ? heroInsight : insights.find((i) => i.id === insightId);
+  if (!insight) return {};
+  return {
+    title: insight.title,
+    description: insight.description,
+    openGraph: { title: insight.title, description: insight.description },
+  };
+}
+
 export default async function InsightDetailPage({
   params,
 }: {
@@ -26,19 +44,19 @@ export default async function InsightDetailPage({
     notFound();
   }
 
-  const dynamicImage = insight.id === 1 ? '/images/hero/insights-hero.jpg' : '/images/hero/projects-hero.jpg';
+  const fallbackImage = '/images/hero/projects-hero.jpg';
 
   return (
     <article className="pb-24">
       <PageHeader
         title={insight.title}
         description={insight.description}
-        backgroundImage={insight.image || dynamicImage}
+        backgroundImage={insight.image || fallbackImage}
         variant="editorial"
         mediaPosition="object-top"
         badge={
           <>
-            <span className="flex size-2 animate-pulse rounded-none bg-emerald-400" />
+            <span className="flex size-2 animate-pulse rounded-full bg-emerald-400" />
             <span>{insight.category}</span>
           </>
         }

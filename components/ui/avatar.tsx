@@ -3,23 +3,40 @@
 import * as React from "react"
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar"
 
+import { cva, type VariantProps } from "class-variance-authority"
+
 import { cn } from "@/lib/utils"
+
+const avatarVariants = cva(
+  "group/avatar relative flex shrink-0 rounded-none select-none after:absolute after:inset-0 after:rounded-none after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten",
+  {
+    variants: {
+      size: {
+        default: "size-8",
+        sm: "size-6",
+        lg: "size-10",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  }
+)
+
+export interface AvatarProps
+  extends AvatarPrimitive.Root.Props,
+    VariantProps<typeof avatarVariants> {}
 
 function Avatar({
   className,
-  size = "default",
+  size,
   ...props
-}: AvatarPrimitive.Root.Props & {
-  size?: "default" | "sm" | "lg"
-}) {
+}: AvatarProps) {
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
-      data-size={size}
-      className={cn(
-        "group/avatar relative flex size-8 shrink-0 rounded-none select-none after:absolute after:inset-0 after:rounded-none after:border after:border-border after:mix-blend-darken data-[size=lg]:size-10 data-[size=sm]:size-6 dark:after:mix-blend-lighten",
-        className
-      )}
+      data-size={size || "default"}
+      className={cn(avatarVariants({ size, className }))}
       {...props}
     />
   )

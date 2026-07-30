@@ -1,7 +1,21 @@
 import * as React from 'react';
 import { TrendingUp, Newspaper, LineChart, Target, Lightbulb, PieChart, Landmark, Key, Globe2 } from 'lucide-react';
 
-export function getInsightsData(locale: string) {
+export interface Insight {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  content: string;
+  date: string;
+  author: string;
+  readTime: string;
+  image?: string;
+  icon?: React.ReactNode;
+  bentoSpan?: string;
+}
+
+export function getInsightsData(locale: string): { heroInsight: Insight; insights: Insight[] } {
   const isArabic = locale === 'ar';
 
   const heroInsight = {
@@ -150,7 +164,7 @@ export function getInsightsData(locale: string) {
         : 'An analysis of FDI inflows and the impact of geopolitical events on the local market.',
       category: isArabic ? 'عالمي' : 'Global',
       icon: <Globe2 className="size-5" />,
-      image: 'https://images.unsplash.com/photo-1502672023488-70e25813eb80?q=80&w=1200',
+      image: '/images/hero/insights-hero.jpg',
       bentoSpan: 'col-span-1 md:col-span-3 row-span-1',
       content: isArabic ? 'تحليل الاستثمار...' : 'Safe haven status continues to drive European and Asian capital into Dubai...',
       date: 'Sep 22, 2026',

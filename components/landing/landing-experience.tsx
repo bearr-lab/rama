@@ -58,7 +58,7 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
         <Container size="lg" className="grid gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.16em] text-fjord uppercase">{t.eyebrow}</p>
-            <h1 className="leading-1.02 mt-5 font-display text-5xl tracking-tight sm:text-6xl lg:text-7xl">{t.title}</h1>
+            <h1 className="leading-[1.02] mt-5 font-display text-5xl tracking-tight sm:text-6xl lg:text-7xl">{t.title}</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-text">{t.intro}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href={`/${locale}/homes`} className={buttonVariants({ size: 'lg' })}>{t.explore}<ArrowRight className="ms-2 size-4" /></Link>

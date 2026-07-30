@@ -9,15 +9,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Container } from '@/components/layout/container';
 import { cn } from '@/lib/utils';
 
-interface Insight {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  icon: React.ReactNode;
-  image?: string;
-  bentoSpan?: string;
-}
+import { type Insight } from '@/lib/data/insights';
 
 interface InsightsClientProps {
   insights: Insight[];
@@ -66,7 +58,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
 
                 {/* Animated Sparkline */}
                 <div className="relative z-10 mt-8 w-full">
-                  <svg viewBox="0 0 100 40" className="stroke-1.5 h-20 w-full overflow-visible fill-none stroke-emerald-500">
+                  <svg viewBox="0 0 100 40" className="stroke-[1.5] h-20 w-full overflow-visible fill-none stroke-emerald-500">
                     {/* Background faint line */}
                     <path d="M0,35 L20,30 L40,32 L60,18 L80,22 L100,5" className="stroke-emerald-500/20" />
                     {/* Animated foreground line */}
@@ -176,6 +168,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              aria-pressed={activeCategory === cat}
               className={cn(
                 'relative shrink-0 rounded-none px-5 py-2.5 text-[10px] font-bold tracking-[0.15em] uppercase outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-fjord',
                 activeCategory === cat ? 'text-white' : 'text-muted-foreground hover:text-ink'

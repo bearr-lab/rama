@@ -181,7 +181,7 @@ export function RoomGalleryModal({
         previousFocus.focus();
       }
     };
-  }, [isOpen]);
+  }, [isOpen, mounted]);
 
   React.useEffect(() => {
     if (!isOpen) return;
@@ -272,7 +272,7 @@ export function RoomGalleryModal({
       )}>
         
         {/* Top Context Bar */}
-        <div className="pointer-events-auto absolute inset-x-0 top-0 flex h-32 items-start justify-between bg-linear-to-b from-black/80 to-transparent p-6 pr-24">
+        <div className="pointer-events-auto absolute inset-x-0 top-0 flex h-32 items-start justify-between bg-linear-to-b from-black/80 to-transparent p-6">
           <div className="flex items-center gap-4">
             <div className="flex flex-col">
               <div className="flex items-center gap-2 text-xs font-medium text-white/70">
@@ -292,7 +292,7 @@ export function RoomGalleryModal({
             </div>
           </div>
           
-          <div className="mr-16 flex items-center gap-3">
+          <div className="flex items-center gap-3">
              <Button
                 variant="outline"
                 onClick={() => setIsFloorPlanMode(!isFloorPlanMode)}
@@ -310,6 +310,15 @@ export function RoomGalleryModal({
                   <Share className="size-4" />
                 </button>
              </div>
+             
+             {/* Permanent Close Button moved inside the top bar flex row */}
+             <Button
+               onClick={onClose}
+               variant="ghost"
+               className="ml-4 size-12 rounded-full border border-white/20 bg-black/50 p-0 text-white shadow-2xl backdrop-blur-xl transition-transform hover:scale-105 hover:bg-black/80"
+             >
+               <X className="size-6" />
+             </Button>
           </div>
         </div>
 
@@ -478,7 +487,11 @@ export function RoomGalleryModal({
 
                 {/* Floating Mini-Card Details */}
                 {isActive && (
-                  <div className="animate-in fade-in zoom-in-95 absolute top-6 left-1/2 z-30 w-64 -translate-x-1/2 rounded-xl border border-white/20 bg-black/70 p-4 shadow-2xl backdrop-blur-xl duration-200">
+                  <div className={cn(
+                    "animate-in fade-in zoom-in-95 absolute z-30 w-64 rounded-xl border border-white/20 bg-black/70 p-4 shadow-2xl backdrop-blur-xl duration-200",
+                    hs.y > 50 ? "bottom-6" : "top-6",
+                    hs.x > 50 ? "right-6" : "left-6"
+                  )}>
                     <div className="mb-2 flex items-start justify-between">
                        <h4 className="pr-4 text-sm leading-tight font-bold text-white">
                          {isArabic ? hs.labelAr : hs.labelEn}
@@ -518,17 +531,6 @@ export function RoomGalleryModal({
            </div>
         </div>
       )}
-
-      {/* Permanent Close Button */}
-      <div className="pointer-events-auto absolute top-6 right-6 z-50">
-        <Button
-          onClick={onClose}
-          variant="ghost"
-          className="size-12 rounded-full border border-white/20 bg-black/50 p-0 text-white shadow-2xl backdrop-blur-xl transition-transform hover:scale-105 hover:bg-black/80"
-        >
-          <X className="size-6" />
-        </Button>
-      </div>
 
     </div>,
     document.body

@@ -4,7 +4,6 @@ import { Container } from '@/components/layout/container';
 import { Building2, Calendar, MapPin, Tag, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
-import { getHeroImage } from '@/lib/pexels';
 import { cn } from '@/lib/utils';
 
 // MOCK DATA: Future Off-Plan Projects
@@ -100,12 +99,6 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
-  // Dynamically fetch a high-quality architectural image instead of using the hardcoded mock
-  const heroImage = await getHeroImage(
-    'Dubai luxury modern architecture skyscraper',
-    project.image
-  );
-
   return (
     <div className="flex min-h-screen w-full flex-col bg-surface">
       {/* Sticky back bar */}
@@ -127,7 +120,7 @@ export default async function ProjectDetailPage({
       <section className="relative flex min-h-[70vh] items-center overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src={heroImage}
+            src={project.image}
             alt={isArabic ? project.titleAr : project.titleEn}
             fill
             className="object-cover object-center"
@@ -143,7 +136,7 @@ export default async function ProjectDetailPage({
               <span>{isArabic ? project.statusAr : project.statusEn}</span>
             </div>
             
-            <h1 className="leading-1.1 font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
+            <h1 className="leading-[1.1] font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
               {isArabic ? project.titleAr : project.titleEn}
             </h1>
             

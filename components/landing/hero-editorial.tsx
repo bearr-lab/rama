@@ -43,7 +43,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
           {/* Centered Text Block */}
           <div className="flex w-full max-w-4xl flex-col items-center space-y-4 text-center md:space-y-6">
             {/* Headline */}
-            <h1 className="leading-1.05 font-display text-5xl tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl">
+            <h1 className="leading-[1.05] font-display text-5xl tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl">
               {isArabic ? (
                 <>
                   عقارات{' '}
