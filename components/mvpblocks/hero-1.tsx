@@ -50,6 +50,7 @@ export default function Hero1() {
 
         {/* Headline */}
         <div className="mx-auto mb-12 max-w-4xl space-y-6 text-center">
+          {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value, tailwindcss/classnames-order */}
           <h1 className="leading-[1.05] font-display text-4xl font-normal tracking-tight md:text-5xl lg:text-6xl">
             <span className="bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
               Invest in Dubai&apos;s
