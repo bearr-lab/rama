@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Check, Sparkles, ShieldCheck, Zap } from 'lucide-react';
+import { Check, Sparkles, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Container } from '@/components/layout/container';
@@ -55,11 +55,11 @@ export function PricingComparator({
   ];
 
   return (
-    <section className="bg-canvas py-24 border-t border-border/40">
-      <Container size="xl" className="px-6 sm:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-xs font-semibold tracking-widest text-fjord uppercase mb-3 flex items-center justify-center gap-1.5">
-            <Sparkles className="h-4 w-4 text-fjord" />
+    <section className="border-t border-border/40 bg-canvas py-24">
+      <Container size="lg">
+        <div className="mx-auto mb-16 max-w-2xl text-center">
+          <p className="mb-3 flex items-center justify-center gap-1.5 text-xs font-semibold tracking-widest text-fjord uppercase">
+            <Sparkles className="size-4 text-fjord" />
             {isArabic ? 'خطط الذكاء العقاري المؤسسي' : 'RAMA Intelligence Plans'}
           </p>
           <h2 className="font-display text-4xl font-medium text-ink sm:text-5xl">
@@ -67,26 +67,26 @@ export function PricingComparator({
               ? 'قارن خيارات الاشتراك واتخذ قرارك بثقة'
               : 'Transparent Plans for Serious Real Estate Investors'}
           </h2>
-          <p className="text-muted-foreground mt-4 text-base">
+          <p className="mt-4 text-base text-muted-foreground">
             {isArabic
               ? 'اختر الخطة المناسبة لاحتياجاتك الاستثمارية في دبي بدون أي تكاليف خفية.'
               : 'Choose the evidence level matching your decision needs with zero hidden fees.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
           {plans.map((plan, idx) => (
             <Card
               key={idx}
-              className={`relative flex flex-col justify-between p-8 rounded-none transition-all duration-300 ${
+              className={`relative flex flex-col justify-between rounded-none p-8 transition-all duration-300 ${
                 plan.isPopular
                   ? 'border-2 border-fjord bg-surface shadow-xl'
                   : 'border border-border/80 bg-surface/40 hover:border-border'
               }`}
             >
               {plan.isPopular && (
-                <div className="absolute -top-3.5 right-6 bg-fjord text-white text-xs font-bold px-3 py-1 rounded-none flex items-center gap-1 tracking-widest uppercase">
-                  <Zap className="h-3.5 w-3.5 fill-current" />
+                <div className="absolute -top-3.5 right-6 flex items-center gap-1 rounded-none bg-fjord px-3 py-1 text-xs font-bold tracking-widest text-white uppercase">
+                  <Zap className="size-3.5 fill-current" />
                   {isArabic ? 'الأكثر اختياراً' : 'Most Popular'}
                 </div>
               )}
@@ -96,7 +96,7 @@ export function PricingComparator({
                   <h3 className="font-display text-2xl font-semibold text-ink">
                     {plan.name}
                   </h3>
-                  <p className="text-xs text-muted-foreground mt-2 leading-relaxed">
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                     {plan.description}
                   </p>
                 </div>
@@ -110,11 +110,11 @@ export function PricingComparator({
                   </span>
                 </div>
 
-                <ul className="space-y-3 border-t border-border/60 pt-6 mb-8">
+                <ul className="mb-8 space-y-3 border-t border-border/60 pt-6">
                   {plan.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-3 text-sm text-ink">
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-none bg-fjord-soft">
-                        <Check className="h-3.5 w-3.5 text-fjord" />
+                      <div className="flex size-5 shrink-0 items-center justify-center rounded-none bg-fjord-soft">
+                        <Check className="size-3.5 text-fjord" />
                       </div>
                       <span>{feature}</span>
                     </li>
@@ -124,7 +124,7 @@ export function PricingComparator({
 
               <Button
                 variant={plan.buttonVariant}
-                className={`w-full h-9 rounded-none font-bold tracking-widest uppercase text-[11px] transition-colors ${
+                className={`h-9 w-full rounded-none text-[11px] font-bold tracking-widest uppercase transition-colors ${
                   plan.isPopular
                     ? 'bg-fjord text-white hover:bg-fjord-hover'
                     : 'border border-border text-ink hover:bg-surface-subtle'

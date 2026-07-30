@@ -91,13 +91,13 @@ function LagomSwitch({
       disabled={disabled}
       onClick={() => !disabled && onChange(!checked)}
       className={cn(
-        'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus-visible:ring-2 focus-visible:ring-fjord focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:cursor-not-allowed disabled:opacity-50',
+        'relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-none border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-hidden focus-visible:ring-2 focus-visible:ring-fjord focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:cursor-not-allowed disabled:opacity-50',
         checked ? 'bg-fjord' : 'bg-border-hover dark:bg-border/80',
       )}
     >
       <span
         className={cn(
-          'pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-md transform ring-0 transition duration-200 ease-in-out',
+          'pointer-events-none inline-block size-5 transform rounded-none bg-white shadow-md ring-0 transition duration-200 ease-in-out',
           checked
             ? isArabic
               ? '-translate-x-5'
@@ -292,7 +292,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
         <div className="flex flex-col items-center gap-3 text-muted">
-          <RefreshCw className="h-6 w-6 animate-spin text-fjord" />
+          <RefreshCw className="size-6 animate-spin text-fjord" />
           <span className="text-sm font-medium">
             {isArabic ? 'جاري تحميل تفضيلات مساحة العمل...' : 'Loading workspace preferences...'}
           </span>
@@ -320,8 +320,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         </div>
 
         {saveSuccess && (
-          <div className="flex animate-in fade-in zoom-in-95 items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-600 shadow-xs dark:text-emerald-400">
-            <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />
+          <div className="animate-in fade-in zoom-in-95 flex items-center gap-2 rounded-none border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-600 shadow-xs dark:text-emerald-400">
+            <CheckCircle2 className="size-4 shrink-0 text-emerald-500" />
             <span>{isArabic ? 'تم حفظ التفضيلات بنجاح' : 'Preferences Saved'}</span>
           </div>
         )}
@@ -332,8 +332,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center justify-between border-b border-border/60 pb-4">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-fjord/10 text-fjord">
-                <Palette className="h-5 w-5" />
+              <div className="flex size-10 items-center justify-center rounded-none bg-fjord/10 text-fjord">
+                <Palette className="size-5" />
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
@@ -353,26 +353,26 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 type="button"
                 onClick={() => handleLanguageSwitch('en')}
                 className={cn(
-                  'flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all duration-200',
+                  'flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-bold transition-all duration-200',
                   !isArabic
                     ? 'bg-ink text-white shadow-xs dark:bg-fjord dark:text-white'
                     : 'text-muted hover:text-ink',
                 )}
               >
-                <Globe className="h-3.5 w-3.5" />
+                <Globe className="size-3.5" />
                 <span>English</span>
               </button>
               <button
                 type="button"
                 onClick={() => handleLanguageSwitch('ar')}
                 className={cn(
-                  'flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all duration-200',
+                  'flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-bold transition-all duration-200',
                   isArabic
                     ? 'bg-ink text-white shadow-xs dark:bg-fjord dark:text-white'
                     : 'text-muted hover:text-ink',
                 )}
               >
-                <Globe className="h-3.5 w-3.5" />
+                <Globe className="size-3.5" />
                 <span>العربية</span>
               </button>
             </div>
@@ -387,7 +387,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 </label>
                 <span className="text-xs font-medium text-muted">
                   {isArabic ? 'التنشيط الحي:' : 'Active mode:'}{' '}
-                  <strong className="capitalize text-ink">{theme || 'system'}</strong>
+                  <strong className="text-ink capitalize">{theme || 'system'}</strong>
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-3">
@@ -410,7 +410,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                           : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-ink',
                       )}
                     >
-                      <Icon className={cn('h-5 w-5', isActive ? 'text-fjord dark:text-white' : 'text-muted')} />
+                      <Icon className={cn('size-5', isActive ? 'text-fjord dark:text-white' : 'text-muted')} />
                       <span className="text-xs font-bold">{item.label}</span>
                     </button>
                   );
@@ -459,7 +459,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
           {/* Currency Preview Banner */}
           <div className="mt-5 flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle/80 p-3.5 text-xs text-muted">
-            <DollarSign className="h-4 w-4 shrink-0 text-fjord" />
+            <DollarSign className="size-4 shrink-0 text-fjord" />
             <p className="font-medium">{getCurrencyPreview()}</p>
           </div>
         </section>
@@ -468,8 +468,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400">
-                <Sliders className="h-5 w-5" />
+              <div className="flex size-10 items-center justify-center rounded-none bg-purple-500/10 text-purple-600 dark:text-purple-400">
+                <Sliders className="size-5" />
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
@@ -488,12 +488,12 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               type="button"
               onClick={runAiDiagnostic}
               disabled={isTestingAi}
-              className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-border/40 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-border/40 disabled:opacity-50"
             >
               {isTestingAi ? (
-                <RefreshCw className="h-3.5 w-3.5 animate-spin text-fjord" />
+                <RefreshCw className="size-3.5 animate-spin text-fjord" />
               ) : (
-                <Zap className="h-3.5 w-3.5 text-amber-500" />
+                <Zap className="size-3.5 text-amber-500" />
               )}
               <span>{isArabic ? 'فحص استجابة محرك الذكاء' : 'Test AI Concierge Endpoint'}</span>
             </button>
@@ -511,9 +511,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             >
               <div className="flex items-center gap-2.5">
                 {aiDiagnosticResult.status === 'success' ? (
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500" />
+                  <CheckCircle2 className="size-4 shrink-0 text-emerald-500" />
                 ) : (
-                  <AlertTriangle className="h-4 w-4 shrink-0 text-rose-500" />
+                  <AlertTriangle className="size-4 shrink-0 text-rose-500" />
                 )}
                 <div>
                   <p className="font-bold">
@@ -529,11 +529,11 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 </div>
               </div>
               <div className="flex items-center gap-2 font-mono text-[11px] font-bold">
-                <span className="rounded-lg bg-black/5 px-2 py-1 dark:bg-white/10">
+                <span className="rounded-none bg-black/5 px-2 py-1 dark:bg-white/10">
                   ⚡ {aiDiagnosticResult.latency}ms
                 </span>
                 {aiDiagnosticResult.model && (
-                  <span className="hidden rounded-lg bg-black/5 px-2 py-1 sm:inline dark:bg-white/10">
+                  <span className="hidden rounded-none bg-black/5 px-2 py-1 sm:inline dark:bg-white/10">
                     {aiDiagnosticResult.model}
                   </span>
                 )}
@@ -557,7 +557,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <select
                 value={prefs.aiPrimaryModel}
                 onChange={(e) => setPrefs({ ...prefs, aiPrimaryModel: e.target.value })}
-                className="w-full rounded-xl border border-border/80 bg-surface-subtle px-3.5 py-2.5 text-xs font-bold text-ink shadow-2xs focus:border-fjord focus:outline-hidden sm:w-72"
+                className="w-full rounded-none border border-border/80 bg-surface-subtle px-3.5 py-2.5 text-xs font-bold text-ink shadow-2xs focus:border-fjord focus:outline-hidden sm:w-72"
               >
                 <option value="google/gemini-2.0-pro-exp-02-05:free">Gemini 2.0 Pro Experimental (Free)</option>
                 <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B Instruct (Free)</option>
@@ -629,8 +629,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         {/* ── Section 3: Notification & Alert Preferences ── */}
         <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center gap-3 border-b border-border/60 pb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
-              <Bell className="h-5 w-5" />
+            <div className="flex size-10 items-center justify-center rounded-none bg-amber-500/10 text-amber-600 dark:text-amber-400">
+              <Bell className="size-5" />
             </div>
             <div>
               <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
@@ -667,8 +667,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
               {/* Price Drop Threshold Selector */}
               {prefs.notifPriceAlerts && (
-                <div className="flex animate-in fade-in items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle p-3 text-xs">
-                  <TrendingUp className="h-4 w-4 text-fjord" />
+                <div className="animate-in fade-in flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle p-3 text-xs">
+                  <TrendingUp className="size-4 text-fjord" />
                   <span className="font-medium text-ink">
                     {isArabic ? 'حد تحفز التنبيه الفوري:' : 'Alert Trigger Threshold:'}
                   </span>
@@ -679,7 +679,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                         type="button"
                         onClick={() => setPrefs({ ...prefs, priceDropThreshold: pct })}
                         className={cn(
-                          'rounded-lg px-2.5 py-1 font-bold transition-all',
+                          'rounded-none px-2.5 py-1 font-bold transition-all',
                           prefs.priceDropThreshold === pct
                             ? 'bg-fjord text-white shadow-2xs'
                             : 'bg-surface text-muted hover:text-ink',
@@ -715,9 +715,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
               {/* WhatsApp Phone Number Input */}
               {prefs.notifWhatsapp && (
-                <div className="flex animate-in fade-in flex-col gap-2 rounded-2xl border border-border/60 bg-surface-subtle p-3.5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="animate-in fade-in flex flex-col gap-2 rounded-2xl border border-border/60 bg-surface-subtle p-3.5 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2 text-xs font-medium text-ink">
-                    <Smartphone className="h-4 w-4 text-emerald-500" />
+                    <Smartphone className="size-4 text-emerald-500" />
                     <span>{isArabic ? 'رقم الهاتف المعتمد للإشعارات:' : 'Verified WhatsApp Number:'}</span>
                   </div>
                   <input
@@ -725,7 +725,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     value={prefs.whatsappNumber}
                     onChange={(e) => setPrefs({ ...prefs, whatsappNumber: e.target.value })}
                     placeholder="+971 50 000 0000"
-                    className="w-full rounded-xl border border-border/80 bg-surface px-3 py-1.5 font-mono text-xs font-bold text-ink focus:border-emerald-500 focus:outline-hidden sm:w-64"
+                    className="w-full rounded-none border border-border/80 bg-surface px-3 py-1.5 font-mono text-xs font-bold text-ink focus:border-emerald-500 focus:outline-hidden sm:w-64"
                   />
                 </div>
               )}
@@ -755,8 +755,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         {/* ── Section 4: Trust Passport Security & Identity ── */}
         <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center gap-3 border-b border-border/60 pb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-              <Shield className="h-5 w-5" />
+            <div className="flex size-10 items-center justify-center rounded-none bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+              <Shield className="size-5" />
             </div>
             <div>
               <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
@@ -784,7 +784,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 </p>
               </div>
               <div className="flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-700 dark:text-emerald-300">
-                <UserCheck className="h-4 w-4 shrink-0 text-emerald-500" />
+                <UserCheck className="size-4 shrink-0 text-emerald-500" />
                 <span>{isArabic ? 'مستثمر معتمد (DLD ID #849201)' : 'DLD Verified Investor (#849201)'}</span>
               </div>
             </div>
@@ -825,9 +825,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 onClick={() => {
                   alert(isArabic ? 'تم إلغاء تنشيط جميع الجلسات الأخرى بنجاح.' : 'All other browser sessions have been revoked.');
                 }}
-                className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40 hover:text-rose-600 dark:hover:text-rose-400"
+                className="inline-flex items-center gap-2 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40 hover:text-rose-600 dark:hover:text-rose-400"
               >
-                <Lock className="h-3.5 w-3.5" />
+                <Lock className="size-3.5" />
                 <span>{isArabic ? 'إلغاء جميع الجلسات الأخرى' : 'Revoke All Other Sessions'}</span>
               </button>
             </div>
@@ -837,8 +837,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         {/* ── Section 5: Developer API & Broker CRM Syndication ── */}
         <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center gap-3 border-b border-border/60 pb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
-              <Terminal className="h-5 w-5" />
+            <div className="flex size-10 items-center justify-center rounded-none bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
+              <Terminal className="size-5" />
             </div>
             <div>
               <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
@@ -870,17 +870,17 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   <button
                     type="button"
                     onClick={handleCopyApiKey}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-surface-subtle"
+                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-surface-subtle"
                   >
-                    {apiKeyCopied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
+                    {apiKeyCopied ? <Check className="size-3.5 text-emerald-500" /> : <Copy className="size-3.5" />}
                     <span>{apiKeyCopied ? (isArabic ? 'تم النسخ' : 'Copied!') : isArabic ? 'نسخ المفتاح' : 'Copy Key'}</span>
                   </button>
                   <button
                     type="button"
                     onClick={handleRegenerateApiKey}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-muted transition-all hover:bg-surface-subtle hover:text-ink"
+                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-muted transition-all hover:bg-surface-subtle hover:text-ink"
                   >
-                    <RotateCcw className="h-3.5 w-3.5" />
+                    <RotateCcw className="size-3.5" />
                     <span>{isArabic ? 'إعادة إنشاء' : 'Regenerate'}</span>
                   </button>
                 </div>
@@ -912,14 +912,14 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   value={prefs.webhookUrl}
                   onChange={(e) => setPrefs({ ...prefs, webhookUrl: e.target.value })}
                   placeholder="https://api.yourdomain.com/v1/webhook"
-                  className="w-full rounded-xl border border-border/80 bg-surface px-3.5 py-2 font-mono text-xs font-medium text-ink focus:border-fjord focus:outline-hidden"
+                  className="w-full rounded-none border border-border/80 bg-surface px-3.5 py-2 font-mono text-xs font-medium text-ink focus:border-fjord focus:outline-hidden"
                 />
                 <button
                   type="button"
                   onClick={() => {
                     alert(isArabic ? 'تم إرسال حمولة تجريبية بنجاح إلى الويب هوك.' : 'Test JSON payload dispatched successfully to endpoint.');
                   }}
-                  className="shrink-0 rounded-xl border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40"
+                  className="shrink-0 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40"
                 >
                   {isArabic ? 'إرسال حمولة اختبار' : 'Send Test Payload'}
                 </button>
@@ -931,7 +931,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         {/* ── Executive Action Bar ── */}
         <div className="sticky bottom-4 z-20 flex flex-col items-center justify-between gap-4 rounded-3xl border border-border/80 bg-surface/90 p-4 shadow-lg backdrop-blur-xl sm:flex-row sm:px-8 sm:py-5">
           <div className="flex items-center gap-2 text-xs text-muted">
-            <Sparkles className="h-4 w-4 text-fjord" />
+            <Sparkles className="size-4 text-fjord" />
             <span>
               {isArabic
                 ? 'جميع التغييرات تُحفظ بـ تشفير تام وتنعكس فوراً على محرك القرار وسجل الأحداث.'
@@ -944,16 +944,16 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               type="button"
               onClick={handleReset}
               disabled={isSaving}
-              className="rounded-xl border border-border/80 bg-transparent px-5 py-2.5 text-xs font-bold text-ink shadow-2xs transition-colors hover:bg-surface-subtle disabled:opacity-50"
+              className="rounded-none border border-border/80 bg-transparent px-5 py-2.5 text-xs font-bold text-ink shadow-2xs transition-colors hover:bg-surface-subtle disabled:opacity-50"
             >
               {isArabic ? 'إعادة ضبط التفضيلات' : 'Reset Defaults'}
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-fjord px-7 py-2.5 text-xs font-bold text-white shadow-md shadow-fjord/20 transition-all hover:bg-fjord-hover active:scale-95 disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 rounded-none bg-fjord px-7 py-2.5 text-xs font-bold text-white shadow-md shadow-fjord/20 transition-all hover:bg-fjord-hover active:scale-95 disabled:opacity-50"
             >
-              {isSaving && <RefreshCw className="h-3.5 w-3.5 animate-spin" />}
+              {isSaving && <RefreshCw className="size-3.5 animate-spin" />}
               <span>{isSaving ? (isArabic ? 'جاري الحفظ...' : 'Saving...') : isArabic ? 'حفظ التفضيلات النشطة' : 'Save Active Preferences'}</span>
             </button>
           </div>

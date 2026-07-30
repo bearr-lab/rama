@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { EmptyState } from '@/components/ui/empty-state';
 import { PageHeader } from '@/components/layout/page-header';
-import { getHeroImage } from '@/lib/pexels';
+
 import { MapPin } from 'lucide-react';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
@@ -19,7 +19,7 @@ export default async function AreasPage({
 }) {
   const { locale } = await params;
   const isArabic = locale === 'ar';
-  const heroImage = await getHeroImage('Dubai skyline aerial golden hour cinematic 8k', '/images/hero/areas.png');
+  const heroImage = '/images/hero/communities-hero.jpg';
   const supabase = await createClient();
 
   const { data: communities, error } = await supabase
@@ -43,6 +43,7 @@ export default async function AreasPage({
           }
           className="border-none shadow-none"
           backgroundImage={heroImage}
+          mediaPosition="object-top"
           badge={
             <>
               <MapPin className="size-4" />

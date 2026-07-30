@@ -3,6 +3,7 @@ import { ArrowRight, Check, Compass, FileCheck2, MapPinned, Scale } from 'lucide
 
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Container } from '@/components/layout/container';
 
 interface LandingExperienceProps {
   locale: string;
@@ -54,10 +55,10 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
   return (
     <div className="bg-canvas text-ink">
       <section className="border-b border-border bg-surface pt-32 pb-20 sm:pt-40 sm:pb-28">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-[1.2fr_.8fr] lg:items-end lg:px-10">
+        <Container size="lg" className="grid gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
           <div className="max-w-3xl">
             <p className="text-xs font-semibold tracking-[0.16em] text-fjord uppercase">{t.eyebrow}</p>
-            <h1 className="mt-5 font-display text-5xl leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">{t.title}</h1>
+            <h1 className="leading-1.02 mt-5 font-display text-5xl tracking-tight sm:text-6xl lg:text-7xl">{t.title}</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-text">{t.intro}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href={`/${locale}/homes`} className={buttonVariants({ size: 'lg' })}>{t.explore}<ArrowRight className="ms-2 size-4" /></Link>
@@ -68,11 +69,12 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
             <p className="text-sm font-medium text-muted">RAMA principle</p>
             <p className="mt-3 font-display text-2xl leading-snug">Verify before broad discovery. Structure the decision before adding complexity.</p>
           </aside>
-        </div>
+        </Container>
       </section>
 
-      <section id="how-it-works" className="mx-auto max-w-6xl px-6 py-20 sm:py-28 lg:px-10">
-        <div className="max-w-2xl">
+      <section id="how-it-works" className="py-20 sm:py-28">
+        <Container size="lg">
+          <div className="max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.16em] text-fjord uppercase">The useful path</p>
           <h2 className="mt-4 font-display text-4xl tracking-tight sm:text-5xl">{t.proofTitle}</h2>
           <p className="mt-5 text-lg leading-relaxed text-text">{t.proofIntro}</p>
@@ -83,16 +85,21 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
             return <div key={title} className="bg-surface p-7 sm:p-8"><Icon className="size-5 text-fjord" /><p className="mt-8 text-sm text-muted">0{index + 1}</p><h3 className="mt-2 font-display text-2xl">{title}</h3><p className="mt-3 text-sm leading-relaxed text-text">{description}</p></div>;
           })}
         </div>
+        </Container>
       </section>
 
-      <section className="border-y border-border bg-surface-subtle">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:py-20 lg:grid-cols-[.7fr_1.3fr] lg:px-10">
-          <div className="flex size-12 items-center justify-center rounded-full bg-fjord text-white"><MapPinned className="size-5" /></div>
+      <section className="border-y border-border bg-surface-subtle py-16 sm:py-20">
+        <Container size="lg" className="grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
+          <div className="flex size-12 items-center justify-center rounded-none bg-fjord text-white"><MapPinned className="size-5" /></div>
           <div><p className="text-xs font-semibold tracking-[0.16em] text-fjord uppercase">For the work after the search</p><h2 className="mt-4 font-display text-4xl tracking-tight">{t.workspace}</h2><p className="mt-4 max-w-2xl text-lg leading-relaxed text-text">{t.workspaceText}</p><Link href={`/${locale}/dashboard`} className={cn(buttonVariants({ variant: 'outline' }), 'mt-7')}>{t.openWorkspace}<ArrowRight className="ms-2 size-4" /></Link></div>
-        </div>
+        </Container>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-12 lg:px-10"><p className="flex items-center gap-2 text-sm text-muted"><Check className="size-4 text-verified" />Evidence availability is visible; it is not a statement of property quality, legal status or investment merit.</p></section>
+      <section className="py-12">
+        <Container size="lg">
+          <p className="flex items-center gap-2 text-sm text-muted"><Check className="size-4 text-verified" />Evidence availability is visible; it is not a statement of property quality, legal status or investment merit.</p>
+        </Container>
+      </section>
     </div>
   );
 }

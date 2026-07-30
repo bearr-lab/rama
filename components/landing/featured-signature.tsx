@@ -39,7 +39,7 @@ export async function FeaturedSignature({
 
   return (
     <Section background="surface" spacing="lg">
-      <Container size="xl" padding="lg">
+      <Container size="lg" padding="lg">
         <div className="mb-12 flex flex-col items-center space-y-6 text-center lg:mb-20">
           <div className="space-y-4">
             <p className="text-sm font-medium tracking-[0.2em] text-fjord uppercase">
@@ -87,7 +87,7 @@ export async function FeaturedSignature({
                   className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 overflow-hidden rounded-none border border-border bg-canvas transition-all duration-500 hover:shadow-2xl`}
                 >
                   {/* Huge Image Area */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden lg:aspect-auto lg:min-h-[500px] lg:w-2/3">
+                  <div className="relative aspect-4/3 w-full overflow-hidden lg:aspect-auto lg:min-h-125 lg:w-2/3">
                     {primaryImage ? (
                       <Image
                         src={primaryImage}
@@ -97,9 +97,9 @@ export async function FeaturedSignature({
                         className="object-cover transition-transform duration-1000 group-hover:scale-105"
                       />
                     ) : (
-                      <div className="h-full w-full bg-surface-subtle" />
+                      <div className="size-full bg-surface-subtle" />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent lg:hidden" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent lg:hidden" />
                   </div>
 
                   {/* Content Area */}
@@ -111,7 +111,7 @@ export async function FeaturedSignature({
 
                     <div className="relative z-10 space-y-6">
                       <div className="inline-flex items-center gap-1.5 bg-fjord-soft px-3 py-1 text-xs font-medium tracking-wider text-fjord uppercase">
-                        <MapPin className="h-3.5 w-3.5" />
+                        <MapPin className="size-3.5" />
                         {location}
                       </div>
 

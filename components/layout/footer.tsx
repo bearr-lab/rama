@@ -20,7 +20,7 @@ export async function Footer() {
           <p className="mt-3 text-sm leading-relaxed text-text">
             {isArabic ? 'مكان هادئ لجمع الأدلة ومقارنة الخيارات واتخاذ قرارك العقاري بتأنٍ.' : 'A quieter place to gather evidence, compare options and make a considered property decision.'}
           </p>
-          <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted"><ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-verified" />{isArabic ? 'تعرض راما مدى توفر الأدلة، وليس جودة العقار أو وضعه القانوني أو جدواه الاستثمارية.' : 'RAMA displays evidence availability, not a statement of property quality, legal status or investment merit.'}</p>
+          <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground"><ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-verified" />{isArabic ? 'تعرض راما مدى توفر الأدلة، وليس جودة العقار أو وضعه القانوني أو جدواه الاستثمارية.' : 'RAMA displays evidence availability, not a statement of property quality, legal status or investment merit.'}</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <MagneticButton

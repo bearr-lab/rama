@@ -9,11 +9,9 @@ import {
   Building2,
   Landmark,
   FileCheck2,
-  Sparkles,
-  ExternalLink,
-  Lock,
-  Layers,
   Zap,
+  MapPin,
+  ArrowUpRight,
 } from 'lucide-react';
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { AnimatedShinyText } from '@/components/magicui/shiny-text';
@@ -149,15 +147,15 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
   }, [filter]);
 
   return (
-    <div className="relative overflow-hidden border border-border/40 bg-surface/80 p-6 sm:p-8 backdrop-blur-md shadow-subtle transition-all">
+    <div className="shadow-subtle relative overflow-hidden border border-border/40 bg-surface/80 p-6 backdrop-blur-md transition-all sm:p-8">
       {/* Subtle Metallic Ambient Glow Beam */}
       <BorderBeam size={300} duration={14} delay={0} colorFrom="#1b4965" colorTo="#5fa8d3" />
 
       {/* Header Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border/30 pb-6 mb-6">
+      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-border/30 pb-6 sm:flex-row sm:items-center">
         <div>
-          <div className="inline-flex items-center gap-2 border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2">
-            <ShieldCheck className="h-4 w-4" />
+          <div className="mb-2 inline-flex items-center gap-2 border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+            <ShieldCheck className="size-4" />
             <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
               {isArabic ? 'شبكة الضمان وريرة المعتمدة' : 'Official RERA Law No. 8 Ecosystem'}
             </AnimatedShinyText>
@@ -165,7 +163,7 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
           <h3 className="font-display text-2xl font-medium text-ink">
             {isArabic ? 'شركاء التطوير والبنوك أمناء الحفظ' : 'Institutional Banking & Developer Network'}
           </h3>
-          <p className="text-xs text-muted-foreground font-light mt-1">
+          <p className="mt-1 text-xs font-light text-muted-foreground">
             {isArabic
               ? 'مراقبة فورية لحسابات الضمان والسجل العقاري مع دائرة الأراضي والأمناء المعتمدين'
               : 'Direct API cross-referencing with DLD land registry & licensed trustee banks'}
@@ -177,10 +175,10 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
           <button
             onClick={() => setFilter('all')}
             className={cn(
-              'px-3.5 py-1.5 text-xs font-semibold transition-all border',
+              'border px-3.5 py-1.5 text-xs font-semibold transition-all',
               filter === 'all'
-                ? 'bg-fjord text-white border-fjord shadow-xs'
-                : 'bg-surface-subtle text-muted-foreground hover:text-ink border-border/40'
+                ? 'border-fjord bg-fjord text-white shadow-xs'
+                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
             )}
           >
             {isArabic ? 'الكل' : 'All'} ({PARTNERS.length})
@@ -188,44 +186,44 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
           <button
             onClick={() => setFilter('government')}
             className={cn(
-              'flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold transition-all border',
+              'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
               filter === 'government'
-                ? 'bg-fjord text-white border-fjord shadow-xs'
-                : 'bg-surface-subtle text-muted-foreground hover:text-ink border-border/40'
+                ? 'border-fjord bg-fjord text-white shadow-xs'
+                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
             )}
           >
-            <Landmark className="h-3.5 w-3.5" />
+            <Landmark className="size-3.5" />
             <span>{isArabic ? 'حكومي' : 'DLD Govt'}</span>
           </button>
           <button
             onClick={() => setFilter('developer')}
             className={cn(
-              'flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold transition-all border',
+              'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
               filter === 'developer'
-                ? 'bg-fjord text-white border-fjord shadow-xs'
-                : 'bg-surface-subtle text-muted-foreground hover:text-ink border-border/40'
+                ? 'border-fjord bg-fjord text-white shadow-xs'
+                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
             )}
           >
-            <Building2 className="h-3.5 w-3.5" />
+            <Building2 className="size-3.5" />
             <span>{isArabic ? 'مطورون' : 'Developers'}</span>
           </button>
           <button
             onClick={() => setFilter('bank')}
             className={cn(
-              'flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold transition-all border',
+              'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
               filter === 'bank'
-                ? 'bg-fjord text-white border-fjord shadow-xs'
-                : 'bg-surface-subtle text-muted-foreground hover:text-ink border-border/40'
+                ? 'border-fjord bg-fjord text-white shadow-xs'
+                : 'border-border/40 bg-surface-subtle text-muted-foreground hover:text-ink'
             )}
           >
-            <Lock className="h-3.5 w-3.5" />
+            <FileCheck2 className="size-3.5" />
             <span>{isArabic ? 'بنوك الضمان' : 'Trustee Banks'}</span>
           </button>
         </div>
       </div>
 
       {/* Interactive Framer Motion Draggable & Scrollable Grid */}
-      <div className="relative max-h-[380px] overflow-y-auto scrollbar-thin scrollbar-thumb-border hover:scrollbar-thumb-fjord/40 pr-2 cursor-grab active:cursor-grabbing select-none">
+      <div className="relative max-h-95 cursor-grab scrollbar-thin scrollbar-thumb-border overflow-y-auto pr-2 select-none hover:scrollbar-thumb-fjord/40 active:cursor-grabbing">
         <motion.div layout className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filteredPartners.map((partner, idx) => (
@@ -239,34 +237,37 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
                 onMouseEnter={() => setHoveredId(partner.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 className={cn(
-                  'group relative flex flex-col justify-between border p-5 transition-all duration-300 bg-surface/90 hover:bg-surface hover:shadow-floating',
+                  'group hover:shadow-floating relative flex flex-col justify-between border bg-surface/90 p-5 transition-all duration-300 hover:bg-surface',
                   hoveredId === partner.id
-                    ? 'border-fjord/50 -translate-y-1'
+                    ? '-translate-y-1 border-fjord/50'
                     : 'border-border/40'
                 )}
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2 border-b border-border/30 pb-3 mb-3">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-fjord">
+                  <div className="mb-3 flex items-center justify-between gap-2 border-b border-border/30 pb-3">
+                    <span className="text-[10px] font-bold tracking-widest text-fjord uppercase">
                       {isArabic ? partner.categoryLabelAr : partner.categoryLabelEn}
                     </span>
                     <span className="inline-flex items-center gap-1 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-bold text-emerald-600 dark:text-emerald-400">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
+                      <MapPin className="size-3.5" />
                       {isArabic ? partner.badgeAr : partner.badgeEn}
                     </span>
                   </div>
 
-                  <h4 className="font-display text-lg font-bold text-ink group-hover:text-fjord transition-colors">
-                    {partner.name}
-                  </h4>
-                  <p className="mt-1 text-xs text-muted-foreground font-light leading-relaxed">
+                  <div className="flex items-start justify-between">
+                    <h4 className="font-display text-lg font-bold text-ink transition-colors group-hover:text-fjord">
+                      {partner.name}
+                    </h4>
+                    <ArrowUpRight className="size-4 text-fjord opacity-50 transition-opacity group-hover:opacity-100" />
+                  </div>
+                  <p className="mt-1 text-xs leading-relaxed font-light text-muted-foreground">
                     {isArabic ? partner.roleAr : partner.roleEn}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-border/30 flex items-center justify-between text-[11px] font-mono text-muted-foreground">
+                <div className="mt-5 flex items-center justify-between border-t border-border/30 pt-3 font-mono text-[11px] text-muted-foreground">
                   <span className="truncate">{partner.lawVerification}</span>
-                  <FileCheck2 className="h-3.5 w-3.5 text-emerald-500 shrink-0 ms-1" />
+                  <FileCheck2 className="ms-1 size-3.5 shrink-0 text-emerald-500" />
                 </div>
               </motion.div>
             ))}
@@ -275,9 +276,9 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
       </div>
 
       {/* Footer Info */}
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border/30 pt-4 text-xs text-muted-foreground font-light">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border/30 pt-4 text-xs font-light text-muted-foreground">
         <div className="flex items-center gap-2">
-          <Zap className="h-4 w-4 text-fjord shrink-0" />
+          <Zap className="size-4 shrink-0 text-fjord" />
           <span>
             {isArabic
               ? 'جميع حسابات الضمان موثقة بموجب القانون رقم 8 لسنة 2007 الصادر عن حكومة دبي'
@@ -285,7 +286,7 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
           </span>
         </div>
         <div className="flex items-center gap-1.5 font-semibold text-fjord">
-          <ArrowUpDown className="h-3.5 w-3.5 animate-bounce" />
+          <ArrowUpDown className="size-3.5 animate-pulse" />
           <span>{isArabic ? 'اسحب للتصفح العمودي' : 'Vertical Physics Scroll Active'}</span>
         </div>
       </div>

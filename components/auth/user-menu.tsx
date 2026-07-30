@@ -69,7 +69,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
 
   if (isLoading) {
     return (
-      <div className="h-8 w-8 animate-pulse rounded-full bg-surface-subtle" />
+      <div className="size-8 animate-pulse rounded-none bg-surface-subtle" />
     );
   }
 
@@ -97,8 +97,8 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="relative h-8 w-8 overflow-hidden rounded-full focus:ring-2 focus:ring-fjord/50 focus:outline-none">
-        <Avatar className="h-full w-full border border-border">
+      <DropdownMenuTrigger className="relative size-8 overflow-hidden rounded-none focus:ring-2 focus:ring-fjord/50 focus:outline-none">
+        <Avatar className="size-full border border-border">
           <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
           <AvatarFallback className="bg-surface-subtle text-xs text-ink">
             {initials}
@@ -124,7 +124,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           onClick={() => router.push(`/${locale}/dashboard`)}
           className="cursor-pointer"
         >
-          <LayoutDashboard className="mr-2 h-4 w-4" />
+          <LayoutDashboard className="mr-2 size-4" />
           <span>{locale === 'ar' ? 'لوحة القيادة' : 'Dashboard'}</span>
         </DropdownMenuItem>
 
@@ -132,7 +132,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           onClick={() => router.push(`/${locale}/shortlist`)}
           className="cursor-pointer"
         >
-          <Heart className="mr-2 h-4 w-4" />
+          <Heart className="mr-2 size-4" />
           <span>{locale === 'ar' ? 'المفضلة' : 'Shortlist'}</span>
         </DropdownMenuItem>
 
@@ -140,7 +140,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           onClick={() => router.push(`/${locale}/advisor`)}
           className="cursor-pointer"
         >
-          <Sparkles className="mr-2 h-4 w-4 text-fjord" />
+          <Sparkles className="mr-2 size-4 text-fjord" />
           <span>
             {locale === 'ar' ? 'مستشار الذكاء الاصطناعي' : 'AI Advisor'}
           </span>
@@ -150,7 +150,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           onClick={() => router.push(`/${locale}/settings`)}
           className="cursor-pointer"
         >
-          <Settings className="mr-2 h-4 w-4 text-muted-foreground" />
+          <Settings className="mr-2 size-4 text-muted-foreground" />
           <span>
             {locale === 'ar' ? 'الإعدادات' : 'Settings'}
           </span>
@@ -161,7 +161,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           onClick={handleSignOut}
           className="cursor-pointer text-risk focus:bg-risk-soft focus:text-risk"
         >
-          <LogOut className="mr-2 h-4 w-4" />
+          <LogOut className="mr-2 size-4" />
           <span>{locale === 'ar' ? 'تسجيل الخروج' : 'Log out'}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

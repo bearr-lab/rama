@@ -16,6 +16,8 @@ interface PageHeaderProps {
   badge?: ReactNode;
   /** Layout variant: "center" for centered text, "editorial" for left-aligned cinematic */
   variant?: 'center' | 'editorial';
+  /** Optional Tailwind class for object-position of the background media (default: object-center) */
+  mediaPosition?: string;
 }
 
 export function PageHeader({
@@ -28,6 +30,7 @@ export function PageHeader({
   backgroundVideo,
   badge,
   variant = 'center',
+  mediaPosition = 'object-center',
 }: PageHeaderProps) {
   const isCinematic = !!(backgroundImage || backgroundVideo);
 
@@ -78,7 +81,7 @@ export function PageHeader({
             loop
             muted
             playsInline
-            className="size-full object-cover object-center"
+            className={cn("size-full object-cover", mediaPosition)}
           />
         ) : backgroundImage ? (
           <Image
@@ -86,7 +89,7 @@ export function PageHeader({
             alt={title}
             fill
             sizes="100vw"
-            className="object-cover object-center"
+            className={cn("object-cover", mediaPosition)}
             priority
           />
         ) : null}

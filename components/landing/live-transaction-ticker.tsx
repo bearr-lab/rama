@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ShieldCheck, TrendingUp, Building2 } from 'lucide-react';
+import { Container } from '@/components/layout/container';
 
 interface TransactionItem {
   id: string;
@@ -73,12 +74,12 @@ export function LiveTransactionTicker({
 
   return (
     <div className="w-full border-y border-stone-200/60 bg-stone-50/80 py-2.5 backdrop-blur-sm dark:border-stone-800 dark:bg-stone-900/60">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <Container size="lg" className="flex items-center justify-between">
         {/* Left Label */}
-        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+        <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-emerald-400">
           <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500"></span>
+            <span className="absolute inline-flex size-full animate-ping rounded-none bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex size-2 rounded-none bg-emerald-500"></span>
           </span>
           <span className="hidden sm:inline">
             {isArabic ? 'تحديثات دائرة الأراضي المباشرة' : 'Live DLD Feed'}
@@ -98,7 +99,7 @@ export function LiveTransactionTicker({
             {currentTx.amount}
           </span>
 
-          <span className="hidden rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800 md:inline-flex md:items-center md:gap-1 dark:bg-emerald-950/60 dark:text-emerald-300">
+          <span className="hidden rounded-none bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-800 md:inline-flex md:items-center md:gap-1 dark:bg-emerald-950/60 dark:text-emerald-300">
             <ShieldCheck className="size-3" />
             {isArabic ? 'مسجل' : 'DLD Verified'}
           </span>
@@ -111,7 +112,7 @@ export function LiveTransactionTicker({
           <TrendingUp className="size-3.5 text-emerald-600" />
           <span>{isArabic ? 'حجم تداول اليوم: 412M AED' : "Today's Volume: AED 412M"}</span>
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

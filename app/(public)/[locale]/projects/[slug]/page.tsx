@@ -3,6 +3,9 @@ import Image from 'next/image';
 import { Container } from '@/components/layout/container';
 import { Building2, Calendar, MapPin, Tag, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
+import { getHeroImage } from '@/lib/pexels';
+import { cn } from '@/lib/utils';
 
 // MOCK DATA: Future Off-Plan Projects
 const OFF_PLAN_PROJECTS = [
@@ -97,6 +100,12 @@ export default async function ProjectDetailPage({
     notFound();
   }
 
+  // Dynamically fetch a high-quality architectural image instead of using the hardcoded mock
+  const heroImage = await getHeroImage(
+    'Dubai luxury modern architecture skyscraper',
+    project.image
+  );
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-surface">
       {/* Sticky back bar */}
@@ -104,7 +113,10 @@ export default async function ProjectDetailPage({
         <div className="mx-auto flex max-w-7xl items-center px-6 py-3">
           <Link
             href={`/${locale}/projects`}
-            className="flex items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink"
+            className={cn(
+              buttonVariants({ variant: 'ghost', size: 'sm' }),
+              "gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink"
+            )}
           >
             <ChevronLeft className="size-4" />
             {isArabic ? 'المشاريع' : 'All Projects'}
@@ -115,16 +127,16 @@ export default async function ProjectDetailPage({
       <section className="relative flex min-h-[70vh] items-center overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src={project.image}
+            src={heroImage}
             alt={isArabic ? project.titleAr : project.titleEn}
             fill
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+          <div className="absolute inset-0 z-10 bg-linear-to-t from-black/80 via-black/40 to-black/10" />
         </div>
         
-        <Container size="xl" className="relative z-20">
+        <Container size="lg" className="relative z-20">
           <div className="mt-10 max-w-4xl space-y-8">
             <div className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-white uppercase backdrop-blur-md">
               <Building2 className="size-4" />

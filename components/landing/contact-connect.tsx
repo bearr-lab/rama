@@ -9,14 +9,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { submitContactForm } from '@/app/actions/contact';
+import { Container } from '@/components/layout/container';
 
 interface ContactConnectProps {
-  locale?: string;
   isArabic?: boolean;
 }
 
 export function ContactConnect({
-  locale = 'en',
   isArabic = false,
 }: ContactConnectProps) {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -42,53 +41,53 @@ export function ContactConnect({
   };
 
   return (
-    <section className="bg-background @container py-24 border-t border-border/40">
-      <div className="mx-auto max-w-3xl px-6 sm:px-8">
+    <section className="@container border-t border-border/40 bg-background py-24">
+      <Container size="md">
         <div>
-          <h2 className="text-balance font-display text-4xl font-medium sm:text-5xl text-ink">
+          <h2 className="font-display text-4xl font-medium text-balance text-ink sm:text-5xl">
             {isArabic ? 'تواصل معنا' : 'Get in Touch'}
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-md text-balance text-base">
+          <p className="mt-4 max-w-md text-base text-balance text-muted-foreground">
             {isArabic
               ? 'لديك أسئلة؟ يسعدنا التحدث معك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.'
               : "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."}
           </p>
         </div>
 
-        <div className="@xl:grid-cols-5 mt-12 grid gap-8">
-          <div className="@xl:col-span-2 space-y-6 *:space-y-2">
+        <div className="mt-12 grid gap-8 @xl:grid-cols-5">
+          <div className="space-y-6 *:space-y-2 @xl:col-span-2">
             <div>
-              <p className="text-foreground text-sm font-medium flex items-center gap-2">
-                <Mail className="h-4 w-4 text-fjord" />
+              <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <Mail className="size-4 text-fjord" />
                 {isArabic ? 'البريد الإلكتروني' : 'Email'}
               </p>
               <Link
                 href="mailto:hello@rama.ae"
-                className="text-muted-foreground hover:text-primary text-sm transition-colors"
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
               >
                 hello@rama.ae
               </Link>
             </div>
 
             <div>
-              <p className="text-foreground text-sm font-medium flex items-center gap-2">
-                <Phone className="h-4 w-4 text-fjord" />
+              <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <Phone className="size-4 text-fjord" />
                 {isArabic ? 'الهاتف' : 'Phone'}
               </p>
               <Link
                 href="tel:+97141234567"
-                className="text-muted-foreground hover:text-primary text-sm transition-colors"
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
               >
                 +971 (4) 123-4567
               </Link>
             </div>
 
             <div>
-              <p className="text-foreground text-sm font-medium flex items-center gap-2">
-                <MapPin className="h-4 w-4 text-fjord" />
+              <p className="flex items-center gap-2 text-sm font-medium text-foreground">
+                <MapPin className="size-4 text-fjord" />
                 {isArabic ? 'المكتب' : 'Office'}
               </p>
-              <p className="text-muted-foreground text-sm">
+              <p className="text-sm text-muted-foreground">
                 {isArabic
                   ? 'منطقة الأوبرا، وسط مدينة دبي، الإمارات العربية المتحدة'
                   : 'Opera District, Downtown Dubai, UAE'}
@@ -96,16 +95,16 @@ export function ContactConnect({
             </div>
           </div>
 
-          <Card className="@xl:col-span-3 p-6 border border-border/80 bg-surface/60 shadow-sm rounded-none backdrop-blur-md">
+          <Card className="rounded-none border border-border/80 bg-surface/60 p-6 shadow-sm backdrop-blur-md @xl:col-span-3">
             {status === 'success' ? (
-              <div className="flex flex-col items-center justify-center h-full space-y-4 text-center py-12">
-                <div className="rounded-full bg-emerald-500/20 p-3">
-                  <CheckCircle2 className="h-8 w-8 text-emerald-500" />
+              <div className="flex h-full flex-col items-center justify-center space-y-4 py-12 text-center">
+                <div className="rounded-none bg-emerald-500/20 p-3">
+                  <CheckCircle2 className="size-8 text-emerald-500" />
                 </div>
-                <h3 className="text-xl font-display text-ink">
+                <h3 className="font-display text-xl text-ink">
                   {isArabic ? 'تم إرسال رسالتك بنجاح' : 'Message Sent Successfully'}
                 </h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                   {isArabic ? 'سنقوم بالرد عليك قريباً.' : 'We will get back to you shortly.'}
                 </p>
                 <Button 
@@ -118,7 +117,7 @@ export function ContactConnect({
               </div>
             ) : (
               <form action={handleSubmit} className="space-y-5">
-                <div className="@md:grid-cols-2 grid gap-4">
+                <div className="grid gap-4 @md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-sm">
                       {isArabic ? 'الاسم' : 'Name'}
@@ -172,13 +171,13 @@ export function ContactConnect({
                 </div>
 
                 {status === 'error' && (
-                  <p className="text-sm text-destructive font-medium">{errorMessage}</p>
+                  <p className="text-sm font-medium text-destructive">{errorMessage}</p>
                 )}
 
                 <Button 
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full h-9 bg-fjord text-white hover:bg-fjord-hover rounded-none font-bold tracking-widest uppercase text-[11px] transition-colors"
+                  className="h-9 w-full rounded-none bg-fjord text-[11px] font-bold tracking-widest text-white uppercase transition-colors hover:bg-fjord-hover"
                 >
                   {status === 'loading' 
                     ? (isArabic ? 'جاري الإرسال...' : 'Sending...') 
@@ -188,7 +187,7 @@ export function ContactConnect({
             )}
           </Card>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
