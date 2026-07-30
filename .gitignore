@@ -8,6 +8,19 @@
 !.yarn/releases
 !.yarn/versions
 
+# impeccable
+.impeccable/
+
+# skills and agents
+.agents/
+
+# tests
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+/tests/*
+
 # testing
 /coverage
 
