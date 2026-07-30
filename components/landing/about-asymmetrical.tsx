@@ -3,12 +3,10 @@ import { Container } from '@/components/layout/container';
 import { Section } from '@/components/layout/section';
 
 interface AboutAsymmetricalProps {
-  locale: string;
   isArabic: boolean;
 }
 
 export function AboutAsymmetrical({
-  locale,
   isArabic,
 }: AboutAsymmetricalProps) {
   return (
@@ -25,7 +23,7 @@ export function AboutAsymmetrical({
           {/* Left Column: Massive Drop Cap & Typography */}
           <div className="relative max-w-lg space-y-12">
             {/* The Massive Drop Cap Element mimicking Vellaro reference */}
-            <div className="absolute -top-24 -left-4 z-[-1] font-display text-[12rem] leading-none text-surface select-none lg:text-[15rem]">
+            <div className="absolute -top-24 -left-4 -z-1 font-display text-[12rem] leading-none text-surface select-none lg:text-[15rem]">
               Aa
             </div>
 
@@ -33,7 +31,7 @@ export function AboutAsymmetrical({
               <p className="text-sm font-medium tracking-[0.2em] text-fjord uppercase">
                 {isArabic ? 'حول راما' : 'About RAMA'}
               </p>
-              <h2 className="font-display text-4xl leading-[1.1] text-ink lg:text-5xl xl:text-6xl">
+              <h2 className="leading-[1.1] font-display text-4xl text-ink lg:text-5xl xl:text-6xl">
                 {isArabic ? 'إعادة تعريف الشفافية' : 'Redefining Transparency'}
                 <br />
                 <span className="font-light text-muted-foreground italic">
@@ -70,7 +68,7 @@ export function AboutAsymmetrical({
           <div className="relative">
             <div className="grid grid-cols-2 items-start gap-4 lg:gap-8">
               {/* Image 1 (Taller, shifted up) */}
-              <div className="relative mt-0 aspect-[3/4] w-full overflow-hidden rounded-none shadow-2xl">
+              <div className="relative mt-0 aspect-3/4 w-full overflow-hidden rounded-none shadow-2xl">
                 <Image
                   src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1000"
                   alt="Modern Dubai Villa Interior"

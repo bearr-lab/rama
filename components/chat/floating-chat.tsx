@@ -154,9 +154,9 @@ export function FloatingChat() {
                     <Bot className="size-4 text-primary" />
                   </div>
                   <div className="flex items-center gap-1 rounded-2xl rounded-bl-none border border-border bg-surface-subtle p-4">
-                    <div className="size-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:-0.3s]"></div>
-                    <div className="size-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:-0.15s]"></div>
-                    <div className="size-1.5 animate-bounce rounded-full bg-muted-foreground"></div>
+                    <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:-0.3s]"></div>
+                    <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:-0.15s]"></div>
+                    <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground"></div>
                   </div>
                 </div>
               )}

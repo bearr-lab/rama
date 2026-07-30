@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { Container } from '@/components/layout/container';
 import { Building2, Calendar, MapPin, Tag, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 // MOCK DATA: Future Off-Plan Projects
 const OFF_PLAN_PROJECTS = [
@@ -19,7 +21,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الرابع ٢٠٢٦',
     startingPriceEn: 'AED 8.2M',
     startingPriceAr: '٨.٢ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
+    image: '/images/hero/projects-hero.jpg',
   },
   {
     id: 'prj-2',
@@ -34,7 +36,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الأول ٢٠٢٧',
     startingPriceEn: 'AED 18.5M',
     startingPriceAr: '١٨.٥ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/homes-hero.jpg',
   },
   {
     id: 'prj-3',
@@ -49,7 +51,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثاني ٢٠٢٨',
     startingPriceEn: 'AED 12.0M',
     startingPriceAr: '١٢.٠ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/communities-hero.jpg',
   },
   {
     id: 'prj-4',
@@ -64,7 +66,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثالث ٢٠٢٦',
     startingPriceEn: 'AED 5.5M',
     startingPriceAr: '٥.٥ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/invest-hero.jpg',
   },
   {
     id: 'prj-5',
@@ -79,7 +81,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثاني ٢٠٢٧',
     startingPriceEn: 'AED 4.2M',
     startingPriceAr: '٤.٢ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/projects-hero.jpg',
   },
 ];
 
@@ -104,7 +106,10 @@ export default async function ProjectDetailPage({
         <div className="mx-auto flex max-w-7xl items-center px-6 py-3">
           <Link
             href={`/${locale}/projects`}
-            className="flex items-center gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink"
+            className={cn(
+              buttonVariants({ variant: 'ghost', size: 'sm' }),
+              "gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink"
+            )}
           >
             <ChevronLeft className="size-4" />
             {isArabic ? 'المشاريع' : 'All Projects'}
@@ -121,17 +126,17 @@ export default async function ProjectDetailPage({
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+          <div className="absolute inset-0 z-10 bg-linear-to-t from-black/80 via-black/40 to-black/10" />
         </div>
         
-        <Container size="xl" className="relative z-20">
+        <Container size="lg" className="relative z-20">
           <div className="mt-10 max-w-4xl space-y-8">
             <div className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-white uppercase backdrop-blur-md">
               <Building2 className="size-4" />
               <span>{isArabic ? project.statusAr : project.statusEn}</span>
             </div>
             
-            <h1 className="leading-1.1 font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
+            <h1 className="leading-[1.1] font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
               {isArabic ? project.titleAr : project.titleEn}
             </h1>
             

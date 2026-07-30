@@ -5,7 +5,7 @@ import { BlurFade } from '@/components/magicui/blur-fade';
 import { Building2, ArrowUpRight, Calendar, MapPin, Tag } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { searchPhotos, getHeroVideo, getHeroImage } from '@/lib/pexels';
+
 import { cn } from '@/lib/utils';
 
 // MOCK DATA: Future Off-Plan Projects
@@ -23,7 +23,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الرابع ٢٠٢٦',
     startingPriceEn: 'AED 8.2M',
     startingPriceAr: '٨.٢ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80', // Skyscraper/Modern
+    image: '/images/properties/property-penthouse.jpg', // Skyscraper/Modern
     spanClass: 'md:col-span-2 md:row-span-2', // Large feature card
   },
   {
@@ -39,7 +39,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الأول ٢٠٢٧',
     startingPriceEn: 'AED 18.5M',
     startingPriceAr: '١٨.٥ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80', // Coastal Villa
+    image: '/images/properties/property-villa.jpg', // Coastal Villa
     spanClass: 'md:col-span-1 md:row-span-1',
   },
   {
@@ -55,7 +55,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثاني ٢٠٢٨',
     startingPriceEn: 'AED 12.0M',
     startingPriceAr: '١٢.٠ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80', // Luxury Villa
+    image: '/images/properties/property-villa.jpg', // Luxury Villa
     spanClass: 'md:col-span-1 md:row-span-1',
   },
   {
@@ -71,7 +71,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثالث ٢٠٢٦',
     startingPriceEn: 'AED 5.5M',
     startingPriceAr: '٥.٥ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80', // Resort
+    image: '/images/properties/property-apartment.jpg', // Resort
     spanClass: 'md:col-span-1 md:row-span-1',
   },
   {
@@ -87,7 +87,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثاني ٢٠٢٧',
     startingPriceEn: 'AED 4.2M',
     startingPriceAr: '٤.٢ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80', // Modern architecture
+    image: '/images/properties/property-penthouse.jpg', // Modern architecture
     spanClass: 'md:col-span-2 md:row-span-1', // Wide card
   },
 ];
@@ -100,21 +100,11 @@ export default async function ProjectsPage({
   const { locale } = await params;
   const isArabic = locale === 'ar';
 
-  // Fetch cinematic hero video and Bento Grid imagery in parallel
-  const [heroVideoUrl, pexelsRes] = await Promise.all([
-    getHeroVideo('Dubai modern architecture skyscraper drone'),
-    searchPhotos('dubai modern architecture luxury building', 5),
-  ]);
-  const heroImageUrl = heroVideoUrl ? null : await getHeroImage('Dubai skyscraper sunset 8k', '/images/hero/projects.png');
-  const pexelsPhotos = pexelsRes?.photos || [];
+  // Use local video background
+  const heroVideoUrl = '/videos/projects-bg-new.mp4';
+  const heroImageUrl = heroVideoUrl ? null : '/images/hero/projects-hero.jpg';
 
-  // Merge Pexels photos into the mock data
-  const projectsWithImages = OFF_PLAN_PROJECTS.map((project, index) => {
-    return {
-      ...project,
-      image: pexelsPhotos[index] ? pexelsPhotos[index].src.large2x : project.image,
-    };
-  });
+  const projectsWithImages = OFF_PLAN_PROJECTS;
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-surface">
@@ -129,6 +119,7 @@ export default async function ProjectsPage({
         backgroundVideo={heroVideoUrl || undefined}
         backgroundImage={heroImageUrl || undefined}
         variant="editorial"
+        mediaPosition="object-top"
         badge={
           <>
             <Building2 className="size-4" />
@@ -139,7 +130,7 @@ export default async function ProjectsPage({
 
       {/* Bento Grid Showcase */}
       <Section spacing="lg" className="bg-canvas">
-        <Container size="xl">
+        <Container size="lg">
           <div className="grid auto-rows-87.5 grid-cols-1 gap-6 md:grid-cols-3">
             {projectsWithImages.map((project, index) => {
               const delay = 0.2 + index * 0.1;
@@ -151,7 +142,6 @@ export default async function ProjectsPage({
                   className={cn("size-full", project.spanClass)}
                 >
                   <Link href={`/${locale}/projects/${project.id}`} className="block size-full">
-                    {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
                     <div className="group shadow-subtle hover:shadow-floating relative size-full cursor-pointer overflow-hidden rounded-none border border-border/20 bg-black transition-shadow duration-500">
                       
                       {/* High-Res Unsplash Image */}

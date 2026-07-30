@@ -34,7 +34,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
 
       {/* Content — anchored to the bottom */}
       <Container
-        size="xl"
+        size="lg"
         padding="xl"
         className="relative z-10 flex h-full flex-col justify-end pb-12 md:pb-24"
       >
@@ -43,7 +43,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
           {/* Centered Text Block */}
           <div className="flex w-full max-w-4xl flex-col items-center space-y-4 text-center md:space-y-6">
             {/* Headline */}
-            <h1 className="font-display text-5xl leading-1.05 tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl">
+            <h1 className="leading-[1.05] font-display text-5xl tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl">
               {isArabic ? (
                 <>
                   عقارات{' '}
@@ -64,7 +64,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
             </h1>
 
             {/* Subtitle — one clean line */}
-            <p className="mx-auto max-w-2xl text-base font-medium leading-relaxed text-white/90 drop-shadow-md md:text-lg">
+            <p className="mx-auto max-w-2xl text-base leading-relaxed font-medium text-white/90 drop-shadow-md md:text-lg">
               {isArabic
                 ? 'مجموعة منتقاة من أروع العقارات، موثقة بالكامل من دائرة الأراضي والأملاك.'
                 : 'A curated collection of verified properties, powered by DLD transparency.'}
@@ -81,14 +81,14 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
             <div className="flex items-center gap-6 text-white/50">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-bold text-white/90">2,400+</span>
-                <span className="text-xs uppercase tracking-wider">
+                <span className="text-xs tracking-wider uppercase">
                   {isArabic ? 'عقار' : 'Properties'}
                 </span>
               </div>
               <div className="h-4 w-px bg-white/20" />
               <div className="flex items-center gap-2">
                 <span className="text-sm font-bold text-white/90">100%</span>
-                <span className="text-xs uppercase tracking-wider">
+                <span className="text-xs tracking-wider uppercase">
                   {isArabic ? 'موثق' : 'DLD Verified'}
                 </span>
               </div>

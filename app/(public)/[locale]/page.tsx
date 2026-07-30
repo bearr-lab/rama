@@ -9,7 +9,6 @@ import { PricingComparator } from '@/components/landing/pricing-comparator';
 import { FAQAccordion } from '@/components/landing/faq-accordion';
 import { ContactConnect } from '@/components/landing/contact-connect';
 import { RoiCalculatorWidget } from '@/components/landing/roi-calculator-widget';
-import Hero1 from '@/components/mvpblocks/hero-1';
 import { Container } from '@/components/layout/container';
 
 export default function LandingPage({
@@ -24,22 +23,21 @@ export default function LandingPage({
     <div className="flex w-full flex-col">
       <HeroEditorial locale={locale} isArabic={isArabic} />
       <LiveTransactionTicker isArabic={isArabic} />
-      <Hero1 />
       
-      {/* Interactive OmniTwin ROI Simulator Section */}
-      <section className="w-full border-t border-stone-200/60 bg-stone-100/50 py-12 md:py-20 dark:border-stone-800 dark:bg-stone-950/40">
-        <Container size="xl">
+      {/* Interactive ROI Simulator Section */}
+      <section className="mt-12 w-full border-t border-stone-200/60 bg-stone-100/50 py-12 md:mt-20 md:py-20 dark:border-stone-800 dark:bg-stone-950/40">
+        <Container size="lg">
           <RoiCalculatorWidget locale={locale} isArabic={isArabic} />
         </Container>
       </section>
 
-      <DeveloperLogoCloud locale={locale} isArabic={isArabic} />
-      <AboutAsymmetrical locale={locale} isArabic={isArabic} />
+      <DeveloperLogoCloud isArabic={isArabic} />
+      <AboutAsymmetrical isArabic={isArabic} />
       <FeaturedSignature locale={locale} isArabic={isArabic} />
       <AIAppTeaser locale={locale} isArabic={isArabic} />
       <PricingComparator locale={locale} isArabic={isArabic} />
       <FAQAccordion locale={locale} isArabic={isArabic} />
-      <ContactConnect locale={locale} isArabic={isArabic} />
+      <ContactConnect isArabic={isArabic} />
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { Container } from '@/components/layout/container';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { cn } from '@/lib/utils';
 import { ShieldCheck, Lock, Landmark, Scale } from 'lucide-react';
 import {
   DldLogo,
@@ -19,7 +18,6 @@ import {
 } from '@/components/ui/svgs/partners';
 
 interface DeveloperLogoCloudProps {
-  locale?: string;
   isArabic?: boolean;
 }
 
@@ -81,16 +79,16 @@ const PartnerNode = ({
     className="group flex items-center gap-4"
   >
     <Magnetic>
-      <div className="relative flex items-center justify-center size-14 border border-border bg-secondary/20 backdrop-blur-md transition-all duration-300 group-hover:border-primary/50 group-hover:bg-secondary/50">
-        <div className="size-6 text-foreground transition-colors duration-300">
+      <div className="border-border-strong relative flex size-14 items-center justify-center border bg-canvas transition-all duration-300 group-hover:border-fjord/50 group-hover:bg-surface">
+        <div className="size-6 text-ink transition-colors duration-300">
           {children}
         </div>
       </div>
     </Magnetic>
     <div className="flex flex-col">
-      <span className="text-sm font-bold text-foreground leading-tight">{label}</span>
+      <span className="text-sm leading-tight font-bold text-ink">{label}</span>
       {sublabel && (
-        <span className="text-[11px] text-muted-foreground mt-0.5">{sublabel}</span>
+        <span className="mt-0.5 text-[11px] text-text">{sublabel}</span>
       )}
     </div>
   </motion.div>
@@ -115,20 +113,19 @@ const TrustStat = ({
     transition={{ duration: 0.4, delay, ease: [0.2, 0, 0, 1] }}
     className="flex flex-col items-center text-center"
   >
-    <Icon className="h-5 w-5 text-primary mb-3" />
-    <span className="text-3xl font-display font-bold text-foreground">{value}</span>
-    <span className="text-[11px] tracking-widest uppercase text-muted-foreground mt-1">{label}</span>
+    <Icon className="mb-3 size-5 text-primary" />
+    <span className="font-display text-3xl font-bold text-foreground">{value}</span>
+    <span className="mt-1 text-[11px] tracking-widest text-muted-foreground uppercase">{label}</span>
   </motion.div>
 );
 
 export function DeveloperLogoCloud({
-  locale = 'en',
   isArabic = false,
 }: DeveloperLogoCloudProps) {
   return (
-    <section className="relative bg-background overflow-hidden">
+    <section className="relative overflow-hidden bg-background">
       {/* ─── Top: Cinematic Hero Image Band ─── */}
-      <div className="relative h-[320px] md:h-[400px] w-full overflow-hidden">
+      <div className="relative h-80 w-full overflow-hidden md:h-100">
         <Image
           src="/images/trust/rera-hero.png"
           alt="Dubai architectural skyline"
@@ -137,21 +134,21 @@ export function DeveloperLogoCloud({
           sizes="100vw"
         />
         {/* Dark overlay that transitions perfectly into the bg-background section below */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-linear-to-b from-background/80 via-background/50 to-background" />
 
         {/* Header text over the image */}
-        <Container size="xl" className="relative z-10 h-full flex flex-col justify-end pb-12 px-6 sm:px-8">
+        <Container size="lg" className="relative z-10 flex h-full flex-col justify-end pb-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="text-xs font-semibold tracking-[0.25em] text-emerald-500 uppercase mb-3 flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4" />
+            <p className="mb-3 flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-emerald-500 uppercase">
+              <ShieldCheck className="size-4" />
               {isArabic ? 'شبكة منظومة ريرا المعتمدة' : 'RERA Ecosystem & Escrow Network'}
             </p>
-            <h3 className="font-display text-2xl md:text-4xl font-bold text-foreground max-w-2xl leading-tight">
+            <h3 className="max-w-2xl font-display text-2xl leading-tight font-bold text-ink md:text-4xl">
               {isArabic
                 ? 'شركاء الخدمات المصرفية والمطورين المعتمدين'
                 : 'Verified Institutional Banking & Developer Partners'}
@@ -161,78 +158,68 @@ export function DeveloperLogoCloud({
       </div>
 
       {/* ─── Main Content: Split Panel ─── */}
-      <Container size="xl" className="px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 border border-border">
+      <Container size="lg">
+        <div className="grid grid-cols-1 gap-0 border border-border lg:grid-cols-2">
 
           {/* ─── Left: Financial & Regulatory Partners ─── */}
-          <div className="relative p-8 md:p-12 border-b lg:border-b-0 lg:border-r border-border bg-background">
-            {/* Subtle network pattern background */}
-            <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.15]">
-              <Image
-                src="/images/trust/network-pattern.png"
-                alt=""
-                fill
-                className="object-cover dark:invert"
-                sizes="50vw"
-              />
-            </div>
+          <div className="border-b border-border bg-canvas p-8 md:p-12 lg:border-r lg:border-b-0">
 
-            <div className="relative z-10">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
-              >
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] text-foreground uppercase bg-secondary/50 px-3 py-1 border border-border">
-                  <Lock className="h-3 w-3" />
-                  {isArabic ? 'الخدمات المصرفية والتنظيمية' : 'Banking & Regulatory'}
-                </span>
-              </motion.div>
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <span className="border-border-strong inline-flex items-center gap-1.5 border bg-surface px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-ink uppercase">
+                <Lock className="size-3" />
+                {isArabic ? 'الخدمات المصرفية والتنظيمية' : 'Banking & Regulatory'}
+              </span>
+            </motion.div>
 
-              {/* ─── Central DLD Core ─── */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1, ease: [0.2, 0, 0, 1] }}
-                className="mb-10 p-6 border border-border bg-secondary/20 backdrop-blur-md"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center justify-center size-16 bg-background border border-border">
-                    <div className="size-8 text-foreground">
-                      <DldLogo />
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-display font-bold text-foreground">
-                      {isArabic ? 'دائرة الأراضي والأملاك' : 'Dubai Land Department'}
-                    </h4>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                      {isArabic ? 'واجهة السجل الرسمي' : 'Official Registry API — Core Integration'}
-                    </p>
+            {/* ─── Central DLD Core ─── */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.2, 0, 0, 1] }}
+              className="border-border-strong mb-10 border bg-surface p-6"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex size-16 items-center justify-center border border-border bg-canvas">
+                  <div className="size-8 text-ink">
+                    <DldLogo />
                   </div>
                 </div>
-              </motion.div>
-
-              {/* ─── Banking Partners List ─── */}
-              <div className="space-y-6">
-                <PartnerNode label="Emirates NBD" sublabel="Escrow Trustee Bank" delay={0.2}>
-                  <EnbdLogo />
-                </PartnerNode>
-                <PartnerNode label="RERA Escrow Trustee" sublabel="Law No. 8 Verified" delay={0.3}>
-                  <ReraLogo />
-                </PartnerNode>
-                <PartnerNode label="First Abu Dhabi Bank" sublabel="Mortgage & Escrow Partner" delay={0.4}>
-                  <FabLogo />
-                </PartnerNode>
+                <div>
+                  <h4 className="font-display text-lg font-bold text-ink">
+                    {isArabic ? 'دائرة الأراضي والأملاك' : 'Dubai Land Department'}
+                  </h4>
+                  <p className="mt-0.5 text-xs text-text">
+                    {isArabic ? 'واجهة السجل الرسمي' : 'Official Registry API — Core Integration'}
+                  </p>
+                </div>
               </div>
+            </motion.div>
+
+            {/* ─── Banking Partners List ─── */}
+            <div className="space-y-6">
+              <PartnerNode label="Emirates NBD" sublabel="Escrow Trustee Bank" delay={0.2}>
+                <EnbdLogo />
+              </PartnerNode>
+              <PartnerNode label="RERA Escrow Trustee" sublabel="Law No. 8 Verified" delay={0.3}>
+                <ReraLogo />
+              </PartnerNode>
+              <PartnerNode label="First Abu Dhabi Bank" sublabel="Mortgage & Escrow Partner" delay={0.4}>
+                <FabLogo />
+              </PartnerNode>
             </div>
           </div>
 
+
           {/* ─── Right: Developer Partners ─── */}
-          <div className="relative p-8 md:p-12 bg-background">
+          <div className="relative bg-background p-8 md:p-12">
             <div className="relative z-10">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -241,14 +228,14 @@ export function DeveloperLogoCloud({
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.2em] text-foreground uppercase bg-secondary/50 px-3 py-1 border border-border">
-                  <Landmark className="h-3 w-3" />
+                <span className="inline-flex items-center gap-1.5 border border-border bg-secondary/50 px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-foreground uppercase">
+                  <Landmark className="size-3" />
                   {isArabic ? 'المطورون الرئيسيون' : 'Master Developers'}
                 </span>
               </motion.div>
 
               {/* ─── Developer Partners List ─── */}
-              <div className="space-y-6 mb-10">
+              <div className="mb-10 space-y-6">
                 <PartnerNode label="Emaar Properties" sublabel="Master Developer — Downtown & Dubai Creek" delay={0.2}>
                   <EmaarLogo />
                 </PartnerNode>
@@ -266,15 +253,15 @@ export function DeveloperLogoCloud({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="border-t border-border pt-8 mt-8"
+                className="mt-8 border-t border-border pt-8"
               >
-                <div className="flex items-start gap-3 p-4 bg-secondary/20 border border-border backdrop-blur-md">
-                  <Scale className="h-5 w-5 text-emerald-500 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-3 border border-border bg-secondary/20 p-4 backdrop-blur-md">
+                  <Scale className="mt-0.5 size-5 shrink-0 text-emerald-500" />
                   <div>
                     <p className="text-xs font-bold text-foreground">
                       {isArabic ? 'الامتثال القانوني الكامل' : 'Full Legal Compliance'}
                     </p>
-                    <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">
+                    <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">
                       {isArabic
                         ? 'جميع المعاملات مؤمنة بموجب القانون رقم 8 لسنة 2007 بشأن حسابات الضمان العقارية. متوافق مع هيئة التنظيم العقاري.'
                         : 'All transactions secured under Law No. 8 of 2007 concerning Escrow Accounts. Fully compliant with the Real Estate Regulatory Authority (RERA).'}
@@ -288,8 +275,8 @@ export function DeveloperLogoCloud({
       </Container>
 
       {/* ─── Trust Statistics Bar ─── */}
-      <Container size="xl" className="px-6 sm:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 border-x border-b border-border divide-x divide-border bg-background">
+      <Container size="lg">
+        <div className="grid grid-cols-2 divide-x divide-border border-x border-b border-border bg-background md:grid-cols-4">
           <div className="p-8">
             <TrustStat icon={ShieldCheck} value="100%" label="Escrow Protected" delay={0.1} />
           </div>

@@ -5,7 +5,7 @@ import { HomesFilterChips } from '@/components/search/homes-filter-chips';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Property } from '@/types/property';
 import { PageHeader } from '@/components/layout/page-header';
-import { getHeroImage } from '@/lib/pexels';
+
 import { Home } from 'lucide-react';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
@@ -24,7 +24,7 @@ export default async function HomesPage({
   const { query, tenure, property_type } = await searchParams;
   const isArabic = locale === 'ar';
 
-  const heroImage = await getHeroImage('Dubai luxury villa cinematic exterior 8k', '/images/hero/homes.png');
+  const heroImage = '/images/hero/homes-hero.jpg';
 
   const supabase = await createClient();
 
@@ -73,6 +73,7 @@ export default async function HomesPage({
           }
           className="border-none shadow-none"
           backgroundImage={heroImage}
+          mediaPosition="object-top"
           badge={
             <>
               <Home className="size-4" />
@@ -117,7 +118,7 @@ export default async function HomesPage({
       </div>
 
       <Section spacing="lg" className="relative z-10 min-h-screen rounded-none bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
-        <Container size="2xl">
+        <Container size="lg">
           {!activeProperties || activeProperties.length === 0 ? (
             <EmptyState
               variant="search"

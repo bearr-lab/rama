@@ -4,7 +4,7 @@ import { Section } from '@/components/layout/section';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TrendingUp, BarChart3, ShieldCheck, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { getHeroImage } from '@/lib/pexels';
+
 
 export default async function InvestPage({
   params,
@@ -14,7 +14,7 @@ export default async function InvestPage({
   const { locale } = await params;
   const isArabic = locale === 'ar';
   
-  const heroImage = await getHeroImage('Dubai luxury real estate business cinematic 8k', '/images/hero/invest.png');
+  const heroImage = '/images/hero/invest-hero.jpg';
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-canvas">
@@ -28,6 +28,7 @@ export default async function InvestPage({
         }
         backgroundImage={heroImage}
         variant="editorial"
+        mediaPosition="object-top"
         badge={
           <>
             <TrendingUp className="size-4" />
@@ -37,7 +38,7 @@ export default async function InvestPage({
       />
 
       <Section spacing="lg">
-        <Container size="xl">
+        <Container size="lg">
 
           {/* Investment Pillars */}
           <BlurFade delay={0.2} offset={20}>

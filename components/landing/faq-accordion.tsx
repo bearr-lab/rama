@@ -51,7 +51,7 @@ export function FAQAccordion({
 
   return (
     <section className="border-t border-border/40 bg-surface/30 py-24">
-      <Container size="lg" className="max-w-4xl px-6 sm:px-8">
+      <Container size="md">
         <div className="mb-16 text-center">
           <p className="mb-3 flex items-center justify-center gap-1.5 text-xs font-semibold tracking-widest text-fjord uppercase">
             <HelpCircle className="size-4 text-fjord" />

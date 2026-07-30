@@ -40,7 +40,7 @@ export function CobeGlobe() {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 flex items-center justify-center opacity-70 mix-blend-screen overflow-hidden pointer-events-none">
+    <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center overflow-hidden opacity-70 mix-blend-screen">
       <canvas
         ref={canvasRef}
         style={{

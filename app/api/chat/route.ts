@@ -67,9 +67,9 @@ When a user expresses serious interest, wants to book a viewing, or is ready to 
     }
 
     return result.toDataStreamResponse();
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Chat API Error:', error);
-    return new Response(JSON.stringify({ error: error.message || String(error) }), { 
+    return new Response(JSON.stringify({ error: 'An unexpected error occurred while processing your request.' }), { 
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });

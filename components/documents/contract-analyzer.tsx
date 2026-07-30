@@ -4,14 +4,10 @@ import * as React from 'react';
 import {
   FileText,
   CheckCircle2,
-  ShieldAlert,
+  AlertTriangle,
   Sparkles,
   Download,
-  Eye,
   Loader2,
-  ArrowRight,
-  Check,
-  AlertTriangle,
   FileCode,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -132,7 +128,7 @@ export function ContractAnalyzer() {
         <div>
           <div className="mb-2 flex items-center gap-2.5">
             <div className="rounded-xl bg-purple-500/10 p-2 text-purple-500">
-              <FileCode className="h-5 w-5" />
+              <FileCode className="size-5" />
             </div>
             <div>
               <h3 className="text-body font-display font-bold text-ink">
@@ -170,7 +166,7 @@ export function ContractAnalyzer() {
                         : 'bg-amber-500/10 text-amber-500',
                     )}
                   >
-                    <FileText className="h-4 w-4" />
+                    <FileText className="size-4" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-1">
@@ -186,7 +182,7 @@ export function ContractAnalyzer() {
                     </span>
                   </div>
                   {isSelected && (
-                    <span className="h-2 w-2 shrink-0 self-center rounded-full bg-purple-500" />
+                    <span className="size-2 shrink-0 self-center rounded-full bg-purple-500" />
                   )}
                 </button>
               );
@@ -195,7 +191,7 @@ export function ContractAnalyzer() {
         </div>
 
         <div className="text-caption flex items-center gap-2 rounded-2xl border border-purple-500/20 bg-purple-500/5 p-4 text-muted">
-          <Sparkles className="h-4 w-4 shrink-0 text-purple-500" />
+          <Sparkles className="size-4 shrink-0 text-purple-500" />
           <span>
             RAMA AI automatically flags non-standard escalation clauses in Form
             F contracts.
@@ -204,17 +200,17 @@ export function ContractAnalyzer() {
       </div>
 
       {/* Right Column: OCR Extraction Dashboard */}
-      <div className="flex min-h-[500px] flex-1 flex-col justify-between p-6 lg:p-8">
+      <div className="flex min-h-125 flex-1 flex-col justify-between p-6 lg:p-8">
         {isAnalyzing ? (
-          <div className="animate-in fade-in flex flex-1 flex-col items-center justify-center space-y-4 p-12 text-center duration-200">
+          <div className="flex min-h-125 w-full flex-col items-center justify-center p-8 text-center">
             <div className="relative">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-purple-500/20 bg-purple-500/10">
-                <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+              <div className="flex size-16 items-center justify-center rounded-full border-2 border-purple-500/20 bg-purple-500/10">
+                <Loader2 className="size-8 animate-spin text-purple-500" />
               </div>
-              <Sparkles className="absolute -top-1 -right-1 h-5 w-5 animate-bounce text-sky-500" />
+              <Sparkles className="absolute -top-1 -right-1 size-5 animate-pulse text-sky-500" />
             </div>
             <div>
-              <h4 className="text-body font-display font-bold text-ink">
+              <h4 className="text-body mt-4 font-display font-bold text-ink">
                 Running AI OCR Information Extraction...
               </h4>
               <p className="text-caption mt-1 max-w-sm text-muted">
@@ -240,7 +236,7 @@ export function ContractAnalyzer() {
                         : 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
                     )}
                   >
-                    <CheckCircle2 className="h-3 w-3" />
+                    <CheckCircle2 className="size-3" />
                     {analyzedDoc.status === 'verified'
                       ? '100% DLD Compliant'
                       : 'Review Required'}
@@ -260,7 +256,7 @@ export function ContractAnalyzer() {
                   }
                   className="text-body-sm flex items-center gap-1.5 rounded-xl border border-border bg-surface-subtle px-3 py-1.5 font-semibold text-ink transition-colors hover:bg-border/50"
                 >
-                  <Download className="h-4 w-4 text-muted" />
+                  <Download className="size-4 text-muted" />
                   <span>Download PDF</span>
                 </button>
               </div>
@@ -288,8 +284,10 @@ export function ContractAnalyzer() {
               </div>
               <div className="flex h-48 gap-4 overflow-y-auto bg-slate-800/50 p-6">
                 <div className="flex w-16 shrink-0 flex-col gap-2 border-r border-slate-700/50 pr-4">
-                  <div className="aspect-[3/4] w-full cursor-pointer rounded border border-sky-400 bg-white/10 shadow" />
-                  <div className="aspect-[3/4] w-full cursor-pointer rounded border border-transparent bg-white/5 opacity-50" />
+                  <div className="relative aspect-3/4 w-full overflow-hidden rounded-none border border-border shadow-sm">
+                    <div className="absolute inset-0 bg-white/10" />
+                  </div>
+                  <div className="aspect-3/4 w-full cursor-pointer rounded border border-transparent bg-white/5 opacity-50" />
                 </div>
                 <div className="relative flex-1 overflow-hidden rounded-lg bg-white p-6 font-serif text-xs leading-relaxed text-slate-900 shadow-2xl select-none">
                   <div className="mb-2 flex justify-between border-b pb-1 font-sans text-sm font-bold text-slate-950">
@@ -334,7 +332,7 @@ export function ContractAnalyzer() {
             {/* Extracted Clauses */}
             <div className="space-y-3">
               <h4 className="text-body-sm flex items-center gap-2 font-bold text-ink">
-                <Sparkles className="h-4 w-4 text-purple-500" />
+                <Sparkles className="size-4 text-purple-500" />
                 <span>AI Extracted Legal Clauses & Compliance Flags</span>
               </h4>
 
@@ -359,9 +357,9 @@ export function ContractAnalyzer() {
                         )}
                       >
                         {clause.status === 'ok' ? (
-                          <CheckCircle2 className="h-4 w-4" />
+                          <CheckCircle2 className="size-4" />
                         ) : (
-                          <AlertTriangle className="h-4 w-4" />
+                          <AlertTriangle className="size-4" />
                         )}
                       </div>
                       <div>
@@ -398,9 +396,9 @@ export function ContractAnalyzer() {
             </div>
 
             {/* AI Summary Footer */}
-            <div className="flex items-center justify-between rounded-2xl border border-purple-500/20 bg-gradient-to-r from-purple-500/10 via-sky-500/5 to-transparent p-4">
+            <div className="flex items-center justify-between rounded-2xl border border-purple-500/20 bg-linear-to-r from-purple-500/10 via-sky-500/5 to-transparent p-4">
               <div className="text-body-sm flex items-center gap-2.5 font-medium text-ink">
-                <Sparkles className="h-4 w-4 shrink-0 text-purple-500" />
+                <Sparkles className="size-4 shrink-0 text-purple-500" />
                 <span>
                   <strong>AI Contract Verdict:</strong> Zero hidden liabilities
                   or developer encumbrances found. Ready for DLD transfer.
