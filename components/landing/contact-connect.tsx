@@ -42,20 +42,21 @@ export function ContactConnect({
 
   return (
     <section className="border-t border-border/40 bg-background py-24">
-      <Container size="md" className="@container">
-        <div>
-          <h2 className="font-display text-4xl font-medium text-balance text-ink sm:text-5xl">
-            {isArabic ? 'تواصل معنا' : 'Get in Touch'}
-          </h2>
-          <p className="mt-4 max-w-md text-base text-balance text-muted-foreground">
-            {isArabic
-              ? 'لديك أسئلة؟ يسعدنا التحدث معك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.'
-              : "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."}
-          </p>
-        </div>
+      <Container size="lg">
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-12">
+            <h2 className="font-display text-4xl font-medium text-balance text-ink sm:text-5xl">
+              {isArabic ? 'تواصل معنا' : 'Get in Touch'}
+            </h2>
+            <p className="mt-4 max-w-xl text-base text-balance text-muted-foreground">
+              {isArabic
+                ? 'لديك أسئلة؟ يسعدنا التحدث معك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.'
+                : "Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible."}
+            </p>
+          </div>
 
-        <div className="mt-12 grid gap-8 @xl:grid-cols-5">
-          <div className="space-y-6 *:space-y-2 @xl:col-span-2">
+          <div className="grid gap-12 md:grid-cols-12 lg:gap-16">
+            <div className="space-y-8 md:col-span-5 lg:col-span-4">
             <div>
               <p className="flex items-center gap-2 text-sm font-medium text-foreground">
                 <Mail className="size-4 text-fjord" />
@@ -93,10 +94,11 @@ export function ContactConnect({
                   : 'Opera District, Downtown Dubai, UAE'}
               </p>
             </div>
-          </div>
+            </div>
 
-          <Card className="rounded-none border border-border/80 bg-surface/60 p-6 shadow-sm backdrop-blur-md @xl:col-span-3">
-            {status === 'success' ? (
+            <div className="md:col-span-7 lg:col-span-8">
+            <Card className="rounded-none border border-border/80 bg-surface/60 p-6 shadow-sm backdrop-blur-md sm:p-10">
+                {status === 'success' ? (
               <div className="flex h-full flex-col items-center justify-center space-y-4 py-12 text-center">
                 <div className="rounded-none bg-emerald-500/20 p-3">
                   <CheckCircle2 className="size-8 text-emerald-500" />
@@ -185,7 +187,9 @@ export function ContactConnect({
                 </Button>
               </form>
             )}
-          </Card>
+              </Card>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
