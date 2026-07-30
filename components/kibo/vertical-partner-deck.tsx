@@ -199,7 +199,12 @@ export function VerticalPartnerDeck({ isArabic = false }: { isArabic?: boolean }
       </div>
 
       {/* Interactive Framer Motion Scrollable Grid */}
-      <div className="relative max-h-95 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border hover:scrollbar-thumb-fjord/40">
+      <div
+        tabIndex={0}
+        role="region"
+        aria-label={isArabic ? 'قائمة الشركاء' : 'Partner list'}
+        className="relative max-h-95 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-border hover:scrollbar-thumb-fjord/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fjord"
+      >
         <motion.div layout className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <AnimatePresence mode="popLayout">
             {filteredPartners.map((partner, idx) => (

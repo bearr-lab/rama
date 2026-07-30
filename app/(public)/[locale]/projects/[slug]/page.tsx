@@ -21,7 +21,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الرابع ٢٠٢٦',
     startingPriceEn: 'AED 8.2M',
     startingPriceAr: '٨.٢ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
+    image: '/images/hero/projects-hero.jpg',
   },
   {
     id: 'prj-2',
@@ -36,7 +36,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الأول ٢٠٢٧',
     startingPriceEn: 'AED 18.5M',
     startingPriceAr: '١٨.٥ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/homes-hero.jpg',
   },
   {
     id: 'prj-3',
@@ -51,7 +51,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثاني ٢٠٢٨',
     startingPriceEn: 'AED 12.0M',
     startingPriceAr: '١٢.٠ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/communities-hero.jpg',
   },
   {
     id: 'prj-4',
@@ -66,7 +66,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثالث ٢٠٢٦',
     startingPriceEn: 'AED 5.5M',
     startingPriceAr: '٥.٥ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/invest-hero.jpg',
   },
   {
     id: 'prj-5',
@@ -81,7 +81,7 @@ const OFF_PLAN_PROJECTS = [
     handoverAr: 'الربع الثاني ٢٠٢٧',
     startingPriceEn: 'AED 4.2M',
     startingPriceAr: '٤.٢ مليون درهم',
-    image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/hero/projects-hero.jpg',
   },
 ];
 
@@ -136,7 +136,7 @@ export default async function ProjectDetailPage({
               <span>{isArabic ? project.statusAr : project.statusEn}</span>
             </div>
             
-            <h1 className="leading-[1.1] font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
+            <h1 className="leading-1.1 font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
               {isArabic ? project.titleAr : project.titleEn}
             </h1>
             

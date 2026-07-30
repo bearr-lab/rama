@@ -44,7 +44,7 @@ export default async function InsightDetailPage({
     notFound();
   }
 
-  const fallbackImage = '/images/hero/projects-hero.jpg';
+  const fallbackImage = '/images/hero/insights-hero.jpg';
 
   return (
     <article className="pb-24">

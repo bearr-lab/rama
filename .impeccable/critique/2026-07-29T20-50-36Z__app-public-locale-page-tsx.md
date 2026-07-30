@@ -40,8 +40,8 @@ A robust, feature-rich landing page with a strong technical foundation, but it r
 - **[P1] Inconsistent Motion Physics**: The use of `animate-bounce` in floating chat and analyzer components contradicts the "spring physics / exponential easing" mandate. It cheapens the premium feel.
   - *Fix*: Replace `animate-bounce` with custom spring animations or exponential easing curves.
   - *Suggested command*: `$impeccable animate`
-- **[P2] High Cognitive Load (Visual Noise)**: The immediate stacking of Hero, Ticker, another Hero block (`Hero1`), and the ROI widget creates a wall of features.
-  - *Fix*: Increase vertical rhythm/whitespace and consider merging or distilling the two hero blocks.
+- **[P2] High Cognitive Load (Visual Noise)**: The immediate stacking of the hero, ticker, and ROI widget may create a dense first viewport.
+  - *Fix*: Increase vertical rhythm/whitespace to reduce density.
   - *Suggested command*: `$impeccable layout`
 - **[P2] Jargon Density**: "OmniTwin ROI Simulator" and "AIAppTeaser" risk alienating users looking for simple solutions.
   - *Fix*: Shift copy to focus on the outcome rather than the AI mechanism.
@@ -52,7 +52,7 @@ A robust, feature-rich landing page with a strong technical foundation, but it r
 - **Casey (Distracted Mobile User)**: The dense stacking of interactive widgets (calculators, tickers) will dominate the mobile viewport, potentially trapping scroll gestures or slowing down render performance.
 
 #### Minor Observations
-- The page includes two Hero sections (`HeroEditorial` and `Hero1`). This might be a compositional error or an A/B test left in the tree.
+- The density of the interactive widgets requires careful performance profiling.
 
 #### Questions to Consider
 - Does the user need an ROI calculator before they even know how the core product works?
