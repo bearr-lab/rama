@@ -23,7 +23,8 @@ const copy = {
     email: 'البريد الإلكتروني',
     sendReset: 'إرسال رابط إعادة التعيين',
     backToSignIn: '← العودة لتسجيل الدخول',
-    resetSent: 'تحقق من بريدك الإلكتروني للحصول على رابط إعادة تعيين كلمة المرور.',
+    resetSent:
+      'تحقق من بريدك الإلكتروني للحصول على رابط إعادة تعيين كلمة المرور.',
   },
 } as const;
 
@@ -39,7 +40,11 @@ const containerVariants: Variants = {
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 24 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', stiffness: 300, damping: 24 },
+  },
 };
 
 export function ForgotPasswordForm({ locale }: ForgotPasswordFormProps) {
@@ -57,9 +62,12 @@ export function ForgotPasswordForm({ locale }: ForgotPasswordFormProps) {
     setIsLoading(true);
 
     const supabase = createClient();
-    const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/${locale}/reset-password`,
-    });
+    const { error: resetError } = await supabase.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo: `${window.location.origin}/${locale}/reset-password`,
+      },
+    );
 
     setIsLoading(false);
     if (resetError) {
@@ -70,38 +78,57 @@ export function ForgotPasswordForm({ locale }: ForgotPasswordFormProps) {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="space-y-6"
       variants={containerVariants}
       initial="hidden"
       animate="show"
     >
       <form className="space-y-3" onSubmit={handleSendReset} noValidate>
-        <motion.label variants={itemVariants} className="block space-y-2 text-sm font-medium text-ink">
+        <motion.label
+          variants={itemVariants}
+          className="block space-y-2 text-sm font-medium text-ink"
+        >
           <span>{t.email}</span>
-          <Input 
-            name="email" 
-            type="email" 
-            autoComplete="email" 
-            required 
-            className="h-10 border-border/60 bg-surface/50 text-sm shadow-none transition-all focus:border-fjord/50 focus:bg-surface focus:ring-4 focus:ring-fjord/10" 
+          <Input
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            className="h-10 border-border/60 bg-surface/50 text-sm shadow-none transition-all focus:border-fjord/50 focus:bg-surface focus:ring-4 focus:ring-fjord/10"
           />
         </motion.label>
 
         {error && (
-          <motion.p variants={itemVariants} className="rounded-xl bg-risk-soft px-4 py-3 text-sm text-risk" role="alert">
+          <motion.p
+            variants={itemVariants}
+            className="rounded-xl bg-risk-soft px-4 py-3 text-sm text-risk"
+            role="alert"
+          >
             {error}
           </motion.p>
         )}
         {notice && (
-          <motion.p variants={itemVariants} className="rounded-xl bg-verified-soft px-4 py-3 text-sm text-verified" role="status">
+          <motion.p
+            variants={itemVariants}
+            className="rounded-xl bg-verified-soft px-4 py-3 text-sm text-verified"
+            role="status"
+          >
             {notice}
           </motion.p>
         )}
 
         <motion.div variants={itemVariants}>
-          <Button className="h-10 w-full text-sm font-semibold shadow-sm" disabled={isLoading} type="submit">
-            {isLoading ? <Loader2 className="animate-spin" /> : <Mail className="mr-2 h-4 w-4" />}
+          <Button
+            className="h-10 w-full text-sm font-semibold shadow-sm"
+            disabled={isLoading}
+            type="submit"
+          >
+            {isLoading ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              <Mail className="mr-2 size-4" />
+            )}
             {t.sendReset}
             {!isLoading && <ArrowRight className="ms-auto opacity-70" />}
           </Button>

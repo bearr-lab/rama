@@ -81,7 +81,7 @@ export function PageHeader({
             loop
             muted
             playsInline
-            className={cn("size-full object-cover", mediaPosition)}
+            className={cn('size-full object-cover', mediaPosition)}
           />
         ) : backgroundImage ? (
           <Image
@@ -89,7 +89,7 @@ export function PageHeader({
             alt={title}
             fill
             sizes="100vw"
-            className={cn("object-cover", mediaPosition)}
+            className={cn('object-cover', mediaPosition)}
             priority
           />
         ) : null}
@@ -141,7 +141,12 @@ export function PageHeader({
 
         {/* Children slot (search bars, filters, CTAs) */}
         {children && (
-          <div className={cn('mt-8 w-full', !isEditorial && 'flex flex-col items-center')}>
+          <div
+            className={cn(
+              'mt-8 w-full',
+              !isEditorial && 'flex flex-col items-center',
+            )}
+          >
             {children}
           </div>
         )}

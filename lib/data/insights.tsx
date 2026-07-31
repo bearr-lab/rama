@@ -1,5 +1,15 @@
 import * as React from 'react';
-import { TrendingUp, Newspaper, LineChart, Target, Lightbulb, PieChart, Landmark, Key, Globe2 } from 'lucide-react';
+import {
+  TrendingUp,
+  Newspaper,
+  LineChart,
+  Target,
+  Lightbulb,
+  PieChart,
+  Landmark,
+  Key,
+  Globe2,
+} from 'lucide-react';
 
 export interface Insight {
   id: number;
@@ -15,7 +25,10 @@ export interface Insight {
   bentoSpan?: string;
 }
 
-export function getInsightsData(locale: string): { heroInsight: Insight; insights: Insight[] } {
+export function getInsightsData(locale: string): {
+  heroInsight: Insight;
+  insights: Insight[];
+} {
   const isArabic = locale === 'ar';
 
   const heroInsight = {
@@ -33,7 +46,7 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
     date: 'Oct 15, 2026',
     author: isArabic ? 'فريق الأبحاث' : 'Research Team',
     readTime: '8 min read',
-    image: '/images/hero/insights-hero.jpg'
+    image: '/images/hero/insights-hero.jpg',
   };
 
   const insights = [
@@ -49,8 +62,8 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       icon: <TrendingUp className="size-5" />,
       image: '/images/properties/property-villa.jpg',
       bentoSpan: 'col-span-1 md:col-span-2 row-span-2',
-      content: isArabic 
-        ? 'تشهد العقارات الفائقة الفخامة في دبي طفرة هائلة...' 
+      content: isArabic
+        ? 'تشهد العقارات الفائقة الفخامة في دبي طفرة هائلة...'
         : 'Ultra-luxury properties in Dubai have seen a massive surge in demand due to an influx of high-net-worth individuals relocating to the city...',
       date: 'Oct 12, 2026',
       author: isArabic ? 'سارة أحمد' : 'Sarah Ahmed',
@@ -67,7 +80,9 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       category: isArabic ? 'دليل' : 'Guide',
       icon: <Newspaper className="size-5" />,
       bentoSpan: 'col-span-1 row-span-1',
-      content: isArabic ? 'تفاصيل عن الاستثمار...' : 'Off-plan investments offer excellent capital appreciation if chosen wisely...',
+      content: isArabic
+        ? 'تفاصيل عن الاستثمار...'
+        : 'Off-plan investments offer excellent capital appreciation if chosen wisely...',
       date: 'Oct 10, 2026',
       author: 'David Chen',
       readTime: '6 min read',
@@ -84,7 +99,9 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       icon: <Target className="size-5" />,
       image: '/images/properties/property-penthouse.jpg',
       bentoSpan: 'col-span-1 md:col-span-2 row-span-1',
-      content: isArabic ? 'معلومات التأشيرة الذهبية...' : 'The Golden Visa has been a game-changer for Dubai real estate...',
+      content: isArabic
+        ? 'معلومات التأشيرة الذهبية...'
+        : 'The Golden Visa has been a game-changer for Dubai real estate...',
       date: 'Oct 8, 2026',
       author: 'Elena Rostova',
       readTime: '7 min read',
@@ -100,7 +117,9 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       category: isArabic ? 'استثمار' : 'Investment',
       icon: <PieChart className="size-5" />,
       bentoSpan: 'col-span-1 row-span-1',
-      content: isArabic ? 'تحليل المجمعات...' : 'JVC, Business Bay, and Arjan lead the charts in terms of pure rental yields...',
+      content: isArabic
+        ? 'تحليل المجمعات...'
+        : 'JVC, Business Bay, and Arjan lead the charts in terms of pure rental yields...',
       date: 'Oct 5, 2026',
       author: 'Omar Al Fayed',
       readTime: '4 min read',
@@ -116,7 +135,9 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       category: isArabic ? 'قانوني' : 'Legal',
       icon: <Landmark className="size-5" />,
       bentoSpan: 'col-span-1 row-span-1',
-      content: isArabic ? 'دليل RERA...' : 'Understanding the rental index and the rights of landlords and tenants is crucial...',
+      content: isArabic
+        ? 'دليل RERA...'
+        : 'Understanding the rental index and the rights of landlords and tenants is crucial...',
       date: 'Oct 1, 2026',
       author: 'Legal Team',
       readTime: '10 min read',
@@ -133,23 +154,25 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       icon: <Lightbulb className="size-5" />,
       image: '/images/properties/property-apartment.jpg',
       bentoSpan: 'col-span-1 md:col-span-2 row-span-2',
-      content: isArabic ? 'المنازل الذكية...' : 'Sustainability is no longer a buzzword, it is a primary requirement for new buyers...',
+      content: isArabic
+        ? 'المنازل الذكية...'
+        : 'Sustainability is no longer a buzzword, it is a primary requirement for new buyers...',
       date: 'Sep 28, 2026',
       author: 'Maya Singh',
       readTime: '5 min read',
     },
     {
       id: 8,
-      title: isArabic
-        ? 'تمويل عقارك في دبي'
-        : 'Financing Your Dubai Property',
+      title: isArabic ? 'تمويل عقارك في دبي' : 'Financing Your Dubai Property',
       description: isArabic
         ? 'مقارنة بين خيارات الرهن العقاري وخطط الدفع للمشترين المحليين والدوليين.'
         : 'Comparing mortgage options and payment plans for local and international buyers.',
       category: isArabic ? 'مالي' : 'Finance',
       icon: <Key className="size-5" />,
       bentoSpan: 'col-span-1 row-span-1',
-      content: isArabic ? 'خيارات التمويل...' : 'Interest rates are stabilizing, making mortgages attractive once again...',
+      content: isArabic
+        ? 'خيارات التمويل...'
+        : 'Interest rates are stabilizing, making mortgages attractive once again...',
       date: 'Sep 25, 2026',
       author: 'Finance Desk',
       readTime: '6 min read',
@@ -158,7 +181,7 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       id: 9,
       title: isArabic
         ? 'جاذبية دبي للمستثمرين العالميين'
-        : 'Dubai\'s Appeal to Global Investors',
+        : "Dubai's Appeal to Global Investors",
       description: isArabic
         ? 'تحليل لتدفقات الاستثمار الأجنبي المباشر وتأثير الأحداث الجيوسياسية.'
         : 'An analysis of FDI inflows and the impact of geopolitical events on the local market.',
@@ -166,23 +189,25 @@ export function getInsightsData(locale: string): { heroInsight: Insight; insight
       icon: <Globe2 className="size-5" />,
       image: '/images/hero/insights-hero.jpg',
       bentoSpan: 'col-span-1 md:col-span-3 row-span-1',
-      content: isArabic ? 'تحليل الاستثمار...' : 'Safe haven status continues to drive European and Asian capital into Dubai...',
+      content: isArabic
+        ? 'تحليل الاستثمار...'
+        : 'Safe haven status continues to drive European and Asian capital into Dubai...',
       date: 'Sep 22, 2026',
       author: 'Research Team',
       readTime: '8 min read',
     },
     {
       id: 10,
-      title: isArabic
-        ? 'توقعات السوق 2027'
-        : 'Market Forecast 2027',
+      title: isArabic ? 'توقعات السوق 2027' : 'Market Forecast 2027',
       description: isArabic
         ? 'توقعات الخبراء بشأن مسار الأسعار والمشاريع القادمة.'
         : 'Expert predictions on price trajectories and upcoming mega-projects.',
       category: isArabic ? 'توقعات' : 'Forecast',
       icon: <LineChart className="size-5" />,
       bentoSpan: 'col-span-1 row-span-1',
-      content: isArabic ? 'توقعات السوق لعام 2027...' : '2027 is projected to see a stabilization in luxury prices but growth in affordable segments...',
+      content: isArabic
+        ? 'توقعات السوق لعام 2027...'
+        : '2027 is projected to see a stabilization in luxury prices but growth in affordable segments...',
       date: 'Sep 15, 2026',
       author: 'Research Team',
       readTime: '6 min read',

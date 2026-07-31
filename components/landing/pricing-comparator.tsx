@@ -28,10 +28,16 @@ export function PricingComparator({
       buttonText: isArabic ? 'بدء الاستكشاف' : 'Explore Platform',
       buttonVariant: 'outline' as const,
       features: [
-        isArabic ? 'تصفح العقارات الموثقة من الدائرة' : 'Browse DLD Verified Listings',
-        isArabic ? 'التحقق من رقم حساب الضمان' : 'RERA Escrow Account Verification',
+        isArabic
+          ? 'تصفح العقارات الموثقة من الدائرة'
+          : 'Browse DLD Verified Listings',
+        isArabic
+          ? 'التحقق من رقم حساب الضمان'
+          : 'RERA Escrow Account Verification',
         isArabic ? 'حفظ حتى 5 عقارات للمقارنة' : 'Save up to 5 properties',
-        isArabic ? 'تقارير متوسط الأسعار للمناطق' : 'Basic Community Price Metrics',
+        isArabic
+          ? 'تقارير متوسط الأسعار للمناطق'
+          : 'Basic Community Price Metrics',
       ],
     },
     {
@@ -45,11 +51,21 @@ export function PricingComparator({
       buttonText: isArabic ? 'ترقية الحساب الآن' : 'Get Institutional Pass',
       buttonVariant: 'default' as const,
       features: [
-        isArabic ? 'وصول كامل لمستشار الذكاء الاصطناعي RAMA AI' : 'Unlimited RAMA AI Concierge RAG Access',
-        isArabic ? 'تدقيق مستندات عقود MOU وتراخيص الملكية' : 'Full Title Deed OCR & Form F Contract Audit',
-        isArabic ? 'توقعات صافي العائد الاستثماري لمشاريع 5 سنوات' : '5-Year AI Net Yield & Appreciation Models',
-        isArabic ? 'تنبيهات الفرص الحصرية قبل طرحها بالسوق' : 'Off-Market Deal Alerts & Direct Escrow Sync',
-        isArabic ? 'دعم أولوية من مستشاري العقود' : 'Priority Advisory & Legal Compliance Desk',
+        isArabic
+          ? 'وصول كامل لمستشار الذكاء الاصطناعي RAMA AI'
+          : 'Unlimited RAMA AI Concierge RAG Access',
+        isArabic
+          ? 'تدقيق مستندات عقود MOU وتراخيص الملكية'
+          : 'Full Title Deed OCR & Form F Contract Audit',
+        isArabic
+          ? 'توقعات صافي العائد الاستثماري لمشاريع 5 سنوات'
+          : '5-Year AI Net Yield & Appreciation Models',
+        isArabic
+          ? 'تنبيهات الفرص الحصرية قبل طرحها بالسوق'
+          : 'Off-Market Deal Alerts & Direct Escrow Sync',
+        isArabic
+          ? 'دعم أولوية من مستشاري العقود'
+          : 'Priority Advisory & Legal Compliance Desk',
       ],
     },
   ];
@@ -60,7 +76,9 @@ export function PricingComparator({
         <div className="mx-auto mb-16 max-w-2xl text-center">
           <p className="mb-3 flex items-center justify-center gap-1.5 text-xs font-semibold tracking-widest text-fjord uppercase">
             <Sparkles className="size-4 text-fjord" />
-            {isArabic ? 'خطط الذكاء العقاري المؤسسي' : 'RAMA Intelligence Plans'}
+            {isArabic
+              ? 'خطط الذكاء العقاري المؤسسي'
+              : 'RAMA Intelligence Plans'}
           </p>
           <h2 className="font-display text-4xl font-medium text-ink sm:text-5xl">
             {isArabic
@@ -112,7 +130,10 @@ export function PricingComparator({
 
                 <ul className="mb-8 space-y-3 border-t border-border/60 pt-6">
                   {plan.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-center gap-3 text-sm text-ink">
+                    <li
+                      key={fIdx}
+                      className="flex items-center gap-3 text-sm text-ink"
+                    >
                       <div className="flex size-5 shrink-0 items-center justify-center rounded-none bg-fjord-soft">
                         <Check className="size-3.5 text-fjord" />
                       </div>
@@ -130,7 +151,9 @@ export function PricingComparator({
                     : 'border border-border text-ink hover:bg-surface-subtle'
                 }`}
               >
-                <Link href={`/${locale}/login`} className="w-full text-center">{plan.buttonText}</Link>
+                <Link href={`/${locale}/login`} className="w-full text-center">
+                  {plan.buttonText}
+                </Link>
               </Button>
             </Card>
           ))}

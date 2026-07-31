@@ -86,7 +86,6 @@ const OFF_PLAN_PROJECTS = [
   },
 ];
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -94,9 +93,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params;
   const isArabic = locale === 'ar';
-  
+
   const project = OFF_PLAN_PROJECTS.find((p) => p.id === slug);
-  
+
   if (!project) {
     return {
       title: isArabic ? 'مشروع غير موجود | راما' : 'Project Not Found | Rama',
@@ -105,7 +104,9 @@ export async function generateMetadata({
 
   return {
     title: isArabic ? `${project.titleAr} | راما` : `${project.titleEn} | Rama`,
-    description: isArabic ? `${project.startingPriceAr} - ${project.locationAr}` : `${project.startingPriceEn} - ${project.locationEn}`,
+    description: isArabic
+      ? `${project.startingPriceAr} - ${project.locationAr}`
+      : `${project.startingPriceEn} - ${project.locationEn}`,
   };
 }
 
@@ -160,7 +161,7 @@ export default async function ProjectDetailPage({
               <span>{isArabic ? project.statusAr : project.statusEn}</span>
             </div>
 
-            {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value, tailwindcss/classnames-order */}
+            {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value */}
             <h1 className="font-display text-5xl leading-[1.1] font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
               {isArabic ? project.titleAr : project.titleEn}
             </h1>

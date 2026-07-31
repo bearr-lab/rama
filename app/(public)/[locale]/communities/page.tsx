@@ -14,7 +14,6 @@ import { Building2 } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -22,10 +21,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const isArabic = locale === 'ar';
-  
+
   return {
-    title: isArabic ? "مجتمعات دبي | راما" : "Dubai Communities | Rama",
-    description: isArabic ? "استكشف أشهر أحياء دبي، من المعيشة على الواجهة البحرية إلى مجتمعات الفيلات الهادئة." : "Explore Dubai's most popular neighborhoods, from waterfront living to serene villa communities.",
+    title: isArabic ? 'مجتمعات دبي | راما' : 'Dubai Communities | Rama',
+    description: isArabic
+      ? 'استكشف أشهر أحياء دبي، من المعيشة على الواجهة البحرية إلى مجتمعات الفيلات الهادئة.'
+      : "Explore Dubai's most popular neighborhoods, from waterfront living to serene villa communities.",
   };
 }
 

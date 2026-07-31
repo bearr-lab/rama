@@ -25,7 +25,8 @@ export function MagneticButton({
     const { clientX, clientY } = e;
     if (!buttonRef.current) return;
 
-    const { height, width, left, top } = buttonRef.current.getBoundingClientRect();
+    const { height, width, left, top } =
+      buttonRef.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
 
@@ -46,15 +47,14 @@ export function MagneticButton({
       ref={buttonRef}
       onMouseMove={handleMouse}
       onMouseLeave={reset}
-      className={cn('inline-block transition-shadow duration-300 ease-out hover:shadow-floating', className)}
+      className={cn(
+        'hover:shadow-floating inline-block transition-shadow duration-300 ease-out',
+        className,
+      )}
       animate={{ x, y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
     >
-      {render ? (
-        render
-      ) : (
-        <Button {...props}>{children}</Button>
-      )}
+      {render ? render : <Button {...props}>{children}</Button>}
     </motion.div>
   );
 }

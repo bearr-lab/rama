@@ -43,7 +43,7 @@ export function PriceTag({
           {formatPrice(price)}
         </span>
         {verified && (
-          <ShieldCheck className="h-5 w-5 text-verified drop-shadow-sm" />
+          <ShieldCheck className="size-5 text-verified drop-shadow-sm" />
         )}
       </div>
       {verified && (

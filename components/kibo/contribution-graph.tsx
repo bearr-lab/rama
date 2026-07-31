@@ -28,7 +28,20 @@ const intensityColors = {
   4: 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]',
 };
 
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 const daysOfWeek = ['Mon', 'Wed', 'Fri'];
 
 export const ContributionGraph = ({
@@ -73,7 +86,10 @@ export const ContributionGraph = ({
         date: dateStr,
         count,
         intensity,
-        summary: count > 0 ? `${count} DLD escrow verifications & AI valuations` : 'No recorded transactions',
+        summary:
+          count > 0
+            ? `${count} DLD escrow verifications & AI valuations`
+            : 'No recorded transactions',
       });
     }
     return days;
@@ -89,11 +105,16 @@ export const ContributionGraph = ({
   }, [gridData]);
 
   return (
-    <div className={cn('rounded-3xl border border-border/60 bg-surface p-6 shadow-sm', className)}>
+    <div
+      className={cn(
+        'rounded-3xl border border-border/60 bg-surface p-6 shadow-sm',
+        className,
+      )}
+    >
       {/* Header */}
       <div className="mb-6 flex flex-col justify-between gap-4 border-b border-border/40 pb-5 sm:flex-row sm:items-center">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-fjord">
+          <span className="text-xs font-bold tracking-widest text-fjord uppercase">
             {subtitle}
           </span>
           <h3 className="mt-1 font-display text-xl font-bold text-ink sm:text-2xl">
@@ -101,8 +122,8 @@ export const ContributionGraph = ({
           </h3>
         </div>
         <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1.5 rounded-full bg-surface-subtle px-3.5 py-1.5 text-xs font-bold text-ink border border-border/60">
-            <Sparkles className="h-3.5 w-3.5 text-fjord" />
+          <span className="flex items-center gap-1.5 rounded-full border border-border/60 bg-surface-subtle px-3.5 py-1.5 text-xs font-bold text-ink">
+            <Sparkles className="size-3.5 text-fjord" />
             <span>{totalLabel}</span>
           </span>
         </div>
@@ -111,22 +132,22 @@ export const ContributionGraph = ({
       {/* Heatmap Container */}
       <div className="relative overflow-x-auto pb-4">
         {/* Month Labels */}
-        <div className="mb-2 flex text-[11px] font-semibold text-muted ml-8 justify-between min-w-[650px]">
+        <div className="mb-2 ml-8 flex min-w-[650px] justify-between text-[11px] font-semibold text-muted">
           {months.map((m) => (
             <span key={m}>{m}</span>
           ))}
         </div>
 
-        <div className="flex gap-2 min-w-[650px]">
+        <div className="flex min-w-[650px] gap-2">
           {/* Day Labels */}
-          <div className="flex flex-col justify-around text-[10px] font-bold text-muted py-1 pr-2">
+          <div className="flex flex-col justify-around py-1 pr-2 text-[10px] font-bold text-muted">
             <span>Mon</span>
             <span>Wed</span>
             <span>Fri</span>
           </div>
 
           {/* Grid Columns */}
-          <div className="flex flex-1 gap-1 items-center justify-between">
+          <div className="flex flex-1 items-center justify-between gap-1">
             {weeks.map((week, wIndex) => (
               <div key={wIndex} className="flex flex-col gap-1">
                 {week.map((day) => (
@@ -136,8 +157,8 @@ export const ContributionGraph = ({
                     onMouseEnter={() => setHoveredDay(day)}
                     onMouseLeave={() => setHoveredDay(null)}
                     className={cn(
-                      'h-3 w-3 rounded-sm transition-colors cursor-pointer',
-                      intensityColors[day.intensity]
+                      'size-3 cursor-pointer rounded-sm transition-colors',
+                      intensityColors[day.intensity],
                     )}
                   />
                 ))}
@@ -149,23 +170,29 @@ export const ContributionGraph = ({
 
       {/* Footer & Legend */}
       <div className="mt-4 flex flex-col justify-between gap-4 border-t border-border/40 pt-4 text-xs sm:flex-row sm:items-center">
-        <div className="min-h-[20px] text-muted font-medium">
+        <div className="min-h-5 font-medium text-muted">
           {hoveredDay ? (
-            <span className="text-ink font-bold">
-              {hoveredDay.date}: <span className="text-fjord font-normal">{hoveredDay.summary}</span>
+            <span className="font-bold text-ink">
+              {hoveredDay.date}:{' '}
+              <span className="font-normal text-fjord">
+                {hoveredDay.summary}
+              </span>
             </span>
           ) : (
             <span>Hover over any day to inspect escrow audit logs</span>
           )}
         </div>
 
-        <div className="flex items-center gap-2 text-muted font-semibold ml-auto">
+        <div className="ml-auto flex items-center gap-2 font-semibold text-muted">
           <span>Less</span>
           <div className="flex gap-1">
             {[0, 1, 2, 3, 4].map((i) => (
               <span
                 key={i}
-                className={cn('h-3 w-3 rounded-sm', intensityColors[i as 0 | 1 | 2 | 3 | 4])}
+                className={cn(
+                  'size-3 rounded-sm',
+                  intensityColors[i as 0 | 1 | 2 | 3 | 4],
+                )}
               />
             ))}
           </div>

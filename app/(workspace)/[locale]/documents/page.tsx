@@ -54,7 +54,9 @@ export default function DocumentsWorkspacePage() {
             Document Intelligence & Contract Vault
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
-            Centralized legal vault for your DLD Form F MOUs, RERA Oqood certificates, Title Deeds, and Developer NOCs with live AI OCR extraction.
+            Centralized legal vault for your DLD Form F MOUs, RERA Oqood
+            certificates, Title Deeds, and Developer NOCs with live AI OCR
+            extraction.
           </p>
         </div>
 
@@ -114,7 +116,9 @@ export default function DocumentsWorkspacePage() {
               DLD Verification Status
             </span>
             <div className="mt-3 flex items-baseline justify-between">
-              <span className="font-display text-3xl font-semibold text-ink">Cleared</span>
+              <span className="font-display text-3xl font-semibold text-ink">
+                Cleared
+              </span>
               <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
                   Rest API Validated

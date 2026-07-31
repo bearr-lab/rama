@@ -32,7 +32,7 @@ export async function generateMetadata({
         m.slug.toLowerCase() === slug.toLowerCase() ||
         m.id.toLowerCase() === slug.toLowerCase() ||
         m.slug.includes(slug) ||
-        slug.includes(m.slug)
+        slug.includes(m.slug),
     );
     property = found || MOCK_PROPERTIES[0];
   }
@@ -83,7 +83,7 @@ export default async function PropertyDetailPage({ params }: PageProps) {
         m.slug.toLowerCase() === slug.toLowerCase() ||
         m.id.toLowerCase() === slug.toLowerCase() ||
         m.slug.includes(slug) ||
-        slug.includes(m.slug)
+        slug.includes(m.slug),
     );
     property = found || MOCK_PROPERTIES[0];
   }

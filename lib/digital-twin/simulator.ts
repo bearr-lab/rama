@@ -71,7 +71,9 @@ const COMMUNITY_TWIN_MOCK_DATA: Record<string, CommunityTwinMetrics> = {
 /**
  * Get real-time digital twin metrics for a community
  */
-export function getCommunityTwinMetrics(communityId: string): CommunityTwinMetrics {
+export function getCommunityTwinMetrics(
+  communityId: string,
+): CommunityTwinMetrics {
   const normalizedKey = communityId.toLowerCase();
   return (
     COMMUNITY_TWIN_MOCK_DATA[normalizedKey] || {
@@ -92,7 +94,7 @@ export function getCommunityTwinMetrics(communityId: string): CommunityTwinMetri
  * Run financial ROI simulation engine
  */
 export function calculateInvestmentSimulation(
-  params: SimulationParameters
+  params: SimulationParameters,
 ): InvestmentSimulationResult {
   const {
     purchasePrice,
@@ -108,22 +110,26 @@ export function calculateInvestmentSimulation(
 
   const monthlyMortgagePayment =
     monthlyRate > 0
-      ? (loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
+      ? (loanAmount *
+          (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
         (Math.pow(1 + monthlyRate, numberOfPayments) - 1)
       : loanAmount / numberOfPayments;
 
   const annualMortgageCost = monthlyMortgagePayment * 12;
   const estimatedServiceCharges = purchasePrice * 0.015; // 1.5% approx
-  const netAnnualCashFlow = expectedAnnualRent - annualMortgageCost - estimatedServiceCharges;
+  const netAnnualCashFlow =
+    expectedAnnualRent - annualMortgageCost - estimatedServiceCharges;
 
   const grossYieldPercentage = (expectedAnnualRent / purchasePrice) * 100;
-  const netYieldPercentage = ((expectedAnnualRent - estimatedServiceCharges) / purchasePrice) * 100;
+  const netYieldPercentage =
+    ((expectedAnnualRent - estimatedServiceCharges) / purchasePrice) * 100;
 
   const annualAppreciationRate = 0.05; // 5% projected baseline
   const fiveYearEquityProjection =
     purchasePrice * Math.pow(1 + annualAppreciationRate, 5) - loanAmount * 0.85;
   const tenYearEquityProjection =
-    purchasePrice * Math.pow(1 + annualAppreciationRate, 10) - loanAmount * 0.65;
+    purchasePrice * Math.pow(1 + annualAppreciationRate, 10) -
+    loanAmount * 0.65;
 
   return {
     monthlyMortgagePayment: Math.round(monthlyMortgagePayment),

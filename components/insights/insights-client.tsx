@@ -18,8 +18,11 @@ interface InsightsClientProps {
 
 export function InsightsClient({ insights, locale }: InsightsClientProps) {
   const isArabic = locale === 'ar';
-  
-  const categories = ['All', ...Array.from(new Set(insights.map((i) => i.category)))];
+
+  const categories = [
+    'All',
+    ...Array.from(new Set(insights.map((i) => i.category))),
+  ];
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredInsights =
@@ -31,7 +34,10 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
     <div className="bg-surface pb-32">
       <Container size="xl" className="pt-16">
         {/* The Grid Group allows us to dim un-hovered cards using group-hover/grid */}
-        <motion.div layout className="group/grid grid auto-rows-[minmax(300px,auto)] grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4">
+        <motion.div
+          layout
+          className="group/grid grid auto-rows-[minmax(300px,auto)] grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-4"
+        >
           <AnimatePresence mode="popLayout">
             {/* Market Snapshot Data Widget */}
             {activeCategory === 'All' && (
@@ -45,11 +51,15 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
               >
                 {/* Subtle Radial Glow on Hover */}
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,var(--color-emerald-500)_0%,transparent_70%)] opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-10" />
-                
+
                 <div className="relative z-10 flex w-full items-start justify-between">
                   <div>
-                    <div className="mb-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">{isArabic ? 'لمحة سريعة عن السوق' : 'Market Snapshot'}</div>
-                    <div className="font-serif text-5xl tracking-tight text-ink lg:text-6xl">+6.4%</div>
+                    <div className="mb-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
+                      {isArabic ? 'لمحة سريعة عن السوق' : 'Market Snapshot'}
+                    </div>
+                    <div className="font-serif text-5xl tracking-tight text-ink lg:text-6xl">
+                      +6.4%
+                    </div>
                   </div>
                   <div className="flex size-10 items-center justify-center rounded-none border border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
                     <ArrowUpRight className="size-5" />
@@ -58,22 +68,34 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
 
                 {/* Animated Sparkline */}
                 <div className="relative z-10 mt-8 w-full">
-                  <svg viewBox="0 0 100 40" className="stroke-[1.5] h-20 w-full overflow-visible fill-none stroke-emerald-500">
+                  <svg
+                    viewBox="0 0 100 40"
+                    className="stroke-1.5 h-20 w-full overflow-visible fill-none stroke-emerald-500"
+                  >
                     {/* Background faint line */}
-                    <path d="M0,35 L20,30 L40,32 L60,18 L80,22 L100,5" className="stroke-emerald-500/20" />
+                    <path
+                      d="M0,35 L20,30 L40,32 L60,18 L80,22 L100,5"
+                      className="stroke-emerald-500/20"
+                    />
                     {/* Animated foreground line */}
-                    <motion.path 
+                    <motion.path
                       initial={{ pathLength: 0 }}
                       animate={{ pathLength: 1 }}
-                      transition={{ duration: 2, ease: 'easeInOut', delay: 0.2 }}
+                      transition={{
+                        duration: 2,
+                        ease: 'easeInOut',
+                        delay: 0.2,
+                      }}
                       d="M0,35 L20,30 L40,32 L60,18 L80,22 L100,5"
                     />
-                    <motion.circle 
+                    <motion.circle
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ delay: 2, duration: 0.5 }}
-                      cx="100" cy="5" r="3" 
-                      className="fill-emerald-500 stroke-surface-subtle stroke-2" 
+                      cx="100"
+                      cy="5"
+                      r="3"
+                      className="fill-emerald-500 stroke-surface-subtle stroke-2"
                     />
                   </svg>
                   <div className="mt-4 flex justify-between text-xs font-medium text-muted-foreground">
@@ -94,13 +116,16 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn(
                   'group relative overflow-hidden rounded-none border border-border bg-surface shadow-2xs transition-all duration-500 group-hover/grid:opacity-40 hover:-translate-y-1 hover:opacity-100! hover:shadow-2xl',
-                  insight.bentoSpan || 'col-span-1 row-span-1'
+                  insight.bentoSpan || 'col-span-1 row-span-1',
                 )}
               >
-                <Link href={`/${locale}/insights/${insight.id}`} className="absolute inset-0 z-20">
+                <Link
+                  href={`/${locale}/insights/${insight.id}`}
+                  className="absolute inset-0 z-20"
+                >
                   <span className="sr-only">Read {insight.title}</span>
                 </Link>
-                
+
                 {insight.image && (
                   <div className="absolute inset-0 z-0 overflow-hidden">
                     <Image
@@ -118,40 +143,57 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                 <div className="relative z-10 flex h-full flex-col p-6 md:p-8">
                   {/* Category Tag */}
                   <div className="mb-auto">
-                    <div className={cn(
-                      "w-fit rounded-none border px-3 py-1.5 text-[10px] font-bold tracking-[0.2em] uppercase backdrop-blur-md transition-colors",
-                      insight.image 
-                        ? "border-white/20 bg-black/40 text-white" 
-                        : "border-fjord/20 bg-fjord/5 text-fjord"
-                    )}>
+                    <div
+                      className={cn(
+                        'w-fit rounded-none border px-3 py-1.5 text-[10px] font-bold tracking-[0.2em] uppercase backdrop-blur-md transition-colors',
+                        insight.image
+                          ? 'border-white/20 bg-black/40 text-white'
+                          : 'border-fjord/20 bg-fjord/5 text-fjord',
+                      )}
+                    >
                       {insight.category}
                     </div>
                   </div>
 
                   {/* Content Container */}
                   <div className="mt-8 flex flex-col justify-end">
-                    <h3 className={cn(
-                      "mb-4 font-serif text-2xl tracking-tight transition-colors md:text-3xl lg:text-4xl",
-                      insight.image ? "text-white" : "text-ink group-hover:text-fjord"
-                    )}>
+                    <h3
+                      className={cn(
+                        'mb-4 font-serif text-2xl tracking-tight transition-colors md:text-3xl lg:text-4xl',
+                        insight.image
+                          ? 'text-white'
+                          : 'text-ink group-hover:text-fjord',
+                      )}
+                    >
                       {insight.title}
                     </h3>
-                    
-                    {(!insight.image || insight.bentoSpan?.includes('row-span-2') || insight.bentoSpan?.includes('col-span-2')) && (
-                      <p className={cn(
-                        "mb-6 line-clamp-2 text-sm leading-relaxed",
-                        insight.image ? "text-white/70" : "text-muted-foreground"
-                      )}>
+
+                    {(!insight.image ||
+                      insight.bentoSpan?.includes('row-span-2') ||
+                      insight.bentoSpan?.includes('col-span-2')) && (
+                      <p
+                        className={cn(
+                          'mb-6 line-clamp-2 text-sm leading-relaxed',
+                          insight.image
+                            ? 'text-white/70'
+                            : 'text-muted-foreground',
+                        )}
+                      >
                         {insight.description}
                       </p>
                     )}
-                    
+
                     {/* Magnetic Pull Read Button */}
-                    <div className={cn(
-                      "flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-all duration-300 group-hover:gap-4",
-                      insight.image ? "text-white/90 group-hover:text-white" : "text-fjord"
-                    )}>
-                      {isArabic ? 'قراءة المقال' : 'Read Article'} <ArrowRight className="size-4" />
+                    <div
+                      className={cn(
+                        'flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-all duration-300 group-hover:gap-4',
+                        insight.image
+                          ? 'text-white/90 group-hover:text-white'
+                          : 'text-fjord',
+                      )}
+                    >
+                      {isArabic ? 'قراءة المقال' : 'Read Article'}{' '}
+                      <ArrowRight className="size-4" />
                     </div>
                   </div>
                 </div>
@@ -171,14 +213,16 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
               aria-pressed={activeCategory === cat}
               className={cn(
                 'relative shrink-0 rounded-none px-5 py-2.5 text-[10px] font-bold tracking-[0.15em] uppercase outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-fjord',
-                activeCategory === cat ? 'text-white' : 'text-muted-foreground hover:text-ink'
+                activeCategory === cat
+                  ? 'text-white'
+                  : 'text-muted-foreground hover:text-ink',
               )}
             >
               {activeCategory === cat && (
                 <motion.div
                   layoutId="activeDockBackground"
                   className="absolute inset-0 z-0 bg-fjord shadow-sm"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 />
               )}
               <span className="relative z-10">

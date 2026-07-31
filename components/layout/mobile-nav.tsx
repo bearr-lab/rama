@@ -7,7 +7,6 @@ import { useTheme } from 'next-themes';
 import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
 import { RamaLogo } from '@/components/ui/rama-logo';
 
-
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
@@ -28,21 +27,23 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
       document.body.style.overflow = '';
       return;
     }
-    
+
     document.body.style.overflow = 'hidden';
-    
+
     const drawerNode = drawerRef.current;
     if (!drawerNode) return;
-    
+
     const focusableElements = drawerNode.querySelectorAll(
-      'a[href], button:not([disabled]), textarea, input, select'
+      'a[href], button:not([disabled]), textarea, input, select',
     );
     const firstElement = focusableElements[0] as HTMLElement;
-    const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+    const lastElement = focusableElements[
+      focusableElements.length - 1
+    ] as HTMLElement;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
-      
+
       if (e.key === 'Tab') {
         if (e.shiftKey) {
           if (document.activeElement === firstElement) {
@@ -57,15 +58,15 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
         }
       }
     };
-    
+
     window.addEventListener('keydown', handleKeyDown);
-    
+
     if (firstElement) {
       firstElement.focus();
     } else {
       drawerNode.focus();
     }
-    
+
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
@@ -73,7 +74,6 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
   }, [isOpen, onClose]);
 
   return (
-
     <>
       {/* Backdrop */}
       <div
@@ -93,16 +93,13 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
         aria-label="Navigation Menu"
         tabIndex={-1}
         className={cn(
-          'ease-decelerate fixed inset-y-0 right-0 z-50 flex w-[300px] max-w-[80vw] transform flex-col bg-surface shadow-lg transition-transform duration-240 outline-none',
+          'ease-decelerate fixed inset-y-0 right-0 z-50 flex w-75 max-w-[80vw] transform flex-col bg-surface shadow-lg transition-transform duration-240 outline-none',
           isOpen ? 'translate-x-0' : 'translate-x-full',
         )}
         {...(!isOpen ? { inert: true } : {})}
       >
         <div className="flex items-center justify-between border-b border-border p-4">
-          <Link
-            href={`/${locale}#hero`}
-            onClick={onClose}
-          >
+          <Link href={`/${locale}#hero`} onClick={onClose}>
             <RamaLogo variant="full" size="sm" />
           </Link>
           <button
@@ -110,7 +107,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
             className="-mr-2 p-2 text-muted-foreground transition-colors hover:text-ink"
             aria-label="Close menu"
           >
-            <X className="h-5 w-5" />
+            <X className="size-5" />
           </button>
         </div>
 
@@ -192,7 +189,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
                   <AnimatedThemeToggler
                     theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                     onThemeChange={setTheme}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80"
+                    className="flex size-9 items-center justify-center rounded-full bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80"
                   />
                   <span className="text-xs font-medium text-ink">
                     {resolvedTheme === 'dark'
@@ -209,7 +206,6 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           </div>
         </div>
       </div>
-
     </>
   );
 }

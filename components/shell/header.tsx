@@ -50,9 +50,9 @@ export function Header() {
             className="-ml-2 cursor-pointer rounded-lg p-2 text-ink transition-colors hover:bg-surface-subtle md:hidden"
             aria-label="Open navigation menu"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="size-6" />
           </SheetTrigger>
-          <SheetContent side="left" className="w-[260px] p-0">
+          <SheetContent side="left" className="w-65 p-0">
             <MobileSidebarNav onClose={() => setOpen(false)} />
           </SheetContent>
         </Sheet>
@@ -66,9 +66,9 @@ export function Header() {
         {/* Command Palette Trigger */}
         <button
           onClick={handleOpenCommandPalette}
-          className="text-body-sm group flex items-center gap-2 rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 font-medium text-text transition-all hover:bg-surface-subtle hover:text-ink shadow-2xs"
+          className="text-body-sm group flex items-center gap-2 rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 font-medium text-text shadow-2xs transition-all hover:bg-surface-subtle hover:text-ink"
         >
-          <Search className="h-4 w-4 text-text/80 transition-colors group-hover:text-ink" />
+          <Search className="size-4 text-text/80 transition-colors group-hover:text-ink" />
           <span className="hidden sm:inline">Search decision engine...</span>
           <kbd className="hidden h-5 items-center gap-1 rounded border border-border/60 bg-surface px-1.5 font-mono text-[10px] font-bold text-text/80 sm:inline-flex">
             <span>⌘</span>K

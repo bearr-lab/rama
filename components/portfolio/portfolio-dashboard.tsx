@@ -99,7 +99,8 @@ const DEFAULT_TICKETS: MaintenanceTicket[] = [
 
 export function PortfolioDashboard() {
   const [assets, setAssets] = React.useState<OwnedAsset[]>(DEFAULT_ASSETS);
-  const [tickets, setTickets] = React.useState<MaintenanceTicket[]>(DEFAULT_TICKETS);
+  const [tickets, setTickets] =
+    React.useState<MaintenanceTicket[]>(DEFAULT_TICKETS);
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   // Load from localStorage on client mount to prevent SSR hydration mismatch
@@ -182,7 +183,12 @@ export function PortfolioDashboard() {
             <Building2 className="size-4 text-fjord" />
           </div>
           <div className="text-display-sm font-mono font-extrabold text-ink">
-            <Ticker value={totalValuation / 1000000} prefix="AED " suffix="M" decimals={2} />
+            <Ticker
+              value={totalValuation / 1000000}
+              prefix="AED "
+              suffix="M"
+              decimals={2}
+            />
           </div>
           <div className="text-caption flex items-center gap-1.5 font-semibold text-emerald-500">
             <TrendingUp className="size-3.5" />
@@ -604,14 +610,46 @@ export function PortfolioDashboard() {
               </div>
             </div>
             <Marquee direction="left" speed="normal">
-              <PartnerCard name="Emirates NBD" category="RERA Escrow Trustee Acct" badge="Direct Sync" />
-              <PartnerCard name="Emaar Properties" category="Master Developer" badge="VIP Tier 1" />
-              <PartnerCard name="First Abu Dhabi Bank" category="Mortgage & Escrow" badge="Verified" />
-              <PartnerCard name="Nakheel" category="Waterfront Master Plan" badge="Direct Sync" />
-              <PartnerCard name="Sobha Realty" category="Luxury Developer" badge="Escrow Active" />
-              <PartnerCard name="Mashreq Bank" category="Institutional Treasury" badge="Direct Sync" />
-              <PartnerCard name="Aldar" category="Regional Developer" badge="Verified" />
-              <PartnerCard name="Dubai Land Dept" category="Blockchain Registry" badge="Government" />
+              <PartnerCard
+                name="Emirates NBD"
+                category="RERA Escrow Trustee Acct"
+                badge="Direct Sync"
+              />
+              <PartnerCard
+                name="Emaar Properties"
+                category="Master Developer"
+                badge="VIP Tier 1"
+              />
+              <PartnerCard
+                name="First Abu Dhabi Bank"
+                category="Mortgage & Escrow"
+                badge="Verified"
+              />
+              <PartnerCard
+                name="Nakheel"
+                category="Waterfront Master Plan"
+                badge="Direct Sync"
+              />
+              <PartnerCard
+                name="Sobha Realty"
+                category="Luxury Developer"
+                badge="Escrow Active"
+              />
+              <PartnerCard
+                name="Mashreq Bank"
+                category="Institutional Treasury"
+                badge="Direct Sync"
+              />
+              <PartnerCard
+                name="Aldar"
+                category="Regional Developer"
+                badge="Verified"
+              />
+              <PartnerCard
+                name="Dubai Land Dept"
+                category="Blockchain Registry"
+                badge="Government"
+              />
             </Marquee>
           </div>
         </div>

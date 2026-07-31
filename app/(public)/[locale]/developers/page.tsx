@@ -5,7 +5,6 @@ import { Container } from '@/components/layout/container';
 import { Building } from 'lucide-react';
 import { Marquee } from '@/components/ui/marquee';
 
-
 export async function generateMetadata({
   params,
 }: {
@@ -13,10 +12,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const isArabic = locale === 'ar';
-  
+
   return {
-    title: isArabic ? "أبرز المطورين | راما" : "Top Developers | Rama",
-    description: isArabic ? "اكتشف عقارات من أكثر مطوري العقارات ثقة ورقيًا في دبي." : "Discover properties from Dubai's most trusted and prestigious real estate developers.",
+    title: isArabic ? 'أبرز المطورين | راما' : 'Top Developers | Rama',
+    description: isArabic
+      ? 'اكتشف عقارات من أكثر مطوري العقارات ثقة ورقيًا في دبي.'
+      : "Discover properties from Dubai's most trusted and prestigious real estate developers.",
   };
 }
 
@@ -56,18 +57,25 @@ export default async function DevelopersPage({
           <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
             <Marquee pauseOnHover className="[--duration:20s]">
               {developers.map((dev) => (
-                <div key={dev.name} className="mx-8 flex min-w-[250px] items-center justify-center rounded-none border border-border/50 bg-white/50 p-6 backdrop-blur-md">
-                  <span className="font-display text-4xl font-bold tracking-widest text-fjord opacity-80">{dev.logo}</span>
+                <div
+                  key={dev.name}
+                  className="mx-8 flex min-w-[250px] items-center justify-center rounded-none border border-border/50 bg-white/50 p-6 backdrop-blur-md"
+                >
+                  <span className="font-display text-4xl font-bold tracking-widest text-fjord opacity-80">
+                    {dev.logo}
+                  </span>
                 </div>
               ))}
             </Marquee>
             <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-surface"></div>
             <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-surface"></div>
           </div>
-          
+
           <div className="mx-auto mt-32 max-w-2xl text-center text-muted-foreground">
             <p className="text-lg">
-              {isArabic ? 'نحن نتعاون فقط مع المطورين الموثوقين لضمان تسليم استثماراتك في الوقت المحدد وبأعلى جودة.' : 'We partner exclusively with trusted developers to ensure your investments are delivered on time and to the highest quality standards.'}
+              {isArabic
+                ? 'نحن نتعاون فقط مع المطورين الموثوقين لضمان تسليم استثماراتك في الوقت المحدد وبأعلى جودة.'
+                : 'We partner exclusively with trusted developers to ensure your investments are delivered on time and to the highest quality standards.'}
             </p>
           </div>
         </Container>

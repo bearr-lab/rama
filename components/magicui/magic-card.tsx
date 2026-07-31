@@ -30,7 +30,7 @@ export function MagicCard({
         mouseY.set(e.clientY - top);
       }
     },
-    [mouseX, mouseY]
+    [mouseX, mouseY],
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -55,7 +55,7 @@ export function MagicCard({
       ref={cardRef}
       className={cn(
         'group relative flex size-full overflow-hidden rounded-xl border border-stone-200/80 bg-white p-4 transition-all duration-300 dark:border-stone-800 dark:bg-stone-900',
-        className
+        className,
       )}
       {...props}
     >

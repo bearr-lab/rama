@@ -11,7 +11,10 @@ interface HomesEditorialProps {
   locale?: string;
 }
 
-export function HomesEditorial({ isArabic, locale = 'en' }: HomesEditorialProps) {
+export function HomesEditorial({
+  isArabic,
+  locale = 'en',
+}: HomesEditorialProps) {
   const standards = [
     {
       icon: Gem,

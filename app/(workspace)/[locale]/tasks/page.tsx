@@ -18,7 +18,9 @@ export default async function TasksPage({
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic ? 'مساحة العمل · المهام والصفقات' : 'WORKSPACE · PIPELINE & DEAL FLOW'}
+            {isArabic
+              ? 'مساحة العمل · المهام والصفقات'
+              : 'WORKSPACE · PIPELINE & DEAL FLOW'}
           </p>
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'مهام وإجراءات الصفقات' : 'Transaction Action Board'}
@@ -36,7 +38,9 @@ export default async function TasksPage({
         <BlurFade delay={0.1}>
           <div className="hover:shadow-floating rounded-3xl border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
             <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-              {isArabic ? 'إجمالي قيمة صفقات الأنابيب' : 'Active Pipeline Value'}
+              {isArabic
+                ? 'إجمالي قيمة صفقات الأنابيب'
+                : 'Active Pipeline Value'}
             </span>
             <div className="mt-3 flex items-baseline justify-between">
               <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
@@ -67,7 +71,9 @@ export default async function TasksPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? 'سرعة توثيق DLD القياسية' : 'Standard DLD trustee timeline'}
+              {isArabic
+                ? 'سرعة توثيق DLD القياسية'
+                : 'Standard DLD trustee timeline'}
             </p>
           </div>
         </BlurFade>
@@ -88,7 +94,9 @@ export default async function TasksPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? 'حسابات ريرا مفعلة تحت أمناء الحفظ' : 'Active under RERA licensed trustee banks'}
+              {isArabic
+                ? 'حسابات ريرا مفعلة تحت أمناء الحفظ'
+                : 'Active under RERA licensed trustee banks'}
             </p>
           </div>
         </BlurFade>

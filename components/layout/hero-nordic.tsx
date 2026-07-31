@@ -1,4 +1,4 @@
-/* eslint-disable tailwindcss/classnames-order */
+ 
 import { ReactNode } from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/layout/container';

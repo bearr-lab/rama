@@ -1,7 +1,6 @@
 import { InsightsClient } from '@/components/insights/insights-client';
 import { PageHeader } from '@/components/layout/page-header';
 
-
 import { getInsightsData } from '@/lib/data/insights';
 import Link from 'next/link';
 import { MagneticButton } from '@/components/ui/magnetic-button';
@@ -16,9 +15,11 @@ export async function generateMetadata({
   const { locale } = await params;
   const isArabic = locale === 'ar';
   return {
-    title: isArabic ? 'الرؤى والتقارير - راما العقارية' : 'Market Insights & Reports - RAMA Real Estate',
-    description: isArabic 
-      ? 'أحدث تقارير السوق والتحليلات الخاصة بعقارات دبي من خبرائنا' 
+    title: isArabic
+      ? 'الرؤى والتقارير - راما العقارية'
+      : 'Market Insights & Reports - RAMA Real Estate',
+    description: isArabic
+      ? 'أحدث تقارير السوق والتحليلات الخاصة بعقارات دبي من خبرائنا'
       : 'Latest market reports and analysis on Dubai real estate from our experts',
   };
 }
@@ -30,7 +31,7 @@ export default async function InsightsPage({
 }) {
   const { locale } = await params;
   const isArabic = locale === 'ar';
-  
+
   const heroImage = '/images/hero/insights-hero.jpg';
 
   const { heroInsight, insights } = getInsightsData(locale);

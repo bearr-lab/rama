@@ -39,15 +39,18 @@ export default async function AuthLayout({
             className="group flex size-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-sm backdrop-blur-md transition-all hover:scale-105 hover:bg-white/20 hover:shadow-md"
             aria-label="Back to home"
           >
-            <ArrowLeft className={`size-5 transition-transform group-hover:-translate-x-1 ${isArabic ? 'rotate-180 group-hover:translate-x-1' : ''}`} />
+            <ArrowLeft
+              className={`size-5 transition-transform group-hover:-translate-x-1 ${isArabic ? 'rotate-180 group-hover:translate-x-1' : ''}`}
+            />
           </Link>
         </div>
-        
+
         {/* Centered Content Container */}
-        <main className="relative z-20 flex size-full flex-col overflow-y-auto px-4 py-8 sm:px-6 lg:px-8" id="main-content">
-          <div className="m-auto w-full max-w-105 shrink-0">
-            {children}
-          </div>
+        <main
+          className="relative z-20 flex size-full flex-col overflow-y-auto px-4 py-8 sm:px-6 lg:px-8"
+          id="main-content"
+        >
+          <div className="m-auto w-full max-w-105 shrink-0">{children}</div>
         </main>
       </div>
     </NextIntlClientProvider>

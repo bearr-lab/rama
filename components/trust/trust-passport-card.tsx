@@ -40,11 +40,11 @@ export function TrustPassportCard({
       >
         <div className="flex items-center gap-3">
           {isVerified ? (
-            <ShieldCheck className="h-6 w-6 text-verified" />
+            <ShieldCheck className="size-6 text-verified" />
           ) : isAtRisk ? (
-            <ShieldAlert className="h-6 w-6 text-risk" />
+            <ShieldAlert className="size-6 text-risk" />
           ) : (
-            <Shield className="h-6 w-6 text-review" />
+            <Shield className="size-6 text-review" />
           )}
           <div>
             <h3 className="text-body mb-1 leading-none font-semibold text-ink">
@@ -99,7 +99,7 @@ export function TrustPassportCard({
 
         <div className="flex flex-col gap-1 pl-4 text-center">
           <div className="text-caption flex items-center justify-center gap-1 font-semibold tracking-wider text-muted uppercase">
-            <Clock className="h-3 w-3" /> Freshness
+            <Clock className="size-3" /> Freshness
           </div>
           <div className="text-body-lg font-bold text-ink">
             {freshnessScore}%

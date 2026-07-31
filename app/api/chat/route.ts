@@ -9,10 +9,13 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     if (!Array.isArray(messages) || messages.length === 0) {
-      return new Response(JSON.stringify({ error: 'Invalid or empty messages array' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
+      return new Response(
+        JSON.stringify({ error: 'Invalid or empty messages array' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
     }
 
     // Cap chat history to last 20 messages to prevent quota abuse
@@ -23,11 +26,17 @@ export async function POST(req: Request) {
       apiKey: process.env.OPENROUTER_API_KEY || 'sk-or-v1-dummy1234567890',
       fetch: async (url, options) => {
         const headers = new Headers(options?.headers);
-        headers.set('Authorization', `Bearer ${process.env.OPENROUTER_API_KEY || 'sk-or-v1-dummy1234567890'}`);
-        headers.set('HTTP-Referer', process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000');
+        headers.set(
+          'Authorization',
+          `Bearer ${process.env.OPENROUTER_API_KEY || 'sk-or-v1-dummy1234567890'}`,
+        );
+        headers.set(
+          'HTTP-Referer',
+          process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        );
         headers.set('X-Title', 'RAMA Dubai Real Estate Platform');
         return fetch(url, { ...options, headers });
-      }
+      },
     });
 
     let result;
@@ -37,25 +46,39 @@ When a user expresses serious interest, wants to book a viewing, or is ready to 
 
     const tools = {
       collect_lead_info: tool({
-        description: 'Call this tool when the user is a qualified lead and wants to be contacted by an agent, book a viewing, or get more details. This will render a contact form in their chat window.',
+        description:
+          'Call this tool when the user is a qualified lead and wants to be contacted by an agent, book a viewing, or get more details. This will render a contact form in their chat window.',
         parameters: z.object({
-          reason: z.string().describe('The reason for collecting the lead (e.g., "Booking a viewing for Dubai Marina").'),
+          reason: z
+            .string()
+            .describe(
+              'The reason for collecting the lead (e.g., "Booking a viewing for Dubai Marina").',
+            ),
         }),
-      })
+      }),
     };
 
     try {
       result = await streamText({
-        model: openrouter(process.env.OPENROUTER_PRIMARY_MODEL || 'meta-llama/llama-3.3-70b-instruct:free'),
+        model: openrouter(
+          process.env.OPENROUTER_PRIMARY_MODEL ||
+            'meta-llama/llama-3.3-70b-instruct:free',
+        ),
         messages: sanitizedMessages,
         system: systemPrompt,
         tools,
       });
     } catch (primaryError) {
-      console.warn('Primary model failed, attempting fallback...', primaryError);
+      console.warn(
+        'Primary model failed, attempting fallback...',
+        primaryError,
+      );
       try {
         result = await streamText({
-          model: openrouter(process.env.OPENROUTER_BACKUP_MODEL || 'mistralai/mistral-7b-instruct:free'),
+          model: openrouter(
+            process.env.OPENROUTER_BACKUP_MODEL ||
+              'mistralai/mistral-7b-instruct:free',
+          ),
           messages: sanitizedMessages,
           system: systemPrompt,
           tools,
@@ -69,9 +92,14 @@ When a user expresses serious interest, wants to book a viewing, or is ready to 
     return result.toDataStreamResponse();
   } catch (error: unknown) {
     console.error('Chat API Error:', error);
-    return new Response(JSON.stringify({ error: 'An unexpected error occurred while processing your request.' }), { 
-      status: 500,
-      headers: { 'Content-Type': 'application/json' }
-    });
+    return new Response(
+      JSON.stringify({
+        error: 'An unexpected error occurred while processing your request.',
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
   }
 }

@@ -92,7 +92,9 @@ export function LiveTransactionTicker({
             <Building2 className="size-3.5 text-stone-500" />
             <span>{currentTx.location}</span>
             <span className="text-stone-400">•</span>
-            <span className="text-stone-600 dark:text-stone-400">{currentTx.type}</span>
+            <span className="text-stone-600 dark:text-stone-400">
+              {currentTx.type}
+            </span>
           </div>
 
           <span className="font-semibold text-emerald-800 dark:text-emerald-300">
@@ -104,13 +106,19 @@ export function LiveTransactionTicker({
             {isArabic ? 'مسجل' : 'DLD Verified'}
           </span>
 
-          <span className="text-[11px] text-stone-400">{currentTx.timeAgo}</span>
+          <span className="text-[11px] text-stone-400">
+            {currentTx.timeAgo}
+          </span>
         </div>
 
         {/* Right Metric */}
         <div className="hidden items-center gap-1.5 text-xs text-stone-500 lg:flex">
           <TrendingUp className="size-3.5 text-emerald-600" />
-          <span>{isArabic ? 'حجم تداول اليوم: 412M AED' : "Today's Volume: AED 412M"}</span>
+          <span>
+            {isArabic
+              ? 'حجم تداول اليوم: 412M AED'
+              : "Today's Volume: AED 412M"}
+          </span>
         </div>
       </Container>
     </div>

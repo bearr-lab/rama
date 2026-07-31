@@ -21,7 +21,10 @@ import {
 } from 'lucide-react';
 import { Property } from '@/types/property';
 import { ShareButton } from '@/components/property/share-button';
-import { RoomGalleryModal, RoomImage } from '@/components/property/room-gallery-modal';
+import {
+  RoomGalleryModal,
+  RoomImage,
+} from '@/components/property/room-gallery-modal';
 import { BookViewingModal } from '@/components/property/book-viewing-modal';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/toast';
@@ -33,20 +36,35 @@ interface PropertyDetailClientProps {
   locale: string;
 }
 
-const CATEGORY_META: Record<string, { en: string; ar: string; icon: React.ReactNode }> = {
+const CATEGORY_META: Record<
+  string,
+  { en: string; ar: string; icon: React.ReactNode }
+> = {
   all: {
     en: 'All',
     ar: 'الكل',
     icon: (
-      <svg className="size-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+      <svg
+        className="size-3.5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+        />
       </svg>
     ),
   },
   kitchen: {
     en: 'Kitchen',
     ar: 'مطبخ',
-    icon: <span className="size-3 rounded-full border border-current opacity-70" />,
+    icon: (
+      <span className="size-3 rounded-full border border-current opacity-70" />
+    ),
   },
   bedroom: {
     en: 'Bedroom',
@@ -70,22 +88,33 @@ const CATEGORY_META: Record<string, { en: string; ar: string; icon: React.ReactN
   },
 };
 
-export function PropertyDetailClient({ property, locale }: PropertyDetailClientProps) {
+export function PropertyDetailClient({
+  property,
+  locale,
+}: PropertyDetailClientProps) {
   const isArabic = locale === 'ar';
   const router = useRouter();
   const title = isArabic ? property.title_ar : property.title_en;
-  const description = isArabic ? property.description_ar : property.description_en;
+  const description = isArabic
+    ? property.description_ar
+    : property.description_en;
   const [isGalleryOpen, setIsGalleryOpen] = React.useState(false);
   const [isBookModalOpen, setIsBookModalOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = React.useState(false);
-  const [activeRoomCategory, setActiveRoomCategory] = React.useState<RoomImage['category'] | 'all'>('all');
+  const [activeRoomCategory, setActiveRoomCategory] = React.useState<
+    RoomImage['category'] | 'all'
+  >('all');
 
   const localeStr = isArabic ? 'ar-AE' : 'en-US';
-  const formatPrice = React.useCallback((price: number) => {
-    return new Intl.NumberFormat(localeStr).format(price);
-  }, [localeStr]);
+  const formatPrice = React.useCallback(
+    (price: number) => {
+      return new Intl.NumberFormat(localeStr).format(price);
+    },
+    [localeStr],
+  );
 
-  const FALLBACK_HERO = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85';
+  const FALLBACK_HERO =
+    'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1600&q=85';
 
   // Track scroll to show/hide the sticky top bar
   React.useEffect(() => {
@@ -100,7 +129,13 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
       // Find category from image metadata if available, else default to 'living'
       // Note: In a real app this metadata would be in property.images objects.
       // We will assign a random category from the valid options just to simulate metadata for now.
-      const categories: RoomImage['category'][] = ['kitchen', 'bedroom', 'living', 'balcony', 'bathroom'];
+      const categories: RoomImage['category'][] = [
+        'kitchen',
+        'bedroom',
+        'living',
+        'balcony',
+        'bathroom',
+      ];
       const hash = src.length;
       const cat = categories[hash % categories.length];
       return {
@@ -121,12 +156,17 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
       return property.thumbnail || property.images?.[0] || FALLBACK_HERO;
     }
     const catImage = roomPhotos.find((p) => p.category === activeRoomCategory);
-    return catImage ? catImage.src : (property.thumbnail || property.images?.[0] || FALLBACK_HERO);
+    return catImage
+      ? catImage.src
+      : property.thumbnail || property.images?.[0] || FALLBACK_HERO;
   }, [activeRoomCategory, property, roomPhotos]);
 
   // Derived financial metrics
-  const pricePerSqft = property.area_sqft ? property.price / property.area_sqft : 0;
-  const serviceChargeAnnual = (property.service_charge_aed || 0) * (property.area_sqft || 0);
+  const pricePerSqft = property.area_sqft
+    ? property.price / property.area_sqft
+    : 0;
+  const serviceChargeAnnual =
+    (property.service_charge_aed || 0) * (property.area_sqft || 0);
 
   return (
     <motion.div
@@ -159,7 +199,10 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 <span className="text-sm font-bold text-fjord">
                   AED {new Intl.NumberFormat('en-US').format(property.price)}
                 </span>
-                <ShareButton title={title} url={`https://rama.ae/${locale}/homes/${property.slug}`} />
+                <ShareButton
+                  title={title}
+                  url={`https://rama.ae/${locale}/homes/${property.slug}`}
+                />
               </div>
             </div>
           </motion.div>
@@ -194,15 +237,20 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
         {/* Top-right: action cluster */}
         <div className="absolute top-6 right-6 z-20 flex items-center gap-2">
           <button
-            onClick={() => toast.add({ title: isArabic ? 'أضيف للمفضلة' : 'Saved to favorites', type: 'success' })}
+            onClick={() =>
+              toast.add({
+                title: isArabic ? 'أضيف للمفضلة' : 'Saved to favorites',
+                type: 'success',
+              })
+            }
             aria-label={isArabic ? 'حفظ في المفضلة' : 'Save to favourites'}
             className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
           >
             <Heart className="size-4 text-white" />
           </button>
-          <ShareButton 
-            title={title || ''} 
-            text={description || undefined} 
+          <ShareButton
+            title={title || ''}
+            text={description || undefined}
             className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
           />
         </div>
@@ -210,7 +258,7 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
         {/* ─── Left Side: Financial Metrics Card ─── */}
         <div className="absolute bottom-6 left-6 z-20 w-85 space-y-4">
           {/* Compass Floating Button */}
-          <button 
+          <button
             aria-label={isArabic ? 'استكشف المنطقة' : 'Explore Neighborhood'}
             onClick={() => setIsGalleryOpen(true)}
             className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/60 backdrop-blur-md transition-transform hover:scale-105"
@@ -227,7 +275,8 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'سعر الطلب' : 'ASKING PRICE'}
                 </p>
                 <p className="font-display text-3xl leading-none font-bold text-white">
-                  AED {property.price >= 1_000_000
+                  AED{' '}
+                  {property.price >= 1_000_000
                     ? `${formatPrice(property.price / 1_000_000)}M`
                     : formatPrice(property.price)}
                 </p>
@@ -242,7 +291,10 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'السعر / قدم²' : 'PRICE / SQFT'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  AED {new Intl.NumberFormat(localeStr, { maximumFractionDigits: 0 }).format(pricePerSqft)}
+                  AED{' '}
+                  {new Intl.NumberFormat(localeStr, {
+                    maximumFractionDigits: 0,
+                  }).format(pricePerSqft)}
                 </p>
               </div>
               <div>
@@ -250,7 +302,8 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'العائد الاستثماري' : 'CAP RATE'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  {property.cap_rate_percentage ?? '—'}{property.cap_rate_percentage ? '%' : ''}
+                  {property.cap_rate_percentage ?? '—'}
+                  {property.cap_rate_percentage ? '%' : ''}
                 </p>
               </div>
               <div>
@@ -258,7 +311,9 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'الإيجار التقديري' : 'EST. RENTAL'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  {property.est_annual_rental != null ? `${Math.round(property.est_annual_rental / 1000)}K/yr` : '—'}
+                  {property.est_annual_rental != null
+                    ? `${Math.round(property.est_annual_rental / 1000)}K/yr`
+                    : '—'}
                 </p>
               </div>
               <div>
@@ -266,7 +321,9 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {isArabic ? 'رسوم الخدمة' : 'SERVICE CHG'}
                 </p>
                 <p className="text-sm font-bold text-white">
-                  {serviceChargeAnnual != null && serviceChargeAnnual > 0 ? `${(serviceChargeAnnual / 1000).toFixed(1)}K/yr` : '—'}
+                  {serviceChargeAnnual != null && serviceChargeAnnual > 0
+                    ? `${(serviceChargeAnnual / 1000).toFixed(1)}K/yr`
+                    : '—'}
                 </p>
               </div>
             </div>
@@ -284,14 +341,24 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
 
         {/* ─── Bottom Center: Room Navigation Pill ─── */}
         <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 scrollbar-none items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl [&::-webkit-scrollbar]:hidden">
-          {Array.from(new Set(['all', ...roomPhotos.map(p => p.category)])).map((category) => {
+          {Array.from(
+            new Set(['all', ...roomPhotos.map((p) => p.category)]),
+          ).map((category) => {
             const isActive = activeRoomCategory === category;
-            const meta = CATEGORY_META[category] || { en: category, ar: category, icon: null };
+            const meta = CATEGORY_META[category] || {
+              en: category,
+              ar: category,
+              icon: null,
+            };
             return (
               <button
                 key={category}
                 aria-pressed={isActive}
-                onClick={() => setActiveRoomCategory(category as RoomImage['category'] | 'all')}
+                onClick={() =>
+                  setActiveRoomCategory(
+                    category as RoomImage['category'] | 'all',
+                  )
+                }
                 className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold whitespace-nowrap capitalize transition-all duration-300 ${
                   isActive
                     ? 'bg-white text-black shadow-lg'
@@ -310,16 +377,27 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
       <div className="bg-background">
         <Container size="lg" padding="lg" className="py-16">
           {/* Breadcrumb */}
-          <nav aria-label="breadcrumb" className="mb-10 flex items-center gap-2 text-xs text-muted-foreground">
-            <Link href={`/${locale}`} className="transition-colors hover:text-ink">
+          <nav
+            aria-label="breadcrumb"
+            className="mb-10 flex items-center gap-2 text-xs text-muted-foreground"
+          >
+            <Link
+              href={`/${locale}`}
+              className="transition-colors hover:text-ink"
+            >
               {isArabic ? 'الرئيسية' : 'Home'}
             </Link>
             <span>/</span>
-            <Link href={`/${locale}/homes`} className="transition-colors hover:text-ink">
+            <Link
+              href={`/${locale}/homes`}
+              className="transition-colors hover:text-ink"
+            >
               {isArabic ? 'العقارات' : 'Homes'}
             </Link>
             <span>/</span>
-            <span className="line-clamp-1 max-w-50 font-medium text-ink">{title}</span>
+            <span className="line-clamp-1 max-w-50 font-medium text-ink">
+              {title}
+            </span>
           </nav>
 
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-3">
@@ -332,7 +410,9 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 <p className="text-sm text-muted-foreground">
                   {property.community}
                   {property.sub_community ? `, ${property.sub_community}` : ''}
-                  {property.developer ? ` · ${isArabic ? 'المطور' : 'by'} ${property.developer}` : ''}
+                  {property.developer
+                    ? ` · ${isArabic ? 'المطور' : 'by'} ${property.developer}`
+                    : ''}
                 </p>
               </div>
 
@@ -377,7 +457,9 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   {property.developer && (
                     <div className="flex flex-col gap-2 bg-surface p-5">
                       <Building2 className="size-5 text-fjord" />
-                      <span className="truncate text-sm font-bold text-ink">{property.developer}</span>
+                      <span className="truncate text-sm font-bold text-ink">
+                        {property.developer}
+                      </span>
                       <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
                         {isArabic ? 'المطور' : 'Developer'}
                       </span>
@@ -395,13 +477,17 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                 </p>
               </section>
 
-              {(property.features?.length > 0 || property.amenities?.length > 0) && (
+              {(property.features?.length > 0 ||
+                property.amenities?.length > 0) && (
                 <section className="space-y-4 border-t border-border/40 pt-10">
                   <h3 className="text-[11px] font-bold tracking-[0.15em] text-muted-foreground uppercase">
                     {isArabic ? 'المميزات والمرافق' : 'Features & Amenities'}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {[...(property.features || []), ...(property.amenities || [])].map((f, i) => (
+                    {[
+                      ...(property.features || []),
+                      ...(property.amenities || []),
+                    ].map((f, i) => (
                       <span
                         key={`${f}-${i}`}
                         className="border border-border/50 bg-surface px-3 py-1.5 text-xs font-medium text-ink"
@@ -421,31 +507,54 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
                   <div className="flex items-center gap-2 border-b border-border/40 pb-4">
                     <ShieldCheck className="size-5 text-emerald-500" />
                     <span className="text-[10px] font-bold tracking-wider text-ink uppercase">
-                      {isArabic ? 'موثق من دائرة الأراضي' : 'DLD Title Deed Verified'}
+                      {isArabic
+                        ? 'موثق من دائرة الأراضي'
+                        : 'DLD Title Deed Verified'}
                     </span>
                   </div>
                 )}
 
                 <div className="space-y-3 text-xs font-light text-muted-foreground">
                   <div className="flex justify-between border-b border-border/40 py-1">
-                    <span>{isArabic ? 'رسوم النقل (4% DLD)' : 'DLD Transfer Fee (4%):'}</span>
+                    <span>
+                      {isArabic
+                        ? 'رسوم النقل (4% DLD)'
+                        : 'DLD Transfer Fee (4%):'}
+                    </span>
                     <span className="font-bold text-ink">
-                      AED {new Intl.NumberFormat('en-US').format(property.price * 0.04)}
+                      AED{' '}
+                      {new Intl.NumberFormat('en-US').format(
+                        property.price * 0.04,
+                      )}
                     </span>
                   </div>
                   <div className="flex justify-between border-b border-border/40 py-1">
-                    <span>{isArabic ? 'رسوم التسجيل' : 'Trustee Registration:'}</span>
+                    <span>
+                      {isArabic ? 'رسوم التسجيل' : 'Trustee Registration:'}
+                    </span>
                     <span className="font-bold text-ink">AED 4,200</span>
                   </div>
                   {property.service_charge_aed && (
                     <div className="flex justify-between border-b border-border/40 py-1">
-                      <span>{isArabic ? 'رسوم الخدمة / قدم²' : 'Service Charge / sqft:'}</span>
-                      <span className="font-bold text-ink">AED {property.service_charge_aed}</span>
+                      <span>
+                        {isArabic
+                          ? 'رسوم الخدمة / قدم²'
+                          : 'Service Charge / sqft:'}
+                      </span>
+                      <span className="font-bold text-ink">
+                        AED {property.service_charge_aed}
+                      </span>
                     </div>
                   )}
                   <div className="flex justify-between py-1">
-                    <span>{isArabic ? 'العائد الاستثماري المتوقع' : 'Projected Cap Rate:'}</span>
-                    <span className="font-bold text-emerald-600">{property.cap_rate_percentage || '6.8'}%</span>
+                    <span>
+                      {isArabic
+                        ? 'العائد الاستثماري المتوقع'
+                        : 'Projected Cap Rate:'}
+                    </span>
+                    <span className="font-bold text-emerald-600">
+                      {property.cap_rate_percentage || '6.8'}%
+                    </span>
                   </div>
                 </div>
 
@@ -460,7 +569,9 @@ export function PropertyDetailClient({ property, locale }: PropertyDetailClientP
 
                 <Link href={`/${locale}/shortlist`} className="block w-full">
                   <Button className="w-full bg-fjord py-3 text-xs font-bold tracking-widest text-white uppercase">
-                    {isArabic ? 'أضف إلى القائمة المختصرة' : 'Save to Decision Shortlist'}
+                    {isArabic
+                      ? 'أضف إلى القائمة المختصرة'
+                      : 'Save to Decision Shortlist'}
                     <ArrowRight className="ms-2 size-4" />
                   </Button>
                 </Link>

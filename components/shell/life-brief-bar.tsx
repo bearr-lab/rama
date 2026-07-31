@@ -97,8 +97,8 @@ export function LifeBriefBar() {
       {/* Top Banner (Always Visible) */}
       <div className="flex flex-col justify-between gap-4 bg-gradient-to-r from-canvas via-surface to-fjord-soft/30 p-5 sm:flex-row sm:items-center sm:p-6">
         <div className="flex items-center gap-3.5">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-fjord/20 bg-fjord-soft text-fjord shadow-2xs">
-            <Target className="h-6 w-6" />
+          <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-fjord/20 bg-fjord-soft text-fjord shadow-2xs">
+            <Target className="size-6" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
@@ -120,15 +120,15 @@ export function LifeBriefBar() {
         <div className="flex items-center gap-3">
           {savedSuccess && (
             <span className="animate-in fade-in flex items-center gap-1.5 rounded-xl bg-emerald-500/10 px-3 py-1.5 text-xs font-bold text-emerald-500 duration-200">
-              <Check className="h-4 w-4" />
+              <Check className="size-4" />
               <span>Life Brief Synced</span>
             </span>
           )}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-body-sm flex shrink-0 items-center gap-2 rounded-xl border border-border/80 bg-surface px-4 py-2.5 font-semibold text-ink shadow-2xs transition-all hover:border-border-strong hover:bg-surface-subtle"
+            className="text-body-sm hover:border-border-strong flex shrink-0 items-center gap-2 rounded-xl border border-border/80 bg-surface px-4 py-2.5 font-semibold text-ink shadow-2xs transition-all hover:bg-surface-subtle"
           >
-            <Sliders className="h-4 w-4 text-fjord" />
+            <Sliders className="size-4 text-fjord" />
             <span>{isOpen ? 'Close Goal Engine' : 'Configure Life Brief'}</span>
           </button>
         </div>
@@ -166,7 +166,7 @@ export function LifeBriefBar() {
                           {p.title}
                         </span>
                         {isSelected && (
-                          <span className="h-2 w-2 shrink-0 rounded-full bg-sky-500" />
+                          <span className="size-2 shrink-0 rounded-full bg-sky-500" />
                         )}
                       </div>
                       <p className="text-caption leading-relaxed text-muted">
@@ -188,7 +188,7 @@ export function LifeBriefBar() {
 
           <div className="text-caption flex flex-col items-center justify-between gap-4 rounded-2xl border border-sky-500/20 bg-gradient-to-r from-sky-500/10 via-purple-500/5 to-transparent p-4 text-ink sm:flex-row">
             <div className="flex items-center gap-2.5">
-              <Award className="h-5 w-5 shrink-0 text-sky-500" />
+              <Award className="size-5 shrink-0 text-sky-500" />
               <span>
                 <strong>AI Alignment Engine:</strong> Your Life Brief is
                 currently scoring all listings in{' '}

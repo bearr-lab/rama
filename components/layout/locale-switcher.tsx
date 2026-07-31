@@ -12,12 +12,16 @@ export function LocaleSwitcher({ isDark = false }: LocaleSwitcherProps) {
   const pathname = usePathname();
 
   // Basic implementation until next-intl is fully configured
-  const currentLocale = (pathname === '/ar' || pathname.startsWith('/ar/')) ? 'ar' : 'en';
+  const currentLocale =
+    pathname === '/ar' || pathname.startsWith('/ar/') ? 'ar' : 'en';
   const nextLocale = currentLocale === 'en' ? 'ar' : 'en';
   let togglePath = pathname;
   if (pathname === '/' || pathname === '') {
     togglePath = `/${nextLocale}`;
-  } else if (pathname === `/${currentLocale}` || pathname.startsWith(`/${currentLocale}/`)) {
+  } else if (
+    pathname === `/${currentLocale}` ||
+    pathname.startsWith(`/${currentLocale}/`)
+  ) {
     togglePath = pathname.replace(`/${currentLocale}`, `/${nextLocale}`);
   } else {
     togglePath = `/${nextLocale}${pathname}`;

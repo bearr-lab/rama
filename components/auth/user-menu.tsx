@@ -1,7 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { LogOut, Heart, Sparkles, Settings, LayoutDashboard } from 'lucide-react';
+import {
+  LogOut,
+  Heart,
+  Sparkles,
+  Settings,
+  LayoutDashboard,
+} from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -61,9 +67,10 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
       }),
       {
         loading: locale === 'ar' ? 'جارٍ تسجيل الخروج...' : 'Signing out...',
-        success: locale === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Signed out successfully',
+        success:
+          locale === 'ar' ? 'تم تسجيل الخروج بنجاح' : 'Signed out successfully',
         error: locale === 'ar' ? 'حدث خطأ' : 'Failed to sign out',
-      }
+      },
     );
   };
 
@@ -80,7 +87,10 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           <Link
             href={`/${locale}/login`}
             className={cn(
-              buttonVariants({ variant: isDark ? 'secondary' : 'default', size: 'sm' }),
+              buttonVariants({
+                variant: isDark ? 'secondary' : 'default',
+                size: 'sm',
+              }),
               isDark
                 ? 'rounded-button bg-white font-medium text-ink hover:bg-white/90'
                 : 'rounded-button bg-fjord font-medium text-white hover:bg-fjord-hover',
@@ -151,9 +161,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
           className="cursor-pointer"
         >
           <Settings className="mr-2 size-4 text-muted-foreground" />
-          <span>
-            {locale === 'ar' ? 'الإعدادات' : 'Settings'}
-          </span>
+          <span>{locale === 'ar' ? 'الإعدادات' : 'Settings'}</span>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />

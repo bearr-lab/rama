@@ -2,7 +2,14 @@
 
 import React, { type HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
-import { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup, AvatarGroupCount } from '@/components/ui/avatar';
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+  AvatarBadge,
+  AvatarGroup,
+  AvatarGroupCount,
+} from '@/components/ui/avatar';
 
 export interface AvatarItem {
   id: string;
@@ -45,16 +52,20 @@ export const AvatarStack = ({
     <div className={cn('flex items-center gap-2.5', className)} {...props}>
       <AvatarGroup className={cn(!showRing && '*:data-[slot=avatar]:ring-0')}>
         {visibleAvatars.map((item, index) => (
-          <Avatar 
-            key={item.id || index} 
-            size={avatarSize} 
+          <Avatar
+            key={item.id || index}
+            size={avatarSize}
             title={`${item.name}${item.role ? ` • ${item.role}` : ''}`}
-            className="transition-transform hover:scale-110 hover:z-30 cursor-pointer"
+            className="cursor-pointer transition-transform hover:z-30 hover:scale-110"
           >
             <AvatarImage src={item.avatarUrl} alt={item.name} />
-            <AvatarFallback>{item.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+            <AvatarFallback>
+              {item.name.slice(0, 2).toUpperCase()}
+            </AvatarFallback>
             {item.status && (
-              <AvatarBadge className={cn(statusColors[item.status], !showRing && 'ring-0')} />
+              <AvatarBadge
+                className={cn(statusColors[item.status], !showRing && 'ring-0')}
+              />
             )}
           </Avatar>
         ))}
@@ -66,7 +77,7 @@ export const AvatarStack = ({
       </AvatarGroup>
 
       {label && (
-        <span className="text-sm font-medium text-muted-foreground ml-1">
+        <span className="ml-1 text-sm font-medium text-muted-foreground">
           {label}
         </span>
       )}

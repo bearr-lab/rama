@@ -3,7 +3,13 @@ import { getTranslations } from 'next-intl/server';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, Calendar, Sparkles, User, ShieldCheck } from 'lucide-react';
+import {
+  MessageCircle,
+  Calendar,
+  Sparkles,
+  User,
+  ShieldCheck,
+} from 'lucide-react';
 import Link from 'next/link';
 
 export default async function LeadsPage({
@@ -15,7 +21,9 @@ export default async function LeadsPage({
   const isArabic = locale === 'ar';
   const supabase = await createClient();
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   // The RLS policy will filter out leads for unauthorized users automatically.
   const { data: leads, error } = await supabase
@@ -28,10 +36,14 @@ export default async function LeadsPage({
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic ? 'مساحة العمل · إدارة العملاء المحتملين' : 'WORKSPACE · CRM LEADS'}
+            {isArabic
+              ? 'مساحة العمل · إدارة العملاء المحتملين'
+              : 'WORKSPACE · CRM LEADS'}
           </p>
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
-            {isArabic ? 'العملاء المحتملين من الذكاء الاصطناعي' : 'AI Concierge Leads'}
+            {isArabic
+              ? 'العملاء المحتملين من الذكاء الاصطناعي'
+              : 'AI Concierge Leads'}
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             {isArabic
@@ -72,16 +84,23 @@ export default async function LeadsPage({
                         <h3 className="font-display text-lg font-semibold text-ink">
                           {lead.first_name} {lead.last_name}
                         </h3>
-                        {lead.ai_intent_score === 'high' || lead.ai_intent_score === 'urgent' ? (
+                        {lead.ai_intent_score === 'high' ||
+                        lead.ai_intent_score === 'urgent' ? (
                           <Badge className="border-amber-500/20 bg-amber-500/10 px-2 py-0 text-[10px] text-amber-600">
                             {lead.ai_intent_score.toUpperCase()} INTENT
                           </Badge>
                         ) : (
-                          <Badge variant="secondary" className="px-2 py-0 text-[10px] uppercase">
+                          <Badge
+                            variant="secondary"
+                            className="px-2 py-0 text-[10px] uppercase"
+                          >
                             {lead.ai_intent_score} INTENT
                           </Badge>
                         )}
-                        <Badge variant="outline" className="px-2 py-0 text-[10px] uppercase">
+                        <Badge
+                          variant="outline"
+                          className="px-2 py-0 text-[10px] uppercase"
+                        >
                           {lead.status}
                         </Badge>
                       </div>
@@ -101,12 +120,14 @@ export default async function LeadsPage({
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* AI Notes Section */}
                   <div className="max-w-3xl rounded-2xl border border-border/30 bg-surface px-4 py-3">
                     <p className="mb-1 flex items-center gap-1.5 text-xs font-semibold text-fjord">
                       <Sparkles className="size-3" />
-                      {isArabic ? 'ملاحظات الذكاء الاصطناعي' : 'AI Concierge Notes'}
+                      {isArabic
+                        ? 'ملاحظات الذكاء الاصطناعي'
+                        : 'AI Concierge Notes'}
                     </p>
                     <p className="text-xs leading-relaxed font-light whitespace-pre-wrap text-muted-foreground">
                       {lead.ai_notes || 'No conversation context provided.'}
@@ -127,30 +148,31 @@ export default async function LeadsPage({
                       </Button>
                     </Link>
                   )}
-                  <Button variant="outline" className="w-full rounded-2xl border-border/60 font-medium hover:bg-surface-subtle sm:w-auto">
+                  <Button
+                    variant="outline"
+                    className="w-full rounded-2xl border-border/60 font-medium hover:bg-surface-subtle sm:w-auto"
+                  >
                     {isArabic ? 'تحديث الحالة' : 'Update Status'}
                   </Button>
                 </div>
               </div>
             </BlurFade>
           ))
-        ) : (
-          user ? (
-            <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/60 bg-surface/30 py-20 text-center">
-              <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-surface shadow-2xs">
-                <User className="size-8 text-muted-foreground/50" />
-              </div>
-              <h3 className="font-display text-lg font-medium text-ink">
-                {isArabic ? 'لا يوجد عملاء محتملين بعد' : 'No Leads Found'}
-              </h3>
-              <p className="mt-1 max-w-sm text-sm font-light text-muted-foreground">
-                {isArabic
-                  ? 'عندما يتفاعل المستخدمون مع مستشارك الذكي ويتركون بياناتهم، ستظهر هنا.'
-                  : 'When users interact with your AI Concierge and provide their contact details, they will appear here.'}
-              </p>
+        ) : user ? (
+          <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed border-border/60 bg-surface/30 py-20 text-center">
+            <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-surface shadow-2xs">
+              <User className="size-8 text-muted-foreground/50" />
             </div>
-          ) : null
-        )}
+            <h3 className="font-display text-lg font-medium text-ink">
+              {isArabic ? 'لا يوجد عملاء محتملين بعد' : 'No Leads Found'}
+            </h3>
+            <p className="mt-1 max-w-sm text-sm font-light text-muted-foreground">
+              {isArabic
+                ? 'عندما يتفاعل المستخدمون مع مستشارك الذكي ويتركون بياناتهم، ستظهر هنا.'
+                : 'When users interact with your AI Concierge and provide their contact details, they will appear here.'}
+            </p>
+          </div>
+        ) : null}
       </div>
     </div>
   );

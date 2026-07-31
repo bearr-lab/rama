@@ -47,12 +47,12 @@ export function SearchBar({
   };
 
   return (
-    <div className={cn('mx-auto w-full max-w-[400px]', className)}>
+    <div className={cn('mx-auto w-full max-w-100', className)}>
       {/* Removed the AI Concierge Badge to maintain a clean, minimalistic Nordic Lagom aesthetic */}
       <form
         onSubmit={handleSearch}
         className={cn(
-          'relative flex w-full items-center transition-all duration-300 rounded-none p-1 shadow-xl backdrop-blur-xl overflow-hidden border-none',
+          'relative flex w-full items-center overflow-hidden rounded-none border-none p-1 shadow-xl backdrop-blur-xl transition-all duration-300',
           isHero ? 'bg-white/95 text-ink' : 'bg-surface text-ink',
           isFocused && 'ring-1 ring-fjord',
         )}
@@ -68,7 +68,7 @@ export function SearchBar({
         />
 
         <div className="z-10 flex items-center justify-center ps-3 pe-1 text-fjord">
-          <Sparkles className="h-4 w-4" />
+          <Sparkles className="size-4" />
         </div>
 
         <Input
@@ -82,11 +82,15 @@ export function SearchBar({
               ? 'ابحث بالذكاء الاصطناعي (مثال: فيلا بإطلالة بحرية)...'
               : 'Try "Penthouse with Burj Khalifa view under 15M"...'
           }
-          className="relative z-10 flex-1 border-none bg-transparent px-2 text-sm font-medium text-ink placeholder:text-muted-foreground/60 focus-visible:ring-0 focus-visible:outline-none rounded-none"
+          className="relative z-10 flex-1 rounded-none border-none bg-transparent px-2 text-sm font-medium text-ink placeholder:text-muted-foreground/60 focus-visible:ring-0 focus-visible:outline-none"
         />
 
-        <button type="button" aria-label={locale === 'ar' ? 'البحث الصوتي' : 'Voice Search'} className="z-10 px-2 text-muted hover:text-fjord transition-colors">
-          <Mic className="h-4 w-4" />
+        <button
+          type="button"
+          aria-label={locale === 'ar' ? 'البحث الصوتي' : 'Voice Search'}
+          className="z-10 px-2 text-muted transition-colors hover:text-fjord"
+        >
+          <Mic className="size-4" />
         </button>
 
         <ShimmerButton
@@ -94,9 +98,9 @@ export function SearchBar({
           borderRadius="0px"
           shimmerColor="#34d399"
           background="var(--fjord)"
-          className="relative z-10 px-4 py-2 text-xs font-semibold text-white transition-all shadow-none hover:bg-fjord-hover"
+          className="relative z-10 px-4 py-2 text-xs font-semibold text-white shadow-none transition-all hover:bg-fjord-hover"
         >
-          <Send className="h-3.5 w-3.5 md:mr-1.5 inline" />
+          <Send className="inline size-3.5 md:mr-1.5" />
           <span className="hidden md:inline">
             {locale === 'ar' ? 'اسأل الذكاء' : 'Ask AI'}
           </span>

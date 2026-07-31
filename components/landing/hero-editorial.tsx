@@ -39,11 +39,10 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
         className="relative z-10 flex h-full flex-col justify-end pb-12 md:pb-24"
       >
         <div className="flex w-full flex-col items-center gap-10">
-          
           {/* Centered Text Block */}
           <div className="flex w-full max-w-4xl flex-col items-center space-y-4 text-center md:space-y-6">
             {/* Headline */}
-            <h1 className="leading-[1.05] font-display text-5xl tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl">
+            <h1 className="leading-1.05 font-display text-5xl tracking-tight text-white drop-shadow-2xl md:text-6xl lg:text-7xl">
               {isArabic ? (
                 <>
                   عقارات{' '}
@@ -94,7 +93,6 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
               </div>
             </div>
           </div>
-
         </div>
       </Container>
     </Section>

@@ -22,7 +22,8 @@ const attributionVariants = cva(
 );
 
 interface UnsplashAttributionProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends
+    React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof attributionVariants> {
   photographerName: string;
   photographerUsername: string;

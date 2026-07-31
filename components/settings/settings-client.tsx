@@ -117,8 +117,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
   // Hydration state & persisted preferences
   const [isLoaded, setIsLoaded] = React.useState(false);
-  const [prefs, setPrefs] = React.useState<UserPreferences>(DEFAULT_PREFERENCES);
-  
+  const [prefs, setPrefs] =
+    React.useState<UserPreferences>(DEFAULT_PREFERENCES);
+
   // UI Interactive states
   const [isSaving, setIsSaving] = React.useState(false);
   const [saveSuccess, setSaveSuccess] = React.useState(false);
@@ -127,7 +128,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
   const [apiKeyString, setApiKeyString] = React.useState(
     'rm_live_dubai_98f24a7c4e8b31d9a0c2e557614d',
   );
-  
+
   // AI Diagnostic tool states
   const [isTestingAi, setIsTestingAi] = React.useState(false);
   const [aiDiagnosticResult, setAiDiagnosticResult] = React.useState<{
@@ -184,7 +185,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
       localStorage.removeItem('rama-user-preferences');
       setTheme('system');
       window.dispatchEvent(
-        new CustomEvent('rama-preferences-updated', { detail: DEFAULT_PREFERENCES }),
+        new CustomEvent('rama-preferences-updated', {
+          detail: DEFAULT_PREFERENCES,
+        }),
       );
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);
@@ -294,7 +297,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         <div className="flex flex-col items-center gap-3 text-muted">
           <RefreshCw className="size-6 animate-spin text-fjord" />
           <span className="text-sm font-medium">
-            {isArabic ? 'جاري تحميل تفضيلات مساحة العمل...' : 'Loading workspace preferences...'}
+            {isArabic
+              ? 'جاري تحميل تفضيلات مساحة العمل...'
+              : 'Loading workspace preferences...'}
           </span>
         </div>
       </div>
@@ -302,15 +307,22 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 p-6 lg:p-10" dir={isArabic ? 'rtl' : 'ltr'}>
+    <div
+      className="mx-auto flex w-full max-w-7xl flex-col gap-8 p-6 lg:p-10"
+      dir={isArabic ? 'rtl' : 'ltr'}
+    >
       {/* ── 1. Executive Lagom Header ── */}
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-semibold tracking-widest text-muted uppercase">
-            {isArabic ? 'مساحة العمل · إعدادات المنصة والتفضيلات' : 'WORKSPACE · PLATFORM SETTINGS'}
+            {isArabic
+              ? 'مساحة العمل · إعدادات المنصة والتفضيلات'
+              : 'WORKSPACE · PLATFORM SETTINGS'}
           </p>
           <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            {isArabic ? 'تفضيلات النظام وهندسة القرار' : 'Platform Settings & Preferences'}
+            {isArabic
+              ? 'تفضيلات النظام وهندسة القرار'
+              : 'Platform Settings & Preferences'}
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
             {isArabic
@@ -322,7 +334,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         {saveSuccess && (
           <div className="animate-in fade-in zoom-in-95 flex items-center gap-2 rounded-none border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-semibold text-emerald-600 shadow-xs dark:text-emerald-400">
             <CheckCircle2 className="size-4 shrink-0 text-emerald-500" />
-            <span>{isArabic ? 'تم حفظ التفضيلات بنجاح' : 'Preferences Saved'}</span>
+            <span>
+              {isArabic ? 'تم حفظ التفضيلات بنجاح' : 'Preferences Saved'}
+            </span>
           </div>
         )}
       </header>
@@ -337,7 +351,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
-                  {isArabic ? 'المظهر الخارجي واللغة' : 'Appearance & Localization'}
+                  {isArabic
+                    ? 'المظهر الخارجي واللغة'
+                    : 'Appearance & Localization'}
                 </h3>
                 <p className="text-xs text-muted">
                   {isArabic
@@ -383,18 +399,30 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold tracking-wider text-ink uppercase">
-                  {isArabic ? 'نمط المظهر (Nordic Lagom)' : 'Interface Theme (Nordic Lagom)'}
+                  {isArabic
+                    ? 'نمط المظهر (Nordic Lagom)'
+                    : 'Interface Theme (Nordic Lagom)'}
                 </label>
                 <span className="text-xs font-medium text-muted">
                   {isArabic ? 'التنشيط الحي:' : 'Active mode:'}{' '}
-                  <strong className="text-ink capitalize">{theme || 'system'}</strong>
+                  <strong className="text-ink capitalize">
+                    {theme || 'system'}
+                  </strong>
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { id: 'light', label: isArabic ? 'فاتح' : 'Light', icon: Sun },
+                  {
+                    id: 'light',
+                    label: isArabic ? 'فاتح' : 'Light',
+                    icon: Sun,
+                  },
                   { id: 'dark', label: isArabic ? 'داكن' : 'Dark', icon: Moon },
-                  { id: 'system', label: isArabic ? 'تلقائي' : 'System', icon: Monitor },
+                  {
+                    id: 'system',
+                    label: isArabic ? 'تلقائي' : 'System',
+                    icon: Monitor,
+                  },
                 ].map((item) => {
                   const Icon = item.icon;
                   const isActive = theme === item.id;
@@ -410,7 +438,14 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                           : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-ink',
                       )}
                     >
-                      <Icon className={cn('size-5', isActive ? 'text-fjord dark:text-white' : 'text-muted')} />
+                      <Icon
+                        className={cn(
+                          'size-5',
+                          isActive
+                            ? 'text-fjord dark:text-white'
+                            : 'text-muted',
+                        )}
+                      />
                       <span className="text-xs font-bold">{item.label}</span>
                     </button>
                   );
@@ -422,7 +457,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold tracking-wider text-ink uppercase">
-                  {isArabic ? 'عملة التقييم المالية الافتراضية' : 'Default Valuation Currency'}
+                  {isArabic
+                    ? 'عملة التقييم المالية الافتراضية'
+                    : 'Default Valuation Currency'}
                 </label>
                 <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
                   {isArabic ? 'سعر صرف حي' : 'Live ECB Rate Sync'}
@@ -430,7 +467,12 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {[
-                  { id: 'AED', label: 'AED (Dirham)', sym: 'د.إ', sub: 'UAE Default' },
+                  {
+                    id: 'AED',
+                    label: 'AED (Dirham)',
+                    sym: 'د.إ',
+                    sub: 'UAE Default',
+                  },
                   { id: 'USD', label: 'USD ($)', sym: '$', sub: 'Fixed Peg' },
                   { id: 'EUR', label: 'EUR (€)', sym: '€', sub: 'ECB Live' },
                 ].map((cur) => {
@@ -439,7 +481,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     <button
                       key={cur.id}
                       type="button"
-                      onClick={() => setPrefs({ ...prefs, currency: cur.id as any })}
+                      onClick={() =>
+                        setPrefs({ ...prefs, currency: cur.id as any })
+                      }
                       className={cn(
                         'flex flex-col items-center gap-1 rounded-2xl border p-3.5 text-center transition-all duration-200',
                         isSel
@@ -447,7 +491,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                           : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-ink',
                       )}
                     >
-                      <span className="font-mono text-base font-black text-ink">{cur.sym}</span>
+                      <span className="font-mono text-base font-black text-ink">
+                        {cur.sym}
+                      </span>
                       <span className="text-xs font-bold">{cur.id}</span>
                       <span className="text-[10px] text-muted">{cur.sub}</span>
                     </button>
@@ -473,7 +519,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               </div>
               <div>
                 <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
-                  {isArabic ? 'محرك الذكاء الاصطناعي وهندسة المرونة' : 'AI Concierge & Intelligence Engine Resilience'}
+                  {isArabic
+                    ? 'محرك الذكاء الاصطناعي وهندسة المرونة'
+                    : 'AI Concierge & Intelligence Engine Resilience'}
                 </h3>
                 <p className="text-xs text-muted">
                   {isArabic
@@ -495,7 +543,11 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               ) : (
                 <Zap className="size-3.5 text-amber-500" />
               )}
-              <span>{isArabic ? 'فحص استجابة محرك الذكاء' : 'Test AI Concierge Endpoint'}</span>
+              <span>
+                {isArabic
+                  ? 'فحص استجابة محرك الذكاء'
+                  : 'Test AI Concierge Endpoint'}
+              </span>
             </button>
           </div>
 
@@ -525,7 +577,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                         ? 'تنبيه: تم التفعيل التلقائي لوضع المحاكاة المحلية الهادئة'
                         : 'Warning: Network latency triggered Local Simulation Fallback'}
                   </p>
-                  <p className="mt-0.5 text-[11px] opacity-80">{aiDiagnosticResult.message}</p>
+                  <p className="mt-0.5 text-[11px] opacity-80">
+                    {aiDiagnosticResult.message}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-2 font-mono text-[11px] font-bold">
@@ -546,7 +600,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex flex-col justify-between gap-4 pt-2 sm:flex-row sm:items-center">
               <div className="max-w-xl">
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'نموذج الذكاء الاصطناعي الأساسي (3-Tier Fallthrough)' : 'Primary AI Reasoning Model (3-Tier Fallthrough)'}
+                  {isArabic
+                    ? 'نموذج الذكاء الاصطناعي الأساسي (3-Tier Fallthrough)'
+                    : 'Primary AI Reasoning Model (3-Tier Fallthrough)'}
                 </h4>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted">
                   {isArabic
@@ -556,14 +612,26 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               </div>
               <select
                 value={prefs.aiPrimaryModel}
-                onChange={(e) => setPrefs({ ...prefs, aiPrimaryModel: e.target.value })}
+                onChange={(e) =>
+                  setPrefs({ ...prefs, aiPrimaryModel: e.target.value })
+                }
                 className="w-full rounded-none border border-border/80 bg-surface-subtle px-3.5 py-2.5 text-xs font-bold text-ink shadow-2xs focus:border-fjord focus:outline-hidden sm:w-72"
               >
-                <option value="google/gemini-2.0-pro-exp-02-05:free">Gemini 2.0 Pro Experimental (Free)</option>
-                <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B Instruct (Free)</option>
-                <option value="deepseek/deepseek-r1:free">DeepSeek R1 Reasoning (Free)</option>
-                <option value="mistralai/mistral-7b-instruct:free">Mistral 7B Instruct (Free)</option>
-                <option value="rama-v2-local-simulation-engine">RAMA Local Simulation Engine (Offline)</option>
+                <option value="google/gemini-2.0-pro-exp-02-05:free">
+                  Gemini 2.0 Pro Experimental (Free)
+                </option>
+                <option value="meta-llama/llama-3.3-70b-instruct:free">
+                  Llama 3.3 70B Instruct (Free)
+                </option>
+                <option value="deepseek/deepseek-r1:free">
+                  DeepSeek R1 Reasoning (Free)
+                </option>
+                <option value="mistralai/mistral-7b-instruct:free">
+                  Mistral 7B Instruct (Free)
+                </option>
+                <option value="rama-v2-local-simulation-engine">
+                  RAMA Local Simulation Engine (Offline)
+                </option>
               </select>
             </div>
 
@@ -571,7 +639,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'بنية مساحة عمل RAMA V2 المتقدمة' : 'RAMA V2 Workspace Architecture'}
+                  {isArabic
+                    ? 'بنية مساحة عمل RAMA V2 المتقدمة'
+                    : 'RAMA V2 Workspace Architecture'}
                 </h4>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted">
                   {isArabic
@@ -590,7 +660,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'وضع محاكاة بيئة التجربة (Offline Sandbox)' : 'Sandbox Demo Mode (Offline Evaluation)'}
+                  {isArabic
+                    ? 'وضع محاكاة بيئة التجربة (Offline Sandbox)'
+                    : 'Sandbox Demo Mode (Offline Evaluation)'}
                 </h4>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted">
                   {isArabic
@@ -609,7 +681,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'تزامن شيكات إيجاري ودائرة الأراضي الحية' : 'Live DLD & Ejari Electronic Cheque Sync'}
+                  {isArabic
+                    ? 'تزامن شيكات إيجاري ودائرة الأراضي الحية'
+                    : 'Live DLD & Ejari Electronic Cheque Sync'}
                 </h4>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted">
                   {isArabic
@@ -634,7 +708,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             </div>
             <div>
               <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
-                {isArabic ? 'تنبيهات الصفقات ومراقبة السوق الحية' : 'Notification & Alert Preferences'}
+                {isArabic
+                  ? 'تنبيهات الصفقات ومراقبة السوق الحية'
+                  : 'Notification & Alert Preferences'}
               </h3>
               <p className="text-xs text-muted">
                 {isArabic
@@ -650,7 +726,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <div className="flex items-center justify-between">
                 <div className="max-w-xl">
                   <h4 className="text-sm font-bold text-ink">
-                    {isArabic ? 'تنبيهات هبوط الأسعار والتقييم الفوري' : 'Instant Price Drop & Valuation Alerts'}
+                    {isArabic
+                      ? 'تنبيهات هبوط الأسعار والتقييم الفوري'
+                      : 'Instant Price Drop & Valuation Alerts'}
                   </h4>
                   <p className="mt-0.5 text-xs leading-relaxed text-muted">
                     {isArabic
@@ -660,7 +738,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 </div>
                 <LagomSwitch
                   checked={prefs.notifPriceAlerts}
-                  onChange={(val) => setPrefs({ ...prefs, notifPriceAlerts: val })}
+                  onChange={(val) =>
+                    setPrefs({ ...prefs, notifPriceAlerts: val })
+                  }
                   isArabic={isArabic}
                 />
               </div>
@@ -670,14 +750,18 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 <div className="animate-in fade-in flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle p-3 text-xs">
                   <TrendingUp className="size-4 text-fjord" />
                   <span className="font-medium text-ink">
-                    {isArabic ? 'حد تحفز التنبيه الفوري:' : 'Alert Trigger Threshold:'}
+                    {isArabic
+                      ? 'حد تحفز التنبيه الفوري:'
+                      : 'Alert Trigger Threshold:'}
                   </span>
                   <div className="flex items-center gap-1.5">
                     {[1, 2, 5, 10].map((pct) => (
                       <button
                         key={pct}
                         type="button"
-                        onClick={() => setPrefs({ ...prefs, priceDropThreshold: pct })}
+                        onClick={() =>
+                          setPrefs({ ...prefs, priceDropThreshold: pct })
+                        }
                         className={cn(
                           'rounded-none px-2.5 py-1 font-bold transition-all',
                           prefs.priceDropThreshold === pct
@@ -698,7 +782,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <div className="flex items-center justify-between">
                 <div className="max-w-xl">
                   <h4 className="text-sm font-bold text-ink">
-                    {isArabic ? 'إشعارات واتساب الرسمية لنقل الملكية (DLD)' : 'WhatsApp Business DLD Transfer Alerts'}
+                    {isArabic
+                      ? 'إشعارات واتساب الرسمية لنقل الملكية (DLD)'
+                      : 'WhatsApp Business DLD Transfer Alerts'}
                   </h4>
                   <p className="mt-0.5 text-xs leading-relaxed text-muted">
                     {isArabic
@@ -718,12 +804,18 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 <div className="animate-in fade-in flex flex-col gap-2 rounded-2xl border border-border/60 bg-surface-subtle p-3.5 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2 text-xs font-medium text-ink">
                     <Smartphone className="size-4 text-emerald-500" />
-                    <span>{isArabic ? 'رقم الهاتف المعتمد للإشعارات:' : 'Verified WhatsApp Number:'}</span>
+                    <span>
+                      {isArabic
+                        ? 'رقم الهاتف المعتمد للإشعارات:'
+                        : 'Verified WhatsApp Number:'}
+                    </span>
                   </div>
                   <input
                     type="text"
                     value={prefs.whatsappNumber}
-                    onChange={(e) => setPrefs({ ...prefs, whatsappNumber: e.target.value })}
+                    onChange={(e) =>
+                      setPrefs({ ...prefs, whatsappNumber: e.target.value })
+                    }
                     placeholder="+971 50 000 0000"
                     className="w-full rounded-none border border-border/80 bg-surface px-3 py-1.5 font-mono text-xs font-bold text-ink focus:border-emerald-500 focus:outline-hidden sm:w-64"
                   />
@@ -735,7 +827,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'ملخص التدفق النقدي والعوائد الأسبوعي' : 'Weekly Portfolio Cashflow Digest'}
+                  {isArabic
+                    ? 'ملخص التدفق النقدي والعوائد الأسبوعي'
+                    : 'Weekly Portfolio Cashflow Digest'}
                 </h4>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted">
                   {isArabic
@@ -760,7 +854,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             </div>
             <div>
               <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
-                {isArabic ? 'الأمان وجواز الثقة والهوية (Trust Passport Security)' : 'Trust Passport Identity & Account Security'}
+                {isArabic
+                  ? 'الأمان وجواز الثقة والهوية (Trust Passport Security)'
+                  : 'Trust Passport Identity & Account Security'}
               </h3>
               <p className="text-xs text-muted">
                 {isArabic
@@ -775,7 +871,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex flex-col justify-between gap-4 pt-2 sm:flex-row sm:items-center">
               <div>
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'حالة تحقق هوية المستثمر (UAE Pass / DLD KYC)' : 'Investor Identity KYC Status'}
+                  {isArabic
+                    ? 'حالة تحقق هوية المستثمر (UAE Pass / DLD KYC)'
+                    : 'Investor Identity KYC Status'}
                 </h4>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted">
                   {isArabic
@@ -785,7 +883,11 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               </div>
               <div className="flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-700 dark:text-emerald-300">
                 <UserCheck className="size-4 shrink-0 text-emerald-500" />
-                <span>{isArabic ? 'مستثمر معتمد (DLD ID #849201)' : 'DLD Verified Investor (#849201)'}</span>
+                <span>
+                  {isArabic
+                    ? 'مستثمر معتمد (DLD ID #849201)'
+                    : 'DLD Verified Investor (#849201)'}
+                </span>
               </div>
             </div>
 
@@ -793,7 +895,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'المصادقة الثنائية للمعاملات المالية (2FA)' : 'Two-Factor Authentication (2FA Biometrics)'}
+                  {isArabic
+                    ? 'المصادقة الثنائية للمعاملات المالية (2FA)'
+                    : 'Two-Factor Authentication (2FA Biometrics)'}
                 </h4>
                 <p className="mt-0.5 text-xs leading-relaxed text-muted">
                   {isArabic
@@ -812,7 +916,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="flex flex-col justify-between gap-4 pt-5 sm:flex-row sm:items-center">
               <div>
                 <h4 className="text-sm font-bold text-ink">
-                  {isArabic ? 'الجلسة الحالية وإدارة الأجهزة المتصلة' : 'Active Browser Sessions & Devices'}
+                  {isArabic
+                    ? 'الجلسة الحالية وإدارة الأجهزة المتصلة'
+                    : 'Active Browser Sessions & Devices'}
                 </h4>
                 <p className="mt-0.5 text-xs text-muted">
                   {isArabic
@@ -823,12 +929,20 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <button
                 type="button"
                 onClick={() => {
-                  alert(isArabic ? 'تم إلغاء تنشيط جميع الجلسات الأخرى بنجاح.' : 'All other browser sessions have been revoked.');
+                  alert(
+                    isArabic
+                      ? 'تم إلغاء تنشيط جميع الجلسات الأخرى بنجاح.'
+                      : 'All other browser sessions have been revoked.',
+                  );
                 }}
                 className="inline-flex items-center gap-2 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40 hover:text-rose-600 dark:hover:text-rose-400"
               >
                 <Lock className="size-3.5" />
-                <span>{isArabic ? 'إلغاء جميع الجلسات الأخرى' : 'Revoke All Other Sessions'}</span>
+                <span>
+                  {isArabic
+                    ? 'إلغاء جميع الجلسات الأخرى'
+                    : 'Revoke All Other Sessions'}
+                </span>
               </button>
             </div>
           </div>
@@ -842,7 +956,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             </div>
             <div>
               <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
-                {isArabic ? 'واجهة البرمجة (API) وربط أنظمة الوسطاء' : 'Developer API & Broker CRM Syndication'}
+                {isArabic
+                  ? 'واجهة البرمجة (API) وربط أنظمة الوسطاء'
+                  : 'Developer API & Broker CRM Syndication'}
               </h3>
               <p className="text-xs text-muted">
                 {isArabic
@@ -858,7 +974,9 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                 <div>
                   <h4 className="text-sm font-bold text-ink">
-                    {isArabic ? 'مفتاح الوصول الحي لمنصة RAMA (Production Key)' : 'RAMA Production API Access Key'}
+                    {isArabic
+                      ? 'مفتاح الوصول الحي لمنصة RAMA (Production Key)'
+                      : 'RAMA Production API Access Key'}
                   </h4>
                   <p className="mt-0.5 text-xs text-muted">
                     {isArabic
@@ -872,8 +990,20 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     onClick={handleCopyApiKey}
                     className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-surface-subtle"
                   >
-                    {apiKeyCopied ? <Check className="size-3.5 text-emerald-500" /> : <Copy className="size-3.5" />}
-                    <span>{apiKeyCopied ? (isArabic ? 'تم النسخ' : 'Copied!') : isArabic ? 'نسخ المفتاح' : 'Copy Key'}</span>
+                    {apiKeyCopied ? (
+                      <Check className="size-3.5 text-emerald-500" />
+                    ) : (
+                      <Copy className="size-3.5" />
+                    )}
+                    <span>
+                      {apiKeyCopied
+                        ? isArabic
+                          ? 'تم النسخ'
+                          : 'Copied!'
+                        : isArabic
+                          ? 'نسخ المفتاح'
+                          : 'Copy Key'}
+                    </span>
                   </button>
                   <button
                     type="button"
@@ -889,14 +1019,22 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               {/* API Key Display Box */}
               <div className="flex items-center justify-between gap-2 rounded-2xl border border-border/80 bg-surface-subtle p-3.5 font-mono text-xs">
                 <span className="truncate font-bold text-ink">
-                  {apiKeyVisible ? apiKeyString : `${apiKeyString.slice(0, 16)}••••••••••••••••••••••••••••`}
+                  {apiKeyVisible
+                    ? apiKeyString
+                    : `${apiKeyString.slice(0, 16)}••••••••••••••••••••••••••••`}
                 </span>
                 <button
                   type="button"
                   onClick={() => setApiKeyVisible(!apiKeyVisible)}
                   className="shrink-0 font-sans text-xs font-bold text-fjord hover:underline"
                 >
-                  {apiKeyVisible ? (isArabic ? 'إخفاء' : 'Hide') : isArabic ? 'إظهار' : 'Reveal'}
+                  {apiKeyVisible
+                    ? isArabic
+                      ? 'إخفاء'
+                      : 'Hide'
+                    : isArabic
+                      ? 'إظهار'
+                      : 'Reveal'}
                 </button>
               </div>
             </div>
@@ -904,20 +1042,28 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Webhook Endpoint */}
             <div className="space-y-2 pt-5">
               <label className="text-xs font-bold tracking-wider text-ink uppercase">
-                {isArabic ? 'رابط الويب هوك لاستلام إشعارات الصفقات (Webhook URL)' : 'Real-time Deal Milestone Webhook Endpoint URL'}
+                {isArabic
+                  ? 'رابط الويب هوك لاستلام إشعارات الصفقات (Webhook URL)'
+                  : 'Real-time Deal Milestone Webhook Endpoint URL'}
               </label>
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
                 <input
                   type="url"
                   value={prefs.webhookUrl}
-                  onChange={(e) => setPrefs({ ...prefs, webhookUrl: e.target.value })}
+                  onChange={(e) =>
+                    setPrefs({ ...prefs, webhookUrl: e.target.value })
+                  }
                   placeholder="https://api.yourdomain.com/v1/webhook"
                   className="w-full rounded-none border border-border/80 bg-surface px-3.5 py-2 font-mono text-xs font-medium text-ink focus:border-fjord focus:outline-hidden"
                 />
                 <button
                   type="button"
                   onClick={() => {
-                    alert(isArabic ? 'تم إرسال حمولة تجريبية بنجاح إلى الويب هوك.' : 'Test JSON payload dispatched successfully to endpoint.');
+                    alert(
+                      isArabic
+                        ? 'تم إرسال حمولة تجريبية بنجاح إلى الويب هوك.'
+                        : 'Test JSON payload dispatched successfully to endpoint.',
+                    );
                   }}
                   className="shrink-0 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40"
                 >
@@ -954,7 +1100,15 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               className="inline-flex items-center justify-center gap-2 rounded-none bg-fjord px-7 py-2.5 text-xs font-bold text-white shadow-md shadow-fjord/20 transition-all hover:bg-fjord-hover active:scale-95 disabled:opacity-50"
             >
               {isSaving && <RefreshCw className="size-3.5 animate-spin" />}
-              <span>{isSaving ? (isArabic ? 'جاري الحفظ...' : 'Saving...') : isArabic ? 'حفظ التفضيلات النشطة' : 'Save Active Preferences'}</span>
+              <span>
+                {isSaving
+                  ? isArabic
+                    ? 'جاري الحفظ...'
+                    : 'Saving...'
+                  : isArabic
+                    ? 'حفظ التفضيلات النشطة'
+                    : 'Save Active Preferences'}
+              </span>
             </button>
           </div>
         </div>

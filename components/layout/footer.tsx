@@ -18,9 +18,16 @@ export async function Footer() {
             <RamaLogo variant="full" size="md" />
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-text">
-            {isArabic ? 'مكان هادئ لجمع الأدلة ومقارنة الخيارات واتخاذ قرارك العقاري بتأنٍ.' : 'A quieter place to gather evidence, compare options and make a considered property decision.'}
+            {isArabic
+              ? 'مكان هادئ لجمع الأدلة ومقارنة الخيارات واتخاذ قرارك العقاري بتأنٍ.'
+              : 'A quieter place to gather evidence, compare options and make a considered property decision.'}
           </p>
-          <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground"><ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-verified" />{isArabic ? 'تعرض راما مدى توفر الأدلة، وليس جودة العقار أو وضعه القانوني أو جدواه الاستثمارية.' : 'RAMA displays evidence availability, not a statement of property quality, legal status or investment merit.'}</p>
+          <p className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-muted-foreground">
+            <ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-verified" />
+            {isArabic
+              ? 'تعرض راما مدى توفر الأدلة، وليس جودة العقار أو وضعه القانوني أو جدواه الاستثمارية.'
+              : 'RAMA displays evidence availability, not a statement of property quality, legal status or investment merit.'}
+          </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <MagneticButton
@@ -52,14 +59,28 @@ export async function Footer() {
           <div className="flex flex-wrap items-center gap-4">
             <span className="text-muted/60">
               {isArabic ? 'الصور مقدمة من ' : 'Imagery provided by '}
-              <a href="https://www.pexels.com" target="_blank" rel="noopener noreferrer" className="font-semibold underline hover:text-ink">
+              <a
+                href="https://www.pexels.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold underline hover:text-ink"
+              >
                 Pexels
               </a>
             </span>
             <span className="hidden text-border sm:inline">|</span>
-            <Link href={`/${locale}/homes`} className="hover:text-ink">{isArabic ? 'العقارات' : 'Homes'}</Link>
-            <Link href={`/${locale}/areas`} className="hover:text-ink">{isArabic ? 'المجتمعات' : 'Areas'}</Link>
-            <Link href={`/${locale === 'ar' ? 'en' : 'ar'}`} className="hover:text-ink">{locale === 'ar' ? 'English' : 'العربية'}</Link>
+            <Link href={`/${locale}/homes`} className="hover:text-ink">
+              {isArabic ? 'العقارات' : 'Homes'}
+            </Link>
+            <Link href={`/${locale}/areas`} className="hover:text-ink">
+              {isArabic ? 'المجتمعات' : 'Areas'}
+            </Link>
+            <Link
+              href={`/${locale === 'ar' ? 'en' : 'ar'}`}
+              className="hover:text-ink"
+            >
+              {locale === 'ar' ? 'English' : 'العربية'}
+            </Link>
           </div>
         </div>
       </div>

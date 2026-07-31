@@ -53,7 +53,8 @@ const subTextVariants = cva(
 );
 
 interface RamaLogoProps
-  extends Omit<HTMLMotionProps<"div">, "size">,
+  extends
+    Omit<HTMLMotionProps<'div'>, 'size'>,
     VariantProps<typeof logoVariants> {
   variant?: 'full' | 'monogram' | 'auto';
   size?: 'sm' | 'md' | 'lg';
