@@ -2,7 +2,13 @@
 
 import React, { useState, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GripVertical, Plus, CheckCircle2, ArrowRight, ArrowLeft } from 'lucide-react';
+import {
+  GripVertical,
+  Plus,
+  CheckCircle2,
+  ArrowRight,
+  ArrowLeft,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface KanbanColumn<T> {
@@ -15,8 +21,16 @@ export interface KanbanColumn<T> {
 
 export interface KanbanProps<T> {
   columns: KanbanColumn<T>[];
-  onMoveItem?: (itemId: string, sourceColId: string, targetColId: string) => void;
-  renderCard: (item: T, colId: string, onMove: (dir: 'left' | 'right') => void) => ReactNode;
+  onMoveItem?: (
+    itemId: string,
+    sourceColId: string,
+    targetColId: string,
+  ) => void;
+  renderCard: (
+    item: T,
+    colId: string,
+    onMove: (dir: 'left' | 'right') => void,
+  ) => ReactNode;
   onAddColumn?: () => void;
   className?: string;
 }
@@ -33,7 +47,11 @@ export function Kanban<T extends { id: string }>({
     setActiveCols(columns);
   }, [columns]);
 
-  const handleMoveDirection = (itemId: string, colIndex: number, direction: 'left' | 'right') => {
+  const handleMoveDirection = (
+    itemId: string,
+    colIndex: number,
+    direction: 'left' | 'right',
+  ) => {
     const targetIndex = direction === 'left' ? colIndex - 1 : colIndex + 1;
     if (targetIndex < 0 || targetIndex >= activeCols.length) return;
     const sourceCol = activeCols[colIndex];
@@ -44,7 +62,12 @@ export function Kanban<T extends { id: string }>({
   };
 
   return (
-    <div className={cn('grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4', className)}>
+    <div
+      className={cn(
+        'grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4',
+        className,
+      )}
+    >
       {activeCols.map((col, colIndex) => (
         <div
           key={col.id}
@@ -53,8 +76,13 @@ export function Kanban<T extends { id: string }>({
           {/* Column Header */}
           <div className="mb-4 flex items-center justify-between border-b border-border/40 pb-3">
             <div className="flex items-center gap-2.5">
-              <span className={cn('h-2.5 w-2.5 rounded-full', col.color || 'bg-fjord')} />
-              <h3 className="font-display text-sm font-bold text-ink uppercase tracking-wider">
+              <span
+                className={cn(
+                  'size-2.5 rounded-full',
+                  col.color || 'bg-fjord',
+                )}
+              />
+              <h3 className="font-display text-sm font-bold tracking-wider text-ink uppercase">
                 {col.title}
               </h3>
             </div>
@@ -64,7 +92,7 @@ export function Kanban<T extends { id: string }>({
           </div>
 
           {/* Cards List */}
-          <div className="flex flex-1 flex-col gap-3 min-h-[200px]">
+          <div className="flex min-h-50 flex-1 flex-col gap-3">
             <AnimatePresence mode="popLayout">
               {col.items.map((item) => (
                 <motion.div
@@ -72,12 +100,16 @@ export function Kanban<T extends { id: string }>({
                   layout
                   initial={{ opacity: 0, scale: 0.95, y: 10 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.15 } }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.9,
+                    transition: { duration: 0.15 },
+                  }}
                   transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                   className="group relative"
                 >
                   {renderCard(item, col.id, (dir) =>
-                    handleMoveDirection(item.id, colIndex, dir)
+                    handleMoveDirection(item.id, colIndex, dir),
                   )}
                 </motion.div>
               ))}

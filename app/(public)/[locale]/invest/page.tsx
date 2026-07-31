@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/layout/page-header';
 import { Container } from '@/components/layout/container';
 import { Section } from '@/components/layout/section';
@@ -5,6 +6,23 @@ import { BlurFade } from '@/components/magicui/blur-fade';
 import { TrendingUp, BarChart3, ShieldCheck, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+
+  return {
+    title: isArabic
+      ? 'ذكاء الاستثمار | راما'
+      : 'Investment Intelligence | Rama',
+    description: isArabic
+      ? 'تحليل سوقي بمستوى مؤسسي وتحليلات العوائد لعقارات دبي.'
+      : 'Institutional-grade market analysis and yield analytics for Dubai real estate.',
+  };
+}
 
 export default async function InvestPage({
   params,
@@ -13,14 +31,16 @@ export default async function InvestPage({
 }) {
   const { locale } = await params;
   const isArabic = locale === 'ar';
-  
+
   const heroImage = '/images/hero/invest-hero.jpg';
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-canvas">
       {/* Cinematic Hero */}
       <PageHeader
-        title={isArabic ? 'استثمر في مستقبل دبي' : 'Invest in the Future of Dubai'}
+        title={
+          isArabic ? 'استثمر في مستقبل دبي' : 'Invest in the Future of Dubai'
+        }
         description={
           isArabic
             ? 'اكتشف عوائد استثمارية استثنائية مع تحليلات بيانات حية ومدعومة بالذكاء الاصطناعي للسوق العقاري في دبي.'
@@ -39,7 +59,6 @@ export default async function InvestPage({
 
       <Section spacing="lg">
         <Container size="lg">
-
           {/* Investment Pillars */}
           <BlurFade delay={0.2} offset={20}>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
@@ -58,7 +77,8 @@ export default async function InvestPage({
                   href={`/${locale}/homes`}
                   className="inline-flex items-center text-sm font-semibold text-fjord hover:underline"
                 >
-                  {isArabic ? 'عرض العقارات' : 'View Properties'} <ArrowRight className="ml-1 size-4" />
+                  {isArabic ? 'عرض العقارات' : 'View Properties'}{' '}
+                  <ArrowRight className="ml-1 size-4" />
                 </Link>
               </div>
 
@@ -93,7 +113,8 @@ export default async function InvestPage({
                   href={`/${locale}/login`}
                   className="inline-flex items-center text-sm font-semibold text-emerald-400 hover:underline"
                 >
-                  {isArabic ? 'سجل الآن' : 'Register Now'} <ArrowRight className="ml-1 size-4" />
+                  {isArabic ? 'سجل الآن' : 'Register Now'}{' '}
+                  <ArrowRight className="ml-1 size-4" />
                 </Link>
               </div>
             </div>

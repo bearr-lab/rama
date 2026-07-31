@@ -33,22 +33,26 @@ export const Marquee = ({
   return (
     <div
       className={cn(
-        'group flex overflow-hidden select-none gap-[1rem]',
-        isVertical ? 'flex-col h-[400px]' : 'flex-row w-full',
-        fade && !isVertical && '[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]',
-        fade && isVertical && '[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]',
-        className
+        'group flex gap-4 overflow-hidden select-none',
+        isVertical ? 'h-100 flex-col' : 'w-full flex-row',
+        fade &&
+          !isVertical &&
+          '[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]',
+        fade &&
+          isVertical &&
+          '[mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]',
+        className,
       )}
-      style={{
-        '--duration': speedMap[speed],
-      } as React.CSSProperties}
+      style={{ '--duration': speedMap[speed] } as React.CSSProperties}
     >
       <div
         className={cn(
-          'flex shrink-0 justify-around gap-[1rem] min-w-full',
-          isVertical ? 'flex-col animate-marquee-vertical' : 'flex-row animate-marquee',
+          'flex min-w-full shrink-0 justify-around gap-4',
+          isVertical
+            ? 'animate-marquee-vertical flex-col'
+            : 'animate-marquee flex-row',
           pauseOnHover && 'group-hover:[animation-play-state:paused]',
-          reverse && 'direction-reverse'
+          reverse && 'direction-reverse',
         )}
         style={{
           animationDuration: speedMap[speed],
@@ -60,10 +64,12 @@ export const Marquee = ({
       <div
         aria-hidden="true"
         className={cn(
-          'flex shrink-0 justify-around gap-[1rem] min-w-full',
-          isVertical ? 'flex-col animate-marquee-vertical' : 'flex-row animate-marquee',
+          'flex min-w-full shrink-0 justify-around gap-4',
+          isVertical
+            ? 'animate-marquee-vertical flex-col'
+            : 'animate-marquee flex-row',
           pauseOnHover && 'group-hover:[animation-play-state:paused]',
-          reverse && 'direction-reverse'
+          reverse && 'direction-reverse',
         )}
         style={{
           animationDuration: speedMap[speed],
@@ -84,20 +90,24 @@ export interface PartnerLogoProps {
 
 export const PartnerCard = ({ name, category, badge }: PartnerLogoProps) => {
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle/50 px-5 py-3 shadow-sm backdrop-blur-sm transition-all hover:border-border hover:bg-surface">
-      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink text-sm font-extrabold text-white dark:bg-white dark:text-ink">
+    <div className="flex items-center gap-3 border border-stone-300/60 bg-stone-100/50 px-5 py-3 shadow-sm backdrop-blur-sm transition-all hover:border-stone-300 hover:bg-stone-50 dark:border-stone-800/60 dark:bg-stone-900/50 dark:bg-stone-950">
+      <div className="flex size-10 shrink-0 items-center justify-center bg-ink text-sm font-extrabold text-white dark:bg-white dark:text-stone-900">
         {name.slice(0, 2).toUpperCase()}
       </div>
       <div>
         <div className="flex items-center gap-2">
-          <h4 className="font-display text-sm font-bold text-ink">{name}</h4>
+          <h4 className="font-display text-sm font-bold text-stone-900 dark:text-stone-50">
+            {name}
+          </h4>
           {badge && (
-            <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[9px] font-bold text-emerald-700 dark:text-emerald-300">
+            <span className="bg-stone-800/10 px-2 py-0.5 text-[9px] font-bold text-stone-800 dark:text-stone-100">
               {badge}
             </span>
           )}
         </div>
-        <p className="text-xs text-muted font-medium">{category}</p>
+        <p className="text-xs font-medium text-stone-500 dark:text-stone-400">
+          {category}
+        </p>
       </div>
     </div>
   );

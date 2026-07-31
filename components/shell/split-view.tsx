@@ -71,7 +71,7 @@ export function SplitView({
   return (
     <div
       ref={containerRef}
-      className={cn('flex h-full w-full overflow-hidden', className)}
+      className={cn('flex size-full overflow-hidden', className)}
       {...props}
     >
       <div

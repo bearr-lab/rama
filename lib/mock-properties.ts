@@ -6,8 +6,10 @@ export const MOCK_PROPERTIES: Property[] = [
     slug: 'sky-collection-penthouse-downtown',
     title_en: 'Sky Collection Penthouse',
     title_ar: 'بنتهاوس سكاي كوليكشن',
-    description_en: 'Ultra-luxury penthouse featuring panoramic views of Burj Khalifa and Dubai Fountain with private infinity pool.',
-    description_ar: 'بنتهاوس فائق الفخامة مع إطلالات بانورامية على برج خليفة ونافورة دبي مع مسبح خاص.',
+    description_en:
+      'Ultra-luxury penthouse featuring panoramic views of Burj Khalifa and Dubai Fountain with private infinity pool.',
+    description_ar:
+      'بنتهاوس فائق الفخامة مع إطلالات بانورامية على برج خليفة ونافورة دبي مع مسبح خاص.',
     price: 18250000,
     price_verified: true,
     bedrooms: 4,
@@ -43,8 +45,10 @@ export const MOCK_PROPERTIES: Property[] = [
     slug: 'modern-palm-jumeirah-beachfront-villa',
     title_en: 'Modern Beachfront Villa',
     title_ar: 'فيلا حديثة على الواجهة البحرية',
-    description_en: 'Contemporary beachfront mansion on the Fronds of Palm Jumeirah with private beach access.',
-    description_ar: 'قصر عصري على الواجهة البحرية في سعف نخلة جميرا مع وصول خاص للشاطئ.',
+    description_en:
+      'Contemporary beachfront mansion on the Fronds of Palm Jumeirah with private beach access.',
+    description_ar:
+      'قصر عصري على الواجهة البحرية في سعف نخلة جميرا مع وصول خاص للشاطئ.',
     price: 45000000,
     price_verified: true,
     bedrooms: 6,
@@ -59,12 +63,10 @@ export const MOCK_PROPERTIES: Property[] = [
     service_charge_aed: 18,
     cap_rate_percentage: 5.5,
     est_annual_rental: 2475000,
-    images: [
-      '/images/properties/property-villa.jpg',
-    ],
+    images: ['/images/properties/property-villa.jpg'],
     thumbnail: '/images/properties/property-villa.jpg',
     latitude: 25.1124,
-    longitude: 55.1390,
+    longitude: 55.139,
     features: ['Private Beach', 'Infinity Pool', 'Smart Home'],
     amenities: ['Private Dock', 'Security', 'Landscaped Garden'],
     verification_status: 'verified',
@@ -79,8 +81,10 @@ export const MOCK_PROPERTIES: Property[] = [
     slug: 'emirates-hills-golf-estate',
     title_en: 'Ultra Luxury Mansion',
     title_ar: 'قصر تلال الإمارات الفاخر',
-    description_en: 'Palatial estate overlooking championship golf course with classic Mediterranean architecture.',
-    description_ar: 'قصر فاخر يطل على ملعب الجولف العالمي مع هندسة معمارية متوسطية.',
+    description_en:
+      'Palatial estate overlooking championship golf course with classic Mediterranean architecture.',
+    description_ar:
+      'قصر فاخر يطل على ملعب الجولف العالمي مع هندسة معمارية متوسطية.',
     price: 120000000,
     price_verified: true,
     bedrooms: 8,
@@ -95,9 +99,7 @@ export const MOCK_PROPERTIES: Property[] = [
     service_charge_aed: 15,
     cap_rate_percentage: 4.8,
     est_annual_rental: 5760000,
-    images: [
-      '/images/properties/property-villa.jpg',
-    ],
+    images: ['/images/properties/property-villa.jpg'],
     thumbnail: '/images/properties/property-villa.jpg',
     latitude: 25.0683,
     longitude: 55.1764,
@@ -115,8 +117,10 @@ export const MOCK_PROPERTIES: Property[] = [
     slug: 'marina-gate-waterfront-residence',
     title_en: 'Marina Gate Residence',
     title_ar: 'شقة فاخرة في مارينا جيت',
-    description_en: 'High-floor waterfront apartment with floor-to-ceiling glass windows and yacht marina view.',
-    description_ar: 'شقة في طابق مرتفع على الواجهة البحرية مع إطلالة كاملة على مرسى اليخوت.',
+    description_en:
+      'High-floor waterfront apartment with floor-to-ceiling glass windows and yacht marina view.',
+    description_ar:
+      'شقة في طابق مرتفع على الواجهة البحرية مع إطلالة كاملة على مرسى اليخوت.',
     price: 6800000,
     price_verified: true,
     bedrooms: 3,
@@ -131,9 +135,7 @@ export const MOCK_PROPERTIES: Property[] = [
     service_charge_aed: 20,
     cap_rate_percentage: 7.2,
     est_annual_rental: 489600,
-    images: [
-      '/images/properties/property-apartment.jpg',
-    ],
+    images: ['/images/properties/property-apartment.jpg'],
     thumbnail: '/images/properties/property-apartment.jpg',
     latitude: 25.0865,
     longitude: 55.1432,
@@ -145,5 +147,5 @@ export const MOCK_PROPERTIES: Property[] = [
     is_active: true,
     created_at: '2026-01-04T00:00:00Z',
     updated_at: '2026-01-04T00:00:00Z',
-  }
+  },
 ];

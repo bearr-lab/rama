@@ -12,7 +12,7 @@ type Story = StoryObj<typeof Tabs>;
 
 export const Default: Story = {
   render: () => (
-    <Tabs defaultValue="overview" className="w-[400px]">
+    <Tabs defaultValue="overview" className="w-100">
       <TabsList>
         <TabsTrigger value="overview">Overview</TabsTrigger>
         <TabsTrigger value="financials">Financials</TabsTrigger>

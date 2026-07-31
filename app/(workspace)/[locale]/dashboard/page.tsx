@@ -49,7 +49,9 @@ export default async function DashboardPage({
   const recentLogs = [
     {
       id: 'log-101',
-      title: isArabic ? 'تدقيق عقد الشراء (Form F)' : 'MOU Form F Title Deed Audit',
+      title: isArabic
+        ? 'تدقيق عقد الشراء (Form F)'
+        : 'MOU Form F Title Deed Audit',
       property: 'Sky Collection Penthouse',
       community: 'Downtown Dubai',
       status: isArabic ? 'مكتمل وموثق' : 'Verified & Cleared',
@@ -58,7 +60,9 @@ export default async function DashboardPage({
     },
     {
       id: 'log-102',
-      title: isArabic ? 'إيداع الدفعة في حساب الضمان' : 'Escrow Deposit Milestone Disbursed',
+      title: isArabic
+        ? 'إيداع الدفعة في حساب الضمان'
+        : 'Escrow Deposit Milestone Disbursed',
       property: 'Modern Beachfront Villa',
       community: 'Palm Jumeirah',
       status: isArabic ? 'ممتثل لـ RERA' : 'RERA Compliant',
@@ -67,7 +71,9 @@ export default async function DashboardPage({
     },
     {
       id: 'log-103',
-      title: isArabic ? 'تحديث نموذج توقعات صافي العائد' : '5-Year Net Yield Model Updated',
+      title: isArabic
+        ? 'تحديث نموذج توقعات صافي العائد'
+        : '5-Year Net Yield Model Updated',
       property: 'Emirates Hills Golf Estate',
       community: 'Emirates Hills',
       status: isArabic ? 'تقدير +8.4%' : '+8.4% Appreciation',
@@ -84,7 +90,9 @@ export default async function DashboardPage({
           <div className="mb-5 inline-flex items-center gap-2 border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
             <span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
             <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
-              {isArabic ? 'سجل دبي العقاري مباشر' : 'DLD & RERA Live Sync Active'}
+              {isArabic
+                ? 'سجل دبي العقاري مباشر'
+                : 'DLD & RERA Live Sync Active'}
             </AnimatedShinyText>
           </div>
           <h1 className="font-display text-4xl font-normal tracking-tight text-ink sm:text-5xl lg:text-6xl">
@@ -125,7 +133,9 @@ export default async function DashboardPage({
                 <NumberTicker value={4} />
               </p>
               <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic ? 'متوسط السعر 18.25M درهم' : 'AED 18.25M avg valuation'}
+                {isArabic
+                  ? 'متوسط السعر 18.25M درهم'
+                  : 'AED 18.25M avg valuation'}
               </p>
             </div>
           </Link>
@@ -149,7 +159,11 @@ export default async function DashboardPage({
               </p>
               <p className="mt-1 flex items-center gap-1.5 text-xs font-medium text-amber-600 dark:text-amber-400">
                 <Clock className="size-3.5" />
-                <span>{isArabic ? '1 مهمة عاجلة في مرحلة MOU' : '1 priority in Form F stage'}</span>
+                <span>
+                  {isArabic
+                    ? '1 مهمة عاجلة في مرحلة MOU'
+                    : '1 priority in Form F stage'}
+                </span>
               </p>
             </div>
           </Link>
@@ -195,10 +209,14 @@ export default async function DashboardPage({
             <div className="mt-6">
               <div className="flex items-center gap-2">
                 <span className="inline-flex size-2 animate-ping rounded-full bg-emerald-500" />
-                <p className="font-display text-3xl font-semibold text-ink">Active</p>
+                <p className="font-display text-3xl font-semibold text-ink">
+                  Active
+                </p>
               </div>
               <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic ? 'ربط مباشر لقواعد DLD' : 'Live DLD RAG intelligence'}
+                {isArabic
+                  ? 'ربط مباشر لقواعد DLD'
+                  : 'Live DLD RAG intelligence'}
               </p>
             </div>
           </Link>
@@ -212,10 +230,14 @@ export default async function DashboardPage({
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/40 pb-5">
             <div>
               <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'العقارات المميزة المختارة' : 'FEATURED SHORTLISTED RESIDENCES'}
+                {isArabic
+                  ? 'العقارات المميزة المختارة'
+                  : 'FEATURED SHORTLISTED RESIDENCES'}
               </p>
               <h2 className="mt-1 font-display text-2xl font-medium text-ink sm:text-3xl">
-                {isArabic ? 'المنازل المختارة للمقارنة' : 'Top Candidates for Comparison'}
+                {isArabic
+                  ? 'المنازل المختارة للمقارنة'
+                  : 'Top Candidates for Comparison'}
               </h2>
             </div>
             <Link
@@ -252,7 +274,10 @@ export default async function DashboardPage({
                       <p className="font-display text-xl font-bold text-ink">
                         AED {(prop.price / 1000000).toFixed(2)}M
                       </p>
-                      <Badge variant="secondary" className="bg-verified-soft px-2.5 py-0.5 text-[10px] font-medium text-verified">
+                      <Badge
+                        variant="secondary"
+                        className="bg-verified-soft px-2.5 py-0.5 text-[10px] font-medium text-verified"
+                      >
                         <ShieldCheck className="mr-1 size-3" />
                         DLD Verified
                       </Badge>
@@ -261,11 +286,14 @@ export default async function DashboardPage({
                       {isArabic ? prop.title_ar : prop.title_en}
                     </p>
                     <p className="mt-1 text-xs font-light text-muted-foreground">
-                      {prop.bedrooms} Beds · {prop.bathrooms} Baths · {(prop.area_sqft || 0).toLocaleString()} sqft
+                      {prop.bedrooms} Beds · {prop.bathrooms} Baths ·{' '}
+                      {(prop.area_sqft || 0).toLocaleString()} sqft
                     </p>
                   </div>
                   <div className="mt-6 flex items-center justify-between border-t border-border/40 pt-4 text-xs font-semibold text-fjord">
-                    <span>{isArabic ? 'فتح في مساحة العمل' : 'Open in Workspace'}</span>
+                    <span>
+                      {isArabic ? 'فتح في مساحة العمل' : 'Open in Workspace'}
+                    </span>
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
@@ -286,7 +314,9 @@ export default async function DashboardPage({
               href={`/${locale}/decision-lab`}
               className="inline-flex items-center gap-2 rounded-2xl border border-border/60 bg-surface px-5 py-2.5 text-xs font-semibold text-ink shadow-2xs transition-all hover:border-fjord/40 hover:bg-surface-subtle"
             >
-              <span>{isArabic ? 'فتح مختبر المقارنة' : 'Open Decision Lab Matrix'}</span>
+              <span>
+                {isArabic ? 'فتح مختبر المقارنة' : 'Open Decision Lab Matrix'}
+              </span>
               <ArrowRight className="size-3.5 text-fjord" />
             </Link>
           </div>
@@ -306,8 +336,15 @@ export default async function DashboardPage({
             <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-surface/80 to-surface" />
           </div>
 
-          <BorderBeam size={250} duration={12} delay={0} colorFrom="#1b4965" colorTo="#5fa8d3" innerClassName="bg-transparent" />
-          
+          <BorderBeam
+            size={250}
+            duration={12}
+            delay={0}
+            colorFrom="#1b4965"
+            colorTo="#5fa8d3"
+            innerClassName="bg-transparent"
+          />
+
           <div className="relative z-10">
             <div className="flex items-center justify-between border-b border-border/40 pb-5">
               <span className="text-xs font-bold tracking-widest text-fjord uppercase">
@@ -321,7 +358,9 @@ export default async function DashboardPage({
             <div className="mt-8 space-y-6">
               <div>
                 <h3 className="font-display text-2xl leading-snug font-medium text-ink">
-                  {isArabic ? 'تقديم نموذج عقد MOU (Form F)' : 'Submit Formal MOU Form F'}
+                  {isArabic
+                    ? 'تقديم نموذج عقد MOU (Form F)'
+                    : 'Submit Formal MOU Form F'}
                 </h3>
                 <p className="mt-1 text-xs font-light text-muted-foreground">
                   Sky Collection Penthouse · Downtown Dubai
@@ -331,11 +370,17 @@ export default async function DashboardPage({
               {/* Clean Ledger Display without nested borders */}
               <div className="space-y-3.5 py-2">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="font-light text-muted-foreground">{isArabic ? 'قيمة العرض:' : 'Offer Valuation:'}</span>
-                  <span className="font-display text-base font-bold text-ink">AED 18,250,000</span>
+                  <span className="font-light text-muted-foreground">
+                    {isArabic ? 'قيمة العرض:' : 'Offer Valuation:'}
+                  </span>
+                  <span className="font-display text-base font-bold text-ink">
+                    AED 18,250,000
+                  </span>
                 </div>
                 <div className="flex items-center justify-between border-t border-border/40 pt-3.5 text-sm">
-                  <span className="font-light text-muted-foreground">{isArabic ? 'الموعد النهائي:' : 'Due Milestone:'}</span>
+                  <span className="font-light text-muted-foreground">
+                    {isArabic ? 'الموعد النهائي:' : 'Due Milestone:'}
+                  </span>
                   <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400">
                     <Clock className="size-3.5" />
                     <span>July 30 · Urgent</span>
@@ -360,7 +405,9 @@ export default async function DashboardPage({
           <div className="relative z-10 mt-10 border-t border-border/40 pt-6">
             <Link href={`/${locale}/tasks`} className="block w-full">
               <Button className="shadow-floating w-full justify-center rounded-2xl bg-fjord py-6 text-sm font-semibold text-white transition-all hover:bg-fjord-hover">
-                <span>{isArabic ? 'فتح لوحة المعاملات' : 'Open Deal Pipeline Board'}</span>
+                <span>
+                  {isArabic ? 'فتح لوحة المعاملات' : 'Open Deal Pipeline Board'}
+                </span>
                 <ArrowRight className="ms-2 size-4" />
               </Button>
             </Link>
@@ -373,13 +420,20 @@ export default async function DashboardPage({
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/40 pb-5">
           <div>
             <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-              {isArabic ? 'تحليلات تدفق رأس المال المباشر' : 'LIVE CAPITAL FLOW & DEMOGRAPHICS'}
+              {isArabic
+                ? 'تحليلات تدفق رأس المال المباشر'
+                : 'LIVE CAPITAL FLOW & DEMOGRAPHICS'}
             </p>
             <h2 className="mt-1 font-display text-2xl font-medium text-ink sm:text-3xl">
-              {isArabic ? 'إحصاءات المشترين الدوليين المباشرة' : 'International Capital Inflow & Buyer Analytics'}
+              {isArabic
+                ? 'إحصاءات المشترين الدوليين المباشرة'
+                : 'International Capital Inflow & Buyer Analytics'}
             </h2>
           </div>
-          <Badge variant="outline" className="rounded-full border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+          <Badge
+            variant="outline"
+            className="rounded-full border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400"
+          >
             <span className="mr-1.5 size-2 animate-ping rounded-full bg-emerald-500" />
             {isArabic ? 'تحديث حي' : 'Live Data Stream Active'}
           </Badge>
@@ -402,11 +456,17 @@ export default async function DashboardPage({
               {isArabic ? 'سجل التدقيق والتحقق' : 'REAL-TIME LEDGER'}
             </p>
             <h2 className="mt-1 font-display text-2xl font-medium text-ink sm:text-3xl">
-              {isArabic ? 'نشاط التدقيق والتحقق المباشر' : 'DLD & Escrow Verification Activity'}
+              {isArabic
+                ? 'نشاط التدقيق والتحقق المباشر'
+                : 'DLD & Escrow Verification Activity'}
             </h2>
           </div>
           <Link href={`/${locale}/documents`}>
-            <Button variant="outline" size="sm" className="rounded-2xl border-border/60 px-4 py-2 text-xs font-semibold hover:border-fjord/40">
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-2xl border-border/60 px-4 py-2 text-xs font-semibold hover:border-fjord/40"
+            >
               {isArabic ? 'غرفة المستندات' : 'Document Vault'}
             </Button>
           </Link>
@@ -414,7 +474,10 @@ export default async function DashboardPage({
 
         <div className="divide-y divide-border/40 rounded-3xl border border-border/40 bg-surface/60 px-6 backdrop-blur-md sm:px-8">
           {recentLogs.map((log) => (
-            <div key={log.id} className="flex flex-col justify-between gap-4 py-5 sm:flex-row sm:items-center">
+            <div
+              key={log.id}
+              className="flex flex-col justify-between gap-4 py-5 sm:flex-row sm:items-center"
+            >
               <div className="flex items-start gap-4">
                 <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-surface text-fjord shadow-2xs">
                   <FileText className="size-4.5" />
@@ -422,16 +485,24 @@ export default async function DashboardPage({
                 <div>
                   <p className="text-sm font-semibold text-ink">{log.title}</p>
                   <p className="mt-0.5 text-xs font-light text-muted-foreground">
-                    {log.property} · <span className="font-medium text-ink">{log.community}</span>
+                    {log.property} ·{' '}
+                    <span className="font-medium text-ink">
+                      {log.community}
+                    </span>
                   </p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4 sm:self-center">
-                <Badge variant="secondary" className="border border-border/40 bg-surface px-3 py-1 text-xs font-medium text-ink shadow-2xs">
+                <Badge
+                  variant="secondary"
+                  className="border border-border/40 bg-surface px-3 py-1 text-xs font-medium text-ink shadow-2xs"
+                >
                   {log.status}
                 </Badge>
-                <span className="font-mono text-xs text-muted-foreground">{log.timestamp}</span>
+                <span className="font-mono text-xs text-muted-foreground">
+                  {log.timestamp}
+                </span>
               </div>
             </div>
           ))}
@@ -445,7 +516,9 @@ export default async function DashboardPage({
             {isArabic ? 'شبكة الضمان المؤسسية' : 'RERA ECOSYSTEM'}
           </span>
           <h2 className="mt-1 font-display text-2xl font-medium text-ink sm:text-3xl">
-            {isArabic ? 'شركاء التطوير والبنك المعتمدون في دبي' : 'Verified Institutional Banking & Developer Network'}
+            {isArabic
+              ? 'شركاء التطوير والبنك المعتمدون في دبي'
+              : 'Verified Institutional Banking & Developer Network'}
           </h2>
         </div>
         <VerticalPartnerDeck isArabic={isArabic} />

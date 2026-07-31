@@ -9,9 +9,7 @@ interface FAQAccordionProps {
   isArabic?: boolean;
 }
 
-export function FAQAccordion({
-  isArabic = false,
-}: FAQAccordionProps) {
+export function FAQAccordion({ isArabic = false }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [

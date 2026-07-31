@@ -95,13 +95,18 @@ export const Ticker = ({
         `${prefix}${latest.toLocaleString(undefined, {
           minimumFractionDigits: decimals,
           maximumFractionDigits: decimals,
-        })}${suffix}`
+        })}${suffix}`,
       );
     });
   }, [springValue, prefix, suffix, decimals]);
 
   return (
-    <span className={cn('inline-flex items-baseline font-mono font-bold tabular-nums', className)}>
+    <span
+      className={cn(
+        'inline-flex items-baseline font-mono font-bold tabular-nums',
+        className,
+      )}
+    >
       {displayValue}
     </span>
   );

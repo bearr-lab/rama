@@ -32,26 +32,24 @@ export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
   };
 
   const isArabic = locale === 'ar';
-  
-  const suggestions = isArabic ? [
-    'ما هو العائد على الاستثمار في وسط مدينة دبي؟',
-    'مقارنة بين جي بي آر ومارينا',
-    'رسوم نقل ملكية دائرة الأراضي والأملاك',
-  ] : [
-    'ROI on Downtown?',
-    'Compare JBR vs Marina',
-    'DLD transfer fees',
-  ];
+
+  const suggestions = isArabic
+    ? [
+        'ما هو العائد على الاستثمار في وسط مدينة دبي؟',
+        'مقارنة بين جي بي آر ومارينا',
+        'رسوم نقل ملكية دائرة الأراضي والأملاك',
+      ]
+    : ['ROI on Downtown?', 'Compare JBR vs Marina', 'DLD transfer fees'];
 
   return (
-    <div className="flex h-[calc(100vh-16rem)] min-h-[500px] flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+    <div className="flex h-[calc(100vh-16rem)] min-h-125 flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
       {/* Messages Area */}
       <ScrollArea className="flex-1 p-6" viewportRef={scrollRef}>
         <div className="mx-auto max-w-4xl space-y-8 pb-4">
           {messages.length === 0 && (
             <div className="flex flex-col items-center justify-center space-y-4 py-20 text-center opacity-80">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-fjord-soft text-fjord">
-                <Sparkles className="h-8 w-8" />
+              <div className="flex size-16 items-center justify-center rounded-full bg-fjord-soft text-fjord">
+                <Sparkles className="size-8" />
               </div>
               <p className="max-w-md font-display text-xl text-muted">
                 {isArabic
@@ -78,16 +76,16 @@ export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
                 {/* Avatar */}
                 <div
                   className={cn(
-                    'flex h-8 w-8 shrink-0 items-center justify-center rounded-full',
+                    'flex size-8 shrink-0 items-center justify-center rounded-full',
                     msg.role === 'user'
-                      ? 'bg-canvas text-muted border border-border'
+                      ? 'border border-border bg-canvas text-muted'
                       : 'bg-fjord-soft text-fjord',
                   )}
                 >
                   {msg.role === 'user' ? (
-                    <User className="h-4 w-4" />
+                    <User className="size-4" />
                   ) : (
-                    <Sparkles className="h-4 w-4" />
+                    <Sparkles className="size-4" />
                   )}
                 </div>
 
@@ -109,11 +107,11 @@ export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
           {isLoading && (
             <div className="flex justify-start">
               <div className="flex items-start gap-4">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-fjord-soft text-fjord">
-                  <Sparkles className="h-4 w-4" />
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-fjord-soft text-fjord">
+                  <Sparkles className="size-4" />
                 </div>
                 <div className="flex items-center gap-3 rounded-2xl rounded-tl-sm border border-border bg-surface px-4 py-3 shadow-sm">
-                  <Loader2 className="h-4 w-4 animate-spin text-fjord" />
+                  <Loader2 className="size-4 animate-spin text-fjord" />
                   <span className="text-sm font-medium text-muted">
                     {isArabic ? 'RAMA يفكر...' : 'RAMA is thinking...'}
                   </span>
@@ -123,8 +121,8 @@ export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
           )}
 
           {error && (
-            <div className="mx-auto flex max-w-md items-center gap-3 rounded-xl border border-[var(--risk-soft)] bg-[var(--risk-soft)] p-4 text-[var(--risk)]">
-              <AlertCircle className="h-5 w-5 shrink-0" />
+            <div className="mx-auto flex max-w-md items-center gap-3 rounded-xl border border-risk-soft bg-risk-soft p-4 text-risk">
+              <AlertCircle className="size-5 shrink-0" />
               <p className="text-sm font-medium">{error}</p>
             </div>
           )}
@@ -162,16 +160,16 @@ export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
                   ? 'اسأل عن الأسعار، أو العائد على الاستثمار، أو ابحث عن عقار...'
                   : 'Ask about prices, ROI, or search for a property...'
               }
-              className="w-full bg-transparent py-4 pl-4 pr-14 text-base text-ink placeholder:text-muted focus:outline-none sm:pl-6"
+              className="w-full bg-transparent py-4 pr-14 pl-4 text-base text-ink placeholder:text-muted focus:outline-none sm:pl-6"
               disabled={isLoading}
             />
             <Button
               type="submit"
               size="icon"
               disabled={!input.trim() || isLoading}
-              className="absolute right-2 h-10 w-10 shrink-0 rounded-lg bg-fjord text-white transition-all hover:bg-fjord-hover disabled:opacity-50"
+              className="absolute right-2 size-10 shrink-0 rounded-lg bg-fjord text-white transition-all hover:bg-fjord-hover disabled:opacity-50"
             >
-              <Send className="h-4 w-4" />
+              <Send className="size-4" />
             </Button>
           </form>
         </div>

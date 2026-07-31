@@ -1,22 +1,22 @@
-"use client";
+'use client';
 
-import React from "react";
-import { ArrowRight, TrendingUp, ShieldCheck, Building2 } from "lucide-react";
-import Link from "next/link";
-import { Container } from "@/components/layout/container";
-import { buttonVariants } from "@/components/ui/button";
+import React from 'react';
+import { ArrowRight, TrendingUp, ShieldCheck, Building2 } from 'lucide-react';
+import Link from 'next/link';
+import { Container } from '@/components/layout/container';
+import { buttonVariants } from '@/components/ui/button';
 
-import { useParams } from "next/navigation";
+import { useParams } from 'next/navigation';
 
 const STATS = [
-  { label: "Active Listings", value: "2,400+" },
-  { label: "Verified Developers", value: "84" },
-  { label: "AED Transaction Volume", value: "62B+" },
+  { label: 'Active Listings', value: '2,400+' },
+  { label: 'Verified Developers', value: '84' },
+  { label: 'AED Transaction Volume', value: '62B+' },
 ];
 
 export default function Hero1() {
   const params = useParams();
-  const locale = params?.locale || "en";
+  const locale = params?.locale || 'en';
 
   return (
     <div className="relative w-full overflow-hidden bg-background">
@@ -30,9 +30,9 @@ export default function Hero1() {
             className="animate-grid inset-[0%_0px] ml-[-50%] h-[300vh] w-[600vw] origin-[100%_0_0]"
             style={{
               backgroundImage:
-                "linear-gradient(to right, var(--border) 1px, transparent 0), linear-gradient(to bottom, var(--border) 1px, transparent 0)",
-              backgroundSize: "80px 80px",
-              backgroundRepeat: "repeat",
+                'linear-gradient(to right, var(--border) 1px, transparent 0), linear-gradient(to bottom, var(--border) 1px, transparent 0)',
+              backgroundSize: '80px 80px',
+              backgroundRepeat: 'repeat',
             }}
           />
         </div>
@@ -50,8 +50,8 @@ export default function Hero1() {
 
         {/* Headline */}
         <div className="mx-auto mb-12 max-w-4xl space-y-6 text-center">
-          {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value, tailwindcss/classnames-order */}
-          <h1 className="leading-[1.05] font-display text-4xl font-normal tracking-tight md:text-5xl lg:text-6xl">
+          {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value */}
+          <h1 className="font-display text-4xl leading-[1.05] font-normal tracking-tight md:text-5xl lg:text-6xl">
             <span className="bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
               Invest in Dubai&apos;s
             </span>
@@ -63,7 +63,8 @@ export default function Hero1() {
 
           <p className="mx-auto max-w-2xl text-lg leading-relaxed font-light text-muted-foreground md:text-xl">
             AI-powered real estate intelligence. RERA-verified listings.
-            Institutional-grade analytics for the world&apos;s most dynamic property market.
+            Institutional-grade analytics for the world&apos;s most dynamic
+            property market.
           </p>
         </div>
 
@@ -73,8 +74,9 @@ export default function Hero1() {
           <Link
             href={`/${locale}/homes`}
             className={buttonVariants({
-              size: "lg",
-              className: "group rounded-none text-[11px] font-bold tracking-widest uppercase",
+              size: 'lg',
+              className:
+                'group rounded-none text-[11px] font-bold tracking-widest uppercase',
             })}
           >
             Explore
@@ -85,9 +87,10 @@ export default function Hero1() {
           <Link
             href={`/${locale}/invest`}
             className={buttonVariants({
-              variant: "outline",
-              size: "lg",
-              className: "group rounded-none bg-secondary/50 text-[11px] font-bold tracking-widest uppercase backdrop-blur-md",
+              variant: 'outline',
+              size: 'lg',
+              className:
+                'group rounded-none bg-secondary/50 text-[11px] font-bold tracking-widest uppercase backdrop-blur-md',
             })}
           >
             <TrendingUp className="size-3.5" />
@@ -114,8 +117,12 @@ export default function Hero1() {
         <div className="mx-auto grid max-w-2xl grid-cols-3 divide-x divide-border border border-border bg-secondary/30 backdrop-blur-md">
           {STATS.map((s) => (
             <div key={s.label} className="px-6 py-5 text-center">
-              <p className="mb-1 font-mono text-2xl font-bold text-foreground">{s.value}</p>
-              <p className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">{s.label}</p>
+              <p className="mb-1 font-mono text-2xl font-bold text-foreground">
+                {s.value}
+              </p>
+              <p className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
+                {s.label}
+              </p>
             </div>
           ))}
         </div>

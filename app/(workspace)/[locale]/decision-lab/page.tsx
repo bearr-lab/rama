@@ -17,7 +17,9 @@ export default async function DecisionLabPage({
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic ? 'مساحة العمل · مختبر القرار' : 'WORKSPACE · DECISION LAB'}
+            {isArabic
+              ? 'مساحة العمل · مختبر القرار'
+              : 'WORKSPACE · DECISION LAB'}
           </p>
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'مختبر القرار والمفاضلات' : 'Decision Lab & Trade-offs'}
@@ -30,7 +32,10 @@ export default async function DecisionLabPage({
         </div>
         <div className="flex shrink-0 items-center gap-3">
           <Link href={`/${locale}/discover`}>
-            <Button variant="outline" className="rounded-xl border-border/60 text-sm font-semibold text-ink hover:bg-surface-subtle">
+            <Button
+              variant="outline"
+              className="rounded-xl border-border/60 text-sm font-semibold text-ink hover:bg-surface-subtle"
+            >
               {isArabic ? 'إضافة عقار للمقارنة' : 'Add Property to Compare'}
             </Button>
           </Link>

@@ -66,7 +66,11 @@ export default async function ShortlistPage({
           <div className="flex items-center gap-2.5 font-medium">
             <Sparkles className="size-4 shrink-0 text-fjord" />
             <span>
-              <strong>{isArabic ? 'وضع التقييم التجريبي:' : 'Sandbox Evaluation Mode:'}</strong>{' '}
+              <strong>
+                {isArabic
+                  ? 'وضع التقييم التجريبي:'
+                  : 'Sandbox Evaluation Mode:'}
+              </strong>{' '}
               {isArabic
                 ? 'عرض قائمة مختصرة تجريبية لعقارات موثوقة ذات عوائد مرتفعة.'
                 : 'Showing a pre-populated evaluation Shortlist of high-yield verified properties.'}
@@ -81,7 +85,9 @@ export default async function ShortlistPage({
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic ? 'مساحة العمل · القائمة المختصرة' : 'WORKSPACE · SAVED SHORTLIST'}
+            {isArabic
+              ? 'مساحة العمل · القائمة المختصرة'
+              : 'WORKSPACE · SAVED SHORTLIST'}
           </p>
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'قائمتي المفضلة والمقارنات' : 'Saved Shortlist & Comps'}
@@ -113,14 +119,24 @@ export default async function ShortlistPage({
               <div className="mt-3 flex items-baseline justify-between">
                 <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
                   <span className="mr-1 font-sans text-xl">AED</span>
-                  <NumberTicker value={Number(((properties.reduce((sum, p) => sum + (p.price || 0), 0)) / 1000000).toFixed(1))} decimalPlaces={1} suffix="M" />
+                  <NumberTicker
+                    value={Number(
+                      (
+                        properties.reduce((sum, p) => sum + (p.price || 0), 0) /
+                        1000000
+                      ).toFixed(1),
+                    )}
+                    decimalPlaces={1}
+                    suffix="M"
+                  />
                 </span>
                 <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                   +14.2% YoY
                 </span>
               </div>
               <p className="mt-1 text-xs font-light text-muted-foreground">
-                {properties.length} {isArabic ? 'عقارات في القائمة' : 'Saved luxury assets'}
+                {properties.length}{' '}
+                {isArabic ? 'عقارات في القائمة' : 'Saved luxury assets'}
               </p>
             </div>
           </BlurFade>
@@ -139,7 +155,9 @@ export default async function ShortlistPage({
                 </span>
               </div>
               <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic ? 'تقديرات DLD المستندة للبيانات' : 'Validated by DLD historical data'}
+                {isArabic
+                  ? 'تقديرات DLD المستندة للبيانات'
+                  : 'Validated by DLD historical data'}
               </p>
             </div>
           </BlurFade>
@@ -151,7 +169,11 @@ export default async function ShortlistPage({
               </span>
               <div className="mt-3 flex items-baseline justify-between">
                 <span className="font-display text-3xl font-semibold text-ink">
-                  <NumberTicker value={96.4} decimalPlaces={1} suffix=" / 100" />
+                  <NumberTicker
+                    value={96.4}
+                    decimalPlaces={1}
+                    suffix=" / 100"
+                  />
                 </span>
                 <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                   <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
@@ -160,7 +182,9 @@ export default async function ShortlistPage({
                 </span>
               </div>
               <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic ? 'سندات ملكية وحسابات ضمان موثقة' : 'Title deeds & Escrow accounts active'}
+                {isArabic
+                  ? 'سندات ملكية وحسابات ضمان موثقة'
+                  : 'Title deeds & Escrow accounts active'}
               </p>
             </div>
           </BlurFade>

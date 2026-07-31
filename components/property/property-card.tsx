@@ -45,7 +45,7 @@ export function PropertyCard({
       className={cn(
         'group ease-decelerate hover:shadow-floating relative overflow-hidden border-border/50 transition-all duration-300 hover:-translate-y-1',
         isEditorial
-          ? 'flex h-auto flex-col md:h-[400px] md:flex-row'
+          ? 'flex h-auto flex-col md:h-100 md:flex-row'
           : 'flex h-full flex-col',
       )}
       gradientColor="var(--fjord)"
@@ -56,7 +56,7 @@ export function PropertyCard({
         className={cn(
           'relative overflow-hidden bg-surface-subtle',
           isEditorial
-            ? 'h-[300px] w-full md:h-full md:w-[60%]'
+            ? 'h-75 w-full md:h-full md:w-[60%]'
             : 'aspect-[4/3] w-full',
         )}
       >
@@ -68,7 +68,7 @@ export function PropertyCard({
           }
           alt={title}
           fill
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          className="group-hover:scale-1.03 object-cover transition-transform duration-500 ease-out"
           sizes={
             isEditorial
               ? '(max-width: 768px) 100vw, 60vw'
@@ -77,7 +77,7 @@ export function PropertyCard({
         />
 
         {/* Top Badges */}
-        <div className="absolute top-4 right-4 left-4 flex items-start justify-between">
+        <div className="absolute inset-x-4 top-4 flex items-start justify-between">
           <div className="flex flex-wrap gap-2">
             {property.is_featured && (
               <Badge className="border border-border/40 bg-surface/90 font-semibold text-ink shadow-2xs backdrop-blur-md hover:bg-surface">
@@ -90,7 +90,7 @@ export function PropertyCard({
           <Button
             variant="secondary"
             size="icon"
-            className="relative z-20 h-9 w-9 rounded-full border border-white/20 bg-black/40 shadow-md backdrop-blur-md transition-all hover:scale-105 hover:bg-black/60"
+            className="relative z-20 size-9 rounded-full border border-white/20 bg-black/40 shadow-md backdrop-blur-md transition-all hover:scale-105 hover:bg-black/60"
             onClick={(e) => {
               e.preventDefault();
               if (onSave) onSave(property.id);
@@ -98,7 +98,7 @@ export function PropertyCard({
           >
             <Heart
               className={cn(
-                'h-4 w-4 transition-transform',
+                'size-4 transition-transform',
                 isSaved ? 'scale-110 fill-risk text-risk' : 'text-white',
               )}
             />
@@ -133,7 +133,7 @@ export function PropertyCard({
               </Link>
             </h3>
             <div className="flex items-center text-sm text-muted-foreground">
-              <MapPin className="mr-1 h-3.5 w-3.5" />
+              <MapPin className="mr-1 size-3.5" />
               <span>
                 {property.community}
                 {property.sub_community ? `, ${property.sub_community}` : ''}
@@ -144,19 +144,19 @@ export function PropertyCard({
           <div className="flex items-center gap-4 border-t border-border pt-2 text-sm text-ink/80">
             {property.bedrooms && (
               <div className="flex items-center gap-1.5">
-                <BedDouble className="h-4 w-4 text-muted-foreground" />
+                <BedDouble className="size-4 text-muted-foreground" />
                 <span>{property.bedrooms} Beds</span>
               </div>
             )}
             {property.bathrooms && (
               <div className="flex items-center gap-1.5">
-                <Bath className="h-4 w-4 text-muted-foreground" />
+                <Bath className="size-4 text-muted-foreground" />
                 <span>{property.bathrooms} Baths</span>
               </div>
             )}
             {property.area_sqft && (
               <div className="flex items-center gap-1.5">
-                <Maximize2 className="h-4 w-4 text-muted-foreground" />
+                <Maximize2 className="size-4 text-muted-foreground" />
                 <span>{property.area_sqft.toLocaleString()} sqft</span>
               </div>
             )}

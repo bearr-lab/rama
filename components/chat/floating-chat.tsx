@@ -5,7 +5,15 @@ import { useChat, type Message } from 'ai/react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Bot, User, Sparkles, RefreshCcw } from 'lucide-react';
+import {
+  MessageCircle,
+  X,
+  Send,
+  Bot,
+  User,
+  Sparkles,
+  RefreshCcw,
+} from 'lucide-react';
 import { LeadCaptureForm } from './lead-capture-form';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -15,7 +23,10 @@ export function FloatingChat() {
   const [hasSubmittedLead, setHasSubmittedLead] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && localStorage.getItem('rama_lead_submitted')) {
+    if (
+      typeof window !== 'undefined' &&
+      localStorage.getItem('rama_lead_submitted')
+    ) {
       setHasSubmittedLead(true);
     }
   }, []);
@@ -25,13 +36,23 @@ export function FloatingChat() {
     localStorage.setItem('rama_lead_submitted', 'true');
   };
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading, error, reload, addToolResult } = useChat({
+  const {
+    messages,
+    input,
+    handleInputChange,
+    handleSubmit,
+    isLoading,
+    error,
+    reload,
+    addToolResult,
+  } = useChat({
     api: '/api/chat',
     initialMessages: [
       {
         id: 'initial-msg',
         role: 'assistant',
-        content: "Hi! I'm RAMA, your personal AI real estate advisor. How can I help you navigate the Dubai market today?",
+        content:
+          "Hi! I'm RAMA, your personal AI real estate advisor. How can I help you navigate the Dubai market today?",
       },
     ],
   });
@@ -88,7 +109,7 @@ export function FloatingChat() {
                   key={m.id}
                   className={cn(
                     'flex w-full gap-3',
-                    m.role === 'user' ? 'justify-end' : 'justify-start'
+                    m.role === 'user' ? 'justify-end' : 'justify-start',
                   )}
                 >
                   {m.role === 'assistant' && (
@@ -96,47 +117,74 @@ export function FloatingChat() {
                       <Bot className="size-4 text-primary" />
                     </div>
                   )}
-                  
+
                   <div
                     className={cn(
                       'max-w-[80%] rounded-2xl px-4 py-3 text-sm shadow-sm',
                       m.role === 'user'
                         ? 'rounded-br-none bg-primary text-primary-foreground'
-                        : 'rounded-bl-none border border-border bg-surface-subtle text-foreground'
+                        : 'rounded-bl-none border border-border bg-surface-subtle text-foreground',
                     )}
                   >
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm]}
                       components={{
-                        p: ({ children }) => <p className="mb-2 leading-relaxed last:mb-0">{children}</p>,
-                        strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-                        ul: ({ children }) => <ul className="mb-2 list-disc space-y-1 pl-4">{children}</ul>,
-                        ol: ({ children }) => <ol className="mb-2 list-decimal space-y-1 pl-4">{children}</ol>,
+                        p: ({ children }) => (
+                          <p className="mb-2 leading-relaxed last:mb-0">
+                            {children}
+                          </p>
+                        ),
+                        strong: ({ children }) => (
+                          <strong className="font-semibold">{children}</strong>
+                        ),
+                        ul: ({ children }) => (
+                          <ul className="mb-2 list-disc space-y-1 pl-4">
+                            {children}
+                          </ul>
+                        ),
+                        ol: ({ children }) => (
+                          <ol className="mb-2 list-decimal space-y-1 pl-4">
+                            {children}
+                          </ol>
+                        ),
                         li: ({ children }) => <li>{children}</li>,
-                        a: ({ href, children }) => <a href={href} className="font-medium underline underline-offset-2 transition-colors hover:text-primary" target="_blank" rel="noopener noreferrer">{children}</a>
+                        a: ({ href, children }) => (
+                          <a
+                            href={href}
+                            className="font-medium underline underline-offset-2 transition-colors hover:text-primary"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {children}
+                          </a>
+                        ),
                       }}
                     >
                       {m.content}
                     </ReactMarkdown>
                   </div>
-                  
+
                   {m.role === 'user' && (
                     <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-border bg-secondary">
                       <User className="size-4 text-muted-foreground" />
                     </div>
                   )}
-                  
+
                   {/* Tool Invocations (Generative UI) */}
-                  {m.toolInvocations?.map(toolInvocation => {
+                  {m.toolInvocations?.map((toolInvocation) => {
                     if (toolInvocation.toolName === 'collect_lead_info') {
                       return (
-                        <div key={toolInvocation.toolCallId} className="mt-2 flex w-full justify-start">
-                          <LeadCaptureForm 
+                        <div
+                          key={toolInvocation.toolCallId}
+                          className="mt-2 flex w-full justify-start"
+                        >
+                          <LeadCaptureForm
                             reason={toolInvocation.args.reason}
                             onSuccess={() => {
                               addToolResult({
                                 toolCallId: toolInvocation.toolCallId,
-                                result: 'Lead successfully captured. Please thank the user and confirm our agent will contact them.',
+                                result:
+                                  'Lead successfully captured. Please thank the user and confirm our agent will contact them.',
                               });
                             }}
                           />
@@ -147,28 +195,31 @@ export function FloatingChat() {
                   })}
                 </div>
               ))}
-              
-              {isLoading && messages[messages.length - 1]?.role !== 'assistant' && (
-                <div className="flex w-full justify-start gap-3">
-                  <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
-                    <Bot className="size-4 text-primary" />
+
+              {isLoading &&
+                messages[messages.length - 1]?.role !== 'assistant' && (
+                  <div className="flex w-full justify-start gap-3">
+                    <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
+                      <Bot className="size-4 text-primary" />
+                    </div>
+                    <div className="flex items-center gap-1 rounded-2xl rounded-bl-none border border-border bg-surface-subtle p-4">
+                      <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:-0.3s]"></div>
+                      <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:-0.15s]"></div>
+                      <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground"></div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 rounded-2xl rounded-bl-none border border-border bg-surface-subtle p-4">
-                    <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:-0.3s]"></div>
-                    <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground [animation-delay:-0.15s]"></div>
-                    <div className="size-1.5 animate-pulse rounded-full bg-muted-foreground"></div>
-                  </div>
-                </div>
-              )}
-              
+                )}
+
               {error && (
                 <div className="flex w-full justify-start gap-3">
                   <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-destructive/20 bg-destructive/10">
                     <Bot className="size-4 text-destructive" />
                   </div>
                   <div className="flex flex-col gap-2 rounded-2xl rounded-bl-none border border-destructive/20 bg-destructive/5 px-4 py-3">
-                    <p className="text-sm font-medium text-destructive">Sorry, I encountered a network error.</p>
-                    <Button 
+                    <p className="text-sm font-medium text-destructive">
+                      Sorry, I encountered a network error.
+                    </p>
+                    <Button
                       onClick={() => reload()}
                       variant="outline"
                       size="sm"
@@ -180,16 +231,16 @@ export function FloatingChat() {
                   </div>
                 </div>
               )}
-              
+
               {!hasSubmittedLead && (
                 <div className="mt-2 flex w-full justify-start">
-                  <LeadCaptureForm 
-                    reason="Please provide your contact details to unlock the AI advisor." 
-                    onSuccess={handleLeadSuccess} 
+                  <LeadCaptureForm
+                    reason="Please provide your contact details to unlock the AI advisor."
+                    onSuccess={handleLeadSuccess}
                   />
                 </div>
               )}
-              
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -223,7 +274,9 @@ export function FloatingChat() {
               </div>
             ) : (
               <div className="flex shrink-0 items-center justify-center border-t border-border bg-surface p-4">
-                <p className="text-xs text-muted-foreground">Please complete the form above to start chatting.</p>
+                <p className="text-xs text-muted-foreground">
+                  Please complete the form above to start chatting.
+                </p>
               </div>
             )}
           </motion.div>
@@ -242,12 +295,16 @@ export function FloatingChat() {
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
             'flex size-14 items-center justify-center rounded-full shadow-2xl transition-all duration-300',
-            isOpen 
-              ? 'border border-border bg-surface-subtle text-foreground hover:bg-surface-subtle/80' 
-              : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-primary/25'
+            isOpen
+              ? 'border border-border bg-surface-subtle text-foreground hover:bg-surface-subtle/80'
+              : 'bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-primary/25',
           )}
         >
-          {isOpen ? <X className="size-6" /> : <MessageCircle className="size-6" />}
+          {isOpen ? (
+            <X className="size-6" />
+          ) : (
+            <MessageCircle className="size-6" />
+          )}
         </Button>
       </motion.div>
     </div>

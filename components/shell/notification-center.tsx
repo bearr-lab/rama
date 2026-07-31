@@ -101,31 +101,31 @@ export function NotificationCenter() {
         aria-label="Notifications & Lifecycle Alerts"
         aria-expanded={isOpen}
         className={cn(
-          'relative rounded-xl border p-2.5 text-muted transition-all hover:bg-surface-subtle hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+          'relative border p-2.5 text-stone-500 transition-all hover:bg-stone-100 hover:text-stone-900 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none dark:bg-stone-900 dark:text-stone-400',
           isOpen
-            ? 'border-border-hover bg-surface-subtle text-ink'
-            : 'border-border',
+            ? 'dark:border-stone-800-hover border-stone-300 bg-stone-100 text-stone-900 dark:bg-stone-900 dark:text-stone-50'
+            : 'border-stone-300 dark:border-stone-800',
         )}
         title="Notifications & Lifecycle Alerts"
       >
-        <Bell className="h-5 w-5" />
+        <Bell className="size-5" />
         {unreadCount > 0 && (
-          <span className="absolute -top-1 -end-1 flex h-5 w-5 animate-pulse items-center justify-center rounded-full bg-fjord text-caption font-extrabold text-primary-foreground shadow-sm">
+          <span className="text-caption absolute -end-1 -top-1 flex size-5 animate-pulse items-center justify-center bg-stone-900 font-extrabold text-primary-foreground shadow-sm dark:bg-stone-100">
             {unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="animate-in fade-in zoom-in-95 absolute end-0 z-50 mt-2 w-80 overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl duration-150 sm:w-96">
+        <div className="animate-in fade-in zoom-in-95 absolute end-0 z-50 mt-2 w-80 overflow-hidden border border-stone-300 bg-stone-50 shadow-2xl duration-150 sm:w-96 dark:border-stone-800 dark:bg-stone-950">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-border bg-surface-subtle/50 p-4">
+          <div className="flex items-center justify-between border-b border-stone-300 bg-stone-100/50 p-4 dark:border-stone-800 dark:bg-stone-900/50">
             <div className="flex items-center gap-2">
-              <h3 className="text-body font-display font-bold text-ink">
+              <h3 className="text-body font-display font-bold text-stone-900 dark:text-stone-50">
                 Lifecycle Alerts
               </h3>
               {unreadCount > 0 && (
-                <span className="py-0.2 rounded-full bg-fjord-soft px-2 text-caption font-bold text-fjord">
+                <span className="py-0.2 text-caption bg-stone-200 px-2 font-bold text-stone-900 dark:bg-stone-800 dark:text-stone-100">
                   {unreadCount} new
                 </span>
               )}
@@ -135,30 +135,30 @@ export function NotificationCenter() {
               {unreadCount > 0 && (
                 <button
                   onClick={markAllRead}
-                  className="flex items-center gap-1 rounded-lg p-1.5 text-xs font-semibold text-muted transition-colors hover:bg-surface hover:text-ink"
+                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-stone-500 transition-colors hover:bg-stone-50 hover:text-stone-900 dark:bg-stone-950 dark:text-stone-400"
                   title="Mark all as read"
                 >
-                  <Check className="h-3.5 w-3.5" />
+                  <Check className="size-3.5" />
                   <span className="hidden sm:inline">Read all</span>
                 </button>
               )}
               {alerts.length > 0 && (
                 <button
                   onClick={clearAlerts}
-                  className="rounded-lg p-1.5 text-muted transition-colors hover:bg-destructive/10 hover:text-destructive"
+                  className="p-1.5 text-stone-500 transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-stone-400"
                   title="Clear all alerts"
                 >
-                  <Trash2 className="h-3.5 w-3.5" />
+                  <Trash2 className="size-3.5" />
                 </button>
               )}
             </div>
           </div>
 
           {/* Alerts List */}
-          <div className="max-h-96 divide-y divide-border overflow-y-auto">
+          <div className="max-h-96 divide-y divide-stone-300 overflow-y-auto dark:divide-stone-800">
             {alerts.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center text-muted">
-                <Bell className="mb-2 h-8 w-8 opacity-30" />
+              <div className="flex flex-col items-center justify-center p-8 text-center text-stone-500 dark:text-stone-400">
+                <Bell className="mb-2 size-8 opacity-30" />
                 <p className="text-body-sm font-semibold">All caught up!</p>
                 <p className="text-caption">
                   No pending real estate alerts or task reminders.
@@ -171,45 +171,46 @@ export function NotificationCenter() {
                   href={`/${locale}${alert.href}`}
                   onClick={() => handleAlertClick(alert.id)}
                   className={cn(
-                    'group relative flex items-start gap-3 p-4 transition-colors hover:bg-surface-subtle',
-                    alert.unread && 'bg-sky-500/5 dark:bg-sky-500/10',
+                    'group relative flex items-start gap-3 p-4 transition-colors hover:bg-stone-100 dark:bg-stone-900',
+                    alert.unread &&
+                      'bg-stone-200/5 dark:bg-stone-200/10 dark:bg-stone-800/5 dark:bg-stone-800/10',
                   )}
                 >
                   <div
                     className={cn(
-                      'mt-0.5 shrink-0 rounded-xl p-2',
+                      'mt-0.5 shrink-0 p-2',
                       alert.type === 'trust'
-                        ? 'bg-emerald-500/10 text-emerald-500'
+                        ? 'bg-stone-800/10 text-stone-800'
                         : alert.type === 'ai'
-                          ? 'bg-sky-500/10 text-sky-500'
-                          : 'bg-purple-500/10 text-purple-500',
+                          ? 'bg-stone-200/10 text-stone-600 dark:bg-stone-800/10 dark:text-stone-400'
+                          : 'bg-stone-800/10 text-stone-800',
                     )}
                   >
                     {alert.type === 'trust' && (
-                      <ShieldCheck className="h-4 w-4" />
+                      <ShieldCheck className="size-4" />
                     )}
-                    {alert.type === 'ai' && <Sparkles className="h-4 w-4" />}
+                    {alert.type === 'ai' && <Sparkles className="size-4" />}
                     {alert.type === 'task' && (
-                      <CheckSquare className="h-4 w-4" />
+                      <CheckSquare className="size-4" />
                     )}
                   </div>
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
-                      <h4 className="text-body-sm truncate font-bold text-ink transition-colors group-hover:text-fjord">
+                      <h4 className="text-body-sm truncate font-bold text-stone-900 transition-colors group-hover:text-stone-900 dark:text-stone-100">
                         {alert.title}
                       </h4>
-                      <span className="shrink-0 text-[10px] text-muted">
+                      <span className="shrink-0 text-[10px] text-stone-500 dark:text-stone-400">
                         {alert.time}
                       </span>
                     </div>
-                    <p className="text-caption mt-0.5 leading-normal text-muted">
+                    <p className="text-caption mt-0.5 leading-normal text-stone-500 dark:text-stone-400">
                       {alert.description}
                     </p>
                   </div>
 
                   {alert.unread && (
-                    <span className="h-2 w-2 shrink-0 self-center rounded-full bg-sky-500" />
+                    <span className="size-2 shrink-0 self-center bg-stone-200 dark:bg-stone-800" />
                   )}
                 </Link>
               ))
@@ -217,14 +218,14 @@ export function NotificationCenter() {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-border bg-surface-subtle p-3 text-center">
+          <div className="border-t border-stone-300 bg-stone-100 p-3 text-center dark:border-stone-800 dark:bg-stone-900">
             <Link
               href={`/${locale}/tasks`}
               onClick={() => setIsOpen(false)}
-              className="text-caption inline-flex items-center gap-1 font-bold text-fjord hover:underline"
+              className="text-caption inline-flex items-center gap-1 font-bold text-stone-900 hover:underline dark:text-stone-100"
             >
               <span>View All Transaction Tasks</span>
-              <ExternalLink className="h-3 w-3" />
+              <ExternalLink className="size-3" />
             </Link>
           </div>
         </div>

@@ -29,9 +29,12 @@ export async function FeaturedSignature({
     console.error('Error fetching signature properties:', error);
   }
 
-  const activeProperties = properties && properties.length > 0 
-    ? properties 
-    : (process.env.NODE_ENV === 'development' ? MOCK_PROPERTIES.slice(0, 2) : []);
+  const activeProperties =
+    properties && properties.length > 0
+      ? properties
+      : process.env.NODE_ENV === 'development'
+        ? MOCK_PROPERTIES.slice(0, 2)
+        : [];
 
   if (!activeProperties || activeProperties.length === 0) {
     return null;

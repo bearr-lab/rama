@@ -45,9 +45,9 @@ export function Widget({
           <Button
             variant="ghost"
             size="icon-sm"
-            className="h-8 w-8 text-muted-foreground"
+            className="size-8 text-muted-foreground"
           >
-            <MoreHorizontal className="h-4 w-4" />
+            <MoreHorizontal className="size-4" />
             <span className="sr-only">More options</span>
           </Button>
         </CardAction>

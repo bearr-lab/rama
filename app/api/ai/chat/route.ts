@@ -104,7 +104,10 @@ export async function POST(req: Request) {
     } = await supabase.auth.getUser();
 
     // Normalize client identifier (first IP in x-forwarded-for or fallback)
-    const rawIp = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '127.0.0.1';
+    const rawIp =
+      req.headers.get('x-forwarded-for') ||
+      req.headers.get('x-real-ip') ||
+      '127.0.0.1';
     const clientIp = rawIp.split(',')[0].trim();
     const userId = user?.id || `anon-${clientIp}`;
 

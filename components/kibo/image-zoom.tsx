@@ -1,6 +1,11 @@
 'use client';
 
-import React, { useState, useRef, useCallback, type HTMLAttributes } from 'react';
+import React, {
+  useState,
+  useRef,
+  useCallback,
+  type HTMLAttributes,
+} from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ZoomIn, ZoomOut, Maximize2, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -35,7 +40,7 @@ export const ImageZoom = ({
       const y = ((e.clientY - rect.top) / rect.height) * 100;
       setMousePos({ x, y });
     },
-    [isZoomed]
+    [isZoomed],
   );
 
   const toggleZoom = useCallback(() => {
@@ -47,9 +52,9 @@ export const ImageZoom = ({
       <div
         ref={containerRef}
         className={cn(
-          'group relative w-full overflow-hidden rounded-2xl border border-border/60 bg-card select-none cursor-zoom-in',
+          'group relative w-full cursor-zoom-in overflow-hidden rounded-2xl border border-border/60 bg-card select-none',
           isZoomed && 'cursor-zoom-out',
-          className
+          className,
         )}
         onClick={toggleZoom}
         onMouseMove={handleMouseMove}
@@ -57,7 +62,7 @@ export const ImageZoom = ({
         {...props}
       >
         <motion.div
-          className="h-full w-full"
+          className="size-full"
           animate={{
             scale: isZoomed ? zoomScale : 1,
             originX: `${mousePos.x}%`,
@@ -68,7 +73,7 @@ export const ImageZoom = ({
           <img
             src={src || '/placeholder.svg'}
             alt={alt}
-            className="h-full w-full object-cover transition-opacity duration-300"
+            className="size-full object-cover transition-opacity duration-300"
             draggable={false}
           />
         </motion.div>
@@ -87,10 +92,10 @@ export const ImageZoom = ({
                 e.stopPropagation();
                 setIsModalOpen(true);
               }}
-              className="pointer-events-auto flex h-8 w-8 items-center justify-center rounded-full bg-ink-bg/80 text-white backdrop-blur-md transition-transform hover:scale-110"
+              className="pointer-events-auto flex size-8 items-center justify-center rounded-full bg-ink-bg/80 text-white backdrop-blur-md transition-transform hover:scale-110"
               title="Fullscreen Inspect"
             >
-              <Maximize2 className="h-4 w-4" />
+              <Maximize2 className="size-4" />
             </button>
           </div>
 
@@ -101,7 +106,11 @@ export const ImageZoom = ({
               </p>
             )}
             <div className="ml-auto flex items-center gap-1.5 rounded-full bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
-              {isZoomed ? <ZoomOut className="h-3.5 w-3.5" /> : <ZoomIn className="h-3.5 w-3.5" />}
+              {isZoomed ? (
+                <ZoomOut className="size-3.5" />
+              ) : (
+                <ZoomIn className="size-3.5" />
+              )}
               <span>{isZoomed ? 'Click to Reset' : 'Click to Zoom'}</span>
             </div>
           </div>
@@ -116,14 +125,14 @@ export const ImageZoom = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsModalOpen(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-ink-bg/95 p-4 backdrop-blur-xl sm:p-8 cursor-zoom-out"
+            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-ink-bg/95 p-4 backdrop-blur-xl sm:p-8"
           >
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition-transform hover:scale-110 hover:bg-white/20"
+              className="absolute top-6 right-6 flex size-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition-transform hover:scale-110 hover:bg-white/20"
             >
-              <X className="h-5 w-5" />
+              <X className="size-5" />
             </button>
             <motion.img
               initial={{ scale: 0.9 }}

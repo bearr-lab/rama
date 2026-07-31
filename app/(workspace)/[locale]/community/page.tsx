@@ -58,7 +58,9 @@ export default function CommunityWorkspacePage() {
             Community & Geospatial Intelligence
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
-            Institutional sub-market analysis across top Dubai master developments. Live service charges, price-per-sqft trajectories, and tenant yield demographics.
+            Institutional sub-market analysis across top Dubai master
+            developments. Live service charges, price-per-sqft trajectories, and
+            tenant yield demographics.
           </p>
         </div>
       </header>
@@ -94,7 +96,9 @@ export default function CommunityWorkspacePage() {
                   <h3
                     className={cn(
                       'font-display text-2xl font-semibold tracking-tight',
-                      isSelected ? 'text-white' : 'text-ink transition-colors group-hover:text-fjord',
+                      isSelected
+                        ? 'text-white'
+                        : 'text-ink transition-colors group-hover:text-fjord',
                     )}
                   >
                     {c.name}
@@ -113,7 +117,12 @@ export default function CommunityWorkspacePage() {
               </div>
 
               <div className="flex items-center justify-between border-t border-border/40 pt-4 text-xs">
-                <span className={cn("font-medium", isSelected ? 'text-white/80' : 'text-muted-foreground')}>
+                <span
+                  className={cn(
+                    'font-medium',
+                    isSelected ? 'text-white/80' : 'text-muted-foreground',
+                  )}
+                >
                   {c.price}
                 </span>
                 <span className="flex items-center gap-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-0.5 font-bold text-emerald-500">

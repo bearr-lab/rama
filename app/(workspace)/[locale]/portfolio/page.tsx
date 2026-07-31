@@ -18,10 +18,14 @@ export default async function PortfolioPage({
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic ? 'مساحة العمل · إدارة الأصول والمحفظة' : 'WORKSPACE · ASSET & PORTFOLIO HUB'}
+            {isArabic
+              ? 'مساحة العمل · إدارة الأصول والمحفظة'
+              : 'WORKSPACE · ASSET & PORTFOLIO HUB'}
           </p>
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
-            {isArabic ? 'إدارة المحفظة والأصول العقارية' : 'Asset & Portfolio Intelligence'}
+            {isArabic
+              ? 'إدارة المحفظة والأصول العقارية'
+              : 'Asset & Portfolio Intelligence'}
           </h1>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
             {isArabic
@@ -48,7 +52,9 @@ export default async function PortfolioPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? '3 عقارات موثقة في DLD' : '3 DLD-verified prime properties'}
+              {isArabic
+                ? '3 عقارات موثقة في DLD'
+                : '3 DLD-verified prime properties'}
             </p>
           </div>
         </BlurFade>
@@ -68,7 +74,9 @@ export default async function PortfolioPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? 'عقود إيجاري موثقة ومضمونة' : 'Registered Ejari long-term leases'}
+              {isArabic
+                ? 'عقود إيجاري موثقة ومضمونة'
+                : 'Registered Ejari long-term leases'}
             </p>
           </div>
         </BlurFade>
@@ -89,7 +97,9 @@ export default async function PortfolioPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? 'بعد خصم رسوم الصيانة والإدارة' : 'Net after service charges & management'}
+              {isArabic
+                ? 'بعد خصم رسوم الصيانة والإدارة'
+                : 'Net after service charges & management'}
             </p>
           </div>
         </BlurFade>

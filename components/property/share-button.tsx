@@ -59,14 +59,17 @@ export function ShareButton({ title, text, url, className }: ShareButtonProps) {
             variant="secondary"
             size="icon"
             onClick={handleShare}
-            className={cn("h-10 w-10 rounded-full border border-border bg-surface text-ink shadow-sm hover:bg-surface-subtle", className)}
+            className={cn(
+              'size-10 rounded-full border border-border bg-surface text-ink shadow-sm hover:bg-surface-subtle',
+              className,
+            )}
           />
         }
       >
         {copied ? (
-          <Check className="h-4 w-4 text-verified" />
+          <Check className="size-4 text-verified" />
         ) : (
-          <Share2 className="h-4 w-4 text-ink" />
+          <Share2 className="size-4 text-ink" />
         )}
       </TooltipTrigger>
       <TooltipContent>

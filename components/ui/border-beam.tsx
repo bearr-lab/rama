@@ -28,12 +28,12 @@ export const BorderBeam = ({
   return (
     <div
       className={cn(
-        'pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit] z-0',
+        'pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]',
         className,
       )}
     >
       <div
-        className="absolute -inset-[150%] animate-spin"
+        className="absolute inset-[-150%] animate-spin"
         style={{
           background: `conic-gradient(from 0deg, transparent 0%, transparent 60%, ${colorFrom} 80%, ${colorTo} 100%)`,
           animationDuration: `${duration}s`,

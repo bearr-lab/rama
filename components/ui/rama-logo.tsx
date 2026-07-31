@@ -1,15 +1,64 @@
 'use client';
 
 import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-interface RamaLogoProps {
+const logoVariants = cva(
+  'group relative inline-flex cursor-pointer flex-col justify-center py-1 select-none',
+  {
+    variants: {
+      isDark: {
+        true: 'drop-shadow-lg',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      isDark: false,
+    },
+  },
+);
+
+const letterVariants = cva(
+  'font-display leading-none font-black tracking-[0.32em] uppercase transition-colors duration-300',
+  {
+    variants: {
+      size: {
+        sm: 'text-sm sm:text-base',
+        md: 'text-base sm:text-lg lg:text-xl',
+        lg: 'text-lg sm:text-xl lg:text-2xl',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  },
+);
+
+const subTextVariants = cva(
+  'font-sans font-medium tracking-[0.4em] uppercase transition-colors duration-300',
+  {
+    variants: {
+      size: {
+        sm: 'text-[6px] sm:text-[7px]',
+        md: 'text-[7px] sm:text-[8px]',
+        lg: 'text-[8px] sm:text-[9px]',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  },
+);
+
+interface RamaLogoProps
+  extends
+    Omit<HTMLMotionProps<'div'>, 'size'>,
+    VariantProps<typeof logoVariants> {
   variant?: 'full' | 'monogram' | 'auto';
   size?: 'sm' | 'md' | 'lg';
   isScrolled?: boolean;
-  isDark?: boolean;
-  className?: string;
 }
 
 export function RamaLogo({
@@ -18,30 +67,17 @@ export function RamaLogo({
   isScrolled = false,
   isDark = false,
   className,
+  ...props
 }: RamaLogoProps) {
-  const isCompact = variant === 'monogram' || (variant === 'auto' && isScrolled);
+  const isCompact =
+    variant === 'monogram' || (variant === 'auto' && isScrolled);
 
   const letters = ['R', 'A', 'M', 'A'];
 
-  const textSizes = {
-    sm: 'text-sm sm:text-base',
-    md: 'text-base sm:text-lg lg:text-xl',
-    lg: 'text-lg sm:text-xl lg:text-2xl',
-  };
-
-  const subTextSizes = {
-    sm: 'text-[6px] sm:text-[7px]',
-    md: 'text-[7px] sm:text-[8px]',
-    lg: 'text-[8px] sm:text-[9px]',
-  };
-
   return (
     <motion.div
-      className={cn(
-        'relative inline-flex flex-col justify-center select-none cursor-pointer group py-1',
-        isDark && 'drop-shadow-lg',
-        className,
-      )}
+      className={cn(logoVariants({ isDark, className }))}
+      {...props}
       initial="initial"
       whileHover="hover"
       animate="animate"
@@ -54,11 +90,10 @@ export function RamaLogo({
             <motion.span
               key={index}
               className={cn(
-                'font-display font-black tracking-[0.32em] uppercase leading-none transition-colors duration-300',
-                textSizes[size],
+                letterVariants({ size }),
                 isDark
-                  ? 'text-white group-hover:text-fjord-light'
-                  : 'text-ink dark:text-white group-hover:text-fjord dark:group-hover:text-fjord-light',
+                  ? 'text-white group-hover:text-white/80'
+                  : 'text-stone-900 group-hover:text-stone-900 dark:text-white dark:group-hover:text-white/80',
               )}
               variants={{
                 initial: { y: 0, opacity: 0.95 },
@@ -81,7 +116,7 @@ export function RamaLogo({
 
         {/* 0px Nordic Lagom Precision Accent Indicator */}
         <motion.div
-          className="relative flex items-center justify-center shrink-0"
+          className="relative flex shrink-0 items-center justify-center"
           variants={{
             initial: { rotate: 0, scale: 0.9 },
             hover: { rotate: 180, scale: 1.15 },
@@ -90,18 +125,22 @@ export function RamaLogo({
         >
           <div
             className={cn(
-              'size-2 border border-current rounded-none flex items-center justify-center transition-colors duration-300',
-              isDark ? 'border-emerald-400 bg-emerald-400/20' : 'border-fjord bg-fjord/10',
+              'flex size-2 items-center justify-center rounded-none border border-current transition-colors duration-300',
+              isDark
+                ? 'border-stone-300 bg-stone-200 dark:border-stone-700 dark:bg-stone-800/20'
+                : 'border-stone-900 bg-stone-900/10 dark:border-stone-100 dark:bg-stone-100/10',
             )}
           >
             <div
               className={cn(
                 'size-0.5 rounded-none',
-                isDark ? 'bg-emerald-300' : 'bg-fjord',
+                isDark
+                  ? 'bg-stone-200 dark:bg-stone-800'
+                  : 'bg-stone-900 dark:bg-stone-100',
               )}
             />
           </div>
-          <span className="absolute -inset-1 rounded-none bg-emerald-400/20 opacity-0 blur-xs transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="absolute -inset-1 rounded-none bg-stone-200 opacity-0 blur-xs transition-opacity duration-300 group-hover:opacity-100 dark:bg-stone-800/20" />
         </motion.div>
       </div>
 
@@ -114,13 +153,14 @@ export function RamaLogo({
             animate={{ opacity: 0.65, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="overflow-hidden mt-0.5 flex items-center justify-between w-full"
+            className="mt-0.5 flex w-full items-center justify-between overflow-hidden"
           >
             <span
               className={cn(
-                'font-sans tracking-[0.42em] uppercase leading-none transition-colors duration-300',
-                subTextSizes[size],
-                isDark ? 'text-white font-bold drop-shadow-md' : 'text-text font-medium dark:text-white/70',
+                subTextVariants({ size }),
+                isDark
+                  ? 'font-bold text-white drop-shadow-md'
+                  : 'font-medium text-text dark:text-white/70',
               )}
             >
               REAL ESTATE
@@ -129,8 +169,10 @@ export function RamaLogo({
             {/* Micro Horizontal Progress Beam */}
             <motion.div
               className={cn(
-                'h-px grow ml-2 rounded-none transition-colors duration-300',
-                isDark ? 'bg-white/20 group-hover:bg-emerald-400/60' : 'bg-ink/20 dark:bg-white/20 group-hover:bg-fjord/60',
+                'ml-2 h-px grow rounded-none transition-colors duration-300',
+                isDark
+                  ? 'bg-white/20 group-hover:bg-stone-200 dark:bg-stone-800/60'
+                  : 'bg-ink/20 group-hover:bg-stone-900/60 dark:bg-white/20',
               )}
               variants={{
                 initial: { scaleX: 0.3, originX: 0 },
@@ -145,8 +187,10 @@ export function RamaLogo({
       {/* Bottom Architectural Underline Beam (0px Nordic Lagom Accent) */}
       <motion.div
         className={cn(
-          'absolute -bottom-0.5 left-0 right-0 h-[2px] rounded-none pointer-events-none',
-          isDark ? 'bg-gradient-to-r from-emerald-400 via-fjord-light to-transparent' : 'bg-gradient-to-r from-fjord via-ink to-transparent',
+          'pointer-events-none absolute inset-x-0 -bottom-0.5 h-0.5 rounded-none',
+          isDark
+            ? 'via-fjord-light bg-linear-to-r from-emerald-400 to-transparent'
+            : 'bg-linear-to-r from-fjord via-ink to-transparent',
         )}
         variants={{
           initial: { scaleX: 0, opacity: 0, originX: 0 },

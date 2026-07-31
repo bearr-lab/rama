@@ -2,7 +2,14 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, CheckCircle2, Clock, AlertCircle, Building, DollarSign } from 'lucide-react';
+import {
+  Calendar,
+  CheckCircle2,
+  Clock,
+  AlertCircle,
+  Building,
+  DollarSign,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface GanttMilestone {
@@ -26,17 +33,21 @@ export interface GanttProps {
 }
 
 const statusBadgeStyles = {
-  completed: 'border-emerald-500/20 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300',
-  'in-progress': 'border-sky-500/20 bg-sky-500/10 text-sky-700 dark:text-sky-300',
-  upcoming: 'border-border bg-surface-subtle text-muted',
-  delayed: 'border-rose-500/20 bg-rose-500/10 text-rose-700 dark:text-rose-300',
+  completed:
+    'border-stone-800/20 bg-stone-800/10 text-stone-800 dark:text-stone-100',
+  'in-progress':
+    'border-stone-300/20 dark:border-stone-700/20 bg-stone-200/10 dark:bg-stone-800/10 text-stone-600 dark:text-stone-400 dark:text-stone-600 dark:text-stone-400',
+  upcoming:
+    'border-stone-300 dark:border-stone-800 bg-stone-100 dark:bg-stone-900 text-stone-500 dark:text-stone-400',
+  delayed:
+    'border-stone-400/20 dark:border-stone-600/20 bg-stone-200/10 dark:bg-stone-800/10 text-stone-800 dark:text-stone-200 dark:text-stone-800 dark:text-stone-200',
 };
 
 const progressBarStyles = {
-  completed: 'bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.3)]',
-  'in-progress': 'bg-sky-500 shadow-[0_0_12px_rgba(14,165,233,0.3)]',
+  completed: 'bg-stone-800 shadow-[0_0_12px_rgba(16,185,129,0.3)]',
+  'in-progress': 'bg-stone-200 dark:bg-stone-800 ',
   upcoming: 'bg-neutral-300 dark:bg-neutral-700',
-  delayed: 'bg-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.3)]',
+  delayed: 'bg-stone-200 dark:bg-stone-800 ',
 };
 
 export const Gantt = ({
@@ -45,23 +56,30 @@ export const Gantt = ({
   subtitle = 'DLD Verified Milestone Audit',
   className,
 }: GanttProps) => {
-  const [selectedMilestone, setSelectedMilestone] = useState<string | null>(null);
+  const [selectedMilestone, setSelectedMilestone] = useState<string | null>(
+    null,
+  );
 
   return (
-    <div className={cn('rounded-3xl border border-border/60 bg-surface p-6 shadow-sm', className)}>
+    <div
+      className={cn(
+        'border border-stone-300/60 bg-stone-50 p-6 shadow-sm dark:border-stone-800/60 dark:bg-stone-950',
+        className,
+      )}
+    >
       {/* Header */}
-      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-border/40 pb-5 sm:flex-row sm:items-center">
+      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-stone-300/40 pb-5 sm:flex-row sm:items-center dark:border-stone-800/40">
         <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-fjord">
+          <span className="text-xs font-bold tracking-widest text-stone-900 uppercase dark:text-stone-100">
             {subtitle}
           </span>
-          <h3 className="mt-1 font-display text-xl font-bold text-ink sm:text-2xl">
+          <h3 className="mt-1 font-display text-xl font-bold text-stone-900 sm:text-2xl dark:text-stone-50">
             {title}
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-300">
-            <CheckCircle2 className="h-3.5 w-3.5" />
+          <span className="flex items-center gap-1.5 bg-stone-800/10 px-3 py-1 text-xs font-semibold text-stone-800 dark:text-stone-100">
+            <CheckCircle2 className="size-3.5" />
             <span>RERA Escrow Protected</span>
           </span>
         </div>
@@ -77,23 +95,24 @@ export const Gantt = ({
               onClick={() => setSelectedMilestone(isSelected ? null : item.id)}
               whileHover={{ scale: 1.005 }}
               className={cn(
-                'group relative cursor-pointer rounded-2xl border border-border/60 bg-surface-subtle/50 p-4 transition-all duration-200 hover:border-border hover:shadow-md',
-                isSelected && 'border-fjord/60 bg-surface shadow-md ring-1 ring-fjord/30'
+                'group relative cursor-pointer border border-stone-300/60 bg-stone-100/50 p-4 transition-all duration-200 hover:border-stone-300 hover:shadow-md dark:border-stone-800/60 dark:bg-stone-900/50',
+                isSelected &&
+                  'border-stone-900/60 bg-stone-50 shadow-md ring-1 ring-fjord/30 dark:border-stone-100/60 dark:bg-stone-950',
               )}
             >
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.5fr_2fr_1fr] lg:items-center">
                 {/* Milestone Info */}
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-ink text-xs font-bold text-white dark:bg-white dark:text-ink">
+                    <span className="flex size-6 items-center justify-center bg-ink text-xs font-bold text-white dark:bg-white dark:text-stone-900">
                       {index + 1}
                     </span>
-                    <h4 className="font-display text-sm font-bold text-ink">
+                    <h4 className="font-display text-sm font-bold text-stone-900 dark:text-stone-50">
                       {item.title}
                     </h4>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted">
-                    <Building className="h-3.5 w-3.5 text-fjord" />
+                  <div className="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400">
+                    <Building className="size-3.5 text-stone-900 dark:text-stone-100" />
                     <span>{item.project}</span>
                   </div>
                 </div>
@@ -101,18 +120,29 @@ export const Gantt = ({
                 {/* Progress Bar & Timeline */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="flex items-center gap-1 text-muted">
-                      <Calendar className="h-3.5 w-3.5" />
-                      <span>{item.startDate} — {item.endDate}</span>
+                    <span className="flex items-center gap-1 text-stone-500 dark:text-stone-400">
+                      <Calendar className="size-3.5" />
+                      <span>
+                        {item.startDate} — {item.endDate}
+                      </span>
                     </span>
-                    <span className="text-ink">{item.progress}% Complete</span>
+                    <span className="text-stone-900 dark:text-stone-50">
+                      {item.progress}% Complete
+                    </span>
                   </div>
-                  <div className="relative h-3 w-full overflow-hidden rounded-full bg-border/40">
+                  <div className="relative h-3 w-full overflow-hidden bg-border/40">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${item.progress}%` }}
-                      transition={{ duration: 1, delay: index * 0.1, type: 'spring' }}
-                      className={cn('h-full rounded-full transition-all', progressBarStyles[item.status])}
+                      transition={{
+                        duration: 1,
+                        delay: index * 0.1,
+                        type: 'spring',
+                      }}
+                      className={cn(
+                        'h-full transition-all',
+                        progressBarStyles[item.status],
+                      )}
                     />
                   </div>
                 </div>
@@ -120,18 +150,28 @@ export const Gantt = ({
                 {/* Payment & Status Badge */}
                 <div className="flex items-center justify-between lg:justify-end lg:gap-4">
                   <div className="text-right">
-                    <p className="text-xs font-bold text-ink">{item.amount}</p>
-                    <p className="text-[11px] font-medium text-muted">{item.paymentPercentage} Installment</p>
+                    <p className="text-xs font-bold text-stone-900 dark:text-stone-50">
+                      {item.amount}
+                    </p>
+                    <p className="text-[11px] font-medium text-stone-500 dark:text-stone-400">
+                      {item.paymentPercentage} Installment
+                    </p>
                   </div>
                   <span
                     className={cn(
-                      'inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-wider',
-                      statusBadgeStyles[item.status]
+                      'inline-flex items-center gap-1.5 border px-3 py-1 text-xs font-bold tracking-wider uppercase',
+                      statusBadgeStyles[item.status],
                     )}
                   >
-                    {item.status === 'completed' && <CheckCircle2 className="h-3.5 w-3.5" />}
-                    {item.status === 'in-progress' && <Clock className="h-3.5 w-3.5" />}
-                    {item.status === 'delayed' && <AlertCircle className="h-3.5 w-3.5" />}
+                    {item.status === 'completed' && (
+                      <CheckCircle2 className="size-3.5" />
+                    )}
+                    {item.status === 'in-progress' && (
+                      <Clock className="size-3.5" />
+                    )}
+                    {item.status === 'delayed' && (
+                      <AlertCircle className="size-3.5" />
+                    )}
                     <span>{item.status.replace('-', ' ')}</span>
                   </span>
                 </div>
@@ -145,21 +185,33 @@ export const Gantt = ({
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="mt-4 border-t border-border/40 pt-4 text-xs text-text"
+                    className="mt-4 border-t border-stone-300/40 pt-4 text-xs text-text dark:border-stone-800/40"
                   >
-                    <div className="grid grid-cols-1 gap-3 rounded-xl bg-canvas p-4 sm:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-3 bg-stone-50 p-4 sm:grid-cols-3 dark:bg-stone-950">
                       <div>
-                        <p className="font-semibold text-muted">DLD Audit Certificate</p>
-                        <p className="mt-0.5 font-mono font-medium text-ink">#DLD-ESC-2026-{index + 104}</p>
+                        <p className="font-semibold text-stone-500 dark:text-stone-400">
+                          DLD Audit Certificate
+                        </p>
+                        <p className="mt-0.5 font-mono font-medium text-stone-900 dark:text-stone-50">
+                          #DLD-ESC-2026-{index + 104}
+                        </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-muted">Escrow Account Bank</p>
-                        <p className="mt-0.5 font-medium text-ink">Emirates NBD • Trust Acct #88219</p>
+                        <p className="font-semibold text-stone-500 dark:text-stone-400">
+                          Escrow Account Bank
+                        </p>
+                        <p className="mt-0.5 font-medium text-stone-900 dark:text-stone-50">
+                          Emirates NBD • Trust Acct #88219
+                        </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-muted">Inspection Verification</p>
-                        <p className="mt-0.5 font-medium text-emerald-600 dark:text-emerald-400">
-                          {item.dldVerified ? 'Verified by RERA Engineer' : 'Scheduled for Audit'}
+                        <p className="font-semibold text-stone-500 dark:text-stone-400">
+                          Inspection Verification
+                        </p>
+                        <p className="mt-0.5 font-medium text-stone-800 dark:text-stone-100">
+                          {item.dldVerified
+                            ? 'Verified by RERA Engineer'
+                            : 'Scheduled for Audit'}
                         </p>
                       </div>
                     </div>

@@ -64,19 +64,19 @@ export function RoiCalculator({
     totalInitialEquity > 0 ? (netAnnualIncome / totalInitialEquity) * 100 : 0;
 
   return (
-    <div className="shadow-subtle flex flex-col overflow-hidden rounded-3xl border border-border bg-surface lg:flex-row">
+    <div className="shadow-subtle flex flex-col overflow-hidden border border-stone-300 bg-stone-50 lg:flex-row dark:border-stone-800 dark:bg-stone-950">
       {/* Left Column: Input Sliders & Controls */}
-      <div className="flex-1 space-y-6 border-b border-border p-6 lg:border-r lg:border-b-0 lg:p-8">
+      <div className="flex-1 space-y-6 border-b border-stone-300 p-6 lg:border-r lg:border-b-0 lg:p-8 dark:border-stone-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="rounded-xl bg-fjord/10 p-2 text-fjord">
-              <Calculator className="h-5 w-5" />
+            <div className="bg-stone-900/10 p-2 text-stone-900 dark:bg-stone-100/10 dark:text-stone-100">
+              <Calculator className="size-5" />
             </div>
             <div>
-              <h3 className="text-h3 font-display font-bold text-ink">
+              <h3 className="text-h3 font-display font-bold text-stone-900 dark:text-stone-50">
                 Financial Intelligence & ROI Modeler
               </h3>
-              <p className="text-caption text-muted">
+              <p className="text-caption text-stone-500 dark:text-stone-400">
                 Mortgage & Cashflow Engine
               </p>
             </div>
@@ -91,10 +91,10 @@ export function RoiCalculator({
               setServiceCharge(initialServiceCharge);
               setStressTest(false);
             }}
-            className="rounded-xl p-2 text-muted transition-colors hover:bg-surface-subtle hover:text-ink"
+            className="p-2 text-stone-500 transition-colors hover:bg-stone-100 hover:text-stone-900 dark:bg-stone-900 dark:text-stone-400"
             title="Reset to DLD defaults"
           >
-            <RefreshCw className="h-4 w-4" />
+            <RefreshCw className="size-4" />
           </button>
         </div>
 
@@ -103,10 +103,10 @@ export function RoiCalculator({
           {/* Property Price */}
           <div>
             <div className="mb-1.5 flex items-center justify-between">
-              <label className="text-body-sm font-bold text-ink">
+              <label className="text-body-sm font-bold text-stone-900 dark:text-stone-50">
                 Property Value (AED)
               </label>
-              <span className="text-body font-mono font-extrabold text-fjord">
+              <span className="text-body font-mono font-extrabold text-stone-900 dark:text-stone-100">
                 AED {price.toLocaleString()}
               </span>
             </div>
@@ -117,17 +117,17 @@ export function RoiCalculator({
               step={250000}
               value={price}
               onChange={(e) => setPrice(Number(e.target.value))}
-              className="h-2 w-full cursor-pointer rounded-lg bg-surface-subtle accent-fjord"
+              className="h-2 w-full cursor-pointer bg-stone-100 accent-fjord dark:bg-stone-900"
             />
           </div>
 
           {/* Down Payment % */}
           <div>
             <div className="mb-1.5 flex items-center justify-between">
-              <label className="text-body-sm font-bold text-ink">
+              <label className="text-body-sm font-bold text-stone-900 dark:text-stone-50">
                 Down Payment ({downPaymentPct}%)
               </label>
-              <span className="text-body-sm font-mono font-bold text-ink">
+              <span className="text-body-sm font-mono font-bold text-stone-900 dark:text-stone-50">
                 AED {downPaymentAmount.toLocaleString()}
               </span>
             </div>
@@ -137,10 +137,10 @@ export function RoiCalculator({
                   key={pct}
                   onClick={() => setDownPaymentPct(pct)}
                   className={cn(
-                    'rounded-xl border py-1.5 text-xs font-bold transition-all',
+                    'border py-1.5 text-xs font-bold transition-all',
                     downPaymentPct === pct
-                      ? 'border-fjord bg-fjord text-white shadow-sm'
-                      : 'border-border bg-surface text-muted hover:text-ink',
+                      ? 'border-stone-900 bg-stone-900 text-white shadow-sm dark:border-stone-100 dark:bg-stone-100'
+                      : 'border-stone-300 bg-stone-50 text-stone-500 hover:text-stone-900 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400',
                   )}
                 >
                   {pct}% {pct === 100 ? '(Cash)' : ''}
@@ -151,13 +151,13 @@ export function RoiCalculator({
 
           {/* Interest Rate & Loan Tenure (only if not cash) */}
           {downPaymentPct < 100 && (
-            <div className="grid grid-cols-1 gap-4 border-t border-border pt-2 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 border-t border-stone-300 pt-2 sm:grid-cols-2 dark:border-stone-800">
               <div>
                 <div className="mb-1.5 flex items-center justify-between">
-                  <label className="text-caption font-bold text-ink">
+                  <label className="text-caption font-bold text-stone-900 dark:text-stone-50">
                     Interest Rate (%)
                   </label>
-                  <span className="text-caption font-mono font-extrabold text-sky-500">
+                  <span className="text-caption font-mono font-extrabold text-stone-600 dark:text-stone-400">
                     {effectiveRate.toFixed(2)}%
                   </span>
                 </div>
@@ -169,16 +169,16 @@ export function RoiCalculator({
                   value={interestRate}
                   onChange={(e) => setInterestRate(Number(e.target.value))}
                   disabled={stressTest}
-                  className="h-1.5 w-full cursor-pointer rounded-lg bg-surface-subtle accent-sky-500 disabled:opacity-50"
+                  className="h-1.5 w-full cursor-pointer bg-stone-100 accent-sky-500 disabled:opacity-50 dark:bg-stone-900"
                 />
               </div>
 
               <div>
                 <div className="mb-1.5 flex items-center justify-between">
-                  <label className="text-caption font-bold text-ink">
+                  <label className="text-caption font-bold text-stone-900 dark:text-stone-50">
                     Loan Tenure
                   </label>
-                  <span className="text-caption font-mono font-extrabold text-ink">
+                  <span className="text-caption font-mono font-extrabold text-stone-900 dark:text-stone-50">
                     {loanYears} Years
                   </span>
                 </div>
@@ -188,10 +188,10 @@ export function RoiCalculator({
                       key={yr}
                       onClick={() => setLoanYears(yr)}
                       className={cn(
-                        'rounded-lg border py-1 text-[11px] font-bold transition-all',
+                        'border py-1 text-[11px] font-bold transition-all',
                         loanYears === yr
                           ? 'border-ink bg-ink text-white'
-                          : 'border-border bg-surface-subtle text-muted',
+                          : 'border-stone-300 bg-stone-100 text-stone-500 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-400',
                       )}
                     >
                       {yr}y
@@ -203,13 +203,13 @@ export function RoiCalculator({
           )}
 
           {/* Expected Rent & Service Charges */}
-          <div className="grid grid-cols-1 gap-4 border-t border-border pt-2 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 border-t border-stone-300 pt-2 sm:grid-cols-2 dark:border-stone-800">
             <div>
               <div className="mb-1.5 flex items-center justify-between">
-                <label className="text-caption font-bold text-ink">
+                <label className="text-caption font-bold text-stone-900 dark:text-stone-50">
                   Annual Gross Rent
                 </label>
-                <span className="text-caption font-mono font-bold text-emerald-500">
+                <span className="text-caption font-mono font-bold text-stone-800">
                   AED {grossRent.toLocaleString()}
                 </span>
               </div>
@@ -220,16 +220,16 @@ export function RoiCalculator({
                 step={25000}
                 value={grossRent}
                 onChange={(e) => setGrossRent(Number(e.target.value))}
-                className="h-1.5 w-full cursor-pointer rounded-lg bg-surface-subtle accent-emerald-500"
+                className="h-1.5 w-full cursor-pointer bg-stone-100 accent-emerald-500 dark:bg-stone-900"
               />
             </div>
 
             <div>
               <div className="mb-1.5 flex items-center justify-between">
-                <label className="text-caption font-bold text-ink">
+                <label className="text-caption font-bold text-stone-900 dark:text-stone-50">
                   Annual Maintenance / Fee
                 </label>
-                <span className="text-caption font-mono font-bold text-rose-500">
+                <span className="text-caption font-mono font-bold text-stone-800 dark:text-stone-200">
                   AED {serviceCharge.toLocaleString()}
                 </span>
               </div>
@@ -240,21 +240,21 @@ export function RoiCalculator({
                 step={5000}
                 value={serviceCharge}
                 onChange={(e) => setServiceCharge(Number(e.target.value))}
-                className="h-1.5 w-full cursor-pointer rounded-lg bg-surface-subtle accent-rose-500"
+                className="h-1.5 w-full cursor-pointer bg-stone-100 accent-rose-500 dark:bg-stone-900"
               />
             </div>
           </div>
         </div>
 
         {/* Sensitivity / Stress Test Toggle */}
-        <div className="flex items-center justify-between rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4">
+        <div className="flex items-center justify-between border border-stone-400/20 bg-stone-200/5 p-4 dark:border-stone-600/20 dark:bg-stone-800/5">
           <div className="flex items-center gap-2.5">
-            <ShieldAlert className="h-5 w-5 shrink-0 text-amber-500" />
+            <ShieldAlert className="size-5 shrink-0 text-stone-700 dark:text-stone-300" />
             <div>
-              <span className="text-body-sm font-bold text-ink">
+              <span className="text-body-sm font-bold text-stone-900 dark:text-stone-50">
                 Stress Test Rate Hike (+1.5%)
               </span>
-              <p className="text-[11px] leading-tight text-muted">
+              <p className="text-[11px] leading-tight text-stone-500 dark:text-stone-400">
                 Simulates Central Bank interest rate fluctuation
               </p>
             </div>
@@ -262,13 +262,15 @@ export function RoiCalculator({
           <button
             onClick={() => setStressTest(!stressTest)}
             className={cn(
-              'relative flex h-6 w-11 shrink-0 items-center rounded-full px-0.5 transition-colors',
-              stressTest ? 'bg-amber-500' : 'bg-muted/40 dark:bg-border',
+              'relative flex h-6 w-11 shrink-0 items-center px-0.5 transition-colors',
+              stressTest
+                ? 'bg-stone-700 dark:bg-stone-300'
+                : 'bg-muted/40 dark:bg-border',
             )}
           >
             <span
               className={cn(
-                'h-5 w-5 transform rounded-full bg-white shadow-md transition-transform duration-200',
+                'size-5 transform bg-white shadow-md transition-transform duration-200',
                 stressTest ? 'translate-x-5' : 'translate-x-0',
               )}
             />
@@ -277,24 +279,24 @@ export function RoiCalculator({
       </div>
 
       {/* Right Column: Output Summary Dashboard */}
-      <div className="flex w-full flex-col justify-between space-y-6 bg-surface-subtle p-6 lg:w-96 lg:p-8">
+      <div className="flex w-full flex-col justify-between space-y-6 bg-stone-100 p-6 lg:w-96 lg:p-8 dark:bg-stone-900">
         <div>
-          <span className="text-caption font-extrabold tracking-wider text-muted uppercase">
+          <span className="text-caption font-extrabold tracking-wider text-stone-500 uppercase dark:text-stone-400">
             Investment Yield & Return
           </span>
 
           <div className="mt-2 flex items-baseline gap-2">
-            <span className="text-display-md font-display font-extrabold text-emerald-500">
+            <span className="text-display-md font-display font-extrabold text-stone-800">
               {netRoiPercentage.toFixed(2)}%
             </span>
-            <span className="text-body-sm font-bold text-muted">
+            <span className="text-body-sm font-bold text-stone-500 dark:text-stone-400">
               Net Annual Yield
             </span>
           </div>
 
           {downPaymentPct < 100 && (
-            <div className="text-caption mt-1 flex items-center gap-1.5 font-semibold text-ink">
-              <TrendingUp className="h-3.5 w-3.5 text-sky-500" />
+            <div className="text-caption mt-1 flex items-center gap-1.5 font-semibold text-stone-900 dark:text-stone-50">
+              <TrendingUp className="size-3.5 text-stone-600 dark:text-stone-400" />
               <span>
                 Cash-on-Cash Return:{' '}
                 <strong>{cashOnCashReturn.toFixed(2)}%</strong>
@@ -305,19 +307,19 @@ export function RoiCalculator({
 
         {/* Breakdown Cards */}
         <div className="space-y-3">
-          <div className="space-y-2 rounded-2xl border border-border bg-surface p-4">
+          <div className="space-y-2 border border-stone-300 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950">
             <div className="text-body-sm flex items-center justify-between">
-              <span className="font-medium text-muted">
+              <span className="font-medium text-stone-500 dark:text-stone-400">
                 Monthly Mortgage Payment
               </span>
-              <span className="font-mono font-extrabold text-ink">
+              <span className="font-mono font-extrabold text-stone-900 dark:text-stone-50">
                 {downPaymentPct === 100
                   ? 'AED 0 (Cash)'
                   : `AED ${Math.round(monthlyMortgage).toLocaleString()}`}
               </span>
             </div>
             {stressTest && downPaymentPct < 100 && (
-              <div className="flex items-center justify-end gap-1 text-[11px] font-semibold text-amber-600 dark:text-amber-400">
+              <div className="flex items-center justify-end gap-1 text-[11px] font-semibold text-stone-700 dark:text-stone-300 dark:text-stone-700">
                 <span>
                   +AED{' '}
                   {Math.round(
@@ -334,45 +336,51 @@ export function RoiCalculator({
             )}
           </div>
 
-          <div className="space-y-2.5 rounded-2xl border border-border bg-surface p-4">
-            <span className="text-caption font-bold text-muted uppercase">
+          <div className="space-y-2.5 border border-stone-300 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950">
+            <span className="text-caption font-bold text-stone-500 uppercase dark:text-stone-400">
               Initial Capital Requirements (DLD Fees)
             </span>
 
             <div className="text-caption flex items-center justify-between">
-              <span className="text-muted">
+              <span className="text-stone-500 dark:text-stone-400">
                 Down Payment ({downPaymentPct}%)
               </span>
-              <span className="font-mono font-semibold text-ink">
+              <span className="font-mono font-semibold text-stone-900 dark:text-stone-50">
                 AED {downPaymentAmount.toLocaleString()}
               </span>
             </div>
             <div className="text-caption flex items-center justify-between">
-              <span className="text-muted">DLD Transfer Fee (4%) + NOC</span>
-              <span className="font-mono font-semibold text-ink">
+              <span className="text-stone-500 dark:text-stone-400">
+                DLD Transfer Fee (4%) + NOC
+              </span>
+              <span className="font-mono font-semibold text-stone-900 dark:text-stone-50">
                 AED {dldFee.toLocaleString()}
               </span>
             </div>
             <div className="text-caption flex items-center justify-between">
-              <span className="text-muted">Agency Fee (2% + VAT)</span>
-              <span className="font-mono font-semibold text-ink">
+              <span className="text-stone-500 dark:text-stone-400">
+                Agency Fee (2% + VAT)
+              </span>
+              <span className="font-mono font-semibold text-stone-900 dark:text-stone-50">
                 AED {agencyFee.toLocaleString()}
               </span>
             </div>
-            <div className="text-body-sm flex items-center justify-between border-t border-border pt-2 font-bold">
-              <span className="text-ink">Total Equity Required</span>
-              <span className="font-mono text-fjord">
+            <div className="text-body-sm flex items-center justify-between border-t border-stone-300 pt-2 font-bold dark:border-stone-800">
+              <span className="text-stone-900 dark:text-stone-50">
+                Total Equity Required
+              </span>
+              <span className="font-mono text-stone-900 dark:text-stone-100">
                 AED {Math.round(totalInitialEquity).toLocaleString()}
               </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
+          <div className="flex items-center justify-between border border-stone-800/20 bg-stone-800/10 p-4">
             <div>
-              <span className="text-caption font-bold text-emerald-700 uppercase dark:text-emerald-300">
+              <span className="text-caption font-bold text-stone-800 uppercase dark:text-stone-100">
                 Est. Monthly Net Cashflow
               </span>
-              <p className="text-h3 mt-0.5 font-mono font-extrabold text-emerald-600 dark:text-emerald-400">
+              <p className="text-h3 mt-0.5 font-mono font-extrabold text-stone-800 dark:text-stone-100">
                 AED {Math.round(netAnnualIncome / 12).toLocaleString()} /mo
               </p>
             </div>
@@ -386,10 +394,10 @@ export function RoiCalculator({
               `Financial scenario saved to your Decision Lab for comparison!`,
             )
           }
-          className="text-body-sm flex w-full items-center justify-center gap-2 rounded-xl bg-fjord py-3.5 font-bold text-white shadow-sm transition-all hover:bg-fjord-hover"
+          className="text-body-sm flex w-full items-center justify-center gap-2 bg-stone-900 py-3.5 font-bold text-white shadow-sm transition-all hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
         >
           <span>Save Scenario to Decision Lab</span>
-          <ArrowRight className="h-4 w-4" />
+          <ArrowRight className="size-4" />
         </button>
       </div>
     </div>

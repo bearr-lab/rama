@@ -21,7 +21,11 @@ export default async function LoginPage({
               : 'Keep your shortlist, evidence and decisions in one considered workspace.'}
           </p>
         </div>
-        <AuthForm locale={locale as 'en' | 'ar'} defaultMode="sign-in" compact />
+        <AuthForm
+          locale={locale as 'en' | 'ar'}
+          defaultMode="sign-in"
+          compact
+        />
       </div>
     </div>
   );

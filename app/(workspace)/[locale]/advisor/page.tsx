@@ -26,7 +26,9 @@ export default async function AdvisorPage({
           <div className="flex items-center gap-2.5 font-medium">
             <Sparkles className="size-4 shrink-0 text-fjord" />
             <span>
-              <strong>{isArabic ? 'وضع التقييم التجريبي:' : 'Sandbox Demo Mode:'}</strong>{' '}
+              <strong>
+                {isArabic ? 'وضع التقييم التجريبي:' : 'Sandbox Demo Mode:'}
+              </strong>{' '}
               {isArabic
                 ? 'أنت تستكشف مستشار الذكاء الاصطناعي RAMA مع تفعيل ذكاء دائرة الأراضي والأملاك المباشر.'
                 : 'You are exploring RAMA AI Concierge without an active session. Full DLD RAG intelligence is active.'}
@@ -41,7 +43,9 @@ export default async function AdvisorPage({
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic ? 'مساحة العمل · المستشار الذكي' : 'WORKSPACE · AI CONCIERGE'}
+            {isArabic
+              ? 'مساحة العمل · المستشار الذكي'
+              : 'WORKSPACE · AI CONCIERGE'}
           </p>
           <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
             {isArabic ? 'مستشار الذكاء الاصطناعي RAMA' : 'RAMA AI Advisor'}
@@ -64,7 +68,9 @@ export default async function AdvisorPage({
             <div className="mt-3 flex items-baseline justify-between">
               <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
                 <NumberTicker value={2840} />
-                <span className="ml-1.5 font-sans text-sm text-muted">Articles</span>
+                <span className="ml-1.5 font-sans text-sm text-muted">
+                  Articles
+                </span>
               </span>
               <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
@@ -73,7 +79,9 @@ export default async function AdvisorPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? 'تشريعات 2026 وقوانين ريرا المحدثة' : '2026 Law #7, Ejari & Escrow regulations'}
+              {isArabic
+                ? 'تشريعات 2026 وقوانين ريرا المحدثة'
+                : '2026 Law #7, Ejari & Escrow regulations'}
             </p>
           </div>
         </BlurFade>
@@ -92,7 +100,9 @@ export default async function AdvisorPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? 'استعلام فوري وتوجيه ذكي' : 'Vector similarity search active'}
+              {isArabic
+                ? 'استعلام فوري وتوجيه ذكي'
+                : 'Vector similarity search active'}
             </p>
           </div>
         </BlurFade>
@@ -111,7 +121,9 @@ export default async function AdvisorPage({
               </span>
             </div>
             <p className="mt-1 text-xs font-light text-muted-foreground">
-              {isArabic ? 'مرتبط مباشرة بمصادر دائرة الأراضي' : 'Grounded strictly in verified DLD docs'}
+              {isArabic
+                ? 'مرتبط مباشرة بمصادر دائرة الأراضي'
+                : 'Grounded strictly in verified DLD docs'}
             </p>
           </div>
         </BlurFade>

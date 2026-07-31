@@ -7,10 +7,7 @@ export interface ExtractedData {
   issueDate?: string;
   confidenceScore: number;
   documentType?:
-    | 'DLD_FORM_F_MOU'
-    | 'RERA_OQOOD'
-    | 'TITLE_DEED'
-    | 'DEVELOPER_NOC';
+    'DLD_FORM_F_MOU' | 'RERA_OQOOD' | 'TITLE_DEED' | 'DEVELOPER_NOC';
   extractedClaude?: string;
   simulated?: boolean;
 }
@@ -61,7 +58,7 @@ export async function extractDocumentData(
       ],
       propertySize: 4200.0,
       issueDate: '2026-07-15',
-      confidenceScore: 0.70,
+      confidenceScore: 0.7,
       simulated: true,
       documentType: 'DLD_FORM_F_MOU',
       extractedClaude:
@@ -75,7 +72,7 @@ export async function extractDocumentData(
       ownerNames: ['Dubai Creek Harbour LLC'],
       propertySize: 1450.0,
       issueDate: '2026-06-20',
-      confidenceScore: 0.70,
+      confidenceScore: 0.7,
       simulated: true,
       documentType: 'RERA_OQOOD',
       extractedClaude:
@@ -89,7 +86,7 @@ export async function extractDocumentData(
       ownerNames: ['Select Group Residence 1'],
       propertySize: 1200.0,
       issueDate: '2026-07-01',
-      confidenceScore: 0.70,
+      confidenceScore: 0.7,
       simulated: true,
       documentType: 'DEVELOPER_NOC',
       extractedClaude:
@@ -103,7 +100,7 @@ export async function extractDocumentData(
     ownerNames: ['Sultan Al-Nahyan'],
     propertySize: 3100.5,
     issueDate: '2026-05-10',
-    confidenceScore: 0.70,
+    confidenceScore: 0.7,
     simulated: true,
     documentType: 'TITLE_DEED',
     extractedClaude:

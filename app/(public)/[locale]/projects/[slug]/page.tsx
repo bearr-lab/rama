@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Container } from '@/components/layout/container';
@@ -85,6 +86,30 @@ const OFF_PLAN_PROJECTS = [
   },
 ];
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const isArabic = locale === 'ar';
+
+  const project = OFF_PLAN_PROJECTS.find((p) => p.id === slug);
+
+  if (!project) {
+    return {
+      title: isArabic ? 'مشروع غير موجود | راما' : 'Project Not Found | Rama',
+    };
+  }
+
+  return {
+    title: isArabic ? `${project.titleAr} | راما` : `${project.titleEn} | Rama`,
+    description: isArabic
+      ? `${project.startingPriceAr} - ${project.locationAr}`
+      : `${project.startingPriceEn} - ${project.locationEn}`,
+  };
+}
+
 export default async function ProjectDetailPage({
   params,
 }: {
@@ -94,21 +119,21 @@ export default async function ProjectDetailPage({
   const isArabic = locale === 'ar';
 
   const project = OFF_PLAN_PROJECTS.find((p) => p.id === slug);
-  
+
   if (!project) {
     notFound();
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-surface">
+    <div className="flex min-h-screen w-full flex-col bg-stone-50 dark:bg-stone-950">
       {/* Sticky back bar */}
-      <div className="fixed inset-x-0 top-16 z-40 border-b border-border/40 bg-background/90 backdrop-blur-md">
+      <div className="fixed inset-x-0 top-16 z-40 border-b border-stone-300/40 bg-background/90 backdrop-blur-md dark:border-stone-800/40">
         <div className="mx-auto flex max-w-7xl items-center px-6 py-3">
           <Link
             href={`/${locale}/projects`}
             className={cn(
               buttonVariants({ variant: 'ghost', size: 'sm' }),
-              "gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink"
+              'gap-2 text-xs font-semibold tracking-widest text-stone-500 uppercase transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
             )}
           >
             <ChevronLeft className="size-4" />
@@ -128,34 +153,34 @@ export default async function ProjectDetailPage({
           />
           <div className="absolute inset-0 z-10 bg-linear-to-t from-black/80 via-black/40 to-black/10" />
         </div>
-        
+
         <Container size="lg" className="relative z-20">
           <div className="mt-10 max-w-4xl space-y-8">
             <div className="inline-flex items-center gap-2 rounded-none border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-bold tracking-[0.2em] text-white uppercase backdrop-blur-md">
               <Building2 className="size-4" />
               <span>{isArabic ? project.statusAr : project.statusEn}</span>
             </div>
-            
-            {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value, tailwindcss/classnames-order */}
-            <h1 className="leading-[1.1] font-display text-5xl font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
+
+            {/* eslint-disable-next-line tailwindcss/no-unnecessary-arbitrary-value */}
+            <h1 className="font-display text-5xl leading-[1.1] font-normal tracking-tight text-white md:text-7xl lg:text-8xl">
               {isArabic ? project.titleAr : project.titleEn}
             </h1>
-            
+
             <div className="mt-8 flex flex-wrap items-center gap-6 border-t border-white/20 pt-8 text-white/80">
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Building2 className="size-4 text-fjord" />
+                <Building2 className="size-4 text-stone-900 dark:text-stone-100" />
                 {project.developer}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <MapPin className="size-4 text-emerald-400" />
+                <MapPin className="size-4 text-stone-900 dark:text-stone-100" />
                 {isArabic ? project.locationAr : project.locationEn}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Tag className="size-4 text-amber-400" />
+                <Tag className="size-4 text-stone-700 dark:text-stone-300" />
                 {isArabic ? project.startingPriceAr : project.startingPriceEn}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Calendar className="size-4 text-sky-400" />
+                <Calendar className="size-4 text-stone-600 dark:text-stone-400" />
                 {isArabic ? project.handoverAr : project.handoverEn}
               </span>
             </div>
@@ -163,17 +188,17 @@ export default async function ProjectDetailPage({
         </Container>
       </section>
 
-      <section className="bg-surface py-24">
+      <section className="bg-stone-50 py-24 dark:bg-stone-950">
         <Container size="md" className="space-y-6 text-center">
-          <div className="mb-4 inline-block rounded-full bg-surface-subtle p-4">
-            <Building2 className="size-8 text-fjord" />
+          <div className="mb-4 inline-block bg-stone-100 p-4 dark:bg-stone-900">
+            <Building2 className="size-8 text-stone-900 dark:text-stone-100" />
           </div>
-          <h2 className="font-display text-3xl font-bold text-ink">
+          <h2 className="font-display text-3xl font-bold text-stone-900 dark:text-stone-50">
             {isArabic ? 'تفاصيل المشروع قريباً' : 'Project Details Coming Soon'}
           </h2>
-          <p className="mx-auto max-w-xl text-lg leading-relaxed font-light text-muted-foreground">
-            {isArabic 
-              ? 'نحن نعمل على إعداد كافة التفاصيل والمخططات والصور الخاصة بهذا المشروع الاستثنائي. يرجى التحقق مرة أخرى قريباً لاستكشاف المزيد.' 
+          <p className="mx-auto max-w-xl text-lg leading-relaxed font-light text-stone-500 dark:text-stone-400">
+            {isArabic
+              ? 'نحن نعمل على إعداد كافة التفاصيل والمخططات والصور الخاصة بهذا المشروع الاستثنائي. يرجى التحقق مرة أخرى قريباً لاستكشاف المزيد.'
               : 'We are preparing all the details, floor plans, and exclusive gallery for this exceptional off-plan project. Please check back soon.'}
           </p>
         </Container>

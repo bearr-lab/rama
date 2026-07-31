@@ -21,7 +21,11 @@ export default async function SignUpPage({
               : 'Create an account to access advanced property analytics.'}
           </p>
         </div>
-        <AuthForm locale={locale as 'en' | 'ar'} defaultMode="sign-up" compact />
+        <AuthForm
+          locale={locale as 'en' | 'ar'}
+          defaultMode="sign-up"
+          compact
+        />
       </div>
     </div>
   );

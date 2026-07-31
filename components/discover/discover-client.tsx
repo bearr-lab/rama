@@ -90,39 +90,48 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 p-6 lg:p-10">
       {/* Header & Stats Banner */}
-      <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
+      <header className="flex flex-col justify-between gap-4 border-b border-stone-300/60 pb-6 sm:flex-row sm:items-end dark:border-stone-800/60">
         <div>
-          <p className="text-xs font-bold tracking-widest text-fjord uppercase">
+          <p className="text-xs font-bold tracking-widest text-stone-900 uppercase dark:text-stone-100">
             WORKSPACE · DISCOVERY ENGINE
           </p>
-          <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
+          <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-stone-900 sm:text-4xl dark:text-stone-50">
             Discover Dubai Real Estate
           </h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
-            Universal semantic search paired with verified Trust Passports and live geospatial intelligence.
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-stone-500 dark:text-stone-400">
+            Universal semantic search paired with verified Trust Passports and
+            live geospatial intelligence.
           </p>
         </div>
 
         {/* Executive Summary Metrics & Actions */}
         <div className="flex flex-row flex-wrap items-center gap-3">
-          <div className="flex flex-row items-center gap-3.5 rounded-xl border border-border/80 bg-surface px-4 py-2 text-xs shadow-2xs sm:gap-4">
+          <div className="flex flex-row items-center gap-3.5 rounded-none border border-stone-300/80 bg-stone-50 px-4 py-2 text-xs shadow-2xs sm:gap-4 dark:border-stone-800/80 dark:bg-stone-950">
             <div className="flex items-baseline gap-1.5">
-              <span className="font-display text-base font-bold text-ink">
+              <span className="font-display text-base font-bold text-stone-900 dark:text-stone-50">
                 <NumberTicker value={filteredProperties.length} />
               </span>
-              <span className="font-medium text-muted">Listings</span>
+              <span className="font-medium text-stone-500 dark:text-stone-400">
+                Listings
+              </span>
             </div>
             <div className="h-4 w-px bg-border" />
             <div className="flex items-baseline gap-1.5">
-              <span className="font-display text-base font-bold text-emerald-600 dark:text-emerald-400">
-                <NumberTicker value={Number(avgYield)} decimalPlaces={1} suffix="%" />
+              <span className="font-display text-base font-bold text-stone-900 dark:text-stone-100">
+                <NumberTicker
+                  value={Number(avgYield)}
+                  decimalPlaces={1}
+                  suffix="%"
+                />
               </span>
-              <span className="font-medium text-muted">Avg Yield</span>
+              <span className="font-medium text-stone-500 dark:text-stone-400">
+                Avg Yield
+              </span>
             </div>
             <div className="h-4 w-px bg-border" />
-            <div className="flex items-center gap-1.5 font-semibold text-ink">
-              <ShieldCheck className="size-4 shrink-0 text-emerald-500" />
-              <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
+            <div className="flex items-center gap-1.5 font-semibold text-stone-900 dark:text-stone-50">
+              <ShieldCheck className="size-4 shrink-0 text-stone-900 dark:text-stone-100" />
+              <AnimatedShinyText className="font-semibold text-stone-900 dark:text-stone-100">
                 {filters.onlyVerified ? 'Verified Only' : '100% DLD Passports'}
               </AnimatedShinyText>
             </div>
@@ -133,10 +142,10 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
             variant={showMapDrawer ? 'default' : 'outline'}
             onClick={() => setShowMapDrawer(!showMapDrawer)}
             className={cn(
-              'flex flex-row items-center gap-2 rounded-xl font-semibold shadow-2xs transition-all',
+              'flex flex-row items-center gap-2 rounded-none font-semibold shadow-2xs transition-all',
               showMapDrawer
-                ? 'border-transparent bg-fjord text-white hover:bg-fjord-hover'
-                : 'hover:border-border-strong border-border/80 bg-surface text-ink hover:bg-surface-subtle',
+                ? 'border-transparent bg-stone-900 text-white hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200'
+                : 'dark:border-stone-800-strong border-stone-300/80 bg-stone-50 text-stone-900 hover:border-stone-300 hover:bg-stone-100 dark:border-stone-800/80 dark:bg-stone-900 dark:bg-stone-950 dark:text-stone-50',
             )}
           >
             <MapIcon className="size-4" />
@@ -155,17 +164,17 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
 
       {/* Top Collapsible Geospatial Map Drawer */}
       {showMapDrawer && (
-        <div className="w-full overflow-hidden rounded-xl border border-border bg-card shadow-md transition-all duration-300">
-          <div className="flex items-center justify-between border-b border-border bg-surface-subtle/40 px-4 py-2.5">
-            <div className="flex items-center gap-2 text-xs font-semibold text-ink">
-              <MapIcon className="size-4 text-fjord" />
+        <div className="w-full overflow-hidden rounded-none border border-stone-300 bg-card shadow-md transition-all duration-300 dark:border-stone-800">
+          <div className="flex items-center justify-between border-b border-stone-300 bg-stone-100/40 px-4 py-2.5 dark:border-stone-800 dark:bg-stone-900/40">
+            <div className="flex items-center gap-2 text-xs font-semibold text-stone-900 dark:text-stone-50">
+              <MapIcon className="size-4 text-stone-900 dark:text-stone-100" />
               <span>Geospatial Dubai Heatmap & Property Pins</span>
             </div>
             <Button
               variant="ghost"
               size="icon-sm"
               onClick={() => setShowMapDrawer(false)}
-              className="size-7 text-muted hover:text-ink"
+              className="size-7 text-stone-500 hover:text-stone-900 dark:text-stone-400"
             >
               <X className="size-4" />
             </Button>
@@ -181,11 +190,11 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
       )}
 
       {/* ── Integrated Lagom Executive Command Console ── */}
-      <div className="shadow-subtle hover:shadow-floating space-y-5 rounded-3xl border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all duration-300">
+      <div className="shadow-subtle hover:shadow-floating space-y-5 rounded-none border border-stone-300/40 bg-stone-50/70 p-6 backdrop-blur-md transition-all duration-300 dark:border-stone-800/40 dark:bg-stone-950/70">
         {/* Main AI Semantic Search Bar */}
         <div className="relative flex w-full items-center">
-          <div className="pointer-events-none absolute left-5 flex items-center gap-2 font-semibold text-fjord">
-            <Sparkles className="size-4.5 animate-pulse text-fjord" />
+          <div className="pointer-events-none absolute left-5 flex items-center gap-2 font-semibold text-stone-900 dark:text-stone-100">
+            <Sparkles className="size-4.5 animate-pulse text-stone-900 dark:text-stone-100" />
             <span className="hidden text-xs font-bold tracking-widest uppercase sm:inline">
               AI Search
             </span>
@@ -195,12 +204,12 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
             value={rawQuery}
             onChange={handleQueryChange}
             placeholder='Try typing "4 bed penthouse in Marina under 15m with high trust"...'
-            className="w-full rounded-2xl border border-border/60 bg-surface/90 px-12 py-4 text-sm font-medium text-ink shadow-2xs transition-all placeholder:text-muted-foreground/70 hover:border-fjord/40 focus:border-fjord focus:bg-surface focus:ring-2 focus:ring-fjord/10 focus:outline-none sm:pl-36"
+            className="w-full rounded-none border border-stone-300/60 bg-stone-50/90 px-12 py-4 text-sm font-medium text-stone-900 shadow-2xs transition-all placeholder:text-stone-500 hover:border-stone-900/40 focus:border-stone-900 focus:bg-stone-50 focus:ring-2 focus:ring-stone-900/10 focus:outline-none sm:pl-36 dark:border-stone-800/60 dark:bg-stone-950/90 dark:text-stone-400/70"
           />
           {rawQuery && (
             <button
               onClick={handleClearSearch}
-              className="absolute right-4 rounded-full p-1.5 text-muted-foreground transition-colors hover:bg-surface-subtle hover:text-ink"
+              className="absolute right-4 rounded-none p-1.5 text-stone-500 transition-colors hover:bg-stone-100 hover:text-stone-900 dark:bg-stone-900 dark:text-stone-400"
               title="Clear search"
             >
               <X className="size-4" />
@@ -212,14 +221,15 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
         <div className="flex flex-col gap-4 pt-1 lg:flex-row lg:items-center lg:justify-between">
           {/* Quick Command Chips */}
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="mr-1 flex items-center gap-1.5 font-semibold text-muted-foreground">
-              <Sparkles className="size-3.5 animate-pulse text-fjord" /> Suggestions:
+            <span className="mr-1 flex items-center gap-1.5 font-semibold text-stone-500 dark:text-stone-400">
+              <Sparkles className="size-3.5 animate-pulse text-stone-900 dark:text-stone-100" />{' '}
+              Suggestions:
             </span>
             <Button
               variant="outline"
               size="sm"
               onClick={() => applyQuickChip('Yield > 7%')}
-              className="h-7 rounded-full border-emerald-500/20 bg-emerald-500/5 px-3.5 text-xs font-semibold text-emerald-600 shadow-2xs transition-all hover:bg-emerald-500/15 dark:text-emerald-400"
+              className="h-7 rounded-none border-stone-300/20 bg-stone-200/5 px-3.5 text-xs font-semibold text-stone-900 shadow-2xs transition-all hover:bg-stone-200/15 dark:border-stone-700/20 dark:bg-stone-800/5 dark:bg-stone-800/15 dark:text-stone-100"
             >
               High Yield (&gt;7%)
             </Button>
@@ -227,7 +237,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               variant="outline"
               size="sm"
               onClick={() => applyQuickChip('Downtown Penthouse')}
-              className="h-7 rounded-full border-border/60 bg-surface px-3.5 text-xs font-medium text-ink shadow-2xs transition-all hover:border-fjord/40 hover:bg-fjord-soft/40 hover:text-fjord"
+              className="h-7 rounded-none border-stone-300/60 bg-stone-50 px-3.5 text-xs font-medium text-stone-900 shadow-2xs transition-all hover:border-stone-900/40 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-800/60 dark:bg-stone-950 dark:text-stone-100"
             >
               Downtown Luxury
             </Button>
@@ -235,7 +245,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               variant="outline"
               size="sm"
               onClick={() => applyQuickChip('Verified Trust 90+')}
-              className="h-7 rounded-full border-border/60 bg-surface px-3.5 text-xs font-medium text-ink shadow-2xs transition-all hover:border-fjord/40 hover:bg-fjord-soft/40 hover:text-fjord"
+              className="h-7 rounded-none border-stone-300/60 bg-stone-50 px-3.5 text-xs font-medium text-stone-900 shadow-2xs transition-all hover:border-stone-900/40 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-800/60 dark:bg-stone-950 dark:text-stone-100"
             >
               Verified Trust (90+)
             </Button>
@@ -243,21 +253,21 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               variant="outline"
               size="sm"
               onClick={() => applyQuickChip('Under 10M')}
-              className="h-7 rounded-full border-border/60 bg-surface px-3.5 text-xs font-medium text-ink shadow-2xs transition-all hover:border-fjord/40 hover:bg-fjord-soft/40 hover:text-fjord"
+              className="h-7 rounded-none border-stone-300/60 bg-stone-50 px-3.5 text-xs font-medium text-stone-900 shadow-2xs transition-all hover:border-stone-900/40 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-800/60 dark:bg-stone-950 dark:text-stone-100"
             >
               Under AED 10M
             </Button>
           </div>
 
           {/* Active Filter Toggles & Sort */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border/40 pt-3 lg:border-t-0 lg:pt-0">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-stone-300/40 pt-3 lg:border-t-0 lg:pt-0 dark:border-stone-800/40">
             <div className="flex flex-wrap items-center gap-2">
               <select
                 value={filters.community}
                 onChange={(e) =>
                   setFilters((prev) => ({ ...prev, community: e.target.value }))
                 }
-                className="hover:border-border-strong rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 text-xs font-semibold text-ink shadow-2xs transition-colors focus:border-fjord focus:ring-2 focus:ring-fjord/10 focus:outline-none"
+                className="dark:border-stone-800-strong rounded-none border border-stone-300/60 bg-stone-50 px-3.5 py-1.5 text-xs font-semibold text-stone-900 shadow-2xs transition-colors hover:border-stone-300 focus:border-stone-900 focus:ring-2 focus:ring-stone-900/10 focus:outline-none dark:border-stone-800/60 dark:bg-stone-950 dark:text-stone-50"
               >
                 {COMMUNITY_LIST.map((comm) => (
                   <option key={comm} value={comm}>
@@ -269,14 +279,14 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               {filters.beds !== undefined && (
                 <Badge
                   variant="secondary"
-                  className="flex items-center gap-1.5 rounded-full border border-fjord/30 bg-fjord-soft px-3.5 py-1 text-xs font-semibold text-fjord shadow-2xs"
+                  className="flex items-center gap-1.5 rounded-none border border-stone-900/30 bg-stone-200 px-3.5 py-1 text-xs font-semibold text-stone-900 shadow-2xs dark:border-stone-100/30 dark:bg-stone-800 dark:text-stone-100"
                 >
                   <span>
                     {filters.beds === 0 ? 'Studio' : `${filters.beds}+ Beds`}
                   </span>
                   <button
                     onClick={() => removeFilter('beds')}
-                    className="hover:text-ink"
+                    className="hover:text-stone-900 dark:text-stone-50"
                   >
                     <X className="size-3" />
                   </button>
@@ -286,12 +296,14 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               {filters.maxPrice !== undefined && (
                 <Badge
                   variant="secondary"
-                  className="flex items-center gap-1.5 rounded-full border border-fjord/30 bg-fjord-soft px-3.5 py-1 text-xs font-semibold text-fjord shadow-2xs"
+                  className="flex items-center gap-1.5 rounded-none border border-stone-900/30 bg-stone-200 px-3.5 py-1 text-xs font-semibold text-stone-900 shadow-2xs dark:border-stone-100/30 dark:bg-stone-800 dark:text-stone-100"
                 >
-                  <span>Max AED {(filters.maxPrice / 1000000).toFixed(1)}M</span>
+                  <span>
+                    Max AED {(filters.maxPrice / 1000000).toFixed(1)}M
+                  </span>
                   <button
                     onClick={() => removeFilter('maxPrice')}
-                    className="hover:text-ink"
+                    className="hover:text-stone-900 dark:text-stone-50"
                   >
                     <X className="size-3" />
                   </button>
@@ -307,7 +319,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                   variant="ghost"
                   size="sm"
                   onClick={handleClearSearch}
-                  className="h-7 gap-1 text-xs font-medium text-muted-foreground hover:text-foreground"
+                  className="h-7 gap-1 text-xs font-medium text-stone-500 hover:text-foreground dark:text-stone-400"
                 >
                   <RotateCcw className="size-3" /> Reset All
                 </Button>
@@ -316,7 +328,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
 
             <div className="ml-auto flex items-center gap-3">
               <div className="flex items-center gap-2">
-                <span className="hidden text-xs font-semibold text-muted-foreground sm:inline">
+                <span className="hidden text-xs font-semibold text-stone-500 sm:inline dark:text-stone-400">
                   Sort:
                 </span>
                 <select
@@ -327,7 +339,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                       sortBy: e.target.value as DiscoverFilters['sortBy'],
                     }))
                   }
-                  className="hover:border-border-strong rounded-xl border border-border/60 bg-surface px-3 py-1.5 text-xs font-semibold text-ink shadow-2xs transition-colors focus:border-fjord focus:ring-2 focus:ring-fjord/10 focus:outline-none"
+                  className="dark:border-stone-800-strong rounded-none border border-stone-300/60 bg-stone-50 px-3 py-1.5 text-xs font-semibold text-stone-900 shadow-2xs transition-colors hover:border-stone-300 focus:border-stone-900 focus:ring-2 focus:ring-stone-900/10 focus:outline-none dark:border-stone-800/60 dark:bg-stone-950 dark:text-stone-50"
                 >
                   <option value="trust">Highest Trust Score</option>
                   <option value="roi">Highest Rental Yield (ROI)</option>
@@ -337,55 +349,55 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               </div>
 
               {/* Grid vs List View Mode */}
-              <div className="flex items-center rounded-xl border border-border/60 bg-surface-subtle/50 p-1 shadow-2xs">
+              <div className="flex items-center rounded-none border border-stone-300/60 bg-stone-100/50 p-1 shadow-2xs dark:border-stone-800/60 dark:bg-stone-900/50">
                 <button
                   onClick={() => setViewMode('grid')}
                   className={cn(
-                    'flex items-center gap-1 rounded-lg p-1.5 text-xs font-semibold transition-all',
+                    'flex items-center gap-1 rounded-none p-1.5 text-xs font-semibold transition-all',
                     viewMode === 'grid'
-                      ? 'border border-border/40 bg-surface font-bold text-ink shadow-2xs'
-                      : 'text-muted-foreground hover:text-ink',
-                )}
-                title="Grid View"
-              >
-                <LayoutGrid className="size-4" />
-                <span className="hidden sm:inline">Grid</span>
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={cn(
-                  'flex items-center gap-1 rounded-md p-1.5 text-xs font-medium transition-colors',
-                  viewMode === 'list'
-                    ? 'border border-border/40 bg-surface font-bold text-ink shadow-2xs'
-                    : 'text-muted hover:text-ink',
-                )}
-                title="List View"
-              >
-                <List className="size-4" />
-                <span className="hidden sm:inline">List</span>
-              </button>
+                      ? 'border border-stone-300/40 bg-stone-50 font-bold text-stone-900 shadow-2xs dark:border-stone-800/40 dark:bg-stone-950 dark:text-stone-50'
+                      : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
+                  )}
+                  title="Grid View"
+                >
+                  <LayoutGrid className="size-4" />
+                  <span className="hidden sm:inline">Grid</span>
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={cn(
+                    'flex items-center gap-1 rounded-none p-1.5 text-xs font-medium transition-colors',
+                    viewMode === 'list'
+                      ? 'border border-stone-300/40 bg-stone-50 font-bold text-stone-900 shadow-2xs dark:border-stone-800/40 dark:bg-stone-950 dark:text-stone-50'
+                      : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
+                  )}
+                  title="List View"
+                >
+                  <List className="size-4" />
+                  <span className="hidden sm:inline">List</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
 
       {/* Main Full-Width Property Grid */}
       <div className="mt-2 min-h-125 w-full">
         {filteredProperties.length === 0 ? (
-          <Card className="flex h-80 w-full flex-col items-center justify-center border-dashed border-border/80 bg-surface/50 p-6 text-center">
-            <Search className="mb-3 size-10 text-muted" />
-            <h3 className="font-display text-base font-bold text-ink">
+          <Card className="flex h-80 w-full flex-col items-center justify-center border-dashed border-stone-300/80 bg-stone-50/50 p-6 text-center dark:border-stone-800/80 dark:bg-stone-950/50">
+            <Search className="mb-3 size-10 text-stone-500 dark:text-stone-400" />
+            <h3 className="font-display text-base font-bold text-stone-900 dark:text-stone-50">
               No Verified Properties Found
             </h3>
-            <p className="mt-1 mb-4 max-w-md text-xs text-muted">
-              We couldn&apos;t find any listings matching your AI search query. Try
-              broadening your budget or community constraints.
+            <p className="mt-1 mb-4 max-w-md text-xs text-stone-500 dark:text-stone-400">
+              We couldn&apos;t find any listings matching your AI search query.
+              Try broadening your budget or community constraints.
             </p>
             <Button
               variant="default"
               onClick={handleClearSearch}
-              className="bg-fjord font-semibold text-white shadow-2xs transition-colors hover:bg-fjord-hover"
+              className="bg-stone-900 font-semibold text-white shadow-2xs transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
             >
               Reset All Filters
             </Button>

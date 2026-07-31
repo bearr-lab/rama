@@ -77,7 +77,7 @@ const PEXELS_API_URL = 'https://api.pexels.com/v1';
 export async function searchPhotos(
   query: string,
   perPage = 15,
-  orientation: 'landscape' | 'portrait' | 'square' = 'landscape'
+  orientation: 'landscape' | 'portrait' | 'square' = 'landscape',
 ): Promise<PexelsSearchResponse | null> {
   if (!PEXELS_API_KEY) {
     console.warn('PEXELS_API_KEY is not defined in the environment variables.');
@@ -118,7 +118,7 @@ export async function searchVideos(
   query: string,
   perPage = 15,
   orientation: 'landscape' | 'portrait' | 'square' = 'landscape',
-  size: 'large' | 'medium' | 'small' = 'large'
+  size: 'large' | 'medium' | 'small' = 'large',
 ): Promise<PexelsVideoSearchResponse | null> {
   if (!PEXELS_API_KEY) return null;
 
@@ -130,10 +130,13 @@ export async function searchVideos(
       size,
     });
 
-    const res = await fetch(`${PEXELS_API_URL}/videos/search?${params.toString()}`, {
-      headers: { Authorization: PEXELS_API_KEY },
-      next: { revalidate: 3600 },
-    });
+    const res = await fetch(
+      `${PEXELS_API_URL}/videos/search?${params.toString()}`,
+      {
+        headers: { Authorization: PEXELS_API_KEY },
+        next: { revalidate: 3600 },
+      },
+    );
 
     if (!res.ok) return null;
     return (await res.json()) as PexelsVideoSearchResponse;
@@ -146,7 +149,10 @@ export async function searchVideos(
 /**
  * Utility to get a random cinematic hero image from a specific search query.
  */
-export async function getHeroImage(query: string, fallbackUrl: string): Promise<string> {
+export async function getHeroImage(
+  query: string,
+  fallbackUrl: string,
+): Promise<string> {
   const data = await searchPhotos(query, 5, 'landscape');
   if (data && data.photos && data.photos.length > 0) {
     // Randomize slightly but it only changes every hour due to cache
@@ -165,7 +171,9 @@ export async function getHeroVideo(query: string): Promise<string | null> {
     const randomIndex = Math.floor(Math.random() * data.videos.length);
     const video = data.videos[randomIndex];
     // Find the highest quality mp4 link
-    const hdFiles = video.video_files.filter((f) => f.quality === 'hd' && f.file_type === 'video/mp4');
+    const hdFiles = video.video_files.filter(
+      (f) => f.quality === 'hd' && f.file_type === 'video/mp4',
+    );
     if (hdFiles.length > 0) {
       // Sort by width descending to get the best HD/4K option
       hdFiles.sort((a, b) => b.width - a.width);

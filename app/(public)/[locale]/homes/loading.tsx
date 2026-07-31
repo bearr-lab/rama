@@ -4,12 +4,12 @@ export default function HomesLoading() {
   return (
     <div className="container mx-auto mt-16 space-y-8 px-4 py-8">
       {/* Search Bar Skeleton */}
-      <div className="mx-auto h-14 w-full max-w-3xl animate-pulse rounded-lg bg-surface-subtle" />
+      <div className="mx-auto h-14 w-full max-w-3xl animate-pulse bg-stone-100 dark:bg-stone-900" />
 
       {/* Filters Skeleton */}
       <div className="flex flex-wrap gap-2">
         {Array.from({ length: 6 }).map((_, i) => (
-          <Skeleton key={i} className="h-8 w-24 rounded-full" />
+          <Skeleton key={i} className="h-8 w-24" />
         ))}
       </div>
 
@@ -18,9 +18,9 @@ export default function HomesLoading() {
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={i}
-            className="overflow-hidden rounded-xl border border-border"
+            className="overflow-hidden border border-stone-300 dark:border-stone-800"
           >
-            <Skeleton className="aspect-[4/3] w-full rounded-none" />
+            <Skeleton className="aspect-4/3 w-full rounded-none" />
             <div className="space-y-4 p-4">
               <Skeleton className="h-6 w-3/4" />
               <Skeleton className="h-4 w-1/2" />

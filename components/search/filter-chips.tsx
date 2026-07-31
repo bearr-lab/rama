@@ -60,13 +60,13 @@ export function FilterChips({
             type="button"
             onClick={() => toggleOption(option.value)}
             className={cn(
-              'flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase transition-all duration-200 backdrop-blur-md shadow-xs cursor-pointer',
+              'flex cursor-pointer items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase shadow-xs backdrop-blur-md transition-all duration-200',
               isSelected
-                ? 'bg-white text-ink shadow-md scale-[1.02] border border-white'
+                ? 'scale-1.02 border border-white bg-white text-ink shadow-md'
                 : 'border border-white/30 bg-white/15 text-white hover:bg-white/30',
             )}
           >
-            {isSelected && <Check className="h-3.5 w-3.5 text-fjord" />}
+            {isSelected && <Check className="size-3.5 text-fjord" />}
             {option.label}
           </button>
         );

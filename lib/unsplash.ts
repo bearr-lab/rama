@@ -28,7 +28,8 @@ export async function triggerUnsplashDownload(
     // Strict allowlist: only allow https to api.unsplash.com or images.unsplash.com
     if (
       url.protocol !== 'https:' ||
-      (url.hostname !== 'unsplash.com' && !url.hostname.endsWith('.unsplash.com'))
+      (url.hostname !== 'unsplash.com' &&
+        !url.hostname.endsWith('.unsplash.com'))
     ) {
       logger.warn('SSRF protection blocked untrusted Unsplash download URL', {
         hostname: url.hostname,
@@ -43,7 +44,9 @@ export async function triggerUnsplashDownload(
     // For official api.unsplash.com download tracking endpoints, verify path and attach Client-ID
     if (url.hostname === 'api.unsplash.com') {
       if (!/^\/photos\/[^/]+\/download$/.test(url.pathname)) {
-        logger.warn('Invalid Unsplash API path for download tracking', { pathname: url.pathname });
+        logger.warn('Invalid Unsplash API path for download tracking', {
+          pathname: url.pathname,
+        });
         return false;
       }
       const response = await fetch(url.toString(), {

@@ -13,7 +13,10 @@ type Story = StoryObj<typeof Avatar>;
 export const Default: Story = {
   render: () => (
     <Avatar>
-      <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="User Avatar" />
+      <AvatarImage
+        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150"
+        alt="User Avatar"
+      />
       <AvatarFallback>RM</AvatarFallback>
     </Avatar>
   ),

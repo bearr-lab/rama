@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
-import { SearchX, FolderOpen, HeartCrack, AlertCircle, Sparkles } from 'lucide-react';
+import {
+  SearchX,
+  FolderOpen,
+  HeartCrack,
+  AlertCircle,
+  Sparkles,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export type EmptyStateVariant = 'search' | 'shortlist' | 'error' | 'default';
@@ -22,29 +28,29 @@ export function EmptyState({
   const getIcon = () => {
     switch (variant) {
       case 'search':
-        return <SearchX className="h-10 w-10 text-fjord" />;
+        return <SearchX className="size-10 text-fjord" />;
       case 'shortlist':
-        return <HeartCrack className="h-10 w-10 text-rose-500" />;
+        return <HeartCrack className="size-10 text-rose-500" />;
       case 'error':
-        return <AlertCircle className="h-10 w-10 text-amber-500" />;
+        return <AlertCircle className="size-10 text-amber-500" />;
       case 'default':
       default:
-        return <FolderOpen className="h-10 w-10 text-fjord" />;
+        return <FolderOpen className="size-10 text-fjord" />;
     }
   };
 
   return (
     <div
       className={cn(
-        'relative flex flex-col items-center justify-center rounded-3xl border border-border/40 bg-surface/70 p-10 text-center shadow-subtle backdrop-blur-md md:p-16 transition-all duration-500 hover:shadow-floating',
+        'shadow-subtle hover:shadow-floating relative flex flex-col items-center justify-center rounded-3xl border border-border/40 bg-surface/70 p-10 text-center backdrop-blur-md transition-all duration-500 md:p-16',
         className,
       )}
     >
-      <div className="absolute top-6 right-6 text-fjord/20 pointer-events-none">
-        <Sparkles className="h-8 w-8 animate-pulse" />
+      <div className="pointer-events-none absolute top-6 right-6 text-fjord/20">
+        <Sparkles className="size-8 animate-pulse" />
       </div>
 
-      <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-surface to-surface-subtle shadow-md border border-border/40">
+      <div className="mb-6 flex size-20 items-center justify-center rounded-3xl border border-border/40 bg-gradient-to-br from-surface to-surface-subtle shadow-md">
         {getIcon()}
       </div>
 
@@ -52,7 +58,7 @@ export function EmptyState({
         {title}
       </h3>
 
-      <p className="mx-auto mb-8 max-w-md text-sm font-light leading-relaxed text-muted-foreground">
+      <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed font-light text-muted-foreground">
         {description}
       </p>
 

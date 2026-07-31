@@ -13,16 +13,20 @@ export async function proxy(request: NextRequest) {
   const { response, userId } = await updateSession(request, intlResponse);
 
   const isAuthRoute = request.nextUrl.pathname.includes('/login');
-  const isWorkspaceRoute = /\/(dashboard|discover|community|decision-lab|advisor|documents|portfolio|property|settings|shortlist|tasks)(?:\/|$)/.test(
-    request.nextUrl.pathname,
-  );
+  const isWorkspaceRoute =
+    /\/(dashboard|discover|community|decision-lab|advisor|documents|portfolio|property|settings|shortlist|tasks)(?:\/|$)/.test(
+      request.nextUrl.pathname,
+    );
 
   const hasSession = Boolean(userId);
 
   if (isWorkspaceRoute && !hasSession) {
     const locale = request.nextUrl.pathname.split('/')[1] || 'en';
     const redirectResponse = NextResponse.redirect(
-      new URL(`/${locale}/login?next=${encodeURIComponent(request.nextUrl.pathname)}`, request.url),
+      new URL(
+        `/${locale}/login?next=${encodeURIComponent(request.nextUrl.pathname)}`,
+        request.url,
+      ),
     );
     // Preserve cookies from intlResponse (which includes Supabase session updates)
     response.cookies.getAll().forEach((cookie) => {

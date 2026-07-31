@@ -20,7 +20,7 @@ export function AnimatedShinyText({
       }
       className={cn(
         'mx-auto text-ink/70 dark:text-white/70',
-        'animate-shiny-text bg-clip-text bg-no-repeat [background-position:0_0] [background-size:var(--shiny-width)_100%]',
+        'animate-shiny-text [background-size:var(--shiny-width)_100%] bg-clip-text [background-position:0_0] bg-no-repeat',
         'bg-gradient-to-r from-transparent via-fjord/80 via-50% to-transparent dark:via-sky-400/80',
         'transition-all duration-300 ease-in-out',
         className,

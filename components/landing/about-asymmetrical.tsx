@@ -6,9 +6,7 @@ interface AboutAsymmetricalProps {
   isArabic: boolean;
 }
 
-export function AboutAsymmetrical({
-  isArabic,
-}: AboutAsymmetricalProps) {
+export function AboutAsymmetrical({ isArabic }: AboutAsymmetricalProps) {
   return (
     <Section
       background="canvas"
@@ -31,7 +29,7 @@ export function AboutAsymmetrical({
               <p className="text-sm font-medium tracking-[0.2em] text-fjord uppercase">
                 {isArabic ? 'حول راما' : 'About RAMA'}
               </p>
-              <h2 className="leading-[1.1] font-display text-4xl text-ink lg:text-5xl xl:text-6xl">
+              <h2 className="leading-1.1 font-display text-4xl text-ink lg:text-5xl xl:text-6xl">
                 {isArabic ? 'إعادة تعريف الشفافية' : 'Redefining Transparency'}
                 <br />
                 <span className="font-light text-muted-foreground italic">
