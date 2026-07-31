@@ -57,17 +57,17 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        'sticky top-0 z-30 hidden h-screen shrink-0 flex-col border-e border-border/60 bg-surface transition-all duration-300 md:flex',
+        'sticky top-0 z-30 hidden h-screen shrink-0 flex-col border-e border-stone-300/60 bg-stone-50 transition-all duration-300 md:flex dark:border-stone-800/60 dark:bg-stone-950',
         collapsed ? 'w-19' : 'w-64',
       )}
     >
-      <div className="flex h-16 items-center justify-between border-b border-border/60 px-5">
+      <div className="flex h-16 items-center justify-between border-b border-stone-300/60 px-5 dark:border-stone-800/60">
         {!collapsed && (
           <Link
             href={`/${locale}/dashboard`}
-            className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-ink transition-colors hover:text-fjord"
+            className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-stone-900 transition-colors hover:text-stone-900 dark:text-stone-100"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400 to-fjord text-sm font-bold text-white shadow-xs">
+            <span className="flex size-8 items-center justify-center bg-linear-to-r from-sky-400 to-fjord text-sm font-bold text-white shadow-xs">
               R
             </span>
             <span>RAMA</span>
@@ -76,7 +76,7 @@ export function Sidebar() {
         {collapsed && (
           <Link
             href={`/${locale}/dashboard`}
-            className="mx-auto flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400 to-fjord font-display text-sm font-bold text-white shadow-xs"
+            className="mx-auto flex size-8 items-center justify-center bg-linear-to-r from-sky-400 to-fjord font-display text-sm font-bold text-white shadow-xs"
           >
             R
           </Link>
@@ -87,7 +87,7 @@ export function Sidebar() {
         {NAV_SECTIONS.map((section) => (
           <div key={section.title} className="flex flex-col gap-1">
             {!collapsed && (
-              <p className="px-3 mb-1.5 text-caption font-bold tracking-wider text-text/90 uppercase">
+              <p className="text-caption mb-1.5 px-3 font-bold tracking-wider text-text/90 uppercase">
                 {section.title}
               </p>
             )}
@@ -100,10 +100,10 @@ export function Sidebar() {
                   key={item.href}
                   href={fullHref}
                   className={cn(
-                    'group text-body-sm flex items-center justify-between rounded-xl px-3 py-2.5 font-medium transition-all',
+                    'group text-body-sm flex items-center justify-between px-3 py-2.5 font-medium transition-all',
                     isActive
-                      ? 'bg-fjord/10 font-semibold text-fjord shadow-2xs'
-                      : 'text-text hover:bg-surface-subtle hover:text-ink',
+                      ? 'bg-stone-900/10 font-semibold text-stone-900 shadow-2xs dark:bg-stone-100/10 dark:text-stone-100'
+                      : 'text-text hover:bg-stone-100 hover:text-stone-900 dark:bg-stone-900 dark:text-stone-50',
                     collapsed && 'justify-center px-0',
                   )}
                   title={collapsed ? item.name : undefined}
@@ -111,8 +111,10 @@ export function Sidebar() {
                   <div className="flex items-center gap-3">
                     <item.icon
                       className={cn(
-                        'h-5 w-5 shrink-0 transition-colors',
-                        isActive ? 'text-fjord' : 'text-text/80 group-hover:text-ink',
+                        'size-5 shrink-0 transition-colors',
+                        isActive
+                          ? 'text-stone-900 dark:text-stone-100'
+                          : 'text-text/80 group-hover:text-stone-900 dark:text-stone-50',
                       )}
                     />
                     {!collapsed && <span>{item.name}</span>}
@@ -124,35 +126,39 @@ export function Sidebar() {
         ))}
       </nav>
 
-      <div className="mt-auto flex flex-col gap-1 border-t border-border/60 p-3">
+      <div className="mt-auto flex flex-col gap-1 border-t border-stone-300/60 p-3 dark:border-stone-800/60">
         <Link
           href={`/${locale}/settings`}
           className={cn(
-            'group text-body-sm flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-text transition-all hover:bg-surface-subtle hover:text-ink',
+            'group text-body-sm flex items-center gap-3 px-3 py-2.5 font-medium text-text transition-all hover:bg-stone-100 hover:text-stone-900 dark:bg-stone-900 dark:text-stone-50',
             pathname.startsWith(`/${locale}/settings`) &&
-              'bg-fjord/10 font-semibold text-fjord shadow-2xs',
+              'bg-stone-900/10 font-semibold text-stone-900 shadow-2xs dark:bg-stone-100/10 dark:text-stone-100',
             collapsed && 'justify-center px-0',
           )}
           title={collapsed ? 'Settings' : undefined}
         >
-          <Settings className={cn(
-            'h-5 w-5 shrink-0 transition-colors',
-            pathname.startsWith(`/${locale}/settings`) ? 'text-fjord' : 'text-text/80 group-hover:text-ink'
-          )} />
+          <Settings
+            className={cn(
+              'size-5 shrink-0 transition-colors',
+              pathname.startsWith(`/${locale}/settings`)
+                ? 'text-stone-900 dark:text-stone-100'
+                : 'text-text/80 group-hover:text-stone-900 dark:text-stone-50',
+            )}
+          />
           {!collapsed && <span>Settings</span>}
         </Link>
         <button
           onClick={() => setCollapsed(!collapsed)}
           className={cn(
-            'group text-body-sm flex w-full items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-text transition-all hover:bg-surface-subtle hover:text-ink',
+            'group text-body-sm flex w-full items-center gap-3 px-3 py-2.5 font-medium text-text transition-all hover:bg-stone-100 hover:text-stone-900 dark:bg-stone-900 dark:text-stone-50',
             collapsed && 'justify-center px-0',
           )}
           title={collapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {collapsed ? (
-            <Menu className="h-5 w-5 text-text/80 group-hover:text-ink" />
+            <Menu className="size-5 text-text/80 group-hover:text-stone-900 dark:text-stone-50" />
           ) : (
-            <ChevronLeft className="h-5 w-5 shrink-0 text-text/80 group-hover:text-ink" />
+            <ChevronLeft className="size-5 shrink-0 text-text/80 group-hover:text-stone-900 dark:text-stone-50" />
           )}
           {!collapsed && <span>Collapse</span>}
         </button>
@@ -166,14 +172,14 @@ export function MobileSidebarNav({ onClose }: { onClose?: () => void }) {
   const locale = useLocale() || 'en';
 
   return (
-    <div className="flex h-full flex-col bg-surface">
-      <div className="flex h-16 items-center border-b border-border/60 px-5">
+    <div className="flex h-full flex-col bg-stone-50 dark:bg-stone-950">
+      <div className="flex h-16 items-center border-b border-stone-300/60 px-5 dark:border-stone-800/60">
         <Link
           href={`/${locale}/dashboard`}
           onClick={onClose}
-          className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-ink"
+          className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-stone-900 dark:text-stone-50"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sky-400 to-fjord text-sm font-bold text-white shadow-xs">
+          <span className="flex size-8 items-center justify-center bg-linear-to-r from-sky-400 to-fjord text-sm font-bold text-white shadow-xs">
             R
           </span>
           <span>RAMA</span>
@@ -183,7 +189,7 @@ export function MobileSidebarNav({ onClose }: { onClose?: () => void }) {
       <nav className="flex flex-1 flex-col gap-6 overflow-y-auto px-3 py-6">
         {NAV_SECTIONS.map((section) => (
           <div key={section.title} className="flex flex-col gap-1">
-            <p className="px-3 mb-1.5 text-[11px] font-bold tracking-wider text-text/90 uppercase">
+            <p className="mb-1.5 px-3 text-[11px] font-bold tracking-wider text-text/90 uppercase">
               {section.title}
             </p>
             {section.items.map((item) => {
@@ -196,17 +202,19 @@ export function MobileSidebarNav({ onClose }: { onClose?: () => void }) {
                   href={fullHref}
                   onClick={onClose}
                   className={cn(
-                    'group text-body-sm flex items-center justify-between rounded-xl px-3 py-2.5 font-medium transition-all',
+                    'group text-body-sm flex items-center justify-between px-3 py-2.5 font-medium transition-all',
                     isActive
-                      ? 'bg-fjord/10 font-semibold text-fjord shadow-2xs'
-                      : 'text-text hover:bg-surface-subtle hover:text-ink',
+                      ? 'bg-stone-900/10 font-semibold text-stone-900 shadow-2xs dark:bg-stone-100/10 dark:text-stone-100'
+                      : 'text-text hover:bg-stone-100 hover:text-stone-900 dark:bg-stone-900 dark:text-stone-50',
                   )}
                 >
                   <div className="flex items-center gap-3">
                     <item.icon
                       className={cn(
-                        'h-5 w-5 shrink-0 transition-colors',
-                        isActive ? 'text-fjord' : 'text-text/80 group-hover:text-ink',
+                        'size-5 shrink-0 transition-colors',
+                        isActive
+                          ? 'text-stone-900 dark:text-stone-100'
+                          : 'text-text/80 group-hover:text-stone-900 dark:text-stone-50',
                       )}
                     />
                     <span>{item.name}</span>
@@ -218,20 +226,24 @@ export function MobileSidebarNav({ onClose }: { onClose?: () => void }) {
         ))}
       </nav>
 
-      <div className="mt-auto border-t border-border/60 p-3">
+      <div className="mt-auto border-t border-stone-300/60 p-3 dark:border-stone-800/60">
         <Link
           href={`/${locale}/settings`}
           onClick={onClose}
           className={cn(
-            'group text-body-sm flex items-center gap-3 rounded-xl px-3 py-2.5 font-medium text-text transition-all hover:bg-surface-subtle hover:text-ink',
+            'group text-body-sm flex items-center gap-3 px-3 py-2.5 font-medium text-text transition-all hover:bg-stone-100 hover:text-stone-900 dark:bg-stone-900 dark:text-stone-50',
             pathname.startsWith(`/${locale}/settings`) &&
-              'bg-fjord/10 font-semibold text-fjord shadow-2xs',
+              'bg-stone-900/10 font-semibold text-stone-900 shadow-2xs dark:bg-stone-100/10 dark:text-stone-100',
           )}
         >
-          <Settings className={cn(
-            'h-5 w-5 shrink-0 transition-colors',
-            pathname.startsWith(`/${locale}/settings`) ? 'text-fjord' : 'text-text/80 group-hover:text-ink'
-          )} />
+          <Settings
+            className={cn(
+              'size-5 shrink-0 transition-colors',
+              pathname.startsWith(`/${locale}/settings`)
+                ? 'text-stone-900 dark:text-stone-100'
+                : 'text-text/80 group-hover:text-stone-900 dark:text-stone-50',
+            )}
+          />
           <span>Settings</span>
         </Link>
       </div>

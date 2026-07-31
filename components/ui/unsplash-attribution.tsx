@@ -24,8 +24,8 @@ export function UnsplashAttribution({
       className={cn(
         'z-20 flex items-center gap-1.5 font-sans text-[11px] leading-none transition-opacity duration-200',
         variant === 'overlay'
-          ? 'absolute bottom-3 right-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md'
-          : 'text-muted hover:text-ink',
+          ? 'absolute right-3 bottom-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md'
+          : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
         className,
       )}
     >
@@ -34,7 +34,7 @@ export function UnsplashAttribution({
         href={attr.photographerUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-fjord-light hover:decoration-white"
+        className="dark:text-stone-100-light font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-stone-900 hover:decoration-white"
         onClick={(e) => e.stopPropagation()}
       >
         {photographerName}
@@ -44,7 +44,7 @@ export function UnsplashAttribution({
         href={attr.unsplashUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-fjord-light hover:decoration-white"
+        className="dark:text-stone-100-light font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-stone-900 hover:decoration-white"
         onClick={(e) => e.stopPropagation()}
       >
         Unsplash

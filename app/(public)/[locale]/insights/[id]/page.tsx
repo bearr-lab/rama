@@ -1,6 +1,5 @@
-
 import { getInsightsData } from '@/lib/data/insights';
-import { PageHeader } from '@/components/layout/page-header';
+import { HeroNordic } from '@/components/layout/hero-nordic';
 
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -18,7 +17,9 @@ export async function generateMetadata({
   const { heroInsight, insights } = getInsightsData(locale);
   const insightId = parseInt(id, 10);
   const insight =
-    heroInsight.id === insightId ? heroInsight : insights.find((i) => i.id === insightId);
+    heroInsight.id === insightId
+      ? heroInsight
+      : insights.find((i) => i.id === insightId);
   if (!insight) return {};
   return {
     title: insight.title,
@@ -34,17 +35,20 @@ export default async function InsightDetailPage({
 }) {
   const { locale, id } = await params;
   const isArabic = locale === 'ar';
-  
+
   if (!/^\d+$/.test(id)) {
     notFound();
   }
 
   const { heroInsight, insights } = getInsightsData(locale);
-  
+
   const insightId = parseInt(id, 10);
-  
-  const insight = heroInsight.id === insightId ? heroInsight : insights.find(i => i.id === insightId);
-  
+
+  const insight =
+    heroInsight.id === insightId
+      ? heroInsight
+      : insights.find((i) => i.id === insightId);
+
   if (!insight) {
     notFound();
   }
@@ -53,44 +57,39 @@ export default async function InsightDetailPage({
 
   return (
     <article className="pb-24">
-      <PageHeader
+      <HeroNordic
         title={insight.title}
-        description={insight.description}
+        subtitle={insight.description}
         backgroundImage={insight.image || fallbackImage}
-        variant="editorial"
-        mediaPosition="object-top"
-        badge={
-          <>
-            <span className="flex size-2 animate-pulse rounded-full bg-emerald-400" />
-            <span>{insight.category}</span>
-          </>
+        badgeIcon={<span className="flex size-2 animate-pulse bg-stone-200 dark:bg-stone-800" />}
+        badgeText={insight.category}
+        bottomConsole={
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-white/70">
+            {insight.author && (
+              <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+                <User className="size-3.5 text-white/70" />
+                <span>{insight.author}</span>
+              </div>
+            )}
+            {insight.readTime && (
+              <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+                <Clock className="size-3.5 text-white/70" />
+                <span>{insight.readTime}</span>
+              </div>
+            )}
+            {insight.date && (
+              <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+                <span>{insight.date}</span>
+              </div>
+            )}
+          </div>
         }
-      >
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-white/70">
-           {insight.author && (
-             <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-               <User className="size-3.5 text-emerald-400" />
-               <span>{insight.author}</span>
-             </div>
-           )}
-           {insight.readTime && (
-             <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-               <Clock className="size-3.5 text-emerald-400" />
-               <span>{insight.readTime}</span>
-             </div>
-           )}
-           {insight.date && (
-             <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-               <span>{insight.date}</span>
-             </div>
-           )}
-        </div>
-      </PageHeader>
+      />
 
       <div className="container mx-auto mt-16 max-w-3xl px-4">
-        <Link 
-          href={`/${locale}/insights`} 
-          className="group mb-12 inline-flex items-center gap-2 text-sm font-bold tracking-wider text-muted-foreground uppercase transition-colors hover:text-ink"
+        <Link
+          href={`/${locale}/insights`}
+          className="group mb-12 inline-flex items-center gap-2 text-sm font-bold tracking-wider text-stone-500 uppercase transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100"
         >
           {isArabic ? (
             <>
@@ -104,28 +103,42 @@ export default async function InsightDetailPage({
             </>
           )}
         </Link>
-        
+
         <div className="prose prose-lg dark:prose-invert prose-stone mx-auto w-full">
           <h2 className="mb-8 text-3xl font-bold tracking-tight">
             {insight.title}
           </h2>
-          <p className="lead mb-8 font-serif text-xl text-muted-foreground italic">
+          <p className="lead mb-8 font-serif text-xl text-stone-500 italic dark:text-stone-400">
             {insight.description}
           </p>
-          
+
           <div className="my-8 h-px w-full bg-border" />
-          
-          <p className="text-lg leading-relaxed whitespace-pre-wrap text-ink/90">
+
+          <p className="text-lg leading-relaxed whitespace-pre-wrap text-stone-900 dark:text-stone-50/90">
             {insight.content}
           </p>
-          
+
           {/* Mock Editorial Continued */}
-          <div className="mt-12 rounded-none border border-border bg-surface-subtle p-8">
-            <h3 className="mb-4 text-xl font-bold">{isArabic ? 'النقاط الرئيسية' : 'Key Takeaways'}</h3>
-            <ul className="space-y-3 marker:text-emerald-500">
-              <li>{isArabic ? 'استمرار الطلب المرتفع على العقارات الجاهزة في المجتمعات الفاخرة.' : 'Continued high demand for ready properties in prime communities.'}</li>
-              <li>{isArabic ? 'عوائد الإيجار تظل من بين الأعلى عالمياً بمتوسط 6-8%.' : 'Rental yields remain among the highest globally, averaging 6-8%.'}</li>
-              <li>{isArabic ? 'إطلاق مشاريع جديدة بميزات صديقة للبيئة لجذب المستثمرين.' : 'New project launches focus on eco-friendly features to attract modern investors.'}</li>
+          <div className="mt-12 rounded-none border border-stone-300 bg-stone-100 p-8 dark:border-stone-800 dark:bg-stone-900">
+            <h3 className="mb-4 text-xl font-bold">
+              {isArabic ? 'النقاط الرئيسية' : 'Key Takeaways'}
+            </h3>
+            <ul className="space-y-3 marker:text-stone-800">
+              <li>
+                {isArabic
+                  ? 'استمرار الطلب المرتفع على العقارات الجاهزة في المجتمعات الفاخرة.'
+                  : 'Continued high demand for ready properties in prime communities.'}
+              </li>
+              <li>
+                {isArabic
+                  ? 'عوائد الإيجار تظل من بين الأعلى عالمياً بمتوسط 6-8%.'
+                  : 'Rental yields remain among the highest globally, averaging 6-8%.'}
+              </li>
+              <li>
+                {isArabic
+                  ? 'إطلاق مشاريع جديدة بميزات صديقة للبيئة لجذب المستثمرين.'
+                  : 'New project launches focus on eco-friendly features to attract modern investors.'}
+              </li>
             </ul>
           </div>
         </div>

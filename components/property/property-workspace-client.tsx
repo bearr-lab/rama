@@ -12,9 +12,7 @@ import {
   Bath,
   Maximize2,
   Building,
-  TrendingUp,
   Clock,
-  HelpCircle,
   FileText,
   MessageSquarePlus,
   AlertCircle,
@@ -69,9 +67,9 @@ export function PropertyWorkspaceClient({
       <div className="mb-8">
         <Link
           href={`/${locale}/discover`}
-          className="text-body-sm inline-flex items-center gap-2 font-bold text-muted transition-colors hover:text-ink"
+          className="text-body-sm inline-flex items-center gap-2 font-bold text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="size-4" />
           Back to Search
         </Link>
       </div>
@@ -81,26 +79,26 @@ export function PropertyWorkspaceClient({
         {/* LEFT COLUMN: Media & Details */}
         <div className="min-w-0">
           {/* Hero Image */}
-          <div className="group relative mb-8 aspect-video w-full overflow-hidden rounded-2xl bg-surface-subtle">
+          <div className="group relative mb-8 aspect-video w-full overflow-hidden rounded-none bg-stone-100 dark:bg-stone-900">
             <img
               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
               alt={property.title}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="group- size-full object-cover transition-transform duration-700"
             />
             {/* Status Badge */}
             <div className="absolute top-4 left-4">
               <span
                 className={cn(
-                  'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider shadow-sm backdrop-blur-md',
+                  'inline-flex items-center gap-1.5 rounded-none px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase shadow-sm backdrop-blur-md',
                   isVerified
-                    ? 'border border-verified/40 bg-verified-soft text-verified'
-                    : 'border border-review/40 bg-review-soft text-review',
+                    ? 'border border-stone-900/40 bg-stone-200 text-stone-900 dark:border-stone-100/40 dark:bg-stone-800 dark:text-stone-100'
+                    : 'border border-review/40 bg-stone-100 text-review dark:bg-stone-900',
                 )}
               >
                 {isVerified ? (
-                  <CheckCircle2 className="h-3.5 w-3.5" />
+                  <CheckCircle2 className="size-3.5" />
                 ) : (
-                  <Clock className="h-3.5 w-3.5" />
+                  <Clock className="size-3.5" />
                 )}
                 {isVerified ? 'DLD Verified' : 'In Review'}
               </span>
@@ -109,29 +107,29 @@ export function PropertyWorkspaceClient({
             <div className="absolute top-4 right-4 flex gap-2">
               <button
                 onClick={() => setIsGalleryOpen(true)}
-                className="flex items-center gap-1.5 px-3.5 py-2 bg-fjord text-white text-xs font-semibold shadow-md transition-transform hover:scale-105"
+                className="flex items-center gap-1.5 bg-stone-900 px-3.5 py-2 text-xs font-semibold text-white shadow-md transition-transform dark:bg-stone-100"
                 title="Inspect Rooms & Finishes"
               >
-                <Eye className="h-4 w-4" />
+                <Eye className="size-4" />
                 <span>Room-by-Room Inspection</span>
               </button>
               <button
-                className="flex h-10 w-10 items-center justify-center bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-white/40"
+                className="flex size-10 items-center justify-center bg-white/20 text-white backdrop-blur-md transition-colors hover:bg-white/40"
                 title="Share"
               >
-                <Share2 className="h-4 w-4" />
+                <Share2 className="size-4" />
               </button>
               <button
                 onClick={() => setIsSaved(!isSaved)}
                 className={cn(
-                  'flex h-10 w-10 items-center justify-center backdrop-blur-md transition-colors',
+                  'flex size-10 items-center justify-center backdrop-blur-md transition-colors',
                   isSaved
-                    ? 'bg-fjord text-white'
+                    ? 'bg-stone-900 text-white dark:bg-stone-100'
                     : 'bg-white/20 text-white hover:bg-white/40',
                 )}
                 title="Save"
               >
-                <Heart className={cn('h-4 w-4', isSaved && 'fill-current')} />
+                <Heart className={cn('size-4', isSaved && 'fill-current')} />
               </button>
             </div>
 
@@ -146,29 +144,59 @@ export function PropertyWorkspaceClient({
           {/* Header Info */}
           <div className="mb-8">
             <div className="mb-2 flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-widest text-fjord">
+              <span className="text-xs font-semibold tracking-widest text-stone-900 uppercase dark:text-stone-100">
                 {property.community}
               </span>
-              <span className="h-1 w-1 rounded-full bg-border" />
-              <span className="text-xs font-medium uppercase tracking-widest text-muted">
+              <span className="size-1 rounded-none bg-border" />
+              <span className="text-xs font-medium tracking-widest text-stone-500 uppercase dark:text-stone-400">
                 Penthouse
               </span>
             </div>
-            <h1 className="mb-2 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
+            <h1 className="mb-2 font-display text-4xl leading-tight font-bold text-stone-900 sm:text-5xl dark:text-stone-50">
               {property.title}
             </h1>
             <p className="font-display text-2xl text-text">
               AED {property.price.toLocaleString()}
             </p>
-            <div className="mt-4 pt-4 border-t border-border/40">
+            <div className="mt-4 border-t border-stone-300/40 pt-4 dark:border-stone-800/40">
               <AvatarStack
                 avatars={[
-                  { id: '1', name: 'Zayed Al Maktoum', role: 'DLD Senior Escrow Auditor', status: 'verified' },
-                  { id: '2', name: 'Elena Rostova', role: 'Nordic Architecture Lead', status: 'verified' },
-                  { id: '3', name: 'Tariq Mansoor', role: 'Legal Compliance Advisor', status: 'online' },
-                  { id: '4', name: 'Sara Chen', role: 'Co-investor Analyst', status: 'online' },
-                  { id: '5', name: 'Marcus Vance', role: 'Valuation Expert', status: 'offline' },
-                  { id: '6', name: 'Amira Hassan', role: 'Title Deed Specialist', status: 'verified' },
+                  {
+                    id: '1',
+                    name: 'Zayed Al Maktoum',
+                    role: 'DLD Senior Escrow Auditor',
+                    status: 'verified',
+                  },
+                  {
+                    id: '2',
+                    name: 'Elena Rostova',
+                    role: 'Nordic Architecture Lead',
+                    status: 'verified',
+                  },
+                  {
+                    id: '3',
+                    name: 'Tariq Mansoor',
+                    role: 'Legal Compliance Advisor',
+                    status: 'online',
+                  },
+                  {
+                    id: '4',
+                    name: 'Sara Chen',
+                    role: 'Co-investor Analyst',
+                    status: 'online',
+                  },
+                  {
+                    id: '5',
+                    name: 'Marcus Vance',
+                    role: 'Valuation Expert',
+                    status: 'offline',
+                  },
+                  {
+                    id: '6',
+                    name: 'Amira Hassan',
+                    role: 'Title Deed Specialist',
+                    status: 'verified',
+                  },
                 ]}
                 label="Verified Escrow Auditors & Co-investors viewing this unit"
               />
@@ -176,7 +204,7 @@ export function PropertyWorkspaceClient({
           </div>
 
           {/* Tab Navigation */}
-          <div className="mb-8 flex gap-8 border-b border-border">
+          <div className="mb-8 flex gap-8 border-b border-stone-300 dark:border-stone-800">
             {[
               { id: 'overview', label: 'Overview' },
               { id: 'inspection', label: 'Visual Inspection (Kibo)' },
@@ -189,8 +217,8 @@ export function PropertyWorkspaceClient({
                 className={cn(
                   'border-b-2 py-4 text-sm font-bold transition-colors',
                   activeTab === tab.id
-                    ? 'border-fjord text-ink'
-                    : 'border-transparent text-muted hover:text-ink',
+                    ? 'border-stone-900 text-stone-900 dark:border-stone-100 dark:text-stone-50'
+                    : 'border-transparent text-stone-500 hover:text-stone-900 dark:text-stone-400',
                 )}
               >
                 {tab.label}
@@ -199,33 +227,41 @@ export function PropertyWorkspaceClient({
           </div>
 
           {/* Tab Content */}
-          <div className="min-h-[300px]">
+          <div className="min-h-75">
             {activeTab === 'overview' && (
               <div className="animate-in fade-in space-y-8 duration-300">
                 <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4">
                   <div>
-                    <p className="text-xs text-muted">Bedrooms</p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink">
-                      <BedDouble className="h-4 w-4" /> {property.beds}
+                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                      Bedrooms
+                    </p>
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-stone-900 dark:text-stone-50">
+                      <BedDouble className="size-4" /> {property.beds}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted">Bathrooms</p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink">
-                      <Bath className="h-4 w-4" /> {property.baths}
+                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                      Bathrooms
+                    </p>
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-stone-900 dark:text-stone-50">
+                      <Bath className="size-4" /> {property.baths}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted">Size</p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink">
-                      <Maximize2 className="h-4 w-4" />{' '}
+                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                      Size
+                    </p>
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-stone-900 dark:text-stone-50">
+                      <Maximize2 className="size-4" />{' '}
                       {property.sqft.toLocaleString()} sqft
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted">Developer</p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink">
-                      <Building className="h-4 w-4" /> Emaar
+                    <p className="text-xs text-stone-500 dark:text-stone-400">
+                      Developer
+                    </p>
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-stone-900 dark:text-stone-50">
+                      <Building className="size-4" /> Emaar
                     </p>
                   </div>
                 </div>
@@ -238,20 +274,22 @@ export function PropertyWorkspaceClient({
                   </p>
                   <p>
                     The property has been cryptographically audited against DLD
-                    escrow records with zero pending developer disputes or service
-                    charge arrears.
+                    escrow records with zero pending developer disputes or
+                    service charge arrears.
                   </p>
                 </div>
               </div>
             )}
             {activeTab === 'inspection' && (
               <div className="animate-in fade-in space-y-8 duration-300">
-                <div className="rounded-xl border border-border/60 bg-surface-subtle p-6">
-                  <h3 className="mb-2 font-display text-lg font-bold text-ink">
+                <div className="rounded-none border border-stone-300/60 bg-stone-100 p-6 dark:border-stone-800/60 dark:bg-stone-900">
+                  <h3 className="mb-2 font-display text-lg font-bold text-stone-900 dark:text-stone-50">
                     3D Render vs. Real Construction Progress
                   </h3>
                   <p className="mb-6 text-sm text-text">
-                    Use our interactive Kibo UI before/after slider to compare architectural master plan renders with real-time verified construction site photos from DLD escrow audits.
+                    Use our interactive Kibo UI before/after slider to compare
+                    architectural master plan renders with real-time verified
+                    construction site photos from DLD escrow audits.
                   </p>
                   <div className="aspect-video w-full">
                     <Comparison
@@ -259,17 +297,19 @@ export function PropertyWorkspaceClient({
                       afterLabel="DLD Verified Construction"
                       beforeImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
                       afterImage="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
-                      className="h-full w-full shadow-lg"
+                      className="size-full shadow-lg"
                     />
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-border/60 bg-surface-subtle p-6">
-                  <h3 className="mb-2 font-display text-lg font-bold text-ink">
+                <div className="rounded-none border border-stone-300/60 bg-stone-100 p-6 dark:border-stone-800/60 dark:bg-stone-900">
+                  <h3 className="mb-2 font-display text-lg font-bold text-stone-900 dark:text-stone-50">
                     High-Resolution Master Layout & Floor Plan
                   </h3>
                   <p className="mb-6 text-sm text-text">
-                    Hover to zoom or click the maximize button to inspect architectural blueprints, unit dimensions, and private elevator access in full screen.
+                    Hover to zoom or click the maximize button to inspect
+                    architectural blueprints, unit dimensions, and private
+                    elevator access in full screen.
                   </p>
                   <div className="aspect-video w-full">
                     <ImageZoom
@@ -277,46 +317,46 @@ export function PropertyWorkspaceClient({
                       alt="DLD Verified Floor Plan"
                       badge="DLD Verified Escrow Layout"
                       caption="Penthouse Level 42 • Master Layout & Private Elevator Access"
-                      className="h-full w-full shadow-lg"
+                      className="size-full shadow-lg"
                     />
                   </div>
                 </div>
               </div>
             )}
             {activeTab === 'location' && (
-              <div className="animate-in fade-in rounded-xl border border-border bg-surface p-6 duration-300">
-                <div className="mb-4 flex items-center gap-2 font-bold text-ink">
-                  <MapPin className="h-5 w-5 text-fjord" />
+              <div className="animate-in fade-in rounded-none border border-stone-300 bg-stone-50 p-6 duration-300 dark:border-stone-800 dark:bg-stone-950">
+                <div className="mb-4 flex items-center gap-2 font-bold text-stone-900 dark:text-stone-50">
+                  <MapPin className="size-5 text-stone-900 dark:text-stone-100" />
                   {property.community} Neighborhood
                 </div>
                 <p className="text-sm leading-relaxed text-text">
-                  A premium waterfront community offering an integrated lifestyle
-                  with retail, dining, and leisure options. Excellent connectivity
-                  to Sheikh Zayed Road and walking distance to the Marina
-                  Promenade.
+                  A premium waterfront community offering an integrated
+                  lifestyle with retail, dining, and leisure options. Excellent
+                  connectivity to Sheikh Zayed Road and walking distance to the
+                  Marina Promenade.
                 </p>
               </div>
             )}
             {activeTab === 'dld' && (
               <div className="animate-in fade-in space-y-8 duration-300">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <div className="flex items-center justify-between rounded-xl border border-border bg-surface p-4">
+                  <div className="flex items-center justify-between rounded-none border border-stone-300 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950">
                     <span className="text-sm font-medium text-text">
                       Title Deed Verified
                     </span>
-                    <CheckCircle2 className="h-5 w-5 text-verified" />
+                    <CheckCircle2 className="size-5 text-stone-900 dark:text-stone-100" />
                   </div>
-                  <div className="flex items-center justify-between rounded-xl border border-border bg-surface p-4">
+                  <div className="flex items-center justify-between rounded-none border border-stone-300 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950">
                     <span className="text-sm font-medium text-text">
                       No Active Disputes
                     </span>
-                    <CheckCircle2 className="h-5 w-5 text-verified" />
+                    <CheckCircle2 className="size-5 text-stone-900 dark:text-stone-100" />
                   </div>
-                  <div className="flex items-center justify-between rounded-xl border border-border bg-surface p-4">
+                  <div className="flex items-center justify-between rounded-none border border-stone-300 bg-stone-50 p-4 dark:border-stone-800 dark:bg-stone-950">
                     <span className="text-sm font-medium text-text">
                       Developer Escrow Active
                     </span>
-                    <CheckCircle2 className="h-5 w-5 text-verified" />
+                    <CheckCircle2 className="size-5 text-stone-900 dark:text-stone-100" />
                   </div>
                 </div>
 
@@ -428,10 +468,10 @@ export function PropertyWorkspaceClient({
         <div className="relative">
           <div className="sticky top-24 space-y-6">
             {/* Action Panel */}
-            <div className="rounded-2xl border border-border bg-surface p-6 shadow-sm">
+            <div className="rounded-none border border-stone-300 bg-stone-50 p-6 shadow-sm dark:border-stone-800 dark:bg-stone-950">
               <Button
                 size="lg"
-                className="mb-3 w-full bg-fjord text-white hover:bg-fjord-hover"
+                className="mb-3 w-full bg-stone-900 text-white hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
                 onClick={() => setIsSaved(true)}
               >
                 Add to Shortlist
@@ -439,55 +479,61 @@ export function PropertyWorkspaceClient({
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full bg-canvas text-ink hover:bg-surface-subtle"
+                className="w-full bg-stone-50 text-stone-900 hover:bg-stone-100 dark:bg-stone-900 dark:bg-stone-950 dark:text-stone-50"
               >
                 Schedule Viewing
               </Button>
             </div>
 
             {/* Evidence Notes */}
-            <div className="rounded-2xl border border-border bg-surface p-6 shadow-sm">
-              <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink">
-                <FileText className="h-5 w-5 text-muted" />
+            <div className="rounded-none border border-stone-300 bg-stone-50 p-6 shadow-sm dark:border-stone-800 dark:bg-stone-950">
+              <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-stone-900 dark:text-stone-50">
+                <FileText className="size-5 text-stone-500 dark:text-stone-400" />
                 Your Evidence Notes
               </h3>
               <textarea
                 placeholder="Capture your thoughts, trade-offs, and observations here..."
-                className="min-h-[120px] w-full resize-none rounded-xl border border-border bg-canvas p-4 text-sm text-ink placeholder:text-muted focus:border-fjord focus:outline-none focus:ring-1 focus:ring-fjord"
+                className="min-h-30 w-full resize-none rounded-none border border-stone-300 bg-stone-50 p-4 text-sm text-stone-900 placeholder:text-stone-500 focus:border-stone-900 focus:ring-1 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400"
               />
-              <div className="mt-4 pt-4 border-t border-border">
-                <h4 className="mb-3 text-xs font-bold uppercase tracking-widest text-muted">
+              <div className="mt-4 border-t border-stone-300 pt-4 dark:border-stone-800">
+                <h4 className="mb-3 text-xs font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400">
                   Open Questions
                 </h4>
-                <button className="flex w-full items-center gap-2 rounded-lg border border-dashed border-border bg-canvas p-3 text-sm font-medium text-muted transition-colors hover:border-fjord/50 hover:bg-fjord-soft hover:text-fjord">
-                  <MessageSquarePlus className="h-4 w-4" />
+                <button className="flex w-full items-center gap-2 rounded-none border border-dashed border-stone-300 bg-stone-50 p-3 text-sm font-medium text-stone-500 transition-colors hover:border-stone-900/50 hover:bg-stone-200 hover:text-stone-900 dark:border-stone-100/50 dark:border-stone-800 dark:bg-stone-800 dark:bg-stone-950 dark:text-stone-100 dark:text-stone-400">
+                  <MessageSquarePlus className="size-4" />
                   Add question for broker
                 </button>
               </div>
             </div>
 
             {/* ROI Estimate */}
-            <div className="rounded-2xl border border-border/80 bg-ink-surface p-6 text-white shadow-sm">
+            <div className="rounded-none border border-stone-300/80 bg-stone-900 p-6 text-white shadow-sm dark:border-stone-800/80 dark:bg-stone-50">
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h4 className="font-display text-lg">Projected ROI</h4>
                   <p className="text-xs text-white/70">Annual Estimate</p>
                 </div>
-                <div className="rounded bg-emerald-500/20 px-2 py-1 text-[10px] font-bold tracking-widest text-emerald-300 uppercase">
+                <div className="rounded-none bg-stone-200/20 px-2 py-1 text-[10px] font-bold tracking-widest text-stone-900 uppercase dark:bg-stone-800/20 dark:text-stone-100">
                   High Potential
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-2xl font-bold">
-                    {(property.trustPassport.healthScore > 90 ? 6.4 : 5.8).toFixed(1)}%
+                    {(property.trustPassport.healthScore > 90
+                      ? 6.4
+                      : 5.8
+                    ).toFixed(1)}
+                    %
                   </p>
                   <p className="text-[10px] tracking-tighter text-white/70 uppercase">
                     Net Yield
                   </p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold">AED {(property.price * 0.064 / 1000).toFixed(0)}k</p>
+                  <p className="text-2xl font-bold">
+                    AED {((property.price * 0.064) / 1000).toFixed(0)}k
+                  </p>
                   <p className="text-[10px] tracking-tighter text-white/70 uppercase">
                     Gross Rent/yr
                   </p>
@@ -497,10 +543,10 @@ export function PropertyWorkspaceClient({
 
             {/* Expert Signal */}
             {!isVerified && (
-              <div className="flex gap-4 rounded-xl border border-[var(--review-soft)] bg-[var(--review-soft)] p-4">
-                <AlertCircle className="shrink-0 text-xl text-[var(--review)]" />
+              <div className="flex gap-4 rounded-none border border-stone-300 bg-stone-100 p-4 dark:border-stone-800 dark:bg-stone-900">
+                <AlertCircle className="shrink-0 text-xl text-review" />
                 <div>
-                  <p className="text-xs font-semibold text-ink">
+                  <p className="text-xs font-semibold text-stone-900 dark:text-stone-50">
                     Research Alert
                   </p>
                   <p className="mt-1 text-[11px] leading-normal text-text">
@@ -516,13 +562,13 @@ export function PropertyWorkspaceClient({
       </div>
 
       {/* BOTTOM SECTION: Similar Properties */}
-      <section className="mt-24 space-y-8 border-t border-border pt-12">
+      <section className="mt-24 space-y-8 border-t border-stone-300 pt-12 dark:border-stone-800">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-3xl font-bold text-ink">
+          <h2 className="font-display text-3xl font-bold text-stone-900 dark:text-stone-50">
             Benchmark Properties
           </h2>
-          <button className="flex items-center gap-2 text-sm font-semibold text-fjord transition-all hover:gap-3">
-            Compare All <ArrowRight className="h-4 w-4" />
+          <button className="flex items-center gap-2 text-sm font-semibold text-stone-900 transition-all hover:gap-3 dark:text-stone-100">
+            Compare All <ArrowRight className="size-4" />
           </button>
         </div>
 
@@ -552,28 +598,32 @@ export function PropertyWorkspaceClient({
           ].map((benchmark, i) => (
             <div
               key={i}
-              className="group overflow-hidden rounded-xl border border-border bg-surface"
+              className="group overflow-hidden rounded-none border border-stone-300 bg-stone-50 dark:border-stone-800 dark:bg-stone-950"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-4/3 overflow-hidden">
                 <img
                   src={benchmark.img}
                   alt={benchmark.title}
-                  className="h-full w-full object-cover transition-transform group-hover:scale-105"
+                  className="group- size-full object-cover transition-transform"
                 />
                 <div className="absolute top-3 left-3">
-                  <span className="rounded bg-surface/90 px-2 py-1 text-[10px] font-bold text-ink shadow-sm backdrop-blur dark:bg-black/80 dark:text-white">
+                  <span className="rounded-none bg-stone-50/90 px-2 py-1 text-[10px] font-bold text-stone-900 shadow-sm backdrop-blur dark:bg-stone-950/90 dark:text-white">
                     AED {benchmark.price}
                   </span>
                 </div>
               </div>
               <div className="space-y-2 p-4">
-                <h3 className="font-medium text-ink">{benchmark.title}</h3>
-                <p className="text-xs text-muted">{benchmark.specs}</p>
+                <h3 className="font-medium text-stone-900 dark:text-stone-50">
+                  {benchmark.title}
+                </h3>
+                <p className="text-xs text-stone-500 dark:text-stone-400">
+                  {benchmark.specs}
+                </p>
                 <div className="mt-2 flex items-center gap-2">
                   {benchmark.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded border border-border bg-surface-subtle px-2 py-0.5 text-[10px] font-medium text-muted"
+                      className="rounded-none border border-stone-300 bg-stone-100 px-2 py-0.5 text-[10px] font-medium text-stone-500 dark:border-stone-800 dark:bg-stone-900 dark:text-stone-400"
                     >
                       {tag}
                     </span>

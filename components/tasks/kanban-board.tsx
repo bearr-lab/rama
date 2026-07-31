@@ -88,25 +88,27 @@ const COLUMNS: {
     id: 'draft',
     label: 'Stage 1: Due Diligence & Drafts',
     badge: 'Active',
-    color: 'border-sky-500/30 bg-sky-500/5',
+    color:
+      'border-stone-300/30 dark:border-stone-700/30 bg-stone-200/5 dark:bg-stone-800/5',
   },
   {
     id: 'viewing',
     label: 'Stage 2: Viewings Scheduled',
     badge: 'Active',
-    color: 'border-purple-500/30 bg-purple-500/5',
+    color: 'border-stone-800/30 bg-stone-800/5',
   },
   {
     id: 'offer',
     label: 'Stage 3: MOU & Offers Submitted',
     badge: 'Pending',
-    color: 'border-amber-500/30 bg-amber-500/5',
+    color:
+      'border-stone-400/30 dark:border-stone-600/30 bg-stone-200/5 dark:bg-stone-800/5',
   },
   {
     id: 'transfer',
     label: 'Stage 4: DLD Transfer Ready',
     badge: 'Milestone',
-    color: 'border-emerald-500/30 bg-emerald-500/5',
+    color: 'border-stone-800/30 bg-stone-800/5',
   },
 ];
 
@@ -197,23 +199,23 @@ export function KanbanBoard() {
       : tasks.filter((t) => t.priority === filterPriority);
 
   return (
-    <div className="flex h-full w-full flex-col space-y-6">
+    <div className="flex size-full flex-col space-y-6">
       {/* Controls Bar */}
-      <div className="flex flex-col justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center">
+      <div className="flex flex-col justify-between gap-4 border-b border-stone-300 pb-4 sm:flex-row sm:items-center dark:border-stone-800">
         <div className="flex items-center gap-2">
-          <span className="text-body-sm font-bold text-muted">
+          <span className="text-body-sm font-bold text-stone-500 dark:text-stone-400">
             Filter Priority:
           </span>
-          <div className="flex items-center gap-1 rounded-xl border border-border bg-surface-subtle p-1">
+          <div className="flex items-center gap-1 border border-stone-300 bg-stone-100 p-1 dark:border-stone-800 dark:bg-stone-900">
             {['all', 'high', 'medium', 'low'].map((p) => (
               <button
                 key={p}
                 onClick={() => setFilterPriority(p)}
                 className={cn(
-                  'rounded-lg px-3 py-1 text-xs font-bold capitalize transition-all',
+                  'px-3 py-1 text-xs font-bold capitalize transition-all',
                   filterPriority === p
                     ? 'bg-ink text-white shadow-sm'
-                    : 'text-muted hover:text-ink',
+                    : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
                 )}
               >
                 {p}
@@ -222,12 +224,14 @@ export function KanbanBoard() {
           </div>
         </div>
 
-        <div className="flex items-center gap-1 rounded-xl border border-border bg-surface-subtle p-1">
+        <div className="flex items-center gap-1 border border-stone-300 bg-stone-100 p-1 dark:border-stone-800 dark:bg-stone-900">
           <button
             onClick={() => setViewMode('kibo')}
             className={cn(
-              'rounded-lg px-3 py-1 text-xs font-bold transition-all',
-              viewMode === 'kibo' ? 'bg-fjord text-white shadow-sm' : 'text-muted hover:text-ink'
+              'px-3 py-1 text-xs font-bold transition-all',
+              viewMode === 'kibo'
+                ? 'bg-stone-900 text-white shadow-sm dark:bg-stone-100'
+                : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
             )}
           >
             Kibo Animated Pipeline
@@ -235,8 +239,10 @@ export function KanbanBoard() {
           <button
             onClick={() => setViewMode('classic')}
             className={cn(
-              'rounded-lg px-3 py-1 text-xs font-bold transition-all',
-              viewMode === 'classic' ? 'bg-ink text-white shadow-sm' : 'text-muted hover:text-ink'
+              'px-3 py-1 text-xs font-bold transition-all',
+              viewMode === 'classic'
+                ? 'bg-ink text-white shadow-sm'
+                : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
             )}
           >
             Classic Board
@@ -249,15 +255,15 @@ export function KanbanBoard() {
               setTasks(DEFAULT_TASKS);
               localStorage.removeItem('rama_v2_kanban_tasks');
             }}
-            className="text-caption font-bold text-muted transition-colors hover:text-ink"
+            className="text-caption font-bold text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400"
           >
             Reset Demo Board
           </button>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="text-body-sm flex items-center gap-2 rounded-xl bg-fjord px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-fjord-hover"
+            className="text-body-sm flex items-center gap-2 bg-stone-900 px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="size-4" />
             <span>New Action Task</span>
           </button>
         </div>
@@ -269,76 +275,84 @@ export function KanbanBoard() {
           columns={COLUMNS.map((col) => ({
             id: col.id,
             title: col.label,
-            color: col.color.split(' ')[1] || 'bg-fjord/10',
+            color:
+              col.color.split(' ')[1] || 'bg-stone-900/10 dark:bg-stone-100/10',
             items: filteredTasks.filter((t) => t.column === col.id),
           }))}
           onMoveItem={(itemId, sourceCol, targetCol) => {
             setTasks((prev) =>
               prev.map((t) =>
-                t.id === itemId ? { ...t, column: targetCol as TaskItem['column'] } : t
-              )
+                t.id === itemId
+                  ? { ...t, column: targetCol as TaskItem['column'] }
+                  : t,
+              ),
             );
           }}
           renderCard={(task, colId, onMoveDirection) => (
-            <div className="group relative space-y-3 rounded-2xl border border-border/80 bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg dark:bg-neutral-900/90">
+            <div className="group relative space-y-3 border border-stone-300/80 bg-card p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-stone-800/80 dark:bg-neutral-900/90">
               <div className="flex items-center justify-between">
                 <span
                   className={cn(
-                    'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
-                    task.priority === 'high' && 'border-rose-500/20 bg-rose-500/10 text-rose-700 dark:text-rose-300',
-                    task.priority === 'medium' && 'border-amber-500/20 bg-amber-500/10 text-amber-700 dark:text-amber-300',
-                    task.priority === 'low' && 'border-border/80 bg-surface-subtle text-muted'
+                    'inline-flex items-center gap-1.5 border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
+                    task.priority === 'high' &&
+                      'border-stone-400/20 bg-stone-200/10 text-stone-800 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-800',
+                    task.priority === 'medium' &&
+                      'border-stone-400/20 bg-stone-200/10 text-stone-700 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-300 dark:text-stone-700',
+                    task.priority === 'low' &&
+                      'border-stone-300/80 bg-stone-100 text-stone-500 dark:border-stone-800/80 dark:bg-stone-900 dark:text-stone-400',
                   )}
                 >
                   <span
                     className={cn(
-                      'h-1.5 w-1.5 shrink-0 rounded-full',
-                      task.priority === 'high' && 'bg-rose-500',
-                      task.priority === 'medium' && 'bg-amber-500',
-                      task.priority === 'low' && 'bg-muted'
+                      'size-1.5 shrink-0',
+                      task.priority === 'high' &&
+                        'bg-stone-200 dark:bg-stone-800',
+                      task.priority === 'medium' &&
+                        'bg-stone-700 dark:bg-stone-300',
+                      task.priority === 'low' && 'bg-muted',
                     )}
                   />
                   <span>{task.priority}</span>
                 </span>
                 <button
                   onClick={() => deleteTask(task.id)}
-                  className="rounded-lg p-1 text-muted opacity-0 transition-all group-hover:opacity-100 hover:bg-rose-500/10 hover:text-rose-500"
+                  className="p-1 text-stone-500 opacity-0 transition-all group-hover:opacity-100 hover:bg-stone-200/10 hover:text-stone-800 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-400"
                   title="Delete Task"
                 >
-                  <Trash2 className="h-3.5 w-3.5" />
+                  <Trash2 className="size-3.5" />
                 </button>
               </div>
               <div>
-                <h5 className="text-body-sm leading-snug font-bold text-ink dark:text-white">
+                <h5 className="text-body-sm leading-snug font-bold text-stone-900 dark:text-white">
                   {task.title}
                 </h5>
-                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted">
-                  <Building className="h-3.5 w-3.5 shrink-0 text-fjord" />
+                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-stone-500 dark:text-stone-400">
+                  <Building className="size-3.5 shrink-0 text-stone-900 dark:text-stone-100" />
                   <span className="truncate">{task.property}</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between pt-2 border-t border-border/40 text-xs text-muted">
+              <div className="flex items-center justify-between border-t border-stone-300/40 pt-2 text-xs text-stone-500 dark:border-stone-800/40 dark:text-stone-400">
                 <div className="flex items-center gap-1 font-medium">
-                  <Clock className="h-3.5 w-3.5" />
+                  <Clock className="size-3.5" />
                   <span>{task.dueDate}</span>
                 </div>
                 <div className="flex items-center gap-1 opacity-80 group-hover:opacity-100">
                   {task.column !== 'draft' && (
                     <button
                       onClick={() => onMoveDirection('left')}
-                      className="rounded-lg border border-border bg-surface-subtle p-1.5 text-ink transition-colors hover:bg-border dark:text-white"
+                      className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-white"
                       title="Previous Stage"
                     >
-                      <ArrowLeft className="h-3 w-3" />
+                      <ArrowLeft className="size-3" />
                     </button>
                   )}
                   {task.column !== 'transfer' && (
                     <button
                       onClick={() => onMoveDirection('right')}
-                      className="rounded-lg border border-border bg-surface-subtle p-1.5 text-ink transition-colors hover:bg-border dark:text-white"
+                      className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-white"
                       title="Next Stage"
                     >
-                      <ArrowRight className="h-3 w-3" />
+                      <ArrowRight className="size-3" />
                     </button>
                   )}
                 </div>
@@ -347,147 +361,149 @@ export function KanbanBoard() {
           )}
         />
       ) : (
-        <div className="grid min-h-[600px] flex-1 grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid min-h-150 flex-1 grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {COLUMNS.map((col) => {
-          const colTasks = filteredTasks.filter((t) => t.column === col.id);
-          return (
-            <div
-              key={col.id}
-              className="shadow-subtle flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface"
-            >
-              {/* Column Header */}
+            const colTasks = filteredTasks.filter((t) => t.column === col.id);
+            return (
               <div
-                className={cn(
-                  'flex items-center justify-between border-b border-border p-4',
-                  col.color,
-                )}
+                key={col.id}
+                className="shadow-subtle flex h-full flex-col overflow-hidden border border-stone-300 bg-stone-50 dark:border-stone-800 dark:bg-stone-950"
               >
-                <div className="flex items-center gap-2">
-                  <h4 className="text-body-sm font-display font-extrabold text-ink">
-                    {col.label}
-                  </h4>
-                  <span className="rounded-full bg-surface/80 px-2 py-0.5 text-[10px] font-extrabold text-ink uppercase dark:bg-black/40">
-                    {col.badge}
+                {/* Column Header */}
+                <div
+                  className={cn(
+                    'flex items-center justify-between border-b border-stone-300 p-4 dark:border-stone-800',
+                    col.color,
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    <h4 className="text-body-sm font-display font-extrabold text-stone-900 dark:text-stone-50">
+                      {col.label}
+                    </h4>
+                    <span className="bg-stone-50/80 px-2 py-0.5 text-[10px] font-extrabold text-stone-900 uppercase dark:bg-black/40 dark:bg-stone-950/80 dark:text-stone-50">
+                      {col.badge}
+                    </span>
+                  </div>
+                  <span className="flex size-6 items-center justify-center border border-stone-300 bg-stone-50 text-xs font-extrabold text-stone-900 shadow-2xs dark:border-stone-800 dark:bg-stone-950 dark:text-stone-50">
+                    {colTasks.length}
                   </span>
                 </div>
-                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-border bg-surface text-xs font-extrabold text-ink shadow-2xs">
-                  {colTasks.length}
-                </span>
-              </div>
 
-              {/* Column Task Cards */}
-              <div className="flex-1 space-y-3 overflow-y-auto bg-surface-subtle/50 p-4">
-                {colTasks.length === 0 ? (
-                  <div className="flex h-40 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border/60 p-4 text-center">
-                    <p className="text-caption font-medium text-muted">
-                      No tasks in this stage
-                    </p>
-                  </div>
-                ) : (
-                  colTasks.map((task) => (
-                    <div
-                      key={task.id}
-                      className="group animate-in fade-in relative space-y-3 rounded-2xl border border-border bg-surface p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
-                    >
-                      {/* Priority Tag & Delete */}
-                      <div className="flex items-center justify-between">
-                        <span
-                          className={cn(
-                            'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
-                            task.priority === 'high' &&
-                              'border-rose-500/20 bg-rose-500/10 text-rose-700 dark:text-rose-300',
-                            task.priority === 'medium' &&
-                              'border-amber-500/20 bg-amber-500/10 text-amber-700 dark:text-amber-300',
-                            task.priority === 'low' &&
-                              'border-border/80 bg-surface-subtle text-muted',
-                          )}
-                        >
+                {/* Column Task Cards */}
+                <div className="flex-1 space-y-3 overflow-y-auto bg-stone-100/50 p-4 dark:bg-stone-900/50">
+                  {colTasks.length === 0 ? (
+                    <div className="flex h-40 flex-col items-center justify-center border-2 border-dashed border-stone-300/60 p-4 text-center dark:border-stone-800/60">
+                      <p className="text-caption font-medium text-stone-500 dark:text-stone-400">
+                        No tasks in this stage
+                      </p>
+                    </div>
+                  ) : (
+                    colTasks.map((task) => (
+                      <div
+                        key={task.id}
+                        className="group animate-in fade-in relative space-y-3 border border-stone-300 bg-stone-50 p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-stone-800 dark:bg-stone-950"
+                      >
+                        {/* Priority Tag & Delete */}
+                        <div className="flex items-center justify-between">
                           <span
                             className={cn(
-                              'h-1.5 w-1.5 shrink-0 rounded-full',
-                              task.priority === 'high' && 'bg-rose-500',
-                              task.priority === 'medium' && 'bg-amber-500',
-                              task.priority === 'low' && 'bg-muted',
+                              'inline-flex items-center gap-1.5 border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
+                              task.priority === 'high' &&
+                                'border-stone-400/20 bg-stone-200/10 text-stone-800 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-800',
+                              task.priority === 'medium' &&
+                                'border-stone-400/20 bg-stone-200/10 text-stone-700 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-300 dark:text-stone-700',
+                              task.priority === 'low' &&
+                                'border-stone-300/80 bg-stone-100 text-stone-500 dark:border-stone-800/80 dark:bg-stone-900 dark:text-stone-400',
                             )}
-                          />
-                          <span>{task.priority}</span>
-                        </span>
+                          >
+                            <span
+                              className={cn(
+                                'size-1.5 shrink-0',
+                                task.priority === 'high' &&
+                                  'bg-stone-200 dark:bg-stone-800',
+                                task.priority === 'medium' &&
+                                  'bg-stone-700 dark:bg-stone-300',
+                                task.priority === 'low' && 'bg-muted',
+                              )}
+                            />
+                            <span>{task.priority}</span>
+                          </span>
 
-                        <button
-                          onClick={() => deleteTask(task.id)}
-                          className="rounded-lg p-1 text-muted opacity-0 transition-all group-hover:opacity-100 hover:bg-rose-500/10 hover:text-rose-500"
-                          title="Delete Task"
-                        >
-                          <Trash2 className="h-3.5 w-3.5" />
-                        </button>
-                      </div>
-
-                      {/* Title & Property */}
-                      <div>
-                        <h5 className="text-body-sm leading-snug font-bold text-ink">
-                          {task.title}
-                        </h5>
-                        <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted">
-                          <Building className="h-3.5 w-3.5 shrink-0 text-fjord" />
-                          <span className="truncate">{task.property}</span>
-                        </div>
-                      </div>
-
-                      {/* Footer: Due Date & Move Controls */}
-                      <div className="text-caption flex items-center justify-between border-t border-border/60 pt-2">
-                        <div className="flex items-center gap-1.5 font-medium text-muted">
-                          <Calendar className="h-3.5 w-3.5 text-fjord" />
-                          <span>{task.dueDate}</span>
+                          <button
+                            onClick={() => deleteTask(task.id)}
+                            className="p-1 text-stone-500 opacity-0 transition-all group-hover:opacity-100 hover:bg-stone-200/10 hover:text-stone-800 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-400"
+                            title="Delete Task"
+                          >
+                            <Trash2 className="size-3.5" />
+                          </button>
                         </div>
 
-                        {/* Move Left / Right Arrows */}
-                        <div className="flex items-center gap-1">
-                          {task.column !== 'draft' && (
-                            <button
-                              onClick={() => moveTask(task.id, 'left')}
-                              className="rounded-lg border border-border bg-surface-subtle p-1.5 text-ink transition-colors hover:bg-border"
-                              title="Move Previous Stage"
-                            >
-                              <ArrowLeft className="h-3 w-3" />
-                            </button>
-                          )}
-                          {task.column !== 'transfer' && (
-                            <button
-                              onClick={() => moveTask(task.id, 'right')}
-                              className="rounded-lg border border-border bg-surface-subtle p-1.5 text-ink transition-colors hover:bg-border"
-                              title="Move Next Stage"
-                            >
-                              <ArrowRight className="h-3 w-3" />
-                            </button>
-                          )}
+                        {/* Title & Property */}
+                        <div>
+                          <h5 className="text-body-sm leading-snug font-bold text-stone-900 dark:text-stone-50">
+                            {task.title}
+                          </h5>
+                          <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-stone-500 dark:text-stone-400">
+                            <Building className="size-3.5 shrink-0 text-stone-900 dark:text-stone-100" />
+                            <span className="truncate">{task.property}</span>
+                          </div>
+                        </div>
+
+                        {/* Footer: Due Date & Move Controls */}
+                        <div className="text-caption flex items-center justify-between border-t border-stone-300/60 pt-2 dark:border-stone-800/60">
+                          <div className="flex items-center gap-1.5 font-medium text-stone-500 dark:text-stone-400">
+                            <Calendar className="size-3.5 text-stone-900 dark:text-stone-100" />
+                            <span>{task.dueDate}</span>
+                          </div>
+
+                          {/* Move Left / Right Arrows */}
+                          <div className="flex items-center gap-1">
+                            {task.column !== 'draft' && (
+                              <button
+                                onClick={() => moveTask(task.id, 'left')}
+                                className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                                title="Move Previous Stage"
+                              >
+                                <ArrowLeft className="size-3" />
+                              </button>
+                            )}
+                            {task.column !== 'transfer' && (
+                              <button
+                                onClick={() => moveTask(task.id, 'right')}
+                                className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                                title="Move Next Stage"
+                              >
+                                <ArrowRight className="size-3" />
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))
-                )}
+                    ))
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
         </div>
       )}
 
       {/* New Task Modal */}
       {isModalOpen && (
         <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm duration-150">
-          <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 rounded-3xl border border-border bg-surface p-6 shadow-2xl duration-200">
-            <div className="flex items-center justify-between border-b border-border pb-4">
+          <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 border border-stone-300 bg-stone-50 p-6 shadow-2xl duration-200 dark:border-stone-800 dark:bg-stone-950">
+            <div className="flex items-center justify-between border-b border-stone-300 pb-4 dark:border-stone-800">
               <div className="flex items-center gap-2.5">
-                <div className="rounded-xl bg-fjord/10 p-2 text-fjord">
-                  <Plus className="h-5 w-5" />
+                <div className="bg-stone-900/10 p-2 text-stone-900 dark:bg-stone-100/10 dark:text-stone-100">
+                  <Plus className="size-5" />
                 </div>
-                <h3 className="text-h3 font-display font-bold text-ink">
+                <h3 className="text-h3 font-display font-bold text-stone-900 dark:text-stone-50">
                   New Transaction Action
                 </h3>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-caption font-bold text-muted hover:text-ink"
+                className="text-caption font-bold text-stone-500 hover:text-stone-900 dark:text-stone-400"
               >
                 Cancel
               </button>
@@ -495,7 +511,7 @@ export function KanbanBoard() {
 
             <form onSubmit={handleCreateTask} className="space-y-4">
               <div>
-                <label className="text-caption mb-1 block font-bold text-ink">
+                <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
                   Action Description
                 </label>
                 <input
@@ -504,18 +520,18 @@ export function KanbanBoard() {
                   placeholder="e.g., Verify Seller Power of Attorney (POA)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="text-body-sm w-full rounded-xl border border-border bg-surface-subtle px-4 py-2.5 text-ink focus:ring-2 focus:ring-fjord focus:outline-none"
+                  className="text-body-sm w-full border border-stone-300 bg-stone-100 px-4 py-2.5 text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
                 />
               </div>
 
               <div>
-                <label className="text-caption mb-1 block font-bold text-ink">
+                <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
                   Target Property / Project
                 </label>
                 <select
                   value={newProperty}
                   onChange={(e) => setNewProperty(e.target.value)}
-                  className="text-body-sm w-full rounded-xl border border-border bg-surface-subtle px-4 py-2.5 text-ink focus:ring-2 focus:ring-fjord focus:outline-none"
+                  className="text-body-sm w-full border border-stone-300 bg-stone-100 px-4 py-2.5 text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
                 >
                   <option value="Sky Collection Penthouse">
                     Sky Collection Penthouse, Downtown
@@ -534,13 +550,13 @@ export function KanbanBoard() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-caption mb-1 block font-bold text-ink">
+                  <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
                     Stage Column
                   </label>
                   <select
                     value={newColumn}
                     onChange={(e) => setNewColumn(e.target.value as any)}
-                    className="text-caption w-full rounded-xl border border-border bg-surface-subtle px-3 py-2.5 font-bold text-ink focus:ring-2 focus:ring-fjord focus:outline-none"
+                    className="text-caption w-full border border-stone-300 bg-stone-100 px-3 py-2.5 font-bold text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
                   >
                     <option value="draft">Due Diligence</option>
                     <option value="viewing">Viewing</option>
@@ -550,13 +566,13 @@ export function KanbanBoard() {
                 </div>
 
                 <div>
-                  <label className="text-caption mb-1 block font-bold text-ink">
+                  <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
                     Priority Level
                   </label>
                   <select
                     value={newPriority}
                     onChange={(e) => setNewPriority(e.target.value as any)}
-                    className="text-caption w-full rounded-xl border border-border bg-surface-subtle px-3 py-2.5 font-bold text-ink focus:ring-2 focus:ring-fjord focus:outline-none"
+                    className="text-caption w-full border border-stone-300 bg-stone-100 px-3 py-2.5 font-bold text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
                   >
                     <option value="high">High Priority</option>
                     <option value="medium">Medium Priority</option>
@@ -565,17 +581,17 @@ export function KanbanBoard() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 border-t border-border pt-4">
+              <div className="flex items-center justify-end gap-3 border-t border-stone-300 pt-4 dark:border-stone-800">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="text-body-sm rounded-xl border border-border bg-surface px-5 py-2.5 font-bold text-muted transition-colors hover:text-ink"
+                  className="text-body-sm border border-stone-300 bg-stone-50 px-5 py-2.5 font-bold text-stone-500 transition-colors hover:text-stone-900 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="text-body-sm rounded-xl bg-fjord px-6 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-fjord-hover"
+                  className="text-body-sm bg-stone-900 px-6 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
                 >
                   Create Action
                 </button>

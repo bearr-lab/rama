@@ -1,21 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useLocale } from 'next-intl';
-import { Menu, X, User } from 'lucide-react';
+import { useLocale, useTranslations } from 'next-intl';
+import { Link } from '@/i18n/routing';
+import { usePathname } from '@/i18n/routing';
+import { Menu } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import { MobileNav } from './mobile-nav';
 import { LocaleSwitcher } from './locale-switcher';
 import { UserMenu } from '@/components/auth/user-menu';
 import { useTheme } from 'next-themes';
 import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
 import { RamaLogo } from '@/components/ui/rama-logo';
-
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,29 +21,41 @@ export function Navbar() {
   const locale = useLocale();
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations('Nav');
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // All top-level public pages that render a full-bleed dark HeroNordic hero.
+  // Matching on segment[1] covers both listing pages (/en/projects) and their
+  // detail children (/en/projects/slug) which also carry their own hero imagery.
+  const HERO_PAGE_SEGMENTS = [
+    '',
+    'projects',
+    'homes',
+    'communities',
+    'invest',
+    'insights',
+  ];
 
-  // Determine if we are on a landing page with a dark full-bleed hero image
-  const isTransparentNavPage =
-    pathname === '/en' ||
-    pathname === '/ar' ||
-    pathname === '/';
+  const isTransparentNavPage = (() => {
+    // usePathname from next-intl/routing returns the pathname WITHOUT the locale prefix
+    // e.g. on /en/projects it returns '/projects', on /en it returns '/'
+    const segments = pathname.split('/').filter(Boolean); // e.g. ['projects']
+    const pageSegment = segments[0] ?? ''; // '' for home ('/'), 'projects' for /projects
+    // Only apply transparent nav on top-level listing pages, NOT detail children
+    // e.g. /projects (1 segment) = transparent, /insights/10 (2 segments) = solid
+    const isListingPage = segments.length <= 1;
+    return HERO_PAGE_SEGMENTS.includes(pageSegment) && isListingPage;
+  })();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    // Run once on mount
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -54,66 +63,47 @@ export function Navbar() {
   const isNavDark = isTransparentNavPage && !isScrolled;
 
   const navClasses = cn(
-    'fixed top-0 right-0 left-0 z-50 border-b transition-all duration-200',
+    'fixed inset-x-0 top-0 z-50 border-b transition-all duration-200',
     {
       'border-transparent bg-transparent text-white': isNavDark,
-      'border-border/50 bg-surface/90 text-ink shadow-xs backdrop-blur-xl saturate-[1.8]': !isNavDark,
+      'border-stone-300/50 bg-stone-50/90 text-stone-900 shadow-xs saturate-[1.8] backdrop-blur-xl dark:border-stone-800/50 dark:bg-stone-950/90 dark:text-stone-50':
+        !isNavDark,
     },
   );
 
-  const linkClasses = cn(
-    'text-sm font-semibold transition-colors',
-    {
-      'text-white/90 hover:text-white': isNavDark,
-      'text-ink hover:text-fjord': !isNavDark,
-    },
-  );
+  const linkClasses = cn('text-sm font-semibold transition-colors', {
+    'text-white/90 hover:text-white': isNavDark,
+    'text-stone-900 hover:text-stone-900 dark:text-stone-50': !isNavDark,
+  });
 
   return (
     <>
       <header className={navClasses}>
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-12 sm:px-16 lg:px-20">
           {/* Logo */}
-          <Link
-            href={`/${locale}#hero`}
-            className="flex shrink-0 items-center cursor-pointer"
-            onClick={(e) => {
-              if (
-                pathname === `/${locale}` ||
-                pathname === `/${locale}/` ||
-                pathname === '/' ||
-                pathname === '/en' ||
-                pathname === '/ar'
-              ) {
-                const heroEl = document.getElementById('hero');
-                if (heroEl) {
-                  e.preventDefault();
-                  heroEl.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-              }
-            }}
-          >
+          <Link href="/" className="flex shrink-0 cursor-pointer items-center">
             <RamaLogo isScrolled={isScrolled} isDark={isNavDark} />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden items-center gap-8 md:flex">
-            <Link href={`/${locale}/projects`} className={linkClasses}>
-              {locale === 'ar' ? 'المشاريع' : 'Projects'}
+          <nav
+            className="hidden items-center gap-8 md:flex"
+            aria-label="Main navigation"
+          >
+            <Link href="/projects" className={linkClasses}>
+              {t('projects')}
             </Link>
-            <Link href={`/${locale}/homes`} className={linkClasses}>
-              {locale === 'ar' ? 'العقارات' : 'Homes'}
+            <Link href="/homes" className={linkClasses}>
+              {t('homes')}
             </Link>
-            <Link href={`/${locale}/areas`} className={linkClasses}>
-              {locale === 'ar' ? 'المناطق' : 'Communities'}
+            <Link href="/communities" className={linkClasses}>
+              {t('communities')}
             </Link>
-            <Link href={`/${locale}/invest`} className={linkClasses}>
-              {locale === 'ar' ? 'استثمر' : 'Invest'}
+            <Link href="/invest" className={linkClasses}>
+              {t('invest')}
             </Link>
-            <Link href={`/${locale}/insights`} className={linkClasses}>
-              {locale === 'ar' ? 'رؤى' : 'Insights'}
+            <Link href="/insights" className={linkClasses}>
+              {t('insights')}
             </Link>
           </nav>
 
@@ -124,30 +114,26 @@ export function Navbar() {
                 theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                 onThemeChange={setTheme}
                 className={cn(
-                  'flex h-9 w-9 items-center justify-center rounded-full transition-colors',
+                  'flex size-9 items-center justify-center transition-colors',
                   isNavDark
                     ? 'text-white hover:bg-white/10'
-                    : 'text-ink hover:bg-surface-subtle',
+                    : 'text-stone-900 hover:bg-stone-100 dark:bg-stone-900 dark:text-stone-50',
                 )}
               />
             ) : (
-              <div className="h-9 w-9" />
+              <div className="size-9" />
             )}
             <LocaleSwitcher isDark={isNavDark} />
-            <UserMenu
-              locale={locale as 'en' | 'ar'}
-              isDark={isNavDark}
-            />
+            <UserMenu locale={locale as 'en' | 'ar'} isDark={isNavDark} />
           </div>
-
 
           {/* Mobile Menu Toggle */}
           <button
             className="-mr-2 p-2 md:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
-            aria-label="Open menu"
+            aria-label={t('openMenu')}
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="size-6" />
           </button>
         </div>
       </header>
