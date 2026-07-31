@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { createClient } from '@/lib/supabase/server';
 import { EmptyState } from '@/components/ui/empty-state';
@@ -12,6 +13,21 @@ import { BlurFade } from '@/components/ui/blur-fade';
 import { Building2 } from 'lucide-react';
 
 export const revalidate = 3600; // Cache for 1 hour
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+  
+  return {
+    title: isArabic ? "مجتمعات دبي | راما" : "Dubai Communities | Rama",
+    description: isArabic ? "استكشف أشهر أحياء دبي، من المعيشة على الواجهة البحرية إلى مجتمعات الفيلات الهادئة." : "Explore Dubai's most popular neighborhoods, from waterfront living to serene villa communities.",
+  };
+}
 
 export default async function AreasPage({
   params,

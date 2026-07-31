@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Container } from '@/components/layout/container';
@@ -84,6 +85,29 @@ const OFF_PLAN_PROJECTS = [
     image: '/images/hero/projects-hero.jpg',
   },
 ];
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const isArabic = locale === 'ar';
+  
+  const project = OFF_PLAN_PROJECTS.find((p) => p.id === slug);
+  
+  if (!project) {
+    return {
+      title: isArabic ? 'مشروع غير موجود | راما' : 'Project Not Found | Rama',
+    };
+  }
+
+  return {
+    title: isArabic ? `${project.titleAr} | راما` : `${project.titleEn} | Rama`,
+    description: isArabic ? `${project.startingPriceAr} - ${project.locationAr}` : `${project.startingPriceEn} - ${project.locationEn}`,
+  };
+}
 
 export default async function ProjectDetailPage({
   params,

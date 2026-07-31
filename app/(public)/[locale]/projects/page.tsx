@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/layout/page-header';
 import { Container } from '@/components/layout/container';
 import { Section } from '@/components/layout/section';
@@ -91,6 +92,21 @@ const OFF_PLAN_PROJECTS = [
     spanClass: 'md:col-span-2 md:row-span-1', // Wide card
   },
 ];
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+  
+  return {
+    title: isArabic ? "مشاريع قيد الإنشاء | راما" : "Off-Plan Projects | Rama",
+    description: isArabic ? "استثمر في أكثر المشاريع قيد الإنشاء والمساكن ذات العلامات التجارية ترقباً في دبي." : "Invest in Dubai's most anticipated off-plan developments and branded residences.",
+  };
+}
 
 export default async function ProjectsPage({
   params,

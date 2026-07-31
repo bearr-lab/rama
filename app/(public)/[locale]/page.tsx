@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { use } from 'react';
 import { HeroEditorial } from '@/components/landing/hero-editorial';
 import { LiveTransactionTicker } from '@/components/landing/live-transaction-ticker';
@@ -11,6 +12,20 @@ import { ContactConnect } from '@/components/landing/contact-connect';
 import { RoiCalculatorWidget } from '@/components/landing/roi-calculator-widget';
 import { Container } from '@/components/layout/container';
 
+
+export async function generateMetadata({
+params,
+}: {
+params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+const { locale } = await params;
+const isArabic = locale === 'ar';
+
+return {
+title: isArabic ? "راما | عقارات دبي الفاخرة واستشارات الاستثمار بالذكاء الاصطناعي" : "Rama | Luxury Dubai Real Estate & AI Investment Advisory",
+description: isArabic ? "اكتشف مشاريع حصرية قيد الإنشاء، وقصور جاهزة للانتقال، ورؤى استثمارية مدعومة بالذكاء الاصطناعي في دبي." : "Discover exclusive off-plan projects, ready-to-move-in mansions, and AI-driven investment insights in Dubai.",
+};
+}
 export default function LandingPage({
   params,
 }: {

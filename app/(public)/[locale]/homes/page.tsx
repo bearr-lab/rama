@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import { PropertyGrid } from '@/components/property/property-grid';
 import { SearchBar } from '@/components/search/search-bar';
@@ -12,6 +13,21 @@ import { MOCK_PROPERTIES } from '@/lib/mock-properties';
 import { HomesEditorial } from '@/components/landing/homes-editorial';
 
 export const revalidate = 60; // Revalidate every 60 seconds
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+  
+  return {
+    title: isArabic ? "منازل فاخرة | راما" : "Signature Homes | Rama",
+    description: isArabic ? "اكتشف أرقى الفلل والمنازل الجاهزة في أفضل مجتمعات دبي السكنية" : "Discover ready-to-move-in luxury villas and mansions in Dubai's most prestigious communities.",
+  };
+}
 
 export default async function HomesPage({
   params,

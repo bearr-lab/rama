@@ -1,9 +1,25 @@
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/layout/page-header';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
 import { Info } from 'lucide-react';
 import { Globe } from '@/components/magicui/globe';
 import { BlurFade } from '@/components/ui/blur-fade';
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+  
+  return {
+    title: isArabic ? "من نحن | راما" : "About Us | Rama",
+    description: isArabic ? "الوساطة العقارية الفاخرة الرائدة واستشارات الاستثمار في دبي." : "The leading luxury real estate brokerage and investment advisory in Dubai.",
+  };
+}
 
 export default async function AboutPage({
   params,

@@ -1,8 +1,24 @@
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/layout/page-header';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
 import { Building } from 'lucide-react';
 import { Marquee } from '@/components/ui/marquee';
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+  
+  return {
+    title: isArabic ? "أبرز المطورين | راما" : "Top Developers | Rama",
+    description: isArabic ? "اكتشف عقارات من أكثر مطوري العقارات ثقة ورقيًا في دبي." : "Discover properties from Dubai's most trusted and prestigious real estate developers.",
+  };
+}
 
 export default async function DevelopersPage({
   params,

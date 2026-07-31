@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { PageHeader } from '@/components/layout/page-header';
 import { Container } from '@/components/layout/container';
 import { Section } from '@/components/layout/section';
@@ -5,6 +6,21 @@ import { BlurFade } from '@/components/magicui/blur-fade';
 import { TrendingUp, BarChart3, ShieldCheck, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
+
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isArabic = locale === 'ar';
+  
+  return {
+    title: isArabic ? "ذكاء الاستثمار | راما" : "Investment Intelligence | Rama",
+    description: isArabic ? "تحليل سوقي بمستوى مؤسسي وتحليلات العوائد لعقارات دبي." : "Institutional-grade market analysis and yield analytics for Dubai real estate.",
+  };
+}
 
 export default async function InvestPage({
   params,
