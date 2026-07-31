@@ -12,7 +12,7 @@ import { BentoGrid, BentoCard } from '@/components/ui/bento-grid';
 import { BlurFade } from '@/components/ui/blur-fade';
 import { Building2 } from 'lucide-react';
 
-export const revalidate = 3600; // Cache for 1 hour
+export const dynamic = 'force-dynamic';
 
 
 export async function generateMetadata({

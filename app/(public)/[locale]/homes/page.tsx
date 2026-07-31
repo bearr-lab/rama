@@ -37,7 +37,7 @@ export default async function HomesPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { locale } = await params;
-  const { query, tenure, property_type } = await searchParams;
+  const { query, tenure, property_type, community } = await searchParams;
   const isArabic = locale === 'ar';
 
   const heroVideoUrl = '/videos/homes-bg.mp4';
@@ -66,6 +66,11 @@ export default async function HomesPage({
     dbQuery = dbQuery.or(
       `title_en.ilike."%${safeQuery}%",community.ilike."%${safeQuery}%"`,
     );
+  }
+
+  if (community && typeof community === 'string') {
+    const unslugified = community.replace(/-/g, ' ');
+    dbQuery = dbQuery.ilike('community', `%${unslugified}%`);
   }
 
   const { data: properties, error } = await dbQuery.order('created_at', {
@@ -168,7 +173,7 @@ export default async function HomesPage({
         </Container>
       </Section>
 
-      <HomesEditorial isArabic={isArabic} />
+      <HomesEditorial isArabic={isArabic} locale={locale} />
     </>
   );
 }

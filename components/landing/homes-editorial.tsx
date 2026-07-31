@@ -8,9 +8,10 @@ import Image from 'next/image';
 
 interface HomesEditorialProps {
   isArabic?: boolean;
+  locale?: string;
 }
 
-export function HomesEditorial({ isArabic }: HomesEditorialProps) {
+export function HomesEditorial({ isArabic, locale = 'en' }: HomesEditorialProps) {
   const standards = [
     {
       icon: Gem,
@@ -68,7 +69,7 @@ export function HomesEditorial({ isArabic }: HomesEditorialProps) {
             {collections.map((col, idx) => (
               <Link
                 key={idx}
-                href="/homes"
+                href={`/${locale}/homes`}
                 className="group relative h-96 overflow-hidden bg-stone-900"
               >
                 <Image
