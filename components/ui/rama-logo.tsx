@@ -1,15 +1,63 @@
 'use client';
 
 import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-interface RamaLogoProps {
+const logoVariants = cva(
+  'group relative inline-flex cursor-pointer flex-col justify-center py-1 select-none',
+  {
+    variants: {
+      isDark: {
+        true: 'drop-shadow-lg',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      isDark: false,
+    },
+  },
+);
+
+const letterVariants = cva(
+  'font-display leading-none font-black tracking-[0.32em] uppercase transition-colors duration-300',
+  {
+    variants: {
+      size: {
+        sm: 'text-sm sm:text-base',
+        md: 'text-base sm:text-lg lg:text-xl',
+        lg: 'text-lg sm:text-xl lg:text-2xl',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  },
+);
+
+const subTextVariants = cva(
+  'font-sans font-medium tracking-[0.4em] uppercase transition-colors duration-300',
+  {
+    variants: {
+      size: {
+        sm: 'text-[6px] sm:text-[7px]',
+        md: 'text-[7px] sm:text-[8px]',
+        lg: 'text-[8px] sm:text-[9px]',
+      },
+    },
+    defaultVariants: {
+      size: 'md',
+    },
+  },
+);
+
+interface RamaLogoProps
+  extends Omit<HTMLMotionProps<"div">, "size">,
+    VariantProps<typeof logoVariants> {
   variant?: 'full' | 'monogram' | 'auto';
   size?: 'sm' | 'md' | 'lg';
   isScrolled?: boolean;
-  isDark?: boolean;
-  className?: string;
 }
 
 export function RamaLogo({
@@ -18,31 +66,17 @@ export function RamaLogo({
   isScrolled = false,
   isDark = false,
   className,
+  ...props
 }: RamaLogoProps) {
   const isCompact =
     variant === 'monogram' || (variant === 'auto' && isScrolled);
 
   const letters = ['R', 'A', 'M', 'A'];
 
-  const textSizes = {
-    sm: 'text-sm sm:text-base',
-    md: 'text-base sm:text-lg lg:text-xl',
-    lg: 'text-lg sm:text-xl lg:text-2xl',
-  };
-
-  const subTextSizes = {
-    sm: 'text-[6px] sm:text-[7px]',
-    md: 'text-[7px] sm:text-[8px]',
-    lg: 'text-[8px] sm:text-[9px]',
-  };
-
   return (
     <motion.div
-      className={cn(
-        'group relative inline-flex cursor-pointer flex-col justify-center py-1 select-none',
-        isDark && 'drop-shadow-lg',
-        className,
-      )}
+      className={cn(logoVariants({ isDark, className }))}
+      {...props}
       initial="initial"
       whileHover="hover"
       animate="animate"
@@ -55,8 +89,7 @@ export function RamaLogo({
             <motion.span
               key={index}
               className={cn(
-                'font-display leading-none font-black tracking-[0.32em] uppercase transition-colors duration-300',
-                textSizes[size],
+                letterVariants({ size }),
                 isDark
                   ? 'text-white group-hover:text-white/80'
                   : 'text-stone-900 group-hover:text-stone-900 dark:text-white dark:group-hover:text-white/80',
@@ -123,8 +156,7 @@ export function RamaLogo({
           >
             <span
               className={cn(
-                'font-sans leading-none tracking-[0.42em] uppercase transition-colors duration-300',
-                subTextSizes[size],
+                subTextVariants({ size }),
                 isDark
                   ? 'font-bold text-white drop-shadow-md'
                   : 'font-medium text-text dark:text-white/70',

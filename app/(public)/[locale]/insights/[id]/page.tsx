@@ -1,5 +1,5 @@
 import { getInsightsData } from '@/lib/data/insights';
-import { HeroNordic } from '@/components/layout/hero-nordic';
+import { PageHeader } from '@/components/layout/page-header';
 
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -57,34 +57,37 @@ export default async function InsightDetailPage({
 
   return (
     <article className="pb-24">
-      <HeroNordic
+      <PageHeader
         title={insight.title}
-        subtitle={insight.description}
+        description={insight.description}
         backgroundImage={insight.image || fallbackImage}
-        badgeIcon={<span className="flex size-2 animate-pulse bg-stone-200 dark:bg-stone-800" />}
-        badgeText={insight.category}
-        bottomConsole={
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-white/70">
-            {insight.author && (
-              <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-                <User className="size-3.5 text-white/70" />
-                <span>{insight.author}</span>
-              </div>
-            )}
-            {insight.readTime && (
-              <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-                <Clock className="size-3.5 text-white/70" />
-                <span>{insight.readTime}</span>
-              </div>
-            )}
-            {insight.date && (
-              <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
-                <span>{insight.date}</span>
-              </div>
-            )}
-          </div>
+        badge={
+          <span className="inline-flex rounded-none border border-stone-800 bg-stone-900 px-3 py-1 text-xs font-medium text-stone-100">
+            {insight.category}
+          </span>
         }
-      />
+        variant="editorial"
+      >
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-white/70">
+          {insight.author && (
+            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+              <User className="size-3.5 text-white/70" />
+              <span>{insight.author}</span>
+            </div>
+          )}
+          {insight.readTime && (
+            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+              <Clock className="size-3.5 text-white/70" />
+              <span>{insight.readTime}</span>
+            </div>
+          )}
+          {insight.date && (
+            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+              <span>{insight.date}</span>
+            </div>
+          )}
+        </div>
+      </PageHeader>
 
       <div className="container mx-auto mt-16 max-w-3xl px-4">
         <Link

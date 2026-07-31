@@ -1,14 +1,31 @@
 'use client';
 
 import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import { getUnsplashAttribution } from '@/lib/unsplash';
 
-interface UnsplashAttributionProps {
+const attributionVariants = cva(
+  'z-20 flex items-center gap-1.5 font-sans text-[11px] leading-none transition-opacity duration-200',
+  {
+    variants: {
+      variant: {
+        overlay:
+          'absolute right-3 bottom-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md',
+        inline: 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
+      },
+    },
+    defaultVariants: {
+      variant: 'overlay',
+    },
+  },
+);
+
+interface UnsplashAttributionProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof attributionVariants> {
   photographerName: string;
   photographerUsername: string;
-  className?: string;
-  variant?: 'overlay' | 'inline';
 }
 
 export function UnsplashAttribution({
@@ -16,19 +33,12 @@ export function UnsplashAttribution({
   photographerUsername,
   className,
   variant = 'overlay',
+  ...props
 }: UnsplashAttributionProps) {
   const attr = getUnsplashAttribution(photographerName, photographerUsername);
 
   return (
-    <div
-      className={cn(
-        'z-20 flex items-center gap-1.5 font-sans text-[11px] leading-none transition-opacity duration-200',
-        variant === 'overlay'
-          ? 'absolute right-3 bottom-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md'
-          : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
-        className,
-      )}
-    >
+    <div className={cn(attributionVariants({ variant, className }))} {...props}>
       <span>Photo by</span>
       <a
         href={attr.photographerUrl}
