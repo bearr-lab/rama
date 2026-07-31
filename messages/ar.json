@@ -1,4 +1,37 @@
 {
+  "Nav": {
+    "projects": "المشاريع",
+    "homes": "العقارات",
+    "communities": "المناطق",
+    "invest": "استثمر",
+    "insights": "رؤى",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
+  },
+  "MobileNav": {
+    "language": "اللغة",
+    "theme": "المظهر",
+    "dark": "داكن",
+    "light": "فاتح",
+    "signIn": "تسجيل الدخول",
+    "menu": "قائمة التنقل"
+  },
+  "LocaleSwitcher": {
+    "switchTo": "Switch to English",
+    "label": "EN"
+  },
+  "Footer": {
+    "tagline": "مكان هادئ لجمع الأدلة ومقارنة الخيارات واتخاذ قرارك العقاري بتأنٍ.",
+    "disclaimer": "تعرض راما مدى توفر الأدلة، وليس جودة العقار أو وضعه القانوني أو جدواه الاستثمارية.",
+    "exploreHomes": "استكشف العقارات",
+    "signIn": "سجّل الدخول",
+    "imageryBy": "الصور مقدمة من",
+    "homes": "العقارات",
+    "areas": "المجتمعات",
+    "switchLanguage": "English"
+  },
   "Navigation": {
     "homes": "العقارات",
     "areas": "المناطق",
@@ -13,27 +46,6 @@
     "subtitle": "عقارات موثقة. أسعار حقيقية. بدون تخمين.",
     "searchPlaceholder": "أين تريد أن تعيش؟",
     "searchButton": "بحث"
-  },
-  "Footer": {
-    "ctaTitle": "دعنا نجد مكانك في دبي.",
-    "ctaSubtitle": "انضم إلى آلاف المشترين الذين يثقون في راما للحصول على قوائم عقارات معتمدة، أسعار حقيقية، وإرشادات مدعومة بالذكاء الاصطناعي.",
-    "getStarted": "ابدأ الآن",
-    "brandSubtitle": "منصة العقارات الرائدة في دبي. عقارات معتمدة، تكاليف حقيقية، وإرشادات من الخبراء بلا تخمين.",
-    "dldVerified": "معتمد من دائرة الأراضي والأملاك",
-    "discover": "استكشف",
-    "propertiesForSale": "عقارات للبيع",
-    "offPlanProjects": "مشاريع قيد الإنشاء",
-    "communities": "المجمعات السكنية",
-    "marketInsights": "رؤى السوق",
-    "company": "الشركة",
-    "aboutUs": "معلومات عنا",
-    "contact": "اتصل بنا",
-    "careers": "الوظائف",
-    "legal": "قانوني",
-    "termsOfService": "شروط الخدمة",
-    "privacyPolicy": "سياسة الخصوصية",
-    "cookiePolicy": "سياسة ملفات تعريف الارتباط",
-    "rightsReserved": "راما للعقارات. جميع الحقوق محفوظة."
   },
   "portfolio": {
     "title": "إدارة المحفظة العقارية",

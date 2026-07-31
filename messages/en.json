@@ -1,4 +1,37 @@
 {
+  "Nav": {
+    "projects": "Projects",
+    "homes": "Homes",
+    "communities": "Communities",
+    "invest": "Invest",
+    "insights": "Insights",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "MobileNav": {
+    "language": "Language",
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "signIn": "Sign In",
+    "menu": "Navigation Menu"
+  },
+  "LocaleSwitcher": {
+    "switchTo": "Switch to Arabic",
+    "label": "AR"
+  },
+  "Footer": {
+    "tagline": "A quieter place to gather evidence, compare options and make a considered property decision.",
+    "disclaimer": "RAMA displays evidence availability, not a statement of property quality, legal status or investment merit.",
+    "exploreHomes": "Explore homes",
+    "signIn": "Sign in",
+    "imageryBy": "Imagery provided by",
+    "homes": "Homes",
+    "areas": "Areas",
+    "switchLanguage": "العربية"
+  },
   "Navigation": {
     "homes": "Homes",
     "areas": "Areas",
@@ -13,27 +46,6 @@
     "subtitle": "Verified properties. Real prices. No guesswork.",
     "searchPlaceholder": "Where do you want to live?",
     "searchButton": "Search"
-  },
-  "Footer": {
-    "ctaTitle": "Let's find your place in Dubai.",
-    "ctaSubtitle": "Join thousands of buyers who trust RAMA for verified listings, real prices, and AI-powered guidance.",
-    "getStarted": "Get Started",
-    "brandSubtitle": "Dubai's premium real estate platform. Verified properties, true costs, and expert guidance with zero guesswork.",
-    "dldVerified": "DLD Verified",
-    "discover": "Discover",
-    "propertiesForSale": "Properties for Sale",
-    "offPlanProjects": "Off-Plan Projects",
-    "communities": "Communities",
-    "marketInsights": "Market Insights",
-    "company": "Company",
-    "aboutUs": "About Us",
-    "contact": "Contact",
-    "careers": "Careers",
-    "legal": "Legal",
-    "termsOfService": "Terms of Service",
-    "privacyPolicy": "Privacy Policy",
-    "cookiePolicy": "Cookie Policy",
-    "rightsReserved": "RAMA Real Estate. All rights reserved."
   },
   "portfolio": {
     "title": "Portfolio Management",

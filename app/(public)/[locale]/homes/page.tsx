@@ -1,15 +1,15 @@
 import { createClient } from '@/lib/supabase/server';
 import { PropertyGrid } from '@/components/property/property-grid';
 import { SearchBar } from '@/components/search/search-bar';
+import { HeroNordic } from '@/components/layout/hero-nordic';
 import { HomesFilterChips } from '@/components/search/homes-filter-chips';
 import { EmptyState } from '@/components/ui/empty-state';
 import { Property } from '@/types/property';
-import { PageHeader } from '@/components/layout/page-header';
-
 import { Home } from 'lucide-react';
 import { Section } from '@/components/layout/section';
 import { Container } from '@/components/layout/container';
 import { MOCK_PROPERTIES } from '@/lib/mock-properties';
+import { HomesEditorial } from '@/components/landing/homes-editorial';
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -24,7 +24,8 @@ export default async function HomesPage({
   const { query, tenure, property_type } = await searchParams;
   const isArabic = locale === 'ar';
 
-  const heroImage = '/images/hero/homes-hero.jpg';
+  const heroVideoUrl = '/videos/homes-bg.mp4';
+  const heroImageUrl = heroVideoUrl ? null : '/images/hero/homes-hero.jpg';
 
   const supabase = await createClient();
 
@@ -59,30 +60,43 @@ export default async function HomesPage({
     console.error('Error fetching properties:', error);
   }
 
-  const activeProperties = properties && properties.length > 0 ? properties : MOCK_PROPERTIES;
+  const activeProperties =
+    properties && properties.length > 0 ? properties : MOCK_PROPERTIES;
 
   return (
     <>
-      <div className="sticky top-0 z-0">
-        <PageHeader
-          title={isArabic ? 'منازل فاخرة' : 'Signature Homes'}
-          description={
-            isArabic
-              ? 'اكتشف أرقى الفلل والمنازل الجاهزة في أفضل مجمعات دبي السكنية'
-              : 'Discover ready-to-move-in luxury villas and mansions in Dubai’s most prestigious communities.'
-          }
-          className="border-none shadow-none"
-          backgroundImage={heroImage}
-          mediaPosition="object-top"
-          badge={
+      <HeroNordic
+        size="md"
+        badgeIcon={<Home className="size-3.5" />}
+        badgeText={isArabic ? 'عقارات جاهزة' : 'Ready to Move In'}
+        titleClassName="max-w-[520px]"
+        title={
+          isArabic ? (
             <>
-              <Home className="size-4" />
-              <span>{isArabic ? 'عقارات جاهزة' : 'Ready to Move In'}</span>
+              منازل
+              <br />
+              فاخرة
             </>
-          }
-        >
-          <div className="mt-6 flex w-full flex-col items-center gap-5">
-            <div className="mx-auto w-full max-w-100">
+          ) : (
+            <>
+              Signature
+              <br />
+              Homes
+            </>
+          )
+        }
+        subtitle={
+          isArabic
+            ? 'اكتشف أرقى الفلل والمنازل الجاهزة في أفضل مجمعات دبي السكنية'
+            : 'Discover ready-to-move-in luxury villas and mansions in Dubai’s most prestigious communities.'
+        }
+        backgroundVideo={heroVideoUrl || undefined}
+        backgroundImage={
+          !heroVideoUrl && heroImageUrl ? heroImageUrl : undefined
+        }
+        bottomConsole={
+          <div className="flex w-full flex-col items-center justify-center gap-6 md:gap-8">
+            <div className="w-full max-w-95">
               <SearchBar
                 variant="hero"
                 locale={locale as 'en' | 'ar'}
@@ -91,10 +105,7 @@ export default async function HomesPage({
               />
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-              <span className="me-2 text-xs font-semibold tracking-wider text-white/80 uppercase">
-                {locale === 'ar' ? 'التصنيفات:' : 'Filter By:'}
-              </span>
+            <div className="flex w-full justify-center">
               <HomesFilterChips
                 options={[
                   {
@@ -114,10 +125,13 @@ export default async function HomesPage({
               />
             </div>
           </div>
-        </PageHeader>
-      </div>
+        }
+      />
 
-      <Section spacing="lg" className="relative z-10 min-h-screen rounded-none bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
+      <Section
+        spacing="lg"
+        className="relative z-10 min-h-screen rounded-none bg-background shadow-[0_-20px_50px_rgba(0,0,0,0.1)]"
+      >
         <Container size="lg">
           {!activeProperties || activeProperties.length === 0 ? (
             <EmptyState
@@ -137,6 +151,8 @@ export default async function HomesPage({
           )}
         </Container>
       </Section>
+
+      <HomesEditorial isArabic={isArabic} />
     </>
   );
 }
