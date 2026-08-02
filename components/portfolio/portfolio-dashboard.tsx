@@ -657,7 +657,7 @@ export function PortfolioDashboard() {
 
       {/* Log Maintenance Ticket Modal */}
       {isLogOpen && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/80 backdrop-blur-md p-4">
+        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/80 p-4 backdrop-blur-md">
           <div className="animate-in zoom-in-95 relative w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-xl">
             <div className="flex items-center justify-between border-b border-border pb-4">
               <h3 className="text-h3 font-display font-bold text-fjord">

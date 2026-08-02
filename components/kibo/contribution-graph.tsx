@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Calendar, TrendingUp, Award } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface ContributionDay {
@@ -42,7 +42,7 @@ const months = [
   'Nov',
   'Dec',
 ];
-const daysOfWeek = ['Mon', 'Wed', 'Fri'];
+
 
 export const ContributionGraph = ({
   data,
@@ -132,13 +132,13 @@ export const ContributionGraph = ({
       {/* Heatmap Container */}
       <div className="relative overflow-x-auto pb-4">
         {/* Month Labels */}
-        <div className="mb-2 ml-8 flex min-w-[650px] justify-between text-[11px] font-semibold text-muted">
+        <div className="mb-2 ml-8 flex min-w-162.5 justify-between text-[11px] font-semibold text-muted">
           {months.map((m) => (
             <span key={m}>{m}</span>
           ))}
         </div>
 
-        <div className="flex min-w-[650px] gap-2">
+        <div className="flex min-w-162.5 gap-2">
           {/* Day Labels */}
           <div className="flex flex-col justify-around py-1 pr-2 text-[10px] font-bold text-muted">
             <span>Mon</span>
