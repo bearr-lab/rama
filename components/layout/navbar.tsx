@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils';
 import { MobileNav } from './mobile-nav';
 import { LocaleSwitcher } from './locale-switcher';
 import { UserMenu } from '@/components/auth/user-menu';
-import { useTheme } from 'next-themes';
 import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { RamaLogo } from '@/components/ui/rama-logo';
 
@@ -19,7 +18,6 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const locale = useLocale();
-  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const t = useTranslations('Nav');
 

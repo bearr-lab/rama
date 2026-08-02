@@ -23,7 +23,7 @@ export function ThemeToggler({ className }: { className?: string }) {
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className={cn(
-        'relative flex h-8 w-14 items-center rounded-none border border-border bg-surface-subtle px-1 transition-colors hover:border-fjord-muted hover:bg-surface-warm focus:outline-none focus:ring-2 focus:ring-fjord-muted focus:ring-offset-2',
+        'relative flex h-8 w-14 items-center rounded-none border border-border bg-surface-subtle px-1 transition-colors hover:border-fjord-muted hover:bg-surface-warm focus:ring-2 focus:ring-fjord-muted focus:ring-offset-2 focus:outline-none',
         className
       )}
       aria-label="Toggle theme"
