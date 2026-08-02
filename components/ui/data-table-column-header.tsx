@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Column } from "@tanstack/react-table"
 import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from "lucide-react"
 
@@ -21,13 +22,14 @@ export function DataTableColumnHeader<TData, TValue>({
   column,
   title,
   className,
+  ...props
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
-    return <div className={cn("text-xs font-semibold text-text", className)}>{title}</div>
+    return <div className={cn("text-xs font-semibold text-text", className)} {...props}>{title}</div>
   }
 
   return (
-    <div className={cn("flex items-center space-x-2", className)}>
+    <div className={cn("flex items-center space-x-2", className)} {...props}>
       <DropdownMenu>
         <DropdownMenuTrigger render={<Button
             variant="ghost"

@@ -50,10 +50,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     
     if (render) {
       const renderProps = render.props as { className?: string };
-      return React.cloneElement(render as React.ReactElement<{ className?: string }>, {
+      return React.cloneElement(render as React.ReactElement<{ className?: string, ref?: React.Ref<any> }>, {
         className: cn(buttonVariants({ variant, size, className }), renderProps.className),
+        ref,
         ...props,
-      } as React.HTMLAttributes<HTMLElement>)
+      } as React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<any> })
     }
 
     return (

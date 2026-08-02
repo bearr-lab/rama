@@ -73,7 +73,7 @@ export function AnimatedCardStack() {
             aria-label={`${card.title}: ${card.description}. Hover or focus to expand this card.`}
             role="group"
           >
-            <Card className="border-border/60/60 rounded-none border bg-card/80 shadow-[0_20px_70px_-40px_rgba(15,23,42,0.7)] backdrop-blur-xl transition-shadow duration-300 group-hover:shadow-[0_26px_90px_-45px_rgba(15,23,42,0.8)] ">
+            <Card className="border-border/60 rounded-none border bg-card/80 shadow-[0_20px_70px_-40px_rgba(15,23,42,0.7)] backdrop-blur-xl transition-shadow duration-300 group-hover:shadow-[0_26px_90px_-45px_rgba(15,23,42,0.8)] ">
               <CardHeader>
                 <CardTitle className="text-base font-semibold text-foreground">
                   {card.title}

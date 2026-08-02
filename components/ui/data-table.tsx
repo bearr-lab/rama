@@ -76,20 +76,35 @@ export function DataTable<TData, TValue>({
     },
   })
 
+  const getExportColumns = () => {
+    return table
+      .getVisibleLeafColumns()
+      .filter((col) => col.id !== "actions")
+      .map((col) => {
+        const header = typeof col.columnDef.header === "string" 
+          ? col.columnDef.header 
+          : col.id;
+        return {
+          id: col.id,
+          header: header.charAt(0).toUpperCase() + header.slice(1).replace(/_/g, " ")
+        }
+      });
+  }
+
   const exportToCSV = () => {
     const rows = table.getFilteredRowModel().rows
-    const headers = columns
-      .filter((col) => col.id !== "actions" && "accessorKey" in col)
-      .map((col) => (col as { accessorKey?: string }).accessorKey as string)
+    const exportColumns = getExportColumns()
 
     const csvContent = [
-      headers.join(","),
+      exportColumns.map(c => `"${c.header.replace(/"/g, '""')}"`).join(","),
       ...rows.map((row) =>
-        headers
-          .map((header) => {
-            const val = row.getValue(header)
-            // Handle quotes and commas
-            const strVal = typeof val === "string" ? val : String(val ?? "")
+        exportColumns
+          .map((col) => {
+            const val = row.getValue(col.id)
+            let strVal = typeof val === "string" ? val : String(val ?? "")
+            if (/^[=+\-@]/.test(strVal)) {
+              strVal = "'" + strVal
+            }
             return `"${strVal.replace(/"/g, '""')}"`
           })
           .join(",")
@@ -110,24 +125,17 @@ export function DataTable<TData, TValue>({
   const exportToPDF = () => {
     const doc = new jsPDF()
     const rows = table.getFilteredRowModel().rows
-    const headers = columns
-      .filter((col) => col.id !== "actions" && "accessorKey" in col)
-      .map((col) => (col as { accessorKey?: string }).accessorKey as string)
+    const exportColumns = getExportColumns()
 
     const tableData = rows.map((row) =>
-      headers.map((header) => {
-        const val = row.getValue(header)
+      exportColumns.map((col) => {
+        const val = row.getValue(col.id)
         return typeof val === "string" ? val : String(val ?? "")
       })
     )
 
-    // Capitalize headers
-    const formattedHeaders = headers.map(
-      (h) => h.charAt(0).toUpperCase() + h.slice(1).replace(/_/g, " ")
-    )
-
     autoTable(doc, {
-      head: [formattedHeaders],
+      head: [exportColumns.map(c => c.header)],
       body: tableData,
       theme: "grid",
       styles: { fontSize: 8, font: "helvetica" },

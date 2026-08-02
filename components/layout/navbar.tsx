@@ -66,7 +66,7 @@ export function Navbar() {
     'fixed inset-x-0 top-0 z-50 border-b transition-all duration-200',
     {
       'border-transparent bg-transparent text-white': isNavDark,
-      'border-border/60/50 bg-surface-subtle/90 text-ink shadow-xs saturate-[1.8] backdrop-blur-xl   ':
+      'border-border/60 bg-surface-subtle/90 text-ink shadow-xs saturate-[1.8] backdrop-blur-xl   ':
         !isNavDark,
     },
   );

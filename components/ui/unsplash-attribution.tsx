@@ -45,7 +45,7 @@ export function UnsplashAttribution({
         href={attr.photographerUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="-light font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
+        className=" font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
         onClick={(e) => e.stopPropagation()}
       >
         {photographerName}
@@ -55,7 +55,7 @@ export function UnsplashAttribution({
         href={attr.unsplashUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="-light font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
+        className=" font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
         onClick={(e) => e.stopPropagation()}
       >
         Unsplash
