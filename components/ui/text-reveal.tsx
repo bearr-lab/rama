@@ -36,7 +36,7 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
   if (shouldReduceMotion) {
     return (
       <div className={cn('mx-auto max-w-4xl px-4 py-10', className)}>
-        <p className="text-2xl font-bold text-ink md:text-3xl lg:text-4xl">
+        <p className="text-2xl font-bold text-fjord md:text-3xl lg:text-4xl">
           {children}
         </p>
       </div>
@@ -52,7 +52,7 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
       >
         <span
           className={
-            'flex flex-wrap p-5 text-2xl font-bold text-black/20 md:p-8 md:text-3xl lg:p-10 lg:text-4xl xl:text-5xl dark:text-white/20'
+            'flex flex-wrap p-5 text-2xl font-bold text-fjord/20 md:p-8 md:text-3xl lg:p-10 lg:text-4xl xl:text-5xl dark:text-white/20'
           }
         >
           {words.map((word, i) => {
@@ -83,7 +83,7 @@ const Word: FC<WordProps> = ({ children, progress, range }) => {
       <span className="absolute opacity-30">{children}</span>
       <motion.span
         style={{ opacity: opacity }}
-        className={'text-black dark:text-white'}
+        className={'text-fjord dark:text-white'}
       >
         {children}
       </motion.span>

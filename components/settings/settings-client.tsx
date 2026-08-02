@@ -319,7 +319,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               ? 'مساحة العمل · إعدادات المنصة والتفضيلات'
               : 'WORKSPACE · PLATFORM SETTINGS'}
           </p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight text-fjord sm:text-4xl">
             {isArabic
               ? 'تفضيلات النظام وهندسة القرار'
               : 'Platform Settings & Preferences'}
@@ -350,7 +350,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 <Palette className="size-5" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
+                <h3 className="font-display text-lg font-bold text-fjord sm:text-xl">
                   {isArabic
                     ? 'المظهر الخارجي واللغة'
                     : 'Appearance & Localization'}
@@ -371,8 +371,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 className={cn(
                   'flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-bold transition-all duration-200',
                   !isArabic
-                    ? 'bg-ink text-white shadow-xs dark:bg-fjord dark:text-white'
-                    : 'text-muted hover:text-ink',
+                    ? 'bg-fjord text-white shadow-xs dark:bg-fjord dark:text-white'
+                    : 'text-muted hover:text-fjord',
                 )}
               >
                 <Globe className="size-3.5" />
@@ -384,8 +384,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 className={cn(
                   'flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-bold transition-all duration-200',
                   isArabic
-                    ? 'bg-ink text-white shadow-xs dark:bg-fjord dark:text-white'
-                    : 'text-muted hover:text-ink',
+                    ? 'bg-fjord text-white shadow-xs dark:bg-fjord dark:text-white'
+                    : 'text-muted hover:text-fjord',
                 )}
               >
                 <Globe className="size-3.5" />
@@ -398,14 +398,14 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Theme Selector */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold tracking-wider text-ink uppercase">
+                <label className="text-xs font-bold tracking-wider text-fjord uppercase">
                   {isArabic
                     ? 'نمط المظهر (Nordic Lagom)'
                     : 'Interface Theme (Nordic Lagom)'}
                 </label>
                 <span className="text-xs font-medium text-muted">
                   {isArabic ? 'التنشيط الحي:' : 'Active mode:'}{' '}
-                  <strong className="text-ink capitalize">
+                  <strong className="text-fjord capitalize">
                     {theme || 'system'}
                   </strong>
                 </span>
@@ -435,7 +435,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                         'flex flex-col items-center gap-2.5 rounded-2xl border p-4 text-center transition-all duration-200',
                         isActive
                           ? 'border-fjord bg-fjord/5 text-fjord shadow-xs ring-1 ring-fjord/30 dark:bg-fjord/15 dark:text-white'
-                          : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-ink',
+                          : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-fjord',
                       )}
                     >
                       <Icon
@@ -456,7 +456,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Valuation Currency Selector */}
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold tracking-wider text-ink uppercase">
+                <label className="text-xs font-bold tracking-wider text-fjord uppercase">
                   {isArabic
                     ? 'عملة التقييم المالية الافتراضية'
                     : 'Default Valuation Currency'}
@@ -488,10 +488,10 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                         'flex flex-col items-center gap-1 rounded-2xl border p-3.5 text-center transition-all duration-200',
                         isSel
                           ? 'border-emerald-500 bg-emerald-500/5 text-emerald-600 shadow-xs ring-1 ring-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400'
-                          : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-ink',
+                          : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-fjord',
                       )}
                     >
-                      <span className="font-mono text-base font-black text-ink">
+                      <span className="font-mono text-base font-black text-fjord">
                         {cur.sym}
                       </span>
                       <span className="text-xs font-bold">{cur.id}</span>
@@ -518,7 +518,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 <Sliders className="size-5" />
               </div>
               <div>
-                <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
+                <h3 className="font-display text-lg font-bold text-fjord sm:text-xl">
                   {isArabic
                     ? 'محرك الذكاء الاصطناعي وهندسة المرونة'
                     : 'AI Concierge & Intelligence Engine Resilience'}
@@ -536,7 +536,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               type="button"
               onClick={runAiDiagnostic}
               disabled={isTestingAi}
-              className="inline-flex items-center gap-2 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-border/40 disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-fjord shadow-2xs transition-all hover:bg-border/40 disabled:opacity-50"
             >
               {isTestingAi ? (
                 <RefreshCw className="size-3.5 animate-spin text-fjord" />
@@ -583,11 +583,11 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 </div>
               </div>
               <div className="flex items-center gap-2 font-mono text-[11px] font-bold">
-                <span className="rounded-none bg-black/5 px-2 py-1 dark:bg-white/10">
+                <span className="rounded-none bg-fjord/5 px-2 py-1 dark:bg-white/10">
                   ⚡ {aiDiagnosticResult.latency}ms
                 </span>
                 {aiDiagnosticResult.model && (
-                  <span className="hidden rounded-none bg-black/5 px-2 py-1 sm:inline dark:bg-white/10">
+                  <span className="hidden rounded-none bg-fjord/5 px-2 py-1 sm:inline dark:bg-white/10">
                     {aiDiagnosticResult.model}
                   </span>
                 )}
@@ -599,7 +599,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Primary Model Selector */}
             <div className="flex flex-col justify-between gap-4 pt-2 sm:flex-row sm:items-center">
               <div className="max-w-xl">
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'نموذج الذكاء الاصطناعي الأساسي (3-Tier Fallthrough)'
                     : 'Primary AI Reasoning Model (3-Tier Fallthrough)'}
@@ -615,7 +615,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 onChange={(e) =>
                   setPrefs({ ...prefs, aiPrimaryModel: e.target.value })
                 }
-                className="w-full rounded-none border border-border/80 bg-surface-subtle px-3.5 py-2.5 text-xs font-bold text-ink shadow-2xs focus:border-fjord focus:outline-hidden sm:w-72"
+                className="w-full rounded-none border border-border/80 bg-surface-subtle px-3.5 py-2.5 text-xs font-bold text-fjord shadow-2xs focus:border-fjord focus:outline-hidden sm:w-72"
               >
                 <option value="google/gemini-2.0-pro-exp-02-05:free">
                   Gemini 2.0 Pro Experimental (Free)
@@ -638,7 +638,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* RAMA V2 Workspace Architecture */}
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'بنية مساحة عمل RAMA V2 المتقدمة'
                     : 'RAMA V2 Workspace Architecture'}
@@ -659,7 +659,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Sandbox Demo Mode */}
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'وضع محاكاة بيئة التجربة (Offline Sandbox)'
                     : 'Sandbox Demo Mode (Offline Evaluation)'}
@@ -680,7 +680,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Live DLD & Ejari Sync */}
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'تزامن شيكات إيجاري ودائرة الأراضي الحية'
                     : 'Live DLD & Ejari Electronic Cheque Sync'}
@@ -707,7 +707,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <Bell className="size-5" />
             </div>
             <div>
-              <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
+              <h3 className="font-display text-lg font-bold text-fjord sm:text-xl">
                 {isArabic
                   ? 'تنبيهات الصفقات ومراقبة السوق الحية'
                   : 'Notification & Alert Preferences'}
@@ -725,7 +725,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="space-y-3 pt-2">
               <div className="flex items-center justify-between">
                 <div className="max-w-xl">
-                  <h4 className="text-sm font-bold text-ink">
+                  <h4 className="text-sm font-bold text-fjord">
                     {isArabic
                       ? 'تنبيهات هبوط الأسعار والتقييم الفوري'
                       : 'Instant Price Drop & Valuation Alerts'}
@@ -749,7 +749,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               {prefs.notifPriceAlerts && (
                 <div className="animate-in fade-in flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle p-3 text-xs">
                   <TrendingUp className="size-4 text-fjord" />
-                  <span className="font-medium text-ink">
+                  <span className="font-medium text-fjord">
                     {isArabic
                       ? 'حد تحفز التنبيه الفوري:'
                       : 'Alert Trigger Threshold:'}
@@ -766,7 +766,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                           'rounded-none px-2.5 py-1 font-bold transition-all',
                           prefs.priceDropThreshold === pct
                             ? 'bg-fjord text-white shadow-2xs'
-                            : 'bg-surface text-muted hover:text-ink',
+                            : 'bg-surface text-muted hover:text-fjord',
                         )}
                       >
                         &gt;{pct}%
@@ -781,7 +781,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="space-y-3 pt-5">
               <div className="flex items-center justify-between">
                 <div className="max-w-xl">
-                  <h4 className="text-sm font-bold text-ink">
+                  <h4 className="text-sm font-bold text-fjord">
                     {isArabic
                       ? 'إشعارات واتساب الرسمية لنقل الملكية (DLD)'
                       : 'WhatsApp Business DLD Transfer Alerts'}
@@ -802,7 +802,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               {/* WhatsApp Phone Number Input */}
               {prefs.notifWhatsapp && (
                 <div className="animate-in fade-in flex flex-col gap-2 rounded-2xl border border-border/60 bg-surface-subtle p-3.5 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="flex items-center gap-2 text-xs font-medium text-ink">
+                  <div className="flex items-center gap-2 text-xs font-medium text-fjord">
                     <Smartphone className="size-4 text-emerald-500" />
                     <span>
                       {isArabic
@@ -817,7 +817,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                       setPrefs({ ...prefs, whatsappNumber: e.target.value })
                     }
                     placeholder="+971 50 000 0000"
-                    className="w-full rounded-none border border-border/80 bg-surface px-3 py-1.5 font-mono text-xs font-bold text-ink focus:border-emerald-500 focus:outline-hidden sm:w-64"
+                    className="w-full rounded-none border border-border/80 bg-surface px-3 py-1.5 font-mono text-xs font-bold text-fjord focus:border-emerald-500 focus:outline-hidden sm:w-64"
                   />
                 </div>
               )}
@@ -826,7 +826,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Weekly Portfolio Cashflow Digest */}
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'ملخص التدفق النقدي والعوائد الأسبوعي'
                     : 'Weekly Portfolio Cashflow Digest'}
@@ -853,7 +853,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <Shield className="size-5" />
             </div>
             <div>
-              <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
+              <h3 className="font-display text-lg font-bold text-fjord sm:text-xl">
                 {isArabic
                   ? 'الأمان وجواز الثقة والهوية (Trust Passport Security)'
                   : 'Trust Passport Identity & Account Security'}
@@ -870,7 +870,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Investor ID Status Badge */}
             <div className="flex flex-col justify-between gap-4 pt-2 sm:flex-row sm:items-center">
               <div>
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'حالة تحقق هوية المستثمر (UAE Pass / DLD KYC)'
                     : 'Investor Identity KYC Status'}
@@ -894,7 +894,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* 2FA Authentication */}
             <div className="flex items-center justify-between pt-5">
               <div className="max-w-xl">
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'المصادقة الثنائية للمعاملات المالية (2FA)'
                     : 'Two-Factor Authentication (2FA Biometrics)'}
@@ -915,7 +915,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             {/* Active Session Management */}
             <div className="flex flex-col justify-between gap-4 pt-5 sm:flex-row sm:items-center">
               <div>
-                <h4 className="text-sm font-bold text-ink">
+                <h4 className="text-sm font-bold text-fjord">
                   {isArabic
                     ? 'الجلسة الحالية وإدارة الأجهزة المتصلة'
                     : 'Active Browser Sessions & Devices'}
@@ -935,7 +935,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                       : 'All other browser sessions have been revoked.',
                   );
                 }}
-                className="inline-flex items-center gap-2 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40 hover:text-rose-600 dark:hover:text-rose-400"
+                className="inline-flex items-center gap-2 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-fjord transition-all hover:bg-border/40 hover:text-rose-600 dark:hover:text-rose-400"
               >
                 <Lock className="size-3.5" />
                 <span>
@@ -955,7 +955,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               <Terminal className="size-5" />
             </div>
             <div>
-              <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
+              <h3 className="font-display text-lg font-bold text-fjord sm:text-xl">
                 {isArabic
                   ? 'واجهة البرمجة (API) وربط أنظمة الوسطاء'
                   : 'Developer API & Broker CRM Syndication'}
@@ -973,7 +973,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             <div className="space-y-3 pt-2">
               <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                 <div>
-                  <h4 className="text-sm font-bold text-ink">
+                  <h4 className="text-sm font-bold text-fjord">
                     {isArabic
                       ? 'مفتاح الوصول الحي لمنصة RAMA (Production Key)'
                       : 'RAMA Production API Access Key'}
@@ -988,7 +988,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   <button
                     type="button"
                     onClick={handleCopyApiKey}
-                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-ink shadow-2xs transition-all hover:bg-surface-subtle"
+                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-fjord shadow-2xs transition-all hover:bg-surface-subtle"
                   >
                     {apiKeyCopied ? (
                       <Check className="size-3.5 text-emerald-500" />
@@ -1008,7 +1008,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   <button
                     type="button"
                     onClick={handleRegenerateApiKey}
-                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-muted transition-all hover:bg-surface-subtle hover:text-ink"
+                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-muted transition-all hover:bg-surface-subtle hover:text-fjord"
                   >
                     <RotateCcw className="size-3.5" />
                     <span>{isArabic ? 'إعادة إنشاء' : 'Regenerate'}</span>
@@ -1018,7 +1018,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
               {/* API Key Display Box */}
               <div className="flex items-center justify-between gap-2 rounded-2xl border border-border/80 bg-surface-subtle p-3.5 font-mono text-xs">
-                <span className="truncate font-bold text-ink">
+                <span className="truncate font-bold text-fjord">
                   {apiKeyVisible
                     ? apiKeyString
                     : `${apiKeyString.slice(0, 16)}••••••••••••••••••••••••••••`}
@@ -1041,7 +1041,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
             {/* Webhook Endpoint */}
             <div className="space-y-2 pt-5">
-              <label className="text-xs font-bold tracking-wider text-ink uppercase">
+              <label className="text-xs font-bold tracking-wider text-fjord uppercase">
                 {isArabic
                   ? 'رابط الويب هوك لاستلام إشعارات الصفقات (Webhook URL)'
                   : 'Real-time Deal Milestone Webhook Endpoint URL'}
@@ -1054,7 +1054,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     setPrefs({ ...prefs, webhookUrl: e.target.value })
                   }
                   placeholder="https://api.yourdomain.com/v1/webhook"
-                  className="w-full rounded-none border border-border/80 bg-surface px-3.5 py-2 font-mono text-xs font-medium text-ink focus:border-fjord focus:outline-hidden"
+                  className="w-full rounded-none border border-border/80 bg-surface px-3.5 py-2 font-mono text-xs font-medium text-fjord focus:border-fjord focus:outline-hidden"
                 />
                 <button
                   type="button"
@@ -1065,7 +1065,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                         : 'Test JSON payload dispatched successfully to endpoint.',
                     );
                   }}
-                  className="shrink-0 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-ink transition-all hover:bg-border/40"
+                  className="shrink-0 rounded-none border border-border/80 bg-surface-subtle px-4 py-2 text-xs font-bold text-fjord transition-all hover:bg-border/40"
                 >
                   {isArabic ? 'إرسال حمولة اختبار' : 'Send Test Payload'}
                 </button>
@@ -1090,7 +1090,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               type="button"
               onClick={handleReset}
               disabled={isSaving}
-              className="rounded-none border border-border/80 bg-transparent px-5 py-2.5 text-xs font-bold text-ink shadow-2xs transition-colors hover:bg-surface-subtle disabled:opacity-50"
+              className="rounded-none border border-border/80 bg-transparent px-5 py-2.5 text-xs font-bold text-fjord shadow-2xs transition-colors hover:bg-surface-subtle disabled:opacity-50"
             >
               {isArabic ? 'إعادة ضبط التفضيلات' : 'Reset Defaults'}
             </button>

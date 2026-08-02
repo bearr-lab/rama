@@ -98,7 +98,7 @@ export function ComparisonMatrix({
     return (
       <div className="flex h-64 w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-surface-subtle p-8 text-center">
         <ArrowRightLeft className="mb-4 size-10 text-muted opacity-40" />
-        <p className="font-display text-xl font-bold text-ink">
+        <p className="font-display text-xl font-bold text-fjord">
           Add properties to compare
         </p>
         <p className="mt-2 max-w-md text-sm text-muted">
@@ -177,13 +177,13 @@ export function ComparisonMatrix({
                       />
                       <button
                         onClick={() => handleRemove(p.id)}
-                        className="absolute top-2.5 right-2.5 flex size-7 items-center justify-center rounded-full bg-black/60 text-white opacity-0 shadow-sm backdrop-blur-md transition-all group-hover:opacity-100 hover:scale-110 hover:bg-rose-600"
+                        className="absolute top-2.5 right-2.5 flex size-7 items-center justify-center rounded-full bg-fjord/80 backdrop-blur-md text-white opacity-0 shadow-sm backdrop-blur-md transition-all group-hover:opacity-100 hover:scale-110 hover:bg-rose-600"
                         title="Remove property"
                       >
                         <X className="size-3.5" />
                       </button>
                     </div>
-                    <h3 className="font-display text-xl leading-snug font-bold text-ink">
+                    <h3 className="font-display text-xl leading-snug font-bold text-fjord">
                       {p.title}
                     </h3>
                   </div>
@@ -193,18 +193,18 @@ export function ComparisonMatrix({
           </thead>
           <tbody className="divide-y divide-border/40">
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Asking Valuation</td>
+              <td className="p-6 font-semibold text-fjord">Asking Valuation</td>
               {properties.map((p) => (
                 <td
                   key={p.id}
-                  className="border-l border-border/40 p-6 font-display text-base font-bold text-ink"
+                  className="border-l border-border/40 p-6 font-display text-base font-bold text-fjord"
                 >
                   AED {(p.price / 1000000).toFixed(2)}M
                 </td>
               ))}
             </tr>
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Master Community</td>
+              <td className="p-6 font-semibold text-fjord">Master Community</td>
               {properties.map((p) => (
                 <td
                   key={p.id}
@@ -215,22 +215,22 @@ export function ComparisonMatrix({
               ))}
             </tr>
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Bedrooms</td>
+              <td className="p-6 font-semibold text-fjord">Bedrooms</td>
               {properties.map((p) => (
                 <td
                   key={p.id}
-                  className="border-l border-border/40 p-6 font-medium text-ink"
+                  className="border-l border-border/40 p-6 font-medium text-fjord"
                 >
                   {p.beds || 4} Beds
                 </td>
               ))}
             </tr>
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Total Area</td>
+              <td className="p-6 font-semibold text-fjord">Total Area</td>
               {properties.map((p) => (
                 <td
                   key={p.id}
-                  className="border-l border-border/40 p-6 font-medium text-ink"
+                  className="border-l border-border/40 p-6 font-medium text-fjord"
                 >
                   {p.sqft.toLocaleString()}{' '}
                   <span className="text-xs font-light text-muted-foreground">
@@ -240,7 +240,7 @@ export function ComparisonMatrix({
               ))}
             </tr>
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">
+              <td className="p-6 font-semibold text-fjord">
                 DLD &amp; Escrow Verification
               </td>
               {properties.map((p) => (
@@ -274,7 +274,7 @@ export function ComparisonMatrix({
               ))}
             </tr>
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Developer Partner</td>
+              <td className="p-6 font-semibold text-fjord">Developer Partner</td>
               {properties.map((p) => (
                 <td
                   key={p.id}
@@ -285,18 +285,18 @@ export function ComparisonMatrix({
               ))}
             </tr>
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Handover Status</td>
+              <td className="p-6 font-semibold text-fjord">Handover Status</td>
               {properties.map((p) => (
                 <td
                   key={p.id}
-                  className="border-l border-border/40 p-6 font-medium text-ink"
+                  className="border-l border-border/40 p-6 font-medium text-fjord"
                 >
                   {p.completion}
                 </td>
               ))}
             </tr>
             <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">
+              <td className="p-6 font-semibold text-fjord">
                 Net Rental Yield (ROI)
               </td>
               {properties.map((p) => {
@@ -308,7 +308,7 @@ export function ComparisonMatrix({
                       'border-l border-border/40 p-6 font-display text-base font-bold',
                       isBest
                         ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                        : 'text-ink',
+                        : 'text-fjord',
                     )}
                   >
                     {p.roi}%
@@ -329,14 +329,14 @@ export function ComparisonMatrix({
       <div className="grid gap-8 lg:grid-cols-3">
         {/* Sliders */}
         <div className="shadow-subtle rounded-3xl border border-border/40 bg-surface/80 p-8 backdrop-blur-md">
-          <h3 className="mb-6 font-display text-2xl font-medium text-ink">
+          <h3 className="mb-6 font-display text-2xl font-medium text-fjord">
             Trade-off Weights
           </h3>
           <div className="space-y-7">
             <div className="space-y-3">
               <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
                 <span>Location Priority</span>
-                <span className="font-display text-sm font-bold text-ink">
+                <span className="font-display text-sm font-bold text-fjord">
                   {weightLocation}%
                 </span>
               </div>
@@ -352,7 +352,7 @@ export function ComparisonMatrix({
             <div className="space-y-3">
               <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
                 <span>Price Sensitivity</span>
-                <span className="font-display text-sm font-bold text-ink">
+                <span className="font-display text-sm font-bold text-fjord">
                   {weightPrice}%
                 </span>
               </div>
@@ -368,7 +368,7 @@ export function ComparisonMatrix({
             <div className="space-y-3">
               <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
                 <span>ROI Focus</span>
-                <span className="font-display text-sm font-bold text-ink">
+                <span className="font-display text-sm font-bold text-fjord">
                   {weightRoi}%
                 </span>
               </div>
@@ -384,7 +384,7 @@ export function ComparisonMatrix({
             <div className="space-y-3">
               <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
                 <span>Risk Aversion</span>
-                <span className="font-display text-sm font-bold text-ink">
+                <span className="font-display text-sm font-bold text-fjord">
                   {weightRisk}%
                 </span>
               </div>
@@ -406,7 +406,7 @@ export function ComparisonMatrix({
             <span className="text-xs font-bold tracking-widest text-fjord uppercase">
               SENSITIVITY MODELING
             </span>
-            <h3 className="mt-1 font-display text-2xl font-medium text-ink">
+            <h3 className="mt-1 font-display text-2xl font-medium text-fjord">
               Decision Score Analysis
             </h3>
           </div>
@@ -427,7 +427,7 @@ export function ComparisonMatrix({
                     className="group flex w-1/3 max-w-35 flex-col items-center gap-3"
                   >
                     <div className="relative flex w-full flex-col items-center">
-                      <div className="mb-2 font-display text-base font-bold text-ink transition-transform group-hover:scale-110">
+                      <div className="mb-2 font-display text-base font-bold text-fjord transition-transform group-hover:scale-110">
                         {p.decisionScore}
                       </div>
                       <div
@@ -444,7 +444,7 @@ export function ComparisonMatrix({
                         )}
                       </div>
                     </div>
-                    <span className="max-w-full truncate text-center text-xs font-semibold text-ink/80">
+                    <span className="max-w-full truncate text-center text-xs font-semibold text-fjord/80">
                       {p.title.split(' ')[0]} {p.title.split(' ')[1]}
                     </span>
                   </div>
@@ -488,12 +488,12 @@ export function ComparisonMatrix({
 
       {/* Shared Notes Area */}
       <div className="rounded-2xl border border-border bg-surface p-6">
-        <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink">
+        <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-fjord">
           <StickyNote className="size-5 text-fjord" />
           Decision Logic & Notes
         </h3>
         <textarea
-          className="h-32 w-full resize-none rounded-xl border border-border bg-surface-subtle p-4 text-sm text-ink focus:border-fjord focus:ring-1 focus:ring-fjord focus:outline-none"
+          className="h-32 w-full resize-none rounded-xl border border-border bg-surface-subtle p-4 text-sm text-fjord focus:border-fjord focus:ring-1 focus:ring-fjord focus:outline-none"
           placeholder="Summarize why a certain property is leading, or note missing data points needed for a final call..."
         />
         <div className="mt-4 flex items-center justify-between">

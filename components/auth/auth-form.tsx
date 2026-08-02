@@ -169,7 +169,7 @@ export function AuthForm({
       <form className="space-y-3" onSubmit={handleEmailAuth} noValidate>
         <motion.label
           variants={itemVariants}
-          className="block space-y-2 text-sm font-medium text-ink"
+          className="block space-y-2 text-sm font-medium text-fjord"
         >
           <span>{t.email}</span>
           <Input
@@ -183,14 +183,14 @@ export function AuthForm({
 
         <motion.label
           variants={itemVariants}
-          className="block space-y-2 text-sm font-medium text-ink"
+          className="block space-y-2 text-sm font-medium text-fjord"
         >
           <div className="flex items-center justify-between">
             <span>{t.password}</span>
             {isSignIn && (
               <Link
                 href={`/${locale}/forgot-password`}
-                className="text-xs font-normal text-muted-foreground hover:text-ink hover:underline"
+                className="text-xs font-normal text-muted-foreground hover:text-fjord hover:underline"
               >
                 {t.forgotPassword}
               </Link>
@@ -284,7 +284,7 @@ export function AuthForm({
             <span>{t.noAccount}</span>
             <Link
               href={`/${locale}/sign-up`}
-              className="font-semibold text-ink hover:underline"
+              className="font-semibold text-fjord hover:underline"
             >
               {t.signUp}
             </Link>
@@ -294,7 +294,7 @@ export function AuthForm({
             <span>{t.hasAccount}</span>
             <Link
               href={`/${locale}/login`}
-              className="font-semibold text-ink hover:underline"
+              className="font-semibold text-fjord hover:underline"
             >
               {t.signIn}
             </Link>

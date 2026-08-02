@@ -66,14 +66,14 @@ export function Navbar() {
     'fixed inset-x-0 top-0 z-50 border-b transition-all duration-200',
     {
       'border-transparent bg-transparent text-white': isNavDark,
-      'border-stone-300/50 bg-stone-50/90 text-stone-900 shadow-xs saturate-[1.8] backdrop-blur-xl dark:border-stone-800/50 dark:bg-stone-950/90 dark:text-stone-50':
+      'border-border/50 bg-surface/90 text-fjord shadow-xs saturate-[1.8] backdrop-blur-xl dark:border-border/50 dark:bg-fjord-hover/90 dark:text-white':
         !isNavDark,
     },
   );
 
   const linkClasses = cn('text-sm font-semibold transition-colors', {
     'text-white/90 hover:text-white': isNavDark,
-    'text-stone-900 hover:text-stone-900 dark:text-stone-50': !isNavDark,
+    'text-fjord hover:text-fjord dark:text-white': !isNavDark,
   });
 
   return (
@@ -117,7 +117,7 @@ export function Navbar() {
                   'flex size-9 items-center justify-center transition-colors',
                   isNavDark
                     ? 'text-white hover:bg-white/10'
-                    : 'text-stone-900 hover:bg-stone-100 dark:bg-stone-900 dark:text-stone-50',
+                    : 'text-fjord hover:bg-surface-subtle dark:bg-fjord-hover dark:text-white',
                 )}
               />
             ) : (

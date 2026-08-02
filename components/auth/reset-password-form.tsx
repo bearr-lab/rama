@@ -99,7 +99,7 @@ export function ResetPasswordForm({ locale }: ResetPasswordFormProps) {
     >
       <motion.label
         variants={itemVariants}
-        className="block space-y-2 text-sm font-medium text-ink"
+        className="block space-y-2 text-sm font-medium text-fjord"
       >
         <span>{t.newPassword}</span>
         <Input
@@ -113,7 +113,7 @@ export function ResetPasswordForm({ locale }: ResetPasswordFormProps) {
 
       <motion.label
         variants={itemVariants}
-        className="block space-y-2 text-sm font-medium text-ink"
+        className="block space-y-2 text-sm font-medium text-fjord"
       >
         <span>{t.confirmPassword}</span>
         <Input

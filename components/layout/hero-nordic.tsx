@@ -56,7 +56,7 @@ export function HeroNordic({
       )}
     >
       {/* Background Layer */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-stone-950">
+      <div className="absolute inset-0 z-0 overflow-hidden bg-fjord-hover">
         {backgroundVideo ? (
           <video
             src={backgroundVideo}

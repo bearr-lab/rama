@@ -43,17 +43,17 @@ const statusBadges = {
   verified: {
     label: 'DLD Verified',
     color:
-      'bg-stone-800/10 text-stone-800 dark:text-stone-100 border-stone-800/20',
+      'bg-surface-subtle/10 text-fjord dark:text-muted border-border/20',
   },
   pending: {
     label: 'In Audit',
     color:
-      'bg-stone-200/10 dark:bg-stone-800/10 text-stone-700 dark:text-stone-300 dark:text-stone-700 dark:text-stone-300 border-stone-400/20 dark:border-stone-600/20',
+      'bg-surface-subtle/10 dark:bg-surface-subtle/10 text-muted dark:text-muted dark:text-muted dark:text-muted border-stone-400/20 dark:border-stone-600/20',
   },
   encrypted: {
     label: '256-Bit Encrypted',
     color:
-      'bg-stone-200/10 dark:bg-stone-800/10 text-stone-600 dark:text-stone-400 dark:text-stone-600 dark:text-stone-400 border-stone-300/20 dark:border-stone-700/20',
+      'bg-surface-subtle/10 dark:bg-surface-subtle/10 text-muted dark:text-muted dark:text-muted dark:text-muted border-border/20 dark:border-stone-700/20',
   },
 };
 
@@ -79,7 +79,7 @@ export const TreeItem = ({
         onClick={() => hasChildren && setIsOpen(!isOpen)}
         whileHover={{ x: 3 }}
         className={cn(
-          'group flex items-center justify-between border border-transparent px-3 py-2.5 transition-colors hover:border-stone-300/60 hover:bg-stone-100 dark:border-stone-800/60 dark:bg-stone-900',
+          'group flex items-center justify-between border border-transparent px-3 py-2.5 transition-colors hover:border-border/60 hover:bg-surface-subtle dark:border-border/60 dark:bg-fjord-hover',
           hasChildren && 'cursor-pointer font-semibold',
           !hasChildren && 'text-text',
         )}
@@ -87,7 +87,7 @@ export const TreeItem = ({
       >
         <div className="flex min-w-0 items-center gap-2.5">
           {hasChildren ? (
-            <span className="text-stone-500 transition-transform duration-200 dark:text-stone-400">
+            <span className="text-muted transition-transform duration-200 dark:text-muted">
               {isOpen ? (
                 <ChevronDown className="size-4" />
               ) : (
@@ -101,23 +101,23 @@ export const TreeItem = ({
             className={cn(
               'size-4 shrink-0',
               node.type === 'certificate'
-                ? 'text-stone-800'
-                : 'text-stone-900 dark:text-stone-100',
+                ? 'text-fjord'
+                : 'text-fjord dark:text-muted',
             )}
           />
-          <span className="truncate text-sm font-medium text-stone-900 dark:text-stone-50">
+          <span className="truncate text-sm font-medium text-fjord dark:text-white">
             {node.title}
           </span>
         </div>
 
         <div className="flex shrink-0 items-center gap-3">
           {node.hash && (
-            <span className="hidden font-mono text-[10px] text-stone-500 md:inline dark:text-stone-400">
+            <span className="hidden font-mono text-[10px] text-muted md:inline dark:text-muted">
               {node.hash}
             </span>
           )}
           {node.date && (
-            <span className="text-xs text-stone-500 dark:text-stone-400">
+            <span className="text-xs text-muted dark:text-muted">
               {node.date}
             </span>
           )}
@@ -149,7 +149,7 @@ export const TreeItem = ({
               stiffness: 400,
               damping: 30,
             }}
-            className="ml-5 overflow-hidden border-l border-stone-300/40 dark:border-stone-800/40"
+            className="ml-5 overflow-hidden border-l border-border/40 dark:border-border/40"
           >
             {node.children!.map((child) => (
               <TreeItem key={child.id} node={child} level={level + 1} />
@@ -170,22 +170,22 @@ export const Tree = ({
   return (
     <div
       className={cn(
-        'border border-stone-300/60 bg-stone-50 p-6 shadow-sm dark:border-stone-800/60 dark:bg-stone-950',
+        'border border-border/60 bg-surface p-6 shadow-sm dark:border-border/60 dark:bg-fjord-hover',
         className,
       )}
     >
       {/* Header */}
-      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-stone-300/40 pb-5 sm:flex-row sm:items-center dark:border-stone-800/40">
+      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-border/40 pb-5 sm:flex-row sm:items-center dark:border-border/40">
         <div>
-          <span className="text-xs font-bold tracking-widest text-stone-900 uppercase dark:text-stone-100">
+          <span className="text-xs font-bold tracking-widest text-fjord uppercase dark:text-muted">
             {subtitle}
           </span>
-          <h3 className="mt-1 font-display text-xl font-bold text-stone-900 sm:text-2xl dark:text-stone-50">
+          <h3 className="mt-1 font-display text-xl font-bold text-fjord sm:text-2xl dark:text-white">
             {title}
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 bg-ink-bg px-3 py-1 text-xs font-semibold text-white dark:bg-white dark:text-stone-900">
+          <span className="flex items-center gap-1.5 bg-fjord-bg px-3 py-1 text-xs font-semibold text-white dark:bg-white dark:text-fjord">
             <Lock className="size-3.5" />
             <span>SHA-256 Immutable Audit</span>
           </span>

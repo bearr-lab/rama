@@ -35,7 +35,7 @@ export function AnimatedCardStack() {
           }
         />
         <motion.div
-          className="absolute right-12 bottom-8 size-48 rounded-none bg-stone-200 blur-[150px] dark:bg-stone-800/25"
+          className="absolute right-12 bottom-8 size-48 rounded-none bg-surface-subtle blur-[150px] dark:bg-surface-subtle/25"
           animate={
             shouldReduceMotion
               ? undefined
@@ -73,17 +73,17 @@ export function AnimatedCardStack() {
             aria-label={`${card.title}: ${card.description}. Hover or focus to expand this card.`}
             role="group"
           >
-            <Card className="rounded-none border border-stone-300/60 bg-card/80 shadow-[0_20px_70px_-40px_rgba(15,23,42,0.7)] backdrop-blur-xl transition-shadow duration-300 group-hover:shadow-[0_26px_90px_-45px_rgba(15,23,42,0.8)] dark:border-stone-800/60">
+            <Card className="rounded-none border border-border/60 bg-card/80 shadow-[0_20px_70px_-40px_rgba(15,23,42,0.7)] backdrop-blur-xl transition-shadow duration-300 group-hover:shadow-[0_26px_90px_-45px_rgba(15,23,42,0.8)] dark:border-border/60">
               <CardHeader>
                 <CardTitle className="text-base font-semibold text-foreground">
                   {card.title}
                 </CardTitle>
-                <CardDescription className="text-xs tracking-[0.32em] text-stone-500 uppercase dark:text-stone-400/80">
+                <CardDescription className="text-xs tracking-[0.32em] text-muted uppercase dark:text-muted/80">
                   {card.description}
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-stone-500 dark:text-stone-400">
+                <p className="text-sm text-muted dark:text-muted">
                   Hover or focus to surface this panel and bring it to the
                   front.
                 </p>

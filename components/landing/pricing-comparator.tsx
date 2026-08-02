@@ -80,7 +80,7 @@ export function PricingComparator({
               ? 'خطط الذكاء العقاري المؤسسي'
               : 'RAMA Intelligence Plans'}
           </p>
-          <h2 className="font-display text-4xl font-medium text-ink sm:text-5xl">
+          <h2 className="font-display text-4xl font-medium text-fjord sm:text-5xl">
             {isArabic
               ? 'قارن خيارات الاشتراك واتخذ قرارك بثقة'
               : 'Transparent Plans for Serious Real Estate Investors'}
@@ -111,7 +111,7 @@ export function PricingComparator({
 
               <div>
                 <div className="mb-6">
-                  <h3 className="font-display text-2xl font-semibold text-ink">
+                  <h3 className="font-display text-2xl font-semibold text-fjord">
                     {plan.name}
                   </h3>
                   <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
@@ -120,7 +120,7 @@ export function PricingComparator({
                 </div>
 
                 <div className="mb-8 flex items-baseline gap-2">
-                  <span className="font-display text-4xl font-bold text-ink">
+                  <span className="font-display text-4xl font-bold text-fjord">
                     {plan.price}
                   </span>
                   <span className="text-sm text-muted-foreground">
@@ -132,7 +132,7 @@ export function PricingComparator({
                   {plan.features.map((feature, fIdx) => (
                     <li
                       key={fIdx}
-                      className="flex items-center gap-3 text-sm text-ink"
+                      className="flex items-center gap-3 text-sm text-fjord"
                     >
                       <div className="flex size-5 shrink-0 items-center justify-center rounded-none bg-fjord-soft">
                         <Check className="size-3.5 text-fjord" />
@@ -148,7 +148,7 @@ export function PricingComparator({
                 className={`h-9 w-full rounded-none text-[11px] font-bold tracking-widest uppercase transition-colors ${
                   plan.isPopular
                     ? 'bg-fjord text-white hover:bg-fjord-hover'
-                    : 'border border-border text-ink hover:bg-surface-subtle'
+                    : 'border border-border text-fjord hover:bg-surface-subtle'
                 }`}
               >
                 <Link href={`/${locale}/login`} className="w-full text-center">

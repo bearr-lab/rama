@@ -50,13 +50,13 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
   return (
     <>
       {/* Expanded Pillars */}
-      <Section spacing="lg" className="bg-stone-50 dark:bg-stone-950">
+      <Section spacing="lg" className="bg-surface dark:bg-fjord-hover">
         <Container size="lg">
           <div className="mb-16 flex flex-col items-center text-center">
-            <span className="text-[10px] font-bold tracking-widest text-stone-500 uppercase">
+            <span className="text-[10px] font-bold tracking-widest text-muted uppercase">
               {isArabic ? 'منصة الاستثمار' : 'Investment Platform'}
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-stone-900 md:text-4xl dark:text-stone-50">
+            <h2 className="mt-3 font-display text-3xl font-bold text-fjord md:text-4xl dark:text-white">
               {isArabic
                 ? 'بنية تحتية للمستثمرين'
                 : 'Institutional Infrastructure'}
@@ -73,35 +73,35 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className={`flex flex-col border p-8 transition-colors ${
                   pillar.dark
-                    ? 'border-stone-800/40 bg-ink-bg text-white'
-                    : 'border-stone-300/40 bg-white hover:border-stone-900 dark:border-stone-800/40 dark:bg-stone-900 dark:hover:border-stone-100'
+                    ? 'border-border/40 bg-fjord-bg text-white'
+                    : 'border-border/40 bg-white hover:border-border dark:border-border/40 dark:bg-fjord-hover dark:hover:border-border'
                 }`}
               >
                 {pillar.dark ? (
-                  <div className="mb-6 size-8 animate-pulse rounded-none bg-stone-200 dark:bg-stone-800" />
+                  <div className="mb-6 size-8 animate-pulse rounded-none bg-surface-subtle dark:bg-surface-subtle" />
                 ) : (
-                  <pillar.icon className="mb-6 size-8 text-stone-900 dark:text-stone-100" />
+                  <pillar.icon className="mb-6 size-8 text-fjord dark:text-muted" />
                 )}
 
                 <h3
-                  className={`mb-4 font-display text-2xl font-bold ${pillar.dark ? 'text-white' : 'text-stone-900 dark:text-stone-50'}`}
+                  className={`mb-4 font-display text-2xl font-bold ${pillar.dark ? 'text-white' : 'text-fjord dark:text-white'}`}
                 >
                   {pillar.title}
                 </h3>
                 <p
-                  className={`mb-8 text-sm leading-relaxed ${pillar.dark ? 'text-white/70' : 'text-stone-500 dark:text-stone-400'}`}
+                  className={`mb-8 text-sm leading-relaxed ${pillar.dark ? 'text-white/70' : 'text-muted dark:text-muted'}`}
                 >
                   {pillar.description}
                 </p>
 
                 {pillar.comingSoon ? (
-                  <span className="inline-flex items-center text-sm font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400">
+                  <span className="inline-flex items-center text-sm font-bold tracking-widest text-muted uppercase dark:text-muted">
                     {isArabic ? 'قريباً' : 'Coming Soon'}
                   </span>
                 ) : (
                   <Link
                     href={pillar.href || '#'}
-                    className={`inline-flex items-center text-sm font-semibold hover:underline ${pillar.dark ? 'text-white' : 'text-stone-900 dark:text-stone-100'}`}
+                    className={`inline-flex items-center text-sm font-semibold hover:underline ${pillar.dark ? 'text-white' : 'text-fjord dark:text-muted'}`}
                   >
                     {pillar.cta} <ArrowRight className="ml-1 size-4" />
                   </Link>
@@ -113,7 +113,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
       </Section>
 
       {/* UAE Golden Visa Banner */}
-      <Section className="border-y border-stone-800 bg-stone-900 py-24 text-white">
+      <Section className="border-y border-border bg-fjord-hover py-24 text-white">
         <Container size="lg">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
@@ -123,7 +123,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               <h2 className="font-display text-4xl leading-tight font-bold md:text-5xl">
                 {isArabic ? 'تأشيرة دبي الذهبية' : 'The UAE Golden Visa'}
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-stone-400">
+              <p className="mt-6 text-base leading-relaxed text-muted">
                 {isArabic
                   ? 'استثمر بقيمة 2 مليون درهم إماراتي أو أكثر في العقارات واحصل على تأشيرة الإقامة الذهبية لك ولعائلتك. تمتع بملكية أعمال بنسبة 100% وإعفاء كامل من ضريبة الدخل الشخصي.'
                   : 'Invest AED 2M or more in real estate and secure a 10-year Golden Visa for you and your family. Enjoy 100% business ownership and zero personal income tax.'}
@@ -132,7 +132,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   href="/homes?priceMin=2000000"
-                  className="inline-flex h-12 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-black uppercase transition-colors hover:bg-stone-200"
+                  className="inline-flex h-12 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-surface-subtle"
                 >
                   {isArabic ? 'عقارات مؤهلة' : 'Qualifying Properties'}
                 </Link>
@@ -143,7 +143,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               </div>
             </div>
 
-            <div className="relative h-100 w-full border border-stone-800 bg-black">
+            <div className="relative h-100 w-full border border-border bg-fjord">
               {/* Decorative graphic for Golden Visa */}
               <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                 <div className="absolute size-125 rotate-45 border border-amber-500/20 opacity-50" />

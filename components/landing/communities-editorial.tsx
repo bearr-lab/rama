@@ -62,17 +62,17 @@ export function CommunitiesEditorial({ isArabic }: CommunitiesEditorialProps) {
   return (
     <>
       {/* Dubai Lifestyle */}
-      <Section className="border-t border-stone-800 bg-black py-24 text-white">
+      <Section className="border-t border-border bg-fjord py-24 text-white">
         <Container size="lg">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-8">
             <div className="flex flex-col justify-center">
-              <span className="text-[10px] font-bold tracking-widest text-stone-400 uppercase">
+              <span className="text-[10px] font-bold tracking-widest text-muted uppercase">
                 {isArabic ? 'أسلوب الحياة في دبي' : 'The Dubai Lifestyle'}
               </span>
               <h2 className="mt-4 font-display text-4xl leading-tight font-bold md:text-5xl">
                 {isArabic ? 'أكثر من مجرد عقار' : 'Beyond the Property'}
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-stone-400">
+              <p className="mt-6 text-base leading-relaxed text-muted">
                 {isArabic
                   ? 'اختيار مجمعك السكني في دبي لا يقتصر على العقار فحسب، بل هو اختيار لأسلوب حياة متكامل. من المدارس المتميزة إلى البنية التحتية المتطورة، كل منطقة توفر لك تجربة فريدة لا تضاهى.'
                   : 'Choosing your community in Dubai is about selecting a holistic lifestyle. From premium education networks to unparalleled infrastructure, every district offers a distinctly curated living experience.'}
@@ -87,13 +87,13 @@ export function CommunitiesEditorial({ isArabic }: CommunitiesEditorialProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="flex flex-col border border-stone-800 bg-stone-950/50 p-6 backdrop-blur-md"
+                  className="flex flex-col border border-border bg-fjord-hover/50 p-6 backdrop-blur-md"
                 >
                   <feature.icon className="mb-4 size-6 text-white" />
                   <h3 className="mb-2 font-display text-lg font-bold">
                     {feature.title}
                   </h3>
-                  <p className="text-xs leading-relaxed text-stone-400">
+                  <p className="text-xs leading-relaxed text-muted">
                     {feature.description}
                   </p>
                 </motion.div>
@@ -104,30 +104,30 @@ export function CommunitiesEditorial({ isArabic }: CommunitiesEditorialProps) {
       </Section>
 
       {/* Market Performance */}
-      <Section className="bg-stone-50 py-16 dark:bg-stone-900">
+      <Section className="bg-surface py-16 dark:bg-fjord-hover">
         <Container size="lg">
           <div className="mb-10 flex flex-col items-center text-center">
-            <h2 className="font-display text-2xl font-bold text-stone-900 dark:text-stone-50">
+            <h2 className="font-display text-2xl font-bold text-fjord dark:text-white">
               {isArabic ? 'أداء السوق' : 'Market Performance'}
             </h2>
-            <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
+            <p className="mt-2 text-sm text-muted dark:text-muted">
               {isArabic
                 ? 'مؤشرات قوية عبر جميع المجمعات السكنية'
                 : 'Strong indicators across all premium communities'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-px bg-stone-200 md:grid-cols-3 dark:bg-stone-800">
+          <div className="grid grid-cols-1 gap-px bg-surface-subtle md:grid-cols-3 dark:bg-surface-subtle">
             {marketStats.map((stat, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center justify-center bg-stone-50 py-10 dark:bg-stone-900"
+                className="flex flex-col items-center justify-center bg-surface py-10 dark:bg-fjord-hover"
               >
-                <p className="text-xs font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">
+                <p className="text-xs font-semibold tracking-widest text-muted uppercase dark:text-muted">
                   {stat.label}
                 </p>
                 <div className="mt-2 flex items-baseline gap-3">
-                  <span className="font-mono text-4xl font-bold text-stone-900 dark:text-stone-50">
+                  <span className="font-mono text-4xl font-bold text-fjord dark:text-white">
                     {stat.value}
                   </span>
                   <span className="text-xs font-bold text-green-600 dark:text-green-500">

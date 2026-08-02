@@ -61,9 +61,9 @@ export function RoiCalculatorWidget({
     }).format(val);
 
   return (
-    <div className="w-full rounded-none border border-stone-200/80 bg-white/90 p-6 shadow-xl backdrop-blur-md sm:p-8 dark:border-stone-800 dark:bg-stone-900/90">
+    <div className="w-full rounded-none border border-border/80 bg-white/90 p-6 shadow-xl backdrop-blur-md sm:p-8 dark:border-border dark:bg-fjord-hover/90">
       {/* Header */}
-      <div className="flex flex-col justify-between gap-4 border-b border-stone-200/60 pb-6 sm:flex-row sm:items-center dark:border-stone-800">
+      <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-center dark:border-border">
         <div>
           <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-emerald-400">
             <Calculator className="size-4" />
@@ -75,7 +75,7 @@ export function RoiCalculatorWidget({
               RERA Integrated
             </span>
           </div>
-          <h3 className="mt-1 font-display text-2xl font-normal text-stone-900 sm:text-3xl dark:text-stone-100">
+          <h3 className="mt-1 font-display text-2xl font-normal text-fjord sm:text-3xl dark:text-muted">
             {isArabic ? 'احسب عوائدك الاستثمارية' : 'Calculate Your Returns'}
           </h3>
         </div>
@@ -89,7 +89,7 @@ export function RoiCalculatorWidget({
               className={`rounded-none px-3.5 py-1.5 text-xs font-medium transition-all ${
                 selectedCommunity === c.id
                   ? 'bg-[#0a4e6e] text-white shadow-sm'
-                  : 'bg-stone-100 text-stone-600 hover:bg-stone-200 dark:bg-stone-800 dark:text-stone-300'
+                  : 'bg-surface-subtle text-muted hover:bg-surface-subtle dark:bg-surface-subtle dark:text-muted'
               }`}
             >
               {c.label}
@@ -104,7 +104,7 @@ export function RoiCalculatorWidget({
         <div className="space-y-6 lg:col-span-6">
           {/* Slider 1: Property Price */}
           <div>
-            <div className="flex justify-between text-sm font-medium text-stone-700 dark:text-stone-300">
+            <div className="flex justify-between text-sm font-medium text-muted dark:text-muted">
               <span>{isArabic ? 'سعر العقار' : 'Property Value'}</span>
               <span className="font-bold text-[#0a4e6e] dark:text-sky-400">
                 {formatCurrency(propertyPrice)}
@@ -118,9 +118,9 @@ export function RoiCalculatorWidget({
               value={propertyPrice}
               onChange={(e) => setPropertyPrice(Number(e.target.value))}
               aria-label={isArabic ? 'سعر العقار' : 'Property Value'}
-              className="mt-2.5 h-2 w-full cursor-pointer appearance-none rounded-none bg-stone-200 accent-[#0a4e6e] dark:bg-stone-700"
+              className="mt-2.5 h-2 w-full cursor-pointer appearance-none rounded-none bg-surface-subtle accent-[#0a4e6e] dark:bg-surface-subtle"
             />
-            <div className="mt-1 flex justify-between text-[11px] text-stone-400">
+            <div className="mt-1 flex justify-between text-[11px] text-muted">
               <span>AED 1M</span>
               <span>AED 25M</span>
             </div>
@@ -128,12 +128,12 @@ export function RoiCalculatorWidget({
 
           {/* Slider 2: Down Payment */}
           <div>
-            <div className="flex justify-between text-sm font-medium text-stone-700 dark:text-stone-300">
+            <div className="flex justify-between text-sm font-medium text-muted dark:text-muted">
               <span>
                 {isArabic ? 'الدفعة الأولى' : 'Down Payment'} ({downPaymentPct}
                 %)
               </span>
-              <span className="font-bold text-stone-900 dark:text-stone-100">
+              <span className="font-bold text-fjord dark:text-muted">
                 {formatCurrency((propertyPrice * downPaymentPct) / 100)}
               </span>
             </div>
@@ -147,17 +147,17 @@ export function RoiCalculatorWidget({
               aria-label={
                 isArabic ? 'الدفعة الأولى' : 'Down Payment Percentage'
               }
-              className="mt-2.5 h-2 w-full cursor-pointer appearance-none rounded-none bg-stone-200 accent-[#0a4e6e] dark:bg-stone-700"
+              className="mt-2.5 h-2 w-full cursor-pointer appearance-none rounded-none bg-surface-subtle accent-[#0a4e6e] dark:bg-surface-subtle"
             />
           </div>
 
           {/* Slider 3: Interest Rate */}
           <div>
-            <div className="flex justify-between text-sm font-medium text-stone-700 dark:text-stone-300">
+            <div className="flex justify-between text-sm font-medium text-muted dark:text-muted">
               <span>
                 {isArabic ? 'معدل الفائدة المتوقع' : 'Mortgage Interest Rate'}
               </span>
-              <span className="font-bold text-stone-900 dark:text-stone-100">
+              <span className="font-bold text-fjord dark:text-muted">
                 {interestRate}%
               </span>
             </div>
@@ -169,17 +169,17 @@ export function RoiCalculatorWidget({
               value={interestRate}
               onChange={(e) => setInterestRate(Number(e.target.value))}
               aria-label={isArabic ? 'معدل الفائدة' : 'Interest Rate'}
-              className="mt-2.5 h-2 w-full cursor-pointer appearance-none rounded-none bg-stone-200 accent-[#0a4e6e] dark:bg-stone-700"
+              className="mt-2.5 h-2 w-full cursor-pointer appearance-none rounded-none bg-surface-subtle accent-[#0a4e6e] dark:bg-surface-subtle"
             />
           </div>
 
           {/* Financial Ratio Progress Gauge Bar */}
-          <div className="rounded-none border border-stone-200/60 bg-stone-50/60 p-4 dark:border-stone-800 dark:bg-stone-950/40">
-            <div className="flex justify-between text-xs font-medium text-stone-500">
+          <div className="rounded-none border border-border/60 bg-surface/60 p-4 dark:border-border dark:bg-fjord-hover/40">
+            <div className="flex justify-between text-xs font-medium text-muted">
               <span>Down Payment ({downPaymentPct}%)</span>
               <span>Mortgage Financed ({100 - downPaymentPct}%)</span>
             </div>
-            <div className="mt-2 flex h-2.5 w-full overflow-hidden rounded-none bg-stone-200 dark:bg-stone-700">
+            <div className="mt-2 flex h-2.5 w-full overflow-hidden rounded-none bg-surface-subtle dark:bg-surface-subtle">
               <div
                 className="h-full bg-emerald-600 transition-all duration-300"
                 style={{ width: `${downPaymentPct}%` }}
@@ -193,11 +193,11 @@ export function RoiCalculatorWidget({
         </div>
 
         {/* Right Output Cards with Magic UI Cards & Border Beam */}
-        <div className="rounded-none border border-stone-200/60 bg-stone-50/80 p-6 lg:col-span-6 dark:border-stone-800 dark:bg-stone-950/60">
+        <div className="rounded-none border border-border/60 bg-surface/80 p-6 lg:col-span-6 dark:border-border dark:bg-fjord-hover/60">
           <div className="grid grid-cols-2 gap-4">
             {/* Net Yield Magic Card */}
             <MagicCard gradientColor="#10b98120">
-              <div className="flex items-center gap-1.5 text-xs text-stone-500">
+              <div className="flex items-center gap-1.5 text-xs text-muted">
                 <TrendingUp className="size-3.5 text-emerald-600" />
                 <span>
                   {isArabic ? 'صافي العائد المتوقع' : 'Projected Net Yield'}
@@ -210,26 +210,26 @@ export function RoiCalculatorWidget({
                   suffix="%"
                 />
               </p>
-              <p className="mt-0.5 text-[11px] text-stone-400">
+              <p className="mt-0.5 text-[11px] text-muted">
                 RERA Benchmarked
               </p>
             </MagicCard>
 
             {/* Monthly Mortgage Magic Card */}
             <MagicCard gradientColor="#0a4e6e20">
-              <div className="flex items-center gap-1.5 text-xs text-stone-500">
+              <div className="flex items-center gap-1.5 text-xs text-muted">
                 <PieChart className="size-3.5 text-sky-600" />
                 <span>
                   {isArabic ? 'القسط الشهري' : 'Est. Monthly Payment'}
                 </span>
               </div>
-              <p className="mt-2 text-2xl font-bold text-stone-900 dark:text-stone-100">
+              <p className="mt-2 text-2xl font-bold text-fjord dark:text-muted">
                 <NumberTicker
                   value={simulation.monthlyMortgagePayment}
                   prefix="AED "
                 />
               </p>
-              <p className="mt-0.5 text-[11px] text-stone-400">
+              <p className="mt-0.5 text-[11px] text-muted">
                 25-Yr Mortgage
               </p>
             </MagicCard>
@@ -272,11 +272,11 @@ export function RoiCalculatorWidget({
 
           {/* Action CTA */}
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-xs text-stone-500">
+            <div className="text-xs text-muted">
               <span>
                 {isArabic ? 'متوسط السعر/قدم مربعة: ' : 'Avg Price/SqFt: '}
               </span>
-              <strong className="text-stone-900 dark:text-stone-100">
+              <strong className="text-fjord dark:text-muted">
                 AED {communityMetrics.avgPricePerSqft}
               </strong>
             </div>

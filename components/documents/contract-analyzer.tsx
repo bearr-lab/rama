@@ -131,7 +131,7 @@ export function ContractAnalyzer() {
               <FileCode className="size-5" />
             </div>
             <div>
-              <h3 className="text-body font-display font-bold text-ink">
+              <h3 className="text-body font-display font-bold text-fjord">
                 Document Intelligence
               </h3>
               <p className="text-caption text-muted">
@@ -170,7 +170,7 @@ export function ContractAnalyzer() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-1">
-                      <span className="text-body-sm block truncate font-bold text-ink">
+                      <span className="text-body-sm block truncate font-bold text-fjord">
                         {doc.title}
                       </span>
                     </div>
@@ -210,7 +210,7 @@ export function ContractAnalyzer() {
               <Sparkles className="absolute -top-1 -right-1 size-5 animate-pulse text-sky-500" />
             </div>
             <div>
-              <h4 className="text-body mt-4 font-display font-bold text-ink">
+              <h4 className="text-body mt-4 font-display font-bold text-fjord">
                 Running AI OCR Information Extraction...
               </h4>
               <p className="text-caption mt-1 max-w-sm text-muted">
@@ -225,7 +225,7 @@ export function ContractAnalyzer() {
             <div className="flex flex-col justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center">
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-h2 font-display font-bold text-ink">
+                  <h3 className="text-h2 font-display font-bold text-fjord">
                     {analyzedDoc.title}
                   </h3>
                   <span
@@ -254,7 +254,7 @@ export function ContractAnalyzer() {
                       `Downloading verified PDF copy of ${analyzedDoc.title}...`,
                     )
                   }
-                  className="text-body-sm flex items-center gap-1.5 rounded-xl border border-border bg-surface-subtle px-3 py-1.5 font-semibold text-ink transition-colors hover:bg-border/50"
+                  className="text-body-sm flex items-center gap-1.5 rounded-xl border border-border bg-surface-subtle px-3 py-1.5 font-semibold text-fjord transition-colors hover:bg-border/50"
                 >
                   <Download className="size-4 text-muted" />
                   <span>Download PDF</span>
@@ -314,7 +314,7 @@ export function ContractAnalyzer() {
                 <span className="text-[11px] font-extrabold tracking-wider text-muted uppercase">
                   Contracting Parties
                 </span>
-                <p className="text-body-sm mt-1 font-bold text-ink">
+                <p className="text-body-sm mt-1 font-bold text-fjord">
                   {analyzedDoc.parties}
                 </p>
               </div>
@@ -331,7 +331,7 @@ export function ContractAnalyzer() {
 
             {/* Extracted Clauses */}
             <div className="space-y-3">
-              <h4 className="text-body-sm flex items-center gap-2 font-bold text-ink">
+              <h4 className="text-body-sm flex items-center gap-2 font-bold text-fjord">
                 <Sparkles className="size-4 text-purple-500" />
                 <span>AI Extracted Legal Clauses & Compliance Flags</span>
               </h4>
@@ -353,7 +353,7 @@ export function ContractAnalyzer() {
                           'mt-0.5 shrink-0 rounded-lg p-1.5',
                           clause.status === 'ok'
                             ? 'bg-emerald-500/10 text-emerald-500'
-                            : 'bg-amber-500 font-bold text-black',
+                            : 'bg-amber-500 font-bold text-fjord',
                         )}
                       >
                         {clause.status === 'ok' ? (
@@ -364,11 +364,11 @@ export function ContractAnalyzer() {
                       </div>
                       <div>
                         <div className="flex items-center gap-2">
-                          <h5 className="text-body-sm font-bold text-ink">
+                          <h5 className="text-body-sm font-bold text-fjord">
                             {clause.title}
                           </h5>
                           {clause.status !== 'ok' && (
-                            <span className="rounded bg-amber-500 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-black uppercase">
+                            <span className="rounded bg-amber-500 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-fjord uppercase">
                               Red Flag Alert
                             </span>
                           )}
@@ -397,7 +397,7 @@ export function ContractAnalyzer() {
 
             {/* AI Summary Footer */}
             <div className="flex items-center justify-between rounded-2xl border border-purple-500/20 bg-linear-to-r from-purple-500/10 via-sky-500/5 to-transparent p-4">
-              <div className="text-body-sm flex items-center gap-2.5 font-medium text-ink">
+              <div className="text-body-sm flex items-center gap-2.5 font-medium text-fjord">
                 <Sparkles className="size-4 shrink-0 text-purple-500" />
                 <span>
                   <strong>AI Contract Verdict:</strong> Zero hidden liabilities

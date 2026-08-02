@@ -34,7 +34,7 @@ export function LocaleSwitcher({ isDark = false }: LocaleSwitcherProps) {
         'rounded px-2 py-1 text-xs font-semibold tracking-wider uppercase transition-colors',
         isDark
           ? 'text-white hover:bg-white/10'
-          : 'text-ink hover:bg-surface-subtle',
+          : 'text-fjord hover:bg-surface-subtle',
       )}
     >
       {nextLocale}

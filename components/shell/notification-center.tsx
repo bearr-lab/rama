@@ -101,31 +101,31 @@ export function NotificationCenter() {
         aria-label="Notifications & Lifecycle Alerts"
         aria-expanded={isOpen}
         className={cn(
-          'relative border p-2.5 text-stone-500 transition-all hover:bg-stone-100 hover:text-stone-900 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none dark:bg-stone-900 dark:text-stone-400',
+          'relative border p-2.5 text-muted transition-all hover:bg-surface-subtle hover:text-fjord focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none dark:bg-fjord-hover dark:text-muted',
           isOpen
-            ? 'dark:border-stone-800-hover border-stone-300 bg-stone-100 text-stone-900 dark:bg-stone-900 dark:text-stone-50'
-            : 'border-stone-300 dark:border-stone-800',
+            ? 'dark:border-border-hover border-border bg-surface-subtle text-fjord dark:bg-fjord-hover dark:text-white'
+            : 'border-border dark:border-border',
         )}
         title="Notifications & Lifecycle Alerts"
       >
         <Bell className="size-5" />
         {unreadCount > 0 && (
-          <span className="text-caption absolute -end-1 -top-1 flex size-5 animate-pulse items-center justify-center bg-stone-900 font-extrabold text-primary-foreground shadow-sm dark:bg-stone-100">
+          <span className="text-caption absolute -end-1 -top-1 flex size-5 animate-pulse items-center justify-center bg-fjord-hover font-extrabold text-primary-foreground shadow-sm dark:bg-surface-subtle">
             {unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="animate-in fade-in zoom-in-95 absolute end-0 z-50 mt-2 w-80 overflow-hidden border border-stone-300 bg-stone-50 shadow-2xl duration-150 sm:w-96 dark:border-stone-800 dark:bg-stone-950">
+        <div className="animate-in fade-in zoom-in-95 absolute end-0 z-50 mt-2 w-80 overflow-hidden border border-border bg-surface shadow-2xl duration-150 sm:w-96 dark:border-border dark:bg-fjord-hover">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-stone-300 bg-stone-100/50 p-4 dark:border-stone-800 dark:bg-stone-900/50">
+          <div className="flex items-center justify-between border-b border-border bg-surface-subtle/50 p-4 dark:border-border dark:bg-fjord-hover/50">
             <div className="flex items-center gap-2">
-              <h3 className="text-body font-display font-bold text-stone-900 dark:text-stone-50">
+              <h3 className="text-body font-display font-bold text-fjord dark:text-white">
                 Lifecycle Alerts
               </h3>
               {unreadCount > 0 && (
-                <span className="py-0.2 text-caption bg-stone-200 px-2 font-bold text-stone-900 dark:bg-stone-800 dark:text-stone-100">
+                <span className="py-0.2 text-caption bg-surface-subtle px-2 font-bold text-fjord dark:bg-surface-subtle dark:text-muted">
                   {unreadCount} new
                 </span>
               )}
@@ -135,7 +135,7 @@ export function NotificationCenter() {
               {unreadCount > 0 && (
                 <button
                   onClick={markAllRead}
-                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-stone-500 transition-colors hover:bg-stone-50 hover:text-stone-900 dark:bg-stone-950 dark:text-stone-400"
+                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-muted transition-colors hover:bg-surface hover:text-fjord dark:bg-fjord-hover dark:text-muted"
                   title="Mark all as read"
                 >
                   <Check className="size-3.5" />
@@ -145,7 +145,7 @@ export function NotificationCenter() {
               {alerts.length > 0 && (
                 <button
                   onClick={clearAlerts}
-                  className="p-1.5 text-stone-500 transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-stone-400"
+                  className="p-1.5 text-muted transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-muted"
                   title="Clear all alerts"
                 >
                   <Trash2 className="size-3.5" />
@@ -157,7 +157,7 @@ export function NotificationCenter() {
           {/* Alerts List */}
           <div className="max-h-96 divide-y divide-stone-300 overflow-y-auto dark:divide-stone-800">
             {alerts.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center text-stone-500 dark:text-stone-400">
+              <div className="flex flex-col items-center justify-center p-8 text-center text-muted dark:text-muted">
                 <Bell className="mb-2 size-8 opacity-30" />
                 <p className="text-body-sm font-semibold">All caught up!</p>
                 <p className="text-caption">
@@ -171,19 +171,19 @@ export function NotificationCenter() {
                   href={`/${locale}${alert.href}`}
                   onClick={() => handleAlertClick(alert.id)}
                   className={cn(
-                    'group relative flex items-start gap-3 p-4 transition-colors hover:bg-stone-100 dark:bg-stone-900',
+                    'group relative flex items-start gap-3 p-4 transition-colors hover:bg-surface-subtle dark:bg-fjord-hover',
                     alert.unread &&
-                      'bg-stone-200/5 dark:bg-stone-200/10 dark:bg-stone-800/5 dark:bg-stone-800/10',
+                      'bg-surface-subtle/5 dark:bg-surface-subtle/10 dark:bg-surface-subtle/5 dark:bg-surface-subtle/10',
                   )}
                 >
                   <div
                     className={cn(
                       'mt-0.5 shrink-0 p-2',
                       alert.type === 'trust'
-                        ? 'bg-stone-800/10 text-stone-800'
+                        ? 'bg-surface-subtle/10 text-fjord'
                         : alert.type === 'ai'
-                          ? 'bg-stone-200/10 text-stone-600 dark:bg-stone-800/10 dark:text-stone-400'
-                          : 'bg-stone-800/10 text-stone-800',
+                          ? 'bg-surface-subtle/10 text-muted dark:bg-surface-subtle/10 dark:text-muted'
+                          : 'bg-surface-subtle/10 text-fjord',
                     )}
                   >
                     {alert.type === 'trust' && (
@@ -197,20 +197,20 @@ export function NotificationCenter() {
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
-                      <h4 className="text-body-sm truncate font-bold text-stone-900 transition-colors group-hover:text-stone-900 dark:text-stone-100">
+                      <h4 className="text-body-sm truncate font-bold text-fjord transition-colors group-hover:text-fjord dark:text-muted">
                         {alert.title}
                       </h4>
-                      <span className="shrink-0 text-[10px] text-stone-500 dark:text-stone-400">
+                      <span className="shrink-0 text-[10px] text-muted dark:text-muted">
                         {alert.time}
                       </span>
                     </div>
-                    <p className="text-caption mt-0.5 leading-normal text-stone-500 dark:text-stone-400">
+                    <p className="text-caption mt-0.5 leading-normal text-muted dark:text-muted">
                       {alert.description}
                     </p>
                   </div>
 
                   {alert.unread && (
-                    <span className="size-2 shrink-0 self-center bg-stone-200 dark:bg-stone-800" />
+                    <span className="size-2 shrink-0 self-center bg-surface-subtle dark:bg-surface-subtle" />
                   )}
                 </Link>
               ))
@@ -218,11 +218,11 @@ export function NotificationCenter() {
           </div>
 
           {/* Footer */}
-          <div className="border-t border-stone-300 bg-stone-100 p-3 text-center dark:border-stone-800 dark:bg-stone-900">
+          <div className="border-t border-border bg-surface-subtle p-3 text-center dark:border-border dark:bg-fjord-hover">
             <Link
               href={`/${locale}/tasks`}
               onClick={() => setIsOpen(false)}
-              className="text-caption inline-flex items-center gap-1 font-bold text-stone-900 hover:underline dark:text-stone-100"
+              className="text-caption inline-flex items-center gap-1 font-bold text-fjord hover:underline dark:text-muted"
             >
               <span>View All Transaction Tasks</span>
               <ExternalLink className="size-3" />

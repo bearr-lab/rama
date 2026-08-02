@@ -93,13 +93,13 @@ const PartnerNode = ({
   >
     <Magnetic>
       <div className="border-border-strong relative flex size-14 items-center justify-center border bg-canvas transition-all duration-300 group-hover:border-fjord/50 group-hover:bg-surface">
-        <div className="size-6 text-ink transition-colors duration-300">
+        <div className="size-6 text-fjord transition-colors duration-300">
           {children}
         </div>
       </div>
     </Magnetic>
     <div className="flex flex-col">
-      <span className="text-sm leading-tight font-bold text-ink">{label}</span>
+      <span className="text-sm leading-tight font-bold text-fjord">{label}</span>
       {sublabel && (
         <span className="mt-0.5 text-[11px] text-text">{sublabel}</span>
       )}
@@ -170,7 +170,7 @@ export function DeveloperLogoCloud({
                 ? 'شبكة منظومة ريرا المعتمدة'
                 : 'RERA Ecosystem & Escrow Network'}
             </p>
-            <h3 className="max-w-2xl font-display text-2xl leading-tight font-bold text-ink md:text-4xl">
+            <h3 className="max-w-2xl font-display text-2xl leading-tight font-bold text-fjord md:text-4xl">
               {isArabic
                 ? 'شركاء الخدمات المصرفية والمطورين المعتمدين'
                 : 'Verified Institutional Banking & Developer Partners'}
@@ -192,7 +192,7 @@ export function DeveloperLogoCloud({
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <span className="border-border-strong inline-flex items-center gap-1.5 border bg-surface px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-ink uppercase">
+              <span className="border-border-strong inline-flex items-center gap-1.5 border bg-surface px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-fjord uppercase">
                 <Lock className="size-3" />
                 {isArabic
                   ? 'الخدمات المصرفية والتنظيمية'
@@ -210,12 +210,12 @@ export function DeveloperLogoCloud({
             >
               <div className="flex items-center gap-4">
                 <div className="flex size-16 items-center justify-center border border-border bg-canvas">
-                  <div className="size-8 text-ink">
+                  <div className="size-8 text-fjord">
                     <DldLogo />
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-display text-lg font-bold text-ink">
+                  <h4 className="font-display text-lg font-bold text-fjord">
                     {isArabic
                       ? 'دائرة الأراضي والأملاك'
                       : 'Dubai Land Department'}

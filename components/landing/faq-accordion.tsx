@@ -55,7 +55,7 @@ export function FAQAccordion({ isArabic = false }: FAQAccordionProps) {
             <HelpCircle className="size-4 text-fjord" />
             {isArabic ? 'الأسئلة الشائعة والشفافية' : 'Buyer Evidence & FAQs'}
           </p>
-          <h2 className="font-display text-3xl font-medium text-ink sm:text-4xl">
+          <h2 className="font-display text-3xl font-medium text-fjord sm:text-4xl">
             {isArabic
               ? 'كل ما تحتاج معرفته عن الضمان والشفافية'
               : 'Everything You Need to Know About RAMA Evidence'}
@@ -73,7 +73,7 @@ export function FAQAccordion({ isArabic = false }: FAQAccordionProps) {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between p-6 text-start font-display text-lg font-medium text-ink transition-colors hover:text-fjord"
+                  className="flex w-full items-center justify-between p-6 text-start font-display text-lg font-medium text-fjord transition-colors hover:text-fjord"
                 >
                   <span className="pe-4">{faq.question}</span>
                   <ChevronDown

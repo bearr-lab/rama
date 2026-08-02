@@ -23,7 +23,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
           <p className="mb-4 text-sm font-medium tracking-[0.2em] text-fjord uppercase">
             {isArabic ? 'توجيه مدعوم بالذكاء الاصطناعي' : 'AI-Powered Guidance'}
           </p>
-          <h2 className="mb-6 font-display text-3xl leading-tight font-light text-ink md:text-4xl lg:text-5xl">
+          <h2 className="mb-6 font-display text-3xl leading-tight font-light text-fjord md:text-4xl lg:text-5xl">
             {isArabic ? 'قابل مستشارك العقاري الشخصي.' : 'Meet your personal'}
             {!isArabic && (
               <span className="mt-2 block text-muted-foreground italic">
@@ -51,7 +51,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
         <div className="flex justify-center">
           <div className="relative w-75 md:w-90 lg:w-100">
             {/* Phone frame */}
-            <div className="relative rounded-none bg-ink-bg p-3 shadow-2xl ring-1 ring-border">
+            <div className="relative rounded-none bg-fjord-bg p-3 shadow-2xl ring-1 ring-border">
               {/* Screen */}
               <div className="aspect-9/19 overflow-hidden rounded-none bg-background">
                 {/* Chat UI mockup inside phone */}
@@ -62,7 +62,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                       <Bot className="size-4 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-ink">RAMA AI</p>
+                      <p className="text-sm font-medium text-fjord">RAMA AI</p>
                       <p className="text-xs text-muted-foreground">Online</p>
                     </div>
                   </div>
@@ -74,7 +74,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                       <div className="flex size-6 shrink-0 items-center justify-center rounded-none bg-fjord">
                         <Bot className="size-3 text-white" />
                       </div>
-                      <div className="max-w-[85%] rounded-none bg-surface-subtle px-4 py-3 text-ink">
+                      <div className="max-w-[85%] rounded-none bg-surface-subtle px-4 py-3 text-fjord">
                         <p className="text-sm">
                           Welcome! I&apos;m RAMA AI. Ask me anything about Dubai
                           real estate.
@@ -97,7 +97,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                         <Bot className="size-3 text-white" />
                       </div>
                       <div className="max-w-[90%] space-y-2">
-                        <div className="rounded-none bg-surface-subtle px-4 py-3 text-ink">
+                        <div className="rounded-none bg-surface-subtle px-4 py-3 text-fjord">
                           <p className="text-sm">
                             I found 3 great options. Arabian Ranches III is a
                             top choice for families.
@@ -114,7 +114,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                               className="object-cover"
                             />
                           </div>
-                          <div className="p-3 text-ink">
+                          <div className="p-3 text-fjord">
                             <p className="text-sm font-medium">
                               Arabian Ranches III
                             </p>
@@ -149,7 +149,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                   <Check className="size-4 text-verified" />
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-ink">DLD Verified</p>
+                  <p className="text-xs font-medium text-fjord">DLD Verified</p>
                   <p className="text-[10px] text-muted-foreground">
                     Price confirmed
                   </p>
@@ -163,7 +163,7 @@ export function AIAppTeaser({ locale, isArabic }: AIAppTeaserProps) {
                   <Sparkles className="size-4 text-fjord" />
                 </div>
                 <div>
-                  <p className="text-xs font-medium text-ink">AI Match</p>
+                  <p className="text-xs font-medium text-fjord">AI Match</p>
                   <p className="text-[10px] text-muted-foreground">
                     98% relevant
                   </p>

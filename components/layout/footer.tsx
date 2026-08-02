@@ -63,21 +63,21 @@ export async function Footer() {
                 href="https://www.pexels.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold underline hover:text-ink"
+                className="font-semibold underline hover:text-fjord"
               >
                 Pexels
               </a>
             </span>
             <span className="hidden text-border sm:inline">|</span>
-            <Link href={`/${locale}/homes`} className="hover:text-ink">
+            <Link href={`/${locale}/homes`} className="hover:text-fjord">
               {isArabic ? 'العقارات' : 'Homes'}
             </Link>
-            <Link href={`/${locale}/areas`} className="hover:text-ink">
+            <Link href={`/${locale}/areas`} className="hover:text-fjord">
               {isArabic ? 'المجتمعات' : 'Areas'}
             </Link>
             <Link
               href={`/${locale === 'ar' ? 'en' : 'ar'}`}
-              className="hover:text-ink"
+              className="hover:text-fjord"
             >
               {locale === 'ar' ? 'English' : 'العربية'}
             </Link>

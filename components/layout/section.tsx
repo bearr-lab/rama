@@ -22,8 +22,8 @@ export function Section({
     canvas: 'bg-canvas',
     surface: 'bg-surface',
     'surface-subtle': 'bg-surface-subtle',
-    ink: 'bg-ink-bg text-white',
-    'ink-bg': 'bg-ink-bg text-white',
+    ink: 'bg-fjord-bg text-white',
+    'ink-bg': 'bg-fjord-bg text-white',
   };
 
   const spacingClasses = {

@@ -87,7 +87,7 @@ export function ForgotPasswordForm({ locale }: ForgotPasswordFormProps) {
       <form className="space-y-3" onSubmit={handleSendReset} noValidate>
         <motion.label
           variants={itemVariants}
-          className="block space-y-2 text-sm font-medium text-ink"
+          className="block space-y-2 text-sm font-medium text-fjord"
         >
           <span>{t.email}</span>
           <Input
@@ -138,7 +138,7 @@ export function ForgotPasswordForm({ locale }: ForgotPasswordFormProps) {
       <motion.div variants={itemVariants} className="pt-2 text-center">
         <Link
           href={`/${locale}/login`}
-          className="text-sm font-medium text-muted-foreground hover:text-ink hover:underline"
+          className="text-sm font-medium text-muted-foreground hover:text-fjord hover:underline"
         >
           {t.backToSignIn}
         </Link>

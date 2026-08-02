@@ -95,7 +95,7 @@ export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
                     'rounded-2xl p-4 text-base leading-relaxed',
                     msg.role === 'user'
                       ? 'rounded-tr-sm bg-fjord text-white'
-                      : 'rounded-tl-sm border border-border bg-surface text-ink shadow-sm',
+                      : 'rounded-tl-sm border border-border bg-surface text-fjord shadow-sm',
                   )}
                 >
                   {msg.content}
@@ -160,7 +160,7 @@ export function ChatInterface({ locale = 'en' }: { locale?: 'en' | 'ar' }) {
                   ? 'اسأل عن الأسعار، أو العائد على الاستثمار، أو ابحث عن عقار...'
                   : 'Ask about prices, ROI, or search for a property...'
               }
-              className="w-full bg-transparent py-4 pr-14 pl-4 text-base text-ink placeholder:text-muted focus:outline-none sm:pl-6"
+              className="w-full bg-transparent py-4 pr-14 pl-4 text-base text-fjord placeholder:text-muted focus:outline-none sm:pl-6"
               disabled={isLoading}
             />
             <Button

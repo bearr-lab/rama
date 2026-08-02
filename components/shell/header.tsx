@@ -47,7 +47,7 @@ export function Header() {
         {/* Mobile Sidebar Trigger */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
-            className="-ml-2 cursor-pointer rounded-lg p-2 text-ink transition-colors hover:bg-surface-subtle md:hidden"
+            className="-ml-2 cursor-pointer rounded-lg p-2 text-fjord transition-colors hover:bg-surface-subtle md:hidden"
             aria-label="Open navigation menu"
           >
             <Menu className="size-6" />
@@ -57,7 +57,7 @@ export function Header() {
           </SheetContent>
         </Sheet>
 
-        <div className="text-body flex items-center gap-2 font-display font-bold text-ink">
+        <div className="text-body flex items-center gap-2 font-display font-bold text-fjord">
           <span>{getPageTitle()}</span>
         </div>
       </div>
@@ -66,9 +66,9 @@ export function Header() {
         {/* Command Palette Trigger */}
         <button
           onClick={handleOpenCommandPalette}
-          className="text-body-sm group flex items-center gap-2 rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 font-medium text-text shadow-2xs transition-all hover:bg-surface-subtle hover:text-ink"
+          className="text-body-sm group flex items-center gap-2 rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 font-medium text-text shadow-2xs transition-all hover:bg-surface-subtle hover:text-fjord"
         >
-          <Search className="size-4 text-text/80 transition-colors group-hover:text-ink" />
+          <Search className="size-4 text-text/80 transition-colors group-hover:text-fjord" />
           <span className="hidden sm:inline">Search decision engine...</span>
           <kbd className="hidden h-5 items-center gap-1 rounded border border-border/60 bg-surface px-1.5 font-mono text-[10px] font-bold text-text/80 sm:inline-flex">
             <span>⌘</span>K

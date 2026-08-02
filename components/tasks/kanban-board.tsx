@@ -89,26 +89,26 @@ const COLUMNS: {
     label: 'Stage 1: Due Diligence & Drafts',
     badge: 'Active',
     color:
-      'border-stone-300/30 dark:border-stone-700/30 bg-stone-200/5 dark:bg-stone-800/5',
+      'border-border/30 dark:border-stone-700/30 bg-surface-subtle/5 dark:bg-surface-subtle/5',
   },
   {
     id: 'viewing',
     label: 'Stage 2: Viewings Scheduled',
     badge: 'Active',
-    color: 'border-stone-800/30 bg-stone-800/5',
+    color: 'border-border/30 bg-surface-subtle/5',
   },
   {
     id: 'offer',
     label: 'Stage 3: MOU & Offers Submitted',
     badge: 'Pending',
     color:
-      'border-stone-400/30 dark:border-stone-600/30 bg-stone-200/5 dark:bg-stone-800/5',
+      'border-stone-400/30 dark:border-stone-600/30 bg-surface-subtle/5 dark:bg-surface-subtle/5',
   },
   {
     id: 'transfer',
     label: 'Stage 4: DLD Transfer Ready',
     badge: 'Milestone',
-    color: 'border-stone-800/30 bg-stone-800/5',
+    color: 'border-border/30 bg-surface-subtle/5',
   },
 ];
 
@@ -201,12 +201,12 @@ export function KanbanBoard() {
   return (
     <div className="flex size-full flex-col space-y-6">
       {/* Controls Bar */}
-      <div className="flex flex-col justify-between gap-4 border-b border-stone-300 pb-4 sm:flex-row sm:items-center dark:border-stone-800">
+      <div className="flex flex-col justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center dark:border-border">
         <div className="flex items-center gap-2">
-          <span className="text-body-sm font-bold text-stone-500 dark:text-stone-400">
+          <span className="text-body-sm font-bold text-muted dark:text-muted">
             Filter Priority:
           </span>
-          <div className="flex items-center gap-1 border border-stone-300 bg-stone-100 p-1 dark:border-stone-800 dark:bg-stone-900">
+          <div className="flex items-center gap-1 border border-border bg-surface-subtle p-1 dark:border-border dark:bg-fjord-hover">
             {['all', 'high', 'medium', 'low'].map((p) => (
               <button
                 key={p}
@@ -214,8 +214,8 @@ export function KanbanBoard() {
                 className={cn(
                   'px-3 py-1 text-xs font-bold capitalize transition-all',
                   filterPriority === p
-                    ? 'bg-ink text-white shadow-sm'
-                    : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
+                    ? 'bg-fjord text-white shadow-sm'
+                    : 'text-muted hover:text-fjord dark:text-muted',
                 )}
               >
                 {p}
@@ -224,14 +224,14 @@ export function KanbanBoard() {
           </div>
         </div>
 
-        <div className="flex items-center gap-1 border border-stone-300 bg-stone-100 p-1 dark:border-stone-800 dark:bg-stone-900">
+        <div className="flex items-center gap-1 border border-border bg-surface-subtle p-1 dark:border-border dark:bg-fjord-hover">
           <button
             onClick={() => setViewMode('kibo')}
             className={cn(
               'px-3 py-1 text-xs font-bold transition-all',
               viewMode === 'kibo'
-                ? 'bg-stone-900 text-white shadow-sm dark:bg-stone-100'
-                : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
+                ? 'bg-fjord-hover text-white shadow-sm dark:bg-surface-subtle'
+                : 'text-muted hover:text-fjord dark:text-muted',
             )}
           >
             Kibo Animated Pipeline
@@ -241,8 +241,8 @@ export function KanbanBoard() {
             className={cn(
               'px-3 py-1 text-xs font-bold transition-all',
               viewMode === 'classic'
-                ? 'bg-ink text-white shadow-sm'
-                : 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
+                ? 'bg-fjord text-white shadow-sm'
+                : 'text-muted hover:text-fjord dark:text-muted',
             )}
           >
             Classic Board
@@ -255,13 +255,13 @@ export function KanbanBoard() {
               setTasks(DEFAULT_TASKS);
               localStorage.removeItem('rama_v2_kanban_tasks');
             }}
-            className="text-caption font-bold text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400"
+            className="text-caption font-bold text-muted transition-colors hover:text-fjord dark:text-muted"
           >
             Reset Demo Board
           </button>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="text-body-sm flex items-center gap-2 bg-stone-900 px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
+            className="text-body-sm flex items-center gap-2 bg-fjord-hover px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-surface-subtle dark:bg-surface-subtle dark:bg-surface-subtle"
           >
             <Plus className="size-4" />
             <span>New Action Task</span>
@@ -276,7 +276,7 @@ export function KanbanBoard() {
             id: col.id,
             title: col.label,
             color:
-              col.color.split(' ')[1] || 'bg-stone-900/10 dark:bg-stone-100/10',
+              col.color.split(' ')[1] || 'bg-fjord-hover/10 dark:bg-surface-subtle/10',
             items: filteredTasks.filter((t) => t.column === col.id),
           }))}
           onMoveItem={(itemId, sourceCol, targetCol) => {
@@ -289,26 +289,26 @@ export function KanbanBoard() {
             );
           }}
           renderCard={(task, colId, onMoveDirection) => (
-            <div className="group relative space-y-3 border border-stone-300/80 bg-card p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-stone-800/80 dark:bg-neutral-900/90">
+            <div className="group relative space-y-3 border border-border/80 bg-card p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-border/80 dark:bg-neutral-900/90">
               <div className="flex items-center justify-between">
                 <span
                   className={cn(
                     'inline-flex items-center gap-1.5 border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
                     task.priority === 'high' &&
-                      'border-stone-400/20 bg-stone-200/10 text-stone-800 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-800',
+                      'border-stone-400/20 bg-surface-subtle/10 text-fjord dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-fjord',
                     task.priority === 'medium' &&
-                      'border-stone-400/20 bg-stone-200/10 text-stone-700 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-300 dark:text-stone-700',
+                      'border-stone-400/20 bg-surface-subtle/10 text-muted dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-muted',
                     task.priority === 'low' &&
-                      'border-stone-300/80 bg-stone-100 text-stone-500 dark:border-stone-800/80 dark:bg-stone-900 dark:text-stone-400',
+                      'border-border/80 bg-surface-subtle text-muted dark:border-border/80 dark:bg-fjord-hover dark:text-muted',
                   )}
                 >
                   <span
                     className={cn(
                       'size-1.5 shrink-0',
                       task.priority === 'high' &&
-                        'bg-stone-200 dark:bg-stone-800',
+                        'bg-surface-subtle dark:bg-surface-subtle',
                       task.priority === 'medium' &&
-                        'bg-stone-700 dark:bg-stone-300',
+                        'bg-surface-subtle dark:bg-stone-300',
                       task.priority === 'low' && 'bg-muted',
                     )}
                   />
@@ -316,22 +316,22 @@ export function KanbanBoard() {
                 </span>
                 <button
                   onClick={() => deleteTask(task.id)}
-                  className="p-1 text-stone-500 opacity-0 transition-all group-hover:opacity-100 hover:bg-stone-200/10 hover:text-stone-800 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-400"
+                  className="p-1 text-muted opacity-0 transition-all group-hover:opacity-100 hover:bg-surface-subtle/10 hover:text-fjord dark:bg-surface-subtle/10 dark:text-muted dark:text-muted"
                   title="Delete Task"
                 >
                   <Trash2 className="size-3.5" />
                 </button>
               </div>
               <div>
-                <h5 className="text-body-sm leading-snug font-bold text-stone-900 dark:text-white">
+                <h5 className="text-body-sm leading-snug font-bold text-fjord dark:text-white">
                   {task.title}
                 </h5>
-                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-stone-500 dark:text-stone-400">
-                  <Building className="size-3.5 shrink-0 text-stone-900 dark:text-stone-100" />
+                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted dark:text-muted">
+                  <Building className="size-3.5 shrink-0 text-fjord dark:text-muted" />
                   <span className="truncate">{task.property}</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between border-t border-stone-300/40 pt-2 text-xs text-stone-500 dark:border-stone-800/40 dark:text-stone-400">
+              <div className="flex items-center justify-between border-t border-border/40 pt-2 text-xs text-muted dark:border-border/40 dark:text-muted">
                 <div className="flex items-center gap-1 font-medium">
                   <Clock className="size-3.5" />
                   <span>{task.dueDate}</span>
@@ -340,7 +340,7 @@ export function KanbanBoard() {
                   {task.column !== 'draft' && (
                     <button
                       onClick={() => onMoveDirection('left')}
-                      className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-white"
+                      className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
                       title="Previous Stage"
                     >
                       <ArrowLeft className="size-3" />
@@ -349,7 +349,7 @@ export function KanbanBoard() {
                   {task.column !== 'transfer' && (
                     <button
                       onClick={() => onMoveDirection('right')}
-                      className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-white"
+                      className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
                       title="Next Stage"
                     >
                       <ArrowRight className="size-3" />
@@ -367,33 +367,33 @@ export function KanbanBoard() {
             return (
               <div
                 key={col.id}
-                className="shadow-subtle flex h-full flex-col overflow-hidden border border-stone-300 bg-stone-50 dark:border-stone-800 dark:bg-stone-950"
+                className="shadow-subtle flex h-full flex-col overflow-hidden border border-border bg-surface dark:border-border dark:bg-fjord-hover"
               >
                 {/* Column Header */}
                 <div
                   className={cn(
-                    'flex items-center justify-between border-b border-stone-300 p-4 dark:border-stone-800',
+                    'flex items-center justify-between border-b border-border p-4 dark:border-border',
                     col.color,
                   )}
                 >
                   <div className="flex items-center gap-2">
-                    <h4 className="text-body-sm font-display font-extrabold text-stone-900 dark:text-stone-50">
+                    <h4 className="text-body-sm font-display font-extrabold text-fjord dark:text-white">
                       {col.label}
                     </h4>
-                    <span className="bg-stone-50/80 px-2 py-0.5 text-[10px] font-extrabold text-stone-900 uppercase dark:bg-black/40 dark:bg-stone-950/80 dark:text-stone-50">
+                    <span className="bg-surface/80 px-2 py-0.5 text-[10px] font-extrabold text-fjord uppercase dark:bg-fjord/40 dark:bg-fjord-hover/80 dark:text-white">
                       {col.badge}
                     </span>
                   </div>
-                  <span className="flex size-6 items-center justify-center border border-stone-300 bg-stone-50 text-xs font-extrabold text-stone-900 shadow-2xs dark:border-stone-800 dark:bg-stone-950 dark:text-stone-50">
+                  <span className="flex size-6 items-center justify-center border border-border bg-surface text-xs font-extrabold text-fjord shadow-2xs dark:border-border dark:bg-fjord-hover dark:text-white">
                     {colTasks.length}
                   </span>
                 </div>
 
                 {/* Column Task Cards */}
-                <div className="flex-1 space-y-3 overflow-y-auto bg-stone-100/50 p-4 dark:bg-stone-900/50">
+                <div className="flex-1 space-y-3 overflow-y-auto bg-surface-subtle/50 p-4 dark:bg-fjord-hover/50">
                   {colTasks.length === 0 ? (
-                    <div className="flex h-40 flex-col items-center justify-center border-2 border-dashed border-stone-300/60 p-4 text-center dark:border-stone-800/60">
-                      <p className="text-caption font-medium text-stone-500 dark:text-stone-400">
+                    <div className="flex h-40 flex-col items-center justify-center border-2 border-dashed border-border/60 p-4 text-center dark:border-border/60">
+                      <p className="text-caption font-medium text-muted dark:text-muted">
                         No tasks in this stage
                       </p>
                     </div>
@@ -401,7 +401,7 @@ export function KanbanBoard() {
                     colTasks.map((task) => (
                       <div
                         key={task.id}
-                        className="group animate-in fade-in relative space-y-3 border border-stone-300 bg-stone-50 p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-stone-800 dark:bg-stone-950"
+                        className="group animate-in fade-in relative space-y-3 border border-border bg-surface p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-border dark:bg-fjord-hover"
                       >
                         {/* Priority Tag & Delete */}
                         <div className="flex items-center justify-between">
@@ -409,20 +409,20 @@ export function KanbanBoard() {
                             className={cn(
                               'inline-flex items-center gap-1.5 border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
                               task.priority === 'high' &&
-                                'border-stone-400/20 bg-stone-200/10 text-stone-800 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-800',
+                                'border-stone-400/20 bg-surface-subtle/10 text-fjord dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-fjord',
                               task.priority === 'medium' &&
-                                'border-stone-400/20 bg-stone-200/10 text-stone-700 dark:border-stone-600/20 dark:bg-stone-800/10 dark:text-stone-300 dark:text-stone-700',
+                                'border-stone-400/20 bg-surface-subtle/10 text-muted dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-muted',
                               task.priority === 'low' &&
-                                'border-stone-300/80 bg-stone-100 text-stone-500 dark:border-stone-800/80 dark:bg-stone-900 dark:text-stone-400',
+                                'border-border/80 bg-surface-subtle text-muted dark:border-border/80 dark:bg-fjord-hover dark:text-muted',
                             )}
                           >
                             <span
                               className={cn(
                                 'size-1.5 shrink-0',
                                 task.priority === 'high' &&
-                                  'bg-stone-200 dark:bg-stone-800',
+                                  'bg-surface-subtle dark:bg-surface-subtle',
                                 task.priority === 'medium' &&
-                                  'bg-stone-700 dark:bg-stone-300',
+                                  'bg-surface-subtle dark:bg-stone-300',
                                 task.priority === 'low' && 'bg-muted',
                               )}
                             />
@@ -431,7 +431,7 @@ export function KanbanBoard() {
 
                           <button
                             onClick={() => deleteTask(task.id)}
-                            className="p-1 text-stone-500 opacity-0 transition-all group-hover:opacity-100 hover:bg-stone-200/10 hover:text-stone-800 dark:bg-stone-800/10 dark:text-stone-200 dark:text-stone-400"
+                            className="p-1 text-muted opacity-0 transition-all group-hover:opacity-100 hover:bg-surface-subtle/10 hover:text-fjord dark:bg-surface-subtle/10 dark:text-muted dark:text-muted"
                             title="Delete Task"
                           >
                             <Trash2 className="size-3.5" />
@@ -440,19 +440,19 @@ export function KanbanBoard() {
 
                         {/* Title & Property */}
                         <div>
-                          <h5 className="text-body-sm leading-snug font-bold text-stone-900 dark:text-stone-50">
+                          <h5 className="text-body-sm leading-snug font-bold text-fjord dark:text-white">
                             {task.title}
                           </h5>
-                          <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-stone-500 dark:text-stone-400">
-                            <Building className="size-3.5 shrink-0 text-stone-900 dark:text-stone-100" />
+                          <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted dark:text-muted">
+                            <Building className="size-3.5 shrink-0 text-fjord dark:text-muted" />
                             <span className="truncate">{task.property}</span>
                           </div>
                         </div>
 
                         {/* Footer: Due Date & Move Controls */}
-                        <div className="text-caption flex items-center justify-between border-t border-stone-300/60 pt-2 dark:border-stone-800/60">
-                          <div className="flex items-center gap-1.5 font-medium text-stone-500 dark:text-stone-400">
-                            <Calendar className="size-3.5 text-stone-900 dark:text-stone-100" />
+                        <div className="text-caption flex items-center justify-between border-t border-border/60 pt-2 dark:border-border/60">
+                          <div className="flex items-center gap-1.5 font-medium text-muted dark:text-muted">
+                            <Calendar className="size-3.5 text-fjord dark:text-muted" />
                             <span>{task.dueDate}</span>
                           </div>
 
@@ -461,7 +461,7 @@ export function KanbanBoard() {
                             {task.column !== 'draft' && (
                               <button
                                 onClick={() => moveTask(task.id, 'left')}
-                                className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                                className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
                                 title="Move Previous Stage"
                               >
                                 <ArrowLeft className="size-3" />
@@ -470,7 +470,7 @@ export function KanbanBoard() {
                             {task.column !== 'transfer' && (
                               <button
                                 onClick={() => moveTask(task.id, 'right')}
-                                className="border border-stone-300 bg-stone-100 p-1.5 text-stone-900 transition-colors hover:bg-border dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                                className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
                                 title="Move Next Stage"
                               >
                                 <ArrowRight className="size-3" />
@@ -490,20 +490,20 @@ export function KanbanBoard() {
 
       {/* New Task Modal */}
       {isModalOpen && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm duration-150">
-          <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 border border-stone-300 bg-stone-50 p-6 shadow-2xl duration-200 dark:border-stone-800 dark:bg-stone-950">
-            <div className="flex items-center justify-between border-b border-stone-300 pb-4 dark:border-stone-800">
+        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/80 backdrop-blur-md p-4 backdrop-blur-sm duration-150">
+          <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 border border-border bg-surface p-6 shadow-2xl duration-200 dark:border-border dark:bg-fjord-hover">
+            <div className="flex items-center justify-between border-b border-border pb-4 dark:border-border">
               <div className="flex items-center gap-2.5">
-                <div className="bg-stone-900/10 p-2 text-stone-900 dark:bg-stone-100/10 dark:text-stone-100">
+                <div className="bg-fjord-hover/10 p-2 text-fjord dark:bg-surface-subtle/10 dark:text-muted">
                   <Plus className="size-5" />
                 </div>
-                <h3 className="text-h3 font-display font-bold text-stone-900 dark:text-stone-50">
+                <h3 className="text-h3 font-display font-bold text-fjord dark:text-white">
                   New Transaction Action
                 </h3>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-caption font-bold text-stone-500 hover:text-stone-900 dark:text-stone-400"
+                className="text-caption font-bold text-muted hover:text-fjord dark:text-muted"
               >
                 Cancel
               </button>
@@ -511,7 +511,7 @@ export function KanbanBoard() {
 
             <form onSubmit={handleCreateTask} className="space-y-4">
               <div>
-                <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
+                <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
                   Action Description
                 </label>
                 <input
@@ -520,18 +520,18 @@ export function KanbanBoard() {
                   placeholder="e.g., Verify Seller Power of Attorney (POA)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="text-body-sm w-full border border-stone-300 bg-stone-100 px-4 py-2.5 text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                  className="text-body-sm w-full border border-border bg-surface-subtle px-4 py-2.5 text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
                 />
               </div>
 
               <div>
-                <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
+                <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
                   Target Property / Project
                 </label>
                 <select
                   value={newProperty}
                   onChange={(e) => setNewProperty(e.target.value)}
-                  className="text-body-sm w-full border border-stone-300 bg-stone-100 px-4 py-2.5 text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                  className="text-body-sm w-full border border-border bg-surface-subtle px-4 py-2.5 text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
                 >
                   <option value="Sky Collection Penthouse">
                     Sky Collection Penthouse, Downtown
@@ -550,13 +550,13 @@ export function KanbanBoard() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
+                  <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
                     Stage Column
                   </label>
                   <select
                     value={newColumn}
                     onChange={(e) => setNewColumn(e.target.value as any)}
-                    className="text-caption w-full border border-stone-300 bg-stone-100 px-3 py-2.5 font-bold text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                    className="text-caption w-full border border-border bg-surface-subtle px-3 py-2.5 font-bold text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
                   >
                     <option value="draft">Due Diligence</option>
                     <option value="viewing">Viewing</option>
@@ -566,13 +566,13 @@ export function KanbanBoard() {
                 </div>
 
                 <div>
-                  <label className="text-caption mb-1 block font-bold text-stone-900 dark:text-stone-50">
+                  <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
                     Priority Level
                   </label>
                   <select
                     value={newPriority}
                     onChange={(e) => setNewPriority(e.target.value as any)}
-                    className="text-caption w-full border border-stone-300 bg-stone-100 px-3 py-2.5 font-bold text-stone-900 focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-stone-800 dark:bg-stone-900 dark:text-stone-50"
+                    className="text-caption w-full border border-border bg-surface-subtle px-3 py-2.5 font-bold text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
                   >
                     <option value="high">High Priority</option>
                     <option value="medium">Medium Priority</option>
@@ -581,17 +581,17 @@ export function KanbanBoard() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 border-t border-stone-300 pt-4 dark:border-stone-800">
+              <div className="flex items-center justify-end gap-3 border-t border-border pt-4 dark:border-border">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="text-body-sm border border-stone-300 bg-stone-50 px-5 py-2.5 font-bold text-stone-500 transition-colors hover:text-stone-900 dark:border-stone-800 dark:bg-stone-950 dark:text-stone-400"
+                  className="text-body-sm border border-border bg-surface px-5 py-2.5 font-bold text-muted transition-colors hover:text-fjord dark:border-border dark:bg-fjord-hover dark:text-muted"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="text-body-sm bg-stone-900 px-6 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
+                  className="text-body-sm bg-fjord-hover px-6 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-surface-subtle dark:bg-surface-subtle dark:bg-surface-subtle"
                 >
                   Create Action
                 </button>

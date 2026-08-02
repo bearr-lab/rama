@@ -47,7 +47,7 @@ export function TrustPassportCard({
             <Shield className="size-6 text-review" />
           )}
           <div>
-            <h3 className="text-body mb-1 leading-none font-semibold text-ink">
+            <h3 className="text-body mb-1 leading-none font-semibold text-fjord">
               Trust Passport
             </h3>
             <p className="text-caption leading-none text-muted">
@@ -60,7 +60,7 @@ export function TrustPassportCard({
           </div>
         </div>
         <div className="text-right">
-          <div className="text-h3 font-display font-bold text-ink">
+          <div className="text-h3 font-display font-bold text-fjord">
             {healthScore}
             <span className="text-body text-muted">/100</span>
           </div>
@@ -73,7 +73,7 @@ export function TrustPassportCard({
           <div className="text-caption font-semibold tracking-wider text-muted uppercase">
             Evidence
           </div>
-          <div className="text-body-lg font-bold text-ink">
+          <div className="text-body-lg font-bold text-fjord">
             {evidenceScore}%
           </div>
           <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-border">
@@ -88,7 +88,7 @@ export function TrustPassportCard({
           <div className="text-caption font-semibold tracking-wider text-muted uppercase">
             Risk
           </div>
-          <div className="text-body-lg font-bold text-ink">{riskScore}%</div>
+          <div className="text-body-lg font-bold text-fjord">{riskScore}%</div>
           <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-border">
             <div
               className="h-full rounded-full bg-risk"
@@ -101,7 +101,7 @@ export function TrustPassportCard({
           <div className="text-caption flex items-center justify-center gap-1 font-semibold tracking-wider text-muted uppercase">
             <Clock className="size-3" /> Freshness
           </div>
-          <div className="text-body-lg font-bold text-ink">
+          <div className="text-body-lg font-bold text-fjord">
             {freshnessScore}%
           </div>
           <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-border">

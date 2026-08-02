@@ -78,7 +78,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
       {/* Backdrop */}
       <div
         className={cn(
-          'fixed inset-0 z-50 bg-ink/20 backdrop-blur-sm transition-opacity duration-240',
+          'fixed inset-0 z-50 bg-fjord/20 backdrop-blur-sm transition-opacity duration-240',
           isOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
         onClick={onClose}
@@ -104,7 +104,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           </Link>
           <button
             onClick={onClose}
-            className="-mr-2 p-2 text-muted-foreground transition-colors hover:text-ink"
+            className="-mr-2 p-2 text-muted-foreground transition-colors hover:text-fjord"
             aria-label="Close menu"
           >
             <X className="size-5" />
@@ -115,35 +115,35 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           <nav className="flex flex-col gap-4">
             <Link
               href={`/${locale}/projects`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'المشاريع' : 'Projects'}
             </Link>
             <Link
               href={`/${locale}/homes`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'العقارات' : 'Homes'}
             </Link>
             <Link
               href={`/${locale}/areas`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'المناطق' : 'Communities'}
             </Link>
             <Link
               href={`/${locale}/invest`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'استثمر' : 'Invest'}
             </Link>
             <Link
               href={`/${locale}/insights`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'رؤى' : 'Insights'}
@@ -167,13 +167,13 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
               <div className="flex gap-2">
                 <Link
                   href="/en"
-                  className="rounded bg-surface-subtle px-2 py-1 text-sm font-medium text-ink"
+                  className="rounded bg-surface-subtle px-2 py-1 text-sm font-medium text-fjord"
                 >
                   EN
                 </Link>
                 <Link
                   href="/ar"
-                  className="rounded px-2 py-1 text-sm font-medium text-muted-foreground hover:bg-surface-subtle hover:text-ink"
+                  className="rounded px-2 py-1 text-sm font-medium text-muted-foreground hover:bg-surface-subtle hover:text-fjord"
                 >
                   AR
                 </Link>
@@ -189,9 +189,9 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
                   <AnimatedThemeToggler
                     theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                     onThemeChange={setTheme}
-                    className="flex size-9 items-center justify-center rounded-full bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80"
+                    className="flex size-9 items-center justify-center rounded-full bg-surface-subtle text-fjord transition-colors hover:bg-surface-subtle/80"
                   />
-                  <span className="text-xs font-medium text-ink">
+                  <span className="text-xs font-medium text-fjord">
                     {resolvedTheme === 'dark'
                       ? locale === 'ar'
                         ? 'داكن'

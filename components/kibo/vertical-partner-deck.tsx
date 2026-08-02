@@ -153,7 +153,7 @@ export function VerticalPartnerDeck({
   }, [filter]);
 
   return (
-    <div className="shadow-subtle relative overflow-hidden border border-stone-300/40 bg-stone-50/80 p-6 backdrop-blur-md transition-all sm:p-8 dark:border-stone-800/40 dark:bg-stone-950/80">
+    <div className="shadow-subtle relative overflow-hidden border border-border/40 bg-surface/80 p-6 backdrop-blur-md transition-all sm:p-8 dark:border-border/40 dark:bg-fjord-hover/80">
       {/* Subtle Metallic Ambient Glow Beam */}
       <BorderBeam
         size={300}
@@ -164,22 +164,22 @@ export function VerticalPartnerDeck({
       />
 
       {/* Header Bar */}
-      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-stone-300/30 pb-6 sm:flex-row sm:items-center dark:border-stone-800/30">
+      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-border/30 pb-6 sm:flex-row sm:items-center dark:border-border/30">
         <div>
-          <div className="mb-2 inline-flex items-center gap-2 border border-stone-800/20 bg-stone-800/10 px-3 py-1 text-xs font-semibold text-stone-800 dark:text-stone-100">
+          <div className="mb-2 inline-flex items-center gap-2 border border-border/20 bg-surface-subtle/10 px-3 py-1 text-xs font-semibold text-fjord dark:text-muted">
             <ShieldCheck className="size-4" />
-            <AnimatedShinyText className="font-semibold text-stone-800 dark:text-stone-100">
+            <AnimatedShinyText className="font-semibold text-fjord dark:text-muted">
               {isArabic
                 ? 'شبكة الضمان وريرة المعتمدة'
                 : 'Official RERA Law No. 8 Ecosystem'}
             </AnimatedShinyText>
           </div>
-          <h3 className="font-display text-2xl font-medium text-stone-900 dark:text-stone-50">
+          <h3 className="font-display text-2xl font-medium text-fjord dark:text-white">
             {isArabic
               ? 'شركاء التطوير والبنوك أمناء الحفظ'
               : 'Institutional Banking & Developer Network'}
           </h3>
-          <p className="mt-1 text-xs font-light text-stone-500 dark:text-stone-400">
+          <p className="mt-1 text-xs font-light text-muted dark:text-muted">
             {isArabic
               ? 'مراقبة فورية لحسابات الضمان والسجل العقاري مع دائرة الأراضي والأمناء المعتمدين'
               : 'Direct API cross-referencing with DLD land registry & licensed trustee banks'}
@@ -218,8 +218,8 @@ export function VerticalPartnerDeck({
               className={cn(
                 'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
                 filter === id
-                  ? 'border-stone-900 bg-stone-900 text-white shadow-xs dark:border-stone-100 dark:bg-stone-100'
-                  : 'border-stone-300/40 bg-stone-100 text-stone-500 hover:text-stone-900 dark:border-stone-800/40 dark:bg-stone-900 dark:text-stone-400',
+                  ? 'border-border bg-fjord-hover text-white shadow-xs dark:border-border dark:bg-surface-subtle'
+                  : 'border-border/40 bg-surface-subtle text-muted hover:text-fjord dark:border-border/40 dark:bg-fjord-hover dark:text-muted',
               )}
             >
               {Icon && <Icon className="size-3.5" />}
@@ -252,39 +252,39 @@ export function VerticalPartnerDeck({
                 onMouseEnter={() => setHoveredId(partner.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 className={cn(
-                  'group hover:shadow-floating relative flex flex-col justify-between border bg-stone-50/90 p-5 transition-all duration-300 hover:bg-stone-50 dark:bg-stone-950/90',
+                  'group hover:shadow-floating relative flex flex-col justify-between border bg-surface/90 p-5 transition-all duration-300 hover:bg-surface dark:bg-fjord-hover/90',
                   hoveredId === partner.id
-                    ? '-translate-y-1 border-stone-900/50 dark:border-stone-100/50'
-                    : 'border-stone-300/40 dark:border-stone-800/40',
+                    ? '-translate-y-1 border-border/50 dark:border-border/50'
+                    : 'border-border/40 dark:border-border/40',
                 )}
               >
                 <div>
-                  <div className="mb-3 flex items-center justify-between gap-2 border-b border-stone-300/30 pb-3 dark:border-stone-800/30">
-                    <span className="text-[10px] font-bold tracking-widest text-stone-900 uppercase dark:text-stone-100">
+                  <div className="mb-3 flex items-center justify-between gap-2 border-b border-border/30 pb-3 dark:border-border/30">
+                    <span className="text-[10px] font-bold tracking-widest text-fjord uppercase dark:text-muted">
                       {isArabic
                         ? partner.categoryLabelAr
                         : partner.categoryLabelEn}
                     </span>
-                    <span className="inline-flex items-center gap-1 bg-stone-800/10 px-2 py-0.5 text-[9px] font-bold text-stone-800 dark:text-stone-100">
+                    <span className="inline-flex items-center gap-1 bg-surface-subtle/10 px-2 py-0.5 text-[9px] font-bold text-fjord dark:text-muted">
                       <MapPin className="size-3.5" />
                       {isArabic ? partner.badgeAr : partner.badgeEn}
                     </span>
                   </div>
 
                   <div className="flex items-start justify-between">
-                    <h4 className="font-display text-lg font-bold text-stone-900 transition-colors group-hover:text-stone-900 dark:text-stone-100">
+                    <h4 className="font-display text-lg font-bold text-fjord transition-colors group-hover:text-fjord dark:text-muted">
                       {partner.name}
                     </h4>
-                    <ArrowUpRight className="size-4 text-stone-900 opacity-50 transition-opacity group-hover:opacity-100 dark:text-stone-100" />
+                    <ArrowUpRight className="size-4 text-fjord opacity-50 transition-opacity group-hover:opacity-100 dark:text-muted" />
                   </div>
-                  <p className="mt-1 text-xs leading-relaxed font-light text-stone-500 dark:text-stone-400">
+                  <p className="mt-1 text-xs leading-relaxed font-light text-muted dark:text-muted">
                     {isArabic ? partner.roleAr : partner.roleEn}
                   </p>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-stone-300/30 pt-3 font-mono text-[11px] text-stone-500 dark:border-stone-800/30 dark:text-stone-400">
+                <div className="mt-5 flex items-center justify-between border-t border-border/30 pt-3 font-mono text-[11px] text-muted dark:border-border/30 dark:text-muted">
                   <span className="truncate">{partner.lawVerification}</span>
-                  <FileCheck2 className="ms-1 size-3.5 shrink-0 text-stone-800" />
+                  <FileCheck2 className="ms-1 size-3.5 shrink-0 text-fjord" />
                 </div>
               </motion.div>
             ))}
@@ -293,16 +293,16 @@ export function VerticalPartnerDeck({
       </div>
 
       {/* Footer Info */}
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-stone-300/30 pt-4 text-xs font-light text-stone-500 dark:border-stone-800/30 dark:text-stone-400">
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border/30 pt-4 text-xs font-light text-muted dark:border-border/30 dark:text-muted">
         <div className="flex items-center gap-2">
-          <Zap className="size-4 shrink-0 text-stone-900 dark:text-stone-100" />
+          <Zap className="size-4 shrink-0 text-fjord dark:text-muted" />
           <span>
             {isArabic
               ? 'جميع حسابات الضمان موثقة بموجب القانون رقم 8 لسنة 2007 الصادر عن حكومة دبي'
               : 'All escrow accounts verified under Dubai Law No. 8 of 2007 for investor capital protection.'}
           </span>
         </div>
-        <div className="flex items-center gap-1.5 font-semibold text-stone-900 dark:text-stone-100">
+        <div className="flex items-center gap-1.5 font-semibold text-fjord dark:text-muted">
           <ArrowUpDown className="size-3.5" />
           <span>
             {isArabic ? 'التمرير العمودي للاستكشاف' : 'Scroll to explore'}

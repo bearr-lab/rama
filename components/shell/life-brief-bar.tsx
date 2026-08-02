@@ -102,7 +102,7 @@ export function LifeBriefBar() {
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="text-body font-display font-bold text-ink">
+              <h3 className="text-body font-display font-bold text-fjord">
                 Active Life Brief & Buyer Goal Engine
               </h3>
               <span className="rounded-md border border-fjord/20 bg-fjord-soft px-2 py-0.5 text-[10px] font-bold tracking-wider text-fjord uppercase">
@@ -126,7 +126,7 @@ export function LifeBriefBar() {
           )}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-body-sm hover:border-border-strong flex shrink-0 items-center gap-2 rounded-xl border border-border/80 bg-surface px-4 py-2.5 font-semibold text-ink shadow-2xs transition-all hover:bg-surface-subtle"
+            className="text-body-sm hover:border-border-strong flex shrink-0 items-center gap-2 rounded-xl border border-border/80 bg-surface px-4 py-2.5 font-semibold text-fjord shadow-2xs transition-all hover:bg-surface-subtle"
           >
             <Sliders className="size-4 text-fjord" />
             <span>{isOpen ? 'Close Goal Engine' : 'Configure Life Brief'}</span>
@@ -138,7 +138,7 @@ export function LifeBriefBar() {
       {isOpen && (
         <div className="animate-in slide-in-from-top-2 space-y-6 border-t border-border bg-surface-subtle p-6 duration-300">
           <div>
-            <h4 className="text-body-sm mb-1 font-bold text-ink">
+            <h4 className="text-body-sm mb-1 font-bold text-fjord">
               1. Select Your Investment Persona & Core Objective
             </h4>
             <p className="text-caption mb-4 text-muted">
@@ -162,7 +162,7 @@ export function LifeBriefBar() {
                   >
                     <div>
                       <div className="mb-1 flex items-center justify-between">
-                        <span className="text-body-sm font-bold text-ink">
+                        <span className="text-body-sm font-bold text-fjord">
                           {p.title}
                         </span>
                         {isSelected && (
@@ -186,7 +186,7 @@ export function LifeBriefBar() {
             </div>
           </div>
 
-          <div className="text-caption flex flex-col items-center justify-between gap-4 rounded-2xl border border-sky-500/20 bg-gradient-to-r from-sky-500/10 via-purple-500/5 to-transparent p-4 text-ink sm:flex-row">
+          <div className="text-caption flex flex-col items-center justify-between gap-4 rounded-2xl border border-sky-500/20 bg-gradient-to-r from-sky-500/10 via-purple-500/5 to-transparent p-4 text-fjord sm:flex-row">
             <div className="flex items-center gap-2.5">
               <Award className="size-5 shrink-0 text-sky-500" />
               <span>

@@ -41,13 +41,13 @@ const trustConfig: Record<
     label: 'Verified',
     icon: CheckCircle2,
     badgeClass:
-      'text-stone-900 dark:text-stone-100 border border-stone-900/40 dark:border-stone-100/40 bg-stone-200/90 dark:bg-stone-800/90 backdrop-blur-md shadow-2xs',
+      'text-fjord dark:text-muted border border-border/40 dark:border-border/40 bg-surface-subtle/90 dark:bg-surface-subtle/90 backdrop-blur-md shadow-2xs',
   },
   review: {
     label: 'In Review',
     icon: Clock,
     badgeClass:
-      'text-review border border-review/40 bg-stone-100 dark:bg-stone-900/90 backdrop-blur-md shadow-2xs',
+      'text-review border border-review/40 bg-surface-subtle dark:bg-fjord-hover/90 backdrop-blur-md shadow-2xs',
   },
   unknown: {
     label: 'Unverified',
@@ -72,10 +72,10 @@ export function ListingCard({
   return (
     <div
       className={cn(
-        'property-card group flex cursor-pointer flex-col overflow-hidden border bg-stone-50 transition-all duration-300 dark:bg-stone-950',
+        'property-card group flex cursor-pointer flex-col overflow-hidden border bg-surface transition-all duration-300 dark:bg-fjord-hover',
         isSelected
-          ? 'border-stone-900 shadow-lg ring-2 ring-fjord/20 dark:border-stone-100'
-          : 'border-stone-300/80 hover:border-stone-900/40 hover:shadow-xl dark:border-stone-800/80',
+          ? 'border-border shadow-lg ring-2 ring-fjord/20 dark:border-border'
+          : 'border-border/80 hover:border-border/40 hover:shadow-xl dark:border-border/80',
         className,
       )}
       onClick={() => onSelect?.(property)}
@@ -111,8 +111,8 @@ export function ListingCard({
           className={cn(
             'absolute top-4 right-4 flex size-9 items-center justify-center border border-white/20 backdrop-blur-md transition-all',
             isWishlisted
-              ? 'bg-stone-900 text-white shadow-md dark:bg-stone-100'
-              : 'bg-black/40 text-white hover:bg-black/60',
+              ? 'bg-fjord-hover text-white shadow-md dark:bg-surface-subtle'
+              : 'bg-fjord/40 text-white hover:bg-fjord/80 backdrop-blur-md',
           )}
           title="Save to shortlist"
         >
@@ -124,63 +124,63 @@ export function ListingCard({
       <div className="flex flex-1 flex-col p-6">
         {/* Community / sub-label */}
         <div className="mb-2 flex items-center gap-2">
-          <span className="text-[10px] font-semibold tracking-widest text-stone-900 uppercase dark:text-stone-100">
+          <span className="text-[10px] font-semibold tracking-widest text-fjord uppercase dark:text-muted">
             {property.community}
           </span>
           <span className="size-1 bg-border" />
-          <span className="text-[10px] font-medium tracking-widest text-stone-500 uppercase dark:text-stone-400">
+          <span className="text-[10px] font-medium tracking-widest text-muted uppercase dark:text-muted">
             {property.developer}
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="mb-1 font-display text-xl leading-snug font-bold text-stone-900 transition-colors group-hover:text-stone-900 dark:text-stone-100">
+        <h3 className="mb-1 font-display text-xl leading-snug font-bold text-fjord transition-colors group-hover:text-fjord dark:text-muted">
           {property.title}
         </h3>
 
         {/* Price */}
-        <p className="mb-4 text-2xl font-bold text-stone-900 dark:text-stone-50">
+        <p className="mb-4 text-2xl font-bold text-fjord dark:text-white">
           AED {property.price.toLocaleString()}
         </p>
 
         {/* Specs + yield */}
-        <div className="mt-auto flex items-center justify-between border-t border-stone-300/60 pt-4 dark:border-stone-800/60">
-          <div className="flex items-center gap-4 text-xs text-stone-500 dark:text-stone-400">
+        <div className="mt-auto flex items-center justify-between border-t border-border/60 pt-4 dark:border-border/60">
+          <div className="flex items-center gap-4 text-xs text-muted dark:text-muted">
             <div className="flex items-center gap-1.5">
-              <BedDouble className="size-3.5 text-stone-500 dark:text-stone-400" />
-              <span className="font-semibold text-stone-900 dark:text-stone-50">
+              <BedDouble className="size-3.5 text-muted dark:text-muted" />
+              <span className="font-semibold text-fjord dark:text-white">
                 {property.beds === 0 ? 'Studio' : property.beds}
               </span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Bath className="size-3.5 text-stone-500 dark:text-stone-400" />
-              <span className="font-semibold text-stone-900 dark:text-stone-50">
+              <Bath className="size-3.5 text-muted dark:text-muted" />
+              <span className="font-semibold text-fjord dark:text-white">
                 {property.baths}
               </span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Maximize2 className="size-3.5 text-stone-500 dark:text-stone-400" />
-              <span className="font-semibold text-stone-900 dark:text-stone-50">
+              <Maximize2 className="size-3.5 text-muted dark:text-muted" />
+              <span className="font-semibold text-fjord dark:text-white">
                 {property.sqft.toLocaleString()}{' '}
-                <span className="font-light text-stone-500 dark:text-stone-400">
+                <span className="font-light text-muted dark:text-muted">
                   sqft
                 </span>
               </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-1 border border-stone-900/30 bg-stone-200 px-3 py-1 text-xs font-bold text-stone-900 shadow-2xs dark:border-stone-100/30 dark:bg-stone-800 dark:text-stone-100">
+          <div className="flex items-center gap-1 border border-border/30 bg-surface-subtle px-3 py-1 text-xs font-bold text-fjord shadow-2xs dark:border-border/30 dark:bg-surface-subtle dark:text-muted">
             <TrendingUp className="size-3.5" />
             {property.roi}% Yield
           </div>
         </div>
 
         {/* Serene Lagom Action Strip on Hover (No Noisy Button Boxes) */}
-        <div className="mt-5 flex items-center justify-between border-t border-stone-300/40 pt-3.5 text-xs font-semibold text-stone-900 dark:border-stone-800/40 dark:text-stone-100">
+        <div className="mt-5 flex items-center justify-between border-t border-border/40 pt-3.5 text-xs font-semibold text-fjord dark:border-border/40 dark:text-muted">
           <Link
             href={`/${locale}/property/${property.id}`}
             onClick={(e) => e.stopPropagation()}
-            className="dark:text-stone-100-hover flex w-full items-center justify-between transition-colors group-hover:text-stone-900"
+            className="dark:text-muted-hover flex w-full items-center justify-between transition-colors group-hover:text-fjord"
           >
             <span>Inspect Property Data &amp; Trust Passport</span>
             <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />

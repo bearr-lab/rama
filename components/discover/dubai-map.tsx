@@ -55,7 +55,7 @@ export function DubaiMap({
     <div
       ref={containerRef}
       className={cn(
-        'relative size-full min-h-125 overflow-hidden border border-stone-300 bg-linear-to-r from-canvas via-surface to-fjord/20 shadow-inner select-none dark:border-stone-800',
+        'relative size-full min-h-125 overflow-hidden border border-border bg-linear-to-r from-canvas via-surface to-fjord/20 shadow-inner select-none dark:border-border',
         className,
       )}
     >
@@ -127,19 +127,19 @@ export function DubaiMap({
         </svg>
 
         {/* Community Label Watermarks */}
-        <div className="absolute top-[55%] left-[18%] font-display text-[10px] font-bold tracking-widest text-stone-600 uppercase dark:text-stone-400/30">
+        <div className="absolute top-[55%] left-[18%] font-display text-[10px] font-bold tracking-widest text-muted uppercase dark:text-muted/30">
           Palm Jumeirah
         </div>
-        <div className="absolute top-[68%] left-[22%] font-display text-[10px] font-bold tracking-widest text-stone-600 uppercase dark:text-stone-400/30">
+        <div className="absolute top-[68%] left-[22%] font-display text-[10px] font-bold tracking-widest text-muted uppercase dark:text-muted/30">
           Dubai Marina
         </div>
-        <div className="absolute top-[44%] left-[52%] font-display text-[11px] font-bold tracking-widest text-stone-600 uppercase dark:text-stone-400/40">
+        <div className="absolute top-[44%] left-[52%] font-display text-[11px] font-bold tracking-widest text-muted uppercase dark:text-muted/40">
           Downtown Dubai
         </div>
-        <div className="absolute top-[62%] left-[45%] font-display text-[10px] font-bold tracking-widest text-stone-600 uppercase dark:text-stone-400/30">
+        <div className="absolute top-[62%] left-[45%] font-display text-[10px] font-bold tracking-widest text-muted uppercase dark:text-muted/30">
           Dubai Hills
         </div>
-        <div className="absolute top-[32%] left-[72%] font-display text-[10px] font-bold tracking-widest text-stone-600 uppercase dark:text-stone-400/30">
+        <div className="absolute top-[32%] left-[72%] font-display text-[10px] font-bold tracking-widest text-muted uppercase dark:text-muted/30">
           Creek Harbour
         </div>
       </div>
@@ -174,7 +174,7 @@ export function DubaiMap({
             >
               {/* Pulsing ring for selected pin */}
               {isSelected && (
-                <div className="absolute -inset-3 animate-ping bg-stone-900/40 dark:bg-stone-100/40" />
+                <div className="absolute -inset-3 animate-ping bg-fjord-hover/40 dark:bg-surface-subtle/40" />
               )}
 
               {/* Pin Badge */}
@@ -182,47 +182,47 @@ export function DubaiMap({
                 className={cn(
                   'relative flex transform items-center gap-1.5 px-2.5 py-1 text-xs font-bold shadow-lg transition-transform',
                   isSelected
-                    ? 'z-30 scale-110 bg-stone-900 text-white ring-2 shadow-fjord/50 ring-fjord-soft dark:bg-stone-100'
+                    ? 'z-30 scale-110 bg-fjord-hover text-white ring-2 shadow-fjord/50 ring-fjord-soft dark:bg-surface-subtle'
                     : isHovered
-                      ? 'z-25 scale-105 bg-ink-bg text-white ring-1 ring-white/50'
+                      ? 'z-25 scale-105 bg-fjord-bg text-white ring-1 ring-white/50'
                       : isHighTrust
-                        ? 'border border-stone-800/50 bg-stone-950/90 text-stone-900 dark:text-stone-100'
-                        : 'border border-stone-300 bg-stone-50/90 text-stone-900 dark:border-stone-800 dark:bg-stone-950/90 dark:text-stone-50',
+                        ? 'border border-border/50 bg-fjord-hover/90 text-fjord dark:text-muted'
+                        : 'border border-border bg-surface/90 text-fjord dark:border-border dark:bg-fjord-hover/90 dark:text-white',
                 )}
               >
                 {isHighTrust ? (
-                  <ShieldCheck className="size-3.5 shrink-0 text-stone-900 dark:text-stone-100" />
+                  <ShieldCheck className="size-3.5 shrink-0 text-fjord dark:text-muted" />
                 ) : (
-                  <MapPin className="size-3.5 shrink-0 text-stone-900 dark:text-stone-100" />
+                  <MapPin className="size-3.5 shrink-0 text-fjord dark:text-muted" />
                 )}
                 <span>{formatCompactPrice(prop.price)}</span>
               </div>
 
               {/* Hover Preview Card Popup */}
               {(isHovered || isSelected) && (
-                <div className="animate-in fade-in zoom-in-95 pointer-events-none absolute bottom-full left-1/2 z-40 mb-2 w-56 -translate-x-1/2 border border-stone-300/80 bg-stone-50/95 p-3 text-left shadow-xl backdrop-blur-md duration-150 dark:border-stone-800/80 dark:bg-stone-950/95">
-                  <div className="relative mb-2 aspect-video w-full overflow-hidden bg-stone-100 dark:bg-stone-900">
+                <div className="animate-in fade-in zoom-in-95 pointer-events-none absolute bottom-full left-1/2 z-40 mb-2 w-56 -translate-x-1/2 border border-border/80 bg-surface/95 p-3 text-left shadow-xl backdrop-blur-md duration-150 dark:border-border/80 dark:bg-fjord-hover/95">
+                  <div className="relative mb-2 aspect-video w-full overflow-hidden bg-surface-subtle dark:bg-fjord-hover">
                     <img
                       src={prop.imageUrl}
                       alt={prop.title}
                       className="size-full object-cover"
                     />
-                    <div className="absolute top-1 right-1 flex items-center gap-1 bg-black/80 px-1.5 py-0.5 text-[10px] font-bold text-stone-900 dark:text-stone-100">
+                    <div className="absolute top-1 right-1 flex items-center gap-1 bg-fjord/80 backdrop-blur-md px-1.5 py-0.5 text-[10px] font-bold text-fjord dark:text-muted">
                       <ShieldCheck className="size-2.5" />
                       {prop.trustScore} Trust
                     </div>
                   </div>
-                  <h4 className="truncate text-xs font-bold text-stone-900 dark:text-stone-50">
+                  <h4 className="truncate text-xs font-bold text-fjord dark:text-white">
                     {prop.title}
                   </h4>
-                  <p className="mb-1 truncate text-[11px] text-stone-500 dark:text-stone-400">
+                  <p className="mb-1 truncate text-[11px] text-muted dark:text-muted">
                     {prop.community} • {prop.developer}
                   </p>
-                  <div className="flex items-center justify-between border-t border-stone-300/80 pt-1 text-xs dark:border-stone-800/80">
-                    <span className="font-bold text-stone-900 dark:text-stone-100">
+                  <div className="flex items-center justify-between border-t border-border/80 pt-1 text-xs dark:border-border/80">
+                    <span className="font-bold text-fjord dark:text-muted">
                       AED {prop.price.toLocaleString()}
                     </span>
-                    <span className="text-[10px] font-semibold text-stone-900 dark:text-stone-100">
+                    <span className="text-[10px] font-semibold text-fjord dark:text-muted">
                       {prop.roi}% Yield
                     </span>
                   </div>
@@ -234,11 +234,11 @@ export function DubaiMap({
       </div>
 
       {/* Map Controls */}
-      <div className="absolute top-4 right-4 z-30 flex flex-col gap-1.5 border border-stone-300/80 bg-stone-50/90 p-1.5 shadow-lg backdrop-blur-md dark:border-stone-800/80 dark:bg-stone-950/90">
+      <div className="absolute top-4 right-4 z-30 flex flex-col gap-1.5 border border-border/80 bg-surface/90 p-1.5 shadow-lg backdrop-blur-md dark:border-border/80 dark:bg-fjord-hover/90">
         <button
           onClick={handleZoomIn}
           disabled={zoom >= 2.5}
-          className="p-2 text-stone-900 transition-colors hover:bg-stone-100 hover:text-stone-900 disabled:opacity-40 dark:bg-stone-900 dark:text-stone-100"
+          className="p-2 text-fjord transition-colors hover:bg-surface-subtle hover:text-fjord disabled:opacity-40 dark:bg-fjord-hover dark:text-muted"
           title="Zoom In"
         >
           <ZoomIn className="size-4" />
@@ -246,7 +246,7 @@ export function DubaiMap({
         <button
           onClick={handleZoomOut}
           disabled={zoom <= 1}
-          className="p-2 text-stone-900 transition-colors hover:bg-stone-100 hover:text-stone-900 disabled:opacity-40 dark:bg-stone-900 dark:text-stone-100"
+          className="p-2 text-fjord transition-colors hover:bg-surface-subtle hover:text-fjord disabled:opacity-40 dark:bg-fjord-hover dark:text-muted"
           title="Zoom Out"
         >
           <ZoomOut className="size-4" />
@@ -254,7 +254,7 @@ export function DubaiMap({
         <button
           onClick={handleReset}
           disabled={zoom === 1 && pan.x === 0 && pan.y === 0}
-          className="border-t border-stone-300/80 p-2 pt-2 text-stone-900 transition-colors hover:bg-stone-100 hover:text-stone-900 disabled:opacity-40 dark:border-stone-800/80 dark:bg-stone-900 dark:text-stone-100"
+          className="border-t border-border/80 p-2 pt-2 text-fjord transition-colors hover:bg-surface-subtle hover:text-fjord disabled:opacity-40 dark:border-border/80 dark:bg-fjord-hover dark:text-muted"
           title="Reset Map View"
         >
           <RotateCcw className="size-4" />
@@ -262,16 +262,16 @@ export function DubaiMap({
       </div>
 
       {/* Map Legend & Status Overlay */}
-      <div className="absolute bottom-4 left-4 z-30 flex items-center gap-4 border border-stone-300/80 bg-stone-50/90 px-3 py-2 text-xs text-stone-900 shadow-lg backdrop-blur-md dark:border-stone-800/80 dark:bg-stone-950/90 dark:text-stone-50">
+      <div className="absolute bottom-4 left-4 z-30 flex items-center gap-4 border border-border/80 bg-surface/90 px-3 py-2 text-xs text-fjord shadow-lg backdrop-blur-md dark:border-border/80 dark:bg-fjord-hover/90 dark:text-white">
         <div className="flex items-center gap-1.5">
-          <span className="size-2.5 bg-stone-800 shadow-sm shadow-emerald-500/50" />
+          <span className="size-2.5 bg-surface-subtle shadow-sm shadow-emerald-500/50" />
           <span>High Trust (90+)</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="size-2.5 bg-stone-900 dark:bg-stone-100" />
+          <span className="size-2.5 bg-fjord-hover dark:bg-surface-subtle" />
           <span>Standard Verification</span>
         </div>
-        <div className="border-l border-stone-300 pl-2 text-[11px] text-stone-500 dark:border-stone-800 dark:text-stone-400">
+        <div className="border-l border-border pl-2 text-[11px] text-muted dark:border-border dark:text-muted">
           Showing {properties.length} verified listings
         </div>
       </div>

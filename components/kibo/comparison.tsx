@@ -76,7 +76,7 @@ export const Comparison = ({
     <div
       ref={containerRef}
       className={cn(
-        'group relative w-full overflow-hidden border border-stone-300/60 bg-card select-none dark:border-stone-800/60',
+        'group relative w-full overflow-hidden border border-border/60 bg-card select-none dark:border-border/60',
         mode === 'drag' ? 'cursor-ew-resize' : 'cursor-pointer',
         className,
       )}
@@ -101,7 +101,7 @@ export const Comparison = ({
             draggable={false}
           />
         )}
-        <div className="absolute right-4 bottom-4 z-10 bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+        <div className="absolute right-4 bottom-4 z-10 bg-fjord-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
           {afterLabel}
         </div>
       </div>
@@ -122,7 +122,7 @@ export const Comparison = ({
               draggable={false}
             />
           )}
-          <div className="absolute bottom-4 left-4 z-10 bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+          <div className="absolute bottom-4 left-4 z-10 bg-fjord-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
             {beforeLabel}
           </div>
         </div>
@@ -134,7 +134,7 @@ export const Comparison = ({
         style={{ left: `${sliderPosition}%` }}
         animate={{ scaleX: isDragging ? 1.5 : 1 }}
       >
-        <div className="group- absolute top-1/2 -left-3 flex h-8 w-7 -translate-y-1/2 items-center justify-center border border-stone-300/80 bg-white text-stone-900 shadow-md transition-transform dark:border-stone-800/80 dark:bg-ink-bg dark:text-white">
+        <div className="group- absolute top-1/2 -left-3 flex h-8 w-7 -translate-y-1/2 items-center justify-center border border-border/80 bg-white text-fjord shadow-md transition-transform dark:border-border/80 dark:bg-fjord-bg dark:text-white">
           <GripVertical className="size-4" />
         </div>
       </motion.div>
