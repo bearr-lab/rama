@@ -11,7 +11,7 @@ import { MobileNav } from './mobile-nav';
 import { LocaleSwitcher } from './locale-switcher';
 import { UserMenu } from '@/components/auth/user-menu';
 import { useTheme } from 'next-themes';
-import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
+import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { RamaLogo } from '@/components/ui/rama-logo';
 
 export function Navbar() {
@@ -110,14 +110,10 @@ export function Navbar() {
           {/* Actions */}
           <div className="hidden items-center gap-4 md:flex">
             {mounted ? (
-              <AnimatedThemeToggler
-                theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
-                onThemeChange={setTheme}
+              <ThemeToggler
                 className={cn(
-                  'flex size-9 items-center justify-center transition-colors',
-                  isNavDark
-                    ? 'text-white hover:bg-white/10'
-                    : 'text-fjord hover:bg-surface-subtle dark:bg-fjord-hover dark:text-white',
+                  'mr-2',
+                  isNavDark && 'border-white/20 bg-black/20 hover:border-white/40 hover:bg-black/40'
                 )}
               />
             ) : (

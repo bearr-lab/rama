@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display, Noto_Sans_Arabic } from 'next/font/google';
+import { Inter, Space_Grotesk, Plus_Jakarta_Sans, Noto_Sans_Arabic } from 'next/font/google';
 import type { Metadata } from 'next';
 import { getLocale } from 'next-intl/server';
 
@@ -15,11 +15,18 @@ const inter = Inter({
   display: 'swap',
 });
 
-const playfair = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
   weight: ['400', '600', '700'],
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 });
 
 const notoSansArabic = Noto_Sans_Arabic({
@@ -78,7 +85,8 @@ export default async function RootLayout({
         className={cn(
           'antialiased',
           inter.variable,
-          playfair.variable,
+          spaceGrotesk.variable,
+          plusJakartaSans.variable,
           notoSansArabic.variable,
           'font-sans',
         )}

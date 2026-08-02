@@ -84,7 +84,8 @@
   --duration-slow: 240ms;
 
   /* ─── Fonts ─── */
-  --font-display: 'Playfair Display', serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
 
   /* ─── Chart colors (keep shadcn defaults) ─── */
@@ -162,6 +163,7 @@
 @theme inline {
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 
   /* Colors */
   --color-background: var(--background);
