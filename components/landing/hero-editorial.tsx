@@ -23,7 +23,6 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
         playsInline
         aria-hidden="true"
         className="absolute inset-0 size-full object-cover"
-        poster="/images/trust/rera-hero.png"
       >
         <source src="/videos/rama-hero-bg.mp4" type="video/mp4" />
       </video>

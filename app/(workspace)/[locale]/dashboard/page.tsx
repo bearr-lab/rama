@@ -2,39 +2,25 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   ArrowRight,
-  Heart,
-  CheckSquare,
-  FolderOpen,
-  Sparkles,
-  Compass,
-  Building2,
   FileText,
   TrendingUp,
   Clock,
-  AlertCircle,
   ShieldCheck,
   CheckCircle2,
-  ExternalLink,
   ChevronRight,
-  MapPin,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
-import { Ticker } from '@/components/kibo/ticker';
-import { Marquee, PartnerCard } from '@/components/kibo/marquee';
-import { VerticalPartnerDeck } from '@/components/kibo/vertical-partner-deck';
 import { MOCK_PROPERTIES } from '@/lib/mock-properties';
 import { OnlineNow } from '@/components/online-now';
 import { TopCountries } from '@/components/top-countries';
 import { AudienceMix } from '@/components/audience-mix';
 import { VisitorsChart } from '@/components/visitors-chart';
-import { NumberTicker } from '@/components/magicui/number-ticker';
-import { BorderBeam } from '@/components/magicui/border-beam';
-import { BlurFade } from '@/components/magicui/blur-fade';
+
 import { AnimatedShinyText } from '@/components/magicui/shiny-text';
-import { ShimmerButton } from '@/components/magicui/shimmer-button';
-import { CapitalGlobe } from '@/components/magicui/capital-globe';
+import { MetricStrip } from '@/components/ui/metric-strip';
+import { PageShell } from '@/components/ui/page-shell';
+import { createClient } from '@/lib/supabase/server';
 
 export default async function DashboardPage({
   params,
@@ -44,7 +30,20 @@ export default async function DashboardPage({
   const { locale } = await params;
   const isArabic = locale === 'ar';
 
+  // Fetch authenticated user for personalized greeting
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const userName = user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split('@')[0] || null;
+  // Get first name only for a clean greeting
+  const firstName = userName ? userName.split(' ')[0] : null;
+
   const activeShortlist = MOCK_PROPERTIES.slice(0, 2);
+
+  // Time-aware greeting based on Dubai time (UTC+4)
+  const hour = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Dubai' })).getHours();
+  const timeOfDay = hour < 12 ? 'morning' : hour < 17 ? 'afternoon' : 'evening';
+  const greetingEn = firstName ? `Good ${timeOfDay}, ${firstName}.` : `Good ${timeOfDay}.`;
+  const greetingAr = timeOfDay === 'morning' ? 'صباح الخير، المستثمر' : timeOfDay === 'afternoon' ? 'طاب مساؤك، المستثمر' : 'مساء الخير، المستثمر';
 
   const recentLogs = [
     {
@@ -83,20 +82,21 @@ export default async function DashboardPage({
   ];
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-16 p-6 sm:gap-20 lg:p-12">
-      {/* ── 1. Serene Executive Greeting (Decluttered & Expansive) ── */}
-      <header className="flex flex-col justify-between gap-6 border-b border-border/30 pb-10 sm:flex-row sm:items-end">
+    <PageShell className="gap-20">
+      {/* ── 1. Serene Executive Greeting & Banner (Grouped) ── */}
+      <div className="flex flex-col gap-6">
+        <header className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
         <div>
           <div className="mb-5 inline-flex items-center gap-2 border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-            <span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
+            <span className="size-1.5 animate-pulse rounded-none bg-emerald-500" />
             <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
               {isArabic
                 ? 'سجل دبي العقاري مباشر'
                 : 'DLD & RERA Live Sync Active'}
             </AnimatedShinyText>
           </div>
-          <h1 className="font-display text-4xl font-normal tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            {isArabic ? 'صباح الخير، المستثمر' : 'Good morning.'}
+          <h1 className="font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
+            {isArabic ? greetingAr : greetingEn}
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed font-light text-muted-foreground sm:text-lg">
             {isArabic
@@ -104,59 +104,25 @@ export default async function DashboardPage({
               : 'Your executive decision workspace is active with 4 shortlisted luxury assets and 2 priority deal milestones.'}
           </p>
         </div>
-        <div className="flex shrink-0 items-center gap-3">
-          <Link href={`/${locale}/homes`}>
-            <ShimmerButton className="px-6 py-3.5 text-xs font-semibold">
-              <Compass className="mr-2 size-4" />
-              <span>{isArabic ? 'استكشف العقارات' : 'Launch Discovery'}</span>
-            </ShimmerButton>
-          </Link>
-        </div>
       </header>
+    </div>
 
       {/* ── 2. Minimalist Lagom Metric Strip (With Magic UI NumberTicker & BlurFade) ── */}
-      <section className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {/* Shortlist Metric */}
-        <BlurFade delay={0.1}>
-          <Link
-            href={`/${locale}/shortlist`}
-            className="group hover:shadow-floating relative flex h-full flex-col justify-between rounded-3xl border border-border/40 bg-surface/60 p-7 backdrop-blur-md transition-all duration-300 hover:border-fjord/30 hover:bg-surface"
-          >
-            <div className="flex items-center justify-between text-muted-foreground">
-              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'عقارات مختارة' : 'Saved Shortlist'}
-              </span>
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:text-fjord" />
-            </div>
-            <div className="mt-6">
-              <p className="font-display text-4xl font-semibold text-ink">
-                <NumberTicker value={4} />
-              </p>
-              <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic
-                  ? 'متوسط السعر 18.25M درهم'
-                  : 'AED 18.25M avg valuation'}
-              </p>
-            </div>
-          </Link>
-        </BlurFade>
-
-        {/* Pipeline Metric */}
-        <BlurFade delay={0.2}>
-          <Link
-            href={`/${locale}/tasks`}
-            className="group hover:shadow-floating relative flex h-full flex-col justify-between rounded-3xl border border-border/40 bg-surface/60 p-7 backdrop-blur-md transition-all duration-300 hover:border-fjord/30 hover:bg-surface"
-          >
-            <div className="flex items-center justify-between text-muted-foreground">
-              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'مهام صفقات نشطة' : 'Pipeline Tasks'}
-              </span>
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:text-fjord" />
-            </div>
-            <div className="mt-6">
-              <p className="font-display text-4xl font-semibold text-ink">
-                <NumberTicker value={5} />
-              </p>
+      <MetricStrip
+        className="lg:grid-cols-4"
+        metrics={[
+          {
+            id: 'shortlist',
+            title: isArabic ? 'عقارات مختارة' : 'Saved Shortlist',
+            value: 4,
+            description: isArabic ? 'متوسط السعر 18.25M درهم' : 'AED 18.25M avg valuation',
+            href: `/${locale}/shortlist`
+          },
+          {
+            id: 'pipeline',
+            title: isArabic ? 'مهام صفقات نشطة' : 'Pipeline Tasks',
+            value: 5,
+            description: (
               <p className="mt-1 flex items-center gap-1.5 text-xs font-medium text-amber-600 dark:text-amber-400">
                 <Clock className="size-3.5" />
                 <span>
@@ -165,63 +131,38 @@ export default async function DashboardPage({
                     : '1 priority in Form F stage'}
                 </span>
               </p>
-            </div>
-          </Link>
-        </BlurFade>
-
-        {/* Tracked Assets Metric */}
-        <BlurFade delay={0.3}>
-          <Link
-            href={`/${locale}/portfolio`}
-            className="group hover:shadow-floating relative flex h-full flex-col justify-between rounded-3xl border border-border/40 bg-surface/60 p-7 backdrop-blur-md transition-all duration-300 hover:border-fjord/30 hover:bg-surface"
-          >
-            <div className="flex items-center justify-between text-muted-foreground">
-              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'قيمة الأصول المحفوظة' : 'Tracked Assets'}
-              </span>
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:text-fjord" />
-            </div>
-            <div className="mt-6">
-              <p className="flex items-baseline font-display text-4xl font-semibold text-ink">
-                <span className="mr-1 font-sans text-xl">AED</span>
-                <NumberTicker value={42.5} decimalPlaces={1} suffix="M" />
-              </p>
+            ),
+            href: `/${locale}/tasks`
+          },
+          {
+            id: 'assets',
+            title: isArabic ? 'قيمة الأصول المحفوظة' : 'Tracked Assets',
+            value: 42.5,
+            prefix: 'AED',
+            suffix: 'M',
+            decimalPlaces: 1,
+            description: (
               <p className="mt-1 flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
                 <TrendingUp className="size-3.5" />
                 <span>{isArabic ? '+8.4% نمو القيمة' : '+8.4% DLD gain'}</span>
               </p>
-            </div>
-          </Link>
-        </BlurFade>
-
-        {/* AI Concierge Metric */}
-        <BlurFade delay={0.4}>
-          <Link
-            href={`/${locale}/advisor`}
-            className="group hover:shadow-floating relative flex h-full flex-col justify-between rounded-3xl border border-border/40 bg-surface/60 p-7 backdrop-blur-md transition-all duration-300 hover:border-fjord/30 hover:bg-surface"
-          >
-            <div className="flex items-center justify-between text-muted-foreground">
-              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'مستشار الذكاء الاصطناعي' : 'AI Concierge'}
-              </span>
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1 group-hover:text-fjord" />
-            </div>
-            <div className="mt-6">
+            ),
+            href: `/${locale}/portfolio`
+          },
+          {
+            id: 'advisor',
+            title: isArabic ? 'مستشار الذكاء الاصطناعي' : 'AI Concierge',
+            value: (
               <div className="flex items-center gap-2">
-                <span className="inline-flex size-2 animate-ping rounded-full bg-emerald-500" />
-                <p className="font-display text-3xl font-semibold text-ink">
-                  Active
-                </p>
+                <span className="inline-flex size-2 animate-ping rounded-none bg-emerald-500" />
+                <span className="font-display">Active</span>
               </div>
-              <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic
-                  ? 'ربط مباشر لقواعد DLD'
-                  : 'Live DLD RAG intelligence'}
-              </p>
-            </div>
-          </Link>
-        </BlurFade>
-      </section>
+            ),
+            description: isArabic ? 'ربط مباشر لقواعد DLD' : 'Live DLD RAG intelligence',
+            href: `/${locale}/advisor`
+          }
+        ]}
+      />
 
       {/* ── 3. Main Workspace Grid: Shortlisted Candidates & Priority Milestone ── */}
       <section className="grid grid-cols-1 gap-10 lg:grid-cols-3">
@@ -255,16 +196,17 @@ export default async function DashboardPage({
               <Link
                 key={prop.id}
                 href={`/${locale}/homes/${prop.slug}`}
-                className="group hover:shadow-floating relative flex flex-col overflow-hidden rounded-3xl border border-border/40 bg-surface/80 transition-all duration-500 hover:-translate-y-1"
+                className="group hover:shadow-floating relative flex flex-col overflow-hidden rounded-none border border-border/40 bg-surface/80 transition-all duration-500 hover:-translate-y-1"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                <div className="relative aspect-16/10 w-full overflow-hidden">
                   <Image
                     src={prop.images[0] || prop.thumbnail || ''}
                     alt={prop.title_en}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute top-4 left-4 rounded-full border border-border/40 bg-surface/90 px-3.5 py-1 text-[11px] font-semibold text-ink shadow-xs backdrop-blur-md">
+                  <div className="shadow-subtle absolute top-4 left-4 rounded-none border border-border/40 bg-surface/90 px-3.5 py-1 text-[11px] font-semibold text-ink backdrop-blur-md">
                     {prop.community}
                   </div>
                 </div>
@@ -312,7 +254,7 @@ export default async function DashboardPage({
             </div>
             <Link
               href={`/${locale}/decision-lab`}
-              className="inline-flex items-center gap-2 rounded-2xl border border-border/60 bg-surface px-5 py-2.5 text-xs font-semibold text-ink shadow-2xs transition-all hover:border-fjord/40 hover:bg-surface-subtle"
+              className="shadow-subtle inline-flex items-center gap-2 rounded-none border border-border/60 bg-surface px-5 py-2.5 text-xs font-semibold text-ink transition-all hover:border-fjord/40 hover:bg-surface-subtle"
             >
               <span>
                 {isArabic ? 'فتح مختبر المقارنة' : 'Open Decision Lab Matrix'}
@@ -322,36 +264,16 @@ export default async function DashboardPage({
           </div>
         </div>
 
-        {/* Right Column (1/3 width) — Serene Priority Milestone Action Card */}
-        <div className="shadow-subtle group/milestone relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border/40 bg-surface/80 p-8 lg:col-span-1">
-          {/* Cinematic Image Background */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/dashboard/mou-form.png"
-              alt="MOU Form Signature"
-              fill
-              className="object-cover opacity-10 transition-transform duration-700 group-hover/milestone:scale-105 group-hover/milestone:opacity-20"
-            />
-            {/* Gradient mask to ensure text remains legible */}
-            <div className="absolute inset-0 bg-gradient-to-b from-surface/40 via-surface/80 to-surface" />
-          </div>
-
-          <BorderBeam
-            size={250}
-            duration={12}
-            delay={0}
-            colorFrom="#1b4965"
-            colorTo="#5fa8d3"
-            innerClassName="bg-transparent"
-          />
+        {/* Right Column (1/3 width) — Strict Lagom Priority Milestone Action Card */}
+        <div className="group/milestone relative flex flex-col justify-between overflow-hidden rounded-none border border-border/40 bg-surface-subtle p-8 shadow-sm lg:col-span-1">
 
           <div className="relative z-10">
-            <div className="flex items-center justify-between border-b border-border/40 pb-5">
-              <span className="text-xs font-bold tracking-widest text-fjord uppercase">
+            <div className="flex items-center justify-between border-b border-border/40 pb-4">
+              <span className="text-xs font-bold tracking-widest text-ink uppercase">
                 {isArabic ? 'الإجراء المطلوب' : 'PRIORITY MILESTONE'}
               </span>
-              <span className="rounded-full bg-amber-500/10 px-3 py-1 text-[10px] font-bold text-amber-600 dark:text-amber-400">
-                {isArabic ? 'أولوية قصوى' : 'High Priority'}
+              <span className="rounded-none border border-border/60 bg-surface px-3 py-1 text-[10px] font-bold tracking-wider text-ink uppercase shadow-xs">
+                {isArabic ? 'أولوية قصوى' : 'URGENT'}
               </span>
             </div>
 
@@ -362,38 +284,39 @@ export default async function DashboardPage({
                     ? 'تقديم نموذج عقد MOU (Form F)'
                     : 'Submit Formal MOU Form F'}
                 </h3>
-                <p className="mt-1 text-xs font-light text-muted-foreground">
+                <p className="mt-2 text-xs font-bold tracking-wider text-muted-foreground uppercase">
                   Sky Collection Penthouse · Downtown Dubai
                 </p>
               </div>
 
-              {/* Clean Ledger Display without nested borders */}
-              <div className="space-y-3.5 py-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="font-light text-muted-foreground">
-                    {isArabic ? 'قيمة العرض:' : 'Offer Valuation:'}
+              {/* Strict Grid Ledger Display */}
+              <div className="grid grid-cols-1 divide-y divide-border/40 border border-border/40 bg-surface text-sm shadow-xs">
+                <div className="flex items-center justify-between p-4">
+                  <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">
+                    {isArabic ? 'قيمة العرض:' : 'Offer Valuation'}
                   </span>
                   <span className="font-display text-base font-bold text-ink">
                     AED 18,250,000
                   </span>
                 </div>
-                <div className="flex items-center justify-between border-t border-border/40 pt-3.5 text-sm">
-                  <span className="font-light text-muted-foreground">
-                    {isArabic ? 'الموعد النهائي:' : 'Due Milestone:'}
+                <div className="flex items-center justify-between p-4">
+                  <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">
+                    {isArabic ? 'الموعد النهائي:' : 'Due Milestone'}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-ink uppercase">
                     <Clock className="size-3.5" />
-                    <span>July 30 · Urgent</span>
+                    <span>July 30</span>
                   </span>
                 </div>
               </div>
 
-              <div className="space-y-1 rounded-2xl border border-verified/20 bg-verified-soft/50 p-4 text-xs text-muted-foreground">
-                <p className="flex items-center gap-1.5 font-semibold text-verified">
-                  <CheckCircle2 className="size-4 shrink-0" />
-                  {isArabic ? 'حساب الضمان محمي' : 'Escrow Account Verified'}
+              {/* Strict Escrow Badge */}
+              <div className="shadow-subtle space-y-1 rounded-none border-y border-r border-l-4 border-y-border/40 border-r-border/40 border-l-verified bg-surface p-4">
+                <p className="flex items-center gap-2 text-[11px] font-bold tracking-wider text-ink uppercase">
+                  <CheckCircle2 className="size-4 shrink-0 text-verified" />
+                  {isArabic ? 'حساب الضمان محمي' : 'Escrow Verified'}
                 </p>
-                <p className="text-[11px] leading-relaxed font-light">
+                <p className="text-[11px] leading-relaxed font-medium text-muted-foreground">
                   {isArabic
                     ? 'تم توثيق رقم حساب الضمان في ريرا ومراجعة بنود العقد.'
                     : 'RERA Escrow Account #8992-1 active under Emirates NBD Trustee.'}
@@ -402,13 +325,13 @@ export default async function DashboardPage({
             </div>
           </div>
 
-          <div className="relative z-10 mt-10 border-t border-border/40 pt-6">
+          <div className="relative z-10 mt-10">
             <Link href={`/${locale}/tasks`} className="block w-full">
-              <Button className="shadow-floating w-full justify-center rounded-2xl bg-fjord py-6 text-sm font-semibold text-white transition-all hover:bg-fjord-hover">
+              <Button className="w-full justify-between rounded-none bg-ink py-6 text-sm font-bold tracking-wider text-surface uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink hover:shadow-elevated">
                 <span>
-                  {isArabic ? 'فتح لوحة المعاملات' : 'Open Deal Pipeline Board'}
+                  {isArabic ? 'فتح لوحة المعاملات' : 'Open Pipeline Board'}
                 </span>
-                <ArrowRight className="ms-2 size-4" />
+                <ArrowRight className="size-4" />
               </Button>
             </Link>
           </div>
@@ -416,7 +339,7 @@ export default async function DashboardPage({
       </section>
 
       {/* ── 4. Institutional Intelligence & Live Capital Flow (Powered by @efferd/dashboard-5) ── */}
-      <section className="space-y-6 pt-4">
+      <section className="space-y-10 pt-8">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/40 pb-5">
           <div>
             <p className="text-xs font-bold tracking-widest text-fjord uppercase">
@@ -432,9 +355,9 @@ export default async function DashboardPage({
           </div>
           <Badge
             variant="outline"
-            className="rounded-full border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400"
+            className="rounded-none border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400"
           >
-            <span className="mr-1.5 size-2 animate-ping rounded-full bg-emerald-500" />
+            <span className="mr-1.5 size-2 animate-ping rounded-none bg-emerald-500" />
             {isArabic ? 'تحديث حي' : 'Live Data Stream Active'}
           </Badge>
         </div>
@@ -449,7 +372,7 @@ export default async function DashboardPage({
       </section>
 
       {/* ── 5. Clean Ledger Verification & Escrow Activity Log ── */}
-      <section className="space-y-6 pt-6">
+      <section className="space-y-10 pt-10">
         <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border/40 pb-5">
           <div>
             <p className="text-xs font-bold tracking-widest text-fjord uppercase">
@@ -465,21 +388,21 @@ export default async function DashboardPage({
             <Button
               variant="outline"
               size="sm"
-              className="rounded-2xl border-border/60 px-4 py-2 text-xs font-semibold hover:border-fjord/40"
+              className="rounded-none border-border/60 px-4 py-2 text-xs font-semibold hover:border-fjord/40"
             >
               {isArabic ? 'غرفة المستندات' : 'Document Vault'}
             </Button>
           </Link>
         </div>
 
-        <div className="divide-y divide-border/40 rounded-3xl border border-border/40 bg-surface/60 px-6 backdrop-blur-md sm:px-8">
+        <div className="divide-y divide-border/40 rounded-none border border-border/40 bg-surface/60 px-6 backdrop-blur-md sm:px-8">
           {recentLogs.map((log) => (
             <div
               key={log.id}
-              className="flex flex-col justify-between gap-4 py-5 sm:flex-row sm:items-center"
+              className="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center"
             >
               <div className="flex items-start gap-4">
-                <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-surface text-fjord shadow-2xs">
+                <div className="shadow-subtle mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-none border border-border/40 bg-surface text-fjord">
                   <FileText className="size-4.5" />
                 </div>
                 <div>
@@ -496,7 +419,7 @@ export default async function DashboardPage({
               <div className="flex items-center gap-4 sm:self-center">
                 <Badge
                   variant="secondary"
-                  className="border border-border/40 bg-surface px-3 py-1 text-xs font-medium text-ink shadow-2xs"
+                  className="shadow-subtle border border-border/40 bg-surface px-3 py-1 text-xs font-medium text-ink"
                 >
                   {log.status}
                 </Badge>
@@ -508,21 +431,6 @@ export default async function DashboardPage({
           ))}
         </div>
       </section>
-
-      {/* ── 5. Institutional Banking & Developer Partners (Vertical Draggable & Scrollable Deck) ── */}
-      <section className="space-y-6 pt-6 pb-4">
-        <div>
-          <span className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic ? 'شبكة الضمان المؤسسية' : 'RERA ECOSYSTEM'}
-          </span>
-          <h2 className="mt-1 font-display text-2xl font-medium text-ink sm:text-3xl">
-            {isArabic
-              ? 'شركاء التطوير والبنك المعتمدون في دبي'
-              : 'Verified Institutional Banking & Developer Network'}
-          </h2>
-        </div>
-        <VerticalPartnerDeck isArabic={isArabic} />
-      </section>
-    </div>
+    </PageShell>
   );
 }

@@ -10,6 +10,9 @@ import { NumberTicker } from '@/components/magicui/number-ticker';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { AnimatedShinyText } from '@/components/magicui/shiny-text';
 import { ShimmerButton } from '@/components/magicui/shimmer-button';
+import { MetricStrip } from '@/components/ui/metric-strip';
+import { PageShell } from '@/components/ui/page-shell';
+import { SectionHeader } from '@/components/ui/section-header';
 
 export default async function ShortlistPage({
   params,
@@ -60,9 +63,9 @@ export default async function ShortlistPage({
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 p-6 lg:p-10">
+    <PageShell>
       {isDemo && (
-        <div className="flex items-center justify-between rounded-xl border border-border/60 bg-surface-subtle p-4 text-xs text-ink shadow-xs">
+        <div className="flex items-center justify-between bg-surface-subtle p-5 text-xs text-ink">
           <div className="flex items-center gap-2.5 font-medium">
             <Sparkles className="size-4 shrink-0 text-fjord" />
             <span>
@@ -76,119 +79,67 @@ export default async function ShortlistPage({
                 : 'Showing a pre-populated evaluation Shortlist of high-yield verified properties.'}
             </span>
           </div>
-          <span className="hidden items-center gap-1 rounded-md bg-surface px-2.5 py-1 text-[11px] font-semibold text-muted sm:inline-flex">
+          <span className="hidden items-center gap-1 rounded-none bg-surface px-2.5 py-1 text-[11px] font-semibold text-muted-foreground sm:inline-flex">
             {properties.length} {isArabic ? 'عقارات متوفرة' : 'Saved Comps'}
           </span>
         </div>
       )}
 
-      <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
-        <div>
-          <p className="text-xs font-bold tracking-widest text-fjord uppercase">
-            {isArabic
-              ? 'مساحة العمل · القائمة المختصرة'
-              : 'WORKSPACE · SAVED SHORTLIST'}
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-medium tracking-tight text-ink sm:text-4xl">
-            {isArabic ? 'قائمتي المفضلة والمقارنات' : 'Saved Shortlist & Comps'}
-          </h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed font-light text-muted-foreground">
-            {isArabic
-              ? 'العقارات التي قمت بحفظها للمراجعة الدقيقة ومقارنة العوائد الاستثمارية جنباً إلى جنب.'
-              : "Properties you've saved for deeper due diligence, financial modeling, and side-by-side comparison."}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3">
+      <SectionHeader
+        breadcrumb={
+          isArabic ? 'مساحة العمل · القائمة المختصرة' : 'WORKSPACE · SAVED SHORTLIST'
+        }
+        title={isArabic ? 'قائمتي المفضلة والمقارنات' : 'Saved Shortlist & Comps'}
+        description={
+          isArabic
+            ? 'العقارات التي قمت بحفظها للمراجعة الدقيقة ومقارنة العوائد الاستثمارية جنباً إلى جنب.'
+            : "Properties you've saved for deeper due diligence, financial modeling, and side-by-side comparison."
+        }
+        actions={
           <Link href={`/${locale}/decision-lab`}>
             <ShimmerButton className="px-5 py-2.5 text-xs font-semibold">
               <span>{isArabic ? 'مصفوفة القرار' : 'Open Decision Matrix'}</span>
             </ShimmerButton>
           </Link>
-        </div>
-      </header>
+        }
+      />
 
       {/* Efferd & Magic UI Shortlist Metric Cards */}
+      {/* Efferd & Magic UI Shortlist Metric Cards */}
       {properties.length > 0 && (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <BlurFade delay={0.1}>
-            <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
-              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'إجمالي قيمة القائمة' : 'Total Valuation'}
-              </span>
-              <div className="mt-3 flex items-baseline justify-between">
-                <span className="flex items-baseline font-display text-3xl font-semibold text-ink">
-                  <span className="mr-1 font-sans text-xl">AED</span>
-                  <NumberTicker
-                    value={Number(
-                      (
-                        properties.reduce((sum, p) => sum + (p.price || 0), 0) /
-                        1000000
-                      ).toFixed(1),
-                    )}
-                    decimalPlaces={1}
-                    suffix="M"
-                  />
-                </span>
-                <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                  +14.2% YoY
-                </span>
-              </div>
-              <p className="mt-1 text-xs font-light text-muted-foreground">
-                {properties.length}{' '}
-                {isArabic ? 'عقارات في القائمة' : 'Saved luxury assets'}
-              </p>
-            </div>
-          </BlurFade>
-
-          <BlurFade delay={0.2}>
-            <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
-              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'متوسط صافي العائد' : 'Avg Projected Yield'}
-              </span>
-              <div className="mt-3 flex items-baseline justify-between">
-                <span className="font-display text-3xl font-semibold text-ink">
-                  <NumberTicker value={7.4} decimalPlaces={1} suffix="%" />
-                </span>
-                <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                  Above Dubai Avg
-                </span>
-              </div>
-              <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic
-                  ? 'تقديرات DLD المستندة للبيانات'
-                  : 'Validated by DLD historical data'}
-              </p>
-            </div>
-          </BlurFade>
-
-          <BlurFade delay={0.3}>
-            <div className="hover:shadow-floating border border-border/40 bg-surface/70 p-6 backdrop-blur-md transition-all">
-              <span className="text-[11px] font-bold tracking-widest text-fjord uppercase">
-                {isArabic ? 'معدل موثوقية DLD' : 'Avg DLD Trust Score'}
-              </span>
-              <div className="mt-3 flex items-baseline justify-between">
-                <span className="font-display text-3xl font-semibold text-ink">
-                  <NumberTicker
-                    value={96.4}
-                    decimalPlaces={1}
-                    suffix=" / 100"
-                  />
-                </span>
-                <span className="inline-flex items-center bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                  <AnimatedShinyText className="font-semibold text-emerald-700 dark:text-emerald-300">
-                    Verified
-                  </AnimatedShinyText>
-                </span>
-              </div>
-              <p className="mt-1 text-xs font-light text-muted-foreground">
-                {isArabic
-                  ? 'سندات ملكية وحسابات ضمان موثقة'
-                  : 'Title deeds & Escrow accounts active'}
-              </p>
-            </div>
-          </BlurFade>
-        </div>
+        <MetricStrip
+          metrics={[
+            {
+              id: 'valuation',
+              title: isArabic ? 'إجمالي قيمة القائمة' : 'Total Valuation',
+              value: Number((properties.reduce((sum, p) => sum + (p.price || 0), 0) / 1000000).toFixed(1)),
+              prefix: 'AED',
+              suffix: 'M',
+              decimalPlaces: 1,
+              badgeText: '+14.2% YoY',
+              description: `${properties.length} ${isArabic ? 'عقارات في القائمة' : 'Saved luxury assets'}`
+            },
+            {
+              id: 'yield',
+              title: isArabic ? 'متوسط صافي العائد' : 'Avg Projected Yield',
+              value: 7.4,
+              suffix: '%',
+              decimalPlaces: 1,
+              badgeText: 'Above Dubai Avg',
+              description: isArabic ? 'تقديرات DLD المستندة للبيانات' : 'Validated by DLD historical data'
+            },
+            {
+              id: 'trust',
+              title: isArabic ? 'معدل موثوقية DLD' : 'Avg DLD Trust Score',
+              value: 96.4,
+              suffix: ' / 100',
+              decimalPlaces: 1,
+              badgeText: 'Verified',
+              isShinyBadge: true,
+              description: isArabic ? 'سندات ملكية وحسابات ضمان موثقة' : 'Title deeds & Escrow accounts active'
+            }
+          ]}
+        />
       )}
 
       {properties.length === 0 ? (
@@ -198,7 +149,7 @@ export default async function ShortlistPage({
           description="You haven't saved any properties yet. Start exploring in the Discovery Engine and click the bookmark icon to save your favorites."
           action={
             <Link href={`/${locale}/discover`}>
-              <Button className="mt-4 rounded-xl bg-fjord px-6 py-2.5 text-sm font-semibold text-white hover:bg-fjord-hover">
+              <Button className="mt-4 rounded-none bg-fjord px-6 py-2.5 text-sm font-semibold text-white hover:bg-fjord-hover">
                 Launch Discovery Engine
               </Button>
             </Link>
@@ -211,6 +162,6 @@ export default async function ShortlistPage({
           savedPropertyIds={properties.map((p) => p.id)}
         />
       )}
-    </div>
+    </PageShell>
   );
 }

@@ -38,23 +38,23 @@ export function WhyInvestOffPlan({ isArabic }: WhyInvestOffPlanProps) {
   return (
     <Section
       spacing="lg"
-      className="border-t border-stone-300/40 bg-stone-50 dark:border-stone-800/40 dark:bg-stone-950"
+      className="border-border/60/40 border-t bg-surface-subtle  "
     >
       <Container size="lg">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Left: Editorial Header */}
           <div className="lg:col-span-1">
-            <h2 className="font-display text-3xl leading-tight font-bold text-stone-900 md:text-4xl dark:text-stone-50">
+            <h2 className="font-display text-3xl leading-tight font-bold text-ink md:text-4xl ">
               {isArabic ? 'لماذا تستثمر قيد الإنشاء؟' : 'Why Invest Off-Plan?'}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-stone-500 dark:text-stone-400">
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground dark:text-stone-400">
               {isArabic
                 ? 'يوفر الاستثمار في عقارات دبي قيد الإنشاء عوائد لا مثيل لها وميزات حصرية للمستثمرين المبكرين.'
                 : 'Off-plan investments in Dubai offer unparalleled returns and exclusive advantages for early-stage investors.'}
             </p>
             <Link
               href="/invest"
-              className="mt-8 inline-flex items-center text-xs font-bold tracking-widest text-stone-900 uppercase hover:underline dark:text-stone-100"
+              className="mt-8 inline-flex items-center text-xs font-bold tracking-widest text-ink uppercase hover:underline "
             >
               {isArabic ? 'اقرأ التقرير' : 'Read Report'}{' '}
               <ArrowRight className="ml-1 size-4" />
@@ -74,13 +74,13 @@ export function WhyInvestOffPlan({ isArabic }: WhyInvestOffPlanProps) {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="flex flex-col"
                 >
-                  <div className="mb-6 flex size-12 items-center justify-center border border-stone-300 bg-stone-100 dark:border-stone-800 dark:bg-stone-900">
-                    <Icon className="size-5 text-stone-900 dark:text-stone-100" />
+                  <div className="mb-6 flex size-12 items-center justify-center border border-border/60 bg-surface  ">
+                    <Icon className="size-5 text-ink " />
                   </div>
-                  <h3 className="mb-3 font-display text-lg font-bold text-stone-900 dark:text-stone-50">
+                  <h3 className="mb-3 font-display text-lg font-bold text-ink ">
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-stone-500 dark:text-stone-400">
+                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-stone-400">
                     {feature.description}
                   </p>
                 </motion.div>

@@ -34,16 +34,16 @@ export function InsightsEditorial({ isArabic }: InsightsEditorialProps) {
   return (
     <>
       {/* Trending Topics (Minimalist Grid) */}
-      <Section className="border-t border-stone-300/40 bg-stone-50 py-12 dark:border-stone-800/40 dark:bg-stone-950">
+      <Section className="border-border/60/40 border-t bg-surface-subtle py-12  ">
         <Container size="lg">
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="flex items-center gap-2 font-display text-xl font-bold text-stone-900 dark:text-stone-50">
+            <h2 className="flex items-center gap-2 font-display text-xl font-bold text-ink ">
               <TrendingUp className="size-5" />
               {isArabic ? 'المواضيع الشائعة' : 'Trending Topics'}
             </h2>
             <Link
               href="#"
-              className="text-xs font-bold tracking-widest text-stone-500 uppercase hover:text-stone-900 dark:hover:text-stone-100"
+              className="text-xs font-bold tracking-widest text-muted-foreground uppercase hover:text-ink dark:hover:text-surface"
             >
               {isArabic ? 'عرض الكل' : 'View All'}
             </Link>
@@ -54,12 +54,12 @@ export function InsightsEditorial({ isArabic }: InsightsEditorialProps) {
               <Link
                 key={idx}
                 href="#"
-                className="group flex flex-col border border-stone-300/40 bg-white p-6 transition-colors hover:border-stone-900 dark:border-stone-800/40 dark:bg-stone-900 dark:hover:border-stone-100"
+                className="group border-border/60/40 flex flex-col border bg-white p-6 transition-colors hover:border-stone-900   dark:hover:border-stone-100"
               >
-                <span className="mb-3 text-[10px] font-bold tracking-widest text-stone-500 uppercase">
+                <span className="mb-3 text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
                   {topic.category}
                 </span>
-                <h3 className="font-display text-base leading-tight font-bold text-stone-900 transition-colors group-hover:text-stone-600 dark:text-stone-100 dark:group-hover:text-stone-300">
+                <h3 className="font-display text-base leading-tight font-bold text-ink transition-colors group-hover:text-muted-foreground  dark:group-hover:text-stone-300">
                   {topic.title}
                 </h3>
               </Link>
@@ -88,17 +88,17 @@ export function InsightsEditorial({ isArabic }: InsightsEditorialProps) {
                 placeholder={
                   isArabic ? 'عنوان البريد الإلكتروني' : 'Email Address'
                 }
-                className="h-12 w-full rounded-none border border-stone-800 bg-stone-950 px-4 text-sm text-white placeholder:text-stone-600 focus:border-white focus:ring-1 focus:ring-white focus:outline-none"
+                className="h-12 w-full rounded-none border border-stone-800 bg-stone-950 px-4 text-sm text-white placeholder:text-muted-foreground focus:border-white focus:ring-1 focus:ring-white focus:outline-none"
                 required
               />
               <button
                 type="submit"
-                className="inline-flex h-12 shrink-0 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-black uppercase transition-colors hover:bg-stone-200"
+                className="inline-flex h-12 shrink-0 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-black uppercase transition-colors hover:bg-border/50"
               >
                 {isArabic ? 'اشتراك' : 'Subscribe'}
               </button>
             </form>
-            <p className="mt-4 text-[10px] tracking-widest text-stone-600 uppercase">
+            <p className="mt-4 text-[10px] tracking-widest text-muted-foreground uppercase">
               {isArabic
                 ? 'لن نرسل لك رسائل مزعجة.'
                 : 'No spam. Unsubscribe anytime.'}

@@ -122,24 +122,24 @@ export function ContractAnalyzer() {
   };
 
   return (
-    <div className="shadow-subtle flex flex-col overflow-hidden rounded-3xl border border-border bg-surface lg:flex-row">
+    <div className="shadow-subtle flex flex-col overflow-hidden rounded-none border border-border bg-surface lg:flex-row">
       {/* Left Column: Document Vault Selector */}
       <div className="flex w-full flex-col justify-between space-y-6 border-b border-border bg-surface-subtle p-6 lg:w-96 lg:border-r lg:border-b-0 lg:p-8">
         <div>
           <div className="mb-2 flex items-center gap-2.5">
-            <div className="rounded-xl bg-purple-500/10 p-2 text-purple-500">
+            <div className="rounded-none bg-fjord/10 p-2 text-fjord">
               <FileCode className="size-5" />
             </div>
             <div>
               <h3 className="text-body font-display font-bold text-ink">
                 Document Intelligence
               </h3>
-              <p className="text-caption text-muted">
+              <p className="text-caption text-muted-foreground">
                 OCR Contract & Clause Vault
               </p>
             </div>
           </div>
-          <p className="text-caption mb-4 text-muted">
+          <p className="text-caption mb-4 text-muted-foreground">
             Select a verified DLD legal document below to run real-time AI
             clause extraction and compliance checks.
           </p>
@@ -152,15 +152,15 @@ export function ContractAnalyzer() {
                   key={doc.id}
                   onClick={() => handleSelectDoc(doc)}
                   className={cn(
-                    'relative flex w-full items-start gap-3 rounded-2xl border p-4 text-left transition-all',
+                    'relative flex w-full items-start gap-3 rounded-none border p-4 text-left transition-all',
                     isSelected
-                      ? 'border-purple-500/50 bg-surface shadow-md ring-1 ring-purple-500/20'
+                      ? 'border-fjord bg-surface shadow-md ring-1 ring-fjord/20'
                       : 'hover:border-border-hover border-border bg-surface/60 hover:bg-surface',
                   )}
                 >
                   <div
                     className={cn(
-                      'mt-0.5 shrink-0 rounded-xl p-2',
+                      'mt-0.5 shrink-0 rounded-none p-2',
                       doc.status === 'verified'
                         ? 'bg-emerald-500/10 text-emerald-500'
                         : 'bg-amber-500/10 text-amber-500',
@@ -174,15 +174,15 @@ export function ContractAnalyzer() {
                         {doc.title}
                       </span>
                     </div>
-                    <span className="block text-[11px] text-muted">
+                    <span className="block text-[11px] text-muted-foreground">
                       {doc.type}
                     </span>
-                    <span className="mt-1 inline-block font-mono text-[10px] text-muted">
+                    <span className="mt-1 inline-block font-mono text-[10px] text-muted-foreground">
                       {doc.date}
                     </span>
                   </div>
                   {isSelected && (
-                    <span className="size-2 shrink-0 self-center rounded-full bg-purple-500" />
+                    <span className="size-2 shrink-0 self-center rounded-none bg-fjord" />
                   )}
                 </button>
               );
@@ -190,8 +190,8 @@ export function ContractAnalyzer() {
           </div>
         </div>
 
-        <div className="text-caption flex items-center gap-2 rounded-2xl border border-purple-500/20 bg-purple-500/5 p-4 text-muted">
-          <Sparkles className="size-4 shrink-0 text-purple-500" />
+        <div className="text-caption flex items-center gap-2 rounded-none border border-border bg-surface-subtle p-4 text-muted-foreground">
+          <Sparkles className="size-4 shrink-0 text-fjord" />
           <span>
             RAMA AI automatically flags non-standard escalation clauses in Form
             F contracts.
@@ -204,16 +204,16 @@ export function ContractAnalyzer() {
         {isAnalyzing ? (
           <div className="flex min-h-125 w-full flex-col items-center justify-center p-8 text-center">
             <div className="relative">
-              <div className="flex size-16 items-center justify-center rounded-full border-2 border-purple-500/20 bg-purple-500/10">
-                <Loader2 className="size-8 animate-spin text-purple-500" />
+              <div className="flex size-16 items-center justify-center rounded-none border border-border bg-surface-subtle">
+                <Loader2 className="size-8 animate-spin text-fjord" />
               </div>
-              <Sparkles className="absolute -top-1 -right-1 size-5 animate-pulse text-sky-500" />
+              <Sparkles className="absolute -top-1 -right-1 size-5 animate-pulse text-fjord" />
             </div>
             <div>
               <h4 className="text-body mt-4 font-display font-bold text-ink">
                 Running AI OCR Information Extraction...
               </h4>
-              <p className="text-caption mt-1 max-w-sm text-muted">
+              <p className="text-caption mt-1 max-w-sm text-muted-foreground">
                 Parsing legal syntax, escrow bank certificates, and
                 cross-referencing against DLD standard Form F template.
               </p>
@@ -230,7 +230,7 @@ export function ContractAnalyzer() {
                   </h3>
                   <span
                     className={cn(
-                      'flex items-center gap-1 rounded px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
+                      'flex items-center gap-1 rounded-none px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
                       analyzedDoc.status === 'verified'
                         ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                         : 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
@@ -242,7 +242,7 @@ export function ContractAnalyzer() {
                       : 'Review Required'}
                   </span>
                 </div>
-                <p className="text-caption mt-0.5 text-muted">
+                <p className="text-caption mt-0.5 text-muted-foreground">
                   {analyzedDoc.type} • Dated {analyzedDoc.date}
                 </p>
               </div>
@@ -254,64 +254,65 @@ export function ContractAnalyzer() {
                       `Downloading verified PDF copy of ${analyzedDoc.title}...`,
                     )
                   }
-                  className="text-body-sm flex items-center gap-1.5 rounded-xl border border-border bg-surface-subtle px-3 py-1.5 font-semibold text-ink transition-colors hover:bg-border/50"
+                  className="text-body-sm flex items-center gap-1.5 rounded-none border border-border bg-surface-subtle px-3 py-1.5 font-semibold text-ink transition-colors hover:bg-border/50"
                 >
-                  <Download className="size-4 text-muted" />
+                  <Download className="size-4 text-muted-foreground" />
                   <span>Download PDF</span>
                 </button>
               </div>
             </div>
 
             {/* Mock PDF Viewer Representation */}
-            <div className="flex flex-col overflow-hidden rounded-2xl border border-border bg-slate-900 shadow-inner">
-              <div className="flex items-center justify-between border-b border-slate-800 bg-slate-950 px-4 py-2 text-xs text-slate-300">
+            <div className="flex flex-col overflow-hidden rounded-none border border-border bg-surface-subtle shadow-inner">
+              <div className="flex items-center justify-between border-b border-border bg-surface px-4 py-2 text-xs text-muted-foreground">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-white">
+                  <span className="font-bold text-ink">
                     {analyzedDoc.title}.pdf
                   </span>
-                  <span className="text-slate-500">|</span>
+                  <span className="text-border">|</span>
                   <span>Page 1 of 4</span>
                 </div>
                 <div className="flex items-center gap-2 font-mono">
-                  <button className="rounded bg-slate-800 px-1.5 py-0.5 font-bold text-slate-300 hover:bg-slate-700">
+                  <button className="rounded-none bg-surface-subtle px-1.5 py-0.5 font-bold text-ink transition-colors hover:bg-border/50">
                     -
                   </button>
-                  <span>100%</span>
-                  <button className="rounded bg-slate-800 px-1.5 py-0.5 font-bold text-slate-300 hover:bg-slate-700">
+                  <span className="text-ink">100%</span>
+                  <button className="rounded-none bg-surface-subtle px-1.5 py-0.5 font-bold text-ink transition-colors hover:bg-border/50">
                     +
                   </button>
                 </div>
               </div>
-              <div className="flex h-48 gap-4 overflow-y-auto bg-slate-800/50 p-6">
-                <div className="flex w-16 shrink-0 flex-col gap-2 border-r border-slate-700/50 pr-4">
-                  <div className="relative aspect-3/4 w-full overflow-hidden rounded-none border border-border shadow-sm">
-                    <div className="absolute inset-0 bg-white/10" />
-                  </div>
-                  <div className="aspect-3/4 w-full cursor-pointer rounded border border-transparent bg-white/5 opacity-50" />
-                </div>
-                <div className="relative flex-1 overflow-hidden rounded-lg bg-white p-6 font-serif text-xs leading-relaxed text-slate-900 shadow-2xl select-none">
-                  <div className="mb-2 flex justify-between border-b pb-1 font-sans text-sm font-bold text-slate-950">
-                    <span>DUBAI LAND DEPARTMENT - LEGAL FORM</span>
-                    <span className="font-mono text-[10px] text-emerald-700">
+              <div className="flex min-h-72 items-start justify-center overflow-y-auto p-8">
+                <div className="relative w-full max-w-lg overflow-hidden rounded-none bg-white p-8 font-serif leading-relaxed text-ink shadow-md ring-1 ring-border/50 select-none">
+                  <div className="mb-6 flex justify-between border-b border-border pb-2 font-sans text-sm font-bold text-ink">
+                    <span className="tracking-wide">DUBAI LAND DEPARTMENT - LEGAL FORM</span>
+                    <span className="font-mono text-xs text-emerald-700">
                       VERIFIED ESCROW COPY
                     </span>
                   </div>
-                  <p className="mb-2 font-sans text-[11px] leading-normal text-slate-700">
+                  <p className="mb-4 text-sm leading-loose text-muted-foreground">
                     This document certifies that the contracting parties listed
                     below have executed the standardized real estate agreement
                     under the regulatory framework of the Dubai Real Estate
-                    Regulatory Agency (RERA)...
+                    Regulatory Agency (RERA). All encumbrances and liabilities have been verified against the master developer registry.
                   </p>
-                  <div className="mb-1 h-2 w-3/4 rounded bg-slate-200" />
-                  <div className="h-2 w-1/2 rounded bg-slate-200" />
+                  
+                  {/* Skeleton Text Blocks */}
+                  <div className="mt-8 space-y-4">
+                    <div className="h-3 w-full rounded-none bg-surface-subtle" />
+                    <div className="h-3 w-11/12 rounded-none bg-surface-subtle" />
+                    <div className="h-3 w-4/5 rounded-none bg-surface-subtle" />
+                    <div className="mt-6 h-3 w-full rounded-none bg-surface-subtle" />
+                    <div className="h-3 w-5/6 rounded-none bg-surface-subtle" />
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Extracted Metadata Grid */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div className="rounded-2xl border border-border bg-surface-subtle p-4">
-                <span className="text-[11px] font-extrabold tracking-wider text-muted uppercase">
+              <div className="rounded-none border border-border bg-surface-subtle p-4">
+                <span className="text-[11px] font-extrabold tracking-wider text-muted-foreground uppercase">
                   Contracting Parties
                 </span>
                 <p className="text-body-sm mt-1 font-bold text-ink">
@@ -319,8 +320,8 @@ export function ContractAnalyzer() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-surface-subtle p-4">
-                <span className="text-[11px] font-extrabold tracking-wider text-muted uppercase">
+              <div className="rounded-none border border-border bg-surface-subtle p-4">
+                <span className="text-[11px] font-extrabold tracking-wider text-muted-foreground uppercase">
                   Escrow / Financial Terms
                 </span>
                 <p className="text-body-sm mt-1 font-mono font-bold text-emerald-600 dark:text-emerald-400">
@@ -332,7 +333,7 @@ export function ContractAnalyzer() {
             {/* Extracted Clauses */}
             <div className="space-y-3">
               <h4 className="text-body-sm flex items-center gap-2 font-bold text-ink">
-                <Sparkles className="size-4 text-purple-500" />
+                <Sparkles className="size-4 text-fjord" />
                 <span>AI Extracted Legal Clauses & Compliance Flags</span>
               </h4>
 
@@ -341,7 +342,7 @@ export function ContractAnalyzer() {
                   <div
                     key={idx}
                     className={cn(
-                      'flex items-start justify-between gap-4 rounded-2xl border p-4 transition-all',
+                      'flex items-start justify-between gap-4 rounded-none border p-4 transition-all',
                       clause.status === 'ok'
                         ? 'border-border bg-surface'
                         : 'border-amber-500/50 bg-amber-500/10 shadow-md ring-1 ring-amber-500/20',
@@ -350,7 +351,7 @@ export function ContractAnalyzer() {
                     <div className="flex flex-1 items-start gap-3">
                       <div
                         className={cn(
-                          'mt-0.5 shrink-0 rounded-lg p-1.5',
+                          'mt-0.5 shrink-0 rounded-none p-1.5',
                           clause.status === 'ok'
                             ? 'bg-emerald-500/10 text-emerald-500'
                             : 'bg-amber-500 font-bold text-black',
@@ -368,12 +369,12 @@ export function ContractAnalyzer() {
                             {clause.title}
                           </h5>
                           {clause.status !== 'ok' && (
-                            <span className="rounded bg-amber-500 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-black uppercase">
+                            <span className="rounded-none bg-amber-500 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-black uppercase">
                               Red Flag Alert
                             </span>
                           )}
                         </div>
-                        <p className="text-caption mt-1 leading-relaxed text-muted">
+                        <p className="text-caption mt-1 leading-relaxed text-muted-foreground">
                           {clause.detail}
                         </p>
                       </div>
@@ -385,7 +386,7 @@ export function ContractAnalyzer() {
                             `Legal review requested for clause: ${clause.title}. Our partner legal team will contact you within 2 business hours.`,
                           )
                         }
-                        className="shrink-0 self-center rounded-xl bg-fjord px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-fjord-hover"
+                        className="shrink-0 self-center rounded-none bg-fjord px-3 py-1.5 text-xs font-bold text-white shadow-sm transition-colors hover:bg-fjord-hover"
                       >
                         Request Legal Review
                       </button>
@@ -396,9 +397,9 @@ export function ContractAnalyzer() {
             </div>
 
             {/* AI Summary Footer */}
-            <div className="flex items-center justify-between rounded-2xl border border-purple-500/20 bg-linear-to-r from-purple-500/10 via-sky-500/5 to-transparent p-4">
+            <div className="flex items-center justify-between rounded-none border border-border bg-surface-subtle p-4">
               <div className="text-body-sm flex items-center gap-2.5 font-medium text-ink">
-                <Sparkles className="size-4 shrink-0 text-purple-500" />
+                <Sparkles className="size-4 shrink-0 text-fjord" />
                 <span>
                   <strong>AI Contract Verdict:</strong> Zero hidden liabilities
                   or developer encumbrances found. Ready for DLD transfer.
@@ -410,7 +411,7 @@ export function ContractAnalyzer() {
                     `Document hash SHA-256 verified against Dubai REST registry.`,
                   )
                 }
-                className="text-caption ml-2 shrink-0 font-bold text-purple-600 hover:underline dark:text-purple-400"
+                className="text-caption ml-2 shrink-0 font-bold text-fjord hover:underline dark:text-fjord-hover"
               >
                 Verify Hash →
               </button>

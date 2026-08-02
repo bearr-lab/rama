@@ -40,8 +40,8 @@ export function LeadCaptureForm({ reason, onSuccess }: LeadCaptureFormProps) {
 
   if (status === 'success') {
     return (
-      <div className="mt-2 flex w-full max-w-70 flex-col items-center justify-center space-y-3 rounded-xl border border-border bg-surface p-6 text-center">
-        <div className="mb-2 flex size-12 items-center justify-center rounded-full bg-green-500/10 text-green-500">
+      <div className="mt-2 flex w-full max-w-70 flex-col items-center justify-center space-y-3 rounded-none border border-border bg-surface p-6 text-center">
+        <div className="mb-2 flex size-12 items-center justify-center rounded-none bg-green-500/10 text-green-500">
           <CheckCircle2 className="size-6" />
         </div>
         <h4 className="font-display font-semibold text-foreground">
@@ -58,7 +58,7 @@ export function LeadCaptureForm({ reason, onSuccess }: LeadCaptureFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-2 flex w-full max-w-70 flex-col space-y-3 rounded-xl border border-border bg-surface p-4"
+      className="mt-2 flex w-full max-w-70 flex-col space-y-3 rounded-none border border-border bg-surface p-4"
     >
       <div className="mb-2">
         <h4 className="font-display text-sm font-semibold text-foreground">
@@ -74,7 +74,7 @@ export function LeadCaptureForm({ reason, onSuccess }: LeadCaptureFormProps) {
           type="text"
           required
           placeholder="Your Name"
-          className="w-full rounded-md border border-border bg-surface-subtle px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full rounded-none border border-border bg-surface-subtle px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           disabled={status === 'loading'}
@@ -83,7 +83,7 @@ export function LeadCaptureForm({ reason, onSuccess }: LeadCaptureFormProps) {
           type="email"
           required
           placeholder="Email Address"
-          className="w-full rounded-md border border-border bg-surface-subtle px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full rounded-none border border-border bg-surface-subtle px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           disabled={status === 'loading'}
@@ -92,7 +92,7 @@ export function LeadCaptureForm({ reason, onSuccess }: LeadCaptureFormProps) {
           type="tel"
           required
           placeholder="Mobile Number"
-          className="w-full rounded-md border border-border bg-surface-subtle px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+          className="w-full rounded-none border border-border bg-surface-subtle px-3 py-2 text-xs text-foreground outline-none focus:border-primary focus:ring-1 focus:ring-primary"
           value={formData.phone}
           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           disabled={status === 'loading'}

@@ -1,19 +1,23 @@
 'use client';
 
 import * as React from 'react';
-import { Search, User, Menu } from 'lucide-react';
+import { Search, Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useLocale } from 'next-intl';
-import Link from 'next/link';
+import { useTheme } from 'next-themes';
 import { NotificationCenter } from './notification-center';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { MobileSidebarNav } from './sidebar';
-import { UserMenu } from '@/components/auth/user-menu';
+import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
 
 export function Header() {
   const pathname = usePathname();
-  const locale = useLocale() || 'en';
   const [open, setOpen] = React.useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Format pathname into a readable title (e.g. /en/discover -> Discover)
   const getPageTitle = () => {
@@ -42,12 +46,12 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-20 flex h-16 shrink-0 items-center justify-between border-b border-border/60 bg-surface/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-surface/80 md:px-6">
+    <header className="sticky top-0 z-20 flex h-20 shrink-0 items-center justify-between border-b border-border/40 bg-surface/95 px-6 backdrop-blur supports-backdrop-filter:bg-surface/80 md:px-10">
       <div className="flex items-center gap-3">
         {/* Mobile Sidebar Trigger */}
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
-            className="-ml-2 cursor-pointer rounded-lg p-2 text-ink transition-colors hover:bg-surface-subtle md:hidden"
+            className="-ml-2 cursor-pointer rounded-none p-2 text-ink transition-colors hover:bg-surface-subtle md:hidden"
             aria-label="Open navigation menu"
           >
             <Menu className="size-6" />
@@ -66,20 +70,29 @@ export function Header() {
         {/* Command Palette Trigger */}
         <button
           onClick={handleOpenCommandPalette}
-          className="text-body-sm group flex items-center gap-2 rounded-xl border border-border/60 bg-surface px-3.5 py-1.5 font-medium text-text shadow-2xs transition-all hover:bg-surface-subtle hover:text-ink"
+          className="text-body-sm group flex items-center gap-2 rounded-none border border-border/60 bg-surface px-3.5 py-1.5 font-medium text-text shadow-2xs transition-all hover:bg-surface-subtle hover:text-ink"
         >
           <Search className="size-4 text-text/80 transition-colors group-hover:text-ink" />
           <span className="hidden sm:inline">Search decision engine...</span>
-          <kbd className="hidden h-5 items-center gap-1 rounded border border-border/60 bg-surface px-1.5 font-mono text-[10px] font-bold text-text/80 sm:inline-flex">
+          <kbd className="hidden h-5 items-center gap-1 rounded-none border border-border/60 bg-surface px-1.5 font-mono text-[10px] font-bold text-text/80 sm:inline-flex">
             <span>⌘</span>K
           </kbd>
         </button>
 
+        {/* Theme Toggle */}
+        {mounted ? (
+          <AnimatedThemeToggler
+            variant="square"
+            theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+            onThemeChange={setTheme}
+            className="flex size-9 items-center justify-center text-ink transition-colors hover:bg-surface-subtle"
+          />
+        ) : (
+          <div className="size-9" />
+        )}
+
         {/* Interactive Notification Center */}
         <NotificationCenter />
-
-        {/* User Profile Pill */}
-        <UserMenu locale={locale as 'en' | 'ar'} />
       </div>
     </header>
   );

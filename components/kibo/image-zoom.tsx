@@ -52,7 +52,7 @@ export const ImageZoom = ({
       <div
         ref={containerRef}
         className={cn(
-          'group relative w-full cursor-zoom-in overflow-hidden rounded-2xl border border-border/60 bg-card select-none',
+          'group relative w-full cursor-zoom-in overflow-hidden rounded-none border border-border/60 bg-card select-none',
           isZoomed && 'cursor-zoom-out',
           className,
         )}
@@ -82,7 +82,7 @@ export const ImageZoom = ({
         <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-4 transition-opacity duration-300 group-hover:opacity-100">
           <div className="flex items-center justify-between">
             {badge && (
-              <span className="rounded-full bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+              <span className="rounded-none bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
                 {badge}
               </span>
             )}
@@ -92,7 +92,7 @@ export const ImageZoom = ({
                 e.stopPropagation();
                 setIsModalOpen(true);
               }}
-              className="pointer-events-auto flex size-8 items-center justify-center rounded-full bg-ink-bg/80 text-white backdrop-blur-md transition-transform hover:scale-110"
+              className="pointer-events-auto flex size-8 items-center justify-center rounded-none bg-ink-bg/80 text-white backdrop-blur-md transition-transform hover:scale-110"
               title="Fullscreen Inspect"
             >
               <Maximize2 className="size-4" />
@@ -101,11 +101,11 @@ export const ImageZoom = ({
 
           <div className="flex items-end justify-between">
             {caption && (
-              <p className="rounded-lg bg-ink-bg/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
+              <p className="rounded-none bg-ink-bg/80 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-md">
                 {caption}
               </p>
             )}
-            <div className="ml-auto flex items-center gap-1.5 rounded-full bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+            <div className="ml-auto flex items-center gap-1.5 rounded-none bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
               {isZoomed ? (
                 <ZoomOut className="size-3.5" />
               ) : (
@@ -130,7 +130,7 @@ export const ImageZoom = ({
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 flex size-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition-transform hover:scale-110 hover:bg-white/20"
+              className="absolute top-6 right-6 flex size-10 items-center justify-center rounded-none bg-white/10 text-white backdrop-blur-md transition-transform hover:scale-110 hover:bg-white/20"
             >
               <X className="size-5" />
             </button>
@@ -140,10 +140,10 @@ export const ImageZoom = ({
               exit={{ scale: 0.9 }}
               src={src || '/placeholder.svg'}
               alt={alt}
-              className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
+              className="max-h-[90vh] max-w-[90vw] rounded-none object-contain shadow-2xl"
             />
             {caption && (
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-6 py-2 text-sm font-medium text-white backdrop-blur-md">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-none bg-black/60 px-6 py-2 text-sm font-medium text-white backdrop-blur-md">
                 {caption}
               </div>
             )}

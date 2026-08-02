@@ -250,14 +250,14 @@ export function RoomGalleryModal({
         {isFloorPlanMode ? (
           <div className="flex size-full items-center justify-center bg-zinc-900">
             {/* Wireframe Placeholder for Floorplan */}
-            <div className="relative flex aspect-video w-full max-w-3xl items-center justify-center overflow-hidden rounded-xl border-2 border-fjord/40 bg-zinc-950">
+            <div className="relative flex aspect-video w-full max-w-3xl items-center justify-center overflow-hidden rounded-none border-2 border-fjord/40 bg-zinc-950">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-size-[24px_24px]"></div>
-              <div className="absolute top-1/4 left-10 h-2/3 w-1/2 rounded-sm border border-fjord/50">
+              <div className="absolute top-1/4 left-10 h-2/3 w-1/2 rounded-none border border-fjord/50">
                 <span className="absolute top-2 left-2 font-mono text-xs text-fjord">
                   LIVING
                 </span>
               </div>
-              <div className="absolute top-1/4 right-20 h-1/2 w-1/3 rounded-sm border border-fjord/50">
+              <div className="absolute top-1/4 right-20 h-1/2 w-1/3 rounded-none border border-fjord/50">
                 <span className="absolute top-2 left-2 font-mono text-xs text-fjord">
                   BEDROOM
                 </span>
@@ -299,7 +299,7 @@ export function RoomGalleryModal({
                 </span>
               </div>
               <div className="mt-1.5 flex items-center gap-3">
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/20 px-2 py-0.5 text-xs font-bold text-emerald-300">
+                <span className="inline-flex items-center gap-1.5 rounded-none border border-emerald-500/30 bg-emerald-500/20 px-2 py-0.5 text-xs font-bold text-emerald-300">
                   <TrendingUp className="size-3" />
                   {DEFAULT_INVESTMENT_DATA.yield}% Yield
                 </span>
@@ -321,15 +321,15 @@ export function RoomGalleryModal({
               {isFloorPlanMode ? 'View Photo' : 'Floor Plan'}
             </Button>
 
-            <div className="flex rounded-md border border-white/10 bg-black/40 p-1 backdrop-blur-md">
+            <div className="flex rounded-none border border-white/10 bg-black/40 p-1 backdrop-blur-md">
               <button
-                className="rounded p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                className="rounded-none p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
                 title="Save"
               >
                 <Heart className="size-4" />
               </button>
               <button
-                className="rounded p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                className="rounded-none p-2 text-white/70 transition-colors hover:bg-white/10 hover:text-white"
                 title="Share"
               >
                 <Share className="size-4" />
@@ -340,7 +340,7 @@ export function RoomGalleryModal({
             <Button
               onClick={onClose}
               variant="ghost"
-              className="ml-4 size-12 rounded-full border border-white/20 bg-black/50 p-0 text-white shadow-2xl backdrop-blur-xl transition-transform hover:scale-105 hover:bg-black/80"
+              className="ml-4 size-12 rounded-none border border-white/20 bg-black/50 p-0 text-white shadow-2xl backdrop-blur-xl transition-transform hover:scale-105 hover:bg-black/80"
             >
               <X className="size-6" />
             </Button>
@@ -349,7 +349,7 @@ export function RoomGalleryModal({
 
         {/* Spatial Tab Navigation (Bottom Center) */}
         <div className="pointer-events-auto absolute bottom-8 left-1/2 -translate-x-1/2">
-          <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/60 p-1.5 shadow-2xl backdrop-blur-xl">
+          <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/60 p-1.5 shadow-2xl backdrop-blur-xl">
             {[
               { id: 'all', labelEn: 'All', icon: Layers },
               { id: 'kitchen', labelEn: 'Kitchen', icon: Utensils },
@@ -370,7 +370,7 @@ export function RoomGalleryModal({
                     setActiveHotspot(null);
                   }}
                   className={cn(
-                    'group relative flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium transition-all',
+                    'group relative flex items-center gap-2 rounded-none px-4 py-2 text-xs font-medium transition-all',
                     isActive
                       ? 'bg-white text-black'
                       : 'text-white/70 hover:bg-white/10 hover:text-white',
@@ -390,7 +390,7 @@ export function RoomGalleryModal({
                         .map((img) => (
                           <div
                             key={img.id}
-                            className="relative h-16 w-24 overflow-hidden rounded-md border border-white/20 shadow-xl"
+                            className="relative h-16 w-24 overflow-hidden rounded-none border border-white/20 shadow-xl"
                           >
                             <Image
                               src={img.src}
@@ -413,13 +413,13 @@ export function RoomGalleryModal({
           <div className="pointer-events-none absolute inset-x-4 inset-y-0 flex items-center justify-between">
             <button
               onClick={prevImage}
-              className="pointer-events-auto flex size-12 items-center justify-center rounded-full border border-white/10 bg-black/20 text-white backdrop-blur-md transition-all hover:bg-black/60"
+              className="pointer-events-auto flex size-12 items-center justify-center rounded-none border border-white/10 bg-black/20 text-white backdrop-blur-md transition-all hover:bg-black/60"
             >
               <ChevronLeft className="size-6" />
             </button>
             <button
               onClick={nextImage}
-              className="pointer-events-auto flex size-12 items-center justify-center rounded-full border border-white/10 bg-black/20 text-white backdrop-blur-md transition-all hover:bg-black/60"
+              className="pointer-events-auto flex size-12 items-center justify-center rounded-none border border-white/10 bg-black/20 text-white backdrop-blur-md transition-all hover:bg-black/60"
             >
               <ChevronRight className="size-6" />
             </button>
@@ -430,10 +430,10 @@ export function RoomGalleryModal({
         <div className="pointer-events-auto absolute bottom-8 left-8 flex flex-col items-start gap-4">
           {/* Smart Compass Tooltip */}
           <div className="group relative">
-            <button className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-black/40 text-white/80 backdrop-blur-md transition-colors hover:text-white">
+            <button className="flex size-10 items-center justify-center rounded-none border border-white/10 bg-black/40 text-white/80 backdrop-blur-md transition-colors hover:text-white">
               <Compass className="size-5" />
             </button>
-            <div className="absolute bottom-full left-0 mb-3 rounded-md border border-white/10 bg-black/80 px-3 py-2 text-xs whitespace-nowrap text-white opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100">
+            <div className="absolute bottom-full left-0 mb-3 rounded-none border border-white/10 bg-black/80 px-3 py-2 text-xs whitespace-nowrap text-white opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100">
               <p className="font-bold">North-East Facing</p>
               <p className="text-white/60">Panoramic Ocean View</p>
             </div>
@@ -442,7 +442,7 @@ export function RoomGalleryModal({
           {/* Metrics Card */}
           <div
             className={cn(
-              'w-72 overflow-hidden rounded-2xl border border-white/10 bg-[#161616]/70 shadow-2xl backdrop-blur-2xl transition-all duration-300',
+              'w-72 overflow-hidden rounded-none border border-white/10 bg-[#161616]/70 shadow-2xl backdrop-blur-2xl transition-all duration-300',
               isMetricsExpanded
                 ? 'max-h-96'
                 : 'max-h-24 cursor-pointer hover:bg-[#161616]/90',
@@ -542,14 +542,14 @@ export function RoomGalleryModal({
                   >
                     <span
                       className={cn(
-                        'relative flex size-8 items-center justify-center rounded-full transition-transform duration-300',
+                        'relative flex size-8 items-center justify-center rounded-none transition-transform duration-300',
                         isActive ? 'scale-110' : 'hover:scale-125',
                       )}
                     >
-                      <span className="absolute inset-0 animate-ping rounded-full bg-white/40" />
+                      <span className="absolute inset-0 animate-ping rounded-none bg-white/40" />
                       <span
                         className={cn(
-                          'relative size-3 rounded-full border-2 border-white shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300',
+                          'relative size-3 rounded-none border-2 border-white shadow-[0_0_15px_rgba(0,0,0,0.5)] transition-all duration-300',
                           isActive
                             ? 'scale-150 border-emerald-300 bg-emerald-500'
                             : 'bg-white group-hover:bg-emerald-400',
@@ -559,7 +559,7 @@ export function RoomGalleryModal({
 
                     {/* Hover Tooltip (Only when not active) */}
                     {!isActive && (
-                      <div className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded border border-white/20 bg-black/80 px-2 py-1 text-[10px] font-bold whitespace-nowrap text-white opacity-0 shadow-lg backdrop-blur-md transition-opacity group-hover:opacity-100">
+                      <div className="pointer-events-none absolute top-full left-1/2 mt-2 -translate-x-1/2 rounded-none border border-white/20 bg-black/80 px-2 py-1 text-[10px] font-bold whitespace-nowrap text-white opacity-0 shadow-lg backdrop-blur-md transition-opacity group-hover:opacity-100">
                         {isArabic ? hs.labelAr : hs.labelEn}
                       </div>
                     )}
@@ -569,7 +569,7 @@ export function RoomGalleryModal({
                   {isActive && (
                     <div
                       className={cn(
-                        'animate-in fade-in zoom-in-95 absolute z-30 w-64 rounded-xl border border-white/20 bg-black/70 p-4 shadow-2xl backdrop-blur-xl duration-200',
+                        'animate-in fade-in zoom-in-95 absolute z-30 w-64 rounded-none border border-white/20 bg-black/70 p-4 shadow-2xl backdrop-blur-xl duration-200',
                         hs.y > 50 ? 'bottom-6' : 'top-6',
                         hs.x > 50 ? 'right-6' : 'left-6',
                       )}
@@ -610,13 +610,13 @@ export function RoomGalleryModal({
       {/* Onboarding Hint */}
       {showHint && (
         <div className="animate-in fade-in pointer-events-none absolute inset-0 z-50 flex items-center justify-center duration-500">
-          <div className="flex items-center gap-3 rounded-full border border-white/10 bg-black/60 px-6 py-3 text-sm font-medium text-white/90 shadow-2xl backdrop-blur-md">
+          <div className="flex items-center gap-3 rounded-none border border-white/10 bg-black/60 px-6 py-3 text-sm font-medium text-white/90 shadow-2xl backdrop-blur-md">
             <Info className="size-4 text-emerald-400" />
             Use{' '}
-            <kbd className="mx-1 rounded bg-white/20 px-1.5 font-mono text-xs">
+            <kbd className="mx-1 rounded-none bg-white/20 px-1.5 font-mono text-xs">
               ←
             </kbd>{' '}
-            <kbd className="mr-1 rounded bg-white/20 px-1.5 font-mono text-xs">
+            <kbd className="mr-1 rounded-none bg-white/20 px-1.5 font-mono text-xs">
               →
             </kbd>{' '}
             keys to navigate · Click pulsing rings for material specs

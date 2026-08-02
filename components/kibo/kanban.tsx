@@ -71,14 +71,14 @@ export function Kanban<T extends { id: string }>({
       {activeCols.map((col, colIndex) => (
         <div
           key={col.id}
-          className="flex flex-col rounded-2xl border border-border/60 bg-surface-subtle/40 p-4 shadow-sm backdrop-blur-sm"
+          className="flex flex-col rounded-none border border-border/60 bg-surface-subtle/40 p-4 shadow-sm backdrop-blur-sm"
         >
           {/* Column Header */}
           <div className="mb-4 flex items-center justify-between border-b border-border/40 pb-3">
             <div className="flex items-center gap-2.5">
               <span
                 className={cn(
-                  'size-2.5 rounded-full',
+                  'size-2.5 rounded-none',
                   col.color || 'bg-fjord',
                 )}
               />
@@ -86,7 +86,7 @@ export function Kanban<T extends { id: string }>({
                 {col.title}
               </h3>
             </div>
-            <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-border/40 px-2 text-xs font-bold text-muted">
+            <span className="flex h-6 min-w-6 items-center justify-center rounded-none bg-border/40 px-2 text-xs font-bold text-muted-foreground">
               {col.items.length}
             </span>
           </div>
@@ -116,7 +116,7 @@ export function Kanban<T extends { id: string }>({
             </AnimatePresence>
 
             {col.items.length === 0 && (
-              <div className="flex flex-1 items-center justify-center rounded-xl border border-dashed border-border/60 p-6 text-center text-xs font-medium text-muted">
+              <div className="flex flex-1 items-center justify-center rounded-none border border-dashed border-border/60 p-6 text-center text-xs font-medium text-muted-foreground">
                 No active deals in this stage
               </div>
             )}

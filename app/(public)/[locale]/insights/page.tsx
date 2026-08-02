@@ -43,6 +43,7 @@ export default async function InsightsPage({
         title={heroInsight.title}
         description={heroInsight.description}
         backgroundImage={heroImage}
+        backgroundVideo="/videos/insights-hero-bg.mp4"
         variant="editorial"
         mediaPosition="object-top"
         badge={
