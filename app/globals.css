@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -13,9 +13,9 @@
   /* ─── Foundation ─── */
   --canvas: oklch(97% 0.012 85deg);
   --surface: oklch(100% 0 0deg);
-  --surface-subtle: oklch(96% 0.01 90deg);
+  --surface-subtle: oklch(96% 0.005 260deg); /* Cooler subtle background */
   --surface-warm: oklch(96% 0.015 85deg);
-  --ink: oklch(15% 0 0deg);
+  --ink: oklch(12% 0 0deg); /* Deeper ink */
   --text: oklch(38% 0 0deg);
   --muted: oklch(48% 0 0deg);
   --border: oklch(92% 0.01 90deg);
@@ -61,8 +61,8 @@
   --input: var(--border);
   --ring: var(--fjord-muted);
 
-  /* ─── Radii (shadcn preset b2czZ8JLSS — Strict 0px Radius / No Curves) ─── */
-  --radius: 0rem;
+  /* ─── Radii (Strict 0px Radius / No Curves) ─── */
+  --radius: 0px;
   --radius-tag: 0px;
   --radius-button: 0px;
   --radius-card: 0px;
@@ -73,9 +73,8 @@
   --min-touch: 44px;
 
   /* ─── Elevation ─── */
-  --shadow-subtle: 0 4px 16px rgb(60 50 40 / 4%);
-  --shadow-floating: 0 8px 32px rgb(60 50 40 / 6%);
-  --shadow-lg: 0 16px 48px rgb(60 50 40 / 8%);
+  --shadow-resting: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-elevated: 0 4px 12px rgb(0 0 0 / 0.06);
 
   /* ─── Motion ─── */
   --ease-decelerate: cubic-bezier(0.2, 0, 0, 1);
@@ -84,8 +83,9 @@
   --duration-slow: 240ms;
 
   /* ─── Fonts ─── */
-  --font-display: 'Playfair Display', serif;
+  --font-display: 'Space Grotesk', sans-serif;
   --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
+  --font-subtitle: 'Plus Jakarta Sans', sans-serif;
 
   /* ─── Chart colors (keep shadcn defaults) ─── */
   --chart-1: oklch(64.6% 0.222 41.116deg);
@@ -107,15 +107,15 @@
 
 .dark {
   /* ─── Foundation (Dark Mode) ─── */
-  --canvas: oklch(14% 0.015 260deg);
-  --surface: oklch(18% 0.015 260deg);
-  --surface-subtle: oklch(22% 0.015 260deg);
-  --surface-warm: oklch(20% 0.02 260deg);
+  --canvas: oklch(18% 0.025 255deg); /* Lighter and more blue */
+  --surface: oklch(22% 0.025 255deg); 
+  --surface-subtle: oklch(26% 0.025 255deg);
+  --surface-warm: oklch(24% 0.03 255deg);
   --ink: oklch(96% 0 0deg);
   --text: oklch(80% 0 0deg);
   --muted: oklch(75% 0 0deg);
-  --border: oklch(28% 0.015 260deg);
-  --border-strong: oklch(38% 0.015 260deg);
+  --border: oklch(30% 0.025 255deg); /* Adjusted for contrast */
+  --border-strong: oklch(38% 0.025 255deg);
 
   /* ─── Brand — Fjord Blue (Dark Mode adjustments) ─── */
   --fjord: oklch(65% 0.12 240deg);
@@ -135,8 +135,8 @@
   --risk-soft: oklch(25% 0.05 30deg);
 
   /* ─── Dark Sections (ink-bg) in Dark Mode ─── */
-  --ink-bg: oklch(14% 0.015 260deg);
-  --ink-surface: oklch(18% 0.015 260deg);
+  --ink-bg: oklch(18% 0.025 255deg);
+  --ink-surface: oklch(22% 0.025 255deg);
 
   /* ─── Sidebar (Dark Mode) ─── */
   --sidebar: var(--surface);
@@ -219,7 +219,7 @@
   --color-ink-bg: var(--ink-bg);
   --color-ink-surface: var(--ink-surface);
 
-  /* Radii — shadcn preset b2czZ8JLSS (Sharp 0px Angular Geometry) */
+  /* Radii — Sharp 0px Angular Geometry */
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
@@ -229,6 +229,8 @@
   --radius-4xl: 0px;
   --radius-card-lagom: 0px;
   --radius-modal-lagom: 0px;
+  --shadow-resting: var(--shadow-resting);
+  --shadow-elevated: var(--shadow-elevated);
 
   /* Custom Spacing Tokens */
   --spacing-19: 4.75rem;
@@ -243,10 +245,10 @@
   --container-2xl: 1280px;
 
   /* === HORIZONTAL PADDING === */
-  --page-padding-xs: 16px;
-  --page-padding-sm: 20px;
-  --page-padding-md: 24px;
-  --page-padding-lg: 48px;
+  --page-padding-xs: 24px;
+  --page-padding-sm: 32px;
+  --page-padding-md: 48px;
+  --page-padding-lg: 80px; /* Massive Lagom breathing room */
   --page-padding-xl: 64px;
 
   /* === SECTION VERTICAL SPACING === */
@@ -321,6 +323,7 @@
     @apply font-sans;
 
     scroll-behavior: smooth;
+    font-size: 87.5%;
   }
 
   /* ─── Typography Scale ─── */
@@ -481,3 +484,8 @@
    SHADCN PRESET b2czZ8JLSS — ZERO CURVES & ZERO ROUNDED CORNERS
    (Applied via --radius tokens instead of wildcard to preserve circular elements)
    ═══════════════════════════════════════════════════ */
+
+/* Hide global splash screen early via inline script class to prevent hydration flash */
+html.hide-splash #global-splash {
+  display: none !important;
+}

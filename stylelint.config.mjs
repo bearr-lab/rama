@@ -1,5 +1,5 @@
 /** @type {import('stylelint').Config} */
-export default {
+const config = {
   extends: [
     'stylelint-config-standard',
     'stylelint-config-clean-order'
@@ -70,3 +70,5 @@ export default {
     'declaration-block-no-redundant-longhand-properties': null
   },
 };
+
+export default config;

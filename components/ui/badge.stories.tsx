@@ -8,7 +8,7 @@ const meta: Meta<typeof Badge> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'secondary', 'destructive', 'outline'],
+      options: ['neutral', 'secondary', 'destructive', 'outline'],
     },
   },
 };
@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Badge>;
 export const Default: Story = {
   args: {
     children: 'Verified Property',
-    variant: 'default',
+    variant: 'neutral',
   },
 };
 

@@ -26,7 +26,7 @@ export function BorderBeam({
   return (
     <div
       className={cn(
-        'pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]',
+        'pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-none',
         className,
       )}
     >
@@ -43,7 +43,7 @@ export function BorderBeam({
       />
       {/* Zero-Mask Inner Cover: leaves exactly borderWidth perimeter glowing seamlessly */}
       <div
-        className={cn('absolute rounded-[inherit]', innerClassName)}
+        className={cn('absolute rounded-none', innerClassName)}
         style={{
           top: `${borderWidth}px`,
           bottom: `${borderWidth}px`,

@@ -44,7 +44,7 @@ export async function Footer() {
             render={
               <Link
                 href={`/${locale}/login`}
-                className={buttonVariants({ variant: 'default' })}
+                className={buttonVariants({ variant: 'primary' })}
               >
                 {isArabic ? 'سجّل الدخول' : 'Sign in'}
                 <ArrowRight className="ms-2 size-4" />
@@ -54,10 +54,10 @@ export async function Footer() {
         </div>
       </div>
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-12 py-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between sm:px-16 lg:px-20">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-12 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-16 lg:px-20">
           <p>© {new Date().getFullYear()} RAMA</p>
           <div className="flex flex-wrap items-center gap-4">
-            <span className="text-muted/60">
+            <span className="text-muted-foreground/60">
               {isArabic ? 'الصور مقدمة من ' : 'Imagery provided by '}
               <a
                 href="https://www.pexels.com"
