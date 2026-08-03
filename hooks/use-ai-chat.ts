@@ -1,11 +1,7 @@
 'use client';
 
 import { useChat } from '@ai-sdk/react';
-import { DefaultChatTransport } from 'ai';
 import { useState, useCallback, useMemo, useEffect } from 'react';
-
-// Create transport once outside the component to avoid re-creation on every render
-const chatTransport = new DefaultChatTransport({ api: '/api/chat' });
 
 // Bump this version whenever the message schema changes (e.g., removing tool call history).
 // Old localStorage entries stored under a different version are automatically wiped.
@@ -38,8 +34,8 @@ interface V7UIMessage {
 }
 
 export function useAIChat() {
-  const { messages, setMessages, sendMessage: chatSendMessage, status, error } = useChat({
-    transport: chatTransport,
+  const { messages, setMessages, append: chatAppend, isLoading, error } = useChat({
+    api: '/api/chat',
   });
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -89,12 +85,12 @@ export function useAIChat() {
       if (!text) return;
       setInput('');
       try {
-        await chatSendMessage({ role: 'user', parts: [{ type: 'text', text }] });
+        await chatAppend({ role: 'user', content: text });
       } catch (err) {
         console.error('Error sending message:', err);
       }
     },
-    [chatSendMessage],
+    [chatAppend],
   );
 
   // Normalize messages for the UI — v7 uses parts array, NOT content or toolInvocations
@@ -150,7 +146,7 @@ export function useAIChat() {
   return {
     messages: normalizedMessages,
     sendMessage,
-    isLoading: status === 'submitted' || status === 'streaming',
+    isLoading,
     error: error?.message ?? null,
     input,
     setInput,
