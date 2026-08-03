@@ -156,7 +156,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
               onClick={onClose}
               className={buttonVariants({
                 className:
-                  'rounded-button w-full bg-fjord text-white hover:bg-fjord-hover',
+                  'rounded-none w-full bg-fjord text-white hover:bg-fjord-hover',
               })}
             >
               Sign In
@@ -167,13 +167,13 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
               <div className="flex gap-2">
                 <Link
                   href="/en"
-                  className="rounded bg-surface-subtle px-2 py-1 text-sm font-medium text-ink"
+                  className="rounded-none bg-surface-subtle px-2 py-1 text-sm font-medium text-ink"
                 >
                   EN
                 </Link>
                 <Link
                   href="/ar"
-                  className="rounded px-2 py-1 text-sm font-medium text-muted-foreground hover:bg-surface-subtle hover:text-ink"
+                  className="rounded-none px-2 py-1 text-sm font-medium text-muted-foreground hover:bg-surface-subtle hover:text-ink"
                 >
                   AR
                 </Link>
@@ -189,7 +189,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
                   <AnimatedThemeToggler
                     theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                     onThemeChange={setTheme}
-                    className="flex size-9 items-center justify-center rounded-full bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80"
+                    className="flex size-9 items-center justify-center rounded-none bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80"
                   />
                   <span className="text-xs font-medium text-ink">
                     {resolvedTheme === 'dark'

@@ -22,7 +22,7 @@ export const ShimmerButton = React.forwardRef<
       shimmerColor = '#ffffff',
       shimmerSize = '0.05em',
       shimmerDuration = '3s',
-      borderRadius = '1rem',
+      borderRadius = '0px',
       background = 'var(--fjord)',
       className,
       children,
@@ -43,7 +43,7 @@ export const ShimmerButton = React.forwardRef<
           } as CSSProperties
         }
         className={cn(
-          'group hover:shadow-floating relative z-0 flex cursor-pointer items-center justify-center overflow-hidden [border-radius:var(--radius)] px-6 py-3 whitespace-nowrap text-white transition-all duration-300 [background:var(--bg)] active:scale-95',
+          'group hover:shadow-floating relative z-0 flex cursor-pointer items-center justify-center overflow-hidden rounded-(--radius) px-6 py-3 whitespace-nowrap text-white transition-all duration-300 [background:var(--bg)] active:scale-95',
           className,
         )}
         ref={ref}
@@ -53,11 +53,11 @@ export const ShimmerButton = React.forwardRef<
         <div
           className={cn(
             '-z-30 blur-[2px]',
-            '[container-type:size] absolute inset-0 overflow-visible',
+            '@container-size absolute inset-0 overflow-visible',
           )}
         >
           {/* spark */}
-          <div className="animate-shimmer-slide absolute inset-0 [aspect-ratio:1] h-[100cqh] [border-radius:0] [mask:none]">
+          <div className="animate-shimmer-slide absolute inset-0 aspect-square h-[100cqh] rounded-none [mask:none]">
             {/* spark before */}
             <div className="absolute -inset-full w-auto [translate:0_0] rotate-0 [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))]" />
           </div>
@@ -69,16 +69,15 @@ export const ShimmerButton = React.forwardRef<
           className={cn(
             'insert-0 absolute size-full',
 
-            'rounded-2xl p-px font-medium shadow-xs',
+            'rounded-none p-px font-medium shadow-xs',
             'transition-all duration-300 ease-in-out',
             'group-hover:shadow-[inset_0_0_12px_rgba(255,255,255,0.3)]',
           )}
         />
 
-        {/* backdrop */}
         <div
           className={cn(
-            'absolute inset-0 -z-20 [border-radius:var(--radius)] [background:var(--bg)]',
+            'absolute inset-0 -z-20 rounded-(--radius) [background:var(--bg)]',
           )}
         />
       </button>

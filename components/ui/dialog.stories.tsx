@@ -42,7 +42,7 @@ export const Default: Story = {
           <DialogClose render={<Button variant="secondary" />}>
             Close
           </DialogClose>
-          <Button variant="default">Save Portfolio Report</Button>
+          <Button variant="primary">Save Portfolio Report</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

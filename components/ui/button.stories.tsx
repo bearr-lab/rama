@@ -29,9 +29,8 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   args: {
-    children: 'Click me',
-    variant: 'default',
-    size: 'default',
+    variant: 'primary',
+    children: 'Primary Button',
   },
 };
 

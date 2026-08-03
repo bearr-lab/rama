@@ -8,7 +8,7 @@ const ProfileCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      'flex flex-col items-center rounded-xl border bg-card text-center text-card-foreground shadow-sm',
+      'flex flex-col items-center rounded-none border bg-card text-center text-card-foreground shadow-sm',
       className,
     )}
     {...props}
@@ -32,7 +32,7 @@ const ProfileCardAvatar = React.forwardRef<
   HTMLImageElement,
   React.ImgHTMLAttributes<HTMLImageElement>
 >(({ className, alt, ...props }, ref) => (
-  <div className="-mt-12 flex size-24 items-center justify-center overflow-hidden rounded-full border-4 border-background bg-muted shadow-sm">
+  <div className="-mt-12 flex size-24 items-center justify-center overflow-hidden rounded-none border-4 border-background bg-muted shadow-sm">
     <img
       ref={ref}
       alt={alt || 'Avatar'}

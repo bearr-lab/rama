@@ -31,7 +31,7 @@ export function LocaleSwitcher({ isDark = false }: LocaleSwitcherProps) {
     <Link
       href={togglePath || `/${nextLocale}`}
       className={cn(
-        'rounded px-2 py-1 text-xs font-semibold tracking-wider uppercase transition-colors',
+        'rounded-none px-2 py-1 text-xs font-semibold tracking-wider uppercase transition-colors',
         isDark
           ? 'text-white hover:bg-white/10'
           : 'text-ink hover:bg-surface-subtle',

@@ -12,7 +12,7 @@ const attributionVariants = cva(
       variant: {
         overlay:
           'absolute right-3 bottom-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md',
-        inline: 'text-stone-500 hover:text-stone-900 dark:text-stone-400',
+        inline: 'text-muted-foreground hover:text-ink dark:text-stone-400',
       },
     },
     defaultVariants: {
@@ -45,7 +45,7 @@ export function UnsplashAttribution({
         href={attr.photographerUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="dark:text-stone-100-light font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-stone-900 hover:decoration-white"
+        className=" font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
         onClick={(e) => e.stopPropagation()}
       >
         {photographerName}
@@ -55,7 +55,7 @@ export function UnsplashAttribution({
         href={attr.unsplashUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="dark:text-stone-100-light font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-stone-900 hover:decoration-white"
+        className=" font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
         onClick={(e) => e.stopPropagation()}
       >
         Unsplash

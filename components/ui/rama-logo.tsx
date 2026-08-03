@@ -93,7 +93,7 @@ export function RamaLogo({
                 letterVariants({ size }),
                 isDark
                   ? 'text-white group-hover:text-white/80'
-                  : 'text-stone-900 group-hover:text-stone-900 dark:text-white dark:group-hover:text-white/80',
+                  : 'text-ink group-hover:text-ink dark:text-white dark:group-hover:text-white/80',
               )}
               variants={{
                 initial: { y: 0, opacity: 0.95 },
@@ -127,20 +127,20 @@ export function RamaLogo({
             className={cn(
               'flex size-2 items-center justify-center rounded-none border border-current transition-colors duration-300',
               isDark
-                ? 'border-stone-300 bg-stone-200 dark:border-stone-700 dark:bg-stone-800/20'
-                : 'border-stone-900 bg-stone-900/10 dark:border-stone-100 dark:bg-stone-100/10',
+                ? 'border-border/60 bg-border/50  '
+                : 'border-stone-900 bg-ink/10  dark:bg-surface/10',
             )}
           >
             <div
               className={cn(
                 'size-0.5 rounded-none',
                 isDark
-                  ? 'bg-stone-200 dark:bg-stone-800'
-                  : 'bg-stone-900 dark:bg-stone-100',
+                  ? 'bg-border/50 '
+                  : 'bg-ink dark:bg-surface',
               )}
             />
           </div>
-          <span className="absolute -inset-1 rounded-none bg-stone-200 opacity-0 blur-xs transition-opacity duration-300 group-hover:opacity-100 dark:bg-stone-800/20" />
+          <span className="absolute -inset-1 rounded-none bg-border/50 opacity-0 blur-xs transition-opacity duration-300 group-hover:opacity-100 " />
         </motion.div>
       </div>
 
@@ -171,8 +171,8 @@ export function RamaLogo({
               className={cn(
                 'ml-2 h-px grow rounded-none transition-colors duration-300',
                 isDark
-                  ? 'bg-white/20 group-hover:bg-stone-200 dark:bg-stone-800/60'
-                  : 'bg-ink/20 group-hover:bg-stone-900/60 dark:bg-white/20',
+                  ? 'bg-white/20 group-hover:bg-border/50 '
+                  : 'bg-ink/20 group-hover:bg-ink/60 dark:bg-white/20',
               )}
               variants={{
                 initial: { scaleX: 0.3, originX: 0 },
