@@ -32,12 +32,10 @@ export interface TextShimmerProps {
 }
 
 const DynamicMotionComponent = forwardRef<
-  any,
+  HTMLElement,
   MotionHTMLProps & { asElement: keyof JSX.IntrinsicElements }
 >(({ asElement, ...props }, ref) => {
-  // eslint-disable-next-line react-hooks/static-components
-  const Component = getMotionComponent(asElement);
-  // eslint-disable-next-line react-hooks/static-components
+  const Component = getMotionComponent(asElement as keyof JSX.IntrinsicElements);
   return <Component ref={ref} {...props} />;
 });
 DynamicMotionComponent.displayName = "DynamicMotionComponent";
