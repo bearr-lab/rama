@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { createOpenAI } from '@ai-sdk/openai';
-import { streamText, zodSchema, type UIMessage, type ToolSet } from 'ai';
+import { streamText, tool, type Message } from 'ai';
 import { z } from 'zod';
 import { nvidiaNim as nvidiaNimEmbedding } from '@/lib/ai/nvidia-nim';
 
@@ -33,7 +33,7 @@ interface V7UIMessage {
 }
 
 /** Extract plain text from the last UIMessage for embedding — handles both v7 parts and legacy content */
-function extractLastMessageText(messages: UIMessage[]): string {
+function extractLastMessageText(messages: Message[]): string {
   const last = messages[messages.length - 1] as unknown as V7UIMessage;
   if (!last) return '';
   // v7 UIMessage uses parts array
@@ -85,7 +85,7 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const messages: UIMessage[] = body.messages;
+    const messages: Message[] = body.messages;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: 'Invalid messages payload' }, { status: 400 });
@@ -206,29 +206,29 @@ You: "Downtown Dubai delivers gross rental yields of 5–6.5% for residential un
 
     const hasProperties = propertyContext !== 'No properties found.';
 
-    const tools: ToolSet = {
-      collect_lead_info: {
+    const tools = {
+      collect_lead_info: tool({
         description:
           'Call this tool when the user is a qualified lead and wants to be contacted by an agent or book a viewing.',
-        inputSchema: zodSchema(z.object({
+        parameters: z.object({
           reason: z.string().describe('The reason for collecting the lead.'),
-        })),
+        }),
         execute: async ({ reason }: { reason: string }) => {
           return { success: true, reason };
         },
-      },
+      }),
       ...(hasProperties
         ? {
-            show_property_cards: {
+            show_property_cards: tool({
               description:
                 'Call this tool to visually show property cards ONLY when the user explicitly asks to SEE property listings (e.g. "show me", "find me", "search for") AND the retrieved properties match their request.',
-              inputSchema: zodSchema(z.object({
+              parameters: z.object({
                 query: z.string().describe('The type of properties to show.'),
-              })),
+              }),
               execute: async ({ query }: { query: string }) => {
                 return { success: true, query, properties: propertyContext };
               },
-            },
+            }),
           }
         : {}),
     };
@@ -241,7 +241,7 @@ You: "Downtown Dubai delivers gross rental yields of 5–6.5% for residential un
         model: nvidiaNim.chat('meta/llama-3.1-70b-instruct'),
         system: systemPrompt,
         messages: modelMessages,
-        maxOutputTokens: 1000,
+        maxTokens: 1000,
         temperature: 0.1, // lower = stricter instruction following
         tools,
         toolChoice,
@@ -254,7 +254,7 @@ You: "Downtown Dubai delivers gross rental yields of 5–6.5% for residential un
           model: nvidiaNim.chat('meta/llama-3.1-8b-instruct'),
           system: systemPrompt,
           messages: modelMessages,
-          maxOutputTokens: 1000,
+          maxTokens: 1000,
           temperature: 0.1,
           tools,
           toolChoice,
@@ -267,7 +267,7 @@ You: "Downtown Dubai delivers gross rental yields of 5–6.5% for residential un
     }
 
 
-    return result.toUIMessageStreamResponse();
+    return result.toDataStreamResponse();
   } catch (error) {
     console.error('AI Chat Error:', error);
     return NextResponse.json(
