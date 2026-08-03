@@ -27,6 +27,7 @@
   --fjord-active: oklch(30% 0.1 240deg);
   --fjord-soft: oklch(95% 0.05 240deg);
   --fjord-muted: oklch(90% 0.03 240deg);
+  --fjord-bg: var(--fjord-active);
 
   /* ─── Semantic ─── */
   --verified: oklch(60% 0.1 140deg);
@@ -85,7 +86,8 @@
 
   /* ─── Fonts ─── */
   --font-display: 'Space Grotesk', system-ui, sans-serif;
-  --font-mono: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans-alt: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
 
   /* ─── Chart colors (keep shadcn defaults) ─── */
@@ -162,6 +164,7 @@
 
 @theme inline {
   --font-sans: var(--font-sans);
+  --font-sans-alt: var(--font-sans-alt);
   --font-display: var(--font-display);
   --font-mono: var(--font-mono);
 
@@ -206,7 +209,7 @@
   --color-ink: var(--ink);
   --color-text: var(--text);
   --color-fjord: var(--fjord);
-  --color-fjord-bg: var(--fjord-active);
+  --color-fjord-bg: var(--fjord-bg);
   --color-fjord-hover: var(--fjord-hover);
   --color-fjord-active: var(--fjord-active);
   --color-fjord-soft: var(--fjord-soft);
@@ -298,6 +301,7 @@
   }
 
   --animate-shiny-text: shiny-text 8s infinite;
+
   @keyframes shiny-text {
   0%, 90%, 100% {
     background-position: calc(-100% - var(--shiny-width)) 0;

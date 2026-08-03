@@ -24,7 +24,7 @@ const spaceGrotesk = Space_Grotesk({
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-sans-alt',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
 });

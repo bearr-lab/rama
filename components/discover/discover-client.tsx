@@ -174,7 +174,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               variant="ghost"
               size="icon-sm"
               onClick={() => setShowMapDrawer(false)}
-              className="size-7 text-muted hover:text-fjord dark:text-muted/70"
+              className="size-7 text-muted hover:text-fjord dark:text-muted/70 dark:hover:text-white"
             >
               <X className="size-4" />
             </Button>
@@ -209,7 +209,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
           {rawQuery && (
             <button
               onClick={handleClearSearch}
-              className="absolute right-4 rounded-none p-1.5 text-muted transition-colors hover:bg-surface-subtle/50 hover:text-fjord dark:bg-fjord-hover dark:text-muted/70"
+              className="absolute right-4 rounded-none p-1.5 text-muted transition-colors hover:bg-surface-subtle/50 hover:text-fjord dark:bg-fjord-hover dark:text-muted/70 dark:hover:text-white"
               title="Clear search"
             >
               <X className="size-4" />
@@ -356,7 +356,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                     'flex items-center gap-1 rounded-none p-1.5 text-xs font-semibold transition-all',
                     viewMode === 'grid'
                       ? 'dark:border-border-strong/40 border border-border/40 bg-surface font-bold text-fjord shadow-2xs dark:bg-fjord dark:text-white'
-                      : 'text-muted hover:text-fjord dark:text-muted/70',
+                      : 'text-muted hover:text-fjord dark:text-muted/70 dark:hover:text-white',
                   )}
                   title="Grid View"
                 >
@@ -369,7 +369,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
                     'flex items-center gap-1 rounded-none p-1.5 text-xs font-medium transition-colors',
                     viewMode === 'list'
                       ? 'dark:border-border-strong/40 border border-border/40 bg-surface font-bold text-fjord shadow-2xs dark:bg-fjord dark:text-white'
-                      : 'text-muted hover:text-fjord dark:text-muted/70',
+                      : 'text-muted hover:text-fjord dark:text-muted/70 dark:hover:text-white',
                   )}
                   title="List View"
                 >
