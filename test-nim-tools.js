@@ -18,7 +18,7 @@ async function run() {
       show_property_cards: tool({
         description: 'Show properties.',
         parameters: z.object({ query: z.string() }),
-        execute: async (args) => ({ ok: true })
+        execute: async () => ({ ok: true })
       })
     }
   });
