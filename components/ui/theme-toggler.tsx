@@ -19,7 +19,7 @@ export interface ThemeTogglerProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof themeTogglerVariants> {}
 
-export function ThemeToggler({ className, ...props }: ThemeTogglerProps) {
+export function ThemeToggler({ className, onClick, ...props }: ThemeTogglerProps) {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -34,12 +34,15 @@ export function ThemeToggler({ className, ...props }: ThemeTogglerProps) {
 
   return (
     <button
-      type="button"
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={cn(themeTogglerVariants({ className }))}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       aria-pressed={isDark}
       {...props}
+      type="button"
+      onClick={(e) => {
+        setTheme(isDark ? 'light' : 'dark');
+        onClick?.(e);
+      }}
+      className={cn(themeTogglerVariants({ className }))}
     >
       <span className="sr-only">
         {isDark ? 'Switch to light mode' : 'Switch to dark mode'}

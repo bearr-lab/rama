@@ -119,8 +119,8 @@ export function Navbar() {
                 onThemeChange={setTheme}
                 aria-label={
                   resolvedTheme === 'dark'
-                    ? 'Switch to light mode'
-                    : 'Switch to dark mode'
+                    ? t('themeLight')
+                    : t('themeDark')
                 }
                 className={cn(
                   'flex size-9 items-center justify-center rounded-none transition-colors focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none',

@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -15,6 +16,7 @@ interface MobileNavProps {
 
 export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
   const { resolvedTheme, setTheme } = useTheme();
+  const t = useTranslations('MobileNav');
   const [mounted, setMounted] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -107,7 +109,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
             type="button"
             onClick={onClose}
             className="-mr-2 rounded-none p-2 text-muted-foreground transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
-            aria-label="Close menu"
+            aria-label={t('closeMenu')}
           >
             <X className="size-5" aria-hidden="true" />
           </button>
@@ -191,12 +193,12 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
                   <AnimatedThemeToggler
                     theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                     onThemeChange={setTheme}
+                    className="flex size-9 items-center justify-center rounded-none bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80 focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
                     aria-label={
                       resolvedTheme === 'dark'
-                        ? 'Switch to light mode'
-                        : 'Switch to dark mode'
+                        ? t('themeLight')
+                        : t('themeDark')
                     }
-                    className="flex size-9 items-center justify-center rounded-none bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80 focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
                   />
                   <span className="text-xs font-medium text-ink">
                     {resolvedTheme === 'dark'
