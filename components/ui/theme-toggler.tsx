@@ -20,7 +20,7 @@ export interface ThemeTogglerProps
     VariantProps<typeof themeTogglerVariants> {}
 
 export function ThemeToggler({ className, ...props }: ThemeTogglerProps) {
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   // Avoid hydration mismatch
