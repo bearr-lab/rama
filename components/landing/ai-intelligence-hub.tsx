@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { AnimatedBeam } from '@/components/ui/animated-beam';
+import React from 'react';
+import { Player } from '@lottiefiles/react-lottie-player';
 import { AnimatedList } from '@/components/ui/animated-list';
 import { AnimatedCircularProgressBar } from '@/components/ui/animated-circular-progress-bar';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { cn } from '@/lib/utils';
-import { Database, Building, LineChart, User, BrainCircuit, TrendingUp, Key, Building2 } from 'lucide-react';
+import { Building, LineChart, TrendingUp, Key } from 'lucide-react';
 export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: boolean }) {
   // We use English fallback if translations are missing, since we're replacing a component
   const title = isArabic ? 'ذكاء اصطناعي يحلل بيانات ريرا' : 'AI-Powered RERA Intelligence';
@@ -14,14 +14,7 @@ export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: bool
     ? 'محرك راما يقوم بمعالجة بيانات دائرة الأراضي والأملاك في دبي واتجاهات السوق في الوقت الفعلي لاكتشاف أعلى عوائد استثمارية.' 
     : 'The Rama Engine processes live DLD data, global market trends, and RERA analytics to uncover hyper-personalized, high-yield opportunities.';
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const div1Ref = useRef<HTMLDivElement>(null);
-  const div2Ref = useRef<HTMLDivElement>(null);
-  const div3Ref = useRef<HTMLDivElement>(null);
-  const div4Ref = useRef<HTMLDivElement>(null);
-  const div5Ref = useRef<HTMLDivElement>(null);
-  const div6Ref = useRef<HTMLDivElement>(null);
-  const div7Ref = useRef<HTMLDivElement>(null);
+
 
   const notifications = [
     {
@@ -74,101 +67,20 @@ export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: bool
         {/* Animated Beam Section (Spans 2 columns on desktop) */}
         <div 
           className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-none border border-border bg-surface p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] md:col-span-2"
-          ref={containerRef}
         >
           <div className="absolute top-4 left-4 text-sm font-medium tracking-wider text-fjord uppercase">
             {isArabic ? 'تدفق البيانات الحي' : 'Live Data Ingestion'}
           </div>
           
-          <div className="mt-8 flex size-full flex-col items-stretch justify-between gap-10">
-            <div className="flex flex-row items-center justify-between">
-              <Circle ref={div1Ref} className="size-16">
-                <Database className="size-6 text-muted-foreground" />
-              </Circle>
-              <Circle ref={div5Ref} className="size-16">
-                <LineChart className="size-6 text-muted-foreground" />
-              </Circle>
-            </div>
-            <div className="flex flex-row items-center justify-between">
-              <Circle ref={div2Ref} className="size-16">
-                <Building2 className="size-6 text-muted-foreground" />
-              </Circle>
-              <Circle ref={div4Ref} className="size-24 border-2 border-fjord bg-surface-subtle">
-                <BrainCircuit className="size-10 text-fjord" />
-              </Circle>
-              <Circle ref={div6Ref} className="size-16">
-                <TrendingUp className="size-6 text-muted-foreground" />
-              </Circle>
-            </div>
-            <div className="flex flex-row items-center justify-between">
-              <Circle ref={div3Ref} className="size-16">
-                <User className="size-6 text-muted-foreground" />
-              </Circle>
-              <Circle ref={div7Ref} className="size-16">
-                <Key className="size-6 text-muted-foreground" />
-              </Circle>
-            </div>
+          <div className="mt-8 flex size-full flex-col items-center justify-center">
+            <Player
+              autoplay
+              loop
+              src="/lottie/ai.json"
+              style={{ width: '100%', height: '100%' }}
+              className="max-h-125 object-contain"
+            />
           </div>
-
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={div1Ref}
-            toRef={div4Ref}
-            curvature={-75}
-            endYOffset={-10}
-            pathColor="hsl(var(--border))"
-            gradientStartColor="hsl(var(--fjord))"
-            gradientStopColor="hsl(var(--fjord-muted))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={div2Ref}
-            toRef={div4Ref}
-            pathColor="hsl(var(--border))"
-            gradientStartColor="hsl(var(--fjord))"
-            gradientStopColor="hsl(var(--fjord-muted))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={div3Ref}
-            toRef={div4Ref}
-            curvature={75}
-            endYOffset={10}
-            pathColor="hsl(var(--border))"
-            gradientStartColor="hsl(var(--fjord))"
-            gradientStopColor="hsl(var(--fjord-muted))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={div5Ref}
-            toRef={div4Ref}
-            curvature={-75}
-            endYOffset={-10}
-            reverse
-            pathColor="hsl(var(--border))"
-            gradientStartColor="hsl(var(--fjord))"
-            gradientStopColor="hsl(var(--fjord-muted))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={div6Ref}
-            toRef={div4Ref}
-            reverse
-            pathColor="hsl(var(--border))"
-            gradientStartColor="hsl(var(--fjord))"
-            gradientStopColor="hsl(var(--fjord-muted))"
-          />
-          <AnimatedBeam
-            containerRef={containerRef}
-            fromRef={div7Ref}
-            toRef={div4Ref}
-            curvature={75}
-            endYOffset={10}
-            reverse
-            pathColor="hsl(var(--border))"
-            gradientStartColor="hsl(var(--fjord))"
-            gradientStopColor="hsl(var(--fjord-muted))"
-          />
         </div>
 
         {/* Right Side Column */}
@@ -231,21 +143,4 @@ export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: bool
   );
 }
 
-const Circle = React.forwardRef<
-  HTMLDivElement,
-  { className?: string; children?: React.ReactNode }
->(({ className, children }, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "z-10 flex size-12 items-center justify-center rounded-full border border-border bg-surface shadow-[0_2px_10px_rgba(0,0,0,0.02)]",
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
-});
 
-Circle.displayName = "Circle";
