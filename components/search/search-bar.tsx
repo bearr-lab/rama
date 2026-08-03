@@ -82,7 +82,7 @@ export function SearchBar({
               ? 'ابحث بالذكاء الاصطناعي (مثال: فيلا بإطلالة بحرية)...'
               : 'Try "Penthouse with Burj Khalifa view under 15M"...'
           }
-          className="relative z-10 flex-1 rounded-none border-none bg-transparent px-2 text-sm font-medium text-ink placeholder:text-muted-foreground/60 focus-visible:ring-0 focus-visible:outline-none"
+          className="relative z-10 flex-1 rounded-none border-none bg-transparent px-2 text-sm font-medium text-fjord placeholder:text-muted-foreground/60 focus-visible:ring-0 focus-visible:outline-none"
         />
 
         <button

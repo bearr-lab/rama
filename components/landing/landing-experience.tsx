@@ -78,7 +78,7 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
   const t = content[isArabic ? 'ar' : 'en'];
 
   return (
-    <div className="bg-canvas text-ink">
+    <div className="bg-canvas text-fjord">
       <section className="border-b border-border bg-surface pt-32 pb-20 sm:pt-40 sm:pb-28">
         <Container
           size="lg"

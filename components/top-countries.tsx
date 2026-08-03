@@ -40,7 +40,7 @@ export function TopCountries() {
   return (
     <Card className="hover:shadow-floating relative border border-border/40 bg-surface/70 backdrop-blur-md transition-all duration-300 md:col-span-2 lg:col-span-2">
       <CardHeader>
-        <CardTitle className="font-display text-lg font-medium text-balance text-ink">
+        <CardTitle className="font-display text-lg font-medium text-balance text-fjord">
           International Capital Inflow
         </CardTitle>
         <CardDescription className="text-xs font-light text-pretty text-muted-foreground">

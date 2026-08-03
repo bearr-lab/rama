@@ -48,7 +48,7 @@ export async function FeaturedSignature({
             <p className="text-sm font-medium tracking-[0.2em] text-fjord uppercase">
               {isArabic ? 'مجموعة حصرية' : 'Exclusive Collection'}
             </p>
-            <h2 className="font-display text-4xl text-ink lg:text-5xl">
+            <h2 className="font-display text-4xl text-fjord lg:text-5xl">
               {isArabic ? 'عقارات مميزة' : 'Signature Properties'}
             </h2>
           </div>
@@ -118,7 +118,7 @@ export async function FeaturedSignature({
                         {location}
                       </div>
 
-                      <h3 className="font-display text-3xl leading-tight text-ink transition-colors group-hover:text-fjord lg:text-4xl">
+                      <h3 className="font-display text-3xl leading-tight text-fjord transition-colors group-hover:text-fjord lg:text-4xl">
                         {title}
                       </h3>
 
@@ -126,7 +126,7 @@ export async function FeaturedSignature({
                         <p className="mb-1 text-sm tracking-widest text-muted-foreground uppercase">
                           {isArabic ? 'السعر المطلوب' : 'Asking Price'}
                         </p>
-                        <p className="font-display text-3xl text-ink">
+                        <p className="font-display text-3xl text-fjord">
                           {price}
                         </p>
                       </div>
@@ -134,7 +134,7 @@ export async function FeaturedSignature({
                       <div className="flex flex-wrap gap-6 pt-4 text-sm text-muted-foreground">
                         {property.bedrooms && (
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-ink">
+                            <span className="font-medium text-fjord">
                               {property.bedrooms}
                             </span>
                             {isArabic ? 'غرف نوم' : 'Beds'}
@@ -142,7 +142,7 @@ export async function FeaturedSignature({
                         )}
                         {property.bathrooms && (
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-ink">
+                            <span className="font-medium text-fjord">
                               {property.bathrooms}
                             </span>
                             {isArabic ? 'حمامات' : 'Baths'}
@@ -150,7 +150,7 @@ export async function FeaturedSignature({
                         )}
                         {property.area_sqft && (
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-ink">
+                            <span className="font-medium text-fjord">
                               {property.area_sqft}
                             </span>
                             {isArabic ? 'قدم مربع' : 'Sq Ft'}

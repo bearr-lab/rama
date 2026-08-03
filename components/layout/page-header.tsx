@@ -46,7 +46,7 @@ export function PageHeader({
       >
         <Container size="2xl" className="relative z-10 space-y-6">
           <div>
-            <h1 className="mb-4 flex items-center gap-3 font-display text-4xl font-medium tracking-tight text-ink md:text-5xl lg:text-6xl">
+            <h1 className="mb-4 flex items-center gap-3 font-display text-4xl font-medium tracking-tight text-fjord md:text-5xl lg:text-6xl">
               {icon && <span className="text-fjord">{icon}</span>}
               {title}
             </h1>

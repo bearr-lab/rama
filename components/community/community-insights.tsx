@@ -98,7 +98,7 @@ export function CommunityInsights({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-h2 font-display font-bold text-ink">
+              <h3 className="text-h2 font-display font-bold text-fjord">
                 {communityName}
               </h3>
               <span className="border border-border/60 bg-border/50 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-ink uppercase">
@@ -133,7 +133,7 @@ export function CommunityInsights({
       {/* Walkability & Lifestyle Scores */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h4 className="text-body flex items-center gap-2 font-display font-bold text-ink">
+          <h4 className="text-body flex items-center gap-2 font-display font-bold text-fjord">
             <Footprints className="size-4 text-fjord" />
             <span>Walkability & Lifestyle Index</span>
           </h4>
@@ -148,7 +148,7 @@ export function CommunityInsights({
               {finalWalk}
             </div>
             <div>
-              <span className="text-body-sm block font-bold text-ink">
+              <span className="text-body-sm block font-bold text-fjord">
                 Walker&apos;s Paradise
               </span>
               <p className="text-caption mt-0.5 leading-tight text-muted-foreground">
@@ -162,7 +162,7 @@ export function CommunityInsights({
               {finalTransit}
             </div>
             <div>
-              <span className="text-body-sm block font-bold text-ink">
+              <span className="text-body-sm block font-bold text-fjord">
                 Excellent Transit
               </span>
               <p className="text-caption mt-0.5 leading-tight text-muted-foreground">
@@ -176,7 +176,7 @@ export function CommunityInsights({
               {finalQuiet}
             </div>
             <div>
-              <span className="text-body-sm block font-bold text-ink">
+              <span className="text-body-sm block font-bold text-fjord">
                 Acoustic & Privacy
               </span>
               <p className="text-caption mt-0.5 leading-tight text-muted-foreground">
@@ -195,7 +195,7 @@ export function CommunityInsights({
               <BarChart3 className="size-5" />
             </div>
             <div>
-              <h4 className="font-display text-xl font-medium text-ink">
+              <h4 className="font-display text-xl font-medium text-fjord">
                 5-Year Historical Appreciation (2021 – 2025)
               </h4>
               <p className="mt-0.5 text-xs font-light text-muted-foreground">
@@ -213,7 +213,7 @@ export function CommunityInsights({
         {/* Sleek Scandinavian Financial Columns */}
         <div className="flex h-44 items-end justify-between gap-4 border-b border-border px-4 pt-6 pb-4">
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 1,980
             </span>
             <div className="relative h-20 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -225,7 +225,7 @@ export function CommunityInsights({
           </div>
 
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 2,150
             </span>
             <div className="relative h-24 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -237,7 +237,7 @@ export function CommunityInsights({
           </div>
 
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 2,420
             </span>
             <div className="relative h-28 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -249,7 +249,7 @@ export function CommunityInsights({
           </div>
 
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 2,680
             </span>
             <div className="relative h-32 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -269,7 +269,7 @@ export function CommunityInsights({
             <div className="bg-fjord-500 shadow-elevated relative h-36 w-full max-w-16 transition-all duration-300 group-hover:-translate-y-1">
               <div className="bg-fjord-300 absolute inset-x-0 top-0 h-1" />
             </div>
-            <span className="font-display text-xs font-bold text-ink">
+            <span className="font-display text-xs font-bold text-fjord">
               2025 (Live)
             </span>
           </div>
@@ -315,7 +315,7 @@ export function CommunityInsights({
               <span className="mb-0.5 block text-muted-foreground">
                 Traffic Bottleneck Analysis
               </span>
-              <span className="block leading-tight font-semibold text-ink">
+              <span className="block leading-tight font-semibold text-fjord">
                 {data.traffic}
               </span>
             </div>
@@ -323,7 +323,7 @@ export function CommunityInsights({
               <span className="mb-0.5 block text-muted-foreground">
                 Summer Heat & Shading Index
               </span>
-              <span className="block leading-tight font-semibold text-ink">
+              <span className="block leading-tight font-semibold text-fjord">
                 {data.microclimate}
               </span>
             </div>

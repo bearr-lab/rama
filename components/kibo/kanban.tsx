@@ -82,7 +82,7 @@ export function Kanban<T extends { id: string }>({
                   col.color || 'bg-fjord',
                 )}
               />
-              <h3 className="font-display text-sm font-bold tracking-wider text-ink uppercase">
+              <h3 className="font-display text-sm font-bold tracking-wider text-fjord uppercase">
                 {col.title}
               </h3>
             </div>

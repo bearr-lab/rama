@@ -80,7 +80,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
       {/* Backdrop */}
       <div
         className={cn(
-          'fixed inset-0 z-50 bg-ink/20 backdrop-blur-sm transition-opacity duration-240',
+          'fixed inset-0 z-50 bg-fjord/20 backdrop-blur-sm transition-opacity duration-240',
           isOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
         onClick={onClose}
@@ -108,7 +108,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           <button
             type="button"
             onClick={onClose}
-            className="-mr-2 rounded-none p-2 text-muted-foreground transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
+            className="-mr-2 rounded-none p-2 text-muted-foreground transition-colors hover:text-fjord focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
             aria-label={t('closeMenu')}
           >
             <X className="size-5" aria-hidden="true" />
@@ -119,35 +119,35 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           <nav className="flex flex-col gap-4">
             <Link
               href={`/${locale}/projects`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'المشاريع' : 'Projects'}
             </Link>
             <Link
               href={`/${locale}/homes`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'العقارات' : 'Homes'}
             </Link>
             <Link
               href={`/${locale}/areas`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'المناطق' : 'Communities'}
             </Link>
             <Link
               href={`/${locale}/invest`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'استثمر' : 'Invest'}
             </Link>
             <Link
               href={`/${locale}/insights`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'رؤى' : 'Insights'}
@@ -200,7 +200,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
                         : t('themeDark')
                     }
                   />
-                  <span className="text-xs font-medium text-ink">
+                  <span className="text-xs font-medium text-fjord">
                     {resolvedTheme === 'dark'
                       ? locale === 'ar'
                         ? 'داكن'

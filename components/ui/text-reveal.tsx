@@ -36,7 +36,7 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className }) => {
   if (shouldReduceMotion) {
     return (
       <div className={cn('mx-auto max-w-4xl px-4 py-10', className)}>
-        <p className="text-2xl font-bold text-ink md:text-3xl lg:text-4xl">
+        <p className="text-2xl font-bold text-fjord md:text-3xl lg:text-4xl">
           {children}
         </p>
       </div>

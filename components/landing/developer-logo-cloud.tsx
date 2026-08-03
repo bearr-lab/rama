@@ -210,7 +210,7 @@ export function DeveloperLogoCloud({
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-display text-lg font-bold text-ink">
+                  <h4 className="font-display text-lg font-bold text-fjord">
                     {isArabic
                       ? 'دائرة الأراضي والأملاك'
                       : 'Dubai Land Department'}

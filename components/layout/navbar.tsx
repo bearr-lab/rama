@@ -10,8 +10,7 @@ import { cn } from '@/lib/utils';
 import { MobileNav } from './mobile-nav';
 import { LocaleSwitcher } from './locale-switcher';
 import { UserMenu } from '@/components/auth/user-menu';
-import { useTheme } from 'next-themes';
-import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
+import { ThemeToggler } from '@/components/ui/theme-toggler';
 import { RamaLogo } from '@/components/ui/rama-logo';
 
 export function Navbar() {
@@ -19,7 +18,6 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const locale = useLocale();
-  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const t = useTranslations('Nav');
 
@@ -114,9 +112,7 @@ export function Navbar() {
           {/* Actions */}
           <div className="hidden items-center gap-4 md:flex">
             {mounted ? (
-              <AnimatedThemeToggler
-                theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
-                onThemeChange={setTheme}
+              <ThemeToggler
                 aria-label={
                   resolvedTheme === 'dark'
                     ? t('themeLight')
@@ -130,7 +126,7 @@ export function Navbar() {
                 )}
               />
             ) : (
-              <div className="size-9" />
+              <div className="mr-2 h-8 w-14 shrink-0" />
             )}
             <LocaleSwitcher isDark={isNavDark} />
             <UserMenu locale={locale as 'en' | 'ar'} isDark={isNavDark} />

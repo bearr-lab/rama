@@ -89,7 +89,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                     <div className="mb-2 text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase">
                       {isArabic ? 'لمحة سريعة عن السوق' : 'Market Snapshot'}
                     </div>
-                    <div className="font-serif text-5xl tracking-tight text-ink lg:text-6xl">
+                    <div className="font-serif text-5xl tracking-tight text-fjord lg:text-6xl">
                       +6.4%
                     </div>
                   </div>
@@ -194,7 +194,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                         'mb-4 font-serif text-2xl tracking-tight transition-colors md:text-3xl lg:text-4xl',
                         insight.image
                           ? 'text-white'
-                          : 'text-ink group-hover:text-fjord',
+                          : 'text-fjord group-hover:text-fjord',
                       )}
                     >
                       {insight.title}

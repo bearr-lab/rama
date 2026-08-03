@@ -47,7 +47,7 @@ export function ContactConnect({ isArabic = false }: ContactConnectProps) {
       <Container size="lg">
         <div className="mx-auto max-w-5xl">
           <div className="mb-12">
-            <h2 className="font-display text-4xl font-medium text-balance text-ink sm:text-5xl">
+            <h2 className="font-display text-4xl font-medium text-balance text-fjord sm:text-5xl">
               {isArabic ? 'تواصل معنا' : 'Get in Touch'}
             </h2>
             <p className="mt-4 max-w-xl text-base text-balance text-muted-foreground">
@@ -105,7 +105,7 @@ export function ContactConnect({ isArabic = false }: ContactConnectProps) {
                     <div className="rounded-none bg-emerald-500/20 p-3">
                       <CheckCircle2 className="size-8 text-emerald-500" />
                     </div>
-                    <h3 className="font-display text-xl text-ink">
+                    <h3 className="font-display text-xl text-fjord">
                       {isArabic
                         ? 'تم إرسال رسالتك بنجاح'
                         : 'Message Sent Successfully'}

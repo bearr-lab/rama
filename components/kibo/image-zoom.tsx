@@ -125,7 +125,7 @@ export const ImageZoom = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsModalOpen(false)}
-            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-ink-bg/95 p-4 backdrop-blur-xl sm:p-8"
+            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-fjord-bg/95 p-4 backdrop-blur-xl sm:p-8"
           >
             <button
               type="button"

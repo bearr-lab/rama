@@ -73,7 +73,7 @@ export function PropertyCard({
         <div className="absolute inset-x-4 top-4 flex items-start justify-between">
           <div className="flex flex-wrap gap-2">
             {property.is_featured && (
-              <Badge className="border border-border/40 bg-surface/90 font-semibold text-ink shadow-2xs backdrop-blur-md hover:bg-surface">
+              <Badge className="border border-border/40 bg-surface/90 font-semibold text-fjord shadow-2xs backdrop-blur-md hover:bg-surface">
                 Featured
               </Badge>
             )}
@@ -117,7 +117,7 @@ export function PropertyCard({
       >
         <div className="space-y-4">
           <div className="space-y-2">
-            <h3 className="line-clamp-2 font-display text-xl leading-tight font-semibold text-ink">
+            <h3 className="line-clamp-2 font-display text-xl leading-tight font-semibold text-fjord">
               <Link
                 href={`/${locale}/homes/${property.slug}`}
                 className="before:absolute before:inset-0 before:z-10"
@@ -134,7 +134,7 @@ export function PropertyCard({
             </div>
           </div>
 
-          <div className="flex items-center gap-4 border-t border-border pt-2 text-sm text-ink/80">
+          <div className="flex items-center gap-4 border-t border-border pt-2 text-sm text-fjord/80">
             {property.bedrooms && (
               <div className="flex items-center gap-1.5">
                 <BedDouble className="size-4 text-muted-foreground" />
