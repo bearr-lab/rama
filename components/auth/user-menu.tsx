@@ -88,7 +88,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
             href={`/${locale}/login`}
             className={cn(
               buttonVariants({
-                variant: isDark ? 'secondary' : 'default',
+                variant: isDark ? 'secondary' : 'primary',
                 size: 'sm',
               }),
               isDark

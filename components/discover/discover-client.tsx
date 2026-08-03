@@ -139,7 +139,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
 
           {/* Map Drawer Toggle Button */}
           <Button
-            variant={showMapDrawer ? 'default' : 'outline'}
+            variant={showMapDrawer ? 'primary' : 'outline'}
             onClick={() => setShowMapDrawer(!showMapDrawer)}
             className={cn(
               'flex flex-row items-center gap-2 rounded-none font-semibold shadow-2xs transition-all',
@@ -395,7 +395,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               Try broadening your budget or community constraints.
             </p>
             <Button
-              variant="default"
+              variant="primary"
               onClick={handleClearSearch}
               className="bg-stone-900 font-semibold text-white shadow-2xs transition-colors hover:bg-stone-800 dark:bg-stone-100 dark:bg-stone-200"
             >
