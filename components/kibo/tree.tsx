@@ -43,17 +43,17 @@ const statusBadges = {
   verified: {
     label: 'DLD Verified',
     color:
-      'bg-surface-subtle/10 text-fjord dark:text-muted border-border/20',
+      'bg-ink/10 text-ink  border-border-strong/20',
   },
   pending: {
     label: 'In Audit',
     color:
-      'bg-surface-subtle/10 dark:bg-surface-subtle/10 text-muted dark:text-muted dark:text-muted dark:text-muted border-stone-400/20 dark:border-stone-600/20',
+      'bg-border/50/10  text-ink dark:text-muted/30  dark:text-muted/30 border-stone-400/20 ',
   },
   encrypted: {
     label: '256-Bit Encrypted',
     color:
-      'bg-surface-subtle/10 dark:bg-surface-subtle/10 text-muted dark:text-muted dark:text-muted dark:text-muted border-border/20 dark:border-stone-700/20',
+      'bg-border/50/10  text-muted-foreground dark:text-muted/50 dark:text-muted-foreground dark:text-muted/50 border-border/60/20 ',
   },
 };
 
@@ -79,7 +79,7 @@ export const TreeItem = ({
         onClick={() => hasChildren && setIsOpen(!isOpen)}
         whileHover={{ x: 3 }}
         className={cn(
-          'group flex items-center justify-between border border-transparent px-3 py-2.5 transition-colors hover:border-border/60 hover:bg-surface-subtle dark:border-border/60 dark:bg-fjord-hover',
+          'group hover:border-border/60/60 flex items-center justify-between border border-transparent px-3 py-2.5 transition-colors hover:bg-surface  ',
           hasChildren && 'cursor-pointer font-semibold',
           !hasChildren && 'text-text',
         )}
@@ -87,7 +87,7 @@ export const TreeItem = ({
       >
         <div className="flex min-w-0 items-center gap-2.5">
           {hasChildren ? (
-            <span className="text-muted transition-transform duration-200 dark:text-muted">
+            <span className="text-muted-foreground transition-transform duration-200 dark:text-muted/50">
               {isOpen ? (
                 <ChevronDown className="size-4" />
               ) : (
@@ -101,23 +101,23 @@ export const TreeItem = ({
             className={cn(
               'size-4 shrink-0',
               node.type === 'certificate'
-                ? 'text-fjord'
-                : 'text-fjord dark:text-muted',
+                ? 'text-ink'
+                : 'text-ink ',
             )}
           />
-          <span className="truncate text-sm font-medium text-fjord dark:text-white">
+          <span className="truncate text-sm font-medium text-ink ">
             {node.title}
           </span>
         </div>
 
         <div className="flex shrink-0 items-center gap-3">
           {node.hash && (
-            <span className="hidden font-mono text-[10px] text-muted md:inline dark:text-muted">
+            <span className="hidden font-mono text-[10px] text-muted-foreground md:inline dark:text-muted/50">
               {node.hash}
             </span>
           )}
           {node.date && (
-            <span className="text-xs text-muted dark:text-muted">
+            <span className="text-xs text-muted-foreground dark:text-muted/50">
               {node.date}
             </span>
           )}
@@ -149,7 +149,7 @@ export const TreeItem = ({
               stiffness: 400,
               damping: 30,
             }}
-            className="ml-5 overflow-hidden border-l border-border/40 dark:border-border/40"
+            className="border-border/60/40 ml-5 overflow-hidden border-l "
           >
             {node.children!.map((child) => (
               <TreeItem key={child.id} node={child} level={level + 1} />
@@ -170,22 +170,22 @@ export const Tree = ({
   return (
     <div
       className={cn(
-        'border border-border/60 bg-surface p-6 shadow-sm dark:border-border/60 dark:bg-fjord-hover',
+        'border-border/60/60 border bg-surface-subtle p-6 shadow-sm  ',
         className,
       )}
     >
       {/* Header */}
-      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-border/40 pb-5 sm:flex-row sm:items-center dark:border-border/40">
+      <div className="border-border/60/40 mb-6 flex flex-col justify-between gap-4 border-b pb-5 sm:flex-row sm:items-center ">
         <div>
-          <span className="text-xs font-bold tracking-widest text-fjord uppercase dark:text-muted">
+          <span className="text-xs font-bold tracking-widest text-ink uppercase ">
             {subtitle}
           </span>
-          <h3 className="mt-1 font-display text-xl font-bold text-fjord sm:text-2xl dark:text-white">
+          <h3 className="mt-1 font-display text-xl font-bold text-ink sm:text-2xl ">
             {title}
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 bg-fjord-bg px-3 py-1 text-xs font-semibold text-white dark:bg-white dark:text-fjord">
+          <span className="flex items-center gap-1.5 bg-ink-bg px-3 py-1 text-xs font-semibold text-white dark:bg-white ">
             <Lock className="size-3.5" />
             <span>SHA-256 Immutable Audit</span>
           </span>

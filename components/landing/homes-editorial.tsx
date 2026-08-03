@@ -55,13 +55,13 @@ export function HomesEditorial({
   return (
     <>
       {/* Curated Collections */}
-      <Section className="bg-surface-subtle py-16 dark:bg-fjord-hover">
+      <Section className="bg-surface py-16 ">
         <Container size="lg">
           <div className="mb-12 flex flex-col items-center text-center">
-            <h2 className="font-display text-3xl font-bold text-fjord dark:text-white">
+            <h2 className="font-display text-3xl font-bold text-ink ">
               {isArabic ? 'مجموعات حصرية' : 'Exclusive Collections'}
             </h2>
-            <p className="mt-4 max-w-2xl text-muted dark:text-muted">
+            <p className="mt-4 max-w-2xl text-muted-foreground dark:text-muted/50">
               {isArabic
                 ? 'استكشف أسلوب الحياة الذي يناسبك من خلال مجموعاتنا المصممة خصيصاً لأصحاب الذوق الرفيع.'
                 : 'Explore lifestyles tailored to your exact specifications through our hand-picked property portfolios.'}
@@ -73,7 +73,7 @@ export function HomesEditorial({
               <Link
                 key={idx}
                 href={`/${locale}/homes`}
-                className="group relative h-96 overflow-hidden bg-fjord-hover"
+                className="group relative h-96 overflow-hidden bg-ink"
               >
                 <Image
                   src={col.image}
@@ -103,17 +103,17 @@ export function HomesEditorial({
       </Section>
 
       {/* The Rama Standard */}
-      <Section className="bg-surface py-24 dark:bg-fjord-hover">
+      <Section className="bg-surface-subtle py-24 ">
         <Container size="lg">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
             <div className="lg:col-span-1">
-              <span className="text-[10px] font-bold tracking-widest text-muted uppercase">
+              <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
                 {isArabic ? 'وعد راما' : 'The Rama Promise'}
               </span>
-              <h2 className="mt-3 font-display text-3xl leading-tight font-bold text-fjord dark:text-white">
+              <h2 className="mt-3 font-display text-3xl leading-tight font-bold text-ink ">
                 {isArabic ? 'معيار راما' : 'The Rama Standard'}
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted dark:text-muted">
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
                 {isArabic
                   ? 'لا نكتفي بإدراج العقارات، بل نختار الأفضل في دبي حصرياً، لنضمن لك استثماراً يفوق التوقعات.'
                   : 'We do not simply list properties. We exclusively curate the top 1% of Dubai’s real estate market, ensuring your investment exceeds expectations.'}
@@ -123,11 +123,11 @@ export function HomesEditorial({
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:col-span-2">
               {standards.map((std, idx) => (
                 <div key={idx} className="flex flex-col">
-                  <std.icon className="mb-4 size-6 text-fjord dark:text-muted" />
-                  <h3 className="mb-2 font-display text-lg font-bold text-fjord dark:text-white">
+                  <std.icon className="mb-4 size-6 text-ink " />
+                  <h3 className="mb-2 font-display text-lg font-bold text-ink ">
                     {std.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted dark:text-muted">
+                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
                     {std.description}
                   </p>
                 </div>

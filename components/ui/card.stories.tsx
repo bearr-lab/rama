@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {
   render: () => (
-    <Card className="w-[350px]">
+    <Card className="w-87.5">
       <CardHeader>
         <CardTitle>Property Insights</CardTitle>
         <CardDescription>Dubai Marina ROI and yield analysis</CardDescription>
@@ -32,8 +32,8 @@ export const Default: Story = {
         </p>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Dismiss</Button>
-        <Button variant="default">Explore Area</Button>
+        <Button variant="outline">Cancel</Button>
+        <Button variant="primary">Explore Area</Button>
       </CardFooter>
     </Card>
   ),

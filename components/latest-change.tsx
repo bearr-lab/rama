@@ -22,7 +22,7 @@ export function LatestChange() {
   return (
     <div
       className={cn(
-        'group/latest-change z-20 size-full justify-center rounded-xl border bg-background',
+        'group/latest-change z-20 size-full justify-center rounded-none border bg-background',
       )}
     >
       <div className="relative flex size-full flex-col gap-1.5 overflow-hidden px-3 pt-4 pb-1">
@@ -40,7 +40,7 @@ export function LatestChange() {
           Read more
         </Button>
         <Button
-          className="absolute top-2 right-2 z-10 size-6 rounded-full opacity-0 transition-opacity group-hover/latest-change:opacity-100"
+          className="absolute top-2 right-2 z-10 size-6 rounded-none opacity-0 transition-opacity group-hover/latest-change:opacity-100"
           onClick={() => setIsOpen(false)}
           size="icon-sm"
           variant="secondary"

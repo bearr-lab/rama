@@ -210,7 +210,7 @@ export function PropertyDetailClient({
       </AnimatePresence>
 
       {/* ─── FULL-BLEED CINEMATIC HERO ─── */}
-      <div className="relative h-[calc(100vh-64px)] min-h-125 w-full overflow-hidden bg-black">
+      <div className="relative h-[calc(100vh-64px)] min-h-125 w-full overflow-hidden bg-fjord">
         {/* Hero image with crossfade key */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -244,14 +244,14 @@ export function PropertyDetailClient({
               })
             }
             aria-label={isArabic ? 'حفظ في المفضلة' : 'Save to favourites'}
-            className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
+            className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-fjord/40 backdrop-blur-md transition-all hover:bg-fjord/60"
           >
             <Heart className="size-4 text-white" />
           </button>
           <ShareButton
             title={title || ''}
             text={description || undefined}
-            className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/40 backdrop-blur-md transition-all hover:bg-black/60"
+            className="flex size-10 items-center justify-center rounded-full border border-white/20 bg-fjord/40 backdrop-blur-md transition-all hover:bg-fjord/60"
           />
         </div>
 
@@ -261,7 +261,7 @@ export function PropertyDetailClient({
           <button
             aria-label={isArabic ? 'استكشف المنطقة' : 'Explore Neighborhood'}
             onClick={() => setIsGalleryOpen(true)}
-            className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-black/60 backdrop-blur-md transition-transform hover:scale-105"
+            className="flex size-12 items-center justify-center rounded-full border border-white/20 bg-fjord/60 backdrop-blur-md transition-transform hover:scale-105"
           >
             <Compass className="size-5 text-white" />
           </button>
@@ -331,7 +331,7 @@ export function PropertyDetailClient({
             {/* Action Button */}
             <Button
               onClick={() => setIsBookModalOpen(true)}
-              className="w-full rounded-md bg-white py-6 text-sm font-bold text-black transition-transform hover:scale-105"
+              className="w-full rounded-md bg-white py-6 text-sm font-bold text-fjord transition-transform hover:scale-105"
             >
               <CalendarDays className="mr-2 size-4" />
               {isArabic ? 'حجز معاينة' : 'Book Viewing'}
@@ -340,7 +340,7 @@ export function PropertyDetailClient({
         </div>
 
         {/* ─── Bottom Center: Room Navigation Pill ─── */}
-        <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 scrollbar-none items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-black/60 p-1.5 backdrop-blur-xl [&::-webkit-scrollbar]:hidden">
+        <div className="absolute bottom-10 left-1/2 z-20 flex w-max max-w-[90vw] -translate-x-1/2 scrollbar-none items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-fjord/60 p-1.5 backdrop-blur-xl [&::-webkit-scrollbar]:hidden">
           {Array.from(
             new Set(['all', ...roomPhotos.map((p) => p.category)]),
           ).map((category) => {
@@ -361,7 +361,7 @@ export function PropertyDetailClient({
                 }
                 className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold whitespace-nowrap capitalize transition-all duration-300 ${
                   isActive
-                    ? 'bg-white text-black shadow-lg'
+                    ? 'bg-white text-fjord shadow-lg'
                     : 'text-white hover:bg-white/10'
                 }`}
               >

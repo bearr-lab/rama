@@ -50,13 +50,13 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
   return (
     <>
       {/* Expanded Pillars */}
-      <Section spacing="lg" className="bg-surface dark:bg-fjord-hover">
+      <Section spacing="lg" className="bg-surface-subtle ">
         <Container size="lg">
           <div className="mb-16 flex flex-col items-center text-center">
-            <span className="text-[10px] font-bold tracking-widest text-muted uppercase">
+            <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
               {isArabic ? 'منصة الاستثمار' : 'Investment Platform'}
             </span>
-            <h2 className="mt-3 font-display text-3xl font-bold text-fjord md:text-4xl dark:text-white">
+            <h2 className="mt-3 font-display text-3xl font-bold text-ink md:text-4xl ">
               {isArabic
                 ? 'بنية تحتية للمستثمرين'
                 : 'Institutional Infrastructure'}
@@ -73,35 +73,35 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className={`flex flex-col border p-8 transition-colors ${
                   pillar.dark
-                    ? 'border-border/40 bg-fjord-bg text-white'
-                    : 'border-border/40 bg-white hover:border-border dark:border-border/40 dark:bg-fjord-hover dark:hover:border-border'
+                    ? 'border-border-strong/40 bg-ink-bg text-white'
+                    : 'border-border/60/40 bg-white hover:border-fjord   dark:hover:border-border/60'
                 }`}
               >
                 {pillar.dark ? (
-                  <div className="mb-6 size-8 animate-pulse rounded-none bg-surface-subtle dark:bg-surface-subtle" />
+                  <div className="mb-6 size-8 animate-pulse rounded-none bg-border/50 " />
                 ) : (
-                  <pillar.icon className="mb-6 size-8 text-fjord dark:text-muted" />
+                  <pillar.icon className="mb-6 size-8 text-ink " />
                 )}
 
                 <h3
-                  className={`mb-4 font-display text-2xl font-bold ${pillar.dark ? 'text-white' : 'text-fjord dark:text-white'}`}
+                  className={`mb-4 font-display text-2xl font-bold ${pillar.dark ? 'text-white' : 'text-ink '}`}
                 >
                   {pillar.title}
                 </h3>
                 <p
-                  className={`mb-8 text-sm leading-relaxed ${pillar.dark ? 'text-white/70' : 'text-muted dark:text-muted'}`}
+                  className={`mb-8 text-sm leading-relaxed ${pillar.dark ? 'text-white/70' : 'text-muted-foreground dark:text-muted/50'}`}
                 >
                   {pillar.description}
                 </p>
 
                 {pillar.comingSoon ? (
-                  <span className="inline-flex items-center text-sm font-bold tracking-widest text-muted uppercase dark:text-muted">
+                  <span className="inline-flex items-center text-sm font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50">
                     {isArabic ? 'قريباً' : 'Coming Soon'}
                   </span>
                 ) : (
                   <Link
                     href={pillar.href || '#'}
-                    className={`inline-flex items-center text-sm font-semibold hover:underline ${pillar.dark ? 'text-white' : 'text-fjord dark:text-muted'}`}
+                    className={`inline-flex items-center text-sm font-semibold hover:underline ${pillar.dark ? 'text-white' : 'text-ink '}`}
                   >
                     {pillar.cta} <ArrowRight className="ml-1 size-4" />
                   </Link>
@@ -113,7 +113,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
       </Section>
 
       {/* UAE Golden Visa Banner */}
-      <Section className="border-y border-border bg-fjord-hover py-24 text-white">
+      <Section className="border-border-strong border-y bg-ink py-24 text-white">
         <Container size="lg">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
@@ -123,7 +123,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               <h2 className="font-display text-4xl leading-tight font-bold md:text-5xl">
                 {isArabic ? 'تأشيرة دبي الذهبية' : 'The UAE Golden Visa'}
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-muted">
+              <p className="mt-6 text-base leading-relaxed text-muted/50">
                 {isArabic
                   ? 'استثمر بقيمة 2 مليون درهم إماراتي أو أكثر في العقارات واحصل على تأشيرة الإقامة الذهبية لك ولعائلتك. تمتع بملكية أعمال بنسبة 100% وإعفاء كامل من ضريبة الدخل الشخصي.'
                   : 'Invest AED 2M or more in real estate and secure a 10-year Golden Visa for you and your family. Enjoy 100% business ownership and zero personal income tax.'}
@@ -132,7 +132,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   href="/homes?priceMin=2000000"
-                  className="inline-flex h-12 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-surface-subtle"
+                  className="inline-flex h-12 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-border/50"
                 >
                   {isArabic ? 'عقارات مؤهلة' : 'Qualifying Properties'}
                 </Link>
@@ -143,7 +143,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               </div>
             </div>
 
-            <div className="relative h-100 w-full border border-border bg-fjord">
+            <div className="border-border-strong relative h-100 w-full border bg-fjord">
               {/* Decorative graphic for Golden Visa */}
               <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                 <div className="absolute size-125 rotate-45 border border-amber-500/20 opacity-50" />

@@ -43,6 +43,7 @@ export default async function InsightsPage({
         title={heroInsight.title}
         description={heroInsight.description}
         backgroundImage={heroImage}
+        backgroundVideo="/videos/insights-hero-bg.mp4"
         variant="editorial"
         mediaPosition="object-top"
         badge={
@@ -56,7 +57,7 @@ export default async function InsightsPage({
           render={
             <Link
               href={`/${locale}/insights/${heroInsight.id}`}
-              className="inline-flex h-9 items-center justify-center rounded-sm bg-white px-6 text-[11px] font-bold tracking-widest text-black uppercase transition-colors hover:bg-white/90"
+              className="inline-flex h-9 items-center justify-center rounded-sm bg-white px-6 text-[11px] font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-white/90"
             >
               {isArabic ? 'قراءة التقرير الكامل' : 'Read Full Report'}
             </Link>

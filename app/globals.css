@@ -206,6 +206,7 @@
   --color-ink: var(--ink);
   --color-text: var(--text);
   --color-fjord: var(--fjord);
+  --color-fjord-bg: var(--fjord-active);
   --color-fjord-hover: var(--fjord-hover);
   --color-fjord-active: var(--fjord-active);
   --color-fjord-soft: var(--fjord-soft);

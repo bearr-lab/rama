@@ -2,20 +2,13 @@
 
 import * as React from 'react';
 import {
-  CheckCircle2,
   Clock,
-  AlertCircle,
   Plus,
   Calendar,
   ArrowRight,
   ArrowLeft,
   Trash2,
-  Sparkles,
   Building,
-  Filter,
-  MoreHorizontal,
-  ShieldCheck,
-  Check,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Kanban } from '@/components/kibo/kanban';
@@ -89,26 +82,25 @@ const COLUMNS: {
     label: 'Stage 1: Due Diligence & Drafts',
     badge: 'Active',
     color:
-      'border-border/30 dark:border-stone-700/30 bg-surface-subtle/5 dark:bg-surface-subtle/5',
+      'border-transparent bg-transparent',
   },
   {
     id: 'viewing',
     label: 'Stage 2: Viewings Scheduled',
     badge: 'Active',
-    color: 'border-border/30 bg-surface-subtle/5',
+    color: 'border-transparent bg-transparent',
   },
   {
     id: 'offer',
     label: 'Stage 3: MOU & Offers Submitted',
     badge: 'Pending',
-    color:
-      'border-stone-400/30 dark:border-stone-600/30 bg-surface-subtle/5 dark:bg-surface-subtle/5',
+    color: 'border-transparent bg-transparent',
   },
   {
     id: 'transfer',
-    label: 'Stage 4: DLD Transfer Ready',
-    badge: 'Milestone',
-    color: 'border-border/30 bg-surface-subtle/5',
+    label: 'Stage 4: DLD Transfer',
+    badge: 'Priority',
+    color: 'border-transparent bg-transparent',
   },
 ];
 
@@ -127,7 +119,7 @@ export function KanbanBoard() {
           if (Array.isArray(parsed) && parsed.length > 0) {
             setTasks(parsed);
           }
-        } catch (e) {}
+        } catch {}
       }
       setIsLoaded(true);
     }
@@ -201,12 +193,12 @@ export function KanbanBoard() {
   return (
     <div className="flex size-full flex-col space-y-6">
       {/* Controls Bar */}
-      <div className="flex flex-col justify-between gap-4 border-b border-border pb-4 sm:flex-row sm:items-center dark:border-border">
+      <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 sm:flex-row sm:items-center ">
         <div className="flex items-center gap-2">
-          <span className="text-body-sm font-bold text-muted dark:text-muted">
+          <span className="text-body-sm font-bold text-muted-foreground dark:text-muted/50">
             Filter Priority:
           </span>
-          <div className="flex items-center gap-1 border border-border bg-surface-subtle p-1 dark:border-border dark:bg-fjord-hover">
+          <div className="flex items-center gap-1 border-transparent bg-surface-subtle p-1  ">
             {['all', 'high', 'medium', 'low'].map((p) => (
               <button
                 key={p}
@@ -215,7 +207,7 @@ export function KanbanBoard() {
                   'px-3 py-1 text-xs font-bold capitalize transition-all',
                   filterPriority === p
                     ? 'bg-fjord text-white shadow-sm'
-                    : 'text-muted hover:text-fjord dark:text-muted',
+                    : 'text-muted-foreground hover:text-ink dark:text-muted/50',
                 )}
               >
                 {p}
@@ -224,17 +216,17 @@ export function KanbanBoard() {
           </div>
         </div>
 
-        <div className="flex items-center gap-1 border border-border bg-surface-subtle p-1 dark:border-border dark:bg-fjord-hover">
+        <div className="flex items-center gap-1 border-transparent bg-surface-subtle p-1  ">
           <button
             onClick={() => setViewMode('kibo')}
             className={cn(
               'px-3 py-1 text-xs font-bold transition-all',
               viewMode === 'kibo'
-                ? 'bg-fjord-hover text-white shadow-sm dark:bg-surface-subtle'
-                : 'text-muted hover:text-fjord dark:text-muted',
+                ? 'bg-fjord text-white shadow-sm dark:bg-surface'
+                : 'text-muted-foreground hover:text-ink dark:text-muted/50',
             )}
           >
-            Kibo Animated Pipeline
+            RAMA Deal Pipeline
           </button>
           <button
             onClick={() => setViewMode('classic')}
@@ -242,7 +234,7 @@ export function KanbanBoard() {
               'px-3 py-1 text-xs font-bold transition-all',
               viewMode === 'classic'
                 ? 'bg-fjord text-white shadow-sm'
-                : 'text-muted hover:text-fjord dark:text-muted',
+                : 'text-muted-foreground hover:text-ink dark:text-muted/50',
             )}
           >
             Classic Board
@@ -255,13 +247,13 @@ export function KanbanBoard() {
               setTasks(DEFAULT_TASKS);
               localStorage.removeItem('rama_v2_kanban_tasks');
             }}
-            className="text-caption font-bold text-muted transition-colors hover:text-fjord dark:text-muted"
+            className="text-caption font-bold text-muted-foreground transition-colors hover:text-ink dark:text-muted/50"
           >
             Reset Demo Board
           </button>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="text-body-sm flex items-center gap-2 bg-fjord-hover px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-surface-subtle dark:bg-surface-subtle dark:bg-surface-subtle"
+            className="text-body-sm flex items-center gap-2 bg-fjord px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-fjord dark:bg-surface"
           >
             <Plus className="size-4" />
             <span>New Action Task</span>
@@ -276,7 +268,7 @@ export function KanbanBoard() {
             id: col.id,
             title: col.label,
             color:
-              col.color.split(' ')[1] || 'bg-fjord-hover/10 dark:bg-surface-subtle/10',
+              col.color.split(' ')[1] || 'bg-fjord/10 dark:bg-surface/10',
             items: filteredTasks.filter((t) => t.column === col.id),
           }))}
           onMoveItem={(itemId, sourceCol, targetCol) => {
@@ -289,26 +281,26 @@ export function KanbanBoard() {
             );
           }}
           renderCard={(task, colId, onMoveDirection) => (
-            <div className="group relative space-y-3 border border-border/80 bg-card p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-border/80 dark:bg-neutral-900/90">
+            <div className="group border-border/60/80 relative space-y-3 border bg-card p-4 shadow-sm transition-all duration-200 hover:shadow-lg  dark:bg-neutral-900/90">
               <div className="flex items-center justify-between">
                 <span
                   className={cn(
                     'inline-flex items-center gap-1.5 border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
                     task.priority === 'high' &&
-                      'border-stone-400/20 bg-surface-subtle/10 text-fjord dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-fjord',
+                      'bg-border/50/10 border-stone-400/20 text-ink   dark:text-muted/50 ',
                     task.priority === 'medium' &&
-                      'border-stone-400/20 bg-surface-subtle/10 text-muted dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-muted',
+                      'bg-border/50/10 border-stone-400/20 text-ink   dark:text-muted/30 ',
                     task.priority === 'low' &&
-                      'border-border/80 bg-surface-subtle text-muted dark:border-border/80 dark:bg-fjord-hover dark:text-muted',
+                      'border-border/60/80 bg-surface text-muted-foreground   dark:text-muted/50',
                   )}
                 >
                   <span
                     className={cn(
                       'size-1.5 shrink-0',
                       task.priority === 'high' &&
-                        'bg-surface-subtle dark:bg-surface-subtle',
+                        'bg-border/50 ',
                       task.priority === 'medium' &&
-                        'bg-surface-subtle dark:bg-stone-300',
+                        'bg-stone-700 ',
                       task.priority === 'low' && 'bg-muted',
                     )}
                   />
@@ -316,22 +308,22 @@ export function KanbanBoard() {
                 </span>
                 <button
                   onClick={() => deleteTask(task.id)}
-                  className="p-1 text-muted opacity-0 transition-all group-hover:opacity-100 hover:bg-surface-subtle/10 hover:text-fjord dark:bg-surface-subtle/10 dark:text-muted dark:text-muted"
+                  className="hover:bg-border/50/10 p-1 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 hover:text-ink dark:text-muted/50"
                   title="Delete Task"
                 >
                   <Trash2 className="size-3.5" />
                 </button>
               </div>
               <div>
-                <h5 className="text-body-sm leading-snug font-bold text-fjord dark:text-white">
+                <h5 className="text-body-sm leading-snug font-bold text-ink dark:text-white">
                   {task.title}
                 </h5>
-                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted dark:text-muted">
-                  <Building className="size-3.5 shrink-0 text-fjord dark:text-muted" />
+                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted-foreground dark:text-muted/50">
+                  <Building className="size-3.5 shrink-0 text-ink " />
                   <span className="truncate">{task.property}</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between border-t border-border/40 pt-2 text-xs text-muted dark:border-border/40 dark:text-muted">
+              <div className="border-border/60/40 flex items-center justify-between border-t pt-2 text-xs text-muted-foreground  dark:text-muted/50">
                 <div className="flex items-center gap-1 font-medium">
                   <Clock className="size-3.5" />
                   <span>{task.dueDate}</span>
@@ -340,7 +332,7 @@ export function KanbanBoard() {
                   {task.column !== 'draft' && (
                     <button
                       onClick={() => onMoveDirection('left')}
-                      className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
+                      className="border border-border/60 bg-surface p-1.5 text-ink transition-colors hover:bg-border   dark:text-white"
                       title="Previous Stage"
                     >
                       <ArrowLeft className="size-3" />
@@ -349,7 +341,7 @@ export function KanbanBoard() {
                   {task.column !== 'transfer' && (
                     <button
                       onClick={() => onMoveDirection('right')}
-                      className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
+                      className="border border-border/60 bg-surface p-1.5 text-ink transition-colors hover:bg-border   dark:text-white"
                       title="Next Stage"
                     >
                       <ArrowRight className="size-3" />
@@ -367,33 +359,33 @@ export function KanbanBoard() {
             return (
               <div
                 key={col.id}
-                className="shadow-subtle flex h-full flex-col overflow-hidden border border-border bg-surface dark:border-border dark:bg-fjord-hover"
+                className="shadow-subtle flex h-full flex-col overflow-hidden border border-border/60 bg-surface-subtle  "
               >
                 {/* Column Header */}
                 <div
                   className={cn(
-                    'flex items-center justify-between border-b border-border p-4 dark:border-border',
+                    'flex items-center justify-between border-b border-border/60 p-4 ',
                     col.color,
                   )}
                 >
                   <div className="flex items-center gap-2">
-                    <h4 className="text-body-sm font-display font-extrabold text-fjord dark:text-white">
+                    <h4 className="text-body-sm font-display font-extrabold text-ink ">
                       {col.label}
                     </h4>
-                    <span className="bg-surface/80 px-2 py-0.5 text-[10px] font-extrabold text-fjord uppercase dark:bg-fjord/40 dark:bg-fjord-hover/80 dark:text-white">
+                    <span className="bg-surface-subtle/80 px-2 py-0.5 text-[10px] font-extrabold text-ink uppercase dark:bg-fjord/40  ">
                       {col.badge}
                     </span>
                   </div>
-                  <span className="flex size-6 items-center justify-center border border-border bg-surface text-xs font-extrabold text-fjord shadow-2xs dark:border-border dark:bg-fjord-hover dark:text-white">
+                  <span className="flex size-6 items-center justify-center border border-border/60 bg-surface-subtle text-xs font-extrabold text-ink shadow-2xs   ">
                     {colTasks.length}
                   </span>
                 </div>
 
                 {/* Column Task Cards */}
-                <div className="flex-1 space-y-3 overflow-y-auto bg-surface-subtle/50 p-4 dark:bg-fjord-hover/50">
+                <div className="flex-1 space-y-3 overflow-y-auto bg-surface/50 p-4 ">
                   {colTasks.length === 0 ? (
-                    <div className="flex h-40 flex-col items-center justify-center border-2 border-dashed border-border/60 p-4 text-center dark:border-border/60">
-                      <p className="text-caption font-medium text-muted dark:text-muted">
+                    <div className="border-border/60/60 flex h-40 flex-col items-center justify-center border-2 border-dashed p-4 text-center ">
+                      <p className="text-caption font-medium text-muted-foreground dark:text-muted/50">
                         No tasks in this stage
                       </p>
                     </div>
@@ -401,7 +393,7 @@ export function KanbanBoard() {
                     colTasks.map((task) => (
                       <div
                         key={task.id}
-                        className="group animate-in fade-in relative space-y-3 border border-border bg-surface p-4 shadow-sm transition-all duration-200 hover:shadow-lg dark:border-border dark:bg-fjord-hover"
+                        className="group animate-in fade-in relative space-y-3 border border-border/60 bg-surface-subtle p-4 shadow-sm transition-all duration-200 hover:shadow-lg  "
                       >
                         {/* Priority Tag & Delete */}
                         <div className="flex items-center justify-between">
@@ -409,20 +401,20 @@ export function KanbanBoard() {
                             className={cn(
                               'inline-flex items-center gap-1.5 border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
                               task.priority === 'high' &&
-                                'border-stone-400/20 bg-surface-subtle/10 text-fjord dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-fjord',
+                                'bg-border/50/10 border-stone-400/20 text-ink   dark:text-stone-200 ',
                               task.priority === 'medium' &&
-                                'border-stone-400/20 bg-surface-subtle/10 text-muted dark:border-stone-600/20 dark:bg-surface-subtle/10 dark:text-muted dark:text-muted',
+                                'bg-border/50/10 border-stone-400/20 text-ink   dark:text-muted/30 ',
                               task.priority === 'low' &&
-                                'border-border/80 bg-surface-subtle text-muted dark:border-border/80 dark:bg-fjord-hover dark:text-muted',
+                                'border-border/60/80 bg-surface text-muted-foreground   dark:text-muted/50',
                             )}
                           >
                             <span
                               className={cn(
                                 'size-1.5 shrink-0',
                                 task.priority === 'high' &&
-                                  'bg-surface-subtle dark:bg-surface-subtle',
+                                  'bg-border/50 ',
                                 task.priority === 'medium' &&
-                                  'bg-surface-subtle dark:bg-stone-300',
+                                  'bg-stone-700 ',
                                 task.priority === 'low' && 'bg-muted',
                               )}
                             />
@@ -431,7 +423,7 @@ export function KanbanBoard() {
 
                           <button
                             onClick={() => deleteTask(task.id)}
-                            className="p-1 text-muted opacity-0 transition-all group-hover:opacity-100 hover:bg-surface-subtle/10 hover:text-fjord dark:bg-surface-subtle/10 dark:text-muted dark:text-muted"
+                            className="hover:bg-border/50/10 p-1 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 hover:text-ink dark:text-muted/50"
                             title="Delete Task"
                           >
                             <Trash2 className="size-3.5" />
@@ -440,19 +432,19 @@ export function KanbanBoard() {
 
                         {/* Title & Property */}
                         <div>
-                          <h5 className="text-body-sm leading-snug font-bold text-fjord dark:text-white">
+                          <h5 className="text-body-sm leading-snug font-bold text-ink ">
                             {task.title}
                           </h5>
-                          <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted dark:text-muted">
-                            <Building className="size-3.5 shrink-0 text-fjord dark:text-muted" />
+                          <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted-foreground dark:text-muted/50">
+                            <Building className="size-3.5 shrink-0 text-ink " />
                             <span className="truncate">{task.property}</span>
                           </div>
                         </div>
 
                         {/* Footer: Due Date & Move Controls */}
-                        <div className="text-caption flex items-center justify-between border-t border-border/60 pt-2 dark:border-border/60">
-                          <div className="flex items-center gap-1.5 font-medium text-muted dark:text-muted">
-                            <Calendar className="size-3.5 text-fjord dark:text-muted" />
+                        <div className="text-caption border-border/60/60 flex items-center justify-between border-t pt-2 ">
+                          <div className="flex items-center gap-1.5 font-medium text-muted-foreground dark:text-muted/50">
+                            <Calendar className="size-3.5 text-ink " />
                             <span>{task.dueDate}</span>
                           </div>
 
@@ -461,7 +453,7 @@ export function KanbanBoard() {
                             {task.column !== 'draft' && (
                               <button
                                 onClick={() => moveTask(task.id, 'left')}
-                                className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
+                                className="border border-border/60 bg-surface p-1.5 text-ink transition-colors hover:bg-border   "
                                 title="Move Previous Stage"
                               >
                                 <ArrowLeft className="size-3" />
@@ -470,7 +462,7 @@ export function KanbanBoard() {
                             {task.column !== 'transfer' && (
                               <button
                                 onClick={() => moveTask(task.id, 'right')}
-                                className="border border-border bg-surface-subtle p-1.5 text-fjord transition-colors hover:bg-border dark:border-border dark:bg-fjord-hover dark:text-white"
+                                className="border border-border/60 bg-surface p-1.5 text-ink transition-colors hover:bg-border   "
                                 title="Move Next Stage"
                               >
                                 <ArrowRight className="size-3" />
@@ -490,20 +482,20 @@ export function KanbanBoard() {
 
       {/* New Task Modal */}
       {isModalOpen && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/80 backdrop-blur-md p-4 backdrop-blur-sm duration-150">
-          <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 border border-border bg-surface p-6 shadow-2xl duration-200 dark:border-border dark:bg-fjord-hover">
-            <div className="flex items-center justify-between border-b border-border pb-4 dark:border-border">
+        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/60 p-4 backdrop-blur-sm duration-150">
+          <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 border border-border/60 bg-surface-subtle p-6 shadow-2xl duration-200  ">
+            <div className="flex items-center justify-between border-b border-border/60 pb-4 ">
               <div className="flex items-center gap-2.5">
-                <div className="bg-fjord-hover/10 p-2 text-fjord dark:bg-surface-subtle/10 dark:text-muted">
+                <div className="bg-fjord/10 p-2 text-fjord dark:bg-surface/10 ">
                   <Plus className="size-5" />
                 </div>
-                <h3 className="text-h3 font-display font-bold text-fjord dark:text-white">
+                <h3 className="text-h3 font-display font-bold text-fjord ">
                   New Transaction Action
                 </h3>
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-caption font-bold text-muted hover:text-fjord dark:text-muted"
+                className="text-caption font-bold text-muted-foreground hover:text-fjord dark:text-muted/50"
               >
                 Cancel
               </button>
@@ -511,7 +503,7 @@ export function KanbanBoard() {
 
             <form onSubmit={handleCreateTask} className="space-y-4">
               <div>
-                <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
+                <label className="text-caption mb-1 block font-bold text-fjord ">
                   Action Description
                 </label>
                 <input
@@ -520,18 +512,18 @@ export function KanbanBoard() {
                   placeholder="e.g., Verify Seller Power of Attorney (POA)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  className="text-body-sm w-full border border-border bg-surface-subtle px-4 py-2.5 text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
+                  className="text-body-sm w-full border border-border/60 bg-surface px-4 py-2.5 text-fjord focus:ring-2 focus:ring-ink focus:outline-none   "
                 />
               </div>
 
               <div>
-                <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
+                <label className="text-caption mb-1 block font-bold text-fjord ">
                   Target Property / Project
                 </label>
                 <select
                   value={newProperty}
                   onChange={(e) => setNewProperty(e.target.value)}
-                  className="text-body-sm w-full border border-border bg-surface-subtle px-4 py-2.5 text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
+                  className="text-body-sm w-full border border-border/60 bg-surface px-4 py-2.5 text-fjord focus:ring-2 focus:ring-ink focus:outline-none   "
                 >
                   <option value="Sky Collection Penthouse">
                     Sky Collection Penthouse, Downtown
@@ -550,13 +542,13 @@ export function KanbanBoard() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
+                  <label className="text-caption mb-1 block font-bold text-fjord ">
                     Stage Column
                   </label>
                   <select
                     value={newColumn}
-                    onChange={(e) => setNewColumn(e.target.value as any)}
-                    className="text-caption w-full border border-border bg-surface-subtle px-3 py-2.5 font-bold text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
+                    onChange={(e) => setNewColumn(e.target.value as TaskItem['column'])}
+                    className="text-caption w-full border border-border/60 bg-surface px-3 py-2.5 font-bold text-fjord focus:ring-2 focus:ring-ink focus:outline-none   "
                   >
                     <option value="draft">Due Diligence</option>
                     <option value="viewing">Viewing</option>
@@ -566,13 +558,13 @@ export function KanbanBoard() {
                 </div>
 
                 <div>
-                  <label className="text-caption mb-1 block font-bold text-fjord dark:text-white">
+                  <label className="text-caption mb-1 block font-bold text-fjord ">
                     Priority Level
                   </label>
                   <select
                     value={newPriority}
-                    onChange={(e) => setNewPriority(e.target.value as any)}
-                    className="text-caption w-full border border-border bg-surface-subtle px-3 py-2.5 font-bold text-fjord focus:ring-2 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-white"
+                    onChange={(e) => setNewPriority(e.target.value as TaskItem['priority'])}
+                    className="text-caption w-full border border-border/60 bg-surface px-3 py-2.5 font-bold text-fjord focus:ring-2 focus:ring-ink focus:outline-none   "
                   >
                     <option value="high">High Priority</option>
                     <option value="medium">Medium Priority</option>
@@ -581,17 +573,17 @@ export function KanbanBoard() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end gap-3 border-t border-border pt-4 dark:border-border">
+              <div className="flex items-center justify-end gap-3 border-t border-border/60 pt-4 ">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="text-body-sm border border-border bg-surface px-5 py-2.5 font-bold text-muted transition-colors hover:text-fjord dark:border-border dark:bg-fjord-hover dark:text-muted"
+                  className="text-body-sm border border-border/60 bg-surface-subtle px-5 py-2.5 font-bold text-muted-foreground transition-colors hover:text-fjord   dark:text-muted/50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="text-body-sm bg-fjord-hover px-6 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-surface-subtle dark:bg-surface-subtle dark:bg-surface-subtle"
+                  className="text-body-sm bg-fjord px-6 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-fjord dark:bg-surface"
                 >
                   Create Action
                 </button>

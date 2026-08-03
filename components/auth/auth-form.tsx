@@ -8,6 +8,7 @@ import { ArrowRight, Loader2, Mail, ShieldCheck, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { createClient } from '@/lib/supabase/client';
+import type { AuthError } from '@supabase/supabase-js';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/toast';
 
@@ -86,6 +87,7 @@ export function AuthForm({
   const [notice, setNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const supabase = createClient();
   const t = copy[locale];
   const destination = redirectPath ?? `/${locale}/dashboard`;
   const isSignIn = mode === 'sign-in';
@@ -105,56 +107,62 @@ export function AuthForm({
     setNotice(null);
     setIsLoading(true);
 
-    const supabase = createClient();
-
-    const result = isSignIn
-      ? await supabase.auth.signInWithPassword({ email, password })
-      : await supabase.auth.signUp({
+    try {
+      let authError = null;
+      if (isSignIn) {
+        const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/api/auth/callback?next=${encodeURIComponent(destination)}`,
-          },
         });
+        authError = error;
+      } else {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+        });
+        authError = error;
+      }
 
-    setIsLoading(false);
-    if (result.error) {
-      toast.add({ title: result.error.message, type: 'error' });
-      setError(result.error.message);
-      return;
+      setIsLoading(false);
+      
+      if (authError) throw authError;
+
+      toast.add({
+        title: isSignIn
+          ? locale === 'ar'
+            ? 'تم تسجيل الدخول بنجاح'
+            : 'Signed in successfully'
+          : locale === 'ar'
+            ? 'تم إنشاء الحساب بنجاح'
+            : 'Account created successfully',
+        type: 'success',
+      });
+      finish();
+    } catch (err) {
+      const authErr = err as AuthError;
+      setIsLoading(false);
+      toast.add({ title: authErr.message, type: 'error' });
+      setError(authErr.message);
     }
-    if (!isSignIn && !result.data.session) {
-      toast.add({ title: t.confirmation, type: 'info' });
-      setNotice(t.confirmation);
-      return;
-    }
-    toast.add({
-      title: isSignIn
-        ? locale === 'ar'
-          ? 'تم تسجيل الدخول بنجاح'
-          : 'Signed in successfully'
-        : locale === 'ar'
-          ? 'تم إنشاء الحساب بنجاح'
-          : 'Account created successfully',
-      type: 'success',
-    });
-    finish();
   };
 
   const handleGoogleAuth = async () => {
     setError(null);
     setNotice(null);
     setIsLoading(true);
-    const supabase = createClient();
-    const { error: authError } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/api/auth/callback?next=${encodeURIComponent(destination)}`,
-      },
-    });
-    if (authError) {
-      toast.add({ title: authError.message, type: 'error' });
-      setError(authError.message);
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/api/auth/callback?next=${destination}`,
+        },
+      });
+      if (error) throw error;
+      // finish() is handled by the redirect callback
+    } catch (err) {
+      const authErr = err as AuthError;
+      toast.add({ title: authErr.message, type: 'error' });
+      setError(authErr.message);
       setIsLoading(false);
     }
   };
@@ -209,7 +217,7 @@ export function AuthForm({
         {error && (
           <motion.p
             variants={itemVariants}
-            className="rounded-xl bg-risk-soft px-4 py-3 text-sm text-risk"
+            className="rounded-none bg-risk-soft px-4 py-3 text-sm text-risk"
             role="alert"
           >
             {error}
@@ -218,7 +226,7 @@ export function AuthForm({
         {notice && (
           <motion.p
             variants={itemVariants}
-            className="rounded-xl bg-verified-soft px-4 py-3 text-sm text-verified"
+            className="rounded-none bg-verified-soft px-4 py-3 text-sm text-verified"
             role="status"
           >
             {notice}

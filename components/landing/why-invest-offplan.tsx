@@ -38,23 +38,23 @@ export function WhyInvestOffPlan({ isArabic }: WhyInvestOffPlanProps) {
   return (
     <Section
       spacing="lg"
-      className="border-t border-border/40 bg-surface dark:border-border/40 dark:bg-fjord-hover"
+      className="border-border/60/40 border-t bg-surface-subtle  "
     >
       <Container size="lg">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-8">
           {/* Left: Editorial Header */}
           <div className="lg:col-span-1">
-            <h2 className="font-display text-3xl leading-tight font-bold text-fjord md:text-4xl dark:text-white">
+            <h2 className="font-display text-3xl leading-tight font-bold text-ink md:text-4xl ">
               {isArabic ? 'لماذا تستثمر قيد الإنشاء؟' : 'Why Invest Off-Plan?'}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted dark:text-muted">
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
               {isArabic
                 ? 'يوفر الاستثمار في عقارات دبي قيد الإنشاء عوائد لا مثيل لها وميزات حصرية للمستثمرين المبكرين.'
                 : 'Off-plan investments in Dubai offer unparalleled returns and exclusive advantages for early-stage investors.'}
             </p>
             <Link
               href="/invest"
-              className="mt-8 inline-flex items-center text-xs font-bold tracking-widest text-fjord uppercase hover:underline dark:text-muted"
+              className="mt-8 inline-flex items-center text-xs font-bold tracking-widest text-ink uppercase hover:underline "
             >
               {isArabic ? 'اقرأ التقرير' : 'Read Report'}{' '}
               <ArrowRight className="ml-1 size-4" />
@@ -74,13 +74,13 @@ export function WhyInvestOffPlan({ isArabic }: WhyInvestOffPlanProps) {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="flex flex-col"
                 >
-                  <div className="mb-6 flex size-12 items-center justify-center border border-border bg-surface-subtle dark:border-border dark:bg-fjord-hover">
-                    <Icon className="size-5 text-fjord dark:text-muted" />
+                  <div className="mb-6 flex size-12 items-center justify-center border border-border/60 bg-surface  ">
+                    <Icon className="size-5 text-ink " />
                   </div>
-                  <h3 className="mb-3 font-display text-lg font-bold text-fjord dark:text-white">
+                  <h3 className="mb-3 font-display text-lg font-bold text-ink ">
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted dark:text-muted">
+                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
                     {feature.description}
                   </p>
                 </motion.div>

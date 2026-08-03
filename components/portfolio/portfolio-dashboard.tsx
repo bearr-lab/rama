@@ -18,8 +18,42 @@ import {
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { Ticker } from '@/components/kibo/ticker';
-import { ContributionGraph } from '@/components/kibo/contribution-graph';
 import { Marquee, PartnerCard } from '@/components/kibo/marquee';
+
+const Sparkline = ({ data }: { data: number[] }) => {
+  const max = Math.max(...data);
+  const min = Math.min(...data);
+  const range = max - min || 1;
+  const padding = 10;
+  const width = 300;
+  const height = 60;
+  
+  const points = data.map((val, i) => {
+    const x = (i / (data.length - 1)) * (width - padding * 2) + padding;
+    const y = height - padding - ((val - min) / range) * (height - padding * 2);
+    return `${x},${y}`;
+  }).join(' ');
+
+  return (
+    <svg width="100%" height={height} viewBox={`0 0 ${width} ${height}`} className="overflow-visible" preserveAspectRatio="none">
+      <polyline
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        points={points}
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+      />
+      {data.map((val, i) => {
+        const x = (i / (data.length - 1)) * (width - padding * 2) + padding;
+        const y = height - padding - ((val - min) / range) * (height - padding * 2);
+        return (
+          <circle key={i} cx={x} cy={y} r="3" fill="currentColor" className="opacity-0 transition-opacity hover:opacity-100" />
+        );
+      })}
+    </svg>
+  );
+};
 
 interface OwnedAsset {
   id: string;
@@ -177,8 +211,8 @@ export function PortfolioDashboard() {
     <div className="w-full space-y-8">
       {/* Executive KPIs Bar */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
-          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
+        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-none border border-border bg-surface p-5">
+          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted-foreground uppercase">
             <span>Total Asset Value</span>
             <Building2 className="size-4 text-fjord" />
           </div>
@@ -199,40 +233,40 @@ export function PortfolioDashboard() {
           </div>
         </div>
 
-        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
-          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
+        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-none border border-border bg-surface p-5">
+          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted-foreground uppercase">
             <span>Monthly Rental Cashflow</span>
             <Wallet className="size-4 text-emerald-500" />
           </div>
           <div className="text-display-sm font-mono font-extrabold text-emerald-600 dark:text-emerald-400">
             <Ticker value={monthlyCashflow} prefix="AED " decimals={0} />
           </div>
-          <p className="text-caption text-muted">
+          <p className="text-caption text-muted-foreground">
             Net after service charges & DLD fees
           </p>
         </div>
 
-        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
-          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
+        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-none border border-border bg-surface p-5">
+          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted-foreground uppercase">
             <span>Average Net Yield</span>
             <PieChart className="size-4 text-sky-500" />
           </div>
           <div className="text-display-sm font-mono font-extrabold text-sky-500">
             <Ticker value={Number(avgYield)} suffix="%" decimals={2} />
           </div>
-          <p className="text-caption text-muted">
+          <p className="text-caption text-muted-foreground">
             Outperforming Dubai macro average by 1.2%
           </p>
         </div>
 
-        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-3xl border border-border bg-surface p-5">
-          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted uppercase">
+        <div className="shadow-subtle group relative space-y-2 overflow-hidden rounded-none border border-border bg-surface p-5">
+          <div className="text-caption flex items-center justify-between font-extrabold tracking-wider text-muted-foreground uppercase">
             <span>Occupancy & Leases</span>
             <Users className="size-4 text-purple-500" />
           </div>
           <div className="text-display-sm font-display font-extrabold text-fjord">
             100%{' '}
-            <span className="text-body-sm font-sans font-bold text-muted">
+            <span className="text-body-sm font-sans font-bold text-muted-foreground">
               (3/3 Units)
             </span>
           </div>
@@ -252,17 +286,17 @@ export function PortfolioDashboard() {
               'text-body-sm flex shrink-0 items-center gap-2 border-b-2 py-3 font-bold transition-all',
               activeTab === 'assets'
                 ? 'border-fjord text-fjord'
-                : 'border-transparent text-muted hover:border-border hover:text-fjord',
+                : 'border-transparent text-muted-foreground hover:border-border hover:text-ink',
             )}
           >
             <Building2 className="size-4" />
             <span>Owned Assets</span>
             <span
               className={cn(
-                'rounded-full px-2 py-0.5 text-[10px] font-extrabold',
+                'rounded-none px-2 py-0.5 text-[10px] font-extrabold',
                 activeTab === 'assets'
                   ? 'bg-fjord/10 text-fjord'
-                  : 'bg-surface-subtle text-muted',
+                  : 'bg-surface-subtle text-muted-foreground',
               )}
             >
               {assets.length}
@@ -275,17 +309,17 @@ export function PortfolioDashboard() {
               'text-body-sm flex shrink-0 items-center gap-2 border-b-2 py-3 font-bold transition-all',
               activeTab === 'maintenance'
                 ? 'border-fjord text-fjord'
-                : 'border-transparent text-muted hover:border-border hover:text-fjord',
+                : 'border-transparent text-muted-foreground hover:border-border hover:text-ink',
             )}
           >
             <Wrench className="size-4" />
             <span>Maintenance & Operations</span>
             <span
               className={cn(
-                'rounded-full px-2 py-0.5 text-[10px] font-extrabold',
+                'rounded-none px-2 py-0.5 text-[10px] font-extrabold',
                 activeTab === 'maintenance'
                   ? 'bg-fjord/10 text-fjord'
-                  : 'bg-surface-subtle text-muted',
+                  : 'bg-surface-subtle text-muted-foreground',
               )}
             >
               {tickets.length}
@@ -298,7 +332,7 @@ export function PortfolioDashboard() {
               'text-body-sm flex shrink-0 items-center gap-2 border-b-2 py-3 font-bold transition-all',
               activeTab === 'analytics'
                 ? 'border-fjord text-fjord'
-                : 'border-transparent text-muted hover:border-border hover:text-fjord',
+                : 'border-transparent text-muted-foreground hover:border-border hover:text-ink',
             )}
           >
             <TrendingUp className="size-4" />
@@ -313,16 +347,16 @@ export function PortfolioDashboard() {
                 `Generating PDF Annual Cashflow & Tax Compliance Statement...`,
               )
             }
-            className="text-body-sm flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 font-bold text-fjord shadow-2xs transition-colors hover:bg-surface-subtle"
+            className="text-body-sm flex items-center gap-2 rounded-none border border-border bg-surface px-4 py-2.5 font-bold text-ink shadow-2xs transition-colors hover:bg-surface-subtle"
           >
-            <Download className="size-4 text-muted" />
+            <Download className="size-4 text-muted-foreground" />
             <span>Export Financial Report</span>
           </button>
 
           {activeTab === 'maintenance' && (
             <button
               onClick={() => setIsLogOpen(true)}
-              className="text-body-sm flex items-center gap-2 rounded-xl bg-fjord px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-fjord-hover"
+              className="text-body-sm flex items-center gap-2 rounded-none bg-fjord px-5 py-2.5 font-bold text-white shadow-sm transition-all hover:bg-fjord-hover"
             >
               <Plus className="size-4" />
               <span>Log Maintenance Ticket</span>
@@ -333,17 +367,17 @@ export function PortfolioDashboard() {
 
       {/* TAB 1: ASSETS TABLE */}
       {activeTab === 'assets' && (
-        <div className="shadow-subtle animate-in fade-in overflow-hidden rounded-3xl border border-border bg-surface duration-200">
-          <div className="flex items-center justify-between border-b border-border bg-surface-subtle/50 p-6">
+        <div className="animate-in fade-in overflow-hidden duration-200">
+          <div className="flex flex-col gap-2 border-b border-border/40 pb-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h3 className="text-h3 font-display font-bold text-fjord">
                 Asset Roster & Valuation Register
               </h3>
-              <p className="text-caption text-muted">
+              <p className="text-caption text-muted-foreground">
                 Real-time valuation synchronization with DLD transfer feeds
               </p>
             </div>
-            <span className="text-caption rounded-full bg-emerald-500/10 px-3 py-1 font-extrabold text-emerald-500">
+            <span className="text-caption rounded-none bg-emerald-500/10 px-3 py-1 font-extrabold text-emerald-500">
               Escrow Synchronized
             </span>
           </div>
@@ -351,7 +385,7 @@ export function PortfolioDashboard() {
           <div className="overflow-x-auto">
             <table className="w-full min-w-175 border-collapse text-left">
               <thead>
-                <tr className="text-caption border-b border-border bg-surface-subtle font-bold tracking-wider text-muted uppercase">
+                <tr className="border-b border-border/40 text-xs font-bold tracking-widest text-fjord uppercase">
                   <th className="p-4 pl-6 text-left">Property / Location</th>
                   <th className="p-4 text-right">Current Valuation</th>
                   <th className="p-4 text-right">Monthly Rent</th>
@@ -375,7 +409,7 @@ export function PortfolioDashboard() {
                         <span className="text-body-sm block font-extrabold text-fjord">
                           {asset.title}
                         </span>
-                        <span className="text-caption text-muted">
+                        <span className="text-caption text-muted-foreground">
                           {asset.community}
                         </span>
                       </td>
@@ -391,7 +425,7 @@ export function PortfolioDashboard() {
                         AED {asset.monthlyRent.toLocaleString()} /mo
                       </td>
                       <td className="p-4 text-right tabular-nums">
-                        <span className="rounded-lg bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
+                        <span className="rounded-none bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
                           {asset.netYield}%
                         </span>
                       </td>
@@ -407,7 +441,7 @@ export function PortfolioDashboard() {
                           >
                             <span
                               className={cn(
-                                'size-2 shrink-0 rounded-full',
+                                'size-2 shrink-0 rounded-none',
                                 asset.tenantStatus === 'occupied'
                                   ? 'bg-emerald-500'
                                   : 'animate-pulse bg-amber-500',
@@ -417,7 +451,7 @@ export function PortfolioDashboard() {
                               ? '100% Leased'
                               : 'Renewal Pending'}
                           </span>
-                          <span className="text-[11px] text-muted">
+                          <span className="text-[11px] text-muted-foreground">
                             {asset.leaseEnd}
                           </span>
                         </div>
@@ -425,10 +459,10 @@ export function PortfolioDashboard() {
                       <td className="p-4 pr-6 text-right">
                         <Link
                           href={`/en/property/${asset.id}`}
-                          className="inline-flex h-8 items-center justify-center gap-1.5 rounded-lg border border-border bg-transparent px-3 text-xs font-bold text-fjord transition-all hover:border-fjord hover:bg-fjord/5 hover:text-fjord"
+                          className="inline-flex h-8 items-center justify-center gap-1.5 rounded-none border border-border bg-transparent px-3 text-xs font-bold text-ink transition-all hover:border-fjord hover:bg-fjord/5 hover:text-fjord"
                         >
                           <span>Analyze</span>
-                          <ExternalLink className="size-3.5 text-muted" />
+                          <ExternalLink className="size-3.5 text-muted-foreground" />
                         </Link>
                       </td>
                     </tr>
@@ -447,13 +481,13 @@ export function PortfolioDashboard() {
             {tickets.map((t) => (
               <div
                 key={t.id}
-                className="shadow-subtle flex flex-col justify-between space-y-4 rounded-3xl border border-border bg-surface p-6"
+                className="shadow-subtle flex flex-col justify-between space-y-4 rounded-none border border-border bg-surface p-6"
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span
                       className={cn(
-                        'rounded px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
+                        'rounded-none px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
                         t.status === 'scheduled' &&
                           'border border-amber-500/20 bg-amber-500/10 text-amber-600 dark:text-amber-400',
                         t.status === 'resolved' &&
@@ -464,12 +498,12 @@ export function PortfolioDashboard() {
                         ? 'Scheduled Servicing'
                         : 'Completed & Verified'}
                     </span>
-                    <span className="text-caption font-mono text-muted">
+                    <span className="text-caption font-mono text-muted-foreground">
                       {t.date}
                     </span>
                   </div>
-                  <h4 className="text-body font-bold text-fjord">{t.issue}</h4>
-                  <div className="text-caption flex items-center gap-1.5 text-muted">
+                  <h4 className="text-body font-bold text-ink">{t.issue}</h4>
+                  <div className="text-caption flex items-center gap-1.5 text-muted-foreground">
                     <Building2 className="size-3.5 text-fjord" />
                     <span>{t.property}</span>
                   </div>
@@ -477,7 +511,7 @@ export function PortfolioDashboard() {
 
                 <div className="flex items-center justify-between border-t border-border pt-4">
                   <div>
-                    <span className="block text-[10px] font-bold tracking-wider text-muted uppercase">
+                    <span className="block text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
                       Estimated Cost
                     </span>
                     <span className="text-body-sm font-mono font-extrabold text-fjord">
@@ -495,7 +529,7 @@ export function PortfolioDashboard() {
                           ),
                         );
                       }}
-                      className="rounded-xl bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-fjord shadow-2xs transition-colors hover:bg-emerald-400"
+                      className="rounded-none bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-fjord shadow-2xs transition-colors hover:bg-emerald-400"
                     >
                       Mark Completed
                     </button>
@@ -513,67 +547,67 @@ export function PortfolioDashboard() {
 
       {/* TAB 3: TAX & CASHFLOW ANALYTICS */}
       {activeTab === 'analytics' && (
-        <div className="shadow-subtle animate-in fade-in space-y-6 rounded-3xl border border-border bg-surface p-6 duration-200 lg:p-8">
+        <div className="shadow-subtle animate-in fade-in space-y-6 rounded-none border border-border bg-surface p-6 duration-200 lg:p-8">
           <div className="flex items-center justify-between border-b border-border pb-4">
             <div>
               <h3 className="text-h3 font-display font-bold text-fjord">
                 Annual Financial Performance & Tax Ledger
               </h3>
-              <p className="text-caption text-muted">
+              <p className="text-caption text-muted-foreground">
                 Simulated accounting audit trail for Dubai freehold properties
               </p>
             </div>
-            <span className="text-caption rounded-full bg-purple-500/10 px-3 py-1 font-bold text-purple-500">
+            <span className="text-caption rounded-none bg-purple-500/10 px-3 py-1 font-bold text-purple-500">
               FY 2026 Projection
             </span>
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="space-y-1 rounded-2xl border border-border bg-surface-subtle p-5">
-              <span className="text-caption font-bold text-muted uppercase">
+            <div className="space-y-1 rounded-none border border-border bg-surface-subtle p-5">
+              <span className="text-caption font-bold text-muted-foreground uppercase">
                 Gross Annual Rental Income
               </span>
               <p className="text-h2 font-mono font-extrabold text-emerald-500">
                 AED {(monthlyCashflow * 12).toLocaleString()}
               </p>
-              <span className="block text-[11px] text-muted">
+              <span className="block text-[11px] text-muted-foreground">
                 100% collected via DLD Ejari electronic cheques
               </span>
             </div>
 
-            <div className="space-y-1 rounded-2xl border border-border bg-surface-subtle p-5">
-              <span className="text-caption font-bold text-muted uppercase">
+            <div className="space-y-1 rounded-none border border-border bg-surface-subtle p-5">
+              <span className="text-caption font-bold text-muted-foreground uppercase">
                 Total Annual Operating Expenses
               </span>
               <p className="text-h2 font-mono font-extrabold text-rose-500">
                 AED 148,500
               </p>
-              <span className="block text-[11px] text-muted">
+              <span className="block text-[11px] text-muted-foreground">
                 Includes master developer service charges & maintenance
               </span>
             </div>
 
-            <div className="space-y-1 rounded-2xl border border-border bg-surface-subtle p-5">
-              <span className="text-caption font-bold text-muted uppercase">
+            <div className="space-y-1 rounded-none border border-border bg-surface-subtle p-5">
+              <span className="text-caption font-bold text-muted-foreground uppercase">
                 Net Annual Cash Operating Income
               </span>
               <p className="text-h2 font-mono font-extrabold text-sky-500">
                 AED {(monthlyCashflow * 12 - 148500).toLocaleString()}
               </p>
-              <span className="block text-[11px] text-muted">
+              <span className="block text-[11px] text-muted-foreground">
                 Direct cash-on-cash yield available for reinvestment
               </span>
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-2xl border border-sky-500/20 bg-linear-to-r from-sky-500/10 via-emerald-500/5 to-transparent p-6">
+          <div className="flex items-center justify-between rounded-none border border-sky-500/20 bg-linear-to-r from-sky-500/10 via-emerald-500/5 to-transparent p-6">
             <div className="flex items-center gap-3">
               <Sparkles className="size-5 shrink-0 text-sky-500" />
               <div>
                 <h4 className="text-body-sm font-bold text-fjord">
                   RAMA AI Tax & Structuring Advisor
                 </h4>
-                <p className="text-caption mt-0.5 leading-relaxed text-muted">
+                <p className="text-caption mt-0.5 leading-relaxed text-muted-foreground">
                   Under UAE Corporate Tax Law, individual freehold property
                   investment income is{' '}
                   <strong>exempt from corporate tax</strong> unless held within
@@ -588,17 +622,33 @@ export function PortfolioDashboard() {
                   `Opening tax exemption certificate generator in Decision Lab...`,
                 )
               }
-              className="ml-4 shrink-0 rounded-xl bg-fjord px-5 py-2 text-xs font-bold text-white shadow-sm transition-colors hover:bg-fjord-hover"
+              className="ml-4 shrink-0 rounded-none bg-fjord px-5 py-2 text-xs font-bold text-white shadow-sm transition-colors hover:bg-fjord-hover"
             >
               Verify Tax Exemption →
             </button>
           </div>
 
-          {/* Kibo Contribution Graph (365-day heatmap) */}
-          <ContributionGraph />
+          {/* Cashflow Forecast Sparklines */}
+          <div className="shadow-resting space-y-4 rounded-none border border-border/60 bg-surface-subtle p-6  ">
+            <h4 className="font-display text-lg font-bold text-ink ">5-Year Cashflow Forecast</h4>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {[
+                { title: 'Gross Revenue Projection', data: [1.2, 1.3, 1.4, 1.5, 1.8, 2.1, 2.0], color: 'text-fjord' },
+                { title: 'Service Charge Liability', data: [0.14, 0.15, 0.15, 0.16, 0.16, 0.17, 0.17], color: 'text-muted-foreground' },
+                { title: 'Net Yield Trajectory', data: [6.4, 6.5, 6.7, 6.9, 7.2, 7.5, 7.4], color: 'text-fjord' }
+              ].map((chart, idx) => (
+                <div key={idx} className="space-y-2 border border-border bg-white p-4 shadow-sm  ">
+                  <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">{chart.title}</span>
+                  <div className={cn("mt-2", chart.color)}>
+                    <Sparkline data={chart.data} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-          {/* Kibo Marquee (Infinite scrolling partners & escrow banks) */}
-          <div className="space-y-4 rounded-3xl border border-border/60 bg-surface p-6 shadow-sm">
+          {/* Partner Marquee (Infinite scrolling partners & escrow banks) */}
+          <div className="space-y-4 rounded-none border border-border/60 bg-surface p-6 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs font-bold tracking-widest text-fjord uppercase">
@@ -657,15 +707,15 @@ export function PortfolioDashboard() {
 
       {/* Log Maintenance Ticket Modal */}
       {isLogOpen && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/80 p-4 backdrop-blur-md">
-          <div className="animate-in zoom-in-95 relative w-full max-w-lg rounded-2xl border border-border bg-surface p-6 shadow-xl">
+        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/60 p-4 backdrop-blur-sm">
+          <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 rounded-none border border-border bg-surface p-6 shadow-2xl">
             <div className="flex items-center justify-between border-b border-border pb-4">
               <h3 className="text-h3 font-display font-bold text-fjord">
                 Log Maintenance Ticket
               </h3>
               <button
                 onClick={() => setIsLogOpen(false)}
-                className="text-caption font-bold text-muted hover:text-fjord"
+                className="text-caption font-bold text-muted-foreground hover:text-ink"
               >
                 Cancel
               </button>
@@ -682,7 +732,7 @@ export function PortfolioDashboard() {
                   placeholder="e.g., Water heater replacement in guest bathroom"
                   value={newIssue}
                   onChange={(e) => setNewIssue(e.target.value)}
-                  className="text-body-sm w-full rounded-xl border border-border bg-surface-subtle px-4 py-2.5 text-fjord focus:ring-2 focus:ring-fjord focus:outline-none"
+                  className="text-body-sm w-full rounded-none border border-border bg-surface-subtle px-4 py-2.5 text-ink focus:ring-2 focus:ring-fjord focus:outline-none"
                 />
               </div>
 
@@ -693,7 +743,7 @@ export function PortfolioDashboard() {
                 <select
                   value={newTargetProp}
                   onChange={(e) => setNewTargetProp(e.target.value)}
-                  className="text-body-sm w-full rounded-xl border border-border bg-surface-subtle px-4 py-2.5 text-fjord focus:ring-2 focus:ring-fjord focus:outline-none"
+                  className="text-body-sm w-full rounded-none border border-border bg-surface-subtle px-4 py-2.5 text-ink focus:ring-2 focus:ring-fjord focus:outline-none"
                 >
                   {assets.map((a) => (
                     <option key={a.id} value={a.title}>
@@ -715,7 +765,7 @@ export function PortfolioDashboard() {
                   step={100}
                   value={newCost}
                   onChange={(e) => setNewCost(Number(e.target.value))}
-                  className="text-body-sm w-full rounded-xl border border-border bg-surface-subtle px-4 py-2.5 font-mono text-fjord focus:ring-2 focus:ring-fjord focus:outline-none"
+                  className="text-body-sm w-full rounded-none border border-border bg-surface-subtle px-4 py-2.5 font-mono text-ink focus:ring-2 focus:ring-fjord focus:outline-none"
                 />
               </div>
 
@@ -723,13 +773,13 @@ export function PortfolioDashboard() {
                 <button
                   type="button"
                   onClick={() => setIsLogOpen(false)}
-                  className="text-body-sm rounded-xl border border-border bg-surface px-5 py-2.5 font-bold text-muted hover:text-fjord"
+                  className="text-body-sm rounded-none border border-border bg-surface px-5 py-2.5 font-bold text-muted-foreground hover:text-ink"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="text-body-sm rounded-xl bg-fjord px-6 py-2.5 font-bold text-white shadow-sm hover:bg-fjord-hover"
+                  className="text-body-sm rounded-none bg-fjord px-6 py-2.5 font-bold text-white shadow-sm hover:bg-fjord-hover"
                 >
                   Submit Ticket
                 </button>

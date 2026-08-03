@@ -34,20 +34,20 @@ export interface GanttProps {
 
 const statusBadgeStyles = {
   completed:
-    'border-border/20 bg-surface-subtle/10 text-fjord dark:text-muted',
+    'border-border-strong/20 bg-ink/10 text-ink ',
   'in-progress':
-    'border-border/20 dark:border-stone-700/20 bg-surface-subtle/10 dark:bg-surface-subtle/10 text-muted dark:text-muted dark:text-muted dark:text-muted',
+    'border-border/60/20  bg-border/50/10  text-muted-foreground dark:text-muted/50 dark:text-muted-foreground dark:text-muted/50',
   upcoming:
-    'border-border dark:border-border bg-surface-subtle dark:bg-fjord-hover text-muted dark:text-muted',
+    'border-border/60  bg-surface  text-muted-foreground dark:text-muted/50',
   delayed:
-    'border-stone-400/20 dark:border-stone-600/20 bg-surface-subtle/10 dark:bg-surface-subtle/10 text-fjord dark:text-muted dark:text-fjord dark:text-muted',
+    'border-stone-400/20  bg-border/50/10  text-ink dark:text-stone-200  dark:text-stone-200',
 };
 
 const progressBarStyles = {
-  completed: 'bg-surface-subtle shadow-[0_0_12px_rgba(16,185,129,0.3)]',
-  'in-progress': 'bg-surface-subtle dark:bg-surface-subtle ',
+  completed: 'bg-ink shadow-sm',
+  'in-progress': 'bg-border/50  ',
   upcoming: 'bg-neutral-300 dark:bg-neutral-700',
-  delayed: 'bg-surface-subtle dark:bg-surface-subtle ',
+  delayed: 'bg-border/50  ',
 };
 
 export const Gantt = ({
@@ -63,22 +63,22 @@ export const Gantt = ({
   return (
     <div
       className={cn(
-        'border border-border/60 bg-surface p-6 shadow-sm dark:border-border/60 dark:bg-fjord-hover',
+        'border-border/60/60 border bg-surface-subtle p-6 shadow-sm  ',
         className,
       )}
     >
       {/* Header */}
-      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-border/40 pb-5 sm:flex-row sm:items-center dark:border-border/40">
+      <div className="border-border/60/40 mb-6 flex flex-col justify-between gap-4 border-b pb-5 sm:flex-row sm:items-center ">
         <div>
-          <span className="text-xs font-bold tracking-widest text-fjord uppercase dark:text-muted">
+          <span className="text-xs font-bold tracking-widest text-ink uppercase ">
             {subtitle}
           </span>
-          <h3 className="mt-1 font-display text-xl font-bold text-fjord sm:text-2xl dark:text-white">
+          <h3 className="mt-1 font-display text-xl font-bold text-ink sm:text-2xl ">
             {title}
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="flex items-center gap-1.5 bg-surface-subtle/10 px-3 py-1 text-xs font-semibold text-fjord dark:text-muted">
+          <span className="flex items-center gap-1.5 bg-ink/10 px-3 py-1 text-xs font-semibold text-ink ">
             <CheckCircle2 className="size-3.5" />
             <span>RERA Escrow Protected</span>
           </span>
@@ -93,26 +93,25 @@ export const Gantt = ({
             <motion.div
               key={item.id}
               onClick={() => setSelectedMilestone(isSelected ? null : item.id)}
-              whileHover={{ scale: 1.005 }}
               className={cn(
-                'group relative cursor-pointer border border-border/60 bg-surface-subtle/50 p-4 transition-all duration-200 hover:border-border hover:shadow-md dark:border-border/60 dark:bg-fjord-hover/50',
+                'group border-border/60/60 relative cursor-pointer border bg-surface/50 p-4 transition-all duration-200 hover:border-border/60  ',
                 isSelected &&
-                  'border-border/60 bg-surface shadow-md ring-1 ring-fjord/30 dark:border-border/60 dark:bg-fjord-hover',
+                  'shadow-elevated border-fjord/60 bg-surface-subtle ring-1 ring-ink  ',
               )}
             >
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.5fr_2fr_1fr] lg:items-center">
                 {/* Milestone Info */}
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="flex size-6 items-center justify-center bg-fjord text-xs font-bold text-white dark:bg-white dark:text-fjord">
+                    <span className="flex size-6 items-center justify-center bg-ink text-xs font-bold text-white dark:bg-white ">
                       {index + 1}
                     </span>
-                    <h4 className="font-display text-sm font-bold text-fjord dark:text-white">
+                    <h4 className="font-display text-sm font-bold text-ink ">
                       {item.title}
                     </h4>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted dark:text-muted">
-                    <Building className="size-3.5 text-fjord dark:text-muted" />
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground dark:text-muted/50">
+                    <Building className="size-3.5 text-ink " />
                     <span>{item.project}</span>
                   </div>
                 </div>
@@ -120,13 +119,13 @@ export const Gantt = ({
                 {/* Progress Bar & Timeline */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="flex items-center gap-1 text-muted dark:text-muted">
+                    <span className="flex items-center gap-1 text-muted-foreground dark:text-muted/50">
                       <Calendar className="size-3.5" />
                       <span>
                         {item.startDate} — {item.endDate}
                       </span>
                     </span>
-                    <span className="text-fjord dark:text-white">
+                    <span className="text-ink ">
                       {item.progress}% Complete
                     </span>
                   </div>
@@ -150,10 +149,10 @@ export const Gantt = ({
                 {/* Payment & Status Badge */}
                 <div className="flex items-center justify-between lg:justify-end lg:gap-4">
                   <div className="text-right">
-                    <p className="text-xs font-bold text-fjord dark:text-white">
+                    <p className="text-xs font-bold text-ink ">
                       {item.amount}
                     </p>
-                    <p className="text-[11px] font-medium text-muted dark:text-muted">
+                    <p className="text-[11px] font-medium text-muted-foreground dark:text-muted/50">
                       {item.paymentPercentage} Installment
                     </p>
                   </div>
@@ -185,30 +184,30 @@ export const Gantt = ({
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="mt-4 border-t border-border/40 pt-4 text-xs text-text dark:border-border/40"
+                    className="border-border/60/40 mt-4 border-t pt-4 text-xs text-text "
                   >
-                    <div className="grid grid-cols-1 gap-3 bg-surface p-4 sm:grid-cols-3 dark:bg-fjord-hover">
+                    <div className="grid grid-cols-1 gap-3 bg-surface-subtle p-4 sm:grid-cols-3 ">
                       <div>
-                        <p className="font-semibold text-muted dark:text-muted">
+                        <p className="font-semibold text-muted-foreground dark:text-muted/50">
                           DLD Audit Certificate
                         </p>
-                        <p className="mt-0.5 font-mono font-medium text-fjord dark:text-white">
+                        <p className="mt-0.5 font-mono font-medium text-ink ">
                           #DLD-ESC-2026-{index + 104}
                         </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-muted dark:text-muted">
+                        <p className="font-semibold text-muted-foreground dark:text-muted/50">
                           Escrow Account Bank
                         </p>
-                        <p className="mt-0.5 font-medium text-fjord dark:text-white">
+                        <p className="mt-0.5 font-medium text-ink ">
                           Emirates NBD • Trust Acct #88219
                         </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-muted dark:text-muted">
+                        <p className="font-semibold text-muted-foreground dark:text-muted/50">
                           Inspection Verification
                         </p>
-                        <p className="mt-0.5 font-medium text-fjord dark:text-muted">
+                        <p className="mt-0.5 font-medium text-ink ">
                           {item.dldVerified
                             ? 'Verified by RERA Engineer'
                             : 'Scheduled for Audit'}

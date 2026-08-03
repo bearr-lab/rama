@@ -64,14 +64,14 @@ export function Navbar() {
     'fixed inset-x-0 top-0 z-50 border-b transition-all duration-200',
     {
       'border-transparent bg-transparent text-white': isNavDark,
-      'border-border/50 bg-surface/90 text-fjord shadow-xs saturate-[1.8] backdrop-blur-xl dark:border-border/50 dark:bg-fjord-hover/90 dark:text-white':
+      'border-border/60 bg-surface-subtle/90 text-ink shadow-xs saturate-[1.8] backdrop-blur-xl   ':
         !isNavDark,
     },
   );
 
   const linkClasses = cn('text-sm font-semibold transition-colors', {
     'text-white/90 hover:text-white': isNavDark,
-    'text-fjord hover:text-fjord dark:text-white': !isNavDark,
+    'text-ink hover:text-ink ': !isNavDark,
   });
 
   return (
@@ -110,8 +110,10 @@ export function Navbar() {
             {mounted ? (
               <ThemeToggler
                 className={cn(
-                  'mr-2',
-                  isNavDark && 'border-white/20 bg-black/20 hover:border-white/40 hover:bg-black/40'
+                  'flex size-9 items-center justify-center transition-colors',
+                  isNavDark
+                    ? 'text-white hover:bg-white/10'
+                    : 'text-ink hover:bg-surface  ',
                 )}
               />
             ) : (

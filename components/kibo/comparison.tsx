@@ -10,6 +10,7 @@ import React, {
 import { motion } from 'motion/react';
 import { GripVertical } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 export interface ComparisonProps extends HTMLAttributes<HTMLDivElement> {
   beforeImage?: string;
@@ -76,7 +77,7 @@ export const Comparison = ({
     <div
       ref={containerRef}
       className={cn(
-        'group relative w-full overflow-hidden border border-border/60 bg-card select-none dark:border-border/60',
+        'group border-border/60/60 relative w-full overflow-hidden border bg-card select-none ',
         mode === 'drag' ? 'cursor-ew-resize' : 'cursor-pointer',
         className,
       )}
@@ -94,10 +95,11 @@ export const Comparison = ({
         {afterContent ? (
           afterContent
         ) : (
-          <img
+          <Image
             src={afterImage || '/placeholder.svg'}
-            alt={afterLabel}
-            className="size-full object-cover"
+            alt={afterLabel || 'After'}
+            fill
+            className="object-cover"
             draggable={false}
           />
         )}
@@ -115,10 +117,11 @@ export const Comparison = ({
           {beforeContent ? (
             beforeContent
           ) : (
-            <img
+            <Image
               src={beforeImage || '/placeholder.svg'}
-              alt={beforeLabel}
-              className="size-full object-cover"
+              alt={beforeLabel || 'Before'}
+              fill
+              className="object-cover"
               draggable={false}
             />
           )}
@@ -134,7 +137,7 @@ export const Comparison = ({
         style={{ left: `${sliderPosition}%` }}
         animate={{ scaleX: isDragging ? 1.5 : 1 }}
       >
-        <div className="group- absolute top-1/2 -left-3 flex h-8 w-7 -translate-y-1/2 items-center justify-center border border-border/80 bg-white text-fjord shadow-md transition-transform dark:border-border/80 dark:bg-fjord-bg dark:text-white">
+        <div className="group- border-border/60/80 -bg absolute top-1/2 -left-3 flex h-8 w-7 -translate-y-1/2 items-center justify-center border bg-surface text-ink shadow-md transition-transform">
           <GripVertical className="size-4" />
         </div>
       </motion.div>

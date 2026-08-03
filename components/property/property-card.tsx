@@ -31,19 +31,12 @@ export function PropertyCard({
   const isEditorial = variant === 'editorial';
   const title = locale === 'ar' ? property.title_ar : property.title_en;
 
-  // Formatter for AED
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat(locale === 'ar' ? 'ar-AE' : 'en-AE', {
-      style: 'currency',
-      currency: 'AED',
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
+
 
   return (
     <MagicCard
       className={cn(
-        'group ease-decelerate hover:shadow-floating relative overflow-hidden border-border/50 transition-all duration-300 hover:-translate-y-1',
+        'group ease-decelerate hover:shadow-floating relative overflow-hidden border-transparent bg-surface transition-all duration-300 hover:-translate-y-1 hover:border-border/40',
         isEditorial
           ? 'flex h-auto flex-col md:h-100 md:flex-row'
           : 'flex h-full flex-col',
@@ -57,7 +50,7 @@ export function PropertyCard({
           'relative overflow-hidden bg-surface-subtle',
           isEditorial
             ? 'h-75 w-full md:h-full md:w-[60%]'
-            : 'aspect-[4/3] w-full',
+            : 'aspect-4/3 w-full',
         )}
       >
         <Image
@@ -90,7 +83,7 @@ export function PropertyCard({
           <Button
             variant="secondary"
             size="icon"
-            className="relative z-20 size-9 rounded-full border border-white/20 bg-fjord/40 shadow-md backdrop-blur-md transition-all hover:scale-105 hover:bg-fjord/80 backdrop-blur-md"
+            className="relative z-20 size-9 rounded-none border border-white/20 bg-fjord/40 shadow-md backdrop-blur-md transition-all hover:scale-105 hover:bg-fjord/60"
             onClick={(e) => {
               e.preventDefault();
               if (onSave) onSave(property.id);
@@ -164,7 +157,7 @@ export function PropertyCard({
         </div>
 
         <div className="pointer-events-none relative z-20 mt-auto pt-6">
-          <Button className="rounded-button pointer-events-none w-full bg-fjord text-white hover:bg-fjord-hover">
+          <Button className="pointer-events-none w-full rounded-none bg-fjord text-white hover:bg-fjord-hover">
             {locale === 'ar' ? 'عرض التفاصيل' : 'View Details'}
           </Button>
         </div>

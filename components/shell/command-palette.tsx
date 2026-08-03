@@ -21,40 +21,40 @@ export function CommandPalette() {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-fjord/40 px-4 pt-[10vh] backdrop-blur-sm">
-      <div className="flex w-full max-w-2xl flex-col overflow-hidden border border-border bg-surface shadow-lg dark:border-border dark:bg-fjord-hover">
-        <div className="flex items-center border-b border-border px-4 dark:border-border">
-          <Search className="size-5 shrink-0 text-muted dark:text-muted" />
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-ink/40 px-4 pt-[10vh] backdrop-blur-sm">
+      <div className="flex w-full max-w-2xl flex-col overflow-hidden border border-border/60 bg-surface-subtle shadow-lg  ">
+        <div className="flex items-center border-b border-border/60 px-4 ">
+          <Search className="size-5 shrink-0 text-muted-foreground dark:text-muted/50" />
           <input
             autoFocus
             type="text"
             placeholder="Search properties, communities, or commands..."
-            className="text-body flex-1 border-none bg-transparent p-4 text-fjord outline-none placeholder:text-muted focus:ring-0 dark:text-muted"
+            className="text-body flex-1 border-none bg-transparent p-4 text-ink outline-none placeholder:text-muted-foreground focus:ring-0 dark:text-muted/50"
           />
           <button
             onClick={() => setOpen(false)}
-            className="p-1 text-muted transition-colors hover:bg-surface-subtle hover:text-fjord dark:bg-fjord-hover dark:text-muted"
+            className="p-1 text-muted-foreground transition-colors hover:bg-surface hover:text-ink  dark:text-muted/50"
           >
             <X className="size-5" />
           </button>
         </div>
 
         <div className="max-h-[60vh] overflow-y-auto p-2">
-          <div className="px-2 py-1.5 text-xs font-semibold tracking-wider text-muted uppercase dark:text-muted">
+          <div className="px-2 py-1.5 text-xs font-semibold tracking-wider text-muted-foreground uppercase dark:text-muted/50">
             Suggestions
           </div>
-          <button className="text-body-sm w-full px-3 py-2.5 text-left font-medium text-fjord transition-colors hover:bg-surface-subtle dark:bg-fjord-hover dark:text-white">
+          <button className="text-body-sm w-full px-3 py-2.5 text-left font-medium text-ink transition-colors hover:bg-surface  ">
             Go to Dashboard
           </button>
-          <button className="text-body-sm w-full px-3 py-2.5 text-left font-medium text-fjord transition-colors hover:bg-surface-subtle dark:bg-fjord-hover dark:text-white">
+          <button className="text-body-sm w-full px-3 py-2.5 text-left font-medium text-ink transition-colors hover:bg-surface  ">
             Discover Properties
           </button>
-          <button className="text-body-sm w-full px-3 py-2.5 text-left font-medium text-fjord transition-colors hover:bg-surface-subtle dark:bg-fjord-hover dark:text-white">
+          <button className="text-body-sm w-full px-3 py-2.5 text-left font-medium text-ink transition-colors hover:bg-surface  ">
             Compare in Decision Lab
           </button>
         </div>
 
-        <div className="flex items-center justify-end gap-2 border-t border-border bg-surface-subtle p-3 text-xs text-muted dark:border-border dark:bg-fjord-hover dark:text-muted">
+        <div className="flex items-center justify-end gap-2 border-t border-border/60 bg-surface p-3 text-xs text-muted-foreground   dark:text-muted/50">
           <span>
             <kbd className="bg-border/50 px-1 font-mono">↑</kbd>{' '}
             <kbd className="bg-border/50 px-1 font-mono">↓</kbd> to navigate

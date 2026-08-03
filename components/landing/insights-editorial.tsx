@@ -34,16 +34,16 @@ export function InsightsEditorial({ isArabic }: InsightsEditorialProps) {
   return (
     <>
       {/* Trending Topics (Minimalist Grid) */}
-      <Section className="border-t border-border/40 bg-surface py-12 dark:border-border/40 dark:bg-fjord-hover">
+      <Section className="border-border/60/40 border-t bg-surface-subtle py-12  ">
         <Container size="lg">
           <div className="mb-8 flex items-center justify-between">
-            <h2 className="flex items-center gap-2 font-display text-xl font-bold text-fjord dark:text-white">
+            <h2 className="flex items-center gap-2 font-display text-xl font-bold text-ink ">
               <TrendingUp className="size-5" />
               {isArabic ? 'المواضيع الشائعة' : 'Trending Topics'}
             </h2>
             <Link
               href="#"
-              className="text-xs font-bold tracking-widest text-muted uppercase hover:text-fjord dark:hover:text-muted"
+              className="text-xs font-bold tracking-widest text-muted-foreground uppercase hover:text-ink dark:hover:text-surface"
             >
               {isArabic ? 'عرض الكل' : 'View All'}
             </Link>
@@ -54,12 +54,12 @@ export function InsightsEditorial({ isArabic }: InsightsEditorialProps) {
               <Link
                 key={idx}
                 href="#"
-                className="group flex flex-col border border-border/40 bg-white p-6 transition-colors hover:border-border dark:border-border/40 dark:bg-fjord-hover dark:hover:border-border"
+                className="group border-border/60/40 flex flex-col border bg-white p-6 transition-colors hover:border-fjord   dark:hover:border-border/60"
               >
-                <span className="mb-3 text-[10px] font-bold tracking-widest text-muted uppercase">
+                <span className="mb-3 text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
                   {topic.category}
                 </span>
-                <h3 className="font-display text-base leading-tight font-bold text-fjord transition-colors group-hover:text-muted dark:text-muted dark:group-hover:text-muted">
+                <h3 className="font-display text-base leading-tight font-bold text-ink transition-colors group-hover:text-muted-foreground  dark:group-hover:text-muted/30">
                   {topic.title}
                 </h3>
               </Link>
@@ -69,14 +69,14 @@ export function InsightsEditorial({ isArabic }: InsightsEditorialProps) {
       </Section>
 
       {/* Brutalist Newsletter Capture */}
-      <Section className="border-t border-border bg-fjord py-24 text-white">
+      <Section className="border-border-strong border-t bg-fjord py-24 text-white">
         <Container size="md">
           <div className="flex flex-col items-center text-center">
-            <Mail className="mb-6 size-12 text-muted" strokeWidth={1} />
+            <Mail className="mb-6 size-12 text-muted/50" strokeWidth={1} />
             <h2 className="font-display text-3xl font-bold md:text-5xl">
               {isArabic ? 'ذكاء السوق' : 'Market Intelligence'}
             </h2>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted">
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted/50">
               {isArabic
                 ? 'انضم إلى أكثر من 10,000 مستثمر يتلقون تقاريرنا الحصرية حول السوق العقاري في دبي مباشرة في صندوق الوارد.'
                 : 'Join over 10,000 global investors receiving institutional-grade market analysis directly in their inbox every week.'}
@@ -88,17 +88,17 @@ export function InsightsEditorial({ isArabic }: InsightsEditorialProps) {
                 placeholder={
                   isArabic ? 'عنوان البريد الإلكتروني' : 'Email Address'
                 }
-                className="h-12 w-full rounded-none border border-border bg-fjord-hover px-4 text-sm text-white placeholder:text-muted focus:border-white focus:ring-1 focus:ring-white focus:outline-none"
+                className="border-border-strong h-12 w-full rounded-none border bg-fjord-hover px-4 text-sm text-white placeholder:text-muted-foreground focus:border-white focus:ring-1 focus:ring-white focus:outline-none"
                 required
               />
               <button
                 type="submit"
-                className="inline-flex h-12 shrink-0 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-surface-subtle"
+                className="inline-flex h-12 shrink-0 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-border/50"
               >
                 {isArabic ? 'اشتراك' : 'Subscribe'}
               </button>
             </form>
-            <p className="mt-4 text-[10px] tracking-widest text-muted uppercase">
+            <p className="mt-4 text-[10px] tracking-widest text-muted-foreground uppercase">
               {isArabic
                 ? 'لن نرسل لك رسائل مزعجة.'
                 : 'No spam. Unsubscribe anytime.'}

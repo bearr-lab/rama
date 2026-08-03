@@ -4,10 +4,23 @@ import * as React from 'react';
 import { useTheme } from 'next-themes';
 import { motion } from 'motion/react';
 import { Moon, Sun } from 'lucide-react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
-export function ThemeToggler({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+const themeTogglerVariants = cva(
+  'relative flex h-8 w-14 items-center rounded-none border border-border bg-surface-subtle px-1 transition-colors hover:border-fjord-muted hover:bg-surface-warm focus:ring-2 focus:ring-fjord-muted focus:ring-offset-2 focus:outline-none',
+  {
+    variants: {},
+    defaultVariants: {},
+  }
+);
+
+export interface ThemeTogglerProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof themeTogglerVariants> {}
+
+export function ThemeToggler({ className, ...props }: ThemeTogglerProps) {
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   // Avoid hydration mismatch
@@ -17,16 +30,14 @@ export function ThemeToggler({ className }: { className?: string }) {
     return <div className={cn("h-8 w-14 shrink-0 rounded-none bg-surface-subtle", className)} />;
   }
 
-  const isDark = theme === 'dark';
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={cn(
-        'relative flex h-8 w-14 items-center rounded-none border border-border bg-surface-subtle px-1 transition-colors hover:border-fjord-muted hover:bg-surface-warm focus:ring-2 focus:ring-fjord-muted focus:ring-offset-2 focus:outline-none',
-        className
-      )}
+      className={cn(themeTogglerVariants({ className }))}
       aria-label="Toggle theme"
+      {...props}
     >
       <span className="sr-only">Toggle theme</span>
       

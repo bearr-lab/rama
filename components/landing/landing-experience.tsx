@@ -111,7 +111,7 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
             </div>
           </div>
           <aside className="border-s border-border ps-6 lg:pb-1">
-            <p className="text-sm font-medium text-muted">RAMA principle</p>
+            <p className="text-sm font-medium text-muted-foreground">RAMA principle</p>
             <p className="mt-3 font-display text-2xl leading-snug">
               Verify before broad discovery. Structure the decision before
               adding complexity.
@@ -139,7 +139,7 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
               return (
                 <div key={title} className="bg-surface p-7 sm:p-8">
                   <Icon className="size-5 text-fjord" />
-                  <p className="mt-8 text-sm text-muted">0{index + 1}</p>
+                  <p className="mt-8 text-sm text-muted-foreground">0{index + 1}</p>
                   <h3 className="mt-2 font-display text-2xl">{title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-text">
                     {description}
@@ -179,7 +179,7 @@ export function LandingExperience({ locale }: LandingExperienceProps) {
 
       <section className="py-12">
         <Container size="lg">
-          <p className="flex items-center gap-2 text-sm text-muted">
+          <p className="flex items-center gap-2 text-sm text-muted-foreground">
             <Check className="size-4 text-verified" />
             Evidence availability is visible; it is not a statement of property
             quality, legal status or investment merit.

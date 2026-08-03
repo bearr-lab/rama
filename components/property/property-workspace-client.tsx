@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowLeft,
   Heart,
@@ -27,7 +28,7 @@ import { Gantt } from '@/components/kibo/gantt';
 import { Tree } from '@/components/kibo/tree';
 import { RoomGalleryModal } from '@/components/property/room-gallery-modal';
 import { UnsplashAttribution } from '@/components/ui/unsplash-attribution';
-import { Eye, Sparkles as SparklesIcon } from 'lucide-react';
+import { Eye } from 'lucide-react';
 
 interface PropertyWorkspaceClientProps {
   property: {
@@ -67,7 +68,7 @@ export function PropertyWorkspaceClient({
       <div className="mb-8">
         <Link
           href={`/${locale}/discover`}
-          className="text-body-sm inline-flex items-center gap-2 font-bold text-muted transition-colors hover:text-fjord dark:text-muted"
+          className="text-body-sm inline-flex items-center gap-2 font-bold text-muted-foreground transition-colors hover:text-ink dark:text-muted/50"
         >
           <ArrowLeft className="size-4" />
           Back to Search
@@ -79,10 +80,11 @@ export function PropertyWorkspaceClient({
         {/* LEFT COLUMN: Media & Details */}
         <div className="min-w-0">
           {/* Hero Image */}
-          <div className="group relative mb-8 aspect-video w-full overflow-hidden rounded-none bg-surface-subtle dark:bg-fjord-hover">
-            <img
+          <div className="group relative mb-8 aspect-video w-full overflow-hidden rounded-none bg-surface ">
+            <Image
               src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
               alt={property.title}
+              fill
               className="group- size-full object-cover transition-transform duration-700"
             />
             {/* Status Badge */}
@@ -91,8 +93,8 @@ export function PropertyWorkspaceClient({
                 className={cn(
                   'inline-flex items-center gap-1.5 rounded-none px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase shadow-sm backdrop-blur-md',
                   isVerified
-                    ? 'border border-border/40 bg-surface-subtle text-fjord dark:border-border/40 dark:bg-surface-subtle dark:text-muted'
-                    : 'border border-review/40 bg-surface-subtle text-review dark:bg-fjord-hover',
+                    ? 'border border-fjord/40 bg-border/50 text-ink   '
+                    : 'border border-review/40 bg-surface text-review ',
                 )}
               >
                 {isVerified ? (
@@ -107,7 +109,7 @@ export function PropertyWorkspaceClient({
             <div className="absolute top-4 right-4 flex gap-2">
               <button
                 onClick={() => setIsGalleryOpen(true)}
-                className="flex items-center gap-1.5 bg-fjord-hover px-3.5 py-2 text-xs font-semibold text-white shadow-md transition-transform dark:bg-surface-subtle"
+                className="flex items-center gap-1.5 bg-fjord px-3.5 py-2 text-xs font-semibold text-white shadow-md transition-transform dark:bg-surface"
                 title="Inspect Rooms & Finishes"
               >
                 <Eye className="size-4" />
@@ -124,7 +126,7 @@ export function PropertyWorkspaceClient({
                 className={cn(
                   'flex size-10 items-center justify-center backdrop-blur-md transition-colors',
                   isSaved
-                    ? 'bg-fjord-hover text-white dark:bg-surface-subtle'
+                    ? 'bg-fjord text-white dark:bg-surface'
                     : 'bg-white/20 text-white hover:bg-white/40',
                 )}
                 title="Save"
@@ -144,21 +146,21 @@ export function PropertyWorkspaceClient({
           {/* Header Info */}
           <div className="mb-8">
             <div className="mb-2 flex items-center gap-2">
-              <span className="text-xs font-semibold tracking-widest text-fjord uppercase dark:text-muted">
+              <span className="text-xs font-semibold tracking-widest text-ink uppercase ">
                 {property.community}
               </span>
               <span className="size-1 rounded-none bg-border" />
-              <span className="text-xs font-medium tracking-widest text-muted uppercase dark:text-muted">
+              <span className="text-xs font-medium tracking-widest text-muted-foreground uppercase dark:text-muted/50">
                 Penthouse
               </span>
             </div>
-            <h1 className="mb-2 font-display text-4xl leading-tight font-bold text-fjord sm:text-5xl dark:text-white">
+            <h1 className="mb-2 font-display text-4xl leading-tight font-bold text-ink sm:text-5xl ">
               {property.title}
             </h1>
             <p className="font-display text-2xl text-text">
               AED {property.price.toLocaleString()}
             </p>
-            <div className="mt-4 border-t border-border/40 pt-4 dark:border-border/40">
+            <div className="border-border/60/40 mt-4 border-t pt-4 ">
               <AvatarStack
                 avatars={[
                   {
@@ -204,10 +206,10 @@ export function PropertyWorkspaceClient({
           </div>
 
           {/* Tab Navigation */}
-          <div className="mb-8 flex gap-8 border-b border-border dark:border-border">
+          <div className="mb-8 flex gap-8 border-b border-border/60 ">
             {[
               { id: 'overview', label: 'Overview' },
-              { id: 'inspection', label: 'Visual Inspection (Kibo)' },
+              { id: 'inspection', label: 'Visual Inspection (On-Site)' },
               { id: 'location', label: 'Location' },
               { id: 'dld', label: 'DLD Record' },
             ].map((tab) => (
@@ -217,8 +219,8 @@ export function PropertyWorkspaceClient({
                 className={cn(
                   'border-b-2 py-4 text-sm font-bold transition-colors',
                   activeTab === tab.id
-                    ? 'border-border text-fjord dark:border-border dark:text-white'
-                    : 'border-transparent text-muted hover:text-fjord dark:text-muted',
+                    ? 'border-fjord text-ink  '
+                    : 'border-transparent text-muted-foreground hover:text-ink dark:text-muted/50',
                 )}
               >
                 {tab.label}
@@ -232,35 +234,35 @@ export function PropertyWorkspaceClient({
               <div className="animate-in fade-in space-y-8 duration-300">
                 <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4">
                   <div>
-                    <p className="text-xs text-muted dark:text-muted">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Bedrooms
                     </p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-fjord dark:text-white">
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
                       <BedDouble className="size-4" /> {property.beds}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted dark:text-muted">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Bathrooms
                     </p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-fjord dark:text-white">
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
                       <Bath className="size-4" /> {property.baths}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted dark:text-muted">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Size
                     </p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-fjord dark:text-white">
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
                       <Maximize2 className="size-4" />{' '}
                       {property.sqft.toLocaleString()} sqft
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted dark:text-muted">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Developer
                     </p>
-                    <p className="mt-1 flex items-center gap-1.5 font-bold text-fjord dark:text-white">
+                    <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
                       <Building className="size-4" /> Emaar
                     </p>
                   </div>
@@ -282,12 +284,12 @@ export function PropertyWorkspaceClient({
             )}
             {activeTab === 'inspection' && (
               <div className="animate-in fade-in space-y-8 duration-300">
-                <div className="rounded-none border border-border/60 bg-surface-subtle p-6 dark:border-border/60 dark:bg-fjord-hover">
-                  <h3 className="mb-2 font-display text-lg font-bold text-fjord dark:text-white">
+                <div className="border-border/60/60 rounded-none border bg-surface p-6  ">
+                  <h3 className="mb-2 font-display text-lg font-bold text-ink ">
                     3D Render vs. Real Construction Progress
                   </h3>
                   <p className="mb-6 text-sm text-text">
-                    Use our interactive Kibo UI before/after slider to compare
+                    Use our interactive RAMA comparison slider to compare
                     architectural master plan renders with real-time verified
                     construction site photos from DLD escrow audits.
                   </p>
@@ -302,8 +304,8 @@ export function PropertyWorkspaceClient({
                   </div>
                 </div>
 
-                <div className="rounded-none border border-border/60 bg-surface-subtle p-6 dark:border-border/60 dark:bg-fjord-hover">
-                  <h3 className="mb-2 font-display text-lg font-bold text-fjord dark:text-white">
+                <div className="border-border/60/60 rounded-none border bg-surface p-6  ">
+                  <h3 className="mb-2 font-display text-lg font-bold text-ink ">
                     High-Resolution Master Layout & Floor Plan
                   </h3>
                   <p className="mb-6 text-sm text-text">
@@ -324,9 +326,9 @@ export function PropertyWorkspaceClient({
               </div>
             )}
             {activeTab === 'location' && (
-              <div className="animate-in fade-in rounded-none border border-border bg-surface p-6 duration-300 dark:border-border dark:bg-fjord-hover">
-                <div className="mb-4 flex items-center gap-2 font-bold text-fjord dark:text-white">
-                  <MapPin className="size-5 text-fjord dark:text-muted" />
+              <div className="animate-in fade-in rounded-none border border-border/60 bg-surface-subtle p-6 duration-300  ">
+                <div className="mb-4 flex items-center gap-2 font-bold text-ink ">
+                  <MapPin className="size-5 text-ink " />
                   {property.community} Neighborhood
                 </div>
                 <p className="text-sm leading-relaxed text-text">
@@ -340,27 +342,27 @@ export function PropertyWorkspaceClient({
             {activeTab === 'dld' && (
               <div className="animate-in fade-in space-y-8 duration-300">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                  <div className="flex items-center justify-between rounded-none border border-border bg-surface p-4 dark:border-border dark:bg-fjord-hover">
+                  <div className="flex items-center justify-between rounded-none border border-border/60 bg-surface-subtle p-4  ">
                     <span className="text-sm font-medium text-text">
                       Title Deed Verified
                     </span>
-                    <CheckCircle2 className="size-5 text-fjord dark:text-muted" />
+                    <CheckCircle2 className="size-5 text-ink " />
                   </div>
-                  <div className="flex items-center justify-between rounded-none border border-border bg-surface p-4 dark:border-border dark:bg-fjord-hover">
+                  <div className="flex items-center justify-between rounded-none border border-border/60 bg-surface-subtle p-4  ">
                     <span className="text-sm font-medium text-text">
                       No Active Disputes
                     </span>
-                    <CheckCircle2 className="size-5 text-fjord dark:text-muted" />
+                    <CheckCircle2 className="size-5 text-ink " />
                   </div>
-                  <div className="flex items-center justify-between rounded-none border border-border bg-surface p-4 dark:border-border dark:bg-fjord-hover">
+                  <div className="flex items-center justify-between rounded-none border border-border/60 bg-surface-subtle p-4  ">
                     <span className="text-sm font-medium text-text">
                       Developer Escrow Active
                     </span>
-                    <CheckCircle2 className="size-5 text-fjord dark:text-muted" />
+                    <CheckCircle2 className="size-5 text-ink " />
                   </div>
                 </div>
 
-                {/* Kibo Gantt Timeline */}
+                {/* Project Gantt Timeline */}
                 <Gantt
                   milestones={[
                     {
@@ -414,7 +416,7 @@ export function PropertyWorkspaceClient({
                   ]}
                 />
 
-                {/* Kibo Tree Cryptographic Hierarchy */}
+                {/* Blockchain Asset Hierarchy */}
                 <Tree
                   data={[
                     {
@@ -468,10 +470,10 @@ export function PropertyWorkspaceClient({
         <div className="relative">
           <div className="sticky top-24 space-y-6">
             {/* Action Panel */}
-            <div className="rounded-none border border-border bg-surface p-6 shadow-sm dark:border-border dark:bg-fjord-hover">
+            <div className="rounded-none border border-border/60 bg-surface-subtle p-6 shadow-sm  ">
               <Button
                 size="lg"
-                className="mb-3 w-full bg-fjord-hover text-white hover:bg-surface-subtle dark:bg-surface-subtle dark:bg-surface-subtle"
+                className="mb-3 w-full bg-fjord text-white hover:bg-fjord dark:bg-surface"
                 onClick={() => setIsSaved(true)}
               >
                 Add to Shortlist
@@ -479,27 +481,27 @@ export function PropertyWorkspaceClient({
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full bg-surface text-fjord hover:bg-surface-subtle dark:bg-fjord-hover dark:bg-fjord-hover dark:text-white"
+                className="w-full bg-surface-subtle text-ink hover:bg-surface   "
               >
                 Schedule Viewing
               </Button>
             </div>
 
             {/* Evidence Notes */}
-            <div className="rounded-none border border-border bg-surface p-6 shadow-sm dark:border-border dark:bg-fjord-hover">
-              <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-fjord dark:text-white">
-                <FileText className="size-5 text-muted dark:text-muted" />
+            <div className="rounded-none border border-border/60 bg-surface-subtle p-6 shadow-sm  ">
+              <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink ">
+                <FileText className="size-5 text-muted-foreground dark:text-muted/50" />
                 Your Evidence Notes
               </h3>
               <textarea
                 placeholder="Capture your thoughts, trade-offs, and observations here..."
-                className="min-h-30 w-full resize-none rounded-none border border-border bg-surface p-4 text-sm text-fjord placeholder:text-muted focus:border-border focus:ring-1 focus:ring-stone-900 focus:outline-none dark:border-border dark:bg-fjord-hover dark:text-muted"
+                className="min-h-30 w-full resize-none rounded-none border border-border/60 bg-surface-subtle p-4 text-sm text-ink placeholder:text-muted-foreground focus:border-fjord focus:ring-1 focus:ring-ink focus:outline-none   dark:text-muted/50"
               />
-              <div className="mt-4 border-t border-border pt-4 dark:border-border">
-                <h4 className="mb-3 text-xs font-bold tracking-widest text-muted uppercase dark:text-muted">
+              <div className="mt-4 border-t border-border/60 pt-4 ">
+                <h4 className="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50">
                   Open Questions
                 </h4>
-                <button className="flex w-full items-center gap-2 rounded-none border border-dashed border-border bg-surface p-3 text-sm font-medium text-muted transition-colors hover:border-border/50 hover:bg-surface-subtle hover:text-fjord dark:border-border/50 dark:border-border dark:bg-surface-subtle dark:bg-fjord-hover dark:text-muted dark:text-muted">
+                <button className="flex w-full items-center gap-2 rounded-none border border-dashed border-border/60 bg-surface-subtle p-3 text-sm font-medium text-muted-foreground transition-colors hover:border-fjord/50 hover:bg-border/50 hover:text-ink      dark:text-muted/50">
                   <MessageSquarePlus className="size-4" />
                   Add question for broker
                 </button>
@@ -507,13 +509,13 @@ export function PropertyWorkspaceClient({
             </div>
 
             {/* ROI Estimate */}
-            <div className="rounded-none border border-border/80 bg-fjord-hover p-6 text-white shadow-sm dark:border-border/80 dark:bg-surface">
+            <div className="border-border/60/80 rounded-none border bg-fjord p-6 text-white shadow-sm  dark:bg-surface-subtle">
               <div className="mb-6 flex items-center justify-between">
                 <div>
                   <h4 className="font-display text-lg">Projected ROI</h4>
                   <p className="text-xs text-white/70">Annual Estimate</p>
                 </div>
-                <div className="rounded-none bg-surface-subtle/20 px-2 py-1 text-[10px] font-bold tracking-widest text-fjord uppercase dark:bg-surface-subtle/20 dark:text-muted">
+                <div className="bg-border/50/20 rounded-none px-2 py-1 text-[10px] font-bold tracking-widest text-ink uppercase  ">
                   High Potential
                 </div>
               </div>
@@ -543,10 +545,10 @@ export function PropertyWorkspaceClient({
 
             {/* Expert Signal */}
             {!isVerified && (
-              <div className="flex gap-4 rounded-none border border-border bg-surface-subtle p-4 dark:border-border dark:bg-fjord-hover">
+              <div className="flex gap-4 rounded-none border border-border/60 bg-surface p-4  ">
                 <AlertCircle className="shrink-0 text-xl text-review" />
                 <div>
-                  <p className="text-xs font-semibold text-fjord dark:text-white">
+                  <p className="text-xs font-semibold text-ink ">
                     Research Alert
                   </p>
                   <p className="mt-1 text-[11px] leading-normal text-text">
@@ -562,12 +564,12 @@ export function PropertyWorkspaceClient({
       </div>
 
       {/* BOTTOM SECTION: Similar Properties */}
-      <section className="mt-24 space-y-8 border-t border-border pt-12 dark:border-border">
+      <section className="mt-24 space-y-8 border-t border-border/60 pt-12 ">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-3xl font-bold text-fjord dark:text-white">
+          <h2 className="font-display text-3xl font-bold text-ink ">
             Benchmark Properties
           </h2>
-          <button className="flex items-center gap-2 text-sm font-semibold text-fjord transition-all hover:gap-3 dark:text-muted">
+          <button className="flex items-center gap-2 text-sm font-semibold text-ink transition-all hover:gap-3 ">
             Compare All <ArrowRight className="size-4" />
           </button>
         </div>
@@ -598,32 +600,33 @@ export function PropertyWorkspaceClient({
           ].map((benchmark, i) => (
             <div
               key={i}
-              className="group overflow-hidden rounded-none border border-border bg-surface dark:border-border dark:bg-fjord-hover"
+              className="group overflow-hidden rounded-none border border-border/60 bg-surface-subtle  "
             >
               <div className="relative aspect-4/3 overflow-hidden">
-                <img
+                <Image
                   src={benchmark.img}
                   alt={benchmark.title}
+                  fill
                   className="group- size-full object-cover transition-transform"
                 />
                 <div className="absolute top-3 left-3">
-                  <span className="rounded-none bg-surface/90 px-2 py-1 text-[10px] font-bold text-fjord shadow-sm backdrop-blur dark:bg-fjord-hover/90 dark:text-white">
+                  <span className="rounded-none bg-surface-subtle/90 px-2 py-1 text-[10px] font-bold text-ink shadow-sm backdrop-blur  dark:text-white">
                     AED {benchmark.price}
                   </span>
                 </div>
               </div>
               <div className="space-y-2 p-4">
-                <h3 className="font-medium text-fjord dark:text-white">
+                <h3 className="font-medium text-ink ">
                   {benchmark.title}
                 </h3>
-                <p className="text-xs text-muted dark:text-muted">
+                <p className="text-xs text-muted-foreground dark:text-muted/50">
                   {benchmark.specs}
                 </p>
                 <div className="mt-2 flex items-center gap-2">
                   {benchmark.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-none border border-border bg-surface-subtle px-2 py-0.5 text-[10px] font-medium text-muted dark:border-border dark:bg-fjord-hover dark:text-muted"
+                      className="rounded-none border border-border/60 bg-surface px-2 py-0.5 text-[10px] font-medium text-muted-foreground   dark:text-muted/50"
                     >
                       {tag}
                     </span>

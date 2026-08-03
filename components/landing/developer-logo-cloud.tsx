@@ -92,16 +92,16 @@ const PartnerNode = ({
     className="group flex items-center gap-4"
   >
     <Magnetic>
-      <div className="border-border-strong relative flex size-14 items-center justify-center border bg-canvas transition-all duration-300 group-hover:border-fjord/50 group-hover:bg-surface">
-        <div className="size-6 text-fjord transition-colors duration-300">
+      <div className="border-border-strong relative flex size-14 items-center justify-center border bg-background shadow-sm transition-all duration-300 group-hover:border-fjord/60 group-hover:bg-fjord-soft">
+        <div className="size-6 text-ink transition-colors duration-300 group-hover:text-fjord">
           {children}
         </div>
       </div>
     </Magnetic>
     <div className="flex flex-col">
-      <span className="text-sm leading-tight font-bold text-fjord">{label}</span>
+      <span className="text-sm leading-tight font-bold text-foreground">{label}</span>
       {sublabel && (
-        <span className="mt-0.5 text-[11px] text-text">{sublabel}</span>
+        <span className="mt-0.5 text-[11px] text-muted-foreground">{sublabel}</span>
       )}
     </div>
   </motion.div>
@@ -150,8 +150,8 @@ export function DeveloperLogoCloud({
           className="object-cover"
           sizes="100vw"
         />
-        {/* Dark overlay that transitions perfectly into the bg-background section below */}
-        <div className="absolute inset-0 bg-linear-to-b from-background/80 via-background/50 to-background" />
+        {/* Stronger dark overlay ensures hero text is legible on all photo backgrounds */}
+        <div className="absolute inset-0 bg-linear-to-b from-ink/80 via-ink/60 to-background" />
 
         {/* Header text over the image */}
         <Container
@@ -164,13 +164,13 @@ export function DeveloperLogoCloud({
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="mb-3 flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-emerald-500 uppercase">
+            <p className="mb-3 flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-emerald-300 uppercase [text-shadow:0_1px_4px_rgb(0_0_0/0.6)]">
               <ShieldCheck className="size-4" />
               {isArabic
                 ? 'شبكة منظومة ريرا المعتمدة'
                 : 'RERA Ecosystem & Escrow Network'}
             </p>
-            <h3 className="max-w-2xl font-display text-2xl leading-tight font-bold text-fjord md:text-4xl">
+            <h3 className="max-w-2xl font-display text-2xl leading-tight font-bold text-white [text-shadow:0_2px_8px_rgb(0_0_0/0.7)] md:text-4xl">
               {isArabic
                 ? 'شركاء الخدمات المصرفية والمطورين المعتمدين'
                 : 'Verified Institutional Banking & Developer Partners'}
@@ -183,7 +183,7 @@ export function DeveloperLogoCloud({
       <Container size="lg">
         <div className="grid grid-cols-1 gap-0 border border-border lg:grid-cols-2">
           {/* ─── Left: Financial & Regulatory Partners ─── */}
-          <div className="border-b border-border bg-canvas p-8 md:p-12 lg:border-r lg:border-b-0">
+          <div className="border-b border-border bg-surface p-8 md:p-12 lg:border-r lg:border-b-0">
             {/* Badge */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -192,7 +192,7 @@ export function DeveloperLogoCloud({
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <span className="border-border-strong inline-flex items-center gap-1.5 border bg-surface px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-fjord uppercase">
+              <span className="inline-flex items-center gap-1.5 border border-fjord/50 bg-fjord-soft px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-fjord uppercase dark:text-sky-300">
                 <Lock className="size-3" />
                 {isArabic
                   ? 'الخدمات المصرفية والتنظيمية'
@@ -206,11 +206,11 @@ export function DeveloperLogoCloud({
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.2, 0, 0, 1] }}
-              className="border-border-strong mb-10 border bg-surface p-6"
+              className="border-border-strong mb-10 border bg-canvas p-6 shadow-sm dark:bg-ink-surface"
             >
               <div className="flex items-center gap-4">
-                <div className="flex size-16 items-center justify-center border border-border bg-canvas">
-                  <div className="size-8 text-fjord">
+                <div className="flex size-16 items-center justify-center border border-fjord/30 bg-fjord-soft dark:bg-fjord-soft">
+                  <div className="size-8 text-ink">
                     <DldLogo />
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export function DeveloperLogoCloud({
           </div>
 
           {/* ─── Right: Developer Partners ─── */}
-          <div className="relative bg-background p-8 md:p-12">
+          <div className="relative bg-canvas p-8 md:p-12 dark:bg-surface-subtle">
             <div className="relative z-10">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -265,7 +265,7 @@ export function DeveloperLogoCloud({
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <span className="inline-flex items-center gap-1.5 border border-border bg-secondary/50 px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-foreground uppercase">
+                <span className="border-border-strong inline-flex items-center gap-1.5 border bg-surface px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-ink uppercase dark:bg-ink-surface dark:text-stone-200">
                   <Landmark className="size-3" />
                   {isArabic ? 'المطورون الرئيسيون' : 'Master Developers'}
                 </span>
@@ -304,8 +304,8 @@ export function DeveloperLogoCloud({
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="mt-8 border-t border-border pt-8"
               >
-                <div className="flex items-start gap-3 border border-border bg-secondary/20 p-4 backdrop-blur-md">
-                  <Scale className="mt-0.5 size-5 shrink-0 text-emerald-500" />
+                <div className="flex items-start gap-3 border border-emerald-500/30 bg-emerald-50 p-4 dark:bg-emerald-950/40">
+                  <Scale className="mt-0.5 size-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
                   <div>
                     <p className="text-xs font-bold text-foreground">
                       {isArabic

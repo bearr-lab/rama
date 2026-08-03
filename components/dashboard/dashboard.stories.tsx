@@ -26,11 +26,11 @@ export const DefaultWidget: Story = {
     children: (
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
-          <div className="rounded-lg bg-surface-subtle/30 p-3">
+          <div className="rounded-none bg-surface-subtle/30 p-3">
             <span className="text-xs text-muted-foreground">Total Volume</span>
             <p className="text-lg font-bold">AED 4.2B</p>
           </div>
-          <div className="rounded-lg bg-surface-subtle/30 p-3">
+          <div className="rounded-none bg-surface-subtle/30 p-3">
             <span className="text-xs text-muted-foreground">Avg Yield</span>
             <p className="text-lg font-bold text-green-600">6.7%</p>
           </div>

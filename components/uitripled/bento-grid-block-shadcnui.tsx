@@ -142,7 +142,7 @@ export function BentoGridBlock() {
         >
           <Badge
             variant="outline"
-            className="inline-flex items-center gap-2 rounded-none border-border/50 bg-background/60 px-4 py-1.5 text-xs tracking-[0.2em] text-foreground/70 uppercase backdrop-blur dark:border-border/50"
+            className="inline-flex items-center gap-2 rounded-none border-border/50 bg-background/60 px-4 py-1.5 text-xs tracking-[0.2em] text-foreground/70 uppercase backdrop-blur "
           >
             UI TripleD
             <span
@@ -183,7 +183,7 @@ export function BentoGridBlock() {
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="group relative col-span-1 flex h-full flex-col justify-between overflow-hidden rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 lg:row-span-2 dark:border-border/60"
+            className="group relative col-span-1 flex h-full flex-col justify-between overflow-hidden rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 lg:row-span-2 "
             role="article"
             aria-label="Featured case study"
           >
@@ -192,7 +192,7 @@ export function BentoGridBlock() {
               <div className="space-y-4">
                 <Badge
                   variant="secondary"
-                  className="w-fit rounded-none border-border/40 bg-background/80 px-3 py-1 text-xs tracking-[0.2em] text-foreground/70 uppercase dark:border-border/40"
+                  className="w-fit rounded-none border-border/40 bg-background/80 px-3 py-1 text-xs tracking-[0.2em] text-foreground/70 uppercase "
                 >
                   Featured case study
                 </Badge>
@@ -215,7 +215,7 @@ export function BentoGridBlock() {
                     <div
                       key={profile.src}
                       role="listitem"
-                      className="relative size-11 overflow-hidden rounded-none border border-border/50 bg-background/80 transition-opacity duration-300 group-hover:opacity-80 dark:border-border/50"
+                      className="relative size-11 overflow-hidden rounded-none border border-border/50 bg-background/80 transition-opacity duration-300 group-hover:opacity-80 "
                     >
                       <img
                         src={profile.src}
@@ -241,7 +241,7 @@ export function BentoGridBlock() {
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="group col-span-1 flex h-full flex-col rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 dark:border-border/60"
+            className="group col-span-1 flex h-full flex-col rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 "
             role="article"
             aria-label="Key performance metrics"
           >
@@ -272,7 +272,7 @@ export function BentoGridBlock() {
                   <p className="mt-2 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
                     {metric.value}
                   </p>
-                  <p className="mt-1 inline-flex items-center gap-2 px-2 py-1 text-xs font-semibold text-fjord dark:text-muted">
+                  <p className="mt-1 inline-flex items-center gap-2 px-2 py-1 text-xs font-semibold text-ink ">
                     {metric.caption}
                   </p>
                 </div>
@@ -284,7 +284,7 @@ export function BentoGridBlock() {
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="group relative col-span-1 overflow-hidden rounded-none border border-border/40 bg-background/70 backdrop-blur hover:border-border/60 hover:shadow-lg sm:col-span-2 lg:row-span-3 dark:border-border/60"
+            className="group relative col-span-1 overflow-hidden rounded-none border border-border/40 bg-background/70 backdrop-blur hover:border-border/60 hover:shadow-lg sm:col-span-2 lg:row-span-3 "
             role="article"
             aria-label="Behind the scenes studio imagery"
           >
@@ -299,7 +299,7 @@ export function BentoGridBlock() {
             <div className="relative flex h-full flex-col justify-end space-y-4 p-6 md:p-8">
               <Badge
                 variant="outline"
-                className="w-fit rounded-none border-border/60 bg-background/80 px-3 py-1 text-xs tracking-[0.2em] text-foreground/70 uppercase dark:border-border/60"
+                className="w-fit rounded-none border-border/60 bg-background/80 px-3 py-1 text-xs tracking-[0.2em] text-foreground/70 uppercase "
               >
                 Behind the scenes
               </Badge>
@@ -316,7 +316,7 @@ export function BentoGridBlock() {
                   (tag) => (
                     <span
                       key={tag}
-                      className="rounded-none border border-border/40 bg-background/70 px-3 py-1 text-xs tracking-[0.18em] text-foreground/60 uppercase dark:border-border/40"
+                      className="rounded-none border border-border/40 bg-background/70 px-3 py-1 text-xs tracking-[0.18em] text-foreground/60 uppercase "
                     >
                       {tag}
                     </span>
@@ -330,7 +330,7 @@ export function BentoGridBlock() {
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="group col-span-1 flex h-full flex-col rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 lg:row-span-2 dark:border-border/60"
+            className="group col-span-1 flex h-full flex-col rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 lg:row-span-2 "
             role="article"
             aria-label="Motion sprint process overview"
           >
@@ -389,7 +389,7 @@ export function BentoGridBlock() {
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="group col-span-1 flex h-full flex-col overflow-hidden rounded-none border border-border/40 bg-linear-to-r from-primary/15 via-background/70 to-background/90 p-0 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 dark:border-border/60"
+            className="group col-span-1 flex h-full flex-col overflow-hidden rounded-none border border-border/40 bg-linear-to-r from-primary/15 via-background/70 to-background/90 p-0 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 "
             role="article"
             aria-label="Motion showcase video"
           >
@@ -404,7 +404,7 @@ export function BentoGridBlock() {
                   <div className="flex items-center gap-3">
                     <Badge
                       variant="outline"
-                      className="w-fit rounded-none border-border/50 bg-background/70 px-3 py-1 text-xs tracking-[0.2em] text-foreground/70 uppercase dark:border-border/50"
+                      className="w-fit rounded-none border-border/50 bg-background/70 px-3 py-1 text-xs tracking-[0.2em] text-foreground/70 uppercase "
                     >
                       Motion showcase
                     </Badge>
@@ -456,14 +456,14 @@ export function BentoGridBlock() {
             variants={cardVariants}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.2 }}
-            className="group col-span-1 flex h-full flex-col rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 dark:border-border/60"
+            className="group col-span-1 flex h-full flex-col rounded-none border border-border/40 bg-background/70 p-6 backdrop-blur transition-all hover:border-border/60 hover:shadow-lg sm:col-span-2 "
             role="article"
             aria-label="Visual research gallery"
           >
             <div className="space-y-3">
               <Badge
                 variant="outline"
-                className="w-fit rounded-none border-border/50 bg-background/70 px-3 py-1 text-xs tracking-[0.2em] text-foreground/60 uppercase dark:border-border/50"
+                className="w-fit rounded-none border-border/50 bg-background/70 px-3 py-1 text-xs tracking-[0.2em] text-foreground/60 uppercase "
               >
                 Visual research
               </Badge>
@@ -480,7 +480,7 @@ export function BentoGridBlock() {
               {inspirationGallery.map((image) => (
                 <div
                   key={image.src}
-                  className="relative aspect-4/3 overflow-hidden rounded-none border border-border/30 bg-background/60 dark:border-border/30"
+                  className="relative aspect-4/3 overflow-hidden rounded-none border border-border/30 bg-background/60 "
                 >
                   <img
                     src={image.src}

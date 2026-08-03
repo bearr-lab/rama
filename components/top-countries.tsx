@@ -1,4 +1,5 @@
 import { formatInteger } from '@/components/formater';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -37,7 +38,7 @@ function flagUrl(countryCode: string) {
 
 export function TopCountries() {
   return (
-    <Card className="hover:shadow-floating relative border border-border/40 bg-surface/70 backdrop-blur-md transition-all duration-300 md:col-span-2">
+    <Card className="hover:shadow-floating relative border border-border/40 bg-surface/70 backdrop-blur-md transition-all duration-300 md:col-span-2 lg:col-span-2">
       <CardHeader>
         <CardTitle className="font-display text-lg font-medium text-balance text-fjord">
           International Capital Inflow
@@ -70,9 +71,9 @@ export function TopCountries() {
               <TableRow className="hover:bg-transparent" key={row.code}>
                 <TableCell className="max-w-55 truncate pl-6 font-medium">
                   <span className="inline-flex max-w-full items-center gap-2">
-                    <img
+                    <Image
                       alt={`Flag of ${row.code}`}
-                      className="h-3.5 w-5 shrink-0 rounded object-cover"
+                      className="h-3.5 w-5 shrink-0 rounded-none object-cover"
                       height={14}
                       src={flagUrl(row.code)}
                       width={20}

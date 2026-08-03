@@ -13,6 +13,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 interface AlertItem {
   id: string;
@@ -101,31 +102,31 @@ export function NotificationCenter() {
         aria-label="Notifications & Lifecycle Alerts"
         aria-expanded={isOpen}
         className={cn(
-          'relative border p-2.5 text-muted transition-all hover:bg-surface-subtle hover:text-fjord focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none dark:bg-fjord-hover dark:text-muted',
+          'relative border p-2.5 text-muted-foreground transition-all hover:bg-surface hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none  dark:text-muted/50',
           isOpen
-            ? 'dark:border-border-hover border-border bg-surface-subtle text-fjord dark:bg-fjord-hover dark:text-white'
-            : 'border-border dark:border-border',
+            ? ' border-border/60 bg-surface text-ink  '
+            : 'border-border/60 ',
         )}
         title="Notifications & Lifecycle Alerts"
       >
         <Bell className="size-5" />
         {unreadCount > 0 && (
-          <span className="text-caption absolute -end-1 -top-1 flex size-5 animate-pulse items-center justify-center bg-fjord-hover font-extrabold text-primary-foreground shadow-sm dark:bg-surface-subtle">
+          <span className="text-caption absolute -inset-e-1 -top-1 flex size-5 animate-pulse items-center justify-center bg-rose-500 font-extrabold text-white shadow-sm dark:bg-surface">
             {unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="animate-in fade-in zoom-in-95 absolute end-0 z-50 mt-2 w-80 overflow-hidden border border-border bg-surface shadow-2xl duration-150 sm:w-96 dark:border-border dark:bg-fjord-hover">
+        <div className="animate-in fade-in zoom-in-95 absolute inset-e-0 z-50 mt-2 w-80 overflow-hidden border border-border/60 bg-surface-subtle shadow-2xl duration-150 sm:w-96  ">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-border bg-surface-subtle/50 p-4 dark:border-border dark:bg-fjord-hover/50">
+          <div className="flex items-center justify-between border-b border-border/60 bg-surface/50 p-4  ">
             <div className="flex items-center gap-2">
-              <h3 className="text-body font-display font-bold text-fjord dark:text-white">
+              <h3 className="text-body font-display font-bold text-ink ">
                 Lifecycle Alerts
               </h3>
               {unreadCount > 0 && (
-                <span className="py-0.2 text-caption bg-surface-subtle px-2 font-bold text-fjord dark:bg-surface-subtle dark:text-muted">
+                <span className="py-0.2 text-caption bg-border/50 px-2 font-bold text-ink  ">
                   {unreadCount} new
                 </span>
               )}
@@ -135,7 +136,7 @@ export function NotificationCenter() {
               {unreadCount > 0 && (
                 <button
                   onClick={markAllRead}
-                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-muted transition-colors hover:bg-surface hover:text-fjord dark:bg-fjord-hover dark:text-muted"
+                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:bg-surface-subtle hover:text-ink  dark:text-muted/50"
                   title="Mark all as read"
                 >
                   <Check className="size-3.5" />
@@ -145,7 +146,7 @@ export function NotificationCenter() {
               {alerts.length > 0 && (
                 <button
                   onClick={clearAlerts}
-                  className="p-1.5 text-muted transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-muted"
+                  className="p-1.5 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-muted/50"
                   title="Clear all alerts"
                 >
                   <Trash2 className="size-3.5" />
@@ -157,7 +158,7 @@ export function NotificationCenter() {
           {/* Alerts List */}
           <div className="max-h-96 divide-y divide-stone-300 overflow-y-auto dark:divide-stone-800">
             {alerts.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center text-muted dark:text-muted">
+              <div className="flex flex-col items-center justify-center p-8 text-center text-muted-foreground dark:text-muted/50">
                 <Bell className="mb-2 size-8 opacity-30" />
                 <p className="text-body-sm font-semibold">All caught up!</p>
                 <p className="text-caption">
@@ -170,59 +171,42 @@ export function NotificationCenter() {
                   key={alert.id}
                   href={`/${locale}${alert.href}`}
                   onClick={() => handleAlertClick(alert.id)}
-                  className={cn(
-                    'group relative flex items-start gap-3 p-4 transition-colors hover:bg-surface-subtle dark:bg-fjord-hover',
-                    alert.unread &&
-                      'bg-surface-subtle/5 dark:bg-surface-subtle/10 dark:bg-surface-subtle/5 dark:bg-surface-subtle/10',
-                  )}
+                  className="block border-b border-border/60 p-3 transition-colors last:border-0 hover:bg-surface-subtle"
                 >
-                  <div
+                  <Alert
                     className={cn(
-                      'mt-0.5 shrink-0 p-2',
-                      alert.type === 'trust'
-                        ? 'bg-surface-subtle/10 text-fjord'
-                        : alert.type === 'ai'
-                          ? 'bg-surface-subtle/10 text-muted dark:bg-surface-subtle/10 dark:text-muted'
-                          : 'bg-surface-subtle/10 text-fjord',
+                      'border-none p-0',
+                      alert.unread ? 'opacity-100' : 'opacity-70',
                     )}
                   >
                     {alert.type === 'trust' && (
-                      <ShieldCheck className="size-4" />
+                      <ShieldCheck className="size-4 text-ink" />
                     )}
-                    {alert.type === 'ai' && <Sparkles className="size-4" />}
+                    {alert.type === 'ai' && <Sparkles className="size-4 text-ink" />}
                     {alert.type === 'task' && (
-                      <CheckSquare className="size-4" />
+                      <CheckSquare className="size-4 text-ink" />
                     )}
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <h4 className="text-body-sm truncate font-bold text-fjord transition-colors group-hover:text-fjord dark:text-muted">
-                        {alert.title}
-                      </h4>
-                      <span className="shrink-0 text-[10px] text-muted dark:text-muted">
+                    <AlertTitle className="text-body-sm flex items-center justify-between font-bold text-ink">
+                      <span>{alert.title}</span>
+                      <span className="text-[10px] font-normal text-muted-foreground">
                         {alert.time}
                       </span>
-                    </div>
-                    <p className="text-caption mt-0.5 leading-normal text-muted dark:text-muted">
+                    </AlertTitle>
+                    <AlertDescription className="text-caption mt-0.5 text-muted-foreground">
                       {alert.description}
-                    </p>
-                  </div>
-
-                  {alert.unread && (
-                    <span className="size-2 shrink-0 self-center bg-surface-subtle dark:bg-surface-subtle" />
-                  )}
+                    </AlertDescription>
+                  </Alert>
                 </Link>
               ))
             )}
           </div>
 
           {/* Footer */}
-          <div className="border-t border-border bg-surface-subtle p-3 text-center dark:border-border dark:bg-fjord-hover">
+          <div className="border-t border-border/60 bg-surface p-3 text-center  ">
             <Link
               href={`/${locale}/tasks`}
               onClick={() => setIsOpen(false)}
-              className="text-caption inline-flex items-center gap-1 font-bold text-fjord hover:underline dark:text-muted"
+              className="text-caption inline-flex items-center gap-1 font-bold text-ink hover:underline "
             >
               <span>View All Transaction Tasks</span>
               <ExternalLink className="size-3" />

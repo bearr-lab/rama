@@ -125,15 +125,15 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-stone-50 dark:bg-stone-950">
+    <div className="flex min-h-screen w-full flex-col bg-surface-subtle ">
       {/* Sticky back bar */}
-      <div className="fixed inset-x-0 top-16 z-40 border-b border-stone-300/40 bg-background/90 backdrop-blur-md dark:border-stone-800/40">
+      <div className="border-border/60/40 fixed inset-x-0 top-16 z-40 border-b bg-background/90 backdrop-blur-md ">
         <div className="mx-auto flex max-w-7xl items-center px-6 py-3">
           <Link
             href={`/${locale}/projects`}
             className={cn(
               buttonVariants({ variant: 'ghost', size: 'sm' }),
-              'gap-2 text-xs font-semibold tracking-widest text-stone-500 uppercase transition-colors hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100',
+              'gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink dark:text-muted/50 dark:hover:text-surface',
             )}
           >
             <ChevronLeft className="size-4" />
@@ -168,19 +168,19 @@ export default async function ProjectDetailPage({
 
             <div className="mt-8 flex flex-wrap items-center gap-6 border-t border-white/20 pt-8 text-white/80">
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Building2 className="size-4 text-stone-900 dark:text-stone-100" />
+                <Building2 className="size-4 text-ink " />
                 {project.developer}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <MapPin className="size-4 text-stone-900 dark:text-stone-100" />
+                <MapPin className="size-4 text-ink " />
                 {isArabic ? project.locationAr : project.locationEn}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Tag className="size-4 text-stone-700 dark:text-stone-300" />
+                <Tag className="size-4 text-ink dark:text-muted/30" />
                 {isArabic ? project.startingPriceAr : project.startingPriceEn}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Calendar className="size-4 text-stone-600 dark:text-stone-400" />
+                <Calendar className="size-4 text-muted-foreground dark:text-muted/50" />
                 {isArabic ? project.handoverAr : project.handoverEn}
               </span>
             </div>
@@ -188,15 +188,15 @@ export default async function ProjectDetailPage({
         </Container>
       </section>
 
-      <section className="bg-stone-50 py-24 dark:bg-stone-950">
+      <section className="bg-surface-subtle py-24 ">
         <Container size="md" className="space-y-6 text-center">
-          <div className="mb-4 inline-block bg-stone-100 p-4 dark:bg-stone-900">
-            <Building2 className="size-8 text-stone-900 dark:text-stone-100" />
+          <div className="mb-4 inline-block bg-surface p-4 ">
+            <Building2 className="size-8 text-ink " />
           </div>
-          <h2 className="font-display text-3xl font-bold text-stone-900 dark:text-stone-50">
+          <h2 className="font-display text-3xl font-bold text-ink ">
             {isArabic ? 'تفاصيل المشروع قريباً' : 'Project Details Coming Soon'}
           </h2>
-          <p className="mx-auto max-w-xl text-lg leading-relaxed font-light text-stone-500 dark:text-stone-400">
+          <p className="mx-auto max-w-xl text-lg leading-relaxed font-light text-muted-foreground dark:text-muted/50">
             {isArabic
               ? 'نحن نعمل على إعداد كافة التفاصيل والمخططات والصور الخاصة بهذا المشروع الاستثنائي. يرجى التحقق مرة أخرى قريباً لاستكشاف المزيد.'
               : 'We are preparing all the details, floor plans, and exclusive gallery for this exceptional off-plan project. Please check back soon.'}

@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, Sparkles, Send, Mic } from 'lucide-react';
+import { Sparkles, Send, Mic } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 import { BorderBeam } from '@/components/magicui/border-beam';
 import { ShimmerButton } from '@/components/magicui/shimmer-button';
 
@@ -53,7 +53,7 @@ export function SearchBar({
         onSubmit={handleSearch}
         className={cn(
           'relative flex w-full items-center overflow-hidden rounded-none border-none p-1 shadow-xl backdrop-blur-xl transition-all duration-300',
-          isHero ? 'bg-white/95 text-fjord' : 'bg-surface text-fjord',
+          isHero ? 'bg-white/95 text-fjord' : 'bg-surface text-ink',
           isFocused && 'ring-1 ring-fjord',
         )}
       >
@@ -88,7 +88,7 @@ export function SearchBar({
         <button
           type="button"
           aria-label={locale === 'ar' ? 'البحث الصوتي' : 'Voice Search'}
-          className="z-10 px-2 text-muted transition-colors hover:text-fjord"
+          className="z-10 px-2 text-muted-foreground transition-colors hover:text-fjord"
         >
           <Mic className="size-4" />
         </button>

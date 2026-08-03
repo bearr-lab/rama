@@ -73,7 +73,7 @@ export function LiveTransactionTicker({
   const currentTx = RECENT_TRANSACTIONS[activeIndex];
 
   return (
-    <div className="w-full border-y border-border/60 bg-surface/80 py-2.5 backdrop-blur-sm dark:border-border dark:bg-fjord-hover/60">
+    <div className="w-full border-y border-border/60 bg-surface-subtle/80 py-2.5 backdrop-blur-sm  ">
       <Container size="lg" className="flex items-center justify-between">
         {/* Left Label */}
         <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-emerald-700 uppercase dark:text-emerald-400">
@@ -88,11 +88,11 @@ export function LiveTransactionTicker({
 
         {/* Center Live Ticker Item */}
         <div className="flex items-center gap-3 overflow-hidden text-xs sm:text-sm">
-          <div className="flex items-center gap-1.5 font-medium text-fjord dark:text-muted">
-            <Building2 className="size-3.5 text-muted" />
+          <div className="flex items-center gap-1.5 font-medium text-ink ">
+            <Building2 className="size-3.5 text-muted-foreground" />
             <span>{currentTx.location}</span>
-            <span className="text-muted">•</span>
-            <span className="text-muted dark:text-muted">
+            <span className="text-muted/50">•</span>
+            <span className="text-muted-foreground dark:text-muted/50">
               {currentTx.type}
             </span>
           </div>
@@ -106,13 +106,13 @@ export function LiveTransactionTicker({
             {isArabic ? 'مسجل' : 'DLD Verified'}
           </span>
 
-          <span className="text-[11px] text-muted">
+          <span className="text-[11px] text-muted/50">
             {currentTx.timeAgo}
           </span>
         </div>
 
         {/* Right Metric */}
-        <div className="hidden items-center gap-1.5 text-xs text-muted lg:flex">
+        <div className="hidden items-center gap-1.5 text-xs text-muted-foreground lg:flex">
           <TrendingUp className="size-3.5 text-emerald-600" />
           <span>
             {isArabic

@@ -63,6 +63,7 @@ const eslintConfig = defineConfig([
     // Build artifacts & utility scripts:
     "storybook-static/**",
     "fix-lint.cjs",
+    ".agents/**",
   ]),
 ]);
 

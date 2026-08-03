@@ -49,7 +49,7 @@ export function PricingComparator({
         : 'For serious buyers & family offices demanding AI RAG & full title deed OCR audit.',
       isPopular: true,
       buttonText: isArabic ? 'ترقية الحساب الآن' : 'Get Institutional Pass',
-      buttonVariant: 'default' as const,
+      buttonVariant: 'primary' as const,
       features: [
         isArabic
           ? 'وصول كامل لمستشار الذكاء الاصطناعي RAMA AI'

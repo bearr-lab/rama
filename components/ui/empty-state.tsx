@@ -42,7 +42,7 @@ export function EmptyState({
   return (
     <div
       className={cn(
-        'shadow-subtle hover:shadow-floating relative flex flex-col items-center justify-center rounded-3xl border border-border/40 bg-surface/70 p-10 text-center backdrop-blur-md transition-all duration-500 md:p-16',
+        'shadow-subtle hover:shadow-floating relative flex flex-col items-center justify-center rounded-none border border-border/40 bg-surface/70 p-10 text-center backdrop-blur-md transition-all duration-500 md:p-16',
         className,
       )}
     >
@@ -50,7 +50,7 @@ export function EmptyState({
         <Sparkles className="size-8 animate-pulse" />
       </div>
 
-      <div className="mb-6 flex size-20 items-center justify-center rounded-3xl border border-border/40 bg-gradient-to-br from-surface to-surface-subtle shadow-md">
+      <div className="mb-6 flex size-20 items-center justify-center rounded-none border border-border/40 bg-gradient-to-br from-surface to-surface-subtle shadow-md">
         {getIcon()}
       </div>
 
