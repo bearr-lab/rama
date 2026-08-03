@@ -8,7 +8,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const themeTogglerVariants = cva(
-  'relative flex h-8 w-14 items-center rounded-none border border-border bg-surface-subtle px-1 transition-colors hover:border-fjord-muted hover:bg-surface-warm focus:ring-2 focus:ring-fjord-muted focus:ring-offset-2 focus:outline-none',
+  'relative flex h-8 w-14 items-center rounded-none border border-border bg-surface-subtle px-1 transition-colors hover:border-fjord-muted hover:bg-surface-warm focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:ring-offset-2 focus-visible:outline-none',
   {
     variants: {},
     defaultVariants: {},
@@ -34,12 +34,16 @@ export function ThemeToggler({ className, ...props }: ThemeTogglerProps) {
 
   return (
     <button
+      type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className={cn(themeTogglerVariants({ className }))}
-      aria-label="Toggle theme"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-pressed={isDark}
       {...props}
     >
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">
+        {isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      </span>
       
       {/* Background Pill */}
       <div className="absolute inset-x-1 flex justify-between px-0.5">

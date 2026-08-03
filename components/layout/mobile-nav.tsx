@@ -88,6 +88,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
       {/* Drawer */}
       <div
         ref={drawerRef}
+        id="mobile-navigation"
         role="dialog"
         aria-modal="true"
         aria-label="Navigation Menu"
@@ -103,11 +104,12 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
             <RamaLogo variant="full" size="sm" />
           </Link>
           <button
+            type="button"
             onClick={onClose}
-            className="-mr-2 p-2 text-muted-foreground transition-colors hover:text-ink"
+            className="-mr-2 rounded-none p-2 text-muted-foreground transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
             aria-label="Close menu"
           >
-            <X className="size-5" />
+            <X className="size-5" aria-hidden="true" />
           </button>
         </div>
 
@@ -189,7 +191,12 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
                   <AnimatedThemeToggler
                     theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                     onThemeChange={setTheme}
-                    className="flex size-9 items-center justify-center rounded-none bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80"
+                    aria-label={
+                      resolvedTheme === 'dark'
+                        ? 'Switch to light mode'
+                        : 'Switch to dark mode'
+                    }
+                    className="flex size-9 items-center justify-center rounded-none bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80 focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
                   />
                   <span className="text-xs font-medium text-ink">
                     {resolvedTheme === 'dark'
