@@ -6,7 +6,7 @@ import { Container } from '@/components/layout/container';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { ShieldCheck, Lock, Landmark, Scale } from 'lucide-react';
+import { Lock, Landmark, Scale, ShieldCheck } from 'lucide-react';
 import {
   DldLogo,
   ReraLogo,
@@ -142,16 +142,17 @@ export function DeveloperLogoCloud({
   return (
     <section className="relative overflow-hidden bg-background">
       {/* ─── Top: Cinematic Hero Image Band ─── */}
-      <div className="relative h-80 w-full overflow-hidden md:h-100">
+      <div className="relative h-80 w-full overflow-hidden border-b border-border md:h-100">
         <Image
           src="/images/trust/rera-hero.png"
           alt="Dubai architectural skyline"
           fill
+          priority
           className="object-cover"
           sizes="100vw"
         />
-        {/* Stronger dark overlay ensures hero text is legible on all photo backgrounds */}
-        <div className="absolute inset-0 bg-linear-to-b from-ink/80 via-ink/60 to-background" />
+        {/* Soft dark overlay — fades to transparent so hero photo stays present */}
+        <div className="absolute inset-0 bg-linear-to-b from-ink/60 via-ink/30 to-transparent" />
 
         {/* Header text over the image */}
         <Container
@@ -164,13 +165,7 @@ export function DeveloperLogoCloud({
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="mb-3 flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-emerald-300 uppercase [text-shadow:0_1px_4px_rgb(0_0_0/0.6)]">
-              <ShieldCheck className="size-4" />
-              {isArabic
-                ? 'شبكة منظومة ريرا المعتمدة'
-                : 'RERA Ecosystem & Escrow Network'}
-            </p>
-            <h3 className="max-w-2xl font-display text-2xl leading-tight font-bold text-white [text-shadow:0_2px_8px_rgb(0_0_0/0.7)] md:text-4xl">
+            <h3 className="max-w-2xl font-display text-2xl leading-tight font-bold text-white [text-shadow:0_2px_8px_rgb(0_0_0/0.7)] md:text-5xl">
               {isArabic
                 ? 'شركاء الخدمات المصرفية والمطورين المعتمدين'
                 : 'Verified Institutional Banking & Developer Partners'}
@@ -192,7 +187,7 @@ export function DeveloperLogoCloud({
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <span className="inline-flex items-center gap-1.5 border border-fjord/50 bg-fjord-soft px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-fjord uppercase dark:text-sky-300">
+              <span className="inline-flex items-center gap-1.5 border border-fjord/50 bg-fjord-soft px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-fjord uppercase">
                 <Lock className="size-3" />
                 {isArabic
                   ? 'الخدمات المصرفية والتنظيمية'
@@ -256,7 +251,7 @@ export function DeveloperLogoCloud({
           </div>
 
           {/* ─── Right: Developer Partners ─── */}
-          <div className="relative bg-canvas p-8 md:p-12 dark:bg-surface-subtle">
+          <div className="relative bg-canvas p-8 md:p-12 dark:bg-surface">
             <div className="relative z-10">
               <motion.div
                 initial={{ opacity: 0 }}
@@ -265,7 +260,7 @@ export function DeveloperLogoCloud({
                 transition={{ duration: 0.5 }}
                 className="mb-8"
               >
-                <span className="border-border-strong inline-flex items-center gap-1.5 border bg-surface px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-ink uppercase dark:bg-ink-surface dark:text-stone-200">
+                <span className="border-border-strong inline-flex items-center gap-1.5 border bg-surface px-3 py-1 text-[10px] font-bold tracking-[0.2em] text-ink uppercase dark:bg-ink-surface dark:text-fjord">
                   <Landmark className="size-3" />
                   {isArabic ? 'المطورون الرئيسيون' : 'Master Developers'}
                 </span>
@@ -304,8 +299,8 @@ export function DeveloperLogoCloud({
                 transition={{ duration: 0.5, delay: 0.5 }}
                 className="mt-8 border-t border-border pt-8"
               >
-                <div className="flex items-start gap-3 border border-emerald-500/30 bg-emerald-50 p-4 dark:bg-emerald-950/40">
-                  <Scale className="mt-0.5 size-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                <div className="flex items-start gap-3 border border-fjord/30 bg-fjord-soft p-4 dark:bg-fjord/10">
+                  <Scale className="mt-0.5 size-5 shrink-0 text-fjord" />
                   <div>
                     <p className="text-xs font-bold text-foreground">
                       {isArabic
@@ -362,9 +357,6 @@ export function DeveloperLogoCloud({
           </div>
         </div>
       </Container>
-
-      {/* Bottom spacing */}
-      <div className="h-24" />
     </section>
   );
 }
