@@ -1,12 +1,18 @@
 'use client';
 
 import React from 'react';
-import { Player } from '@lottiefiles/react-lottie-player';
+import dynamic from 'next/dynamic';
 import { AnimatedList } from '@/components/ui/animated-list';
 import { AnimatedCircularProgressBar } from '@/components/ui/animated-circular-progress-bar';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { cn } from '@/lib/utils';
 import { Building, LineChart, TrendingUp, Key } from 'lucide-react';
+
+// Lottie-web calls document.createElement at module-eval time — must be client-only
+const LottiePlayer = dynamic(
+  () => import('@lottiefiles/react-lottie-player').then((m) => ({ default: m.Player })),
+  { ssr: false, loading: () => <div className="size-full animate-pulse bg-surface-subtle" /> },
+);
 export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: boolean }) {
   // We use English fallback if translations are missing, since we're replacing a component
   const title = isArabic ? 'ذكاء اصطناعي يحلل بيانات ريرا' : 'AI-Powered RERA Intelligence';
@@ -73,7 +79,7 @@ export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: bool
           </div>
           
           <div className="mt-8 flex size-full flex-col items-center justify-center">
-            <Player
+            <LottiePlayer
               autoplay
               loop
               src="/lottie/ai.json"
