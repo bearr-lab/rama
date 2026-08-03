@@ -1,18 +1,13 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { useTranslations } from 'next-intl';
 import { AnimatedBeam } from '@/components/ui/animated-beam';
 import { AnimatedList } from '@/components/ui/animated-list';
 import { AnimatedCircularProgressBar } from '@/components/ui/animated-circular-progress-bar';
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text';
 import { cn } from '@/lib/utils';
 import { Database, Building, LineChart, User, BrainCircuit, TrendingUp, Key, Building2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
-export function AIIntelligenceHub({ locale, isArabic }: { locale: string; isArabic: boolean }) {
-  const t = useTranslations('landing.aiHub');
-
+export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: boolean }) {
   // We use English fallback if translations are missing, since we're replacing a component
   const title = isArabic ? 'ذكاء اصطناعي يحلل بيانات ريرا' : 'AI-Powered RERA Intelligence';
   const subtitle = isArabic 
@@ -62,7 +57,7 @@ export function AIIntelligenceHub({ locale, isArabic }: { locale: string; isArab
   return (
     <div className={cn("flex w-full flex-col gap-8", isArabic ? "text-right" : "text-left")}>
       <div className="flex flex-col gap-2">
-        <div className="inline-flex items-center gap-2 rounded-none border border-border bg-surface-subtle px-3 py-1 text-xs font-medium tracking-wide text-fjord w-fit">
+        <div className="inline-flex w-fit items-center gap-2 rounded-none border border-border bg-surface-subtle px-3 py-1 text-xs font-medium tracking-wide text-fjord">
           <AnimatedShinyText className="inline-flex items-center justify-center transition ease-out hover:text-fjord-muted hover:duration-300 hover:dark:text-neutral-400">
             <span>✨ {isArabic ? 'محرك الاستثمار المدعوم بالذكاء الاصطناعي' : 'Powered by Rama Engine'}</span>
           </AnimatedShinyText>
@@ -70,22 +65,22 @@ export function AIIntelligenceHub({ locale, isArabic }: { locale: string; isArab
         <h2 className="text-3xl font-light tracking-tight text-fjord sm:text-4xl md:text-5xl">
           {title}
         </h2>
-        <p className="max-w-[700px] text-base leading-relaxed text-muted-foreground md:text-lg">
+        <p className="max-w-175 text-base leading-relaxed text-muted-foreground md:text-lg">
           {subtitle}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-full min-h-[500px]">
+      <div className="grid h-full min-h-125 grid-cols-1 gap-4 md:grid-cols-3">
         {/* Animated Beam Section (Spans 2 columns on desktop) */}
         <div 
-          className="relative col-span-1 md:col-span-2 flex flex-col items-center justify-center overflow-hidden rounded-none border border-border bg-surface p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)]"
+          className="relative col-span-1 flex flex-col items-center justify-center overflow-hidden rounded-none border border-border bg-surface p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)] md:col-span-2"
           ref={containerRef}
         >
-          <div className="absolute top-4 left-4 text-sm font-medium text-fjord tracking-wider uppercase">
+          <div className="absolute top-4 left-4 text-sm font-medium tracking-wider text-fjord uppercase">
             {isArabic ? 'تدفق البيانات الحي' : 'Live Data Ingestion'}
           </div>
           
-          <div className="flex h-full w-full flex-col items-stretch justify-between gap-10 mt-8">
+          <div className="mt-8 flex size-full flex-col items-stretch justify-between gap-10">
             <div className="flex flex-row items-center justify-between">
               <Circle ref={div1Ref} className="size-16">
                 <Database className="size-6 text-muted-foreground" />
@@ -180,8 +175,8 @@ export function AIIntelligenceHub({ locale, isArabic }: { locale: string; isArab
         <div className="col-span-1 flex flex-col gap-4">
           
           {/* ROI Progress Indicator */}
-          <div className="flex flex-col items-center justify-center p-6 border border-border bg-surface h-[240px] shadow-[0_2px_10px_rgba(0,0,0,0.02)] relative">
-            <div className="absolute top-4 left-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+          <div className="relative flex h-60 flex-col items-center justify-center border border-border bg-surface p-6 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+            <div className="absolute top-4 left-4 text-xs font-medium tracking-wider text-muted-foreground uppercase">
               {isArabic ? 'متوسط العائد المتوقع' : 'Avg. Predicted ROI'}
             </div>
             <div className="mt-4">
@@ -197,8 +192,8 @@ export function AIIntelligenceHub({ locale, isArabic }: { locale: string; isArab
           </div>
 
           {/* Animated List of Signals */}
-          <div className="relative flex flex-col overflow-hidden border border-border bg-surface p-4 h-[300px] shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
-            <div className="mb-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+          <div className="relative flex h-75 flex-col overflow-hidden border border-border bg-surface p-4 shadow-[0_2px_10px_rgba(0,0,0,0.02)]">
+            <div className="mb-4 text-xs font-medium tracking-wider text-muted-foreground uppercase">
               {isArabic ? 'إشارات حية' : 'Live Signals'}
             </div>
             <AnimatedList delay={2500}>
@@ -206,7 +201,7 @@ export function AIIntelligenceHub({ locale, isArabic }: { locale: string; isArab
                 <div
                   key={idx}
                   className={cn(
-                    "relative mx-auto flex w-full max-w-[400px] flex-row items-center gap-3 rounded-none p-3",
+                    "relative mx-auto flex w-full max-w-100 flex-row items-center gap-3 rounded-none p-3",
                     "border border-border/50 bg-surface-subtle transition-all",
                   )}
                 >
@@ -214,12 +209,12 @@ export function AIIntelligenceHub({ locale, isArabic }: { locale: string; isArab
                     {item.icon}
                   </div>
                   <div className="flex flex-col overflow-hidden">
-                    <div className="flex flex-row items-center whitespace-pre text-sm font-medium text-fjord">
+                    <div className="flex flex-row items-center text-sm font-medium whitespace-pre text-fjord">
                       <span>{item.name}</span>
                       <span className="mx-1 text-xs text-muted-foreground">·</span>
                       <span className="text-xs text-muted-foreground">{item.time}</span>
                     </div>
-                    <p className="text-xs text-muted-foreground truncate font-normal">
+                    <p className="truncate text-xs font-normal text-muted-foreground">
                       {item.description}
                     </p>
                   </div>
