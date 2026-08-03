@@ -1,51 +1,31 @@
 import { type NextRequest, NextResponse } from 'next/server';
+import { updateSession } from '@/lib/supabase/update-session';
 import createMiddleware from 'next-intl/middleware';
 import { routing } from '@/i18n/routing';
-import { updateSession } from '@/lib/supabase/update-session';
 
 const intlMiddleware = createMiddleware(routing);
 
-export async function proxy(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   // 1. Generate response using next-intl middleware for locale routing
   const intlResponse = intlMiddleware(request);
 
-  // 2. Pass the i18n response to Supabase to append session cookies
+  // 2. Manage Supabase Session (refreshes auth cookies securely)
   const { response, userId } = await updateSession(request, intlResponse);
 
-  const isAuthRoute = request.nextUrl.pathname.includes('/login');
-  const isWorkspaceRoute =
-    /\/(dashboard|discover|community|decision-lab|advisor|documents|portfolio|property|settings|shortlist|tasks)(?:\/|$)/.test(
-      request.nextUrl.pathname,
-    );
+  // 3. Simple Route Protection (Workspace requires auth)
+  const isWorkspace = request.nextUrl.pathname.includes('/dashboard') || 
+                      request.nextUrl.pathname.includes('/shortlist') || 
+                      request.nextUrl.pathname.includes('/portfolio');
 
-  const hasSession = Boolean(userId);
-
-  if (isWorkspaceRoute && !hasSession) {
-    const locale = request.nextUrl.pathname.split('/')[1] || 'en';
-    const redirectResponse = NextResponse.redirect(
-      new URL(
-        `/${locale}/login?next=${encodeURIComponent(request.nextUrl.pathname)}`,
-        request.url,
-      ),
-    );
-    // Preserve cookies from intlResponse (which includes Supabase session updates)
-    response.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
-    });
-    return redirectResponse;
+  if (isWorkspace && !userId) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/en/login`;
+    return NextResponse.redirect(url);
   }
 
-  if (isAuthRoute && hasSession) {
-    const locale = request.nextUrl.pathname.split('/')[1] || 'en';
-    const redirectResponse = NextResponse.redirect(
-      new URL(`/${locale}/dashboard`, request.url),
-    );
-    // Preserve cookies from intlResponse
-    response.cookies.getAll().forEach((cookie) => {
-      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
-    });
-    return redirectResponse;
-  }
+  // Required for Google Sign-In popup to communicate back to the app (if any popup flows remain)
+  response.headers.set('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  response.headers.set('Cross-Origin-Embedder-Policy', 'unsafe-none');
 
   return response;
 }
