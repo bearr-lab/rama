@@ -11,9 +11,11 @@ import { MobileNav } from './mobile-nav';
 import { LocaleSwitcher } from './locale-switcher';
 import { UserMenu } from '@/components/auth/user-menu';
 import { ThemeToggler } from '@/components/ui/theme-toggler';
+import { useTheme } from 'next-themes';
 import { RamaLogo } from '@/components/ui/rama-logo';
 
 export function Navbar() {
+  const { resolvedTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
