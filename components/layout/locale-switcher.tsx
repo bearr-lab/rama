@@ -30,8 +30,11 @@ export function LocaleSwitcher({ isDark = false }: LocaleSwitcherProps) {
   return (
     <Link
       href={togglePath || `/${nextLocale}`}
+      aria-label={
+        nextLocale === 'ar' ? 'Switch language to Arabic' : 'Switch language to English'
+      }
       className={cn(
-        'rounded-none px-2 py-1 text-xs font-semibold tracking-wider uppercase transition-colors',
+        'rounded-none px-2 py-1 text-xs font-semibold tracking-wider uppercase transition-colors focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none',
         isDark
           ? 'text-white hover:bg-white/10'
           : 'text-ink hover:bg-surface-subtle',

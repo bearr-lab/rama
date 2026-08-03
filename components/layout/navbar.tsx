@@ -81,7 +81,11 @@ export function Navbar() {
       <header className={navClasses}>
         <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-12 sm:px-16 lg:px-20">
           {/* Logo */}
-          <Link href="/" className="flex shrink-0 cursor-pointer items-center">
+          <Link
+            href="/"
+            className="flex shrink-0 cursor-pointer items-center rounded-none focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
+            aria-label="Rama home"
+          >
             <RamaLogo isScrolled={isScrolled} isDark={isNavDark} />
           </Link>
 
@@ -113,11 +117,16 @@ export function Navbar() {
               <AnimatedThemeToggler
                 theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                 onThemeChange={setTheme}
+                aria-label={
+                  resolvedTheme === 'dark'
+                    ? 'Switch to light mode'
+                    : 'Switch to dark mode'
+                }
                 className={cn(
-                  'flex size-9 items-center justify-center transition-colors',
+                  'flex size-9 items-center justify-center rounded-none transition-colors focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none',
                   isNavDark
                     ? 'text-white hover:bg-white/10'
-                    : 'text-ink hover:bg-surface  ',
+                    : 'text-ink hover:bg-surface',
                 )}
               />
             ) : (
@@ -129,11 +138,14 @@ export function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="-mr-2 p-2 md:hidden"
+            type="button"
+            className="-mr-2 rounded-none p-2 focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none md:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label={t('openMenu')}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
-            <Menu className="size-6" />
+            <Menu className="size-6" aria-hidden="true" />
           </button>
         </div>
       </header>
