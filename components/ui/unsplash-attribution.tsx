@@ -12,7 +12,7 @@ const attributionVariants = cva(
       variant: {
         overlay:
           'absolute right-3 bottom-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md',
-        inline: 'text-muted-foreground hover:text-ink dark:text-muted/50',
+        inline: 'text-muted-foreground hover:text-fjord dark:text-muted/50',
       },
     },
     defaultVariants: {
@@ -27,7 +27,7 @@ const linkVariants = cva(
     variants: {
       variant: {
         overlay: 'underline decoration-white/40 underline-offset-2 hover:text-white/80 hover:decoration-white',
-        inline: 'hover:text-ink hover:underline',
+        inline: 'hover:text-fjord hover:underline',
       },
     },
     defaultVariants: {

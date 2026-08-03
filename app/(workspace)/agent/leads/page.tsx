@@ -56,9 +56,8 @@ export default function LeadsDashboard() {
       if (data.url) {
         window.location.href = data.url;
       } else {
-        // Fallback for demo when keys aren't set
-        console.warn("Stripe keys missing, simulating success");
-        window.location.href = '/agent/leads?success=true';
+        console.error("Checkout failed:", data.error || "No URL returned");
+        setIsRedirecting(false);
       }
     } catch (e) {
       console.error(e);

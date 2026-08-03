@@ -25,29 +25,29 @@ export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: bool
   const notifications = [
     {
       name: isArabic ? 'فرصة جديدة' : 'New Opportunity',
-      description: 'Palm Jumeirah Signature Villa',
-      time: '15m ago',
+      description: isArabic ? 'فيلا فاخرة في نخلة جميرا' : 'Palm Jumeirah Signature Villa',
+      time: isArabic ? 'منذ 15 دقيقة' : '15m ago',
       icon: <Building className="size-4 text-fjord" />,
       color: 'bg-surface-warm',
     },
     {
       name: isArabic ? 'تنبيه عائد استثماري' : 'High Yield Alert',
-      description: 'Downtown Dubai Off-Plan: 11.5% ROI',
-      time: '1h ago',
+      description: isArabic ? 'قيد الإنشاء في وسط مدينة دبي: عائد 11.5%' : 'Downtown Dubai Off-Plan: 11.5% ROI',
+      time: isArabic ? 'منذ ساعة واحدة' : '1h ago',
       icon: <TrendingUp className="size-4 text-fjord" />,
       color: 'bg-surface-warm',
     },
     {
       name: isArabic ? 'تحديث السوق' : 'Market Signal',
-      description: 'Demand surge in Dubai Marina',
-      time: '2h ago',
+      description: isArabic ? 'ارتفاع الطلب في مرسى دبي' : 'Demand surge in Dubai Marina',
+      time: isArabic ? 'منذ ساعتين' : '2h ago',
       icon: <LineChart className="size-4 text-fjord" />,
       color: 'bg-surface-warm',
     },
     {
       name: isArabic ? 'تأشيرة ذهبية' : 'Golden Visa Eligible',
-      description: 'Emaar Beachfront Apartment',
-      time: '3h ago',
+      description: isArabic ? 'شقة في إعمار بيتش فرونت' : 'Emaar Beachfront Apartment',
+      time: isArabic ? 'منذ 3 ساعات' : '3h ago',
       icon: <Key className="size-4 text-fjord" />,
       color: 'bg-surface-warm',
     },
@@ -102,8 +102,9 @@ export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: bool
                   max={15}
                   min={0}
                   value={11.5}
-                  gaugePrimaryColor="hsl(var(--fjord))"
-                  gaugeSecondaryColor="hsl(var(--surface-subtle))"
+                  displayValue="11.5%"
+                  gaugePrimaryColor="var(--fjord)"
+                  gaugeSecondaryColor="var(--surface-subtle)"
                   className="size-32"
                 />
             </div>

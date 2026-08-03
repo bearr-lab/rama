@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -87,7 +88,7 @@
   /* ─── Fonts ─── */
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-sans-alt: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
 
   /* ─── Chart colors (keep shadcn defaults) ─── */
