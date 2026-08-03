@@ -32,7 +32,39 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
 
   return (
     <div className="bg-surface pb-32">
-      <Container size="xl" className="pt-16">
+      {/* Sticky Secondary Navigation Filter */}
+      <div className="sticky top-16 z-40 w-full border-b border-border bg-surface/95 backdrop-blur-md">
+        <Container size="xl">
+          <div className="scrollbar-hide flex items-center gap-1 overflow-x-auto py-3">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                aria-pressed={activeCategory === cat}
+                className={cn(
+                  'relative shrink-0 rounded-none px-5 py-2 text-[10px] font-bold tracking-[0.15em] uppercase outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-fjord',
+                  activeCategory === cat
+                    ? 'text-white'
+                    : 'text-muted-foreground hover:bg-surface-subtle hover:text-ink',
+                )}
+              >
+                {activeCategory === cat && (
+                  <motion.div
+                    layoutId="activeFilterBackground"
+                    className="absolute inset-0 z-0 bg-ink shadow-sm"
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10">
+                  {cat === 'All' ? (isArabic ? 'الكل' : 'All') : cat}
+                </span>
+              </button>
+            ))}
+          </div>
+        </Container>
+      </div>
+
+      <Container size="xl" className="pt-12">
         {/* The Grid Group allows us to dim un-hovered cards using group-hover/grid */}
         <motion.div
           layout
@@ -202,36 +234,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
           </AnimatePresence>
         </motion.div>
       </Container>
-
-      {/* The Floating Square Dock Navigation */}
-      <div className="fixed bottom-8 left-1/2 z-50 w-full -translate-x-1/2 px-4 md:w-auto">
-        <div className="scrollbar-hide flex items-center gap-1 overflow-x-auto rounded-none border border-border/50 bg-surface/80 p-1.5 shadow-2xl saturate-200 backdrop-blur-2xl">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              aria-pressed={activeCategory === cat}
-              className={cn(
-                'relative shrink-0 rounded-none px-5 py-2.5 text-[10px] font-bold tracking-[0.15em] uppercase outline-hidden transition-colors focus-visible:ring-2 focus-visible:ring-fjord',
-                activeCategory === cat
-                  ? 'text-white'
-                  : 'text-muted-foreground hover:text-ink',
-              )}
-            >
-              {activeCategory === cat && (
-                <motion.div
-                  layoutId="activeDockBackground"
-                  className="absolute inset-0 z-0 bg-fjord shadow-sm"
-                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10">
-                {cat === 'All' ? (isArabic ? 'الكل' : 'All') : cat}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
+

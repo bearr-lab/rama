@@ -60,7 +60,7 @@ export function ShareButton({ title, text, url, className }: ShareButtonProps) {
             size="icon"
             onClick={handleShare}
             className={cn(
-              'size-10 rounded-full border border-border bg-surface text-ink shadow-sm hover:bg-surface-subtle',
+              'size-10 rounded-none border border-border bg-surface text-ink shadow-sm hover:bg-surface-subtle',
               className,
             )}
           />

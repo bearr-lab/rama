@@ -153,7 +153,7 @@ export function VerticalPartnerDeck({
   }, [filter]);
 
   return (
-    <div className="shadow-subtle relative overflow-hidden border border-stone-300/40 bg-stone-50/80 p-6 backdrop-blur-md transition-all sm:p-8 dark:border-stone-800/40 dark:bg-stone-950/80">
+    <div className="shadow-subtle relative overflow-hidden border border-border/40 bg-surface/80 p-6 backdrop-blur-md transition-all sm:p-8">
       {/* Subtle Metallic Ambient Glow Beam */}
       <BorderBeam
         size={300}
@@ -161,25 +161,26 @@ export function VerticalPartnerDeck({
         delay={0}
         colorFrom="#1b4965"
         colorTo="#5fa8d3"
+        innerClassName="bg-surface"
       />
 
       {/* Header Bar */}
-      <div className="mb-6 flex flex-col justify-between gap-4 border-b border-stone-300/30 pb-6 sm:flex-row sm:items-center dark:border-stone-800/30">
+      <div className="relative z-10 mb-6 flex flex-col justify-between gap-4 border-b border-border/40 pb-6 sm:flex-row sm:items-center">
         <div>
-          <div className="mb-2 inline-flex items-center gap-2 border border-stone-800/20 bg-stone-800/10 px-3 py-1 text-xs font-semibold text-stone-800 dark:text-stone-100">
+          <div className="mb-2 inline-flex items-center gap-2 border border-fjord/20 bg-fjord/10 px-3 py-1 text-xs font-semibold text-ink">
             <ShieldCheck className="size-4" />
-            <AnimatedShinyText className="font-semibold text-stone-800 dark:text-stone-100">
+            <AnimatedShinyText className="font-semibold text-ink">
               {isArabic
                 ? 'شبكة الضمان وريرة المعتمدة'
                 : 'Official RERA Law No. 8 Ecosystem'}
             </AnimatedShinyText>
           </div>
-          <h3 className="font-display text-2xl font-medium text-stone-900 dark:text-stone-50">
+          <h3 className="font-display text-2xl font-medium text-ink">
             {isArabic
               ? 'شركاء التطوير والبنوك أمناء الحفظ'
               : 'Institutional Banking & Developer Network'}
           </h3>
-          <p className="mt-1 text-xs font-light text-stone-500 dark:text-stone-400">
+          <p className="mt-1 text-xs font-light text-muted-foreground">
             {isArabic
               ? 'مراقبة فورية لحسابات الضمان والسجل العقاري مع دائرة الأراضي والأمناء المعتمدين'
               : 'Direct API cross-referencing with DLD land registry & licensed trustee banks'}
@@ -187,7 +188,7 @@ export function VerticalPartnerDeck({
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap gap-2">
+        <div className="relative z-10 flex flex-wrap gap-2">
           {(
             [
               {
@@ -213,13 +214,13 @@ export function VerticalPartnerDeck({
           ).map(({ id, icon: Icon, en, ar }) => (
             <button
               key={id}
-              onClick={() => setFilter(id as any)}
+              onClick={() => setFilter(id as 'all' | 'government' | 'developer' | 'bank')}
               aria-pressed={filter === id}
               className={cn(
                 'flex items-center gap-1.5 border px-3.5 py-1.5 text-xs font-semibold transition-all',
                 filter === id
-                  ? 'border-stone-900 bg-stone-900 text-white shadow-xs dark:border-stone-100 dark:bg-stone-100'
-                  : 'border-stone-300/40 bg-stone-100 text-stone-500 hover:text-stone-900 dark:border-stone-800/40 dark:bg-stone-900 dark:text-stone-400',
+                  ? 'border-ink bg-ink text-surface shadow-xs'
+                  : 'border-border/40 bg-surface text-muted-foreground hover:text-ink',
               )}
             >
               {Icon && <Icon className="size-3.5" />}
@@ -229,12 +230,11 @@ export function VerticalPartnerDeck({
         </div>
       </div>
 
-      {/* Interactive Framer Motion Scrollable Grid */}
       <div
         tabIndex={0}
         role="region"
         aria-label={isArabic ? 'قائمة الشركاء' : 'Partner list'}
-        className="relative max-h-95 scrollbar-thin scrollbar-thumb-border overflow-y-auto pr-2 hover:scrollbar-thumb-fjord/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fjord"
+        className="relative z-10 max-h-125 scrollbar-thin scrollbar-thumb-border overflow-y-auto pr-2 hover:scrollbar-thumb-fjord/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fjord"
       >
         <motion.div
           layout
@@ -252,39 +252,39 @@ export function VerticalPartnerDeck({
                 onMouseEnter={() => setHoveredId(partner.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 className={cn(
-                  'group hover:shadow-floating relative flex flex-col justify-between border bg-stone-50/90 p-5 transition-all duration-300 hover:bg-stone-50 dark:bg-stone-950/90',
+                  'group hover:shadow-floating relative flex flex-col justify-between border bg-surface-subtle/90 p-5 transition-all duration-300 hover:bg-surface-subtle ',
                   hoveredId === partner.id
-                    ? '-translate-y-1 border-stone-900/50 dark:border-stone-100/50'
-                    : 'border-stone-300/40 dark:border-stone-800/40',
+                    ? '-translate-y-1 border-stone-900/50 '
+                    : 'border-border/60/40 ',
                 )}
               >
                 <div>
-                  <div className="mb-3 flex items-center justify-between gap-2 border-b border-stone-300/30 pb-3 dark:border-stone-800/30">
-                    <span className="text-[10px] font-bold tracking-widest text-stone-900 uppercase dark:text-stone-100">
+                  <div className="border-border/60/30 mb-3 flex items-center justify-between gap-2 border-b pb-3 ">
+                    <span className="text-[10px] font-bold tracking-widest text-ink uppercase ">
                       {isArabic
                         ? partner.categoryLabelAr
                         : partner.categoryLabelEn}
                     </span>
-                    <span className="inline-flex items-center gap-1 bg-stone-800/10 px-2 py-0.5 text-[9px] font-bold text-stone-800 dark:text-stone-100">
+                    <span className="inline-flex items-center gap-1 bg-ink/10 px-2 py-0.5 text-[9px] font-bold text-ink ">
                       <MapPin className="size-3.5" />
                       {isArabic ? partner.badgeAr : partner.badgeEn}
                     </span>
                   </div>
 
                   <div className="flex items-start justify-between">
-                    <h4 className="font-display text-lg font-bold text-stone-900 transition-colors group-hover:text-stone-900 dark:text-stone-100">
+                    <h4 className="font-display text-lg font-bold text-ink transition-colors group-hover:text-ink ">
                       {partner.name}
                     </h4>
-                    <ArrowUpRight className="size-4 text-stone-900 opacity-50 transition-opacity group-hover:opacity-100 dark:text-stone-100" />
+                    <ArrowUpRight className="size-4 text-ink opacity-50 transition-opacity group-hover:opacity-100" />
                   </div>
-                  <p className="mt-1 text-xs leading-relaxed font-light text-stone-500 dark:text-stone-400">
+                  <p className="mt-1 text-xs leading-relaxed font-light text-muted-foreground">
                     {isArabic ? partner.roleAr : partner.roleEn}
                   </p>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-stone-300/30 pt-3 font-mono text-[11px] text-stone-500 dark:border-stone-800/30 dark:text-stone-400">
+                <div className="mt-5 flex items-center justify-between border-t border-border/30 pt-3 font-mono text-[11px] text-muted-foreground">
                   <span className="truncate">{partner.lawVerification}</span>
-                  <FileCheck2 className="ms-1 size-3.5 shrink-0 text-stone-800" />
+                  <FileCheck2 className="ms-1 size-3.5 shrink-0 text-ink" />
                 </div>
               </motion.div>
             ))}
@@ -293,16 +293,16 @@ export function VerticalPartnerDeck({
       </div>
 
       {/* Footer Info */}
-      <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-stone-300/30 pt-4 text-xs font-light text-stone-500 dark:border-stone-800/30 dark:text-stone-400">
+      <div className="border-border/60/30 mt-6 flex flex-wrap items-center justify-between gap-3 border-t pt-4 text-xs font-light text-muted-foreground  dark:text-stone-400">
         <div className="flex items-center gap-2">
-          <Zap className="size-4 shrink-0 text-stone-900 dark:text-stone-100" />
+          <Zap className="size-4 shrink-0 text-ink " />
           <span>
             {isArabic
               ? 'جميع حسابات الضمان موثقة بموجب القانون رقم 8 لسنة 2007 الصادر عن حكومة دبي'
               : 'All escrow accounts verified under Dubai Law No. 8 of 2007 for investor capital protection.'}
           </span>
         </div>
-        <div className="flex items-center gap-1.5 font-semibold text-stone-900 dark:text-stone-100">
+        <div className="flex items-center gap-1.5 font-semibold text-ink ">
           <ArrowUpDown className="size-3.5" />
           <span>
             {isArabic ? 'التمرير العمودي للاستكشاف' : 'Scroll to explore'}

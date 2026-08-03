@@ -67,21 +67,21 @@ export function BookViewingModal({
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative z-10 w-full max-w-md bg-stone-50 shadow-2xl dark:bg-stone-950"
+            className="relative z-10 w-full max-w-md bg-surface-subtle shadow-2xl "
             dir={isArabic ? 'rtl' : 'ltr'}
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-stone-300/40 p-5 dark:border-stone-800/40">
+            <div className="border-border/60/40 flex items-center justify-between border-b p-5 ">
               <h2
                 id="modal-title"
-                className="font-display text-lg font-bold text-stone-900 dark:text-stone-50"
+                className="font-display text-lg font-bold text-ink "
               >
                 {isArabic ? 'حجز موعد للمعاينة' : 'Book a Viewing'}
               </h2>
               <button
                 onClick={onClose}
                 aria-label={isArabic ? 'إغلاق' : 'Close'}
-                className="text-stone-500 transition-colors hover:text-stone-900 dark:text-stone-400"
+                className="text-muted-foreground transition-colors hover:text-ink dark:text-stone-400"
               >
                 <X className="size-5" />
               </button>
@@ -91,7 +91,7 @@ export function BookViewingModal({
               {step === 'form' ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <p className="mb-4 text-sm font-light text-stone-500 dark:text-stone-400">
+                    <p className="mb-4 text-sm font-light text-muted-foreground dark:text-stone-400">
                       {isArabic
                         ? `احجز موعداً خاصاً لمعاينة ${propertyName}`
                         : `Schedule a private viewing for ${propertyName}`}
@@ -103,7 +103,7 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="firstName"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
                         >
                           {isArabic ? 'الاسم الأول' : 'First Name'}
                         </label>
@@ -112,14 +112,14 @@ export function BookViewingModal({
                           name="firstName"
                           required
                           type="text"
-                          className="w-full border-b border-stone-300/60 bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none dark:border-stone-800/60"
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
                           placeholder={isArabic ? 'الاسم الأول' : 'John'}
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="lastName"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
                         >
                           {isArabic ? 'اسم العائلة' : 'Last Name'}
                         </label>
@@ -128,7 +128,7 @@ export function BookViewingModal({
                           name="lastName"
                           required
                           type="text"
-                          className="w-full border-b border-stone-300/60 bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none dark:border-stone-800/60"
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
                           placeholder={isArabic ? 'اسم العائلة' : 'Doe'}
                         />
                       </div>
@@ -138,7 +138,7 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="phone"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
                         >
                           {isArabic ? 'الهاتف' : 'Phone'}
                         </label>
@@ -147,14 +147,14 @@ export function BookViewingModal({
                           name="phone"
                           required
                           type="tel"
-                          className="w-full border-b border-stone-300/60 bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none dark:border-stone-800/60"
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
                           placeholder="+971"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
                         >
                           {isArabic ? 'البريد الإلكتروني' : 'Email'}
                         </label>
@@ -163,7 +163,7 @@ export function BookViewingModal({
                           name="email"
                           required
                           type="email"
-                          className="w-full border-b border-stone-300/60 bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none dark:border-stone-800/60"
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
                           placeholder="you@email.com"
                         />
                       </div>
@@ -173,13 +173,13 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="date"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
                         >
                           {isArabic ? 'التاريخ المفضل' : 'Date'}
                         </label>
                         <div className="relative">
                           <Calendar
-                            className={`absolute top-2.5 size-3.5 text-stone-500 dark:text-stone-400 ${isArabic ? 'right-0' : 'left-0'}`}
+                            className={`absolute top-2.5 size-3.5 text-muted-foreground dark:text-stone-400 ${isArabic ? 'right-0' : 'left-0'}`}
                           />
                           <input
                             id="date"
@@ -187,7 +187,7 @@ export function BookViewingModal({
                             required
                             type="date"
                             min={new Date().toISOString().split('T')[0]}
-                            className={`w-full border-b border-stone-300/60 bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none dark:border-stone-800/60 ${
+                            className={`border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none  ${
                               isArabic ? 'pr-6' : 'pl-6'
                             }`}
                           />
@@ -196,20 +196,20 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="time"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-stone-500 uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
                         >
                           {isArabic ? 'الوقت المفضل' : 'Time'}
                         </label>
                         <div className="relative">
                           <Clock
-                            className={`absolute top-2.5 size-3.5 text-stone-500 dark:text-stone-400 ${isArabic ? 'right-0' : 'left-0'}`}
+                            className={`absolute top-2.5 size-3.5 text-muted-foreground dark:text-stone-400 ${isArabic ? 'right-0' : 'left-0'}`}
                           />
                           <select
                             id="time"
                             name="time"
                             required
                             defaultValue=""
-                            className={`w-full appearance-none border-b border-stone-300/60 bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none dark:border-stone-800/60 ${
+                            className={`border-border/60/60 w-full appearance-none border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none  ${
                               isArabic ? 'pr-6' : 'pl-6'
                             }`}
                           >
@@ -240,7 +240,7 @@ export function BookViewingModal({
                   <div className="pt-6">
                     <Button
                       type="submit"
-                      className="w-full bg-stone-900 py-5 text-xs font-bold tracking-widest text-white uppercase hover:bg-stone-900/90 dark:bg-stone-100/90"
+                      className="w-full bg-fjord py-5 text-xs font-bold tracking-widest text-white uppercase hover:bg-fjord/90 dark:bg-surface/90"
                     >
                       {isArabic ? 'تأكيد الحجز' : 'Confirm Booking'}
                     </Button>
@@ -248,14 +248,14 @@ export function BookViewingModal({
                 </form>
               ) : (
                 <div className="space-y-5 py-10 text-center">
-                  <div className="mx-auto flex size-14 items-center justify-center bg-stone-800/10">
-                    <CheckCircle2 className="size-7 text-stone-800" />
+                  <div className="mx-auto flex size-14 items-center justify-center bg-fjord/10">
+                    <CheckCircle2 className="size-7 text-fjord" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="font-display text-xl font-bold text-stone-900 dark:text-stone-50">
+                    <h3 className="font-display text-xl font-bold text-ink ">
                       {isArabic ? 'تم تأكيد طلبك' : 'Request Confirmed'}
                     </h3>
-                    <p className="mx-auto max-w-xs text-sm font-light text-stone-500 dark:text-stone-400">
+                    <p className="mx-auto max-w-xs text-sm font-light text-muted-foreground dark:text-stone-400">
                       {isArabic
                         ? 'سيقوم أحد وكلائنا المختصين بالتواصل معك قريباً لتأكيد الموعد النهائي.'
                         : 'One of our specialized agents will contact you shortly to confirm the final appointment.'}
@@ -264,7 +264,7 @@ export function BookViewingModal({
                   <Button
                     onClick={onClose}
                     variant="outline"
-                    className="dark:bg-stone-950-hover mt-6 border-stone-300/60 px-8 text-xs font-bold tracking-widest uppercase hover:bg-stone-50 dark:border-stone-800/60"
+                    className="-hover border-border/60/60 mt-6 px-8 text-xs font-bold tracking-widest uppercase hover:bg-surface-subtle "
                   >
                     {isArabic ? 'العودة' : 'Return'}
                   </Button>

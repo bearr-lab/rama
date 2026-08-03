@@ -36,24 +36,25 @@ export async function POST(req: Request) {
     const lastName =
       nameParts.length > 1 ? nameParts.slice(1).join(' ') : 'N/A';
 
-    const { error } = await supabase.from('leads').upsert(
-      [
-        {
-          first_name: firstName,
-          last_name: lastName,
-          email: validatedData.email,
-          phone: validatedData.phone,
-          ai_notes: validatedData.intent || 'General Inquiry',
-          source: 'ai_concierge',
-        },
-      ],
-      { onConflict: 'email' },
-    );
+    const { error } = await supabase.from('leads').insert([
+      {
+        first_name: firstName,
+        last_name: lastName,
+        email: validatedData.email,
+        phone: validatedData.phone,
+        ai_notes: validatedData.intent || 'General Inquiry',
+        source: 'ai_concierge',
+      },
+    ]);
 
     if (error) {
-      console.error('Supabase Insert Error:', error);
+      // 23505 = unique_violation: email already exists — treat as success (idempotent re-submission)
+      if (error.code === '23505') {
+        return NextResponse.json({ success: true });
+      }
+      console.error('Supabase Insert Error:', error.code, error.message, error.details);
       return NextResponse.json(
-        { error: 'Failed to save lead' },
+        { error: 'Failed to save lead', detail: error.message },
         { status: 500 },
       );
     }

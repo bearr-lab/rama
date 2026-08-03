@@ -128,7 +128,7 @@ export function ResetPasswordForm({ locale }: ResetPasswordFormProps) {
       {error && (
         <motion.p
           variants={itemVariants}
-          className="rounded-xl bg-risk-soft px-4 py-3 text-sm text-risk"
+          className="rounded-none bg-risk-soft px-4 py-3 text-sm text-risk"
           role="alert"
         >
           {error}
@@ -137,7 +137,7 @@ export function ResetPasswordForm({ locale }: ResetPasswordFormProps) {
       {notice && (
         <motion.p
           variants={itemVariants}
-          className="rounded-xl bg-verified-soft px-4 py-3 text-sm text-verified"
+          className="rounded-none bg-verified-soft px-4 py-3 text-sm text-verified"
           role="status"
         >
           {notice}

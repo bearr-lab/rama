@@ -104,30 +104,30 @@ export function CommunitiesEditorial({ isArabic }: CommunitiesEditorialProps) {
       </Section>
 
       {/* Market Performance */}
-      <Section className="bg-stone-50 py-16 dark:bg-stone-900">
+      <Section className="bg-surface-subtle py-16 ">
         <Container size="lg">
           <div className="mb-10 flex flex-col items-center text-center">
-            <h2 className="font-display text-2xl font-bold text-stone-900 dark:text-stone-50">
+            <h2 className="font-display text-2xl font-bold text-ink ">
               {isArabic ? 'أداء السوق' : 'Market Performance'}
             </h2>
-            <p className="mt-2 text-sm text-stone-500 dark:text-stone-400">
+            <p className="mt-2 text-sm text-muted-foreground dark:text-stone-400">
               {isArabic
                 ? 'مؤشرات قوية عبر جميع المجمعات السكنية'
                 : 'Strong indicators across all premium communities'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-px bg-stone-200 md:grid-cols-3 dark:bg-stone-800">
+          <div className="grid grid-cols-1 gap-px bg-border/50 md:grid-cols-3 ">
             {marketStats.map((stat, idx) => (
               <div
                 key={idx}
-                className="flex flex-col items-center justify-center bg-stone-50 py-10 dark:bg-stone-900"
+                className="flex flex-col items-center justify-center bg-surface-subtle py-10 "
               >
-                <p className="text-xs font-semibold tracking-widest text-stone-500 uppercase dark:text-stone-400">
+                <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase dark:text-stone-400">
                   {stat.label}
                 </p>
                 <div className="mt-2 flex items-baseline gap-3">
-                  <span className="font-mono text-4xl font-bold text-stone-900 dark:text-stone-50">
+                  <span className="font-mono text-4xl font-bold text-ink ">
                     {stat.value}
                   </span>
                   <span className="text-xs font-bold text-green-600 dark:text-green-500">

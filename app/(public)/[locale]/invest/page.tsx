@@ -47,6 +47,7 @@ export default async function InvestPage({
             : 'Discover exceptional ROI with real-time, AI-driven analytics of the Dubai real estate market.'
         }
         backgroundImage={heroImage}
+        backgroundVideo="/videos/invest-hero-bg.mp4"
         variant="editorial"
         mediaPosition="object-top"
         badge={
@@ -93,7 +94,7 @@ export default async function InvestPage({
                     ? 'مدفوعات آمنة مدعومة بالبلوك تشين وعقود ذكية للمستثمرين العالميين.'
                     : 'Secure blockchain-verified payments and smart contracts for global investors.'}
                 </p>
-                <span className="inline-flex items-center text-sm font-bold tracking-widest text-muted uppercase">
+                <span className="inline-flex items-center text-sm font-bold tracking-widest text-muted-foreground uppercase">
                   {isArabic ? 'قريباً' : 'Coming Soon'}
                 </span>
               </div>

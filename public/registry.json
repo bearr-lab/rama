@@ -530,6 +530,42 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "metric-strip",
+      "type": "registry:ui",
+      "title": "Metric Strip",
+      "description": "A metric strip component for dashboard statistics.",
+      "files": [
+        {
+          "path": "components/ui/metric-strip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "page-shell",
+      "type": "registry:ui",
+      "title": "Page Shell",
+      "description": "A standard wrapper for page layout.",
+      "files": [
+        {
+          "path": "components/ui/page-shell.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "section-header",
+      "type": "registry:ui",
+      "title": "Section Header",
+      "description": "A standardized header for page sections.",
+      "files": [
+        {
+          "path": "components/ui/section-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
