@@ -223,7 +223,7 @@ export function AIIntelligenceHub({ isArabic }: { locale: string; isArabic: bool
             </AnimatedList>
             
             {/* Fade overlay for the list */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-surface to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-linear-to-t from-surface to-transparent" />
           </div>
         </div>
       </div>
