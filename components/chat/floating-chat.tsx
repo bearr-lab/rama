@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useChat, type Message } from '@ai-sdk/react';
+import type { ToolInvocation } from 'ai';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -171,7 +172,7 @@ export function FloatingChat() {
                   )}
 
                   {/* Tool Invocations (Generative UI) */}
-                  {m.toolInvocations?.map((toolInvocation) => {
+                  {m.toolInvocations?.map((toolInvocation: any) => {
                     if (toolInvocation.toolName === 'collect_lead_info') {
                       return (
                         <div
