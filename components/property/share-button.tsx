@@ -69,7 +69,7 @@ export function ShareButton({ title, text, url, className }: ShareButtonProps) {
         {copied ? (
           <Check className="size-4 text-verified" />
         ) : (
-          <Share2 className="size-4 text-ink" />
+          <Share2 className="size-4 text-fjord" />
         )}
       </TooltipTrigger>
       <TooltipContent>

@@ -62,7 +62,7 @@ export function FilterChips({
             className={cn(
               'flex cursor-pointer items-center gap-1.5 rounded-none px-4 py-1.5 text-xs font-semibold tracking-wider uppercase shadow-xs backdrop-blur-md transition-all duration-200',
               isSelected
-                ? 'scale-1.02 border border-white bg-white text-stone-900 shadow-md'
+                ? 'scale-1.02 border border-white bg-white text-fjord shadow-md'
                 : 'border border-white/30 bg-white/15 text-white hover:bg-white/30',
             )}
           >

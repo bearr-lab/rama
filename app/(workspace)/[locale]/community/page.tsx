@@ -94,7 +94,7 @@ export default function CommunityWorkspacePage() {
                 </div>
                 <div
                   className={cn(
-                    'flex size-12 shrink-0 items-center justify-center border font-display text-lg font-extrabold shadow-resting',
+                    'shadow-resting flex size-12 shrink-0 items-center justify-center border font-display text-lg font-extrabold',
                     isSelected
                       ? 'border-ink bg-ink font-black text-surface'
                       : 'border-border bg-surface-subtle text-ink group-hover:border-ink group-hover:text-ink',
@@ -129,7 +129,7 @@ export default function CommunityWorkspacePage() {
       </div>
 
       {/* Featured Properties in Community Banner */}
-      <div className="flex flex-col items-center justify-between gap-6 border-t border-border bg-surface p-6 shadow-elevated sm:flex-row md:p-8">
+      <div className="shadow-elevated flex flex-col items-center justify-between gap-6 border-t border-border bg-surface p-6 sm:flex-row md:p-8">
         <div className="max-w-xl space-y-2">
           <div className="inline-flex items-center gap-2 border border-border/60 bg-border/50 px-3 py-1 text-xs font-bold text-ink">
             <ShieldCheck className="size-3.5" />

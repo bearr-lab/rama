@@ -216,7 +216,7 @@ export function PortfolioDashboard() {
             <span>Total Asset Value</span>
             <Building2 className="size-4 text-fjord" />
           </div>
-          <div className="text-display-sm font-mono font-extrabold text-ink">
+          <div className="text-display-sm font-mono font-extrabold text-fjord">
             <Ticker
               value={totalValuation / 1000000}
               prefix="AED "
@@ -264,7 +264,7 @@ export function PortfolioDashboard() {
             <span>Occupancy & Leases</span>
             <Users className="size-4 text-purple-500" />
           </div>
-          <div className="text-display-sm font-display font-extrabold text-ink">
+          <div className="text-display-sm font-display font-extrabold text-fjord">
             100%{' '}
             <span className="text-body-sm font-sans font-bold text-muted-foreground">
               (3/3 Units)
@@ -370,7 +370,7 @@ export function PortfolioDashboard() {
         <div className="animate-in fade-in overflow-hidden duration-200">
           <div className="flex flex-col gap-2 border-b border-border/40 pb-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h3 className="text-h3 font-display font-bold text-ink">
+              <h3 className="text-h3 font-display font-bold text-fjord">
                 Asset Roster & Valuation Register
               </h3>
               <p className="text-caption text-muted-foreground">
@@ -406,7 +406,7 @@ export function PortfolioDashboard() {
                       className="transition-colors hover:bg-surface-subtle/50"
                     >
                       <td className="p-4 pl-6 text-left">
-                        <span className="text-body-sm block font-extrabold text-ink">
+                        <span className="text-body-sm block font-extrabold text-fjord">
                           {asset.title}
                         </span>
                         <span className="text-caption text-muted-foreground">
@@ -414,7 +414,7 @@ export function PortfolioDashboard() {
                         </span>
                       </td>
                       <td className="p-4 text-right tabular-nums">
-                        <span className="text-body-sm block font-mono font-bold text-ink">
+                        <span className="text-body-sm block font-mono font-bold text-fjord">
                           AED {asset.currentValue.toLocaleString()}
                         </span>
                         <span className="text-[11px] font-semibold text-emerald-500">
@@ -514,7 +514,7 @@ export function PortfolioDashboard() {
                     <span className="block text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
                       Estimated Cost
                     </span>
-                    <span className="text-body-sm font-mono font-extrabold text-ink">
+                    <span className="text-body-sm font-mono font-extrabold text-fjord">
                       AED {t.cost.toLocaleString()}
                     </span>
                   </div>
@@ -529,7 +529,7 @@ export function PortfolioDashboard() {
                           ),
                         );
                       }}
-                      className="rounded-none bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-black shadow-2xs transition-colors hover:bg-emerald-400"
+                      className="rounded-none bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-fjord shadow-2xs transition-colors hover:bg-emerald-400"
                     >
                       Mark Completed
                     </button>
@@ -550,7 +550,7 @@ export function PortfolioDashboard() {
         <div className="shadow-subtle animate-in fade-in space-y-6 rounded-none border border-border bg-surface p-6 duration-200 lg:p-8">
           <div className="flex items-center justify-between border-b border-border pb-4">
             <div>
-              <h3 className="text-h3 font-display font-bold text-ink">
+              <h3 className="text-h3 font-display font-bold text-fjord">
                 Annual Financial Performance & Tax Ledger
               </h3>
               <p className="text-caption text-muted-foreground">
@@ -604,7 +604,7 @@ export function PortfolioDashboard() {
             <div className="flex items-center gap-3">
               <Sparkles className="size-5 shrink-0 text-sky-500" />
               <div>
-                <h4 className="text-body-sm font-bold text-ink">
+                <h4 className="text-body-sm font-bold text-fjord">
                   RAMA AI Tax & Structuring Advisor
                 </h4>
                 <p className="text-caption mt-0.5 leading-relaxed text-muted-foreground">
@@ -629,7 +629,7 @@ export function PortfolioDashboard() {
           </div>
 
           {/* Cashflow Forecast Sparklines */}
-          <div className="space-y-4 rounded-none border border-border/60 bg-surface-subtle p-6 shadow-resting  ">
+          <div className="shadow-resting space-y-4 rounded-none border border-border/60 bg-surface-subtle p-6  ">
             <h4 className="font-display text-lg font-bold text-ink ">5-Year Cashflow Forecast</h4>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {[
@@ -654,7 +654,7 @@ export function PortfolioDashboard() {
                 <span className="text-xs font-bold tracking-widest text-fjord uppercase">
                   RERA Ecosystem & Escrow Network
                 </span>
-                <h3 className="mt-1 font-display text-lg font-bold text-ink">
+                <h3 className="mt-1 font-display text-lg font-bold text-fjord">
                   Verified Institutional Banking & Master Developer Partners
                 </h3>
               </div>
@@ -707,10 +707,10 @@ export function PortfolioDashboard() {
 
       {/* Log Maintenance Ticket Modal */}
       {isLogOpen && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/60 p-4 backdrop-blur-sm">
           <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 rounded-none border border-border bg-surface p-6 shadow-2xl">
             <div className="flex items-center justify-between border-b border-border pb-4">
-              <h3 className="text-h3 font-display font-bold text-ink">
+              <h3 className="text-h3 font-display font-bold text-fjord">
                 Log Maintenance Ticket
               </h3>
               <button
@@ -723,7 +723,7 @@ export function PortfolioDashboard() {
 
             <form onSubmit={handleCreateTicket} className="space-y-4">
               <div>
-                <label className="text-caption mb-1 block font-bold text-ink">
+                <label className="text-caption mb-1 block font-bold text-fjord">
                   Issue / Maintenance Required
                 </label>
                 <input
@@ -737,7 +737,7 @@ export function PortfolioDashboard() {
               </div>
 
               <div>
-                <label className="text-caption mb-1 block font-bold text-ink">
+                <label className="text-caption mb-1 block font-bold text-fjord">
                   Property
                 </label>
                 <select
@@ -754,7 +754,7 @@ export function PortfolioDashboard() {
               </div>
 
               <div>
-                <label className="text-caption mb-1 block font-bold text-ink">
+                <label className="text-caption mb-1 block font-bold text-fjord">
                   Estimated Cost (AED)
                 </label>
                 <input

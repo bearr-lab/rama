@@ -92,7 +92,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
                 size: 'sm',
               }),
               isDark
-                ? 'rounded-button bg-white font-medium text-ink hover:bg-white/90'
+                ? 'rounded-button bg-white font-medium text-fjord hover:bg-white/90'
                 : 'rounded-button bg-fjord font-medium text-white hover:bg-fjord-hover',
             )}
           >
@@ -110,7 +110,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
       <DropdownMenuTrigger className="relative size-8 overflow-hidden rounded-none focus:ring-2 focus:ring-fjord/50 focus:outline-none">
         <Avatar className="size-full border border-border">
           <AvatarImage src={user.user_metadata?.avatar_url} alt={user.email} />
-          <AvatarFallback className="bg-surface-subtle text-xs text-ink">
+          <AvatarFallback className="bg-surface-subtle text-xs text-fjord">
             {initials}
           </AvatarFallback>
         </Avatar>
@@ -119,7 +119,7 @@ export function UserMenu({ locale = 'en', isDark = false }: UserMenuProps) {
         <DropdownMenuGroup>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm leading-none font-medium text-ink">
+              <p className="text-sm leading-none font-medium text-fjord">
                 {user.user_metadata?.full_name || 'Account'}
               </p>
               <p className="text-xs leading-none text-muted-foreground">

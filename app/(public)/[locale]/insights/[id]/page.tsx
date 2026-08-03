@@ -62,7 +62,7 @@ export default async function InsightDetailPage({
         description={insight.description}
         backgroundImage={insight.image || fallbackImage}
         badge={
-          <span className="inline-flex rounded-none border border-stone-800 bg-ink px-3 py-1 text-xs font-medium text-surface">
+          <span className="border-border-strong inline-flex rounded-none border bg-ink px-3 py-1 text-xs font-medium text-surface">
             {insight.category}
           </span>
         }
@@ -70,19 +70,19 @@ export default async function InsightDetailPage({
       >
         <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-white/70">
           {insight.author && (
-            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-fjord/40 px-3 py-1.5 backdrop-blur-md">
               <User className="size-3.5 text-white/70" />
               <span>{insight.author}</span>
             </div>
           )}
           {insight.readTime && (
-            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-fjord/40 px-3 py-1.5 backdrop-blur-md">
               <Clock className="size-3.5 text-white/70" />
               <span>{insight.readTime}</span>
             </div>
           )}
           {insight.date && (
-            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-black/40 px-3 py-1.5 backdrop-blur-md">
+            <div className="flex items-center gap-2 rounded-none border border-white/10 bg-fjord/40 px-3 py-1.5 backdrop-blur-md">
               <span>{insight.date}</span>
             </div>
           )}
@@ -92,7 +92,7 @@ export default async function InsightDetailPage({
       <div className="container mx-auto mt-16 max-w-3xl px-4">
         <Link
           href={`/${locale}/insights`}
-          className="group mb-12 inline-flex items-center gap-2 text-sm font-bold tracking-wider text-muted-foreground uppercase transition-colors hover:text-ink dark:text-stone-400 dark:hover:text-surface"
+          className="group mb-12 inline-flex items-center gap-2 text-sm font-bold tracking-wider text-muted-foreground uppercase transition-colors hover:text-ink dark:text-muted/50 dark:hover:text-surface"
         >
           {isArabic ? (
             <>
@@ -111,7 +111,7 @@ export default async function InsightDetailPage({
           <h2 className="mb-8 text-3xl font-bold tracking-tight">
             {insight.title}
           </h2>
-          <p className="lead mb-8 font-serif text-xl text-muted-foreground italic dark:text-stone-400">
+          <p className="lead mb-8 font-serif text-xl text-muted-foreground italic dark:text-muted/50">
             {insight.description}
           </p>
 

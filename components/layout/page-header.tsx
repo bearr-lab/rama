@@ -46,7 +46,7 @@ export function PageHeader({
       >
         <Container size="2xl" className="relative z-10 space-y-6">
           <div>
-            <h1 className="mb-4 flex items-center gap-3 font-display text-4xl font-medium tracking-tight text-ink md:text-5xl lg:text-6xl">
+            <h1 className="mb-4 flex items-center gap-3 font-display text-4xl font-medium tracking-tight text-fjord md:text-5xl lg:text-6xl">
               {icon && <span className="text-fjord">{icon}</span>}
               {title}
             </h1>
@@ -95,7 +95,7 @@ export function PageHeader({
         ) : null}
 
         {/* Gradient overlay — matches landing hero */}
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-fjord/10" />
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
       </div>
 

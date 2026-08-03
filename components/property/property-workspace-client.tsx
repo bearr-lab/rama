@@ -68,7 +68,7 @@ export function PropertyWorkspaceClient({
       <div className="mb-8">
         <Link
           href={`/${locale}/discover`}
-          className="text-body-sm inline-flex items-center gap-2 font-bold text-muted-foreground transition-colors hover:text-ink dark:text-stone-400"
+          className="text-body-sm inline-flex items-center gap-2 font-bold text-muted-foreground transition-colors hover:text-ink dark:text-muted/50"
         >
           <ArrowLeft className="size-4" />
           Back to Search
@@ -93,7 +93,7 @@ export function PropertyWorkspaceClient({
                 className={cn(
                   'inline-flex items-center gap-1.5 rounded-none px-3 py-1.5 text-[10px] font-bold tracking-wider uppercase shadow-sm backdrop-blur-md',
                   isVerified
-                    ? 'border border-stone-900/40 bg-border/50 text-ink   '
+                    ? 'border border-fjord/40 bg-border/50 text-ink   '
                     : 'border border-review/40 bg-surface text-review ',
                 )}
               >
@@ -150,7 +150,7 @@ export function PropertyWorkspaceClient({
                 {property.community}
               </span>
               <span className="size-1 rounded-none bg-border" />
-              <span className="text-xs font-medium tracking-widest text-muted-foreground uppercase dark:text-stone-400">
+              <span className="text-xs font-medium tracking-widest text-muted-foreground uppercase dark:text-muted/50">
                 Penthouse
               </span>
             </div>
@@ -219,8 +219,8 @@ export function PropertyWorkspaceClient({
                 className={cn(
                   'border-b-2 py-4 text-sm font-bold transition-colors',
                   activeTab === tab.id
-                    ? 'border-stone-900 text-ink  '
-                    : 'border-transparent text-muted-foreground hover:text-ink dark:text-stone-400',
+                    ? 'border-fjord text-ink  '
+                    : 'border-transparent text-muted-foreground hover:text-ink dark:text-muted/50',
                 )}
               >
                 {tab.label}
@@ -234,7 +234,7 @@ export function PropertyWorkspaceClient({
               <div className="animate-in fade-in space-y-8 duration-300">
                 <div className="grid grid-cols-2 gap-y-6 sm:grid-cols-4">
                   <div>
-                    <p className="text-xs text-muted-foreground dark:text-stone-400">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Bedrooms
                     </p>
                     <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
@@ -242,7 +242,7 @@ export function PropertyWorkspaceClient({
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground dark:text-stone-400">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Bathrooms
                     </p>
                     <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
@@ -250,7 +250,7 @@ export function PropertyWorkspaceClient({
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground dark:text-stone-400">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Size
                     </p>
                     <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
@@ -259,7 +259,7 @@ export function PropertyWorkspaceClient({
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground dark:text-stone-400">
+                    <p className="text-xs text-muted-foreground dark:text-muted/50">
                       Developer
                     </p>
                     <p className="mt-1 flex items-center gap-1.5 font-bold text-ink ">
@@ -490,18 +490,18 @@ export function PropertyWorkspaceClient({
             {/* Evidence Notes */}
             <div className="rounded-none border border-border/60 bg-surface-subtle p-6 shadow-sm  ">
               <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink ">
-                <FileText className="size-5 text-muted-foreground dark:text-stone-400" />
+                <FileText className="size-5 text-muted-foreground dark:text-muted/50" />
                 Your Evidence Notes
               </h3>
               <textarea
                 placeholder="Capture your thoughts, trade-offs, and observations here..."
-                className="min-h-30 w-full resize-none rounded-none border border-border/60 bg-surface-subtle p-4 text-sm text-ink placeholder:text-muted-foreground focus:border-stone-900 focus:ring-1 focus:ring-ink focus:outline-none   dark:text-stone-400"
+                className="min-h-30 w-full resize-none rounded-none border border-border/60 bg-surface-subtle p-4 text-sm text-ink placeholder:text-muted-foreground focus:border-fjord focus:ring-1 focus:ring-ink focus:outline-none   dark:text-muted/50"
               />
               <div className="mt-4 border-t border-border/60 pt-4 ">
-                <h4 className="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400">
+                <h4 className="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50">
                   Open Questions
                 </h4>
-                <button className="flex w-full items-center gap-2 rounded-none border border-dashed border-border/60 bg-surface-subtle p-3 text-sm font-medium text-muted-foreground transition-colors hover:border-stone-900/50 hover:bg-border/50 hover:text-ink      dark:text-stone-400">
+                <button className="flex w-full items-center gap-2 rounded-none border border-dashed border-border/60 bg-surface-subtle p-3 text-sm font-medium text-muted-foreground transition-colors hover:border-fjord/50 hover:bg-border/50 hover:text-ink      dark:text-muted/50">
                   <MessageSquarePlus className="size-4" />
                   Add question for broker
                 </button>
@@ -619,14 +619,14 @@ export function PropertyWorkspaceClient({
                 <h3 className="font-medium text-ink ">
                   {benchmark.title}
                 </h3>
-                <p className="text-xs text-muted-foreground dark:text-stone-400">
+                <p className="text-xs text-muted-foreground dark:text-muted/50">
                   {benchmark.specs}
                 </p>
                 <div className="mt-2 flex items-center gap-2">
                   {benchmark.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-none border border-border/60 bg-surface px-2 py-0.5 text-[10px] font-medium text-muted-foreground   dark:text-stone-400"
+                      className="rounded-none border border-border/60 bg-surface px-2 py-0.5 text-[10px] font-medium text-muted-foreground   dark:text-muted/50"
                     >
                       {tag}
                     </span>

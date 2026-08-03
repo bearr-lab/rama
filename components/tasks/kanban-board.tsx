@@ -195,7 +195,7 @@ export function KanbanBoard() {
       {/* Controls Bar */}
       <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 sm:flex-row sm:items-center ">
         <div className="flex items-center gap-2">
-          <span className="text-body-sm font-bold text-muted-foreground dark:text-stone-400">
+          <span className="text-body-sm font-bold text-muted-foreground dark:text-muted/50">
             Filter Priority:
           </span>
           <div className="flex items-center gap-1 border-transparent bg-surface-subtle p-1  ">
@@ -207,7 +207,7 @@ export function KanbanBoard() {
                   'px-3 py-1 text-xs font-bold capitalize transition-all',
                   filterPriority === p
                     ? 'bg-fjord text-white shadow-sm'
-                    : 'text-muted-foreground hover:text-ink dark:text-stone-400',
+                    : 'text-muted-foreground hover:text-ink dark:text-muted/50',
                 )}
               >
                 {p}
@@ -223,7 +223,7 @@ export function KanbanBoard() {
               'px-3 py-1 text-xs font-bold transition-all',
               viewMode === 'kibo'
                 ? 'bg-fjord text-white shadow-sm dark:bg-surface'
-                : 'text-muted-foreground hover:text-ink dark:text-stone-400',
+                : 'text-muted-foreground hover:text-ink dark:text-muted/50',
             )}
           >
             RAMA Deal Pipeline
@@ -234,7 +234,7 @@ export function KanbanBoard() {
               'px-3 py-1 text-xs font-bold transition-all',
               viewMode === 'classic'
                 ? 'bg-fjord text-white shadow-sm'
-                : 'text-muted-foreground hover:text-ink dark:text-stone-400',
+                : 'text-muted-foreground hover:text-ink dark:text-muted/50',
             )}
           >
             Classic Board
@@ -247,7 +247,7 @@ export function KanbanBoard() {
               setTasks(DEFAULT_TASKS);
               localStorage.removeItem('rama_v2_kanban_tasks');
             }}
-            className="text-caption font-bold text-muted-foreground transition-colors hover:text-ink dark:text-stone-400"
+            className="text-caption font-bold text-muted-foreground transition-colors hover:text-ink dark:text-muted/50"
           >
             Reset Demo Board
           </button>
@@ -287,11 +287,11 @@ export function KanbanBoard() {
                   className={cn(
                     'inline-flex items-center gap-1.5 border px-2.5 py-0.5 text-[10px] font-extrabold tracking-wider uppercase',
                     task.priority === 'high' &&
-                      'bg-border/50/10 border-stone-400/20 text-ink   dark:text-stone-400 ',
+                      'bg-border/50/10 border-stone-400/20 text-ink   dark:text-muted/50 ',
                     task.priority === 'medium' &&
-                      'bg-border/50/10 border-stone-400/20 text-ink   dark:text-stone-300 ',
+                      'bg-border/50/10 border-stone-400/20 text-ink   dark:text-muted/30 ',
                     task.priority === 'low' &&
-                      'border-border/60/80 bg-surface text-muted-foreground   dark:text-stone-400',
+                      'border-border/60/80 bg-surface text-muted-foreground   dark:text-muted/50',
                   )}
                 >
                   <span
@@ -308,7 +308,7 @@ export function KanbanBoard() {
                 </span>
                 <button
                   onClick={() => deleteTask(task.id)}
-                  className="hover:bg-border/50/10 p-1 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 hover:text-ink dark:text-stone-400"
+                  className="hover:bg-border/50/10 p-1 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 hover:text-ink dark:text-muted/50"
                   title="Delete Task"
                 >
                   <Trash2 className="size-3.5" />
@@ -318,12 +318,12 @@ export function KanbanBoard() {
                 <h5 className="text-body-sm leading-snug font-bold text-ink dark:text-white">
                   {task.title}
                 </h5>
-                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted-foreground dark:text-stone-400">
+                <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted-foreground dark:text-muted/50">
                   <Building className="size-3.5 shrink-0 text-ink " />
                   <span className="truncate">{task.property}</span>
                 </div>
               </div>
-              <div className="border-border/60/40 flex items-center justify-between border-t pt-2 text-xs text-muted-foreground  dark:text-stone-400">
+              <div className="border-border/60/40 flex items-center justify-between border-t pt-2 text-xs text-muted-foreground  dark:text-muted/50">
                 <div className="flex items-center gap-1 font-medium">
                   <Clock className="size-3.5" />
                   <span>{task.dueDate}</span>
@@ -372,7 +372,7 @@ export function KanbanBoard() {
                     <h4 className="text-body-sm font-display font-extrabold text-ink ">
                       {col.label}
                     </h4>
-                    <span className="bg-surface-subtle/80 px-2 py-0.5 text-[10px] font-extrabold text-ink uppercase dark:bg-black/40  ">
+                    <span className="bg-surface-subtle/80 px-2 py-0.5 text-[10px] font-extrabold text-ink uppercase dark:bg-fjord/40  ">
                       {col.badge}
                     </span>
                   </div>
@@ -385,7 +385,7 @@ export function KanbanBoard() {
                 <div className="flex-1 space-y-3 overflow-y-auto bg-surface/50 p-4 ">
                   {colTasks.length === 0 ? (
                     <div className="border-border/60/60 flex h-40 flex-col items-center justify-center border-2 border-dashed p-4 text-center ">
-                      <p className="text-caption font-medium text-muted-foreground dark:text-stone-400">
+                      <p className="text-caption font-medium text-muted-foreground dark:text-muted/50">
                         No tasks in this stage
                       </p>
                     </div>
@@ -403,9 +403,9 @@ export function KanbanBoard() {
                               task.priority === 'high' &&
                                 'bg-border/50/10 border-stone-400/20 text-ink   dark:text-stone-200 ',
                               task.priority === 'medium' &&
-                                'bg-border/50/10 border-stone-400/20 text-ink   dark:text-stone-300 ',
+                                'bg-border/50/10 border-stone-400/20 text-ink   dark:text-muted/30 ',
                               task.priority === 'low' &&
-                                'border-border/60/80 bg-surface text-muted-foreground   dark:text-stone-400',
+                                'border-border/60/80 bg-surface text-muted-foreground   dark:text-muted/50',
                             )}
                           >
                             <span
@@ -423,7 +423,7 @@ export function KanbanBoard() {
 
                           <button
                             onClick={() => deleteTask(task.id)}
-                            className="hover:bg-border/50/10 p-1 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 hover:text-ink dark:text-stone-400"
+                            className="hover:bg-border/50/10 p-1 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 hover:text-ink dark:text-muted/50"
                             title="Delete Task"
                           >
                             <Trash2 className="size-3.5" />
@@ -435,7 +435,7 @@ export function KanbanBoard() {
                           <h5 className="text-body-sm leading-snug font-bold text-ink ">
                             {task.title}
                           </h5>
-                          <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted-foreground dark:text-stone-400">
+                          <div className="text-caption mt-1.5 flex items-center gap-1.5 truncate text-muted-foreground dark:text-muted/50">
                             <Building className="size-3.5 shrink-0 text-ink " />
                             <span className="truncate">{task.property}</span>
                           </div>
@@ -443,7 +443,7 @@ export function KanbanBoard() {
 
                         {/* Footer: Due Date & Move Controls */}
                         <div className="text-caption border-border/60/60 flex items-center justify-between border-t pt-2 ">
-                          <div className="flex items-center gap-1.5 font-medium text-muted-foreground dark:text-stone-400">
+                          <div className="flex items-center gap-1.5 font-medium text-muted-foreground dark:text-muted/50">
                             <Calendar className="size-3.5 text-ink " />
                             <span>{task.dueDate}</span>
                           </div>
@@ -482,7 +482,7 @@ export function KanbanBoard() {
 
       {/* New Task Modal */}
       {isModalOpen && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm duration-150">
+        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/60 p-4 backdrop-blur-sm duration-150">
           <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 border border-border/60 bg-surface-subtle p-6 shadow-2xl duration-200  ">
             <div className="flex items-center justify-between border-b border-border/60 pb-4 ">
               <div className="flex items-center gap-2.5">
@@ -495,7 +495,7 @@ export function KanbanBoard() {
               </div>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="text-caption font-bold text-muted-foreground hover:text-fjord dark:text-stone-400"
+                className="text-caption font-bold text-muted-foreground hover:text-fjord dark:text-muted/50"
               >
                 Cancel
               </button>
@@ -577,7 +577,7 @@ export function KanbanBoard() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="text-body-sm border border-border/60 bg-surface-subtle px-5 py-2.5 font-bold text-muted-foreground transition-colors hover:text-fjord   dark:text-stone-400"
+                  className="text-body-sm border border-border/60 bg-surface-subtle px-5 py-2.5 font-bold text-muted-foreground transition-colors hover:text-fjord   dark:text-muted/50"
                 >
                   Cancel
                 </button>

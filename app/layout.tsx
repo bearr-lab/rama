@@ -8,7 +8,6 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import { QueryProvider } from '@/lib/query/provider';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toast';
-import { GlobalLoader } from '@/components/layout/global-loader';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,12 +19,12 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-subtitle',
+  variable: '--font-sans-alt',
   display: 'swap',
   weight: ['400', '500', '600', '700'],
 });
@@ -87,18 +86,17 @@ export default async function RootLayout({
           'antialiased',
           inter.variable,
           spaceGrotesk.variable,
-          plusJakarta.variable,
+          plusJakartaSans.variable,
           notoSansArabic.variable,
           'font-sans',
         )}
       >
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-none focus:bg-fjord focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-fjord focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to main content
         </a>
-        <GlobalLoader />
         <ThemeProvider>
           <QueryProvider>
             <TooltipProvider>{children}</TooltipProvider>

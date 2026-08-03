@@ -73,8 +73,8 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className={`flex flex-col border p-8 transition-colors ${
                   pillar.dark
-                    ? 'border-stone-800/40 bg-ink-bg text-white'
-                    : 'border-border/60/40 bg-white hover:border-stone-900   dark:hover:border-stone-100'
+                    ? 'border-border-strong/40 bg-ink-bg text-white'
+                    : 'border-border/60/40 bg-white hover:border-fjord   dark:hover:border-border/60'
                 }`}
               >
                 {pillar.dark ? (
@@ -89,13 +89,13 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
                   {pillar.title}
                 </h3>
                 <p
-                  className={`mb-8 text-sm leading-relaxed ${pillar.dark ? 'text-white/70' : 'text-muted-foreground dark:text-stone-400'}`}
+                  className={`mb-8 text-sm leading-relaxed ${pillar.dark ? 'text-white/70' : 'text-muted-foreground dark:text-muted/50'}`}
                 >
                   {pillar.description}
                 </p>
 
                 {pillar.comingSoon ? (
-                  <span className="inline-flex items-center text-sm font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400">
+                  <span className="inline-flex items-center text-sm font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50">
                     {isArabic ? 'قريباً' : 'Coming Soon'}
                   </span>
                 ) : (
@@ -113,7 +113,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
       </Section>
 
       {/* UAE Golden Visa Banner */}
-      <Section className="border-y border-stone-800 bg-ink py-24 text-white">
+      <Section className="border-border-strong border-y bg-ink py-24 text-white">
         <Container size="lg">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div>
@@ -123,7 +123,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               <h2 className="font-display text-4xl leading-tight font-bold md:text-5xl">
                 {isArabic ? 'تأشيرة دبي الذهبية' : 'The UAE Golden Visa'}
               </h2>
-              <p className="mt-6 text-base leading-relaxed text-stone-400">
+              <p className="mt-6 text-base leading-relaxed text-muted/50">
                 {isArabic
                   ? 'استثمر بقيمة 2 مليون درهم إماراتي أو أكثر في العقارات واحصل على تأشيرة الإقامة الذهبية لك ولعائلتك. تمتع بملكية أعمال بنسبة 100% وإعفاء كامل من ضريبة الدخل الشخصي.'
                   : 'Invest AED 2M or more in real estate and secure a 10-year Golden Visa for you and your family. Enjoy 100% business ownership and zero personal income tax.'}
@@ -132,7 +132,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   href="/homes?priceMin=2000000"
-                  className="inline-flex h-12 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-black uppercase transition-colors hover:bg-border/50"
+                  className="inline-flex h-12 items-center justify-center bg-white px-8 text-xs font-bold tracking-widest text-fjord uppercase transition-colors hover:bg-border/50"
                 >
                   {isArabic ? 'عقارات مؤهلة' : 'Qualifying Properties'}
                 </Link>
@@ -143,7 +143,7 @@ export function InvestEditorial({ isArabic }: InvestEditorialProps) {
               </div>
             </div>
 
-            <div className="relative h-100 w-full border border-stone-800 bg-black">
+            <div className="border-border-strong relative h-100 w-full border bg-fjord">
               {/* Decorative graphic for Golden Visa */}
               <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                 <div className="absolute size-125 rotate-45 border border-amber-500/20 opacity-50" />

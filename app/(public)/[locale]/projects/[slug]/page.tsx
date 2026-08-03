@@ -133,7 +133,7 @@ export default async function ProjectDetailPage({
             href={`/${locale}/projects`}
             className={cn(
               buttonVariants({ variant: 'ghost', size: 'sm' }),
-              'gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink dark:text-stone-400 dark:hover:text-surface',
+              'gap-2 text-xs font-semibold tracking-widest text-muted-foreground uppercase transition-colors hover:text-ink dark:text-muted/50 dark:hover:text-surface',
             )}
           >
             <ChevronLeft className="size-4" />
@@ -176,11 +176,11 @@ export default async function ProjectDetailPage({
                 {isArabic ? project.locationAr : project.locationEn}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Tag className="size-4 text-ink dark:text-stone-300" />
+                <Tag className="size-4 text-ink dark:text-muted/30" />
                 {isArabic ? project.startingPriceAr : project.startingPriceEn}
               </span>
               <span className="flex items-center gap-2 text-sm font-medium tracking-wider uppercase">
-                <Calendar className="size-4 text-muted-foreground dark:text-stone-400" />
+                <Calendar className="size-4 text-muted-foreground dark:text-muted/50" />
                 {isArabic ? project.handoverAr : project.handoverEn}
               </span>
             </div>
@@ -196,7 +196,7 @@ export default async function ProjectDetailPage({
           <h2 className="font-display text-3xl font-bold text-ink ">
             {isArabic ? 'تفاصيل المشروع قريباً' : 'Project Details Coming Soon'}
           </h2>
-          <p className="mx-auto max-w-xl text-lg leading-relaxed font-light text-muted-foreground dark:text-stone-400">
+          <p className="mx-auto max-w-xl text-lg leading-relaxed font-light text-muted-foreground dark:text-muted/50">
             {isArabic
               ? 'نحن نعمل على إعداد كافة التفاصيل والمخططات والصور الخاصة بهذا المشروع الاستثنائي. يرجى التحقق مرة أخرى قريباً لاستكشاف المزيد.'
               : 'We are preparing all the details, floor plans, and exclusive gallery for this exceptional off-plan project. Please check back soon.'}

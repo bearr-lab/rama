@@ -12,7 +12,7 @@ const attributionVariants = cva(
       variant: {
         overlay:
           'absolute right-3 bottom-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md',
-        inline: 'text-muted-foreground hover:text-ink dark:text-stone-400',
+        inline: 'text-muted-foreground hover:text-fjord dark:text-muted/50',
       },
     },
     defaultVariants: {
@@ -21,6 +21,20 @@ const attributionVariants = cva(
   },
 );
 
+const linkVariants = cva(
+  'font-medium transition-colors',
+  {
+    variants: {
+      variant: {
+        overlay: 'underline decoration-white/40 underline-offset-2 hover:text-white/80 hover:decoration-white',
+        inline: 'hover:text-fjord hover:underline',
+      },
+    },
+    defaultVariants: {
+      variant: 'overlay',
+    },
+  },
+);
 interface UnsplashAttributionProps
   extends
     React.HTMLAttributes<HTMLDivElement>,
@@ -45,7 +59,7 @@ export function UnsplashAttribution({
         href={attr.photographerUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className=" font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
+        className={cn(linkVariants({ variant }))}
         onClick={(e) => e.stopPropagation()}
       >
         {photographerName}
@@ -55,7 +69,7 @@ export function UnsplashAttribution({
         href={attr.unsplashUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className=" font-medium underline decoration-white/40 underline-offset-2 transition-colors hover:text-ink hover:decoration-white"
+        className={cn(linkVariants({ variant }))}
         onClick={(e) => e.stopPropagation()}
       >
         Unsplash

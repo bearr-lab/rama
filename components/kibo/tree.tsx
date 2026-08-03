@@ -43,17 +43,17 @@ const statusBadges = {
   verified: {
     label: 'DLD Verified',
     color:
-      'bg-ink/10 text-ink  border-stone-800/20',
+      'bg-ink/10 text-ink  border-border-strong/20',
   },
   pending: {
     label: 'In Audit',
     color:
-      'bg-border/50/10  text-ink dark:text-stone-300  dark:text-stone-300 border-stone-400/20 ',
+      'bg-border/50/10  text-ink dark:text-muted/30  dark:text-muted/30 border-stone-400/20 ',
   },
   encrypted: {
     label: '256-Bit Encrypted',
     color:
-      'bg-border/50/10  text-muted-foreground dark:text-stone-400 dark:text-muted-foreground dark:text-stone-400 border-border/60/20 ',
+      'bg-border/50/10  text-muted-foreground dark:text-muted/50 dark:text-muted-foreground dark:text-muted/50 border-border/60/20 ',
   },
 };
 
@@ -87,7 +87,7 @@ export const TreeItem = ({
       >
         <div className="flex min-w-0 items-center gap-2.5">
           {hasChildren ? (
-            <span className="text-muted-foreground transition-transform duration-200 dark:text-stone-400">
+            <span className="text-muted-foreground transition-transform duration-200 dark:text-muted/50">
               {isOpen ? (
                 <ChevronDown className="size-4" />
               ) : (
@@ -112,12 +112,12 @@ export const TreeItem = ({
 
         <div className="flex shrink-0 items-center gap-3">
           {node.hash && (
-            <span className="hidden font-mono text-[10px] text-muted-foreground md:inline dark:text-stone-400">
+            <span className="hidden font-mono text-[10px] text-muted-foreground md:inline dark:text-muted/50">
               {node.hash}
             </span>
           )}
           {node.date && (
-            <span className="text-xs text-muted-foreground dark:text-stone-400">
+            <span className="text-xs text-muted-foreground dark:text-muted/50">
               {node.date}
             </span>
           )}

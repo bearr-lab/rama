@@ -125,7 +125,7 @@ export const ImageZoom = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsModalOpen(false)}
-            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-ink-bg/95 p-4 backdrop-blur-xl sm:p-8"
+            className="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-fjord-bg/95 p-4 backdrop-blur-xl sm:p-8"
           >
             <button
               type="button"
@@ -143,7 +143,7 @@ export const ImageZoom = ({
               className="max-h-[90vh] max-w-[90vw] rounded-none object-contain shadow-2xl"
             />
             {caption && (
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-none bg-black/60 px-6 py-2 text-sm font-medium text-white backdrop-blur-md">
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-none bg-fjord/60 px-6 py-2 text-sm font-medium text-white backdrop-blur-md">
                 {caption}
               </div>
             )}

@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Calendar, TrendingUp, Award } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export interface ContributionDay {
@@ -21,7 +21,7 @@ export interface ContributionGraphProps {
 }
 
 const intensityColors = {
-  0: 'bg-neutral-200/60 dark:bg-neutral-800/60',
+  0: 'bg-fjord/10 dark:bg-fjord/20',
   1: 'bg-sky-500/30 dark:bg-sky-500/30',
   2: 'bg-sky-500/60 dark:bg-sky-500/60',
   3: 'bg-fjord/90 dark:bg-sky-400',
@@ -42,7 +42,7 @@ const months = [
   'Nov',
   'Dec',
 ];
-const daysOfWeek = ['Mon', 'Wed', 'Fri'];
+
 
 export const ContributionGraph = ({
   data,
@@ -117,7 +117,7 @@ export const ContributionGraph = ({
           <span className="text-xs font-bold tracking-widest text-fjord uppercase">
             {subtitle}
           </span>
-          <h3 className="mt-1 font-display text-xl font-bold text-ink sm:text-2xl">
+          <h3 className="mt-1 font-display text-xl font-bold text-fjord sm:text-2xl">
             {title}
           </h3>
         </div>
@@ -138,7 +138,7 @@ export const ContributionGraph = ({
           ))}
         </div>
 
-        <div className="flex min-w-[650px] gap-2">
+        <div className="flex min-w-162.5 gap-2">
           {/* Day Labels */}
           <div className="flex flex-col justify-around py-1 pr-2 text-[10px] font-bold text-muted-foreground">
             <span>Mon</span>
@@ -172,7 +172,7 @@ export const ContributionGraph = ({
       <div className="mt-4 flex flex-col justify-between gap-4 border-t border-border/40 pt-4 text-xs sm:flex-row sm:items-center">
         <div className="min-h-5 font-medium text-muted-foreground">
           {hoveredDay ? (
-            <span className="font-bold text-ink">
+            <span className="font-bold text-fjord">
               {hoveredDay.date}:{' '}
               <span className="font-normal text-fjord">
                 {hoveredDay.summary}

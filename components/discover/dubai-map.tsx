@@ -82,7 +82,7 @@ export function DubaiMap({
                         : isHovered
                           ? 'z-25 scale-105 bg-ink text-white ring-1 ring-white/50 dark:bg-border/50 '
                           : isHighTrust
-                            ? 'border border-stone-800/50 bg-stone-950/90 text-surface dark:bg-surface-subtle/90 '
+                            ? 'border-border-strong/50 border bg-fjord-hover/90 text-surface dark:bg-surface-subtle/90 '
                             : 'border border-border/60 bg-surface-subtle/90 text-ink   ',
                     )}
                   >
@@ -122,14 +122,14 @@ export function DubaiMap({
       {/* Map Legend & Status Overlay */}
       <div className="border-border/60/80 pointer-events-none absolute bottom-4 left-4 z-30 flex items-center gap-4 border bg-surface-subtle/90 px-3 py-2 text-xs text-ink shadow-lg backdrop-blur-md   ">
         <div className="flex items-center gap-1.5">
-          <span className="size-2.5 bg-stone-950 shadow-sm shadow-emerald-500/50 dark:bg-surface-subtle" />
+          <span className="size-2.5 bg-fjord-hover shadow-sm shadow-emerald-500/50 dark:bg-surface-subtle" />
           <span>High Trust (90+)</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="size-2.5 bg-stone-300 " />
+          <span className="bg-border-strong size-2.5 " />
           <span>Standard</span>
         </div>
-        <div className="border-l border-border/60 pl-2 text-[11px] text-muted-foreground  dark:text-stone-400">
+        <div className="border-l border-border/60 pl-2 text-[11px] text-muted-foreground  dark:text-muted/50">
           Showing {properties.length} verified listings
         </div>
       </div>
@@ -152,7 +152,7 @@ function PropertyInfoWindow({ property, onCloseClick }: { property: DiscoverProp
             alt={property.title}
             className="size-full object-cover"
           />
-          <div className="absolute top-1 right-1 flex items-center gap-1 bg-black/80 px-1.5 py-0.5 text-[10px] font-bold text-surface">
+          <div className="absolute top-1 right-1 flex items-center gap-1 bg-fjord/80 px-1.5 py-0.5 text-[10px] font-bold text-surface">
             <ShieldCheck className="size-2.5" />
             {property.trustScore} Trust
           </div>
@@ -161,7 +161,7 @@ function PropertyInfoWindow({ property, onCloseClick }: { property: DiscoverProp
           <h4 className="truncate text-xs font-bold text-ink ">
             {property.title}
           </h4>
-          <p className="mb-1 truncate text-[11px] text-muted-foreground dark:text-stone-400">
+          <p className="mb-1 truncate text-[11px] text-muted-foreground dark:text-muted/50">
             {property.community} • {property.developer}
           </p>
           <div className="border-border/60/80 flex items-center justify-between border-t pt-1 text-xs ">

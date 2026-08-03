@@ -34,19 +34,19 @@ export function EvidenceDrawer({
   if (!isOpen) return null;
 
   return (
-    <div className="animate-in fade-in fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm duration-200">
+    <div className="animate-in fade-in fixed inset-0 z-50 flex justify-end bg-fjord/60 backdrop-blur-sm duration-200">
       <div className="animate-in slide-in-from-right relative flex size-full max-w-xl flex-col overflow-y-auto border-l border-border/60 bg-surface-subtle shadow-2xl duration-300  ">
         {/* Header */}
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border/60 bg-surface p-6  ">
           <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center border border-stone-800/20 bg-fjord/10 text-fjord shadow-sm">
+            <div className="border-border-strong/20 flex size-10 items-center justify-center border bg-fjord/10 text-fjord shadow-sm">
               <ShieldCheck className="size-6" />
             </div>
             <div>
               <h2 className="text-h3 font-display font-bold text-fjord ">
                 Trust Passport & Evidence
               </h2>
-              <p className="text-caption max-w-sm truncate text-muted-foreground dark:text-stone-400">
+              <p className="text-caption max-w-sm truncate text-muted-foreground dark:text-muted/50">
                 {propertyTitle} • DLD Ref #88921-V2
               </p>
             </div>
@@ -54,7 +54,7 @@ export function EvidenceDrawer({
 
           <button
             onClick={onClose}
-            className="border border-transparent p-2 text-muted-foreground transition-all hover:border-border/60 hover:bg-surface-subtle hover:text-fjord   dark:text-stone-400"
+            className="border border-transparent p-2 text-muted-foreground transition-all hover:border-border/60 hover:bg-surface-subtle hover:text-fjord   dark:text-muted/50"
           >
             <X className="size-5" />
           </button>
@@ -63,7 +63,7 @@ export function EvidenceDrawer({
         {/* Content Body */}
         <div className="flex-1 space-y-8 p-6">
           {/* Main Stamp Banner */}
-          <div className="flex items-start gap-4 border border-stone-900/20 bg-border/50 p-5  ">
+          <div className="flex items-start gap-4 border border-fjord/20 bg-border/50 p-5  ">
             <div className="mt-0.5 shrink-0 bg-verified p-2.5 font-extrabold text-primary-foreground shadow-sm">
               <CheckCircle2 className="size-6" />
             </div>
@@ -93,7 +93,7 @@ export function EvidenceDrawer({
             <div className="grid grid-cols-2 gap-3">
               <div className="flex flex-col justify-between border border-border/60 bg-surface p-4  ">
                 <div className="flex items-center justify-between">
-                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-stone-400">
+                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-muted/50">
                     Health Index
                   </span>
                   <span className="text-h3 font-extrabold text-fjord">
@@ -110,10 +110,10 @@ export function EvidenceDrawer({
 
               <div className="flex flex-col justify-between border border-border/60 bg-surface p-4  ">
                 <div className="flex items-center justify-between">
-                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-stone-400">
+                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-muted/50">
                     Evidence Depth
                   </span>
-                  <span className="text-h3 font-extrabold text-muted-foreground dark:text-stone-400">
+                  <span className="text-h3 font-extrabold text-muted-foreground dark:text-muted/50">
                     {evidenceScore}
                   </span>
                 </div>
@@ -127,7 +127,7 @@ export function EvidenceDrawer({
 
               <div className="flex flex-col justify-between border border-border/60 bg-surface p-4  ">
                 <div className="flex items-center justify-between">
-                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-stone-400">
+                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-muted/50">
                     Risk Index (Low is better)
                   </span>
                   <span className="text-h3 font-extrabold text-fjord">
@@ -144,7 +144,7 @@ export function EvidenceDrawer({
 
               <div className="flex flex-col justify-between border border-border/60 bg-surface p-4  ">
                 <div className="flex items-center justify-between">
-                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-stone-400">
+                  <span className="text-caption font-bold text-muted-foreground uppercase dark:text-muted/50">
                     Data Freshness
                   </span>
                   <span className="text-h3 font-extrabold text-fjord">
@@ -165,14 +165,14 @@ export function EvidenceDrawer({
           <div className="space-y-3 border border-border/60 bg-surface p-5  ">
             <div className="flex items-center justify-between">
               <h4 className="text-body-sm flex items-center gap-2 font-bold text-fjord ">
-                <Clock className="size-4 text-muted-foreground dark:text-stone-400" />
+                <Clock className="size-4 text-muted-foreground dark:text-muted/50" />
                 <span>Valuation Confidence Decay Curve</span>
               </h4>
-              <span className="text-caption bg-border/50/10 px-2 py-0.5 font-extrabold text-muted-foreground  dark:text-stone-400">
+              <span className="text-caption bg-border/50/10 px-2 py-0.5 font-extrabold text-muted-foreground  dark:text-muted/50">
                 Live Model
               </span>
             </div>
-            <p className="text-caption text-muted-foreground dark:text-stone-400">
+            <p className="text-caption text-muted-foreground dark:text-muted/50">
               RAMA applies an algorithmic time-decay curve to pricing comps.
               Without continuous ingestion of DLD transaction records, valuation
               confidence decreases by 15% every 30 days.
@@ -184,32 +184,32 @@ export function EvidenceDrawer({
                 <span className="text-[10px] font-bold text-fjord">
                   100%
                 </span>
-                <div className="group relative h-16 w-full border border-stone-800/40 bg-fjord/20">
+                <div className="group border-border-strong/40 relative h-16 w-full border bg-fjord/20">
                   <div className="absolute inset-x-0 top-0 h-1 bg-fjord" />
                 </div>
-                <span className="text-[9px] font-semibold text-muted-foreground dark:text-stone-400">
+                <span className="text-[9px] font-semibold text-muted-foreground dark:text-muted/50">
                   Day 0 (Now)
                 </span>
               </div>
               <div className="flex flex-1 flex-col items-center gap-1">
-                <span className="text-[10px] font-bold text-muted-foreground dark:text-stone-400">
+                <span className="text-[10px] font-bold text-muted-foreground dark:text-muted/50">
                   88%
                 </span>
                 <div className="group border-border/60/40 bg-border/50/20 relative h-14 w-full border  ">
                   <div className="absolute inset-x-0 top-0 h-1 bg-border/50 " />
                 </div>
-                <span className="text-[9px] font-semibold text-muted-foreground dark:text-stone-400">
+                <span className="text-[9px] font-semibold text-muted-foreground dark:text-muted/50">
                   +30 Days
                 </span>
               </div>
               <div className="flex flex-1 flex-col items-center gap-1">
-                <span className="text-[10px] font-bold text-fjord dark:text-stone-300">
+                <span className="text-[10px] font-bold text-fjord dark:text-muted/30">
                   72%
                 </span>
                 <div className="group bg-border/50/20 relative h-11 w-full border border-stone-400/40  ">
                   <div className="absolute inset-x-0 top-0 h-1 bg-stone-700 " />
                 </div>
-                <span className="text-[9px] font-semibold text-muted-foreground dark:text-stone-400">
+                <span className="text-[9px] font-semibold text-muted-foreground dark:text-muted/50">
                   +60 Days
                 </span>
               </div>
@@ -220,7 +220,7 @@ export function EvidenceDrawer({
                 <div className="group bg-border/50/20 relative h-8 w-full border border-stone-400/40  ">
                   <div className="absolute inset-x-0 top-0 h-1 bg-border/50 " />
                 </div>
-                <span className="text-[9px] font-semibold text-muted-foreground dark:text-stone-400">
+                <span className="text-[9px] font-semibold text-muted-foreground dark:text-muted/50">
                   +90 Days
                 </span>
               </div>
@@ -245,7 +245,7 @@ export function EvidenceDrawer({
                   <CheckCircle2 className="size-4 shrink-0 text-fjord" />
                   <span>DLD Electronic Title Deed #88921</span>
                 </div>
-                <span className="text-caption font-mono text-muted-foreground dark:text-stone-400">
+                <span className="text-caption font-mono text-muted-foreground dark:text-muted/50">
                   Verified 2h ago
                 </span>
               </div>
@@ -254,7 +254,7 @@ export function EvidenceDrawer({
                   <CheckCircle2 className="size-4 shrink-0 text-fjord" />
                   <span>RERA Escrow Account Certificate</span>
                 </div>
-                <span className="text-caption font-mono text-muted-foreground dark:text-stone-400">
+                <span className="text-caption font-mono text-muted-foreground dark:text-muted/50">
                   Verified 1d ago
                 </span>
               </div>
@@ -263,7 +263,7 @@ export function EvidenceDrawer({
                   <CheckCircle2 className="size-4 shrink-0 text-fjord" />
                   <span>Developer Service Charge NOC (2024–2025)</span>
                 </div>
-                <span className="text-caption font-mono text-muted-foreground dark:text-stone-400">
+                <span className="text-caption font-mono text-muted-foreground dark:text-muted/50">
                   Verified 3d ago
                 </span>
               </div>
@@ -272,7 +272,7 @@ export function EvidenceDrawer({
                   <CheckCircle2 className="size-4 shrink-0 text-fjord" />
                   <span>Physical Inspection AI Survey Report</span>
                 </div>
-                <span className="text-caption font-mono text-muted-foreground dark:text-stone-400">
+                <span className="text-caption font-mono text-muted-foreground dark:text-muted/50">
                   Verified 5d ago
                 </span>
               </div>
@@ -281,12 +281,12 @@ export function EvidenceDrawer({
 
           {/* Risk & Unknowns Identifier */}
           <div className="text-body-sm bg-border/50/5 flex items-start gap-3 border border-stone-400/30 p-4  ">
-            <AlertTriangle className="mt-0.5 size-5 shrink-0 text-fjord dark:text-stone-300" />
+            <AlertTriangle className="mt-0.5 size-5 shrink-0 text-fjord dark:text-muted/30" />
             <div>
               <h5 className="font-bold text-fjord ">
                 Known Risk & Unknowns Identifier
               </h5>
-              <p className="text-caption mt-1 leading-relaxed text-muted-foreground dark:text-stone-400">
+              <p className="text-caption mt-1 leading-relaxed text-muted-foreground dark:text-muted/50">
                 While escrow and title deeds are 100% verified, the community
                 master developer (Emaar) is scheduled to review annual service
                 charges next quarter. Estimated variance: ±3.2%.
@@ -297,7 +297,7 @@ export function EvidenceDrawer({
 
         {/* Footer */}
         <div className="sticky bottom-0 flex items-center justify-between border-t border-border/60 bg-surface p-4  ">
-          <div className="text-caption flex items-center gap-2 text-muted-foreground dark:text-stone-400">
+          <div className="text-caption flex items-center gap-2 text-muted-foreground dark:text-muted/50">
             <Lock className="size-3.5 text-fjord" />
             <span>Cryptographic Proof SHA-256</span>
           </div>

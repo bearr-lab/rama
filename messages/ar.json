@@ -8,7 +8,9 @@
     "signIn": "تسجيل الدخول",
     "signOut": "تسجيل الخروج",
     "openMenu": "فتح القائمة",
-    "closeMenu": "إغلاق القائمة"
+    "closeMenu": "إغلاق القائمة",
+    "themeDark": "التبديل للوضع الداكن",
+    "themeLight": "التبديل للوضع الفاتح"
   },
   "MobileNav": {
     "language": "اللغة",
@@ -16,11 +18,15 @@
     "dark": "داكن",
     "light": "فاتح",
     "signIn": "تسجيل الدخول",
-    "menu": "قائمة التنقل"
+    "menu": "قائمة التنقل",
+    "closeMenu": "إغلاق القائمة",
+    "themeDark": "التبديل للوضع الداكن",
+    "themeLight": "التبديل للوضع الفاتح"
   },
   "LocaleSwitcher": {
     "switchTo": "Switch to English",
-    "label": "EN"
+    "label": "EN",
+    "switchLanguage": "تغيير اللغة إلى الإنجليزية"
   },
   "Footer": {
     "tagline": "مكان هادئ لجمع الأدلة ومقارنة الخيارات واتخاذ قرارك العقاري بتأنٍ.",

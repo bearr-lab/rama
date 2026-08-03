@@ -29,7 +29,7 @@ export function AboutAsymmetrical({ isArabic }: AboutAsymmetricalProps) {
               <p className="text-sm font-medium tracking-[0.2em] text-fjord uppercase">
                 {isArabic ? 'حول راما' : 'About RAMA'}
               </p>
-              <h2 className="leading-1.1 font-display text-4xl text-ink lg:text-5xl xl:text-6xl">
+              <h2 className="leading-1.1 font-display text-4xl text-fjord lg:text-5xl xl:text-6xl">
                 {isArabic ? 'إعادة تعريف الشفافية' : 'Redefining Transparency'}
                 <br />
                 <span className="font-light text-muted-foreground italic">
@@ -40,7 +40,7 @@ export function AboutAsymmetrical({ isArabic }: AboutAsymmetricalProps) {
 
             <div className="space-y-8 border-l border-border/60 pl-4">
               <div className="space-y-2">
-                <h3 className="font-display text-2xl text-ink">
+                <h3 className="font-display text-2xl text-fjord">
                   DLD Verified Data
                 </h3>
                 <p className="max-w-prose leading-relaxed text-muted-foreground">
@@ -50,7 +50,7 @@ export function AboutAsymmetrical({ isArabic }: AboutAsymmetricalProps) {
                 </p>
               </div>
               <div className="space-y-2">
-                <h3 className="font-display text-2xl text-ink">
+                <h3 className="font-display text-2xl text-fjord">
                   AI-Powered Curation
                 </h3>
                 <p className="max-w-prose leading-relaxed text-muted-foreground">
@@ -90,7 +90,7 @@ export function AboutAsymmetrical({ isArabic }: AboutAsymmetricalProps) {
 
             {/* Overlapping floating stat card */}
             <div className="shadow-floating absolute -bottom-8 left-1/2 z-20 w-64 -translate-x-1/2 rounded-none border border-border bg-white p-6 text-center lg:-left-12 lg:translate-x-0">
-              <p className="mb-1 font-display text-4xl text-ink">15+</p>
+              <p className="mb-1 font-display text-4xl text-fjord">15+</p>
               <p className="text-sm font-medium tracking-wider text-fjord uppercase">
                 {isArabic ? 'سنوات خبرة في دبي' : 'Years Dubai Experience'}
               </p>

@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -15,6 +16,7 @@ interface MobileNavProps {
 
 export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
   const { resolvedTheme, setTheme } = useTheme();
+  const t = useTranslations('MobileNav');
   const [mounted, setMounted] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -78,7 +80,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
       {/* Backdrop */}
       <div
         className={cn(
-          'fixed inset-0 z-50 bg-ink/20 backdrop-blur-sm transition-opacity duration-240',
+          'fixed inset-0 z-50 bg-fjord/20 backdrop-blur-sm transition-opacity duration-240',
           isOpen ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
         onClick={onClose}
@@ -88,6 +90,7 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
       {/* Drawer */}
       <div
         ref={drawerRef}
+        id="mobile-navigation"
         role="dialog"
         aria-modal="true"
         aria-label="Navigation Menu"
@@ -103,11 +106,12 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
             <RamaLogo variant="full" size="sm" />
           </Link>
           <button
+            type="button"
             onClick={onClose}
-            className="-mr-2 p-2 text-muted-foreground transition-colors hover:text-ink"
-            aria-label="Close menu"
+            className="-mr-2 rounded-none p-2 text-muted-foreground transition-colors hover:text-fjord focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
+            aria-label={t('closeMenu')}
           >
-            <X className="size-5" />
+            <X className="size-5" aria-hidden="true" />
           </button>
         </div>
 
@@ -115,35 +119,35 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
           <nav className="flex flex-col gap-4">
             <Link
               href={`/${locale}/projects`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'المشاريع' : 'Projects'}
             </Link>
             <Link
               href={`/${locale}/homes`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'العقارات' : 'Homes'}
             </Link>
             <Link
               href={`/${locale}/areas`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'المناطق' : 'Communities'}
             </Link>
             <Link
               href={`/${locale}/invest`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'استثمر' : 'Invest'}
             </Link>
             <Link
               href={`/${locale}/insights`}
-              className="text-lg font-medium text-ink transition-colors hover:text-fjord"
+              className="text-lg font-medium text-fjord transition-colors hover:text-fjord"
               onClick={onClose}
             >
               {locale === 'ar' ? 'رؤى' : 'Insights'}
@@ -189,9 +193,14 @@ export function MobileNav({ isOpen, onClose, locale = 'en' }: MobileNavProps) {
                   <AnimatedThemeToggler
                     theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
                     onThemeChange={setTheme}
-                    className="flex size-9 items-center justify-center rounded-none bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80"
+                    className="flex size-9 items-center justify-center rounded-none bg-surface-subtle text-ink transition-colors hover:bg-surface-subtle/80 focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none"
+                    aria-label={
+                      resolvedTheme === 'dark'
+                        ? t('themeLight')
+                        : t('themeDark')
+                    }
                   />
-                  <span className="text-xs font-medium text-ink">
+                  <span className="text-xs font-medium text-fjord">
                     {resolvedTheme === 'dark'
                       ? locale === 'ar'
                         ? 'داكن'

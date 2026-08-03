@@ -8,7 +8,9 @@
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "themeDark": "Switch to dark mode",
+    "themeLight": "Switch to light mode"
   },
   "MobileNav": {
     "language": "Language",
@@ -16,11 +18,15 @@
     "dark": "Dark",
     "light": "Light",
     "signIn": "Sign In",
-    "menu": "Navigation Menu"
+    "menu": "Navigation Menu",
+    "closeMenu": "Close menu",
+    "themeDark": "Switch to dark mode",
+    "themeLight": "Switch to light mode"
   },
   "LocaleSwitcher": {
     "switchTo": "Switch to Arabic",
-    "label": "AR"
+    "label": "AR",
+    "switchLanguage": "Switch language to Arabic"
   },
   "Footer": {
     "tagline": "A quieter place to gather evidence, compare options and make a considered property decision.",

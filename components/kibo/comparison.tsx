@@ -103,7 +103,7 @@ export const Comparison = ({
             draggable={false}
           />
         )}
-        <div className="absolute right-4 bottom-4 z-10 bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+        <div className="absolute right-4 bottom-4 z-10 bg-fjord-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
           {afterLabel}
         </div>
       </div>
@@ -125,7 +125,7 @@ export const Comparison = ({
               draggable={false}
             />
           )}
-          <div className="absolute bottom-4 left-4 z-10 bg-ink-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
+          <div className="absolute bottom-4 left-4 z-10 bg-fjord-bg/80 px-3 py-1 text-xs font-medium text-white backdrop-blur-md">
             {beforeLabel}
           </div>
         </div>

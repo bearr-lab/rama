@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 interface LocaleSwitcherProps {
@@ -10,6 +11,7 @@ interface LocaleSwitcherProps {
 
 export function LocaleSwitcher({ isDark = false }: LocaleSwitcherProps) {
   const pathname = usePathname();
+  const t = useTranslations('LocaleSwitcher');
 
   // Basic implementation until next-intl is fully configured
   const currentLocale =
@@ -30,11 +32,12 @@ export function LocaleSwitcher({ isDark = false }: LocaleSwitcherProps) {
   return (
     <Link
       href={togglePath || `/${nextLocale}`}
+      aria-label={t('switchLanguage')}
       className={cn(
-        'rounded-none px-2 py-1 text-xs font-semibold tracking-wider uppercase transition-colors',
+        'rounded-none px-2 py-1 text-xs font-semibold tracking-wider uppercase transition-colors focus-visible:ring-2 focus-visible:ring-fjord-muted focus-visible:outline-none',
         isDark
           ? 'text-white hover:bg-white/10'
-          : 'text-ink hover:bg-surface-subtle',
+          : 'text-fjord hover:bg-surface-subtle',
       )}
     >
       {nextLocale}

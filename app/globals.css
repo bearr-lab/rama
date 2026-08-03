@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Noto+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -13,9 +14,9 @@
   /* ─── Foundation ─── */
   --canvas: oklch(97% 0.012 85deg);
   --surface: oklch(100% 0 0deg);
-  --surface-subtle: oklch(96% 0.005 260deg); /* Cooler subtle background */
+  --surface-subtle: oklch(96% 0.01 90deg);
   --surface-warm: oklch(96% 0.015 85deg);
-  --ink: oklch(12% 0 0deg); /* Deeper ink */
+  --ink: oklch(15% 0 0deg);
   --text: oklch(38% 0 0deg);
   --muted: oklch(48% 0 0deg);
   --border: oklch(92% 0.01 90deg);
@@ -27,6 +28,7 @@
   --fjord-active: oklch(30% 0.1 240deg);
   --fjord-soft: oklch(95% 0.05 240deg);
   --fjord-muted: oklch(90% 0.03 240deg);
+  --fjord-bg: var(--fjord-active);
 
   /* ─── Semantic ─── */
   --verified: oklch(60% 0.1 140deg);
@@ -61,8 +63,8 @@
   --input: var(--border);
   --ring: var(--fjord-muted);
 
-  /* ─── Radii (Strict 0px Radius / No Curves) ─── */
-  --radius: 0px;
+  /* ─── Radii (shadcn preset b2czZ8JLSS — Strict 0px Radius / No Curves) ─── */
+  --radius: 0rem;
   --radius-tag: 0px;
   --radius-button: 0px;
   --radius-card: 0px;
@@ -73,8 +75,9 @@
   --min-touch: 44px;
 
   /* ─── Elevation ─── */
-  --shadow-resting: 0 1px 2px rgb(0 0 0 / 0.04);
-  --shadow-elevated: 0 4px 12px rgb(0 0 0 / 0.06);
+  --shadow-subtle: 0 4px 16px rgb(60 50 40 / 4%);
+  --shadow-floating: 0 8px 32px rgb(60 50 40 / 6%);
+  --shadow-lg: 0 16px 48px rgb(60 50 40 / 8%);
 
   /* ─── Motion ─── */
   --ease-decelerate: cubic-bezier(0.2, 0, 0, 1);
@@ -83,9 +86,10 @@
   --duration-slow: 240ms;
 
   /* ─── Fonts ─── */
-  --font-display: 'Space Grotesk', sans-serif;
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans-alt: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-mono: ui-monospace, sfmono-regular, menlo, monaco, consolas, "Liberation Mono", "Courier New", monospace;
   --font-sans: 'Inter', 'Noto Sans Arabic', system-ui, sans-serif;
-  --font-subtitle: 'Plus Jakarta Sans', sans-serif;
 
   /* ─── Chart colors (keep shadcn defaults) ─── */
   --chart-1: oklch(64.6% 0.222 41.116deg);
@@ -107,15 +111,15 @@
 
 .dark {
   /* ─── Foundation (Dark Mode) ─── */
-  --canvas: oklch(18% 0.025 255deg); /* Lighter and more blue */
-  --surface: oklch(22% 0.025 255deg); 
-  --surface-subtle: oklch(26% 0.025 255deg);
-  --surface-warm: oklch(24% 0.03 255deg);
+  --canvas: oklch(14% 0.015 260deg);
+  --surface: oklch(18% 0.015 260deg);
+  --surface-subtle: oklch(22% 0.015 260deg);
+  --surface-warm: oklch(20% 0.02 260deg);
   --ink: oklch(96% 0 0deg);
   --text: oklch(80% 0 0deg);
   --muted: oklch(75% 0 0deg);
-  --border: oklch(30% 0.025 255deg); /* Adjusted for contrast */
-  --border-strong: oklch(38% 0.025 255deg);
+  --border: oklch(28% 0.015 260deg);
+  --border-strong: oklch(38% 0.015 260deg);
 
   /* ─── Brand — Fjord Blue (Dark Mode adjustments) ─── */
   --fjord: oklch(65% 0.12 240deg);
@@ -135,8 +139,8 @@
   --risk-soft: oklch(25% 0.05 30deg);
 
   /* ─── Dark Sections (ink-bg) in Dark Mode ─── */
-  --ink-bg: oklch(18% 0.025 255deg);
-  --ink-surface: oklch(22% 0.025 255deg);
+  --ink-bg: oklch(14% 0.015 260deg);
+  --ink-surface: oklch(18% 0.015 260deg);
 
   /* ─── Sidebar (Dark Mode) ─── */
   --sidebar: var(--surface);
@@ -161,7 +165,9 @@
 
 @theme inline {
   --font-sans: var(--font-sans);
+  --font-sans-alt: var(--font-sans-alt);
   --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 
   /* Colors */
   --color-background: var(--background);
@@ -204,6 +210,7 @@
   --color-ink: var(--ink);
   --color-text: var(--text);
   --color-fjord: var(--fjord);
+  --color-fjord-bg: var(--fjord-bg);
   --color-fjord-hover: var(--fjord-hover);
   --color-fjord-active: var(--fjord-active);
   --color-fjord-soft: var(--fjord-soft);
@@ -219,7 +226,7 @@
   --color-ink-bg: var(--ink-bg);
   --color-ink-surface: var(--ink-surface);
 
-  /* Radii — Sharp 0px Angular Geometry */
+  /* Radii — shadcn preset b2czZ8JLSS (Sharp 0px Angular Geometry) */
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
@@ -229,8 +236,6 @@
   --radius-4xl: 0px;
   --radius-card-lagom: 0px;
   --radius-modal-lagom: 0px;
-  --shadow-resting: var(--shadow-resting);
-  --shadow-elevated: var(--shadow-elevated);
 
   /* Custom Spacing Tokens */
   --spacing-19: 4.75rem;
@@ -245,10 +250,10 @@
   --container-2xl: 1280px;
 
   /* === HORIZONTAL PADDING === */
-  --page-padding-xs: 24px;
-  --page-padding-sm: 32px;
-  --page-padding-md: 48px;
-  --page-padding-lg: 80px; /* Massive Lagom breathing room */
+  --page-padding-xs: 16px;
+  --page-padding-sm: 20px;
+  --page-padding-md: 24px;
+  --page-padding-lg: 48px;
   --page-padding-xl: 64px;
 
   /* === SECTION VERTICAL SPACING === */
@@ -294,6 +299,17 @@
   100% {
     transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
     }
+  }
+
+  --animate-shiny-text: shiny-text 8s infinite;
+
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;
+    }
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;
+    }
   }}
 
 /* ═══════════════════════════════════════════════════
@@ -323,7 +339,6 @@
     @apply font-sans;
 
     scroll-behavior: smooth;
-    font-size: 87.5%;
   }
 
   /* ─── Typography Scale ─── */
@@ -464,8 +479,6 @@
   animation: shiny-text 8s infinite linear;
 }
 
-
-
 /* ── MVPBlocks: animate-grid (perspective grid scroll) ── */
 @keyframes grid {
   0% {
@@ -484,8 +497,3 @@
    SHADCN PRESET b2czZ8JLSS — ZERO CURVES & ZERO ROUNDED CORNERS
    (Applied via --radius tokens instead of wildcard to preserve circular elements)
    ═══════════════════════════════════════════════════ */
-
-/* Hide global splash screen early via inline script class to prevent hydration flash */
-html.hide-splash #global-splash {
-  display: none !important;
-}

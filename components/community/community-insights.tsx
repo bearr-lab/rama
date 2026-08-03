@@ -89,16 +89,16 @@ export function CommunityInsights({
   const finalGrowth = growth5Yr || data.growth5Yr;
 
   return (
-    <div className="space-y-8 border border-border bg-surface-subtle p-6 shadow-resting lg:p-8">
+    <div className="shadow-resting space-y-8 border border-border bg-surface-subtle p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
-          <div className="flex size-12 items-center justify-center border border-border bg-surface text-ink shadow-resting">
+          <div className="shadow-resting flex size-12 items-center justify-center border border-border bg-surface text-ink">
             <Building className="size-6" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-h2 font-display font-bold text-ink">
+              <h3 className="text-h2 font-display font-bold text-fjord">
                 {communityName}
               </h3>
               <span className="border border-border/60 bg-border/50 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-ink uppercase">
@@ -133,7 +133,7 @@ export function CommunityInsights({
       {/* Walkability & Lifestyle Scores */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h4 className="text-body flex items-center gap-2 font-display font-bold text-ink">
+          <h4 className="text-body flex items-center gap-2 font-display font-bold text-fjord">
             <Footprints className="size-4 text-fjord" />
             <span>Walkability & Lifestyle Index</span>
           </h4>
@@ -144,11 +144,11 @@ export function CommunityInsights({
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <div className="flex items-center gap-4 border border-border bg-surface p-5">
-            <div className="flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-black text-ink shadow-resting">
+            <div className="shadow-resting flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-black text-ink">
               {finalWalk}
             </div>
             <div>
-              <span className="text-body-sm block font-bold text-ink">
+              <span className="text-body-sm block font-bold text-fjord">
                 Walker&apos;s Paradise
               </span>
               <p className="text-caption mt-0.5 leading-tight text-muted-foreground">
@@ -158,11 +158,11 @@ export function CommunityInsights({
           </div>
 
           <div className="flex items-center gap-4 border border-border bg-surface p-5">
-            <div className="flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-extrabold text-ink shadow-resting">
+            <div className="shadow-resting flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-extrabold text-ink">
               {finalTransit}
             </div>
             <div>
-              <span className="text-body-sm block font-bold text-ink">
+              <span className="text-body-sm block font-bold text-fjord">
                 Excellent Transit
               </span>
               <p className="text-caption mt-0.5 leading-tight text-muted-foreground">
@@ -172,11 +172,11 @@ export function CommunityInsights({
           </div>
 
           <div className="flex items-center gap-4 border border-border bg-surface p-5">
-            <div className="flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-bold text-ink shadow-resting">
+            <div className="shadow-resting flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-bold text-ink">
               {finalQuiet}
             </div>
             <div>
-              <span className="text-body-sm block font-bold text-ink">
+              <span className="text-body-sm block font-bold text-fjord">
                 Acoustic & Privacy
               </span>
               <p className="text-caption mt-0.5 leading-tight text-muted-foreground">
@@ -188,14 +188,14 @@ export function CommunityInsights({
       </div>
 
       {/* 5-Year Macro Investment Trend Chart */}
-      <div className="space-y-6 border border-border bg-surface-subtle p-8 shadow-resting">
+      <div className="shadow-resting space-y-6 border border-border bg-surface-subtle p-8">
         <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex items-center gap-3">
             <div className="flex size-10 items-center justify-center border border-border/60 bg-border/50 text-ink">
               <BarChart3 className="size-5" />
             </div>
             <div>
-              <h4 className="font-display text-xl font-medium text-ink">
+              <h4 className="font-display text-xl font-medium text-fjord">
                 5-Year Historical Appreciation (2021 – 2025)
               </h4>
               <p className="mt-0.5 text-xs font-light text-muted-foreground">
@@ -213,7 +213,7 @@ export function CommunityInsights({
         {/* Sleek Scandinavian Financial Columns */}
         <div className="flex h-44 items-end justify-between gap-4 border-b border-border px-4 pt-6 pb-4">
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 1,980
             </span>
             <div className="relative h-20 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -225,7 +225,7 @@ export function CommunityInsights({
           </div>
 
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 2,150
             </span>
             <div className="relative h-24 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -237,7 +237,7 @@ export function CommunityInsights({
           </div>
 
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 2,420
             </span>
             <div className="relative h-28 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -249,7 +249,7 @@ export function CommunityInsights({
           </div>
 
           <div className="group flex flex-1 flex-col items-center gap-2">
-            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-ink">
+            <span className="font-display text-xs font-bold text-muted-foreground transition-colors group-hover:text-fjord">
               AED 2,680
             </span>
             <div className="relative h-32 w-full max-w-14 bg-ink transition-all duration-300 group-hover:bg-ink">
@@ -266,10 +266,10 @@ export function CommunityInsights({
                 AED {finalPriceSqft}
               </span>
             </div>
-            <div className="bg-fjord-500 relative h-36 w-full max-w-16 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
+            <div className="bg-fjord-500 shadow-elevated relative h-36 w-full max-w-16 transition-all duration-300 group-hover:-translate-y-1">
               <div className="bg-fjord-300 absolute inset-x-0 top-0 h-1" />
             </div>
-            <span className="font-display text-xs font-bold text-ink">
+            <span className="font-display text-xs font-bold text-fjord">
               2025 (Live)
             </span>
           </div>
@@ -278,7 +278,7 @@ export function CommunityInsights({
 
       {/* Infrastructure & Quality of Life */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="space-y-3 border border-border bg-surface-subtle p-5 shadow-resting">
+        <div className="shadow-resting space-y-3 border border-border bg-surface-subtle p-5">
           <div className="text-body-sm flex items-center gap-2 font-bold text-ink">
             <Navigation className="size-4 text-ink" />
             <span>Transport & Connectivity</span>
@@ -305,7 +305,7 @@ export function CommunityInsights({
           </div>
         </div>
 
-        <div className="space-y-3 border border-border bg-surface-subtle p-5 shadow-resting">
+        <div className="shadow-resting space-y-3 border border-border bg-surface-subtle p-5">
           <div className="text-body-sm flex items-center gap-2 font-bold text-ink">
             <Sun className="size-4 text-ink" />
             <span>Micro-climate & Traffic Model</span>
@@ -315,7 +315,7 @@ export function CommunityInsights({
               <span className="mb-0.5 block text-muted-foreground">
                 Traffic Bottleneck Analysis
               </span>
-              <span className="block leading-tight font-semibold text-ink">
+              <span className="block leading-tight font-semibold text-fjord">
                 {data.traffic}
               </span>
             </div>
@@ -323,7 +323,7 @@ export function CommunityInsights({
               <span className="mb-0.5 block text-muted-foreground">
                 Summer Heat & Shading Index
               </span>
-              <span className="block leading-tight font-semibold text-ink">
+              <span className="block leading-tight font-semibold text-fjord">
                 {data.microclimate}
               </span>
             </div>

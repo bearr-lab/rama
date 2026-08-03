@@ -53,7 +53,7 @@ export function NumberTicker({
   return (
     <span
       className={cn(
-        'inline-block font-mono tracking-tight text-ink tabular-nums',
+        'inline-block font-mono tracking-tight text-fjord tabular-nums',
         className,
       )}
       ref={ref}

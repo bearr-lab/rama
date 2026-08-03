@@ -102,7 +102,7 @@ export function LifeBriefBar() {
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="text-body font-display font-bold text-ink">
+              <h3 className="text-body font-display font-bold text-fjord">
                 Active Life Brief & Buyer Goal Engine
               </h3>
               <span className="rounded-none border border-fjord/20 bg-fjord-soft px-2 py-0.5 text-[10px] font-bold tracking-wider text-fjord uppercase">
@@ -138,7 +138,7 @@ export function LifeBriefBar() {
       {isOpen && (
         <div className="animate-in slide-in-from-top-2 space-y-6 border-t border-border bg-surface-subtle p-6 duration-300">
           <div>
-            <h4 className="text-body-sm mb-1 font-bold text-ink">
+            <h4 className="text-body-sm mb-1 font-bold text-fjord">
               1. Select Your Investment Persona & Core Objective
             </h4>
             <p className="text-caption mb-4 text-muted-foreground">
@@ -162,7 +162,7 @@ export function LifeBriefBar() {
                   >
                     <div>
                       <div className="mb-1 flex items-center justify-between">
-                        <span className="text-body-sm font-bold text-ink">
+                        <span className="text-body-sm font-bold text-fjord">
                           {p.title}
                         </span>
                         {isSelected && (

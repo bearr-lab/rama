@@ -9,7 +9,7 @@ import { AIAppTeaser } from '@/components/landing/ai-app-teaser';
 import { PricingComparator } from '@/components/landing/pricing-comparator';
 import { FAQAccordion } from '@/components/landing/faq-accordion';
 import { ContactConnect } from '@/components/landing/contact-connect';
-import { RoiCalculatorWidget } from '@/components/landing/roi-calculator-widget';
+import { AIIntelligenceHub } from '@/components/landing/ai-intelligence-hub';
 import { Container } from '@/components/layout/container';
 
 export async function generateMetadata({
@@ -45,7 +45,7 @@ export default function LandingPage({
       {/* Interactive ROI Simulator Section */}
       <section className="mt-12 w-full border-t border-border/60 bg-surface/50 py-12 md:mt-20 md:py-20  ">
         <Container size="lg">
-          <RoiCalculatorWidget locale={locale} isArabic={isArabic} />
+          <AIIntelligenceHub locale={locale} isArabic={isArabic} />
         </Container>
       </section>
 

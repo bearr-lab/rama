@@ -54,7 +54,7 @@ export function EmptyState({
         {getIcon()}
       </div>
 
-      <h3 className="mb-2 font-display text-2xl font-medium tracking-tight text-ink sm:text-3xl">
+      <h3 className="mb-2 font-display text-2xl font-medium tracking-tight text-fjord sm:text-3xl">
         {title}
       </h3>
 
