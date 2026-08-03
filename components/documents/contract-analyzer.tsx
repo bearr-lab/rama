@@ -354,7 +354,7 @@ export function ContractAnalyzer() {
                           'mt-0.5 shrink-0 rounded-none p-1.5',
                           clause.status === 'ok'
                             ? 'bg-emerald-500/10 text-emerald-500'
-                            : 'bg-amber-500 font-bold text-black',
+                            : 'bg-amber-500 font-bold text-fjord',
                         )}
                       >
                         {clause.status === 'ok' ? (
@@ -369,7 +369,7 @@ export function ContractAnalyzer() {
                             {clause.title}
                           </h5>
                           {clause.status !== 'ok' && (
-                            <span className="rounded-none bg-amber-500 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-black uppercase">
+                            <span className="rounded-none bg-amber-500 px-2 py-0.5 text-[10px] font-extrabold tracking-wider text-fjord uppercase">
                               Red Flag Alert
                             </span>
                           )}

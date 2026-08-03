@@ -13,7 +13,7 @@ const badgeVariants = cva(
         accent:
           "border-fjord-500 bg-fjord-500 text-surface",
         secondary:
-          "border-transparent bg-border/50 text-ink hover:bg-stone-300",
+          "hover:bg-border-strong border-transparent bg-border/50 text-ink",
         destructive:
           "border-transparent bg-rose-500 text-surface hover:bg-rose-600",
         outline: "border-border/60 text-ink",

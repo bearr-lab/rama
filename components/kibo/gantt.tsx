@@ -34,11 +34,11 @@ export interface GanttProps {
 
 const statusBadgeStyles = {
   completed:
-    'border-stone-800/20 bg-ink/10 text-ink ',
+    'border-border-strong/20 bg-ink/10 text-ink ',
   'in-progress':
-    'border-border/60/20  bg-border/50/10  text-muted-foreground dark:text-stone-400 dark:text-muted-foreground dark:text-stone-400',
+    'border-border/60/20  bg-border/50/10  text-muted-foreground dark:text-muted/50 dark:text-muted-foreground dark:text-muted/50',
   upcoming:
-    'border-border/60  bg-surface  text-muted-foreground dark:text-stone-400',
+    'border-border/60  bg-surface  text-muted-foreground dark:text-muted/50',
   delayed:
     'border-stone-400/20  bg-border/50/10  text-ink dark:text-stone-200  dark:text-stone-200',
 };
@@ -96,7 +96,7 @@ export const Gantt = ({
               className={cn(
                 'group border-border/60/60 relative cursor-pointer border bg-surface/50 p-4 transition-all duration-200 hover:border-border/60  ',
                 isSelected &&
-                  'border-stone-900/60 bg-surface-subtle shadow-elevated ring-1 ring-ink  ',
+                  'shadow-elevated border-fjord/60 bg-surface-subtle ring-1 ring-ink  ',
               )}
             >
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.5fr_2fr_1fr] lg:items-center">
@@ -110,7 +110,7 @@ export const Gantt = ({
                       {item.title}
                     </h4>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground dark:text-stone-400">
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground dark:text-muted/50">
                     <Building className="size-3.5 text-ink " />
                     <span>{item.project}</span>
                   </div>
@@ -119,7 +119,7 @@ export const Gantt = ({
                 {/* Progress Bar & Timeline */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="flex items-center gap-1 text-muted-foreground dark:text-stone-400">
+                    <span className="flex items-center gap-1 text-muted-foreground dark:text-muted/50">
                       <Calendar className="size-3.5" />
                       <span>
                         {item.startDate} — {item.endDate}
@@ -152,7 +152,7 @@ export const Gantt = ({
                     <p className="text-xs font-bold text-ink ">
                       {item.amount}
                     </p>
-                    <p className="text-[11px] font-medium text-muted-foreground dark:text-stone-400">
+                    <p className="text-[11px] font-medium text-muted-foreground dark:text-muted/50">
                       {item.paymentPercentage} Installment
                     </p>
                   </div>
@@ -188,7 +188,7 @@ export const Gantt = ({
                   >
                     <div className="grid grid-cols-1 gap-3 bg-surface-subtle p-4 sm:grid-cols-3 ">
                       <div>
-                        <p className="font-semibold text-muted-foreground dark:text-stone-400">
+                        <p className="font-semibold text-muted-foreground dark:text-muted/50">
                           DLD Audit Certificate
                         </p>
                         <p className="mt-0.5 font-mono font-medium text-ink ">
@@ -196,7 +196,7 @@ export const Gantt = ({
                         </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-muted-foreground dark:text-stone-400">
+                        <p className="font-semibold text-muted-foreground dark:text-muted/50">
                           Escrow Account Bank
                         </p>
                         <p className="mt-0.5 font-medium text-ink ">
@@ -204,7 +204,7 @@ export const Gantt = ({
                         </p>
                       </div>
                       <div>
-                        <p className="font-semibold text-muted-foreground dark:text-stone-400">
+                        <p className="font-semibold text-muted-foreground dark:text-muted/50">
                           Inspection Verification
                         </p>
                         <p className="mt-0.5 font-medium text-ink ">

@@ -28,7 +28,7 @@ export function HeroEditorial({ locale, isArabic }: HeroEditorialProps) {
       </video>
 
       {/* Gradient overlay to ensure text contrast without blurring */}
-      <div className="absolute inset-0 bg-black/10" />
+      <div className="absolute inset-0 bg-fjord/10" />
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
       {/* Content — anchored to the bottom */}

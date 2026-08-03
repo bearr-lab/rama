@@ -254,7 +254,7 @@ export function VerticalPartnerDeck({
                 className={cn(
                   'group hover:shadow-floating relative flex flex-col justify-between border bg-surface-subtle/90 p-5 transition-all duration-300 hover:bg-surface-subtle ',
                   hoveredId === partner.id
-                    ? '-translate-y-1 border-stone-900/50 '
+                    ? '-translate-y-1 border-fjord/50 '
                     : 'border-border/60/40 ',
                 )}
               >
@@ -293,7 +293,7 @@ export function VerticalPartnerDeck({
       </div>
 
       {/* Footer Info */}
-      <div className="border-border/60/30 mt-6 flex flex-wrap items-center justify-between gap-3 border-t pt-4 text-xs font-light text-muted-foreground  dark:text-stone-400">
+      <div className="border-border/60/30 mt-6 flex flex-wrap items-center justify-between gap-3 border-t pt-4 text-xs font-light text-muted-foreground  dark:text-muted/50">
         <div className="flex items-center gap-2">
           <Zap className="size-4 shrink-0 text-ink " />
           <span>

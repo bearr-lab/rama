@@ -18,9 +18,19 @@ export default async function proxy(request: NextRequest) {
                       request.nextUrl.pathname.includes('/portfolio');
 
   if (isWorkspace && !userId) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/en/login`;
-    return NextResponse.redirect(url);
+    const locale = request.nextUrl.pathname.split('/')[1] || 'en';
+    const redirectUrl = request.nextUrl.clone();
+    redirectUrl.pathname = `/${locale}/login`;
+    redirectUrl.searchParams.set('next', request.nextUrl.pathname);
+    
+    const redirectResponse = NextResponse.redirect(redirectUrl);
+    
+    // Copy cookies from the supabase response to the redirect response
+    response.cookies.getAll().forEach(cookie => {
+      redirectResponse.cookies.set(cookie.name, cookie.value, cookie);
+    });
+
+    return redirectResponse;
   }
 
   // Required for Google Sign-In popup to communicate back to the app (if any popup flows remain)

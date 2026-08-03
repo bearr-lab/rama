@@ -59,7 +59,7 @@ export function BookViewingModal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-fjord/60 backdrop-blur-sm"
           />
 
           {/* Modal */}
@@ -81,7 +81,7 @@ export function BookViewingModal({
               <button
                 onClick={onClose}
                 aria-label={isArabic ? 'إغلاق' : 'Close'}
-                className="text-muted-foreground transition-colors hover:text-ink dark:text-stone-400"
+                className="text-muted-foreground transition-colors hover:text-ink dark:text-muted/50"
               >
                 <X className="size-5" />
               </button>
@@ -91,7 +91,7 @@ export function BookViewingModal({
               {step === 'form' ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <p className="mb-4 text-sm font-light text-muted-foreground dark:text-stone-400">
+                    <p className="mb-4 text-sm font-light text-muted-foreground dark:text-muted/50">
                       {isArabic
                         ? `احجز موعداً خاصاً لمعاينة ${propertyName}`
                         : `Schedule a private viewing for ${propertyName}`}
@@ -103,7 +103,7 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="firstName"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50"
                         >
                           {isArabic ? 'الاسم الأول' : 'First Name'}
                         </label>
@@ -112,14 +112,14 @@ export function BookViewingModal({
                           name="firstName"
                           required
                           type="text"
-                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-fjord focus:outline-none "
                           placeholder={isArabic ? 'الاسم الأول' : 'John'}
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="lastName"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50"
                         >
                           {isArabic ? 'اسم العائلة' : 'Last Name'}
                         </label>
@@ -128,7 +128,7 @@ export function BookViewingModal({
                           name="lastName"
                           required
                           type="text"
-                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-fjord focus:outline-none "
                           placeholder={isArabic ? 'اسم العائلة' : 'Doe'}
                         />
                       </div>
@@ -138,7 +138,7 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="phone"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50"
                         >
                           {isArabic ? 'الهاتف' : 'Phone'}
                         </label>
@@ -147,14 +147,14 @@ export function BookViewingModal({
                           name="phone"
                           required
                           type="tel"
-                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-fjord focus:outline-none "
                           placeholder="+971"
                         />
                       </div>
                       <div>
                         <label
                           htmlFor="email"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50"
                         >
                           {isArabic ? 'البريد الإلكتروني' : 'Email'}
                         </label>
@@ -163,7 +163,7 @@ export function BookViewingModal({
                           name="email"
                           required
                           type="email"
-                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none "
+                          className="border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-fjord focus:outline-none "
                           placeholder="you@email.com"
                         />
                       </div>
@@ -173,13 +173,13 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="date"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50"
                         >
                           {isArabic ? 'التاريخ المفضل' : 'Date'}
                         </label>
                         <div className="relative">
                           <Calendar
-                            className={`absolute top-2.5 size-3.5 text-muted-foreground dark:text-stone-400 ${isArabic ? 'right-0' : 'left-0'}`}
+                            className={`absolute top-2.5 size-3.5 text-muted-foreground dark:text-muted/50 ${isArabic ? 'right-0' : 'left-0'}`}
                           />
                           <input
                             id="date"
@@ -187,7 +187,7 @@ export function BookViewingModal({
                             required
                             type="date"
                             min={new Date().toISOString().split('T')[0]}
-                            className={`border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none  ${
+                            className={`border-border/60/60 w-full border-b bg-transparent py-2 text-sm transition-colors focus:border-fjord focus:outline-none  ${
                               isArabic ? 'pr-6' : 'pl-6'
                             }`}
                           />
@@ -196,20 +196,20 @@ export function BookViewingModal({
                       <div>
                         <label
                           htmlFor="time"
-                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-stone-400"
+                          className="mb-1.5 block text-[10px] font-bold tracking-widest text-muted-foreground uppercase dark:text-muted/50"
                         >
                           {isArabic ? 'الوقت المفضل' : 'Time'}
                         </label>
                         <div className="relative">
                           <Clock
-                            className={`absolute top-2.5 size-3.5 text-muted-foreground dark:text-stone-400 ${isArabic ? 'right-0' : 'left-0'}`}
+                            className={`absolute top-2.5 size-3.5 text-muted-foreground dark:text-muted/50 ${isArabic ? 'right-0' : 'left-0'}`}
                           />
                           <select
                             id="time"
                             name="time"
                             required
                             defaultValue=""
-                            className={`border-border/60/60 w-full appearance-none border-b bg-transparent py-2 text-sm transition-colors focus:border-stone-900 focus:outline-none  ${
+                            className={`border-border/60/60 w-full appearance-none border-b bg-transparent py-2 text-sm transition-colors focus:border-fjord focus:outline-none  ${
                               isArabic ? 'pr-6' : 'pl-6'
                             }`}
                           >
@@ -255,7 +255,7 @@ export function BookViewingModal({
                     <h3 className="font-display text-xl font-bold text-ink ">
                       {isArabic ? 'تم تأكيد طلبك' : 'Request Confirmed'}
                     </h3>
-                    <p className="mx-auto max-w-xs text-sm font-light text-muted-foreground dark:text-stone-400">
+                    <p className="mx-auto max-w-xs text-sm font-light text-muted-foreground dark:text-muted/50">
                       {isArabic
                         ? 'سيقوم أحد وكلائنا المختصين بالتواصل معك قريباً لتأكيد الموعد النهائي.'
                         : 'One of our specialized agents will contact you shortly to confirm the final appointment.'}

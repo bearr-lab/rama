@@ -76,7 +76,7 @@ export function RoiCalculator({
               <h3 className="text-h3 font-display font-bold text-ink ">
                 Financial Intelligence & ROI Modeler
               </h3>
-              <p className="text-caption text-muted-foreground dark:text-stone-400">
+              <p className="text-caption text-muted-foreground dark:text-muted/50">
                 Mortgage & Cashflow Engine
               </p>
             </div>
@@ -91,7 +91,7 @@ export function RoiCalculator({
               setServiceCharge(initialServiceCharge);
               setStressTest(false);
             }}
-            className="p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-ink  dark:text-stone-400"
+            className="p-2 text-muted-foreground transition-colors hover:bg-surface hover:text-ink  dark:text-muted/50"
             title="Reset to DLD defaults"
           >
             <RefreshCw className="size-4" />
@@ -139,8 +139,8 @@ export function RoiCalculator({
                   className={cn(
                     'border py-1.5 text-xs font-bold transition-all',
                     downPaymentPct === pct
-                      ? 'border-stone-900 bg-ink text-white shadow-sm  dark:bg-surface'
-                      : 'border-border/60 bg-surface-subtle text-muted-foreground hover:text-ink   dark:text-stone-400',
+                      ? 'border-fjord bg-ink text-white shadow-sm  dark:bg-surface'
+                      : 'border-border/60 bg-surface-subtle text-muted-foreground hover:text-ink   dark:text-muted/50',
                   )}
                 >
                   {pct}% {pct === 100 ? '(Cash)' : ''}
@@ -157,7 +157,7 @@ export function RoiCalculator({
                   <label className="text-caption font-bold text-ink ">
                     Interest Rate (%)
                   </label>
-                  <span className="text-caption font-mono font-extrabold text-muted-foreground dark:text-stone-400">
+                  <span className="text-caption font-mono font-extrabold text-muted-foreground dark:text-muted/50">
                     {effectiveRate.toFixed(2)}%
                   </span>
                 </div>
@@ -191,7 +191,7 @@ export function RoiCalculator({
                         'border py-1 text-[11px] font-bold transition-all',
                         loanYears === yr
                           ? 'border-ink bg-ink text-white'
-                          : 'border-border/60 bg-surface text-muted-foreground   dark:text-stone-400',
+                          : 'border-border/60 bg-surface text-muted-foreground   dark:text-muted/50',
                       )}
                     >
                       {yr}y
@@ -249,12 +249,12 @@ export function RoiCalculator({
         {/* Sensitivity / Stress Test Toggle */}
         <div className="bg-border/50/5 flex items-center justify-between border border-stone-400/20 p-4  ">
           <div className="flex items-center gap-2.5">
-            <ShieldAlert className="size-5 shrink-0 text-ink dark:text-stone-300" />
+            <ShieldAlert className="size-5 shrink-0 text-ink dark:text-muted/30" />
             <div>
               <span className="text-body-sm font-bold text-ink ">
                 Stress Test Rate Hike (+1.5%)
               </span>
-              <p className="text-[11px] leading-tight text-muted-foreground dark:text-stone-400">
+              <p className="text-[11px] leading-tight text-muted-foreground dark:text-muted/50">
                 Simulates Central Bank interest rate fluctuation
               </p>
             </div>
@@ -281,7 +281,7 @@ export function RoiCalculator({
       {/* Right Column: Output Summary Dashboard */}
       <div className="flex w-full flex-col justify-between space-y-6 bg-surface p-6 lg:w-96 lg:p-8 ">
         <div>
-          <span className="text-caption font-extrabold tracking-wider text-muted-foreground uppercase dark:text-stone-400">
+          <span className="text-caption font-extrabold tracking-wider text-muted-foreground uppercase dark:text-muted/50">
             Investment Yield & Return
           </span>
 
@@ -289,14 +289,14 @@ export function RoiCalculator({
             <span className="text-display-md font-display font-extrabold text-ink">
               {netRoiPercentage.toFixed(2)}%
             </span>
-            <span className="text-body-sm font-bold text-muted-foreground dark:text-stone-400">
+            <span className="text-body-sm font-bold text-muted-foreground dark:text-muted/50">
               Net Annual Yield
             </span>
           </div>
 
           {downPaymentPct < 100 && (
             <div className="text-caption mt-1 flex items-center gap-1.5 font-semibold text-ink ">
-              <TrendingUp className="size-3.5 text-muted-foreground dark:text-stone-400" />
+              <TrendingUp className="size-3.5 text-muted-foreground dark:text-muted/50" />
               <span>
                 Cash-on-Cash Return:{' '}
                 <strong>{cashOnCashReturn.toFixed(2)}%</strong>
@@ -309,7 +309,7 @@ export function RoiCalculator({
         <div className="space-y-3">
           <div className="space-y-2 border border-border/60 bg-surface-subtle p-4  ">
             <div className="text-body-sm flex items-center justify-between">
-              <span className="font-medium text-muted-foreground dark:text-stone-400">
+              <span className="font-medium text-muted-foreground dark:text-muted/50">
                 Monthly Mortgage Payment
               </span>
               <span className="font-mono font-extrabold text-ink ">
@@ -319,7 +319,7 @@ export function RoiCalculator({
               </span>
             </div>
             {stressTest && downPaymentPct < 100 && (
-              <div className="flex items-center justify-end gap-1 text-[11px] font-semibold text-ink dark:text-stone-300 ">
+              <div className="flex items-center justify-end gap-1 text-[11px] font-semibold text-ink dark:text-muted/30 ">
                 <span>
                   +AED{' '}
                   {Math.round(
@@ -337,12 +337,12 @@ export function RoiCalculator({
           </div>
 
           <div className="space-y-2.5 border border-border/60 bg-surface-subtle p-4  ">
-            <span className="text-caption font-bold text-muted-foreground uppercase dark:text-stone-400">
+            <span className="text-caption font-bold text-muted-foreground uppercase dark:text-muted/50">
               Initial Capital Requirements (DLD Fees)
             </span>
 
             <div className="text-caption flex items-center justify-between">
-              <span className="text-muted-foreground dark:text-stone-400">
+              <span className="text-muted-foreground dark:text-muted/50">
                 Down Payment ({downPaymentPct}%)
               </span>
               <span className="font-mono font-semibold text-ink ">
@@ -350,7 +350,7 @@ export function RoiCalculator({
               </span>
             </div>
             <div className="text-caption flex items-center justify-between">
-              <span className="text-muted-foreground dark:text-stone-400">
+              <span className="text-muted-foreground dark:text-muted/50">
                 DLD Transfer Fee (4%) + NOC
               </span>
               <span className="font-mono font-semibold text-ink ">
@@ -358,7 +358,7 @@ export function RoiCalculator({
               </span>
             </div>
             <div className="text-caption flex items-center justify-between">
-              <span className="text-muted-foreground dark:text-stone-400">
+              <span className="text-muted-foreground dark:text-muted/50">
                 Agency Fee (2% + VAT)
               </span>
               <span className="font-mono font-semibold text-ink ">
@@ -375,7 +375,7 @@ export function RoiCalculator({
             </div>
           </div>
 
-          <div className="flex items-center justify-between border border-stone-800/20 bg-ink/10 p-4">
+          <div className="border-border-strong/20 flex items-center justify-between border bg-ink/10 p-4">
             <div>
               <span className="text-caption font-bold text-ink uppercase ">
                 Est. Monthly Net Cashflow

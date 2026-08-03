@@ -89,11 +89,11 @@ export function CommunityInsights({
   const finalGrowth = growth5Yr || data.growth5Yr;
 
   return (
-    <div className="space-y-8 border border-border bg-surface-subtle p-6 shadow-resting lg:p-8">
+    <div className="shadow-resting space-y-8 border border-border bg-surface-subtle p-6 lg:p-8">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 sm:flex-row sm:items-center">
         <div className="flex items-center gap-3">
-          <div className="flex size-12 items-center justify-center border border-border bg-surface text-ink shadow-resting">
+          <div className="shadow-resting flex size-12 items-center justify-center border border-border bg-surface text-ink">
             <Building className="size-6" />
           </div>
           <div>
@@ -144,7 +144,7 @@ export function CommunityInsights({
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <div className="flex items-center gap-4 border border-border bg-surface p-5">
-            <div className="flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-black text-ink shadow-resting">
+            <div className="shadow-resting flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-black text-ink">
               {finalWalk}
             </div>
             <div>
@@ -158,7 +158,7 @@ export function CommunityInsights({
           </div>
 
           <div className="flex items-center gap-4 border border-border bg-surface p-5">
-            <div className="flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-extrabold text-ink shadow-resting">
+            <div className="shadow-resting flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-extrabold text-ink">
               {finalTransit}
             </div>
             <div>
@@ -172,7 +172,7 @@ export function CommunityInsights({
           </div>
 
           <div className="flex items-center gap-4 border border-border bg-surface p-5">
-            <div className="flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-bold text-ink shadow-resting">
+            <div className="shadow-resting flex size-14 shrink-0 items-center justify-center border border-border/60 bg-border/50 font-display text-xl font-bold text-ink">
               {finalQuiet}
             </div>
             <div>
@@ -188,7 +188,7 @@ export function CommunityInsights({
       </div>
 
       {/* 5-Year Macro Investment Trend Chart */}
-      <div className="space-y-6 border border-border bg-surface-subtle p-8 shadow-resting">
+      <div className="shadow-resting space-y-6 border border-border bg-surface-subtle p-8">
         <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div className="flex items-center gap-3">
             <div className="flex size-10 items-center justify-center border border-border/60 bg-border/50 text-ink">
@@ -266,7 +266,7 @@ export function CommunityInsights({
                 AED {finalPriceSqft}
               </span>
             </div>
-            <div className="bg-fjord-500 relative h-36 w-full max-w-16 shadow-elevated transition-all duration-300 group-hover:-translate-y-1">
+            <div className="bg-fjord-500 shadow-elevated relative h-36 w-full max-w-16 transition-all duration-300 group-hover:-translate-y-1">
               <div className="bg-fjord-300 absolute inset-x-0 top-0 h-1" />
             </div>
             <span className="font-display text-xs font-bold text-ink">
@@ -278,7 +278,7 @@ export function CommunityInsights({
 
       {/* Infrastructure & Quality of Life */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <div className="space-y-3 border border-border bg-surface-subtle p-5 shadow-resting">
+        <div className="shadow-resting space-y-3 border border-border bg-surface-subtle p-5">
           <div className="text-body-sm flex items-center gap-2 font-bold text-ink">
             <Navigation className="size-4 text-ink" />
             <span>Transport & Connectivity</span>
@@ -305,7 +305,7 @@ export function CommunityInsights({
           </div>
         </div>
 
-        <div className="space-y-3 border border-border bg-surface-subtle p-5 shadow-resting">
+        <div className="shadow-resting space-y-3 border border-border bg-surface-subtle p-5">
           <div className="text-body-sm flex items-center gap-2 font-bold text-ink">
             <Sun className="size-4 text-ink" />
             <span>Micro-climate & Traffic Model</span>

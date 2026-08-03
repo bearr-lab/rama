@@ -91,8 +91,8 @@ export function LiveTransactionTicker({
           <div className="flex items-center gap-1.5 font-medium text-ink ">
             <Building2 className="size-3.5 text-muted-foreground" />
             <span>{currentTx.location}</span>
-            <span className="text-stone-400">•</span>
-            <span className="text-muted-foreground dark:text-stone-400">
+            <span className="text-muted/50">•</span>
+            <span className="text-muted-foreground dark:text-muted/50">
               {currentTx.type}
             </span>
           </div>
@@ -106,7 +106,7 @@ export function LiveTransactionTicker({
             {isArabic ? 'مسجل' : 'DLD Verified'}
           </span>
 
-          <span className="text-[11px] text-stone-400">
+          <span className="text-[11px] text-muted/50">
             {currentTx.timeAgo}
           </span>
         </div>

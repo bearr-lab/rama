@@ -179,7 +179,7 @@ export function InsightsClient({ insights, locale }: InsightsClientProps) {
                       className={cn(
                         'w-fit rounded-none border px-3 py-1.5 text-[10px] font-bold tracking-[0.2em] uppercase backdrop-blur-md transition-colors',
                         insight.image
-                          ? 'border-white/20 bg-black/40 text-white'
+                          ? 'border-white/20 bg-fjord/40 text-white'
                           : 'border-fjord/20 bg-fjord/5 text-fjord',
                       )}
                     >

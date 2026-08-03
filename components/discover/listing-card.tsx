@@ -40,7 +40,7 @@ const trustConfig: Record<
   verified: {
     label: 'Verified',
     icon: CheckCircle2,
-    badgeClass: 'text-ink dark:text-stone-200 border border-stone-900/30  bg-surface ',
+    badgeClass: 'text-ink dark:text-stone-200 border border-fjord/30  bg-surface ',
   },
   review: {
     label: 'In Review',
@@ -50,7 +50,7 @@ const trustConfig: Record<
   unknown: {
     label: 'Unverified',
     icon: HelpCircle,
-    badgeClass: 'text-stone-500 dark:text-stone-400 border border-stone-400/30 bg-surface ',
+    badgeClass: 'text-muted/70 dark:text-muted/50 border border-stone-400/30 bg-surface ',
   },
 };
 
@@ -71,8 +71,8 @@ export function ListingCard({
       className={cn(
         'property-card group flex cursor-pointer flex-col overflow-hidden border bg-surface transition-all duration-300 ',
         isSelected
-          ? 'border-stone-900 shadow-lg ring-2 ring-fjord/20 '
-          : 'border-border hover:border-stone-900/50 hover:shadow-xl  dark:hover:border-stone-600',
+          ? 'border-fjord shadow-lg ring-2 ring-fjord/20 '
+          : 'border-border hover:border-fjord/50 hover:shadow-xl  dark:hover:border-stone-600',
         className,
       )}
       onClick={() => onSelect?.(property)}
@@ -106,7 +106,7 @@ export function ListingCard({
             'absolute top-3 right-3 flex size-8 items-center justify-center border border-white/20 backdrop-blur-md transition-all',
             isWishlisted
               ? 'bg-ink text-white shadow-md dark:bg-surface '
-              : 'bg-black/40 text-white hover:bg-black/60',
+              : 'bg-fjord/40 text-white hover:bg-fjord/60',
           )}
           title="Save to shortlist"
         >
@@ -122,7 +122,7 @@ export function ListingCard({
             {property.community}
           </span>
           <span className="size-1 shrink-0 bg-stone-400 " />
-          <span className="truncate text-xs font-medium text-stone-500 uppercase dark:text-stone-400">
+          <span className="truncate text-xs font-medium text-muted/70 uppercase dark:text-muted/50">
             {property.developer}
           </span>
         </div>
@@ -138,7 +138,7 @@ export function ListingCard({
         </p>
 
         {/* Specs row */}
-        <div className="flex items-center gap-4 text-xs text-stone-500 dark:text-stone-400">
+        <div className="flex items-center gap-4 text-xs text-muted/70 dark:text-muted/50">
           <div className="flex items-center gap-1.5">
             <BedDouble className="size-3.5 shrink-0" />
             <span className="font-semibold text-ink dark:text-stone-200">
@@ -155,7 +155,7 @@ export function ListingCard({
             <Maximize2 className="size-3.5 shrink-0" />
             <span className="font-semibold text-ink dark:text-stone-200">
               {property.sqft?.toLocaleString() ?? '-'}{' '}
-              <span className="font-normal text-stone-500 dark:text-stone-400">sqft</span>
+              <span className="font-normal text-muted/70 dark:text-muted/50">sqft</span>
             </span>
           </div>
         </div>
@@ -166,7 +166,7 @@ export function ListingCard({
         {/* Yield + Action */}
         <div className="mt-auto flex items-center justify-between">
           {/* Yield badge */}
-          <div className="flex items-center gap-1.5 border border-stone-900/20 bg-stone-100 px-3 py-1.5 text-xs font-bold text-ink   dark:text-stone-100">
+          <div className="flex items-center gap-1.5 border border-fjord/20 bg-surface-subtle px-3 py-1.5 text-xs font-bold text-ink   dark:text-stone-100">
             <TrendingUp className="size-3.5 text-fjord" />
             <span>{property.roi}% Yield</span>
           </div>
@@ -175,7 +175,7 @@ export function ListingCard({
           <Link
             href={`/${locale}/property/${property.id}`}
             onClick={(e) => e.stopPropagation()}
-            className="flex items-center gap-1.5 text-xs font-semibold text-stone-500 transition-all hover:text-ink dark:text-stone-400 dark:hover:text-stone-100"
+            className="flex items-center gap-1.5 text-xs font-semibold text-muted/70 transition-all hover:text-ink dark:text-muted/50 dark:hover:text-stone-100"
           >
             <span>Trust Passport</span>
             <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />

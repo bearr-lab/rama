@@ -128,7 +128,7 @@ export function RamaLogo({
               'flex size-2 items-center justify-center rounded-none border border-current transition-colors duration-300',
               isDark
                 ? 'border-border/60 bg-border/50  '
-                : 'border-stone-900 bg-ink/10  dark:bg-surface/10',
+                : 'border-fjord bg-ink/10  dark:bg-surface/10',
             )}
           >
             <div

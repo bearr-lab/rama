@@ -529,7 +529,7 @@ export function PortfolioDashboard() {
                           ),
                         );
                       }}
-                      className="rounded-none bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-black shadow-2xs transition-colors hover:bg-emerald-400"
+                      className="rounded-none bg-emerald-500 px-4 py-1.5 text-xs font-extrabold text-fjord shadow-2xs transition-colors hover:bg-emerald-400"
                     >
                       Mark Completed
                     </button>
@@ -629,7 +629,7 @@ export function PortfolioDashboard() {
           </div>
 
           {/* Cashflow Forecast Sparklines */}
-          <div className="space-y-4 rounded-none border border-border/60 bg-surface-subtle p-6 shadow-resting  ">
+          <div className="shadow-resting space-y-4 rounded-none border border-border/60 bg-surface-subtle p-6  ">
             <h4 className="font-display text-lg font-bold text-ink ">5-Year Cashflow Forecast</h4>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {[
@@ -707,7 +707,7 @@ export function PortfolioDashboard() {
 
       {/* Log Maintenance Ticket Modal */}
       {isLogOpen && (
-        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+        <div className="animate-in fade-in fixed inset-0 z-50 flex items-center justify-center bg-fjord/60 p-4 backdrop-blur-sm">
           <div className="animate-in zoom-in-95 w-full max-w-md space-y-6 rounded-none border border-border bg-surface p-6 shadow-2xl">
             <div className="flex items-center justify-between border-b border-border pb-4">
               <h3 className="text-h3 font-display font-bold text-ink">

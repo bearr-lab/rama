@@ -575,11 +575,11 @@ export function SettingsClient({ locale }: SettingsClientProps) {
                 </div>
               </div>
               <div className="flex items-center gap-2 font-mono text-[11px] font-bold">
-                <span className="rounded-none bg-black/5 px-2 py-1 dark:bg-white/10">
+                <span className="rounded-none bg-fjord/5 px-2 py-1 dark:bg-white/10">
                   ⚡ {aiDiagnosticResult.latency}ms
                 </span>
                 {aiDiagnosticResult.model && (
-                  <span className="hidden rounded-none bg-black/5 px-2 py-1 sm:inline dark:bg-white/10">
+                  <span className="hidden rounded-none bg-fjord/5 px-2 py-1 sm:inline dark:bg-white/10">
                     {aiDiagnosticResult.model}
                   </span>
                 )}

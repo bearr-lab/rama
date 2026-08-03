@@ -327,7 +327,7 @@ export default async function DashboardPage({
 
           <div className="relative z-10 mt-10">
             <Link href={`/${locale}/tasks`} className="block w-full">
-              <Button className="w-full justify-between rounded-none bg-ink py-6 text-sm font-bold tracking-wider text-surface uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink hover:shadow-elevated">
+              <Button className="hover:shadow-elevated w-full justify-between rounded-none bg-ink py-6 text-sm font-bold tracking-wider text-surface uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-ink">
                 <span>
                   {isArabic ? 'فتح لوحة المعاملات' : 'Open Pipeline Board'}
                 </span>

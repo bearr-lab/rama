@@ -12,7 +12,7 @@ const attributionVariants = cva(
       variant: {
         overlay:
           'absolute right-3 bottom-3 rounded-none border border-white/15 bg-ink/80 px-2.5 py-1.5 text-white shadow-lg backdrop-blur-md',
-        inline: 'text-muted-foreground hover:text-ink dark:text-stone-400',
+        inline: 'text-muted-foreground hover:text-ink dark:text-muted/50',
       },
     },
     defaultVariants: {

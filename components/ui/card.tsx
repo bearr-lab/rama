@@ -16,7 +16,7 @@ const Card = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "text-ink transition-all duration-300 hover:-translate-y-0.5 hover:shadow-elevated",
+        "hover:shadow-elevated text-ink transition-all duration-300 hover:-translate-y-0.5",
         variantStyles[variant],
         className
       )}

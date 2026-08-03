@@ -83,7 +83,7 @@ export function PropertyCard({
           <Button
             variant="secondary"
             size="icon"
-            className="relative z-20 size-9 rounded-none border border-white/20 bg-black/40 shadow-md backdrop-blur-md transition-all hover:scale-105 hover:bg-black/60"
+            className="relative z-20 size-9 rounded-none border border-white/20 bg-fjord/40 shadow-md backdrop-blur-md transition-all hover:scale-105 hover:bg-fjord/60"
             onClick={(e) => {
               e.preventDefault();
               if (onSave) onSave(property.id);

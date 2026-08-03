@@ -162,7 +162,7 @@ export default async function ProjectsPage({
                     href={`/${locale}/projects/${project.id}`}
                     className="block size-full"
                   >
-                    <div className="group shadow-subtle hover:shadow-floating relative size-full cursor-pointer overflow-hidden rounded-none border border-border/20 bg-black transition-shadow duration-500">
+                    <div className="group shadow-subtle hover:shadow-floating relative size-full cursor-pointer overflow-hidden rounded-none border border-border/20 bg-fjord transition-shadow duration-500">
                       {/* High-Res Unsplash Image */}
                       <Image
                         src={project.image}

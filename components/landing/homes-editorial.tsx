@@ -61,7 +61,7 @@ export function HomesEditorial({
             <h2 className="font-display text-3xl font-bold text-ink ">
               {isArabic ? 'مجموعات حصرية' : 'Exclusive Collections'}
             </h2>
-            <p className="mt-4 max-w-2xl text-muted-foreground dark:text-stone-400">
+            <p className="mt-4 max-w-2xl text-muted-foreground dark:text-muted/50">
               {isArabic
                 ? 'استكشف أسلوب الحياة الذي يناسبك من خلال مجموعاتنا المصممة خصيصاً لأصحاب الذوق الرفيع.'
                 : 'Explore lifestyles tailored to your exact specifications through our hand-picked property portfolios.'}
@@ -113,7 +113,7 @@ export function HomesEditorial({
               <h2 className="mt-3 font-display text-3xl leading-tight font-bold text-ink ">
                 {isArabic ? 'معيار راما' : 'The Rama Standard'}
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground dark:text-stone-400">
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
                 {isArabic
                   ? 'لا نكتفي بإدراج العقارات، بل نختار الأفضل في دبي حصرياً، لنضمن لك استثماراً يفوق التوقعات.'
                   : 'We do not simply list properties. We exclusively curate the top 1% of Dubai’s real estate market, ensuring your investment exceeds expectations.'}
@@ -127,7 +127,7 @@ export function HomesEditorial({
                   <h3 className="mb-2 font-display text-lg font-bold text-ink ">
                     {std.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-stone-400">
+                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
                     {std.description}
                   </p>
                 </div>

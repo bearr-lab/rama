@@ -105,7 +105,7 @@ export const PartnerCard = ({ name, category, badge }: PartnerLogoProps) => {
             </span>
           )}
         </div>
-        <p className="text-xs font-medium text-muted-foreground dark:text-stone-400">
+        <p className="text-xs font-medium text-muted-foreground dark:text-muted/50">
           {category}
         </p>
       </div>

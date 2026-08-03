@@ -205,7 +205,7 @@ export const columns: ColumnDef<Lead>[] = [
                         target="_blank"
                         className="w-full"
                       >
-                        <Button variant="primary" className="w-full justify-center shadow-resting">
+                        <Button variant="primary" className="shadow-resting w-full justify-center">
                           <MessageCircle className="mr-2 size-4 text-[#25D366]" />
                           WhatsApp Client
                         </Button>

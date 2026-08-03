@@ -53,7 +53,7 @@ export function SearchBar({
         onSubmit={handleSearch}
         className={cn(
           'relative flex w-full items-center overflow-hidden rounded-none border-none p-1 shadow-xl backdrop-blur-xl transition-all duration-300',
-          isHero ? 'bg-white/95 text-stone-900' : 'bg-surface text-ink',
+          isHero ? 'bg-white/95 text-fjord' : 'bg-surface text-ink',
           isFocused && 'ring-1 ring-fjord',
         )}
       >

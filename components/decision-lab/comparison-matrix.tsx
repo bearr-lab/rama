@@ -91,7 +91,7 @@ export function ComparisonMatrix({
   if (properties.length < 2) {
     return (
       <div className="flex h-64 w-full flex-col items-center justify-center border-transparent bg-surface-subtle p-12 text-center shadow-none">
-        <ArrowRightLeft className="mb-4 size-10 text-stone-300" />
+        <ArrowRightLeft className="mb-4 size-10 text-muted/30" />
         <p className="font-display text-xl font-bold text-ink">
           Add properties to compare
         </p>
@@ -170,7 +170,7 @@ export function ComparisonMatrix({
                   max={100}
                   value={weightLocation}
                   onChange={(e) => setWeightLocation(Number(e.target.value))}
-                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                  className="bg-border-strong h-1 w-full cursor-pointer appearance-none accent-stone-900"
                 />
               </div>
               <div className="space-y-3">
@@ -186,7 +186,7 @@ export function ComparisonMatrix({
                   max={100}
                   value={weightPrice}
                   onChange={(e) => setWeightPrice(Number(e.target.value))}
-                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                  className="bg-border-strong h-1 w-full cursor-pointer appearance-none accent-stone-900"
                 />
               </div>
               <div className="space-y-3">
@@ -202,7 +202,7 @@ export function ComparisonMatrix({
                   max={100}
                   value={weightRoi}
                   onChange={(e) => setWeightRoi(Number(e.target.value))}
-                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                  className="bg-border-strong h-1 w-full cursor-pointer appearance-none accent-stone-900"
                 />
               </div>
               <div className="space-y-3">
@@ -218,7 +218,7 @@ export function ComparisonMatrix({
                   max={100}
                   value={weightRisk}
                   onChange={(e) => setWeightRisk(Number(e.target.value))}
-                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                  className="bg-border-strong h-1 w-full cursor-pointer appearance-none accent-stone-900"
                 />
               </div>
             </div>
@@ -372,7 +372,7 @@ export function ComparisonMatrix({
                         className={cn(
                           'inline-flex items-center gap-1.5 border px-2 py-1 text-[10px] font-bold uppercase',
                           p.trustScore >= 90
-                            ? 'border-stone-800 bg-border/50 text-ink'
+                            ? 'border-border-strong bg-border/50 text-ink'
                             : 'border-stone-400 bg-surface-subtle text-muted-foreground',
                         )}
                       >
@@ -433,7 +433,7 @@ export function ComparisonMatrix({
                       >
                         {p.roi}%
                         {isBest && (
-                          <span className="ml-2 inline-flex items-center border border-stone-800 bg-ink px-1.5 py-0.5 text-[9px] font-bold text-white uppercase">
+                          <span className="border-border-strong ml-2 inline-flex items-center border bg-ink px-1.5 py-0.5 text-[9px] font-bold text-white uppercase">
                             Best ROI
                           </span>
                         )}
@@ -448,13 +448,13 @@ export function ComparisonMatrix({
       </div>
 
       {/* Shared Notes Area */}
-      <div className="border border-border/60 bg-surface-subtle p-6 shadow-resting">
+      <div className="shadow-resting border border-border/60 bg-surface-subtle p-6">
         <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink">
           <StickyNote className="size-5 text-ink" />
           Decision Logic & Notes
         </h3>
         <textarea
-          className="h-32 w-full resize-none border border-border/60 bg-surface p-4 text-sm font-medium text-ink focus:border-stone-900 focus:ring-1 focus:ring-ink focus:outline-none"
+          className="h-32 w-full resize-none border border-border/60 bg-surface p-4 text-sm font-medium text-ink focus:border-fjord focus:ring-1 focus:ring-ink focus:outline-none"
           placeholder="Summarize why a certain property is leading, or note missing data points needed for a final call..."
         />
         <div className="mt-4 flex items-center justify-between">

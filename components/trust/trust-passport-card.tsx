@@ -25,7 +25,7 @@ export function TrustPassportCard({
 
   if (isLoading) {
     return (
-      <div className={cn('overflow-hidden rounded-none border border-border bg-surface-subtle shadow-resting', className)}>
+      <div className={cn('shadow-resting overflow-hidden rounded-none border border-border bg-surface-subtle', className)}>
         {/* Skeleton Top Header */}
         <div className="flex items-center justify-between border-b border-border p-5">
           <div className="flex items-center gap-3">
@@ -54,7 +54,7 @@ export function TrustPassportCard({
   return (
     <div
       className={cn(
-        'overflow-hidden rounded-none border border-border bg-surface-subtle shadow-resting',
+        'shadow-resting overflow-hidden rounded-none border border-border bg-surface-subtle',
         className,
       )}
     >
@@ -90,7 +90,7 @@ export function TrustPassportCard({
           </div>
         </div>
         <div className="text-right">
-          <div className={cn("inline-flex items-center border px-2 py-1 text-[10px] font-bold uppercase", isVerified ? 'bg-border/50/50 border-stone-800 text-fjord' : 'border-border/60 text-muted-foreground')}>
+          <div className={cn("inline-flex items-center border px-2 py-1 text-[10px] font-bold uppercase", isVerified ? 'bg-border/50/50 border-border-strong text-fjord' : 'border-border/60 text-muted-foreground')}>
             {isVerified ? 'DLD Validated' : 'Unverified'}
           </div>
         </div>

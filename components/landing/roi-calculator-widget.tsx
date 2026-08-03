@@ -61,7 +61,7 @@ export function RoiCalculatorWidget({
     }).format(val);
 
   return (
-    <div className="w-full rounded-none border border-border/80 bg-surface/90 dark:bg-canvas/90 p-6 shadow-xl backdrop-blur-md sm:p-8  ">
+    <div className="w-full rounded-none border border-border/80 bg-surface/90 p-6 shadow-xl backdrop-blur-md sm:p-8 dark:bg-canvas/90  ">
       {/* Header */}
       <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-center ">
         <div>
@@ -89,7 +89,7 @@ export function RoiCalculatorWidget({
               className={`rounded-none px-3.5 py-1.5 text-xs font-medium transition-all ${
                 selectedCommunity === c.id
                   ? 'bg-[#0a4e6e] text-white shadow-sm'
-                  : 'bg-surface text-muted-foreground hover:bg-border/50  dark:text-stone-300'
+                  : 'bg-surface text-muted-foreground hover:bg-border/50  dark:text-muted/30'
               }`}
             >
               {c.label}
@@ -104,7 +104,7 @@ export function RoiCalculatorWidget({
         <div className="space-y-6 lg:col-span-6">
           {/* Slider 1: Property Price */}
           <div>
-            <div className="flex justify-between text-sm font-medium text-ink dark:text-stone-300">
+            <div className="flex justify-between text-sm font-medium text-ink dark:text-muted/30">
               <span>{isArabic ? 'سعر العقار' : 'Property Value'}</span>
               <span className="font-bold text-[#0a4e6e] dark:text-sky-400">
                 {formatCurrency(propertyPrice)}
@@ -128,7 +128,7 @@ export function RoiCalculatorWidget({
 
           {/* Slider 2: Down Payment */}
           <div>
-            <div className="flex justify-between text-sm font-medium text-ink dark:text-stone-300">
+            <div className="flex justify-between text-sm font-medium text-ink dark:text-muted/30">
               <span>
                 {isArabic ? 'الدفعة الأولى' : 'Down Payment'} ({downPaymentPct}
                 %)
@@ -153,7 +153,7 @@ export function RoiCalculatorWidget({
 
           {/* Slider 3: Interest Rate */}
           <div>
-            <div className="flex justify-between text-sm font-medium text-ink dark:text-stone-300">
+            <div className="flex justify-between text-sm font-medium text-ink dark:text-muted/30">
               <span>
                 {isArabic ? 'معدل الفائدة المتوقع' : 'Mortgage Interest Rate'}
               </span>

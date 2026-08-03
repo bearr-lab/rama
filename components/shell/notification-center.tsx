@@ -102,7 +102,7 @@ export function NotificationCenter() {
         aria-label="Notifications & Lifecycle Alerts"
         aria-expanded={isOpen}
         className={cn(
-          'relative border p-2.5 text-muted-foreground transition-all hover:bg-surface hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none  dark:text-stone-400',
+          'relative border p-2.5 text-muted-foreground transition-all hover:bg-surface hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none  dark:text-muted/50',
           isOpen
             ? ' border-border/60 bg-surface text-ink  '
             : 'border-border/60 ',
@@ -136,7 +136,7 @@ export function NotificationCenter() {
               {unreadCount > 0 && (
                 <button
                   onClick={markAllRead}
-                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:bg-surface-subtle hover:text-ink  dark:text-stone-400"
+                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:bg-surface-subtle hover:text-ink  dark:text-muted/50"
                   title="Mark all as read"
                 >
                   <Check className="size-3.5" />
@@ -146,7 +146,7 @@ export function NotificationCenter() {
               {alerts.length > 0 && (
                 <button
                   onClick={clearAlerts}
-                  className="p-1.5 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-stone-400"
+                  className="p-1.5 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-muted/50"
                   title="Clear all alerts"
                 >
                   <Trash2 className="size-3.5" />
@@ -158,7 +158,7 @@ export function NotificationCenter() {
           {/* Alerts List */}
           <div className="max-h-96 divide-y divide-stone-300 overflow-y-auto dark:divide-stone-800">
             {alerts.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center text-muted-foreground dark:text-stone-400">
+              <div className="flex flex-col items-center justify-center p-8 text-center text-muted-foreground dark:text-muted/50">
                 <Bell className="mb-2 size-8 opacity-30" />
                 <p className="text-body-sm font-semibold">All caught up!</p>
                 <p className="text-caption">

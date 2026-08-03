@@ -47,7 +47,7 @@ export function WhyInvestOffPlan({ isArabic }: WhyInvestOffPlanProps) {
             <h2 className="font-display text-3xl leading-tight font-bold text-ink md:text-4xl ">
               {isArabic ? 'لماذا تستثمر قيد الإنشاء؟' : 'Why Invest Off-Plan?'}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground dark:text-stone-400">
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
               {isArabic
                 ? 'يوفر الاستثمار في عقارات دبي قيد الإنشاء عوائد لا مثيل لها وميزات حصرية للمستثمرين المبكرين.'
                 : 'Off-plan investments in Dubai offer unparalleled returns and exclusive advantages for early-stage investors.'}
@@ -80,7 +80,7 @@ export function WhyInvestOffPlan({ isArabic }: WhyInvestOffPlanProps) {
                   <h3 className="mb-3 font-display text-lg font-bold text-ink ">
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-stone-400">
+                  <p className="text-sm leading-relaxed text-muted-foreground dark:text-muted/50">
                     {feature.description}
                   </p>
                 </motion.div>

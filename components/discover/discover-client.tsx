@@ -279,7 +279,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               {filters.beds !== undefined && (
                 <Badge
                   variant="secondary"
-                  className="flex items-center gap-1.5 rounded-none border border-fjord/30 bg-surface-subtle px-3.5 py-1 text-xs font-semibold text-fjord shadow-2xs dark:border-stone-100/30 dark:bg-fjord-hover/80 dark:text-white"
+                  className="dark:border-border/60/30 flex items-center gap-1.5 rounded-none border border-fjord/30 bg-surface-subtle px-3.5 py-1 text-xs font-semibold text-fjord shadow-2xs dark:bg-fjord-hover/80 dark:text-white"
                 >
                   <span>
                     {filters.beds === 0 ? 'Studio' : `${filters.beds}+ Beds`}
@@ -296,7 +296,7 @@ export function DiscoverClient({ locale = 'en' }: { locale?: string }) {
               {filters.maxPrice !== undefined && (
                 <Badge
                   variant="secondary"
-                  className="flex items-center gap-1.5 rounded-none border border-fjord/30 bg-surface-subtle px-3.5 py-1 text-xs font-semibold text-fjord shadow-2xs dark:border-stone-100/30 dark:bg-fjord-hover/80 dark:text-white"
+                  className="dark:border-border/60/30 flex items-center gap-1.5 rounded-none border border-fjord/30 bg-surface-subtle px-3.5 py-1 text-xs font-semibold text-fjord shadow-2xs dark:bg-fjord-hover/80 dark:text-white"
                 >
                   <span>
                     Max AED {(filters.maxPrice / 1000000).toFixed(1)}M

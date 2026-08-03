@@ -1,6 +1,9 @@
-const { createOpenAI } = require('@ai-sdk/openai');
-const { generateText, tool } = require('ai');
-const { z } = require('zod');
+import { createOpenAI } from '@ai-sdk/openai';
+import { generateText, tool } from 'ai';
+import { z } from 'zod';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.local' });
 
 const nvidiaNim = createOpenAI({
   baseURL: 'https://integrate.api.nvidia.com/v1',
@@ -8,7 +11,6 @@ const nvidiaNim = createOpenAI({
 });
 
 async function run() {
-  require('dotenv').config({ path: '.env.local' });
   const result = await generateText({
     model: nvidiaNim.chat('meta/llama-3.1-70b-instruct'),
     prompt: 'ROI on Downtown?',

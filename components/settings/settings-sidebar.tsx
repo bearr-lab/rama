@@ -28,7 +28,7 @@ export function SettingsSidebar({ locale = 'en' }: { locale?: string }) {
             className={cn(
               'flex items-center gap-3 px-3 py-2 text-sm font-medium transition-colors hover:bg-surface-subtle',
               isActive
-                ? 'bg-fjord text-white shadow-resting'
+                ? 'shadow-resting bg-fjord text-white'
                 : 'text-muted-foreground hover:text-ink',
             )}
           >
