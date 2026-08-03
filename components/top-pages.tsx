@@ -57,7 +57,7 @@ export function TopPages() {
             {rows.map((row) => (
               <TableRow className="hover:bg-transparent" key={row.path}>
                 <TableCell className="max-w-50 truncate pl-6 font-medium">
-                  <span className="w-max rounded border border-border bg-muted/50 px-1 py-px text-xs">
+                  <span className="w-max rounded-none border border-border bg-muted/50 px-1 py-px text-xs">
                     {row.path}
                   </span>
                 </TableCell>

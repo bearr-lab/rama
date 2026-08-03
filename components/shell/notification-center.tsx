@@ -13,6 +13,7 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 
 interface AlertItem {
   id: string;
@@ -101,31 +102,31 @@ export function NotificationCenter() {
         aria-label="Notifications & Lifecycle Alerts"
         aria-expanded={isOpen}
         className={cn(
-          'relative border p-2.5 text-stone-500 transition-all hover:bg-stone-100 hover:text-stone-900 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none dark:bg-stone-900 dark:text-stone-400',
+          'relative border p-2.5 text-muted-foreground transition-all hover:bg-surface hover:text-ink focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none  dark:text-stone-400',
           isOpen
-            ? 'dark:border-stone-800-hover border-stone-300 bg-stone-100 text-stone-900 dark:bg-stone-900 dark:text-stone-50'
-            : 'border-stone-300 dark:border-stone-800',
+            ? ' border-border/60 bg-surface text-ink  '
+            : 'border-border/60 ',
         )}
         title="Notifications & Lifecycle Alerts"
       >
         <Bell className="size-5" />
         {unreadCount > 0 && (
-          <span className="text-caption absolute -end-1 -top-1 flex size-5 animate-pulse items-center justify-center bg-stone-900 font-extrabold text-primary-foreground shadow-sm dark:bg-stone-100">
+          <span className="text-caption absolute -inset-e-1 -top-1 flex size-5 animate-pulse items-center justify-center bg-rose-500 font-extrabold text-white shadow-sm dark:bg-surface">
             {unreadCount}
           </span>
         )}
       </button>
 
       {isOpen && (
-        <div className="animate-in fade-in zoom-in-95 absolute end-0 z-50 mt-2 w-80 overflow-hidden border border-stone-300 bg-stone-50 shadow-2xl duration-150 sm:w-96 dark:border-stone-800 dark:bg-stone-950">
+        <div className="animate-in fade-in zoom-in-95 absolute inset-e-0 z-50 mt-2 w-80 overflow-hidden border border-border/60 bg-surface-subtle shadow-2xl duration-150 sm:w-96  ">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-stone-300 bg-stone-100/50 p-4 dark:border-stone-800 dark:bg-stone-900/50">
+          <div className="flex items-center justify-between border-b border-border/60 bg-surface/50 p-4  ">
             <div className="flex items-center gap-2">
-              <h3 className="text-body font-display font-bold text-stone-900 dark:text-stone-50">
+              <h3 className="text-body font-display font-bold text-ink ">
                 Lifecycle Alerts
               </h3>
               {unreadCount > 0 && (
-                <span className="py-0.2 text-caption bg-stone-200 px-2 font-bold text-stone-900 dark:bg-stone-800 dark:text-stone-100">
+                <span className="py-0.2 text-caption bg-border/50 px-2 font-bold text-ink  ">
                   {unreadCount} new
                 </span>
               )}
@@ -135,7 +136,7 @@ export function NotificationCenter() {
               {unreadCount > 0 && (
                 <button
                   onClick={markAllRead}
-                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-stone-500 transition-colors hover:bg-stone-50 hover:text-stone-900 dark:bg-stone-950 dark:text-stone-400"
+                  className="flex items-center gap-1 p-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:bg-surface-subtle hover:text-ink  dark:text-stone-400"
                   title="Mark all as read"
                 >
                   <Check className="size-3.5" />
@@ -145,7 +146,7 @@ export function NotificationCenter() {
               {alerts.length > 0 && (
                 <button
                   onClick={clearAlerts}
-                  className="p-1.5 text-stone-500 transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-stone-400"
+                  className="p-1.5 text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive dark:text-stone-400"
                   title="Clear all alerts"
                 >
                   <Trash2 className="size-3.5" />
@@ -157,7 +158,7 @@ export function NotificationCenter() {
           {/* Alerts List */}
           <div className="max-h-96 divide-y divide-stone-300 overflow-y-auto dark:divide-stone-800">
             {alerts.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center text-stone-500 dark:text-stone-400">
+              <div className="flex flex-col items-center justify-center p-8 text-center text-muted-foreground dark:text-stone-400">
                 <Bell className="mb-2 size-8 opacity-30" />
                 <p className="text-body-sm font-semibold">All caught up!</p>
                 <p className="text-caption">
@@ -170,59 +171,42 @@ export function NotificationCenter() {
                   key={alert.id}
                   href={`/${locale}${alert.href}`}
                   onClick={() => handleAlertClick(alert.id)}
-                  className={cn(
-                    'group relative flex items-start gap-3 p-4 transition-colors hover:bg-stone-100 dark:bg-stone-900',
-                    alert.unread &&
-                      'bg-stone-200/5 dark:bg-stone-200/10 dark:bg-stone-800/5 dark:bg-stone-800/10',
-                  )}
+                  className="block border-b border-border/60 p-3 transition-colors last:border-0 hover:bg-surface-subtle"
                 >
-                  <div
+                  <Alert
                     className={cn(
-                      'mt-0.5 shrink-0 p-2',
-                      alert.type === 'trust'
-                        ? 'bg-stone-800/10 text-stone-800'
-                        : alert.type === 'ai'
-                          ? 'bg-stone-200/10 text-stone-600 dark:bg-stone-800/10 dark:text-stone-400'
-                          : 'bg-stone-800/10 text-stone-800',
+                      'border-none p-0',
+                      alert.unread ? 'opacity-100' : 'opacity-70',
                     )}
                   >
                     {alert.type === 'trust' && (
-                      <ShieldCheck className="size-4" />
+                      <ShieldCheck className="size-4 text-ink" />
                     )}
-                    {alert.type === 'ai' && <Sparkles className="size-4" />}
+                    {alert.type === 'ai' && <Sparkles className="size-4 text-ink" />}
                     {alert.type === 'task' && (
-                      <CheckSquare className="size-4" />
+                      <CheckSquare className="size-4 text-ink" />
                     )}
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <h4 className="text-body-sm truncate font-bold text-stone-900 transition-colors group-hover:text-stone-900 dark:text-stone-100">
-                        {alert.title}
-                      </h4>
-                      <span className="shrink-0 text-[10px] text-stone-500 dark:text-stone-400">
+                    <AlertTitle className="text-body-sm flex items-center justify-between font-bold text-ink">
+                      <span>{alert.title}</span>
+                      <span className="text-[10px] font-normal text-muted-foreground">
                         {alert.time}
                       </span>
-                    </div>
-                    <p className="text-caption mt-0.5 leading-normal text-stone-500 dark:text-stone-400">
+                    </AlertTitle>
+                    <AlertDescription className="text-caption mt-0.5 text-muted-foreground">
                       {alert.description}
-                    </p>
-                  </div>
-
-                  {alert.unread && (
-                    <span className="size-2 shrink-0 self-center bg-stone-200 dark:bg-stone-800" />
-                  )}
+                    </AlertDescription>
+                  </Alert>
                 </Link>
               ))
             )}
           </div>
 
           {/* Footer */}
-          <div className="border-t border-stone-300 bg-stone-100 p-3 text-center dark:border-stone-800 dark:bg-stone-900">
+          <div className="border-t border-border/60 bg-surface p-3 text-center  ">
             <Link
               href={`/${locale}/tasks`}
               onClick={() => setIsOpen(false)}
-              className="text-caption inline-flex items-center gap-1 font-bold text-stone-900 hover:underline dark:text-stone-100"
+              className="text-caption inline-flex items-center gap-1 font-bold text-ink hover:underline "
             >
               <span>View All Transaction Tasks</span>
               <ExternalLink className="size-3" />

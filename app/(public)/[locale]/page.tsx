@@ -43,7 +43,7 @@ export default function LandingPage({
       <LiveTransactionTicker isArabic={isArabic} />
 
       {/* Interactive ROI Simulator Section */}
-      <section className="mt-12 w-full border-t border-stone-200/60 bg-stone-100/50 py-12 md:mt-20 md:py-20 dark:border-stone-800 dark:bg-stone-950/40">
+      <section className="mt-12 w-full border-t border-border/60 bg-surface/50 py-12 md:mt-20 md:py-20  ">
         <Container size="lg">
           <RoiCalculatorWidget locale={locale} isArabic={isArabic} />
         </Container>

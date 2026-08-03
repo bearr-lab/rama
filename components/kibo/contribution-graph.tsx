@@ -107,7 +107,7 @@ export const ContributionGraph = ({
   return (
     <div
       className={cn(
-        'rounded-3xl border border-border/60 bg-surface p-6 shadow-sm',
+        'rounded-none border border-border/60 bg-surface p-6 shadow-sm',
         className,
       )}
     >
@@ -122,7 +122,7 @@ export const ContributionGraph = ({
           </h3>
         </div>
         <div className="flex items-center gap-3">
-          <span className="flex items-center gap-1.5 rounded-full border border-border/60 bg-surface-subtle px-3.5 py-1.5 text-xs font-bold text-ink">
+          <span className="flex items-center gap-1.5 rounded-none border border-border/60 bg-surface-subtle px-3.5 py-1.5 text-xs font-bold text-ink">
             <Sparkles className="size-3.5 text-fjord" />
             <span>{totalLabel}</span>
           </span>
@@ -132,7 +132,7 @@ export const ContributionGraph = ({
       {/* Heatmap Container */}
       <div className="relative overflow-x-auto pb-4">
         {/* Month Labels */}
-        <div className="mb-2 ml-8 flex min-w-[650px] justify-between text-[11px] font-semibold text-muted">
+        <div className="mb-2 ml-8 flex min-w-[650px] justify-between text-[11px] font-semibold text-muted-foreground">
           {months.map((m) => (
             <span key={m}>{m}</span>
           ))}
@@ -140,7 +140,7 @@ export const ContributionGraph = ({
 
         <div className="flex min-w-[650px] gap-2">
           {/* Day Labels */}
-          <div className="flex flex-col justify-around py-1 pr-2 text-[10px] font-bold text-muted">
+          <div className="flex flex-col justify-around py-1 pr-2 text-[10px] font-bold text-muted-foreground">
             <span>Mon</span>
             <span>Wed</span>
             <span>Fri</span>
@@ -157,7 +157,7 @@ export const ContributionGraph = ({
                     onMouseEnter={() => setHoveredDay(day)}
                     onMouseLeave={() => setHoveredDay(null)}
                     className={cn(
-                      'size-3 cursor-pointer rounded-sm transition-colors',
+                      'size-3 cursor-pointer rounded-none transition-colors',
                       intensityColors[day.intensity],
                     )}
                   />
@@ -170,7 +170,7 @@ export const ContributionGraph = ({
 
       {/* Footer & Legend */}
       <div className="mt-4 flex flex-col justify-between gap-4 border-t border-border/40 pt-4 text-xs sm:flex-row sm:items-center">
-        <div className="min-h-5 font-medium text-muted">
+        <div className="min-h-5 font-medium text-muted-foreground">
           {hoveredDay ? (
             <span className="font-bold text-ink">
               {hoveredDay.date}:{' '}
@@ -183,14 +183,14 @@ export const ContributionGraph = ({
           )}
         </div>
 
-        <div className="ml-auto flex items-center gap-2 font-semibold text-muted">
+        <div className="ml-auto flex items-center gap-2 font-semibold text-muted-foreground">
           <span>Less</span>
           <div className="flex gap-1">
             {[0, 1, 2, 3, 4].map((i) => (
               <span
                 key={i}
                 className={cn(
-                  'size-3 rounded-sm',
+                  'size-3 rounded-none',
                   intensityColors[i as 0 | 1 | 2 | 3 | 4],
                 )}
               />

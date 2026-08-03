@@ -4,19 +4,16 @@ import * as React from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
 import {
-  Settings as SettingsIcon,
   Bell,
   Shield,
   Palette,
   Globe,
-  Wallet,
   CheckCircle2,
   Sparkles,
   Sliders,
   Sun,
   Moon,
   Monitor,
-  Key,
   Copy,
   Check,
   RefreshCw,
@@ -24,22 +21,17 @@ import {
   Lock,
   UserCheck,
   Smartphone,
-  Mail,
-  MessageSquare,
   AlertTriangle,
-  ExternalLink,
   DollarSign,
   TrendingUp,
   RotateCcw,
-  Activity,
   Terminal,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { AnimatedThemeToggler } from '@/components/magicui/animated-theme-toggler';
 
 interface SettingsClientProps {
   locale: string;
-  user: any | null;
+  user: unknown | null;
 }
 
 interface UserPreferences {
@@ -109,11 +101,11 @@ function LagomSwitch({
   );
 }
 
-export function SettingsClient({ locale, user }: SettingsClientProps) {
+export function SettingsClient({ locale }: SettingsClientProps) {
   const isArabic = locale === 'ar';
   const router = useRouter();
   const pathname = usePathname();
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   // Hydration state & persisted preferences
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -259,12 +251,12 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
           message: `HTTP ${response.status}: Failed to reach AI endpoint`,
         });
       }
-    } catch (err: any) {
+    } catch (err: unknown) {
       const endTime = performance.now();
       setAiDiagnosticResult({
         status: 'error',
         latency: Math.round(endTime - startTime),
-        message: err.message || 'Network timeout or CORS error',
+        message: err instanceof Error ? err.message : 'Network timeout or CORS error',
       });
     } finally {
       setIsTestingAi(false);
@@ -294,7 +286,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
   if (!isLoaded) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="flex flex-col items-center gap-3 text-muted">
+        <div className="flex flex-col items-center gap-3 text-muted-foreground">
           <RefreshCw className="size-6 animate-spin text-fjord" />
           <span className="text-sm font-medium">
             {isArabic
@@ -314,7 +306,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
       {/* ── 1. Executive Lagom Header ── */}
       <header className="flex flex-col justify-between gap-4 border-b border-border/60 pb-6 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs font-semibold tracking-widest text-muted uppercase">
+          <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
             {isArabic
               ? 'مساحة العمل · إعدادات المنصة والتفضيلات'
               : 'WORKSPACE · PLATFORM SETTINGS'}
@@ -324,7 +316,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               ? 'تفضيلات النظام وهندسة القرار'
               : 'Platform Settings & Preferences'}
           </h1>
-          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             {isArabic
               ? 'تخصيص المظهر الشمالي الهادئ (Nordic Lagom)، وحدات التقييم المالية، ربط شيكات إيجاري الإلكترونية بدائرة الأراضي، ومرونة محرك الذكاء الاصطناعي.'
               : 'Configure your Nordic Lagom aesthetics, financial valuation units, DLD electronic Ejari sync, 2FA biometric identity, and AI concierge resilience fallthrough.'}
@@ -343,7 +335,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
       <form onSubmit={handleSave} className="space-y-8">
         {/* ── Section 1: Appearance & Localization ── */}
-        <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
+        <section className="rounded-none border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center justify-between border-b border-border/60 pb-4">
             <div className="flex items-center gap-3">
               <div className="flex size-10 items-center justify-center rounded-none bg-fjord/10 text-fjord">
@@ -355,7 +347,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'المظهر الخارجي واللغة'
                     : 'Appearance & Localization'}
                 </h3>
-                <p className="text-xs text-muted">
+                <p className="text-xs text-muted-foreground">
                   {isArabic
                     ? 'تعديل أوضاع العرض واللغة النشطة وعملة تقييم الأصول'
                     : 'Customize display modes, active interface language, and asset valuation currency'}
@@ -364,15 +356,15 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
             </div>
 
             {/* Language Toggle Pill */}
-            <div className="flex items-center gap-1 rounded-2xl border border-border/80 bg-surface-subtle p-1 shadow-2xs">
+            <div className="flex items-center gap-1 rounded-none border border-border/80 bg-surface-subtle p-1 shadow-2xs">
               <button
                 type="button"
                 onClick={() => handleLanguageSwitch('en')}
                 className={cn(
                   'flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-bold transition-all duration-200',
                   !isArabic
-                    ? 'bg-ink text-white shadow-xs dark:bg-fjord dark:text-white'
-                    : 'text-muted hover:text-ink',
+                    ? 'bg-fjord text-white shadow-xs dark:bg-fjord dark:text-white'
+                    : 'text-muted-foreground hover:text-ink',
                 )}
               >
                 <Globe className="size-3.5" />
@@ -384,8 +376,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                 className={cn(
                   'flex items-center gap-1.5 rounded-none px-3 py-1.5 text-xs font-bold transition-all duration-200',
                   isArabic
-                    ? 'bg-ink text-white shadow-xs dark:bg-fjord dark:text-white'
-                    : 'text-muted hover:text-ink',
+                    ? 'bg-fjord text-white shadow-xs dark:bg-fjord dark:text-white'
+                    : 'text-muted-foreground hover:text-ink',
                 )}
               >
                 <Globe className="size-3.5" />
@@ -403,7 +395,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'نمط المظهر (Nordic Lagom)'
                     : 'Interface Theme (Nordic Lagom)'}
                 </label>
-                <span className="text-xs font-medium text-muted">
+                <span className="text-xs font-medium text-muted-foreground">
                   {isArabic ? 'التنشيط الحي:' : 'Active mode:'}{' '}
                   <strong className="text-ink capitalize">
                     {theme || 'system'}
@@ -432,10 +424,10 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                       type="button"
                       onClick={() => setTheme(item.id)}
                       className={cn(
-                        'flex flex-col items-center gap-2.5 rounded-2xl border p-4 text-center transition-all duration-200',
+                        'flex flex-col items-center gap-2.5 rounded-none border p-4 text-center transition-all duration-200',
                         isActive
                           ? 'border-fjord bg-fjord/5 text-fjord shadow-xs ring-1 ring-fjord/30 dark:bg-fjord/15 dark:text-white'
-                          : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-ink',
+                          : 'border-border/60 bg-surface-subtle text-muted-foreground hover:border-border hover:text-ink',
                       )}
                     >
                       <Icon
@@ -443,7 +435,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                           'size-5',
                           isActive
                             ? 'text-fjord dark:text-white'
-                            : 'text-muted',
+                            : 'text-muted-foreground',
                         )}
                       />
                       <span className="text-xs font-bold">{item.label}</span>
@@ -482,20 +474,20 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                       key={cur.id}
                       type="button"
                       onClick={() =>
-                        setPrefs({ ...prefs, currency: cur.id as any })
+                        setPrefs({ ...prefs, currency: cur.id as 'AED' | 'USD' | 'EUR' })
                       }
                       className={cn(
-                        'flex flex-col items-center gap-1 rounded-2xl border p-3.5 text-center transition-all duration-200',
+                        'flex flex-col items-center gap-1 rounded-none border p-3.5 text-center transition-all duration-200',
                         isSel
                           ? 'border-emerald-500 bg-emerald-500/5 text-emerald-600 shadow-xs ring-1 ring-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-400'
-                          : 'border-border/60 bg-surface-subtle text-muted hover:border-border hover:text-ink',
+                          : 'border-border/60 bg-surface-subtle text-muted-foreground hover:border-border hover:text-ink',
                       )}
                     >
                       <span className="font-mono text-base font-black text-ink">
                         {cur.sym}
                       </span>
                       <span className="text-xs font-bold">{cur.id}</span>
-                      <span className="text-[10px] text-muted">{cur.sub}</span>
+                      <span className="text-[10px] text-muted-foreground">{cur.sub}</span>
                     </button>
                   );
                 })}
@@ -504,14 +496,14 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
           </div>
 
           {/* Currency Preview Banner */}
-          <div className="mt-5 flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle/80 p-3.5 text-xs text-muted">
+          <div className="mt-5 flex items-center gap-3 rounded-none border border-border/60 bg-surface-subtle/80 p-3.5 text-xs text-muted-foreground">
             <DollarSign className="size-4 shrink-0 text-fjord" />
             <p className="font-medium">{getCurrencyPreview()}</p>
           </div>
         </section>
 
         {/* ── Section 2: AI Concierge & Intelligence Engine Resilience ── */}
-        <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
+        <section className="rounded-none border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex flex-col justify-between gap-4 border-b border-border/60 pb-4 sm:flex-row sm:items-center">
             <div className="flex items-center gap-3">
               <div className="flex size-10 items-center justify-center rounded-none bg-purple-500/10 text-purple-600 dark:text-purple-400">
@@ -523,7 +515,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'محرك الذكاء الاصطناعي وهندسة المرونة'
                     : 'AI Concierge & Intelligence Engine Resilience'}
                 </h3>
-                <p className="text-xs text-muted">
+                <p className="text-xs text-muted-foreground">
                   {isArabic
                     ? 'إدارة تسلسل النماذج المجانية (3-Tier OpenRouter)، وضع التدريب غير المتصل، وتزامن إيجاري'
                     : 'Manage 3-Tier OpenRouter free model hierarchy, offline sandbox simulation, and DLD Ejari sync'}
@@ -555,7 +547,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
           {aiDiagnosticResult.status !== 'idle' && (
             <div
               className={cn(
-                'mt-5 flex items-center justify-between gap-3 rounded-2xl border p-4 text-xs font-medium transition-all',
+                'mt-5 flex items-center justify-between gap-3 rounded-none border p-4 text-xs font-medium transition-all',
                 aiDiagnosticResult.status === 'success'
                   ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
                   : 'border-rose-500/30 bg-rose-500/10 text-rose-700 dark:text-rose-300',
@@ -604,7 +596,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'نموذج الذكاء الاصطناعي الأساسي (3-Tier Fallthrough)'
                     : 'Primary AI Reasoning Model (3-Tier Fallthrough)'}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                   {isArabic
                     ? 'يتم اختيار هذا النموذج أولاً للإجابة على استشارات المستثمرين. في حال تجاوز حد السرعة، يحول النظام تلقائياً للنموذج الاحتياطي مجاناً.'
                     : 'Selected as primary reasoning engine for investor queries. If OpenRouter rate limits occur, RAMA automatically cascades to backup free models.'}
@@ -643,7 +635,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'بنية مساحة عمل RAMA V2 المتقدمة'
                     : 'RAMA V2 Workspace Architecture'}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                   {isArabic
                     ? 'تفعيل العرض المنقسم للعقارات، مقارنات مختبر القرار (Decision Lab)، وجواز ثقة الأصول ذو العوامل الأربعة.'
                     : 'Enables split-view property analysis, Decision Lab trade-off matrices, and 4-factor Trust Passport evidence drawers.'}
@@ -664,7 +656,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'وضع محاكاة بيئة التجربة (Offline Sandbox)'
                     : 'Sandbox Demo Mode (Offline Evaluation)'}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                   {isArabic
                     ? 'تجاوز حواجز تسجيل الدخول لمحاكاة التقييم العقاري واختبار تدفقات عمل الصفقات دون الحاجة لاتصال خارجي.'
                     : 'Bypasses mandatory authentication blockers and simulates domain intelligence when evaluating without live API keys.'}
@@ -685,7 +677,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'تزامن شيكات إيجاري ودائرة الأراضي الحية'
                     : 'Live DLD & Ejari Electronic Cheque Sync'}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                   {isArabic
                     ? 'مزامنة فورية لسجلات الإيجار وتجديدات عقود إيجاري وعوائد الاستثمار مع واجهات دائرة الأراضي والأملاك بدبي.'
                     : 'Real-time tenancy contract valuation synchronization and yield updates via Dubai Land Department REST feeds.'}
@@ -701,7 +693,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         </section>
 
         {/* ── Section 3: Notification & Alert Preferences ── */}
-        <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
+        <section className="rounded-none border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center gap-3 border-b border-border/60 pb-4">
             <div className="flex size-10 items-center justify-center rounded-none bg-amber-500/10 text-amber-600 dark:text-amber-400">
               <Bell className="size-5" />
@@ -712,7 +704,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   ? 'تنبيهات الصفقات ومراقبة السوق الحية'
                   : 'Notification & Alert Preferences'}
               </h3>
-              <p className="text-xs text-muted">
+              <p className="text-xs text-muted-foreground">
                 {isArabic
                   ? 'إدارة إشعارات الواتساب الفورية وتنبيهات تغير الأسعار وتقارير عوائد المحفظة الأسبوعية'
                   : 'Manage real-time deal pipeline notifications, price drop triggers, and Friday portfolio digests'}
@@ -730,7 +722,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                       ? 'تنبيهات هبوط الأسعار والتقييم الفوري'
                       : 'Instant Price Drop & Valuation Alerts'}
                   </h4>
-                  <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                     {isArabic
                       ? 'إرسال إشعار فوري عند انخفاض سعر أي عقار في قائمتك المختصرة بنسبة تتجاوز الحد المحدد أدناه.'
                       : 'Notify immediately when shortlisted properties change asking price or yield by more than your defined threshold.'}
@@ -747,7 +739,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
               {/* Price Drop Threshold Selector */}
               {prefs.notifPriceAlerts && (
-                <div className="animate-in fade-in flex items-center gap-3 rounded-2xl border border-border/60 bg-surface-subtle p-3 text-xs">
+                <div className="animate-in fade-in flex items-center gap-3 rounded-none border border-border/60 bg-surface-subtle p-3 text-xs">
                   <TrendingUp className="size-4 text-fjord" />
                   <span className="font-medium text-ink">
                     {isArabic
@@ -766,7 +758,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                           'rounded-none px-2.5 py-1 font-bold transition-all',
                           prefs.priceDropThreshold === pct
                             ? 'bg-fjord text-white shadow-2xs'
-                            : 'bg-surface text-muted hover:text-ink',
+                            : 'bg-surface text-muted-foreground hover:text-ink',
                         )}
                       >
                         &gt;{pct}%
@@ -786,7 +778,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                       ? 'إشعارات واتساب الرسمية لنقل الملكية (DLD)'
                       : 'WhatsApp Business DLD Transfer Alerts'}
                   </h4>
-                  <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                     {isArabic
                       ? 'تلقي تحديثات معالم تسجيل العقود (Form F) ومواعيد المعاينة ونقل الملكية عبر حساب ريرا الرسمي في واتساب.'
                       : 'Receive official RERA transaction milestones, MOU counters, and viewing confirmations directly via WhatsApp.'}
@@ -801,7 +793,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
 
               {/* WhatsApp Phone Number Input */}
               {prefs.notifWhatsapp && (
-                <div className="animate-in fade-in flex flex-col gap-2 rounded-2xl border border-border/60 bg-surface-subtle p-3.5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="animate-in fade-in flex flex-col gap-2 rounded-none border border-border/60 bg-surface-subtle p-3.5 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-2 text-xs font-medium text-ink">
                     <Smartphone className="size-4 text-emerald-500" />
                     <span>
@@ -831,7 +823,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'ملخص التدفق النقدي والعوائد الأسبوعي'
                     : 'Weekly Portfolio Cashflow Digest'}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                   {isArabic
                     ? 'تلقي تقرير آلي صباح كل جمعة يلخص صافي عوائد الإيجار ومصاريف الصيانة ومؤشرات إشغال المحفظة عبر البريد الإلكتروني.'
                     : 'Receive an automated Friday summary of net rental yields, maintenance ticket costs, and occupancy metrics.'}
@@ -847,7 +839,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         </section>
 
         {/* ── Section 4: Trust Passport Security & Identity ── */}
-        <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
+        <section className="rounded-none border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center gap-3 border-b border-border/60 pb-4">
             <div className="flex size-10 items-center justify-center rounded-none bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
               <Shield className="size-5" />
@@ -858,7 +850,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   ? 'الأمان وجواز الثقة والهوية (Trust Passport Security)'
                   : 'Trust Passport Identity & Account Security'}
               </h3>
-              <p className="text-xs text-muted">
+              <p className="text-xs text-muted-foreground">
                 {isArabic
                   ? 'التحقق من هوية المستثمر في دائرة الأراضي، المصادقة الثنائية (2FA)، وإدارة الجلسات النشطة'
                   : 'DLD Investor ID KYC verification, Two-Factor Authentication (2FA), and active session management'}
@@ -875,13 +867,13 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'حالة تحقق هوية المستثمر (UAE Pass / DLD KYC)'
                     : 'Investor Identity KYC Status'}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                   {isArabic
                     ? 'الهوية مرتبطة برقم المستثمر الموحد في ريرا وتتيح توقيع عقود إيجاري ومذكرات التفاهم إلكترونياً.'
                     : 'Linked to your RERA unified investor ID. Enables digital MOU signing and instant escrow reservations.'}
                 </p>
               </div>
-              <div className="flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-700 dark:text-emerald-300">
+              <div className="flex items-center gap-2 rounded-none border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-xs font-bold text-emerald-700 dark:text-emerald-300">
                 <UserCheck className="size-4 shrink-0 text-emerald-500" />
                 <span>
                   {isArabic
@@ -899,7 +891,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'المصادقة الثنائية للمعاملات المالية (2FA)'
                     : 'Two-Factor Authentication (2FA Biometrics)'}
                 </h4>
-                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                   {isArabic
                     ? 'طلب رمز تحقق عبر تطبيق المصادق عند إجراء حجوزات حساب الضمان أو سحب عوائد الصناديق العقارية.'
                     : 'Require TOTP or biometric authorization when submitting formal offers or transferring escrow funds.'}
@@ -920,7 +912,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                     ? 'الجلسة الحالية وإدارة الأجهزة المتصلة'
                     : 'Active Browser Sessions & Devices'}
                 </h4>
-                <p className="mt-0.5 text-xs text-muted">
+                <p className="mt-0.5 text-xs text-muted-foreground">
                   {isArabic
                     ? 'دبي، الإمارات العربية المتحدة • Chrome 132 على Windows • الجلسة النشطة حالياً'
                     : 'Dubai, UAE • Chrome 132 on Windows • Currently active session'}
@@ -949,7 +941,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         </section>
 
         {/* ── Section 5: Developer API & Broker CRM Syndication ── */}
-        <section className="rounded-3xl border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
+        <section className="rounded-none border border-border/60 bg-surface/80 p-6 shadow-xs backdrop-blur-md transition-all duration-300 hover:border-border md:p-8">
           <div className="flex items-center gap-3 border-b border-border/60 pb-4">
             <div className="flex size-10 items-center justify-center rounded-none bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
               <Terminal className="size-5" />
@@ -960,7 +952,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   ? 'واجهة البرمجة (API) وربط أنظمة الوسطاء'
                   : 'Developer API & Broker CRM Syndication'}
               </h3>
-              <p className="text-xs text-muted">
+              <p className="text-xs text-muted-foreground">
                 {isArabic
                   ? 'إدارة مفاتيح API لربط القوائم المختصرة ومحافظ العائلة مع لوحات تحكم Power BI أو أنظمة إدارة العلاقات (CRM)'
                   : 'Manage REST API tokens to syndicate shortlists and portfolio valuations to family office dashboards or CRMs'}
@@ -978,7 +970,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                       ? 'مفتاح الوصول الحي لمنصة RAMA (Production Key)'
                       : 'RAMA Production API Access Key'}
                   </h4>
-                  <p className="mt-0.5 text-xs text-muted">
+                  <p className="mt-0.5 text-xs text-muted-foreground">
                     {isArabic
                       ? 'يستخدم لمصادقة طلبات REST وسحب بيانات التحقق وجواز الثقة إلكترونياً.'
                       : 'Used to authenticate server-to-server REST calls and query real-time Trust Passport scores.'}
@@ -1008,7 +1000,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
                   <button
                     type="button"
                     onClick={handleRegenerateApiKey}
-                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-muted transition-all hover:bg-surface-subtle hover:text-ink"
+                    className="inline-flex items-center gap-1.5 rounded-none border border-border/80 bg-surface px-3 py-1.5 text-xs font-bold text-muted-foreground transition-all hover:bg-surface-subtle hover:text-ink"
                   >
                     <RotateCcw className="size-3.5" />
                     <span>{isArabic ? 'إعادة إنشاء' : 'Regenerate'}</span>
@@ -1017,7 +1009,7 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
               </div>
 
               {/* API Key Display Box */}
-              <div className="flex items-center justify-between gap-2 rounded-2xl border border-border/80 bg-surface-subtle p-3.5 font-mono text-xs">
+              <div className="flex items-center justify-between gap-2 rounded-none border border-border/80 bg-surface-subtle p-3.5 font-mono text-xs">
                 <span className="truncate font-bold text-ink">
                   {apiKeyVisible
                     ? apiKeyString
@@ -1075,8 +1067,8 @@ export function SettingsClient({ locale, user }: SettingsClientProps) {
         </section>
 
         {/* ── Executive Action Bar ── */}
-        <div className="sticky bottom-4 z-20 flex flex-col items-center justify-between gap-4 rounded-3xl border border-border/80 bg-surface/90 p-4 shadow-lg backdrop-blur-xl sm:flex-row sm:px-8 sm:py-5">
-          <div className="flex items-center gap-2 text-xs text-muted">
+        <div className="sticky bottom-4 z-20 flex flex-col items-center justify-between gap-4 rounded-none border border-border/80 bg-surface/90 p-4 shadow-lg backdrop-blur-xl sm:flex-row sm:px-8 sm:py-5">
+          <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Sparkles className="size-4 text-fjord" />
             <span>
               {isArabic

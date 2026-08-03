@@ -4,7 +4,7 @@ export default function HomesLoading() {
   return (
     <div className="container mx-auto mt-16 space-y-8 px-4 py-8">
       {/* Search Bar Skeleton */}
-      <div className="mx-auto h-14 w-full max-w-3xl animate-pulse bg-stone-100 dark:bg-stone-900" />
+      <div className="mx-auto h-14 w-full max-w-3xl animate-pulse bg-surface " />
 
       {/* Filters Skeleton */}
       <div className="flex flex-wrap gap-2">
@@ -18,7 +18,7 @@ export default function HomesLoading() {
         {Array.from({ length: 6 }).map((_, i) => (
           <div
             key={i}
-            className="overflow-hidden border border-stone-300 dark:border-stone-800"
+            className="overflow-hidden border border-border/60 "
           >
             <Skeleton className="aspect-4/3 w-full rounded-none" />
             <div className="space-y-4 p-4">

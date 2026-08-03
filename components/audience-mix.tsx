@@ -24,7 +24,7 @@ const segments = [
 
 export function AudienceMix() {
   return (
-    <Card className="dark:bg-transparent">
+    <Card className="hover:shadow-floating relative border border-border/40 bg-surface/70 backdrop-blur-md transition-all duration-300 lg:col-span-2">
       <CardHeader className="border-b">
         <CardTitle className="text-balance">Audience mix</CardTitle>
         <CardDescription className="text-pretty">

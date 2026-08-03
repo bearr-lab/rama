@@ -90,22 +90,22 @@ export interface PartnerLogoProps {
 
 export const PartnerCard = ({ name, category, badge }: PartnerLogoProps) => {
   return (
-    <div className="flex items-center gap-3 border border-stone-300/60 bg-stone-100/50 px-5 py-3 shadow-sm backdrop-blur-sm transition-all hover:border-stone-300 hover:bg-stone-50 dark:border-stone-800/60 dark:bg-stone-900/50 dark:bg-stone-950">
-      <div className="flex size-10 shrink-0 items-center justify-center bg-ink text-sm font-extrabold text-white dark:bg-white dark:text-stone-900">
+    <div className="border-border/60/60 flex items-center gap-3 border bg-surface/50 px-5 py-3 shadow-sm backdrop-blur-sm transition-all hover:border-border/60 hover:bg-surface-subtle   ">
+      <div className="flex size-10 shrink-0 items-center justify-center bg-ink text-sm font-extrabold text-white dark:bg-white ">
         {name.slice(0, 2).toUpperCase()}
       </div>
       <div>
         <div className="flex items-center gap-2">
-          <h4 className="font-display text-sm font-bold text-stone-900 dark:text-stone-50">
+          <h4 className="font-display text-sm font-bold text-ink ">
             {name}
           </h4>
           {badge && (
-            <span className="bg-stone-800/10 px-2 py-0.5 text-[9px] font-bold text-stone-800 dark:text-stone-100">
+            <span className="bg-ink/10 px-2 py-0.5 text-[9px] font-bold text-ink ">
               {badge}
             </span>
           )}
         </div>
-        <p className="text-xs font-medium text-stone-500 dark:text-stone-400">
+        <p className="text-xs font-medium text-muted-foreground dark:text-stone-400">
           {category}
         </p>
       </div>

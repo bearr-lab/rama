@@ -22,12 +22,12 @@ export function TrustBadge({
   const config = {
     verified: {
       icon: ShieldCheck,
-      text: 'DLD Verified',
+      text: 'RAMA Verified',
       color: 'text-verified',
       bgSolid: 'bg-verified-soft',
       bgOutline: 'bg-transparent border-verified/30',
       tooltip:
-        'Price and details matched with official Dubai Land Department records.',
+        'Price and details instantly verified by RAMA AI via DLD Ejari records.',
     },
     review: {
       icon: Clock,
@@ -72,7 +72,7 @@ export function TrustBadge({
           <span>{text}</span>
         </Badge>
       </TooltipTrigger>
-      <TooltipContent className="max-w-[250px] p-3 text-center leading-relaxed">
+      <TooltipContent className="max-w-62.5 p-3 text-center leading-relaxed">
         <p className="text-sm">{tooltip}</p>
       </TooltipContent>
     </Tooltip>

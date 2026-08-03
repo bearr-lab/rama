@@ -7,15 +7,9 @@ import {
   X,
   Check,
   StickyNote,
-  Trophy,
-  ArrowUpRight,
-  Scale,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { NumberTicker } from '@/components/magicui/number-ticker';
-import { BlurFade } from '@/components/magicui/blur-fade';
-import { AnimatedShinyText } from '@/components/magicui/shiny-text';
 
 interface ComparisonProperty {
   id: string;
@@ -96,12 +90,12 @@ export function ComparisonMatrix({
 
   if (properties.length < 2) {
     return (
-      <div className="flex h-64 w-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border bg-surface-subtle p-8 text-center">
-        <ArrowRightLeft className="mb-4 size-10 text-muted opacity-40" />
+      <div className="flex h-64 w-full flex-col items-center justify-center border-transparent bg-surface-subtle p-12 text-center shadow-none">
+        <ArrowRightLeft className="mb-4 size-10 text-stone-300" />
         <p className="font-display text-xl font-bold text-ink">
           Add properties to compare
         </p>
-        <p className="mt-2 max-w-md text-sm text-muted">
+        <p className="mt-2 max-w-md text-sm text-muted-foreground">
           The Decision Lab requires at least two properties to run trade-off
           sensitivity modeling.
         </p>
@@ -152,357 +146,324 @@ export function ComparisonMatrix({
   const winner = sortedProperties[0];
 
   return (
-    <div className="w-full space-y-12">
-      {/* COMPARISON TABLE */}
-      <div className="shadow-subtle w-full overflow-x-auto rounded-3xl border border-border/40 bg-surface/80 backdrop-blur-md">
-        <table className="w-full min-w-200 border-collapse text-left text-sm">
-          <thead>
-            <tr>
-              <th className="w-1/4 min-w-50 border-b border-border/40 p-6 align-bottom">
-                <span className="text-xs font-bold tracking-widest text-fjord uppercase">
-                  Comparison Criteria
-                </span>
-              </th>
-              {properties.map((p) => (
-                <th
-                  key={p.id}
-                  className="w-1/4 min-w-60 border-b border-l border-border/40 p-6 align-top"
-                >
-                  <div className="group relative">
-                    <div className="relative mb-4 aspect-video w-full overflow-hidden rounded-2xl border border-border/40 bg-surface-subtle shadow-xs">
-                      <img
-                        src={p.imgUrl}
-                        alt={p.title}
-                        className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <button
-                        onClick={() => handleRemove(p.id)}
-                        className="absolute top-2.5 right-2.5 flex size-7 items-center justify-center rounded-full bg-black/60 text-white opacity-0 shadow-sm backdrop-blur-md transition-all group-hover:opacity-100 hover:scale-110 hover:bg-rose-600"
-                        title="Remove property"
-                      >
-                        <X className="size-3.5" />
-                      </button>
-                    </div>
-                    <h3 className="font-display text-xl leading-snug font-bold text-ink">
-                      {p.title}
-                    </h3>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border/40">
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Asking Valuation</td>
-              {properties.map((p) => (
-                <td
-                  key={p.id}
-                  className="border-l border-border/40 p-6 font-display text-base font-bold text-ink"
-                >
-                  AED {(p.price / 1000000).toFixed(2)}M
-                </td>
-              ))}
-            </tr>
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Master Community</td>
-              {properties.map((p) => (
-                <td
-                  key={p.id}
-                  className="border-l border-border/40 p-6 font-light text-muted-foreground"
-                >
-                  {p.community}
-                </td>
-              ))}
-            </tr>
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Bedrooms</td>
-              {properties.map((p) => (
-                <td
-                  key={p.id}
-                  className="border-l border-border/40 p-6 font-medium text-ink"
-                >
-                  {p.beds || 4} Beds
-                </td>
-              ))}
-            </tr>
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Total Area</td>
-              {properties.map((p) => (
-                <td
-                  key={p.id}
-                  className="border-l border-border/40 p-6 font-medium text-ink"
-                >
-                  {p.sqft.toLocaleString()}{' '}
-                  <span className="text-xs font-light text-muted-foreground">
-                    sqft
-                  </span>
-                </td>
-              ))}
-            </tr>
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">
-                DLD &amp; Escrow Verification
-              </td>
-              {properties.map((p) => (
-                <td
-                  key={p.id}
-                  className={cn(
-                    'border-l border-border/40 p-6',
-                    p.trustScore >= 90
-                      ? 'bg-verified-soft/40'
-                      : 'bg-review-soft/40',
-                  )}
-                >
-                  <div
-                    className={cn(
-                      'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold shadow-2xs',
-                      p.trustScore >= 90
-                        ? 'border border-verified/30 bg-verified-soft text-verified'
-                        : 'border border-review/30 bg-review-soft text-review',
-                    )}
-                  >
-                    {p.trustScore >= 90 ? (
-                      <Check className="size-3.5" />
-                    ) : (
-                      <X className="size-3.5" />
-                    )}
-                    <span>
-                      {p.trustScore >= 90 ? 'DLD Verified' : 'In Review'}
-                    </span>
-                  </div>
-                </td>
-              ))}
-            </tr>
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Developer Partner</td>
-              {properties.map((p) => (
-                <td
-                  key={p.id}
-                  className="border-l border-border/40 p-6 font-light text-muted-foreground"
-                >
-                  {p.developer}
-                </td>
-              ))}
-            </tr>
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">Handover Status</td>
-              {properties.map((p) => (
-                <td
-                  key={p.id}
-                  className="border-l border-border/40 p-6 font-medium text-ink"
-                >
-                  {p.completion}
-                </td>
-              ))}
-            </tr>
-            <tr className="transition-colors hover:bg-surface-subtle/30">
-              <td className="p-6 font-semibold text-ink">
-                Net Rental Yield (ROI)
-              </td>
-              {properties.map((p) => {
-                const isBest = p.roi === maxRoi;
-                return (
-                  <td
-                    key={p.id}
-                    className={cn(
-                      'border-l border-border/40 p-6 font-display text-base font-bold',
-                      isBest
-                        ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                        : 'text-ink',
-                    )}
-                  >
-                    {p.roi}%
-                    {isBest && (
-                      <span className="ml-2 inline-flex items-center rounded bg-emerald-500/20 px-1.5 py-0.5 text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400">
-                        Best ROI
-                      </span>
-                    )}
-                  </td>
-                );
-              })}
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      {/* SCORING PANEL */}
-      <div className="grid gap-8 lg:grid-cols-3">
-        {/* Sliders */}
-        <div className="shadow-subtle rounded-3xl border border-border/40 bg-surface/80 p-8 backdrop-blur-md">
-          <h3 className="mb-6 font-display text-2xl font-medium text-ink">
-            Trade-off Weights
-          </h3>
-          <div className="space-y-7">
-            <div className="space-y-3">
-              <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
-                <span>Location Priority</span>
-                <span className="font-display text-sm font-bold text-ink">
-                  {weightLocation}%
-                </span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={weightLocation}
-                onChange={(e) => setWeightLocation(Number(e.target.value))}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-surface-subtle accent-fjord focus:outline-none"
-              />
-            </div>
-            <div className="space-y-3">
-              <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
-                <span>Price Sensitivity</span>
-                <span className="font-display text-sm font-bold text-ink">
-                  {weightPrice}%
-                </span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={weightPrice}
-                onChange={(e) => setWeightPrice(Number(e.target.value))}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-surface-subtle accent-fjord focus:outline-none"
-              />
-            </div>
-            <div className="space-y-3">
-              <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
-                <span>ROI Focus</span>
-                <span className="font-display text-sm font-bold text-ink">
-                  {weightRoi}%
-                </span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={weightRoi}
-                onChange={(e) => setWeightRoi(Number(e.target.value))}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-surface-subtle accent-fjord focus:outline-none"
-              />
-            </div>
-            <div className="space-y-3">
-              <div className="flex justify-between text-xs font-bold tracking-widest text-fjord uppercase">
-                <span>Risk Aversion</span>
-                <span className="font-display text-sm font-bold text-ink">
-                  {weightRisk}%
-                </span>
-              </div>
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={weightRisk}
-                onChange={(e) => setWeightRisk(Number(e.target.value))}
-                className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-surface-subtle accent-fjord focus:outline-none"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Live Score Chart & Winner */}
-        <div className="shadow-subtle flex flex-col justify-between space-y-8 rounded-3xl border border-border/40 bg-surface/80 p-8 backdrop-blur-md lg:col-span-2">
-          <div>
-            <span className="text-xs font-bold tracking-widest text-fjord uppercase">
-              SENSITIVITY MODELING
-            </span>
-            <h3 className="mt-1 font-display text-2xl font-medium text-ink">
-              Decision Score Analysis
+    <div className="w-full space-y-8">
+      {/* GLASS PLATE SPLIT-VIEW MATRIX (Lagom Compliant) */}
+      <div className="w-full overflow-hidden border-transparent bg-surface-subtle shadow-none">
+        <div className="flex flex-col divide-y divide-stone-300 xl:flex-row xl:divide-x xl:divide-y-0">
+          
+          {/* LEFT PANE: SCORING PANEL & CONTROLS */}
+          <div className="w-full shrink-0 bg-surface p-6 xl:w-100 xl:p-8">
+            <h3 className="mb-8 font-display text-xl font-bold text-ink">
+              Trade-off Weights
             </h3>
+            <div className="space-y-8">
+              <div className="space-y-3">
+                <div className="flex justify-between text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                  <span>Location Priority</span>
+                  <span className="font-display text-sm font-bold text-ink">
+                    {weightLocation}%
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={weightLocation}
+                  onChange={(e) => setWeightLocation(Number(e.target.value))}
+                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                />
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                  <span>Price Sensitivity</span>
+                  <span className="font-display text-sm font-bold text-ink">
+                    {weightPrice}%
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={weightPrice}
+                  onChange={(e) => setWeightPrice(Number(e.target.value))}
+                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                />
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                  <span>ROI Focus</span>
+                  <span className="font-display text-sm font-bold text-ink">
+                    {weightRoi}%
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={weightRoi}
+                  onChange={(e) => setWeightRoi(Number(e.target.value))}
+                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                />
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                  <span>Risk Aversion</span>
+                  <span className="font-display text-sm font-bold text-ink">
+                    {weightRisk}%
+                  </span>
+                </div>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={weightRisk}
+                  onChange={(e) => setWeightRisk(Number(e.target.value))}
+                  className="h-1 w-full cursor-pointer appearance-none bg-stone-300 accent-stone-900"
+                />
+              </div>
+            </div>
+
+            <div className="mt-12 border-t border-border/60 pt-8">
+              <h3 className="mb-6 font-display text-xl font-bold text-ink">Decision Analysis</h3>
+              
+              {/* Winner Recommendation */}
+              <div className="flex flex-col gap-5 border border-border/60 bg-white p-5 shadow-sm">
+                <div className="flex items-start gap-4">
+                  <div className="flex size-12 shrink-0 items-center justify-center bg-ink text-white">
+                    <Check className="size-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">AI Recommendation</span>
+                    <p className="font-display text-lg font-bold text-ink">{winner.title}</p>
+                  </div>
+                </div>
+                <Link href={`/${locale}/property/${winner.id}`}>
+                  <Button className="w-full rounded-none bg-ink font-bold text-white hover:bg-ink">
+                    Inspect Trust Passport
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-1 flex-col justify-between gap-10">
-            {/* Chart */}
-            <div className="flex h-55 items-end justify-center gap-10 border-b border-border/40 px-6 pb-8">
-              {scoredProperties.map((p) => {
-                const isWinner = p.id === winner.id;
-                const heightPercent = Math.max(
-                  15,
-                  Math.round((p.rawScore / winner.rawScore) * 100),
-                );
-
-                return (
-                  <div
-                    key={p.id}
-                    className="group flex w-1/3 max-w-35 flex-col items-center gap-3"
-                  >
-                    <div className="relative flex w-full flex-col items-center">
-                      <div className="mb-2 font-display text-base font-bold text-ink transition-transform group-hover:scale-110">
-                        {p.decisionScore}
-                      </div>
+          {/* RIGHT PANE: COMPARISON MATRIX TABLE */}
+          <div className="w-full flex-1 overflow-x-auto bg-surface-subtle p-6 xl:p-8">
+            <table className="w-full min-w-200 border-collapse text-left text-sm">
+              <thead>
+                <tr>
+                  <th className="w-1/4 border-b border-border/60 pb-6 align-bottom">
+                    <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                      Comparison Criteria
+                    </span>
+                  </th>
+                  {scoredProperties.map((p) => {
+                    const isWinner = p.id === winner.id;
+                    return (
+                      <th
+                        key={p.id}
+                        className={cn(
+                          "w-1/4 border-b border-l border-border/60 px-6 pb-6 align-top",
+                          isWinner && "bg-surface"
+                        )}
+                      >
+                        <div className="group relative">
+                          <div className="relative mb-4 aspect-video w-full overflow-hidden border border-border/60 bg-border/50 shadow-sm">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={p.imgUrl}
+                              alt={p.title}
+                              className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <button
+                              onClick={() => handleRemove(p.id)}
+                              className="absolute top-2 right-2 flex size-6 items-center justify-center bg-ink/60 text-white opacity-0 backdrop-blur-md transition-all group-hover:opacity-100 hover:bg-rose-600"
+                              title="Remove property"
+                            >
+                              <X className="size-3" />
+                            </button>
+                          </div>
+                          <div className="flex items-start justify-between gap-3">
+                            <h3 className="font-display text-lg leading-snug font-bold text-ink">
+                              {p.title}
+                            </h3>
+                            <div className="flex h-7 items-center border border-border/60 bg-surface px-2 font-display text-sm font-bold text-ink shadow-sm">
+                              {p.decisionScore}
+                            </div>
+                          </div>
+                        </div>
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-stone-200">
+                <tr>
+                  <td className="py-5 font-bold text-ink">Asking Valuation</td>
+                  {scoredProperties.map((p) => (
+                    <td
+                      key={p.id}
+                      className={cn(
+                        "border-l border-border/60 px-6 py-5 font-display text-base font-bold text-ink",
+                        p.id === winner.id && "bg-surface"
+                      )}
+                    >
+                      AED {(p.price / 1000000).toFixed(2)}M
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="py-5 font-bold text-ink">Master Community</td>
+                  {scoredProperties.map((p) => (
+                    <td
+                      key={p.id}
+                      className={cn(
+                        "border-l border-border/60 px-6 py-5 font-medium text-muted-foreground",
+                        p.id === winner.id && "bg-surface"
+                      )}
+                    >
+                      {p.community}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="py-5 font-bold text-ink">Bedrooms</td>
+                  {scoredProperties.map((p) => (
+                    <td
+                      key={p.id}
+                      className={cn(
+                        "border-l border-border/60 px-6 py-5 font-bold text-ink",
+                        p.id === winner.id && "bg-surface"
+                      )}
+                    >
+                      {p.beds || 4} Beds
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="py-5 font-bold text-ink">Total Area</td>
+                  {scoredProperties.map((p) => (
+                    <td
+                      key={p.id}
+                      className={cn(
+                        "border-l border-border/60 px-6 py-5 font-bold text-ink",
+                        p.id === winner.id && "bg-surface"
+                      )}
+                    >
+                      {p.sqft.toLocaleString()}{' '}
+                      <span className="text-xs font-semibold text-muted-foreground">
+                        sqft
+                      </span>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="py-5 font-bold text-ink">
+                    DLD &amp; Escrow Verification
+                  </td>
+                  {scoredProperties.map((p) => (
+                    <td
+                      key={p.id}
+                      className={cn(
+                        "border-l border-border/60 px-6 py-5",
+                        p.id === winner.id && "bg-surface"
+                      )}
+                    >
                       <div
                         className={cn(
-                          'relative w-full overflow-hidden rounded-t-xl shadow-sm transition-all duration-700',
-                          isWinner
-                            ? 'bg-gradient-to-t from-fjord/70 to-fjord shadow-md shadow-fjord/20'
-                            : 'bg-gradient-to-t from-surface-subtle/80 to-surface-subtle hover:from-surface-subtle hover:to-border/60',
+                          'inline-flex items-center gap-1.5 border px-2 py-1 text-[10px] font-bold uppercase',
+                          p.trustScore >= 90
+                            ? 'border-stone-800 bg-border/50 text-ink'
+                            : 'border-stone-400 bg-surface-subtle text-muted-foreground',
                         )}
-                        style={{ height: `${heightPercent * 1.5}px` }}
                       >
-                        {isWinner && (
-                          <div className="absolute inset-x-0 top-0 h-1 animate-pulse bg-emerald-400" />
+                        {p.trustScore >= 90 ? (
+                          <Check className="size-3" />
+                        ) : (
+                          <X className="size-3" />
                         )}
+                        <span>
+                          {p.trustScore >= 90 ? 'DLD Verified' : 'In Review'}
+                        </span>
                       </div>
-                    </div>
-                    <span className="max-w-full truncate text-center text-xs font-semibold text-ink/80">
-                      {p.title.split(' ')[0]} {p.title.split(' ')[1]}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Winner Recommendation (Breathtaking Dark Fjord Luxury Card!) */}
-            <div className="shadow-floating flex flex-col items-center justify-between gap-6 rounded-2xl border border-white/10 bg-gradient-to-r from-fjord to-[#153b52] p-6 text-white sm:flex-row">
-              <div className="flex items-center gap-4">
-                <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-500 text-white shadow-md shadow-emerald-500/20">
-                  <Check className="stroke-2.5 size-6" />
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold tracking-widest text-emerald-300 uppercase">
-                      WINNER RECOMMENDATION
-                    </span>
-                    <span className="rounded-full bg-white/20 px-2 py-0.5 text-[9px] font-bold text-white uppercase">
-                      AI RAG Cleared
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm leading-relaxed text-white/90">
-                    Based on your trade-off priorities,{' '}
-                    <span className="font-display text-base font-bold text-white underline decoration-emerald-400 decoration-2 underline-offset-4">
-                      {winner.title}
-                    </span>{' '}
-                    achieves the highest confidence score.
-                  </p>
-                </div>
-              </div>
-              <Link href={`/${locale}/property/${winner.id}`}>
-                <Button className="shrink-0 rounded-xl bg-white px-6 py-3 font-semibold text-fjord shadow-sm transition-transform hover:scale-105 hover:bg-white/90">
-                  Inspect Trust Passport
-                </Button>
-              </Link>
-            </div>
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="py-5 font-bold text-ink">Developer Partner</td>
+                  {scoredProperties.map((p) => (
+                    <td
+                      key={p.id}
+                      className={cn(
+                        "border-l border-border/60 px-6 py-5 font-medium text-muted-foreground",
+                        p.id === winner.id && "bg-surface"
+                      )}
+                    >
+                      {p.developer}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="py-5 font-bold text-ink">Handover Status</td>
+                  {scoredProperties.map((p) => (
+                    <td
+                      key={p.id}
+                      className={cn(
+                        "border-l border-border/60 px-6 py-5 font-bold text-ink",
+                        p.id === winner.id && "bg-surface"
+                      )}
+                    >
+                      {p.completion}
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  <td className="py-5 font-bold text-ink">
+                    Net Rental Yield (ROI)
+                  </td>
+                  {scoredProperties.map((p) => {
+                    const isBest = p.roi === maxRoi;
+                    return (
+                      <td
+                        key={p.id}
+                        className={cn(
+                          'border-l border-border/60 px-6 py-5 font-display text-base font-bold',
+                          p.id === winner.id && "bg-surface",
+                          isBest ? 'text-ink' : 'text-ink',
+                        )}
+                      >
+                        {p.roi}%
+                        {isBest && (
+                          <span className="ml-2 inline-flex items-center border border-stone-800 bg-ink px-1.5 py-0.5 text-[9px] font-bold text-white uppercase">
+                            Best ROI
+                          </span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
 
       {/* Shared Notes Area */}
-      <div className="rounded-2xl border border-border bg-surface p-6">
+      <div className="border border-border/60 bg-surface-subtle p-6 shadow-resting">
         <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink">
-          <StickyNote className="size-5 text-fjord" />
+          <StickyNote className="size-5 text-ink" />
           Decision Logic & Notes
         </h3>
         <textarea
-          className="h-32 w-full resize-none rounded-xl border border-border bg-surface-subtle p-4 text-sm text-ink focus:border-fjord focus:ring-1 focus:ring-fjord focus:outline-none"
+          className="h-32 w-full resize-none border border-border/60 bg-surface p-4 text-sm font-medium text-ink focus:border-stone-900 focus:ring-1 focus:ring-ink focus:outline-none"
           placeholder="Summarize why a certain property is leading, or note missing data points needed for a final call..."
         />
         <div className="mt-4 flex items-center justify-between">
           <div className="flex -space-x-2">
-            <div className="flex size-6 items-center justify-center rounded-full bg-fjord text-[8px] font-bold text-white ring-2 ring-surface">
+            <div className="flex size-6 items-center justify-center rounded-none bg-ink text-[8px] font-bold text-white ring-2 ring-stone-50">
               AM
             </div>
           </div>
-          <p className="text-xs text-muted">Last auto-saved at 14:32 Today</p>
+          <p className="text-xs font-semibold text-muted-foreground">Last auto-saved at 14:32 Today</p>
         </div>
       </div>
     </div>

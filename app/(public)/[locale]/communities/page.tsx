@@ -50,7 +50,7 @@ export default async function AreasPage({
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-stone-50 dark:bg-stone-950">
+    <div className="flex min-h-screen w-full flex-col bg-surface-subtle ">
       <HeroNordic
         badgeIcon={<MapPin className="size-3.5" />}
         badgeText={isArabic ? 'مناطق دبي' : 'Dubai Areas'}
@@ -75,10 +75,11 @@ export default async function AreasPage({
             ? 'استكشف أشهر أحياء دبي، من المعيشة على الواجهة البحرية إلى مجمعات الفيلات الهادئة.'
             : "Explore Dubai's most popular neighborhoods, from waterfront living to serene villa communities."
         }
+        backgroundVideo="/videos/communities-hero-bg.mp4"
         backgroundImage={heroImage}
       />
 
-      <Section className="bg-stone-50 dark:bg-stone-950">
+      <Section className="bg-surface-subtle ">
         <Container size="2xl">
           {!communities || communities.length === 0 ? (
             <EmptyState
